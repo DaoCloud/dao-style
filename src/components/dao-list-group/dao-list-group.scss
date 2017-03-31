@@ -1,0 +1,69 @@
+@import '../dao-color.scss';
+
+.dao-list-group {
+  font-size: 14px;
+
+  margin-bottom: 10px;
+  padding: 0;
+
+  list-style-type: none;
+
+  border-radius: 4px;
+  box-shadow: 0 1px 4px 0 rgba($grey-light, .3);
+}
+.dao-list-item {
+  line-height: 40px;
+
+  position: relative;
+
+  height: 40px;
+  margin-bottom: -1px;
+  padding: 0 10px;
+
+  cursor: pointer;
+
+  color: $grey-dark;
+  border: 1px solid $white-dark;
+  background-color: $white-light;
+  text-shadow: 0 1px 0 rgba($white, .9);
+  .icon {
+    position: absolute;
+    top: 2px;
+    right: 10px;
+
+    display: none;
+    svg {
+      width: 16px;
+      height: 16px;
+    }
+  }
+  &:first-child {
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+  }
+  &:last-child {
+    margin-bottom: 0;
+
+    border-bottom-right-radius: 4px;
+    border-bottom-left-radius: 4px;
+  }
+  &:hover {
+    color: $black-light;
+    .icon {
+      display: inline-block;
+      svg {
+        fill: $black-light;
+      }
+    }
+  }
+  &.active {
+    color: $black-dark;
+    background-color: $white;
+    .icon {
+      display: inline-block;
+      svg {
+        fill: $black-dark;
+      }
+    }
+  }
+}

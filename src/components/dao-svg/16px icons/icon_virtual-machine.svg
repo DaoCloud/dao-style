@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <title>virtual-machine</title>
+  <g>
+    <path d="M29,22H3a1,1,0,0,0-1,1v6a1,1,0,0,0,1,1H29a1,1,0,0,0,1-1V23A1,1,0,0,0,29,22ZM7,27H5V25H7Zm9.5.5h-1v-1h1Zm0-2h-1v-1h1Zm2,2h-1v-1h1Zm0-2h-1v-1h1Zm2,2h-1v-1h1Zm0-2h-1v-1h1Zm2,2h-1v-1h1Zm0-2h-1v-1h1Zm2,2h-1v-1h1Zm0-2h-1v-1h1Zm2,2h-1v-1h1Zm0-2h-1v-1h1Z"/>
+    <g>
+      <path d="M21,5v6H18v1h3a1,1,0,0,0,1-1V5Z" opacity="0.5"/>
+      <path d="M17,15H15V12h2V11H15V9H14v2H11V9H10v2a1,1,0,0,0,1,1h3v3a1,1,0,0,0,1,1h2Z" opacity="0.25"/>
+      <path d="M25,4H22V1a1,1,0,0,0-1-1H11a1,1,0,0,0-1,1V8H7A1,1,0,0,0,6,9V19a1,1,0,0,0,1,1H17a1,1,0,0,0,1-1V16h7a1,1,0,0,0,1-1V5A1,1,0,0,0,25,4ZM11,1H21V4H15a1,1,0,0,0-1,1V8H11Zm6,18H7V9H17Zm8-4H18V9a1,1,0,0,0-1-1H15V5H25Z"/>
+      <rect x="7" y="9" width="10" height="10" opacity="0.2"/>
+      <path d="M15,5V8h2a1,1,0,0,1,1,1v6h7V5Z" opacity="0.2"/>
+      <path d="M11,1V8h3V5a1,1,0,0,1,1-1h6V1Z" opacity="0.2"/>
+    </g>
+  </g>
+</svg>

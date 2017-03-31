@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <title>resize-handle</title>
+  <g>
+    <polygon points="21.414 28 28 21.414 28 18.586 18.586 28 21.414 28"/>
+    <polygon points="5.414 28 28 5.414 28 2.586 2.586 28 5.414 28"/>
+    <polygon points="13.414 28 28 13.414 28 10.586 10.586 28 13.414 28"/>
+  </g>
+</svg>

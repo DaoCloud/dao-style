@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <title>machine-cluster-big</title>
+  <g>
+    <rect x="20" y="42" width="24" height="2" opacity="0.5"/>
+    <rect x="20" y="46" width="24" height="2" opacity="0.5"/>
+    <circle cx="32" cy="26" r="2" opacity="0.25"/>
+    <path d="M14,10H8.1A2.106,2.106,0,0,0,6,12.1V51.9A2.1,2.1,0,0,0,8.1,54H14Z" opacity="0.5"/>
+    <path d="M50,10h5.9A2.1,2.1,0,0,1,58,12.1V51.9A2.106,2.106,0,0,1,55.9,54H50Z" opacity="0.5"/>
+    <path d="M45.9,6H18.1A2.107,2.107,0,0,0,16,8.1V55.9A2.107,2.107,0,0,0,18.1,58H45.9A2.107,2.107,0,0,0,48,55.9V8.1A2.107,2.107,0,0,0,45.9,6ZM44,48H20V46H44Zm0-4H20V42H44ZM30,26a2,2,0,1,1,2,2A2,2,0,0,1,30,26ZM44,16H20V12H44Z" opacity="0.9"/>
+    <rect x="20" y="12" width="24" height="4" opacity="0.5"/>
+  </g>
+</svg>

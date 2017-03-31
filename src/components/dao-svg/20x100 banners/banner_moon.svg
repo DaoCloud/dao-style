@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 40">
+  <title>moon</title>
+  <rect width="200" height="40" fill="#1f2126"/>
+  <path d="M107,23.5A12.485,12.485,0,0,1,95.015,7.467a13,13,0,1,0,18.738,14.041A12.429,12.429,0,0,1,107,23.5Z" fill="#f5f7fa"/>
+</svg>

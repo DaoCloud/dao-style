@@ -1,0 +1,164 @@
+@import './variables.scss';
+@import './mixins.scss';
+
+// Base styles
+// --------------------------------------------------
+.dao-btn {
+  display: inline-block;
+  font-weight: $btn-font-weight;
+
+  border: $input-btn-border-width solid transparent;
+  outline: none !important; // TODO 加上这边的备注
+  background-image: none; // Reset unusual Firefox-on-Android default style; see https://github.com/necolas/normalize.css/issues/214
+
+  cursor: pointer;
+  user-select: none;
+  text-align: center;
+  vertical-align: middle;
+  white-space: nowrap;
+
+  @include box-sizing('border-box');
+  @include button-size($btn-padding-y, $btn-padding-x, $font-size-base, $line-height-base, $btn-border-radius-base);
+  @include transition(all 0.2s ease-in-out);
+  @include hover-focus {
+    text-decoration: none;
+  }
+  &,
+  &:active,
+  &.active {
+    &:focus,
+    &.focus {
+      @include tab-focus();
+    }
+  }
+  &.focus {
+    text-decoration: none;
+  }
+  &:active,
+  &.active {
+    outline: 0;
+    background-image: none;
+  }
+}
+
+a.dao-btn {
+  &.disabled,
+  fieldset[disabled] & {
+    pointer-events: none; // Future-proof disabling of clicks on `<a>` elements
+  }
+}
+
+.dao-btn.ghost {
+  color: $black-dark;
+  border-color: $grey-light;
+  background: none;
+
+  @include box-shadow($btn-disabled-box-shadow);
+  @include text-shadow($btn-disabled-text-shadow);
+  &:hover {
+    background-color: rgba($grey-light, 0.1);
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.9);
+  }
+  &:active,
+  &.active {
+    background-color: rgba($grey-light, 0.15);
+    box-shadow: inset 0 1px 3px 0 rgba(0, 0, 0, 0.07),
+    inset 0 0 4px 0 rgba(0, 0, 0, 0.08),
+    0 1px 0 rgba(255, 255, 255, 0.9);
+  }
+}
+
+@each $key, $value in $buttons {
+  $generate-colors: generate-color($value);
+  .dao-btn.#{$key} {
+    @include button-variant(#FFFFFF, $value, map_get($generate-colors, 'border'));
+  }
+  // TODO 在生产环境的时候删除这段代码
+  .color-card {
+    @include clearfix();
+    &.#{$key} {
+      > div {
+        display: block;
+        float: left;
+
+        width: 50px;
+        height: 50px;
+      }
+      > div:first-child {
+        background-color: map_get($generate-colors, 'lighten');
+      }
+      > div:nth-child(2) {
+        background-color: map_get($generate-colors, 'base');
+      }
+      > div:nth-child(3) {
+        background-color: map_get($generate-colors, 'border');
+      }
+      > div:nth-child(4) {
+        background-color: map_get($generate-colors, 'darken');
+      }
+    }
+  }
+}
+
+// .dao-btn.disabled style
+.dao-btn {
+  &.disabled,
+  &[disabled],
+  fieldset[disabled] & {
+    color: $grey-light;
+    border-color: $grey-light !important;
+    background: none !important;
+
+    cursor: $cursor-disabled;
+    pointer-events: none;
+
+    @include box-shadow($btn-disabled-box-shadow!important);
+    @include text-shadow($btn-disabled-text-shadow);
+  }
+}
+
+// .dao-btn has svg icon
+.dao-btn {
+  $btn-has-icon-compact-padding-x: 10px;
+  svg {
+    width: $btn-svg-size;
+    height: $btn-svg-size;
+
+    fill: currentColor;
+  }
+  &.dao-icon {
+    padding: $btn-icon-padding-y $btn-icon-padding-x;
+  }
+  &.has-icon {
+    padding-top: $btn-has-icon-padding-y;
+    padding-bottom: $btn-has-icon-padding-y;
+    .text {
+      display: inline-block;
+      vertical-align: middle;
+      margin:0 0 0 0;
+    }
+    svg.icon {
+      display: inline-block;
+      vertical-align: middle;
+    }
+    svg.icon + .text {
+      margin:0 0 0 5px;
+    }
+    .text + svg.icon {
+      margin-left: 5px;
+    }
+  }
+
+  &.has-icon.compact {
+    padding: $btn-has-icon-padding-y $btn-has-icon-compact-padding-x;
+    .text {
+      margin: 0 8px 0 5px;
+    }
+    svg.icon + .text {
+        margin: 0 5px 0 8px;
+    }
+    .text + svg.icon {
+      margin-left: 0px;
+    }
+  }
+}

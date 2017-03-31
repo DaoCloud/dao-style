@@ -1,0 +1,101 @@
+@mixin button-variant($color, $background, $border) {
+  $generate-colors: generate-color($background);
+
+  color: $color;
+  border-color: $border;
+  background-color: $background;
+  background-image: linear-gradient(to top, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.06) 100%),
+  linear-gradient(to top, rgba(map_get($generate-colors, 'darken'), 0.5) 0%,
+  rgba(map_get($generate-colors, 'lighten'), 0.5) 100%);
+  box-shadow: $btn-box-shadow;
+  text-shadow: $btn-text-shadow;
+
+  &:hover {
+    background-image: linear-gradient(to top, rgba(map_get($generate-colors, 'darken'), 0.5) 0%,
+    rgba(map_get($generate-colors, 'lighten'), 0.5) 100%);
+  }
+
+  &:active,
+  &.active {
+    background-image: none;
+    box-shadow: $btn-active-box-shadow;
+  }
+}
+
+@function generate-color($base-color) {
+  @return (
+  'lighten': lighten($base-color, 4),
+  'base':$base-color,
+  'border': desaturate(darken($base-color, 7), 11),
+  'darken': desaturate(darken($base-color, 13), 7),
+  );
+}
+
+@mixin text-shadow($shadow...) {
+    text-shadow: $shadow;
+}
+
+@mixin box-sizing($box-sizing) {
+    box-sizing: $box-sizing;
+    & *,
+    & *::before,
+    & *::after {
+        box-sizing: inherit;
+    }
+}
+
+@mixin hover-focus {
+    @if $enable-hover-media-query {
+        &:focus {
+            @content
+        }
+        @include hover {
+            @content
+        }
+    }
+    @else {
+        &:focus,
+        &:hover {
+            @content
+        }
+    }
+}
+
+@mixin button-size($btn-padding-y, $btn-padding-x, $font-size-base, $line-height-base, $btn-border-radius-base) {
+  padding: $btn-padding-y $btn-padding-x;
+  font-size: $font-size-base;
+  line-height: $line-height-base;
+  border-radius: $btn-border-radius-base;
+}
+
+@mixin transition($transition...) {
+    @if $enable-transitions {
+        transition: $transition;
+    }
+}
+
+@mixin tab-focus() {
+  // WebKit-specific. Other browsers will keep their default outline style.
+  // (Initially tried to also force default via `outline: initial`,
+  // but that seems to erroneously remove the outline in Firefox altogether.)
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+
+
+@mixin box-shadow($shadow...) {
+    @if $enable-shadows {
+        box-shadow: $shadow;
+    }
+}
+
+@mixin clearfix() {
+  &:before,
+  &:after {
+    content: " "; // 1
+    display: table; // 2
+  }
+  &:after {
+    clear: both;
+  }
+}

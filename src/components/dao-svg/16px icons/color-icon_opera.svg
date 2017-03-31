@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 32 32">
+  <defs>
+    <linearGradient id="a" x1="-439.864" y1="601.384" x2="-439.864" y2="601.49" gradientTransform="translate(93836.603 -153952) scale(213.3 256)" gradientUnits="userSpaceOnUse">
+      <stop offset="0.3" stop-color="#ff1b2d"/>
+      <stop offset="0.438" stop-color="#fa1a2c"/>
+      <stop offset="0.594" stop-color="#ed1528"/>
+      <stop offset="0.758" stop-color="#d60e21"/>
+      <stop offset="0.927" stop-color="#b70519"/>
+      <stop offset="1" stop-color="#a70014"/>
+    </linearGradient>
+    <linearGradient id="b" x1="-439.785" y1="601.827" x2="-439.785" y2="601.935" gradientTransform="translate(74828.101 -133842.307) scale(170.1 222.4)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#9c0000"/>
+      <stop offset="0.7" stop-color="#ff4b4b"/>
+    </linearGradient>
+  </defs>
+  <title>opera</title>
+  <g>
+    <path d="M11.4,23.886a12.145,12.145,0,0,1-2.614-7.558v-.656A12.211,12.211,0,0,1,11.4,8.114a10.047,10.047,0,0,1,8.3-3.773,9.79,9.79,0,0,1,5.63,1.236A13.853,13.853,0,0,0,16.055,2H16a14,14,0,0,0-.667,27.989c.219.011.448.011.667.011a13.909,13.909,0,0,0,9.33-3.566c-1.641,1.094-3.467,1.138-5.523,1.138-3.325.011-6.409-1.072-8.411-3.686h0Z" fill="url(#a)"/>
+    <path d="M11.4,8.114a6.247,6.247,0,0,1,4.758-2.428c4.08,0,7.383,4.616,7.383,10.325s-3.3,10.325-7.383,10.325A6.3,6.3,0,0,1,11.4,23.908a10.549,10.549,0,0,0,8.323,4.266,10.075,10.075,0,0,0,5.611-1.717,14.016,14.016,0,0,0,0-20.891,10.049,10.049,0,0,0-5.611-1.717A10.485,10.485,0,0,0,11.4,8.114Z" fill="url(#b)"/>
+  </g>
+</svg>

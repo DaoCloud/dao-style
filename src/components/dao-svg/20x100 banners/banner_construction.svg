@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 40">
+  <title>construction</title>
+  <rect width="200" height="40" fill="#1f2126"/>
+  <g>
+    <polygon points="200 0 191.668 0 151.668 40 179.952 40 200 19.952 200 0" fill="#f7b32b"/>
+    <polygon points="134.668 0 94.668 40 122.952 40 162.952 0 134.668 0" fill="#f7b32b"/>
+    <polygon points="77.668 0 37.668 40 65.952 40 105.952 0 77.668 0" fill="#f7b32b"/>
+    <polygon points="20.668 0 0 20.668 0 40 8.952 40 48.952 0 20.668 0" fill="#f7b32b"/>
+  </g>
+</svg>

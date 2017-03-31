@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <title>list</title>
+  <g>
+    <rect x="10" y="14" width="20" height="4"/>
+    <rect x="10" y="4" width="20" height="4"/>
+    <rect x="10" y="24" width="20" height="4"/>
+    <rect x="2.3" y="3.8" width="4.4" height="4.4" rx="2.2" ry="2.2"/>
+    <rect x="2.3" y="13.8" width="4.4" height="4.4" rx="2.2" ry="2.2"/>
+    <rect x="2.3" y="23.8" width="4.4" height="4.4" rx="2.2" ry="2.2"/>
+  </g>
+</svg>

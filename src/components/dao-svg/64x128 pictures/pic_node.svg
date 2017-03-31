@@ -1,0 +1,114 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 64">
+  <title>pic_node</title>
+  <g>
+    <g>
+      <polyline points="88.372 25.177 80.772 24 48.772 24 41.172 25.714" fill="none" stroke="#000" stroke-miterlimit="10" stroke-width="2"/>
+      <polyline points="41.172 14.537 48.772 16 80.772 16 88.372 14.51" fill="none" stroke="#000" stroke-miterlimit="10" stroke-width="2"/>
+      <polygon points="41.572 15.408 48.772 17.041 48.772 22.755 41.505 24.347 41.572 15.408" opacity="0.2"/>
+      <polygon points="88.035 24.347 80.835 22.714 80.835 17 88.102 15.408 88.035 24.347" opacity="0.2"/>
+      <circle cx="52.933" cy="20" r="1"/>
+      <g>
+        <rect x="66.933" y="19" width="1" height="2"/>
+        <rect x="68.933" y="19" width="1" height="2"/>
+        <rect x="70.933" y="19" width="1" height="2"/>
+        <rect x="72.933" y="19" width="1" height="2"/>
+        <rect x="74.933" y="19" width="1" height="2"/>
+      </g>
+      <g>
+        <rect x="66.933" y="32" width="1" height="2"/>
+        <rect x="68.933" y="32" width="1" height="2"/>
+        <rect x="70.933" y="32" width="1" height="2"/>
+        <rect x="72.933" y="32" width="1" height="2"/>
+        <rect x="74.933" y="32" width="1" height="2"/>
+      </g>
+      <g>
+        <rect x="66.933" y="45" width="1" height="2"/>
+        <rect x="68.933" y="45" width="1" height="2"/>
+        <rect x="70.933" y="45" width="1" height="2"/>
+        <rect x="72.933" y="45" width="1" height="2"/>
+        <rect x="74.933" y="45" width="1" height="2"/>
+      </g>
+      <polyline points="88.372 38.299 80.772 37 48.772 37 41.172 38.327" fill="none" stroke="#000" stroke-miterlimit="10" stroke-width="2"/>
+      <polyline points="41.172 27.66 48.772 29 80.772 29 88.372 27.633" fill="none" stroke="#000" stroke-miterlimit="10" stroke-width="2"/>
+      <polygon points="41.59 28.531 48.79 30.163 48.79 35.878 41.523 37.469 41.59 28.531" opacity="0.2"/>
+      <polygon points="88.035 37.469 80.835 35.837 80.835 30.122 88.102 28.531 88.035 37.469" opacity="0.2"/>
+      <circle cx="52.933" cy="33" r="1"/>
+      <polyline points="88.372 51.422 80.772 50 48.772 50 41.172 51.449" fill="none" stroke="#000" stroke-miterlimit="10" stroke-width="2"/>
+      <polyline points="41.172 40.782 48.772 42 80.772 42 88.372 40.755" fill="none" stroke="#000" stroke-miterlimit="10" stroke-width="2"/>
+      <polygon points="41.572 41.653 48.772 42.823 48.772 49 41.505 50.592 41.572 41.653" opacity="0.2"/>
+      <polygon points="88.035 50.592 80.835 48.959 80.835 42.891 88.102 41.653 88.035 50.592" opacity="0.2"/>
+      <circle cx="52.933" cy="46" r="1"/>
+      <g opacity="0.2">
+        <rect x="42.372" y="13.776" width="0.8" height="1.633"/>
+        <rect x="43.972" y="13.776" width="0.8" height="1.633"/>
+        <rect x="45.572" y="13.776" width="0.8" height="1.633"/>
+        <rect x="47.172" y="13.776" width="0.8" height="1.633"/>
+        <rect x="48.772" y="13.776" width="0.8" height="1.633"/>
+        <rect x="50.372" y="13.776" width="0.8" height="1.633"/>
+        <rect x="51.972" y="13.776" width="0.8" height="1.633"/>
+        <rect x="53.572" y="13.776" width="0.8" height="1.633"/>
+        <rect x="55.172" y="13.776" width="0.8" height="1.633"/>
+        <rect x="56.772" y="13.776" width="0.8" height="1.633"/>
+        <rect x="58.372" y="13.776" width="0.8" height="1.633"/>
+        <rect x="59.972" y="13.776" width="0.8" height="1.633"/>
+        <rect x="61.572" y="13.776" width="0.8" height="1.633"/>
+        <rect x="63.172" y="13.776" width="0.8" height="1.633"/>
+        <rect x="64.772" y="13.776" width="0.8" height="1.633"/>
+        <rect x="66.372" y="13.776" width="0.8" height="1.633"/>
+        <rect x="67.972" y="13.776" width="0.8" height="1.633"/>
+        <rect x="69.572" y="13.776" width="0.8" height="1.633"/>
+        <rect x="71.172" y="13.776" width="0.8" height="1.633"/>
+        <rect x="72.772" y="13.776" width="0.8" height="1.633"/>
+        <rect x="74.372" y="13.776" width="0.8" height="1.633"/>
+        <rect x="75.972" y="13.776" width="0.8" height="1.633"/>
+        <rect x="77.572" y="13.776" width="0.8" height="1.633"/>
+        <rect x="79.172" y="13.776" width="0.8" height="1.633"/>
+        <rect x="80.772" y="13.776" width="0.8" height="1.633"/>
+        <rect x="82.372" y="13.776" width="0.8" height="1.633"/>
+        <rect x="83.972" y="13.776" width="0.8" height="1.633"/>
+        <rect x="85.572" y="13.776" width="0.8" height="1.633"/>
+      </g>
+      <g opacity="0.2">
+        <rect x="42.372" y="50.51" width="0.8" height="1.633"/>
+        <rect x="43.972" y="50.51" width="0.8" height="1.633"/>
+        <rect x="45.572" y="50.51" width="0.8" height="1.633"/>
+        <rect x="47.172" y="50.51" width="0.8" height="1.633"/>
+        <rect x="48.772" y="50.51" width="0.8" height="1.633"/>
+        <rect x="50.372" y="50.51" width="0.8" height="1.633"/>
+        <rect x="51.972" y="50.51" width="0.8" height="1.633"/>
+        <rect x="53.572" y="50.51" width="0.8" height="1.633"/>
+        <rect x="55.172" y="50.51" width="0.8" height="1.633"/>
+        <rect x="56.772" y="50.51" width="0.8" height="1.633"/>
+        <rect x="58.372" y="50.51" width="0.8" height="1.633"/>
+        <rect x="59.972" y="50.51" width="0.8" height="1.633"/>
+        <rect x="61.572" y="50.51" width="0.8" height="1.633"/>
+        <rect x="63.172" y="50.51" width="0.8" height="1.633"/>
+        <rect x="64.772" y="50.51" width="0.8" height="1.633"/>
+        <rect x="66.372" y="50.51" width="0.8" height="1.633"/>
+        <rect x="67.972" y="50.51" width="0.8" height="1.633"/>
+        <rect x="69.572" y="50.51" width="0.8" height="1.633"/>
+        <rect x="71.172" y="50.51" width="0.8" height="1.633"/>
+        <rect x="72.772" y="50.51" width="0.8" height="1.633"/>
+        <rect x="74.372" y="50.51" width="0.8" height="1.633"/>
+        <rect x="75.972" y="50.51" width="0.8" height="1.633"/>
+        <rect x="77.572" y="50.51" width="0.8" height="1.633"/>
+        <rect x="79.172" y="50.51" width="0.8" height="1.633"/>
+        <rect x="80.772" y="50.51" width="0.8" height="1.633"/>
+        <rect x="82.372" y="50.51" width="0.8" height="1.633"/>
+        <rect x="83.972" y="50.51" width="0.8" height="1.633"/>
+        <rect x="85.572" y="50.51" width="0.8" height="1.633"/>
+      </g>
+      <rect x="87.172" y="13.776" width="0.8" height="1.633"/>
+      <rect x="40.933" y="13" width="48" height="40" rx="1" ry="1" fill="none" stroke="#000" stroke-miterlimit="10" stroke-width="2"/>
+    </g>
+    <g opacity="0.2">
+      <ellipse cx="96.94" cy="32.987" rx="0.993" ry="0.987"/>
+      <ellipse cx="31.94" cy="48.013" rx="0.993" ry="0.987"/>
+      <ellipse cx="17.927" cy="27.013" rx="0.993" ry="0.987"/>
+      <path d="M101.972,44.979a2.981,2.981,0,1,1,2.98,2.96A2.974,2.974,0,0,1,101.972,44.979Zm1.987,0a.994.994,0,1,0,.993-.987A.991.991,0,0,0,103.959,44.979Z"/>
+      <path d="M22.066,21.507a.982.982,0,0,1,0-.987L25.508,14.6a1.037,1.037,0,0,1,1.721,0L30.67,20.52A.987.987,0,0,1,29.809,22H22.927A1,1,0,0,1,22.066,21.507Zm5.592-2.22-.86-1.48a.5.5,0,0,0-.86,0l-.86,1.48a.493.493,0,0,0,.43.74h1.72A.493.493,0,0,0,27.658,19.286Z"/>
+      <path d="M19.985,42.953V37.032a.99.99,0,0,1,.993-.987H26.94a.99.99,0,0,1,.993.987v5.921a.99.99,0,0,1-.993.987H20.979A.99.99,0,0,1,19.985,42.953Zm5.961-1.974V39.005a.99.99,0,0,0-.993-.987H22.966a.99.99,0,0,0-.993.987v1.974a.99.99,0,0,0,.993.987h1.987A.99.99,0,0,0,25.946,40.979Z"/>
+      <path d="M104.927,18.96h1.49a.5.5,0,0,0,.5-.493v-1.48a.994.994,0,0,1,1.987,0v1.48a.5.5,0,0,0,.5.493h1.49a.987.987,0,1,1,0,1.974H109.4a.5.5,0,0,0-.5.493v1.48a.994.994,0,0,1-1.987,0v-1.48a.5.5,0,0,0-.5-.493h-1.49a.987.987,0,1,1,0-1.974Z"/>
+    </g>
+  </g>
+</svg>

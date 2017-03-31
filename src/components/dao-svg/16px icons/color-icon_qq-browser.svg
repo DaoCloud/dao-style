@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 32 32">
+  <defs>
+    <linearGradient id="a" x1="2" y1="18" x2="30" y2="18" gradientTransform="matrix(1, 0, 0, -1, 0, 34)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#00b4ff"/>
+      <stop offset="1" stop-color="#0079f4"/>
+    </linearGradient>
+    <linearGradient id="b" x1="2.049" y1="10.503" x2="31.997" y2="10.503" gradientTransform="matrix(1, 0, 0, -1, 0, 34)" gradientUnits="userSpaceOnUse">
+      <stop offset="0.122" stop-color="#00b4ff" stop-opacity="0"/>
+      <stop offset="0.174" stop-color="#00b4ff" stop-opacity="0.009"/>
+      <stop offset="0.201" stop-color="#00b4ff" stop-opacity="0.039"/>
+      <stop offset="0.221" stop-color="#00b4ff" stop-opacity="0.092"/>
+      <stop offset="0.239" stop-color="#00b4ff" stop-opacity="0.166"/>
+      <stop offset="0.255" stop-color="#00b4ff" stop-opacity="0.262"/>
+      <stop offset="0.27" stop-color="#00b4ff" stop-opacity="0.381"/>
+      <stop offset="0.283" stop-color="#00b4ff" stop-opacity="0.522"/>
+      <stop offset="0.296" stop-color="#00b4ff" stop-opacity="0.686"/>
+      <stop offset="0.308" stop-color="#00b4ff" stop-opacity="0.866"/>
+      <stop offset="0.315" stop-color="#00b4ff"/>
+      <stop offset="0.326" stop-color="#10b9ff"/>
+      <stop offset="0.357" stop-color="#39c4ff"/>
+      <stop offset="0.391" stop-color="#5fcfff"/>
+      <stop offset="0.429" stop-color="#7fd8ff"/>
+      <stop offset="0.471" stop-color="#9be0ff"/>
+      <stop offset="0.518" stop-color="#b1e6ff"/>
+      <stop offset="0.573" stop-color="#c2ebff"/>
+      <stop offset="0.64" stop-color="#cdefff"/>
+      <stop offset="0.736" stop-color="#d4f0ff"/>
+      <stop offset="1" stop-color="#d6f1ff"/>
+    </linearGradient>
+  </defs>
+  <title>qq-browser</title>
+  <g>
+    <path d="M16,2A14,14,0,1,0,30,16,14,14,0,0,0,16,2Zm0,21a7,7,0,1,1,7-7A7,7,0,0,1,16,23Z" fill="url(#a)"/>
+    <path d="M28.9,22.153a5.04,5.04,0,0,0-9.9-.627,2.729,2.729,0,0,0-3.6,1.388l-.024.055A7,7,0,0,1,9.079,17h0v-.037H2.049V17A13.99,13.99,0,0,0,16,30H27.52a3.989,3.989,0,0,0,1.38-7.847Z" fill="url(#b)"/>
+  </g>
+</svg>

@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 32 32">
+  <defs>
+    <linearGradient id="a" x1="16" y1="33" x2="16" y2="3" gradientTransform="matrix(1, 0, 0, -1, 0, 34)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fafafa"/>
+      <stop offset="0.218" stop-color="#f6f8f9"/>
+      <stop offset="0.437" stop-color="#eaf0f6"/>
+      <stop offset="0.655" stop-color="#d6e5f2"/>
+      <stop offset="0.873" stop-color="#bad4ec"/>
+      <stop offset="1" stop-color="#a6c8e7"/>
+    </linearGradient>
+  </defs>
+  <title>sougou-browser</title>
+  <g>
+    <circle cx="16" cy="16" r="15" fill="url(#a)"/>
+    <path d="M2.38,15.166c0-5.407,5.227-10.848,8.3-10.848a7.247,7.247,0,0,0-4.324,6.561c0,10.21,11.786,4.317,11.786,12.279,0,2.732-3,4.137-4.915,4.137A11.868,11.868,0,0,1,2.38,15.166Z" fill="#4d9feb"/>
+    <path d="M29.929,16.447c0,5.407-5.268,10.848-8.3,10.848,0,0,4.324-.581,4.324-6.561,0-9.02-11.786-4.317-11.786-12.279,0-2.732,3-4.137,4.915-4.137A11.868,11.868,0,0,1,29.929,16.447Z" fill="#4d9feb"/>
+  </g>
+</svg>

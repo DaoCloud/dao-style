@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <title>paper-plane</title>
+  <g>
+    <polygon points="22.96 52.593 27.808 46.688 25.387 45.166 22.96 52.593" opacity="0.25"/>
+    <polygon points="61.5 5.648 19.192 41.697 22.96 52.593 25.387 45.166 61.5 5.648" opacity="0.5"/>
+    <polygon points="61.5 5.648 2.5 34.626 19.192 41.697 61.5 5.648" opacity="0.9"/>
+    <polygon points="61.5 5.648 25.387 45.166 46.356 58.352 61.5 5.648" opacity="0.9"/>
+  </g>
+</svg>

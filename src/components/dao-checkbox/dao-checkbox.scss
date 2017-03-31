@@ -1,0 +1,53 @@
+@import '../dao-color.scss';
+$checkbox-font-color: $black-dark;
+$checkbox-font-disable-color: $grey-dark;
+$checkbox-font-size: 14px;
+$checkbox-item-margin: 10px;
+$checkbox-height: 24px;
+
+.dao-checkbox {
+  line-height: $checkbox-height;
+
+  position: relative;
+
+  display: block;
+  &.inline {
+    display: inline-block;
+    &:not(:first-child) {
+      margin-left: 15px;
+    }
+  }
+  &.disabled {
+    label {
+      cursor: not-allowed;
+
+      color: $checkbox-font-disable-color;
+    }
+  }
+  label {
+    font-size: $checkbox-font-size;
+    font-weight: normal;
+
+    margin-bottom: 0;
+    padding-left: 20px;
+
+    cursor: pointer;
+
+    color: $checkbox-font-color;
+  }
+  input[type='checkbox'] {
+    position: absolute;
+
+    margin-top: 6px;
+    margin-left: -20px;
+
+    outline: none;
+    &[disabled],
+    &.disabled {
+      cursor: not-allowed;
+    }
+  }
+  & + .checkbox {
+    margin-top: $checkbox-item-margin / 2;
+  }
+}

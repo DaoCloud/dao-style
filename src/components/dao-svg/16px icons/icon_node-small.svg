@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <title>node-small</title>
+  <g>
+    <path d="M29,2H3A1,1,0,0,0,2,3V9a1,1,0,0,0,1,1H29a1,1,0,0,0,1-1V3A1,1,0,0,0,29,2ZM7,7H5V5H7Zm9.5.5h-1v-1h1Zm0-2h-1v-1h1Zm2,2h-1v-1h1Zm0-2h-1v-1h1Zm2,2h-1v-1h1Zm0-2h-1v-1h1Zm2,2h-1v-1h1Zm0-2h-1v-1h1Zm2,2h-1v-1h1Zm0-2h-1v-1h1Zm2,2h-1v-1h1Zm0-2h-1v-1h1Z"/>
+    <path d="M29,12H3a1,1,0,0,0-1,1v6a1,1,0,0,0,1,1H29a1,1,0,0,0,1-1V13A1,1,0,0,0,29,12ZM7,17H5V15H7Zm9.5.5h-1v-1h1Zm0-2h-1v-1h1Zm2,2h-1v-1h1Zm0-2h-1v-1h1Zm2,2h-1v-1h1Zm0-2h-1v-1h1Zm2,2h-1v-1h1Zm0-2h-1v-1h1Zm2,2h-1v-1h1Zm0-2h-1v-1h1Zm2,2h-1v-1h1Zm0-2h-1v-1h1Z"/>
+    <path d="M29,22H3a1,1,0,0,0-1,1v6a1,1,0,0,0,1,1H29a1,1,0,0,0,1-1V23A1,1,0,0,0,29,22ZM7,27H5V25H7Zm9.5.5h-1v-1h1Zm0-2h-1v-1h1Zm2,2h-1v-1h1Zm0-2h-1v-1h1Zm2,2h-1v-1h1Zm0-2h-1v-1h1Zm2,2h-1v-1h1Zm0-2h-1v-1h1Zm2,2h-1v-1h1Zm0-2h-1v-1h1Zm2,2h-1v-1h1Zm0-2h-1v-1h1Z"/>
+  </g>
+</svg>

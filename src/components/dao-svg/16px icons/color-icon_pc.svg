@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 32 32">
+  <defs>
+    <linearGradient id="a" x1="16" y1="13" x2="16" y2="5" gradientTransform="matrix(1, 0, 0, -1, 0, 34)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ccc"/>
+      <stop offset="1" stop-color="#f0f0f0"/>
+    </linearGradient>
+    <linearGradient id="b" x1="2" y1="20" x2="30" y2="20" gradientTransform="matrix(1, 0, 0, -1, 0, 34)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#e2e2e2"/>
+      <stop offset="1" stop-color="#f0f0f0"/>
+    </linearGradient>
+    <linearGradient id="c" x1="16" y1="28" x2="16" y2="12" gradientTransform="matrix(1, 0, 0, -1, 0, 34)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#68a2f7"/>
+      <stop offset="1" stop-color="#7cb2f7"/>
+    </linearGradient>
+  </defs>
+  <title>pc</title>
+  <path d="M20,21H12s.266,8-4,8H24C19.734,29,20,21,20,21Z" fill="url(#a)"/>
+  <path d="M2,5V23a1,1,0,0,0,1,1H29a1,1,0,0,0,1-1V5a1,1,0,0,0-1-1H3A1,1,0,0,0,2,5Z" fill="url(#b)"/>
+  <path d="M4,22H28V6H4Z" fill="url(#c)"/>
+  <path d="M4,7H28V6H4Z" fill="#3a89e8" opacity="0.3" style="isolation: isolate"/>
+  <rect x="8" y="28" width="16" height="1" fill="#f4f4f4"/>
+  <rect x="4" y="22" width="24" height="1" fill="#fff" opacity="0.4" style="isolation: isolate"/>
+</svg>

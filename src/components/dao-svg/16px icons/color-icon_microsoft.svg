@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <title>color-icon_microsoft</title>
+  <g>
+    <rect x="4" y="4" width="11" height="11" fill="#f35325"/>
+    <rect x="17" y="4" width="11" height="11" fill="#81bc06"/>
+    <rect x="17" y="17" width="11" height="11" fill="#ffba08"/>
+    <rect x="4" y="17" width="11" height="11" fill="#05a6f0"/>
+  </g>
+</svg>
