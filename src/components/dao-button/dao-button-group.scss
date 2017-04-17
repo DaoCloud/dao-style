@@ -51,7 +51,10 @@
   .dao-btn + .dao-btn,
   .dao-btn + .dao-btn-group,
   .dao-btn-group + .dao-btn,
-  .dao-btn-group + .dao-btn-group {
+  .dao-btn-group + .dao-btn-group,
+  .dao-btn + .dao-dropdown,
+  .dao-dropdown + .dao-btn,
+  .dao-dropdown + .dao-dropdown {
     margin-left: -$input-btn-border-width;
   }
 }
@@ -105,7 +108,16 @@
   // @include border-left-radius(0);
 }
 
-
+.dao-btn-group > .dao-dropdown {
+  &:not(:first-child) > .dao-dropdown-rel > .dao-btn {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+  &:not(:last-child) > .dao-dropdown-rel > .dao-btn {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+}
 
 // Checkbox and radio options
 //

@@ -10,34 +10,45 @@
             </div>
           </div>
           <div class="dao-btn-group">
-            <div class="dao-btn ghost">保存</div>
-            <div class="dao-btn ghost">保存</div>
-            <div class="dao-btn ghost">保存</div>
-          </div>
-          <dao-dropdown
-            class="dao-btn-group"
-            :append-to-body="true"
-            trigger="click"
-            placement="bottom">
-            <div class="dao-btn ghost">保存</div>
-            <div class="dao-btn dao-icon ghost">
-              <svg class="icon"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon_down-arrow"></use></svg>
-            </div>
-            <dao-dropdown-menu slot="list">
-              <dao-dropdown-item :is-title="true">扩展</dao-dropdown-item>
-              <dao-dropdown-item>
-                <svg class="icon"><use xlink:href="#icon"></use></svg>
-                <span class="text">扩展</span>
-              </dao-dropdown-item>
-              <dao-dropdown-item :is-divided="true"></dao-dropdown-item>
-              <dao-dropdown-item>扩展</dao-dropdown-item>
-            </dao-dropdown-menu>
-          </dao-dropdown>
-          <div class="dao-btn-group">
+            <dao-dropdown
+              trigger="click"
+              :append-to-body="true"
+              placement="bottom-start">
+              <div class="dao-btn dao-icon ghost">
+                <svg class="icon"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon_down-arrow"></use></svg>
+              </div>
+              <dao-dropdown-menu slot="list">
+                <dao-dropdown-item :is-title="true">扩展</dao-dropdown-item>
+                <dao-dropdown-item>
+                  <svg class="icon"><use xlink:href="#icon"></use></svg>
+                  <span class="text">扩展</span>
+                </dao-dropdown-item>
+                <dao-dropdown-item :is-divided="true"></dao-dropdown-item>
+                <dao-dropdown-item>扩展</dao-dropdown-item>
+              </dao-dropdown-menu>
+            </dao-dropdown>
             <div class="dao-btn ghost">保存</div>
             <dao-dropdown
               trigger="click"
-              :placement="placement">
+              :append-to-body="true"
+              placement="bottom-start">
+              <div class="dao-btn dao-icon ghost">
+                <svg class="icon"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon_down-arrow"></use></svg>
+              </div>
+              <dao-dropdown-menu slot="list">
+                <dao-dropdown-item :is-title="true">扩展</dao-dropdown-item>
+                <dao-dropdown-item>
+                  <svg class="icon"><use xlink:href="#icon"></use></svg>
+                  <span class="text">扩展</span>
+                </dao-dropdown-item>
+                <dao-dropdown-item :is-divided="true"></dao-dropdown-item>
+                <dao-dropdown-item>扩展</dao-dropdown-item>
+              </dao-dropdown-menu>
+            </dao-dropdown>
+            <dao-dropdown
+              trigger="click"
+              :append-to-body="true"
+              placement="bottom-start">
               <div class="dao-btn dao-icon ghost">
                 <svg class="icon"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon_down-arrow"></use></svg>
               </div>
@@ -52,55 +63,9 @@
               </dao-dropdown-menu>
             </dao-dropdown>
           </div>
-          <div class="dao-btn ghost has-icon">
-            <svg class="icon">
-              <use xlink:href="#icon_tag"></use>
-            </svg>
-            <span class="text">编辑标签</span>
-          </div>
-          <dao-dropdown
-            :placement="placement">
-            <button class="dao-btn blue" href="javascript:void(0)">
-              下拉菜单
-            </button>
-            <dao-dropdown-menu slot="list">
-              <dao-dropdown-item :is-title="true">扩展</dao-dropdown-item>
-              <dao-dropdown-item>
-                <svg class="icon"><use xlink:href="#icon"></use></svg>
-                <span class="text">扩展</span>
-              </dao-dropdown-item>
-              <dao-dropdown-item :is-divided="true"></dao-dropdown-item>
-              <dao-dropdown-item>扩展</dao-dropdown-item>
-            </dao-dropdown-menu>
-          </dao-dropdown>
         </div>
         <div class="table-count">
           <span>共 10 容器，已选中 0 个容器</span>
-        </div>
-        <div class="table-filters">
-          <!-- <dao-input-container search="true">
-            <input placeholder="搜索" type="text">
-          </dao-input-container> -->
-          <div class="dao-btn ghost has-icon">
-            <svg class="icon">
-              <use xlink:href="#icon_filter"></use>
-            </svg>
-            <span class="text">过滤</span>
-          </div>
-          <div dao-dropdown class="dao-btn-group">
-            <div dao-dropdown-toggle class="dao-btn ghost has-icon">
-              <svg class="icon">
-                <use xlink:href="#icon_eye"></use>
-              </svg>
-              <span class="text">视图</span>
-            </div>
-            <div dao-dropdown-menu role="menu" class="dropdown-menu-left" aria-labelledby="single-button">
-              <ul>
-                <li role="menuitem">姓名</li>
-                <li role="menuitem">电子邮箱</li>
-              </ul>
-            </div>
-          </div>
         </div>
       </div>
       <div class="dao-table-main">

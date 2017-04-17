@@ -4,12 +4,16 @@ import 'core-js/fn/array/find-index';
 import daoCallout from './components/dao-callout';
 import daoModal from './components/dao-modal';
 import daoSwitch from './components/dao-switch';
+import daoDropdown from './components/dao-dropdown';
 import './components/dao-svg/svg';
 
 const daoStyle = {
   daoCallout,
   daoModal,
   daoSwitch,
+  daoDropdown,
+  daoDropdownMenu: daoDropdown.Menu,
+  daoDropdownItem: daoDropdown.Item,
 };
 
 const install = function(Vue) {

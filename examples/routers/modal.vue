@@ -6,49 +6,20 @@
       title="您确定？"
       v-if="modal1">
       <div slot="body" class="pure-text">
-        <!-- <dao-dropdown
+        <dao-dropdown
           trigger="click"
-          :append-to-body="false"
-          :placement="placement">
-          <button class="dao-btn blue">
-            下拉菜单
-          </button>
+          placement="bottom-start">
+          <button class="dao-btn ghost">adasdf</button>
           <dao-dropdown-menu slot="list">
             <dao-dropdown-item :is-title="true">扩展</dao-dropdown-item>
-            <dao-dropdown-item @click="f1">扩展</dao-dropdown-item>
-            <dao-dropdown-item :is-disabled="true">
+            <dao-dropdown-item>
               <svg class="icon"><use xlink:href="#icon"></use></svg>
               <span class="text">扩展</span>
             </dao-dropdown-item>
             <dao-dropdown-item :is-divided="true"></dao-dropdown-item>
-            <dao-dropdown placement="right-start" :append-to-body="false">
-              <dao-dropdown-item>
-                <span>扩展</span>
-                <svg style="width:16px;height:16px;float:right;"><use xlink:href="#icon_caret-right"></use></svg>
-              </dao-dropdown-item>
-              <dao-dropdown-menu slot="list">
-                <dao-dropdown-item @click="f2">adsfasd</dao-dropdown-item>
-                <dao-dropdown placement="right-start" :append-to-body="false">
-                  <dao-dropdown-item>
-                    <span>adsfasd</span>
-                    <svg style="width:16px;height:16px;float:right;"><use xlink:href="#icon_caret-right"></use></svg>
-                  </dao-dropdown-item>
-                  <dao-dropdown-menu slot="list">
-                    <dao-dropdown-item @click="f2">adsfasd</dao-dropdown-item>
-                  </dao-dropdown-menu>
-                </dao-dropdown>
-                
-              </dao-dropdown-menu>
-            </dao-dropdown>
+            <dao-dropdown-item>扩展</dao-dropdown-item>
           </dao-dropdown-menu>
-        </dao-dropdown> -->
-        <br><br><br><br><br><br><br><br><br><br>
-      <br><br><br><br><br><br><br><br><br><br>
-      <br><br><br><br><br><br><br><br><br><br>
-      <br><br><br><br><br><br><br><br><br><br>
-      <br><br><br><br><br><br><br><br><br><br>
-      <br><br><br><br><br><br><br><br><br><br>
-      <br><br><br><br><br><br><br><br><br><br>
+        </dao-dropdown>
       </div>
       <div slot="footer">
         <button class="dao-btn ghost" @click="">取消</button>
