@@ -81,10 +81,10 @@
         type: Boolean,
         default: false
       },
-      selected: {
-        type: Boolean,
-        default: false
-      },
+      // selected: {
+      //   type: Boolean,
+      //   default: false
+      // },
       isDivided: {
         type: Boolean,
         default: false
@@ -103,7 +103,7 @@
           `${prefixCls}`,
           {
             [`${prefixCls}-disabled`]: this.isDisabled,
-            [`${prefixCls}-selected`]: this.selected,
+            // [`${prefixCls}-selected`]: this.selected,
             [`${prefixCls}-divided`]: this.isDivided,
             [`${prefixCls}-subtitle`]: this.isTitle,
             [`${prefixCls}-base`]: this.base,
