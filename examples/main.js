@@ -2,11 +2,8 @@
  * Created by aresn on 16/6/20.
  */
 
-import 'iview/dist/styles/iview.css';
-
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import iView from 'iview';
 import App from './app.vue';
 import daoStyle from '../src/index';
 
@@ -15,7 +12,6 @@ import modal from './routers/modal';
 import button from './routers/button';
 
 Vue.use(VueRouter);
-Vue.use(iView);
 Vue.use(daoStyle);
 
 // 开启debug模式
