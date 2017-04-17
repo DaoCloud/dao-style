@@ -73,14 +73,14 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "/dist/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 365);
+/******/ 	return __webpack_require__(__webpack_require__.s = 394);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var Sprite = __webpack_require__(358);
+var Sprite = __webpack_require__(378);
 var globalSprite = new Sprite();
 
 if (document.body) {
@@ -96,97 +96,6 @@ module.exports = globalSprite;
 
 /***/ }),
 /* 1 */
-/***/ (function(module, exports) {
-
-// https://github.com/zloirock/core-js/issues/86#issuecomment-115759028
-var global = module.exports = typeof window != 'undefined' && window.Math == Math
-  ? window : typeof self != 'undefined' && self.Math == Math ? self : Function('return this')();
-if(typeof __g == 'number')__g = global; // eslint-disable-line no-undef
-
-/***/ }),
-/* 2 */
-/***/ (function(module, exports) {
-
-var core = module.exports = {version: '2.4.0'};
-if(typeof __e == 'number')__e = core; // eslint-disable-line no-undef
-
-/***/ }),
-/* 3 */
-/***/ (function(module, exports) {
-
-module.exports = function(exec){
-  try {
-    return !!exec();
-  } catch(e){
-    return true;
-  }
-};
-
-/***/ }),
-/* 4 */
-/***/ (function(module, exports) {
-
-module.exports = function(it){
-  return typeof it === 'object' ? it !== null : typeof it === 'function';
-};
-
-/***/ }),
-/* 5 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// Thank's IE8 for his funny defineProperty
-module.exports = !__webpack_require__(3)(function(){
-  return Object.defineProperty({}, 'a', {get: function(){ return 7; }}).a != 7;
-});
-
-/***/ }),
-/* 6 */
-/***/ (function(module, exports) {
-
-// https://github.com/zloirock/core-js/issues/86#issuecomment-115759028
-var global = module.exports = typeof window != 'undefined' && window.Math == Math
-  ? window : typeof self != 'undefined' && self.Math == Math ? self : Function('return this')();
-if(typeof __g == 'number')__g = global; // eslint-disable-line no-undef
-
-/***/ }),
-/* 7 */
-/***/ (function(module, exports) {
-
-module.exports = function(it){
-  return typeof it === 'object' ? it !== null : typeof it === 'function';
-};
-
-/***/ }),
-/* 8 */
-/***/ (function(module, exports) {
-
-var core = module.exports = {version: '2.4.0'};
-if(typeof __e == 'number')__e = core; // eslint-disable-line no-undef
-
-/***/ }),
-/* 9 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// Thank's IE8 for his funny defineProperty
-module.exports = !__webpack_require__(23)(function(){
-  return Object.defineProperty({}, 'a', {get: function(){ return 7; }}).a != 7;
-});
-
-/***/ }),
-/* 10 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var dP         = __webpack_require__(80)
-  , createDesc = __webpack_require__(81);
-module.exports = __webpack_require__(9) ? function(object, key, value){
-  return dP.f(object, key, createDesc(1, value));
-} : function(object, key, value){
-  object[key] = value;
-  return object;
-};
-
-/***/ }),
-/* 11 */
 /***/ (function(module, exports) {
 
 /*
@@ -242,61 +151,7 @@ module.exports = function() {
 
 
 /***/ }),
-/* 12 */
-/***/ (function(module, exports) {
-
-module.exports = function normalizeComponent (
-  rawScriptExports,
-  compiledTemplate,
-  scopeId,
-  cssModules
-) {
-  var esModule
-  var scriptExports = rawScriptExports = rawScriptExports || {}
-
-  // ES6 modules interop
-  var type = typeof rawScriptExports.default
-  if (type === 'object' || type === 'function') {
-    esModule = rawScriptExports
-    scriptExports = rawScriptExports.default
-  }
-
-  // Vue.extend constructor export interop
-  var options = typeof scriptExports === 'function'
-    ? scriptExports.options
-    : scriptExports
-
-  // render functions
-  if (compiledTemplate) {
-    options.render = compiledTemplate.render
-    options.staticRenderFns = compiledTemplate.staticRenderFns
-  }
-
-  // scopedId
-  if (scopeId) {
-    options._scopeId = scopeId
-  }
-
-  // inject cssModules
-  if (cssModules) {
-    var computed = Object.create(options.computed || null)
-    Object.keys(cssModules).forEach(function (key) {
-      var module = cssModules[key]
-      computed[key] = function () { return module }
-    })
-    options.computed = computed
-  }
-
-  return {
-    esModule: esModule,
-    exports: scriptExports,
-    options: options
-  }
-}
-
-
-/***/ }),
-/* 13 */
+/* 2 */
 /***/ (function(module, exports) {
 
 /*
@@ -518,23 +373,354 @@ function applyToTag(styleElement, obj) {
 
 
 /***/ }),
-/* 14 */
+/* 3 */
 /***/ (function(module, exports) {
 
-// 7.2.1 RequireObjectCoercible(argument)
-module.exports = function(it){
-  if(it == undefined)throw TypeError("Can't call method on  " + it);
-  return it;
+module.exports = function normalizeComponent (
+  rawScriptExports,
+  compiledTemplate,
+  scopeId,
+  cssModules
+) {
+  var esModule
+  var scriptExports = rawScriptExports = rawScriptExports || {}
+
+  // ES6 modules interop
+  var type = typeof rawScriptExports.default
+  if (type === 'object' || type === 'function') {
+    esModule = rawScriptExports
+    scriptExports = rawScriptExports.default
+  }
+
+  // Vue.extend constructor export interop
+  var options = typeof scriptExports === 'function'
+    ? scriptExports.options
+    : scriptExports
+
+  // render functions
+  if (compiledTemplate) {
+    options.render = compiledTemplate.render
+    options.staticRenderFns = compiledTemplate.staticRenderFns
+  }
+
+  // scopedId
+  if (scopeId) {
+    options._scopeId = scopeId
+  }
+
+  // inject cssModules
+  if (cssModules) {
+    var computed = Object.create(options.computed || null)
+    Object.keys(cssModules).forEach(function (key) {
+      var module = cssModules[key]
+      computed[key] = function () { return module }
+    })
+    options.computed = computed
+  }
+
+  return {
+    esModule: esModule,
+    exports: scriptExports,
+    options: options
+  }
+}
+
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports) {
+
+var core = module.exports = {version: '2.4.0'};
+if(typeof __e == 'number')__e = core; // eslint-disable-line no-undef
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports) {
+
+// https://github.com/zloirock/core-js/issues/86#issuecomment-115759028
+var global = module.exports = typeof window != 'undefined' && window.Math == Math
+  ? window : typeof self != 'undefined' && self.Math == Math ? self : Function('return this')();
+if(typeof __g == 'number')__g = global; // eslint-disable-line no-undef
+
+/***/ }),
+/* 6 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// Thank's IE8 for his funny defineProperty
+module.exports = !__webpack_require__(7)(function(){
+  return Object.defineProperty({}, 'a', {get: function(){ return 7; }}).a != 7;
+});
+
+/***/ }),
+/* 7 */
+/***/ (function(module, exports) {
+
+module.exports = function(exec){
+  try {
+    return !!exec();
+  } catch(e){
+    return true;
+  }
 };
 
 /***/ }),
-/* 15 */
+/* 8 */
+/***/ (function(module, exports) {
+
+module.exports = function(it){
+  return typeof it === 'object' ? it !== null : typeof it === 'function';
+};
+
+/***/ }),
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var global    = __webpack_require__(6)
-  , core      = __webpack_require__(2)
-  , ctx       = __webpack_require__(46)
-  , hide      = __webpack_require__(50)
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.oneOf = oneOf;
+exports.camelcaseToHyphen = camelcaseToHyphen;
+exports.getScrollBarSize = getScrollBarSize;
+exports.getStyle = getStyle;
+exports.warnProp = warnProp;
+exports.scrollTop = scrollTop;
+function oneOf(value, validList) {
+  for (var i = 0; i < validList.length; i++) {
+    if (value === validList[i]) {
+      return true;
+    }
+  }
+  return false;
+}
+
+function camelcaseToHyphen(str) {
+  return str.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
+}
+
+var cached = void 0;
+function getScrollBarSize(fresh) {
+  if (fresh || cached === undefined) {
+    var inner = document.createElement('div');
+    inner.style.width = '100%';
+    inner.style.height = '200px';
+
+    var outer = document.createElement('div');
+    var outerStyle = outer.style;
+
+    outerStyle.position = 'absolute';
+    outerStyle.top = 0;
+    outerStyle.left = 0;
+    outerStyle.pointerEvents = 'none';
+    outerStyle.visibility = 'hidden';
+    outerStyle.width = '200px';
+    outerStyle.height = '150px';
+    outerStyle.overflow = 'hidden';
+
+    outer.appendChild(inner);
+
+    document.body.appendChild(outer);
+
+    var widthContained = inner.offsetWidth;
+    outer.style.overflow = 'scroll';
+    var widthScroll = inner.offsetWidth;
+
+    if (widthContained === widthScroll) {
+      widthScroll = outer.clientWidth;
+    }
+
+    document.body.removeChild(outer);
+
+    cached = widthContained - widthScroll;
+  }
+  return cached;
+}
+
+var MutationObserver = exports.MutationObserver = window.MutationObserver || window.WebKitMutationObserver || window.MozMutationObserver || false;
+
+var SPECIAL_CHARS_REGEXP = /([\:\-\_]+(.))/g;
+var MOZ_HACK_REGEXP = /^moz([A-Z])/;
+
+function camelCase(name) {
+  return name.replace(SPECIAL_CHARS_REGEXP, function (_, separator, letter, offset) {
+    return offset ? letter.toUpperCase() : letter;
+  }).replace(MOZ_HACK_REGEXP, 'Moz$1');
+}
+function getStyle(element, styleName) {
+  if (!element || !styleName) return null;
+  styleName = camelCase(styleName);
+  if (styleName === 'float') {
+    styleName = 'cssFloat';
+  }
+  try {
+    var computed = document.defaultView.getComputedStyle(element, '');
+    return element.style[styleName] || computed ? computed[styleName] : null;
+  } catch (e) {
+    return element.style[styleName];
+  }
+}
+
+function firstUpperCase(str) {
+  return str.toString()[0].toUpperCase() + str.toString().slice(1);
+}
+exports.firstUpperCase = firstUpperCase;
+function warnProp(component, prop, correctType, wrongType) {
+  correctType = firstUpperCase(correctType);
+  wrongType = firstUpperCase(wrongType);
+  console.error('[iView warn]: Invalid prop: type check failed for prop ' + prop + '. Expected ' + correctType + ', got ' + wrongType + '. (found in component: ' + component + ')');
+}
+
+function typeOf(obj) {
+  var toString = Object.prototype.toString;
+  var map = {
+    '[object Boolean]': 'boolean',
+    '[object Number]': 'number',
+    '[object String]': 'string',
+    '[object Function]': 'function',
+    '[object Array]': 'array',
+    '[object Date]': 'date',
+    '[object RegExp]': 'regExp',
+    '[object Undefined]': 'undefined',
+    '[object Null]': 'null',
+    '[object Object]': 'object'
+  };
+  return map[toString.call(obj)];
+}
+
+function deepCopy(data) {
+  var t = typeOf(data);
+  var o = void 0;
+
+  if (t === 'array') {
+    o = [];
+  } else if (t === 'object') {
+    o = {};
+  } else {
+    return data;
+  }
+
+  if (t === 'array') {
+    for (var i = 0; i < data.length; i++) {
+      o.push(deepCopy(data[i]));
+    }
+  } else if (t === 'object') {
+    for (var _i in data) {
+      o[_i] = deepCopy(data[_i]);
+    }
+  }
+  return o;
+}
+
+exports.deepCopy = deepCopy;
+function scrollTop(el) {
+  var from = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
+  var to = arguments[2];
+  var duration = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 500;
+
+  if (!window.requestAnimationFrame) {
+    window.requestAnimationFrame = window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.msRequestAnimationFrame || function (callback) {
+      return window.setTimeout(callback, 1000 / 60);
+    };
+  }
+  var difference = Math.abs(from - to);
+  var step = Math.ceil(difference / duration * 50);
+
+  function scroll(start, end, step) {
+    if (start === end) return;
+
+    var d = start + step > end ? end : start + step;
+    if (start > end) {
+      d = start - step < end ? end : start - step;
+    }
+
+    if (el === window) {
+      window.scrollTo(d, d);
+    } else {
+      el.scrollTop = d;
+    }
+    window.requestAnimationFrame(function () {
+      return scroll(d, end, step);
+    });
+  }
+  scroll(from, to, step);
+}
+
+function findComponentUpward(content, componentName, componentNames) {
+  if (typeof componentName === 'string') {
+    componentNames = [componentName];
+  } else {
+    componentNames = componentName;
+  }
+
+  var parent = content.$parent;
+  var name = parent.$options.name;
+  while (parent && (!name || componentNames.indexOf(name) < 0)) {
+    parent = parent.$parent;
+    if (parent) name = parent.$options.name;
+  }
+  return parent;
+}
+exports.findComponentUpward = findComponentUpward;
+
+function findComponentDownward(content, componentName) {
+  var childrens = content.$children;
+  var children = null;
+
+  if (childrens.length) {
+    childrens.forEach(function (child) {
+      var name = child.$options.name;
+      if (name === componentName) {
+        children = child;
+      }
+    });
+
+    for (var i = 0; i < childrens.length; i++) {
+      var child = childrens[i];
+      var name = child.$options.name;
+      if (name === componentName) {
+        children = child;
+        break;
+      } else {
+        children = findComponentDownward(child, componentName);
+        if (children) break;
+      }
+    }
+  }
+  return children;
+}
+exports.findComponentDownward = findComponentDownward;
+
+function findComponentsDownward(content, componentName) {
+  var components = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
+
+  var childrens = content.$children;
+
+  if (childrens.length) {
+    childrens.forEach(function (child) {
+      var name = child.$options.name;
+      var childs = child.$children;
+
+      if (name === componentName) components.push(child);
+      if (childs.length) {
+        var findChilds = findComponentsDownward(child, componentName, components);
+        if (findChilds) components.concat(findChilds);
+      }
+    });
+  }
+  return components;
+}
+exports.findComponentsDownward = findComponentsDownward;
+
+/***/ }),
+/* 10 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var global    = __webpack_require__(11)
+  , core      = __webpack_require__(4)
+  , ctx       = __webpack_require__(60)
+  , hide      = __webpack_require__(64)
   , PROTOTYPE = 'prototype';
 
 var $export = function(type, name, source){
@@ -594,29 +780,106 @@ $export.R = 128; // real proto method for `library`
 module.exports = $export;
 
 /***/ }),
-/* 16 */
+/* 11 */
+/***/ (function(module, exports) {
+
+// https://github.com/zloirock/core-js/issues/86#issuecomment-115759028
+var global = module.exports = typeof window != 'undefined' && window.Math == Math
+  ? window : typeof self != 'undefined' && self.Math == Math ? self : Function('return this')();
+if(typeof __g == 'number')__g = global; // eslint-disable-line no-undef
+
+/***/ }),
+/* 12 */
+/***/ (function(module, exports) {
+
+module.exports = function(it){
+  return typeof it === 'object' ? it !== null : typeof it === 'function';
+};
+
+/***/ }),
+/* 13 */
+/***/ (function(module, exports) {
+
+var core = module.exports = {version: '2.4.0'};
+if(typeof __e == 'number')__e = core; // eslint-disable-line no-undef
+
+/***/ }),
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
-// fallback for non-array-like ES3 and non-enumerable old V8 strings
-var cof = __webpack_require__(45);
-module.exports = Object('z').propertyIsEnumerable(0) ? Object : function(it){
-  return cof(it) == 'String' ? it.split('') : Object(it);
+// Thank's IE8 for his funny defineProperty
+module.exports = !__webpack_require__(25)(function(){
+  return Object.defineProperty({}, 'a', {get: function(){ return 7; }}).a != 7;
+});
+
+/***/ }),
+/* 15 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var dP         = __webpack_require__(94)
+  , createDesc = __webpack_require__(95);
+module.exports = __webpack_require__(14) ? function(object, key, value){
+  return dP.f(object, key, createDesc(1, value));
+} : function(object, key, value){
+  object[key] = value;
+  return object;
+};
+
+/***/ }),
+/* 16 */
+/***/ (function(module, exports) {
+
+// 7.2.1 RequireObjectCoercible(argument)
+module.exports = function(it){
+  if(it == undefined)throw TypeError("Can't call method on  " + it);
+  return it;
 };
 
 /***/ }),
 /* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
+// fallback for non-array-like ES3 and non-enumerable old V8 strings
+var cof = __webpack_require__(59);
+module.exports = Object('z').propertyIsEnumerable(0) ? Object : function(it){
+  return cof(it) == 'String' ? it.split('') : Object(it);
+};
+
+/***/ }),
+/* 18 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var anObject       = __webpack_require__(57)
+  , IE8_DOM_DEFINE = __webpack_require__(65)
+  , toPrimitive    = __webpack_require__(76)
+  , dP             = Object.defineProperty;
+
+exports.f = __webpack_require__(6) ? Object.defineProperty : function defineProperty(O, P, Attributes){
+  anObject(O);
+  P = toPrimitive(P, true);
+  anObject(Attributes);
+  if(IE8_DOM_DEFINE)try {
+    return dP(O, P, Attributes);
+  } catch(e){ /* empty */ }
+  if('get' in Attributes || 'set' in Attributes)throw TypeError('Accessors not supported!');
+  if('value' in Attributes)O[P] = Attributes.value;
+  return O;
+};
+
+/***/ }),
+/* 19 */
+/***/ (function(module, exports, __webpack_require__) {
+
 // 19.1.2.14 / 15.2.3.14 Object.keys(O)
-var $keys       = __webpack_require__(55)
-  , enumBugKeys = __webpack_require__(48);
+var $keys       = __webpack_require__(68)
+  , enumBugKeys = __webpack_require__(62);
 
 module.exports = Object.keys || function keys(O){
   return $keys(O, enumBugKeys);
 };
 
 /***/ }),
-/* 18 */
+/* 20 */
 /***/ (function(module, exports) {
 
 // 7.1.4 ToInteger
@@ -627,28 +890,28 @@ module.exports = function(it){
 };
 
 /***/ }),
-/* 19 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // to indexed object, toObject with fallback for non-array-like ES3 strings
-var IObject = __webpack_require__(16)
-  , defined = __webpack_require__(14);
+var IObject = __webpack_require__(17)
+  , defined = __webpack_require__(16);
 module.exports = function(it){
   return IObject(defined(it));
 };
 
 /***/ }),
-/* 20 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 7.1.13 ToObject(argument)
-var defined = __webpack_require__(14);
+var defined = __webpack_require__(16);
 module.exports = function(it){
   return Object(defined(it));
 };
 
 /***/ }),
-/* 21 */
+/* 23 */
 /***/ (function(module, exports) {
 
 var toString = {}.toString;
@@ -658,11 +921,11 @@ module.exports = function(it){
 };
 
 /***/ }),
-/* 22 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // optional / simple context binding
-var aFunction = __webpack_require__(67);
+var aFunction = __webpack_require__(81);
 module.exports = function(fn, that, length){
   aFunction(fn);
   if(that === undefined)return fn;
@@ -683,7 +946,7 @@ module.exports = function(fn, that, length){
 };
 
 /***/ }),
-/* 23 */
+/* 25 */
 /***/ (function(module, exports) {
 
 module.exports = function(exec){
@@ -695,7 +958,7 @@ module.exports = function(exec){
 };
 
 /***/ }),
-/* 24 */
+/* 26 */
 /***/ (function(module, exports) {
 
 var id = 0
@@ -705,12 +968,12 @@ module.exports = function(key){
 };
 
 /***/ }),
-/* 25 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var store      = __webpack_require__(83)('wks')
-  , uid        = __webpack_require__(24)
-  , Symbol     = __webpack_require__(1).Symbol
+var store      = __webpack_require__(97)('wks')
+  , uid        = __webpack_require__(26)
+  , Symbol     = __webpack_require__(5).Symbol
   , USE_SYMBOL = typeof Symbol == 'function';
 
 var $exports = module.exports = function(name){
@@ -721,7 +984,7 @@ var $exports = module.exports = function(name){
 $exports.store = store;
 
 /***/ }),
-/* 26 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -731,7 +994,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _daoCallout = __webpack_require__(359);
+var _daoCallout = __webpack_require__(379);
 
 var _daoCallout2 = _interopRequireDefault(_daoCallout);
 
@@ -740,7 +1003,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 exports.default = _daoCallout2.default;
 
 /***/ }),
-/* 27 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -750,7 +1013,37 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _daoModal = __webpack_require__(360);
+var _daoDropdown = __webpack_require__(382);
+
+var _daoDropdown2 = _interopRequireDefault(_daoDropdown);
+
+var _daoDropdownMenu = __webpack_require__(381);
+
+var _daoDropdownMenu2 = _interopRequireDefault(_daoDropdownMenu);
+
+var _daoDropdownItem = __webpack_require__(380);
+
+var _daoDropdownItem2 = _interopRequireDefault(_daoDropdownItem);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+_daoDropdown2.default.Menu = _daoDropdownMenu2.default;
+_daoDropdown2.default.Item = _daoDropdownItem2.default;
+
+exports.default = _daoDropdown2.default;
+
+/***/ }),
+/* 30 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _daoModal = __webpack_require__(383);
 
 var _daoModal2 = _interopRequireDefault(_daoModal);
 
@@ -759,55 +1052,11 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 exports.default = _daoModal2.default;
 
 /***/ }),
-/* 28 */
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-
-__webpack_require__(314);
-
-__webpack_require__(315);
-
-__webpack_require__(316);
-
-__webpack_require__(317);
-
-__webpack_require__(318);
-
-__webpack_require__(319);
-
-__webpack_require__(320);
-
-__webpack_require__(321);
-
-__webpack_require__(322);
-
-__webpack_require__(323);
-
-__webpack_require__(324);
-
-__webpack_require__(325);
-
-__webpack_require__(326);
-
-__webpack_require__(327);
-
-__webpack_require__(328);
-
-__webpack_require__(329);
-
-__webpack_require__(330);
-
-__webpack_require__(331);
-
-__webpack_require__(332);
-
-__webpack_require__(312);
-
-__webpack_require__(313);
-
-__webpack_require__(333);
 
 __webpack_require__(334);
 
@@ -839,45 +1088,49 @@ __webpack_require__(347);
 
 __webpack_require__(348);
 
-__webpack_require__(92);
+__webpack_require__(349);
 
-__webpack_require__(93);
+__webpack_require__(350);
 
-__webpack_require__(94);
+__webpack_require__(351);
 
-__webpack_require__(95);
+__webpack_require__(352);
 
-__webpack_require__(96);
+__webpack_require__(332);
 
-__webpack_require__(97);
+__webpack_require__(333);
 
-__webpack_require__(98);
+__webpack_require__(353);
 
-__webpack_require__(99);
+__webpack_require__(354);
 
-__webpack_require__(100);
+__webpack_require__(355);
 
-__webpack_require__(101);
+__webpack_require__(356);
 
-__webpack_require__(102);
+__webpack_require__(357);
 
-__webpack_require__(103);
+__webpack_require__(358);
 
-__webpack_require__(104);
+__webpack_require__(359);
 
-__webpack_require__(105);
+__webpack_require__(360);
 
-__webpack_require__(106);
+__webpack_require__(361);
 
-__webpack_require__(107);
+__webpack_require__(362);
 
-__webpack_require__(108);
+__webpack_require__(363);
 
-__webpack_require__(109);
+__webpack_require__(364);
 
-__webpack_require__(110);
+__webpack_require__(365);
 
-__webpack_require__(111);
+__webpack_require__(366);
+
+__webpack_require__(367);
+
+__webpack_require__(368);
 
 __webpack_require__(112);
 
@@ -1279,26 +1532,66 @@ __webpack_require__(310);
 
 __webpack_require__(311);
 
-__webpack_require__(349);
+__webpack_require__(312);
 
-__webpack_require__(350);
+__webpack_require__(313);
 
-__webpack_require__(351);
+__webpack_require__(314);
 
-__webpack_require__(352);
+__webpack_require__(315);
 
-__webpack_require__(353);
+__webpack_require__(316);
 
-__webpack_require__(354);
+__webpack_require__(317);
 
-__webpack_require__(355);
+__webpack_require__(318);
 
-__webpack_require__(356);
+__webpack_require__(319);
 
-__webpack_require__(357);
+__webpack_require__(320);
+
+__webpack_require__(321);
+
+__webpack_require__(322);
+
+__webpack_require__(323);
+
+__webpack_require__(324);
+
+__webpack_require__(325);
+
+__webpack_require__(326);
+
+__webpack_require__(327);
+
+__webpack_require__(328);
+
+__webpack_require__(329);
+
+__webpack_require__(330);
+
+__webpack_require__(331);
+
+__webpack_require__(369);
+
+__webpack_require__(370);
+
+__webpack_require__(371);
+
+__webpack_require__(372);
+
+__webpack_require__(373);
+
+__webpack_require__(374);
+
+__webpack_require__(375);
+
+__webpack_require__(376);
+
+__webpack_require__(377);
 
 /***/ }),
-/* 29 */
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1308,7 +1601,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _daoSwitch = __webpack_require__(361);
+var _daoSwitch = __webpack_require__(385);
 
 var _daoSwitch2 = _interopRequireDefault(_daoSwitch);
 
@@ -1317,26 +1610,26 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 exports.default = _daoSwitch2.default;
 
 /***/ }),
-/* 30 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = { "default": __webpack_require__(40), __esModule: true };
-
-/***/ }),
-/* 31 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = { "default": __webpack_require__(41), __esModule: true };
-
-/***/ }),
-/* 32 */
-/***/ (function(module, exports, __webpack_require__) {
-
-__webpack_require__(88);
-module.exports = __webpack_require__(8).Array.findIndex;
-
-/***/ }),
 /* 33 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = { "default": __webpack_require__(53), __esModule: true };
+
+/***/ }),
+/* 34 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = { "default": __webpack_require__(55), __esModule: true };
+
+/***/ }),
+/* 35 */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(102);
+module.exports = __webpack_require__(13).Array.findIndex;
+
+/***/ }),
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1369,7 +1662,7 @@ exports.default = {
 };
 
 /***/ }),
-/* 34 */
+/* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1379,7 +1672,237 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _assist = __webpack_require__(39);
+var _defineProperty2 = __webpack_require__(52);
+
+var _defineProperty3 = _interopRequireDefault(_defineProperty2);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var prefixCls = 'dao-dropdown-item';
+exports.default = {
+  name: 'DropdownItem',
+  props: {
+    name: {
+      type: [String, Number]
+    },
+    isDisabled: {
+      type: Boolean,
+      default: false
+    },
+
+    isDivided: {
+      type: Boolean,
+      default: false
+    },
+    isTitle: {
+      type: Boolean,
+      default: false
+    }
+  },
+  computed: {
+    base: function base() {
+      return !this.isDisabled && !this.isDivided && !this.isTitle;
+    },
+    classes: function classes() {
+      var _ref;
+
+      return ['' + prefixCls, (_ref = {}, (0, _defineProperty3.default)(_ref, prefixCls + '-disabled', this.isDisabled), (0, _defineProperty3.default)(_ref, prefixCls + '-divided', this.isDivided), (0, _defineProperty3.default)(_ref, prefixCls + '-subtitle', this.isTitle), (0, _defineProperty3.default)(_ref, prefixCls + '-base', this.base), _ref)];
+    }
+  },
+  methods: {
+    handleClick: function handleClick() {
+      var $parent = this.$parent.$parent.$parent;
+      var hasChildren = this.$parent && this.$parent.$options.name === 'Dropdown';
+      if (this.isDisabled) {
+        this.$nextTick(function () {
+          $parent.currentVisible = true;
+        });
+      } else if (hasChildren) {
+        this.$parent.$emit('on-haschild-click');
+      } else {
+        if ($parent && $parent.$options.name === 'Dropdown') {
+          $parent.$emit('on-hover-click');
+        }
+      }
+      this.$emit('click');
+    }
+  }
+};
+
+/***/ }),
+/* 38 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = {};
+
+/***/ }),
+/* 39 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _dropdown = __webpack_require__(384);
+
+var _dropdown2 = _interopRequireDefault(_dropdown);
+
+var _clickoutside = __webpack_require__(50);
+
+var _clickoutside2 = _interopRequireDefault(_clickoutside);
+
+var _assist = __webpack_require__(9);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var prefixCls = 'dao-dropdown';
+
+exports.default = {
+  name: 'Dropdown',
+  directives: { clickoutside: _clickoutside2.default },
+  components: { daoDrop: _dropdown2.default },
+  props: {
+    trigger: {
+      validator: function validator(value) {
+        return (0, _assist.oneOf)(value, ['click', 'hover', 'custom']);
+      },
+
+      default: 'hover'
+    },
+    placement: {
+      validator: function validator(value) {
+        return (0, _assist.oneOf)(value, ['top', 'top-start', 'top-end', 'bottom', 'bottom-start', 'bottom-end', 'left', 'left-start', 'left-end', 'right', 'right-start', 'right-end']);
+      },
+
+      default: 'bottom'
+    },
+    visible: {
+      type: Boolean,
+      default: false
+    },
+    appendToBody: {
+      type: Boolean,
+      default: false
+    }
+  },
+  data: function data() {
+    return {
+      prefixCls: prefixCls,
+      currentVisible: this.visible
+    };
+  },
+
+  watch: {
+    visible: function visible(val) {
+      this.currentVisible = val;
+    },
+    currentVisible: function currentVisible(val) {
+      if (val) {
+        this.$refs.drop.update();
+      } else {
+        this.$refs.drop.destroy();
+      }
+      this.$emit('on-visible-change', val);
+    }
+  },
+  methods: {
+    handleClick: function handleClick() {
+      if (this.trigger === 'custom') return false;
+      if (this.trigger !== 'click') {
+        return false;
+      }
+      this.currentVisible = !this.currentVisible;
+    },
+    handleMouseenter: function handleMouseenter() {
+      var _this = this;
+
+      if (this.trigger === 'custom') return false;
+      if (this.trigger !== 'hover') {
+        return false;
+      }
+      clearTimeout(this.timeout);
+      this.timeout = setTimeout(function () {
+        _this.currentVisible = true;
+      }, 250);
+    },
+    handleMouseleave: function handleMouseleave() {
+      var _this2 = this;
+
+      if (this.trigger === 'custom') return false;
+      if (this.trigger !== 'hover') {
+        return false;
+      }
+      clearTimeout(this.timeout);
+      this.timeout = setTimeout(function () {
+        _this2.currentVisible = false;
+      }, 150);
+    },
+    handleClose: function handleClose() {
+      if (this.trigger === 'custom') return false;
+      if (this.trigger !== 'click') {
+        return false;
+      }
+      this.currentVisible = false;
+    },
+    hasParent: function hasParent() {
+      var $parent = this.$parent.$parent.$parent;
+      if ($parent && $parent.$options.name === 'Dropdown') {
+        return $parent;
+      } else {
+        return false;
+      }
+    }
+  },
+  mounted: function mounted() {
+    var _this3 = this;
+
+    this.$on('on-hover-click', function () {
+      var $parent = _this3.hasParent();
+      if ($parent) {
+        _this3.$nextTick(function () {
+          if (_this3.trigger === 'custom') return false;
+          _this3.currentVisible = false;
+        });
+        $parent.$emit('on-hover-click');
+      } else {
+        _this3.$nextTick(function () {
+          if (_this3.trigger === 'custom') return false;
+          _this3.currentVisible = false;
+        });
+      }
+    });
+    this.$on('on-haschild-click', function () {
+      _this3.$nextTick(function () {
+        if (_this3.trigger === 'custom') return false;
+        _this3.currentVisible = true;
+      });
+      var $parent = _this3.hasParent();
+      if ($parent) $parent.$emit('on-haschild-click');
+    });
+  }
+};
+
+/***/ }),
+/* 40 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _assist = __webpack_require__(9);
 
 exports.default = {
   name: 'DaoModal',
@@ -1499,7 +2022,125 @@ exports.default = {
 };
 
 /***/ }),
-/* 35 */
+/* 41 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _assist = __webpack_require__(9);
+
+var _popper = __webpack_require__(111);
+
+var _popper2 = _interopRequireDefault(_popper);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var dropdownMargin = 8;
+
+exports.default = {
+  name: 'Drop',
+  props: {
+    placement: {
+      type: String,
+      default: 'bottom-start'
+    },
+    appendToBody: {
+      type: Boolean,
+      default: false
+    }
+  },
+  data: function data() {
+    return {
+      popper: null,
+      width: ''
+    };
+  },
+
+  computed: {
+    styles: function styles() {
+      var style = {};
+      if (this.width) {
+        style.width = this.width + 'px';
+      }
+
+      if (this.placement.indexOf('bottom') > -1) {
+        style['margin-top'] = dropdownMargin + 'px';
+      } else if (this.placement.indexOf('top') > -1) {
+        style['margin-bottom'] = dropdownMargin + 'px';
+      } else if (this.placement.indexOf('left') > -1) {
+        style['margin-right'] = dropdownMargin + 'px';
+      } else if (this.placement.indexOf('right') > -1) {
+        style['margin-left'] = dropdownMargin + 'px';
+      }
+
+      return style;
+    }
+  },
+  methods: {
+    update: function update() {
+      var _this = this;
+
+      if (this.popper) {
+        this.$nextTick(function () {
+          _this.popper.update();
+        });
+      } else {
+        this.$nextTick(function () {
+          _this.popper = new _popper2.default(_this.$parent.$refs.reference, _this.$el, {
+            gpuAcceleration: false,
+            placement: _this.placement,
+            boundariesPadding: 0,
+            forceAbsolute: true,
+            boundariesElement: 'body'
+          });
+          _this.popper.onCreate(function (popper) {
+            _this.resetTransformOrigin(popper);
+          });
+        });
+      }
+
+      if (this.$parent.$options.name === 'iSelect') {
+        this.width = parseInt((0, _assist.getStyle)(this.$parent.$el, 'width'));
+      }
+    },
+    destroy: function destroy() {
+      if (this.popper) {
+        this.resetTransformOrigin(this.popper);
+
+        this.popper.destroy();
+        this.popper = null;
+      }
+    },
+    resetTransformOrigin: function resetTransformOrigin(popper) {
+      var placementMap = { top: 'bottom', bottom: 'top' };
+      var placement = popper._popper.getAttribute('x-placement').split('-')[0];
+      var origin = placementMap[placement];
+      popper._popper.style.transformOrigin = 'center ' + origin;
+    }
+  },
+  mounted: function mounted() {
+    if (this.appendToBody) {
+      document.body.appendChild(this.$el);
+    }
+  },
+  created: function created() {
+    this.$on('on-update-popper', this.update);
+    this.$on('on-destroy-popper', this.destroy);
+  },
+  beforeDestroy: function beforeDestroy() {
+    if (this.popper) {
+      this.popper.destroy();
+    }
+  }
+};
+
+/***/ }),
+/* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1583,7 +2224,7 @@ exports.default = {
 };
 
 /***/ }),
-/* 36 */
+/* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1591,41 +2232,58 @@ exports.default = {
 
 module.exports = { render: function render() {
     var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;
-    return _c('transition', {
-      attrs: {
-        "name": "dao-modal"
-      }
-    }, [_c('div', {
-      directives: [{
-        name: "show",
-        rawName: "v-show",
-        value: _vm.visible,
-        expression: "visible"
-      }],
-      staticClass: "dao-modal-backdrop"
-    }, [_c('div', {
-      staticClass: "dao-modal-wrapper",
-      on: {
-        "click": function click($event) {
-          if ($event.target !== $event.currentTarget) {
-            return null;
-          }
-          _vm.handleWrapperClick($event);
-        }
-      }
-    }, [_c('div', {
-      class: ['dao-modal-container', _vm.sizeClass]
-    }, [_c('div', {
-      staticClass: "dao-modal-header"
-    }, [_vm._t("header", [_c('h3', [_vm._v(_vm._s(_vm.title))])])], 2), _vm._v(" "), _c('div', {
-      staticClass: "dao-modal-body"
-    }, [_vm._t("body")], 2), _vm._v(" "), _c('div', {
-      staticClass: "dao-modal-footer"
-    }, [_vm._t("footer")], 2)])])])]);
+    return _c('ul', {
+      staticClass: "dao-dropdown-menu"
+    }, [_vm._t("default")], 2);
   }, staticRenderFns: [] };
 
 /***/ }),
-/* 37 */
+/* 44 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports = { render: function render() {
+    var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;
+    return _c('div', {
+      directives: [{
+        name: "clickoutside",
+        rawName: "v-clickoutside:dao-select-dropdown",
+        value: _vm.handleClose,
+        expression: "handleClose",
+        arg: "dao-select-dropdown"
+      }],
+      class: [_vm.prefixCls, {
+        'dao-dropdown-is-open': _vm.currentVisible
+      }],
+      on: {
+        "mouseenter": _vm.handleMouseenter,
+        "mouseleave": _vm.handleMouseleave
+      }
+    }, [_c('div', {
+      ref: "reference",
+      class: [_vm.prefixCls + '-rel'],
+      on: {
+        "click": _vm.handleClick
+      }
+    }, [_vm._t("default")], 2), _vm._v(" "), _c('dao-drop', {
+      directives: [{
+        name: "show",
+        rawName: "v-show",
+        value: _vm.currentVisible,
+        expression: "currentVisible"
+      }],
+      ref: "drop",
+      attrs: {
+        "placement": _vm.placement,
+        "append-to-body": _vm.appendToBody
+      }
+    }, [_vm._t("list")], 2)], 1);
+  }, staticRenderFns: [] };
+
+/***/ }),
+/* 45 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1678,7 +2336,81 @@ module.exports = { render: function render() {
   }, staticRenderFns: [] };
 
 /***/ }),
-/* 38 */
+/* 46 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports = { render: function render() {
+    var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;
+    return _c('li', {
+      class: _vm.classes,
+      on: {
+        "click": _vm.handleClick
+      }
+    }, [_vm._t("default")], 2);
+  }, staticRenderFns: [] };
+
+/***/ }),
+/* 47 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports = { render: function render() {
+    var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;
+    return _c('div', {
+      staticClass: "dao-select-dropdown",
+      style: _vm.styles
+    }, [_vm._t("default")], 2);
+  }, staticRenderFns: [] };
+
+/***/ }),
+/* 48 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports = { render: function render() {
+    var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;
+    return _c('transition', {
+      attrs: {
+        "name": "dao-modal"
+      }
+    }, [_c('div', {
+      directives: [{
+        name: "show",
+        rawName: "v-show",
+        value: _vm.visible,
+        expression: "visible"
+      }],
+      staticClass: "dao-modal-backdrop"
+    }, [_c('div', {
+      staticClass: "dao-modal-wrapper",
+      on: {
+        "click": function click($event) {
+          if ($event.target !== $event.currentTarget) {
+            return null;
+          }
+          _vm.handleWrapperClick($event);
+        }
+      }
+    }, [_c('div', {
+      class: ['dao-modal-container', _vm.sizeClass]
+    }, [_c('div', {
+      staticClass: "dao-modal-header"
+    }, [_vm._t("header", [_c('h3', [_vm._v(_vm._s(_vm.title))])])], 2), _vm._v(" "), _c('div', {
+      staticClass: "dao-modal-body"
+    }, [_vm._t("body")], 2), _vm._v(" "), _c('div', {
+      staticClass: "dao-modal-footer"
+    }, [_vm._t("footer")], 2)])])])]);
+  }, staticRenderFns: [] };
+
+/***/ }),
+/* 49 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1783,7 +2515,7 @@ module.exports = { render: function render() {
   }, staticRenderFns: [] };
 
 /***/ }),
-/* 39 */
+/* 50 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1792,254 +2524,97 @@ module.exports = { render: function render() {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.oneOf = oneOf;
-exports.camelcaseToHyphen = camelcaseToHyphen;
-exports.getScrollBarSize = getScrollBarSize;
-exports.getStyle = getStyle;
-exports.warnProp = warnProp;
-exports.scrollTop = scrollTop;
-function oneOf(value, validList) {
-  for (var i = 0; i < validList.length; i++) {
-    if (value === validList[i]) {
-      return true;
-    }
-  }
-  return false;
-}
-
-function camelcaseToHyphen(str) {
-  return str.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
-}
-
-var cached = void 0;
-function getScrollBarSize(fresh) {
-  if (fresh || cached === undefined) {
-    var inner = document.createElement('div');
-    inner.style.width = '100%';
-    inner.style.height = '200px';
-
-    var outer = document.createElement('div');
-    var outerStyle = outer.style;
-
-    outerStyle.position = 'absolute';
-    outerStyle.top = 0;
-    outerStyle.left = 0;
-    outerStyle.pointerEvents = 'none';
-    outerStyle.visibility = 'hidden';
-    outerStyle.width = '200px';
-    outerStyle.height = '150px';
-    outerStyle.overflow = 'hidden';
-
-    outer.appendChild(inner);
-
-    document.body.appendChild(outer);
-
-    var widthContained = inner.offsetWidth;
-    outer.style.overflow = 'scroll';
-    var widthScroll = inner.offsetWidth;
-
-    if (widthContained === widthScroll) {
-      widthScroll = outer.clientWidth;
-    }
-
-    document.body.removeChild(outer);
-
-    cached = widthContained - widthScroll;
-  }
-  return cached;
-}
-
-var MutationObserver = exports.MutationObserver = window.MutationObserver || window.WebKitMutationObserver || window.MozMutationObserver || false;
-
-var SPECIAL_CHARS_REGEXP = /([\:\-\_]+(.))/g;
-var MOZ_HACK_REGEXP = /^moz([A-Z])/;
-
-function camelCase(name) {
-  return name.replace(SPECIAL_CHARS_REGEXP, function (_, separator, letter, offset) {
-    return offset ? letter.toUpperCase() : letter;
-  }).replace(MOZ_HACK_REGEXP, 'Moz$1');
-}
-function getStyle(element, styleName) {
-  if (!element || !styleName) return null;
-  styleName = camelCase(styleName);
-  if (styleName === 'float') {
-    styleName = 'cssFloat';
-  }
-  try {
-    var computed = document.defaultView.getComputedStyle(element, '');
-    return element.style[styleName] || computed ? computed[styleName] : null;
-  } catch (e) {
-    return element.style[styleName];
-  }
-}
-
-function firstUpperCase(str) {
-  return str.toString()[0].toUpperCase() + str.toString().slice(1);
-}
-exports.firstUpperCase = firstUpperCase;
-function warnProp(component, prop, correctType, wrongType) {
-  correctType = firstUpperCase(correctType);
-  wrongType = firstUpperCase(wrongType);
-  console.error('[iView warn]: Invalid prop: type check failed for prop ' + prop + '. Expected ' + correctType + ', got ' + wrongType + '. (found in component: ' + component + ')');
-}
-
-function typeOf(obj) {
-  var toString = Object.prototype.toString;
-  var map = {
-    '[object Boolean]': 'boolean',
-    '[object Number]': 'number',
-    '[object String]': 'string',
-    '[object Function]': 'function',
-    '[object Array]': 'array',
-    '[object Date]': 'date',
-    '[object RegExp]': 'regExp',
-    '[object Undefined]': 'undefined',
-    '[object Null]': 'null',
-    '[object Object]': 'object'
-  };
-  return map[toString.call(obj)];
-}
-
-function deepCopy(data) {
-  var t = typeOf(data);
-  var o = void 0;
-
-  if (t === 'array') {
-    o = [];
-  } else if (t === 'object') {
-    o = {};
-  } else {
-    return data;
-  }
-
-  if (t === 'array') {
-    for (var i = 0; i < data.length; i++) {
-      o.push(deepCopy(data[i]));
-    }
-  } else if (t === 'object') {
-    for (var _i in data) {
-      o[_i] = deepCopy(data[_i]);
-    }
-  }
-  return o;
-}
-
-exports.deepCopy = deepCopy;
-function scrollTop(el) {
-  var from = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
-  var to = arguments[2];
-  var duration = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 500;
-
-  if (!window.requestAnimationFrame) {
-    window.requestAnimationFrame = window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.msRequestAnimationFrame || function (callback) {
-      return window.setTimeout(callback, 1000 / 60);
-    };
-  }
-  var difference = Math.abs(from - to);
-  var step = Math.ceil(difference / duration * 50);
-
-  function scroll(start, end, step) {
-    if (start === end) return;
-
-    var d = start + step > end ? end : start + step;
-    if (start > end) {
-      d = start - step < end ? end : start - step;
-    }
-
-    if (el === window) {
-      window.scrollTo(d, d);
-    } else {
-      el.scrollTop = d;
-    }
-    window.requestAnimationFrame(function () {
-      return scroll(d, end, step);
-    });
-  }
-  scroll(from, to, step);
-}
-
-function findComponentUpward(content, componentName, componentNames) {
-  if (typeof componentName === 'string') {
-    componentNames = [componentName];
-  } else {
-    componentNames = componentName;
-  }
-
-  var parent = content.$parent;
-  var name = parent.$options.name;
-  while (parent && (!name || componentNames.indexOf(name) < 0)) {
-    parent = parent.$parent;
-    if (parent) name = parent.$options.name;
-  }
-  return parent;
-}
-exports.findComponentUpward = findComponentUpward;
-
-function findComponentDownward(content, componentName) {
-  var childrens = content.$children;
-  var children = null;
-
-  if (childrens.length) {
-    childrens.forEach(function (child) {
-      var name = child.$options.name;
-      if (name === componentName) {
-        children = child;
+exports.default = {
+  bind: function bind(el, binding) {
+    function documentHandler(e) {
+      if (binding.arg) {
+        var nodes = document.getElementsByClassName(binding.arg);
+        for (var i = 0; i < nodes.length; i += 1) {
+          if (nodes[i].contains(e.target)) {
+            return false;
+          }
+        }
       }
-    });
 
-    for (var i = 0; i < childrens.length; i++) {
-      var child = childrens[i];
-      var name = child.$options.name;
-      if (name === componentName) {
-        children = child;
-        break;
-      } else {
-        children = findComponentDownward(child, componentName);
-        if (children) break;
+      if (el.contains(e.target)) {
+        return false;
+      }
+      if (binding.expression) {
+        binding.value(e);
       }
     }
+    el.__vueClickOutside__ = documentHandler;
+    document.addEventListener('click', documentHandler);
+  },
+  update: function update() {},
+  unbind: function unbind(el) {
+    document.removeEventListener('click', el.__vueClickOutside__);
+    delete el.__vueClickOutside__;
   }
-  return children;
-}
-exports.findComponentDownward = findComponentDownward;
-
-function findComponentsDownward(content, componentName) {
-  var components = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
-
-  var childrens = content.$children;
-
-  if (childrens.length) {
-    childrens.forEach(function (child) {
-      var name = child.$options.name;
-      var childs = child.$children;
-
-      if (name === componentName) components.push(child);
-      if (childs.length) {
-        var findChilds = findComponentsDownward(child, componentName, components);
-        if (findChilds) components.concat(findChilds);
-      }
-    });
-  }
-  return components;
-}
-exports.findComponentsDownward = findComponentsDownward;
+};
 
 /***/ }),
-/* 40 */
+/* 51 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(65);
-module.exports = __webpack_require__(2).Object.assign;
+module.exports = { "default": __webpack_require__(54), __esModule: true };
 
 /***/ }),
-/* 41 */
+/* 52 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(66);
-module.exports = __webpack_require__(2).Object.keys;
+"use strict";
+
+
+exports.__esModule = true;
+
+var _defineProperty = __webpack_require__(51);
+
+var _defineProperty2 = _interopRequireDefault(_defineProperty);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = function (obj, key, value) {
+  if (key in obj) {
+    (0, _defineProperty2.default)(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+  } else {
+    obj[key] = value;
+  }
+
+  return obj;
+};
 
 /***/ }),
-/* 42 */
+/* 53 */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(78);
+module.exports = __webpack_require__(4).Object.assign;
+
+/***/ }),
+/* 54 */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(79);
+var $Object = __webpack_require__(4).Object;
+module.exports = function defineProperty(it, key, desc){
+  return $Object.defineProperty(it, key, desc);
+};
+
+/***/ }),
+/* 55 */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(80);
+module.exports = __webpack_require__(4).Object.keys;
+
+/***/ }),
+/* 56 */
 /***/ (function(module, exports) {
 
 module.exports = function(it){
@@ -2048,24 +2623,24 @@ module.exports = function(it){
 };
 
 /***/ }),
-/* 43 */
+/* 57 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var isObject = __webpack_require__(7);
+var isObject = __webpack_require__(12);
 module.exports = function(it){
   if(!isObject(it))throw TypeError(it + ' is not an object!');
   return it;
 };
 
 /***/ }),
-/* 44 */
+/* 58 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // false -> Array#indexOf
 // true  -> Array#includes
-var toIObject = __webpack_require__(19)
-  , toLength  = __webpack_require__(62)
-  , toIndex   = __webpack_require__(61);
+var toIObject = __webpack_require__(21)
+  , toLength  = __webpack_require__(75)
+  , toIndex   = __webpack_require__(74);
 module.exports = function(IS_INCLUDES){
   return function($this, el, fromIndex){
     var O      = toIObject($this)
@@ -2084,7 +2659,7 @@ module.exports = function(IS_INCLUDES){
 };
 
 /***/ }),
-/* 45 */
+/* 59 */
 /***/ (function(module, exports) {
 
 var toString = {}.toString;
@@ -2094,11 +2669,11 @@ module.exports = function(it){
 };
 
 /***/ }),
-/* 46 */
+/* 60 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // optional / simple context binding
-var aFunction = __webpack_require__(42);
+var aFunction = __webpack_require__(56);
 module.exports = function(fn, that, length){
   aFunction(fn);
   if(that === undefined)return fn;
@@ -2119,11 +2694,11 @@ module.exports = function(fn, that, length){
 };
 
 /***/ }),
-/* 47 */
+/* 61 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var isObject = __webpack_require__(7)
-  , document = __webpack_require__(6).document
+var isObject = __webpack_require__(12)
+  , document = __webpack_require__(11).document
   // in old IE typeof document.createElement is 'object'
   , is = isObject(document) && isObject(document.createElement);
 module.exports = function(it){
@@ -2131,7 +2706,7 @@ module.exports = function(it){
 };
 
 /***/ }),
-/* 48 */
+/* 62 */
 /***/ (function(module, exports) {
 
 // IE 8- don't enum bug keys
@@ -2140,7 +2715,7 @@ module.exports = (
 ).split(',');
 
 /***/ }),
-/* 49 */
+/* 63 */
 /***/ (function(module, exports) {
 
 var hasOwnProperty = {}.hasOwnProperty;
@@ -2149,12 +2724,12 @@ module.exports = function(it, key){
 };
 
 /***/ }),
-/* 50 */
+/* 64 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var dP         = __webpack_require__(53)
-  , createDesc = __webpack_require__(58);
-module.exports = __webpack_require__(5) ? function(object, key, value){
+var dP         = __webpack_require__(18)
+  , createDesc = __webpack_require__(71);
+module.exports = __webpack_require__(6) ? function(object, key, value){
   return dP.f(object, key, createDesc(1, value));
 } : function(object, key, value){
   object[key] = value;
@@ -2162,29 +2737,29 @@ module.exports = __webpack_require__(5) ? function(object, key, value){
 };
 
 /***/ }),
-/* 51 */
+/* 65 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = !__webpack_require__(5) && !__webpack_require__(3)(function(){
-  return Object.defineProperty(__webpack_require__(47)('div'), 'a', {get: function(){ return 7; }}).a != 7;
+module.exports = !__webpack_require__(6) && !__webpack_require__(7)(function(){
+  return Object.defineProperty(__webpack_require__(61)('div'), 'a', {get: function(){ return 7; }}).a != 7;
 });
 
 /***/ }),
-/* 52 */
+/* 66 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 // 19.1.2.1 Object.assign(target, source, ...)
-var getKeys  = __webpack_require__(17)
-  , gOPS     = __webpack_require__(54)
-  , pIE      = __webpack_require__(56)
-  , toObject = __webpack_require__(20)
-  , IObject  = __webpack_require__(16)
+var getKeys  = __webpack_require__(19)
+  , gOPS     = __webpack_require__(67)
+  , pIE      = __webpack_require__(69)
+  , toObject = __webpack_require__(22)
+  , IObject  = __webpack_require__(17)
   , $assign  = Object.assign;
 
 // should work with symbols and should have deterministic property order (V8 bug)
-module.exports = !$assign || __webpack_require__(3)(function(){
+module.exports = !$assign || __webpack_require__(7)(function(){
   var A = {}
     , B = {}
     , S = Symbol()
@@ -2209,40 +2784,19 @@ module.exports = !$assign || __webpack_require__(3)(function(){
 } : $assign;
 
 /***/ }),
-/* 53 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var anObject       = __webpack_require__(43)
-  , IE8_DOM_DEFINE = __webpack_require__(51)
-  , toPrimitive    = __webpack_require__(63)
-  , dP             = Object.defineProperty;
-
-exports.f = __webpack_require__(5) ? Object.defineProperty : function defineProperty(O, P, Attributes){
-  anObject(O);
-  P = toPrimitive(P, true);
-  anObject(Attributes);
-  if(IE8_DOM_DEFINE)try {
-    return dP(O, P, Attributes);
-  } catch(e){ /* empty */ }
-  if('get' in Attributes || 'set' in Attributes)throw TypeError('Accessors not supported!');
-  if('value' in Attributes)O[P] = Attributes.value;
-  return O;
-};
-
-/***/ }),
-/* 54 */
+/* 67 */
 /***/ (function(module, exports) {
 
 exports.f = Object.getOwnPropertySymbols;
 
 /***/ }),
-/* 55 */
+/* 68 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var has          = __webpack_require__(49)
-  , toIObject    = __webpack_require__(19)
-  , arrayIndexOf = __webpack_require__(44)(false)
-  , IE_PROTO     = __webpack_require__(59)('IE_PROTO');
+var has          = __webpack_require__(63)
+  , toIObject    = __webpack_require__(21)
+  , arrayIndexOf = __webpack_require__(58)(false)
+  , IE_PROTO     = __webpack_require__(72)('IE_PROTO');
 
 module.exports = function(object, names){
   var O      = toIObject(object)
@@ -2258,19 +2812,19 @@ module.exports = function(object, names){
 };
 
 /***/ }),
-/* 56 */
+/* 69 */
 /***/ (function(module, exports) {
 
 exports.f = {}.propertyIsEnumerable;
 
 /***/ }),
-/* 57 */
+/* 70 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // most Object methods by ES6 should accept primitives
-var $export = __webpack_require__(15)
-  , core    = __webpack_require__(2)
-  , fails   = __webpack_require__(3);
+var $export = __webpack_require__(10)
+  , core    = __webpack_require__(4)
+  , fails   = __webpack_require__(7);
 module.exports = function(KEY, exec){
   var fn  = (core.Object || {})[KEY] || Object[KEY]
     , exp = {};
@@ -2279,7 +2833,7 @@ module.exports = function(KEY, exec){
 };
 
 /***/ }),
-/* 58 */
+/* 71 */
 /***/ (function(module, exports) {
 
 module.exports = function(bitmap, value){
@@ -2292,20 +2846,20 @@ module.exports = function(bitmap, value){
 };
 
 /***/ }),
-/* 59 */
+/* 72 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var shared = __webpack_require__(60)('keys')
-  , uid    = __webpack_require__(64);
+var shared = __webpack_require__(73)('keys')
+  , uid    = __webpack_require__(77);
 module.exports = function(key){
   return shared[key] || (shared[key] = uid(key));
 };
 
 /***/ }),
-/* 60 */
+/* 73 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var global = __webpack_require__(6)
+var global = __webpack_require__(11)
   , SHARED = '__core-js_shared__'
   , store  = global[SHARED] || (global[SHARED] = {});
 module.exports = function(key){
@@ -2313,10 +2867,10 @@ module.exports = function(key){
 };
 
 /***/ }),
-/* 61 */
+/* 74 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var toInteger = __webpack_require__(18)
+var toInteger = __webpack_require__(20)
   , max       = Math.max
   , min       = Math.min;
 module.exports = function(index, length){
@@ -2325,22 +2879,22 @@ module.exports = function(index, length){
 };
 
 /***/ }),
-/* 62 */
+/* 75 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 7.1.15 ToLength
-var toInteger = __webpack_require__(18)
+var toInteger = __webpack_require__(20)
   , min       = Math.min;
 module.exports = function(it){
   return it > 0 ? min(toInteger(it), 0x1fffffffffffff) : 0; // pow(2, 53) - 1 == 9007199254740991
 };
 
 /***/ }),
-/* 63 */
+/* 76 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 7.1.1 ToPrimitive(input [, PreferredType])
-var isObject = __webpack_require__(7);
+var isObject = __webpack_require__(12);
 // instead of the ES6 spec version, we didn't implement @@toPrimitive case
 // and the second argument - flag - preferred type is a string
 module.exports = function(it, S){
@@ -2353,7 +2907,7 @@ module.exports = function(it, S){
 };
 
 /***/ }),
-/* 64 */
+/* 77 */
 /***/ (function(module, exports) {
 
 var id = 0
@@ -2363,30 +2917,38 @@ module.exports = function(key){
 };
 
 /***/ }),
-/* 65 */
+/* 78 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 19.1.3.1 Object.assign(target, source)
-var $export = __webpack_require__(15);
+var $export = __webpack_require__(10);
 
-$export($export.S + $export.F, 'Object', {assign: __webpack_require__(52)});
+$export($export.S + $export.F, 'Object', {assign: __webpack_require__(66)});
 
 /***/ }),
-/* 66 */
+/* 79 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var $export = __webpack_require__(10);
+// 19.1.2.4 / 15.2.3.6 Object.defineProperty(O, P, Attributes)
+$export($export.S + $export.F * !__webpack_require__(6), 'Object', {defineProperty: __webpack_require__(18).f});
+
+/***/ }),
+/* 80 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 19.1.2.14 Object.keys(O)
-var toObject = __webpack_require__(20)
-  , $keys    = __webpack_require__(17);
+var toObject = __webpack_require__(22)
+  , $keys    = __webpack_require__(19);
 
-__webpack_require__(57)('keys', function(){
+__webpack_require__(70)('keys', function(){
   return function keys(it){
     return $keys(toObject(it));
   };
 });
 
 /***/ }),
-/* 67 */
+/* 81 */
 /***/ (function(module, exports) {
 
 module.exports = function(it){
@@ -2395,29 +2957,29 @@ module.exports = function(it){
 };
 
 /***/ }),
-/* 68 */
+/* 82 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 22.1.3.31 Array.prototype[@@unscopables]
-var UNSCOPABLES = __webpack_require__(25)('unscopables')
+var UNSCOPABLES = __webpack_require__(27)('unscopables')
   , ArrayProto  = Array.prototype;
-if(ArrayProto[UNSCOPABLES] == undefined)__webpack_require__(10)(ArrayProto, UNSCOPABLES, {});
+if(ArrayProto[UNSCOPABLES] == undefined)__webpack_require__(15)(ArrayProto, UNSCOPABLES, {});
 module.exports = function(key){
   ArrayProto[UNSCOPABLES][key] = true;
 };
 
 /***/ }),
-/* 69 */
+/* 83 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var isObject = __webpack_require__(4);
+var isObject = __webpack_require__(8);
 module.exports = function(it){
   if(!isObject(it))throw TypeError(it + ' is not an object!');
   return it;
 };
 
 /***/ }),
-/* 70 */
+/* 84 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 0 -> Array#forEach
@@ -2427,11 +2989,11 @@ module.exports = function(it){
 // 4 -> Array#every
 // 5 -> Array#find
 // 6 -> Array#findIndex
-var ctx      = __webpack_require__(22)
-  , IObject  = __webpack_require__(78)
-  , toObject = __webpack_require__(86)
-  , toLength = __webpack_require__(85)
-  , asc      = __webpack_require__(72);
+var ctx      = __webpack_require__(24)
+  , IObject  = __webpack_require__(92)
+  , toObject = __webpack_require__(100)
+  , toLength = __webpack_require__(99)
+  , asc      = __webpack_require__(86);
 module.exports = function(TYPE, $create){
   var IS_MAP        = TYPE == 1
     , IS_FILTER     = TYPE == 2
@@ -2466,12 +3028,12 @@ module.exports = function(TYPE, $create){
 };
 
 /***/ }),
-/* 71 */
+/* 85 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var isObject = __webpack_require__(4)
-  , isArray  = __webpack_require__(79)
-  , SPECIES  = __webpack_require__(25)('species');
+var isObject = __webpack_require__(8)
+  , isArray  = __webpack_require__(93)
+  , SPECIES  = __webpack_require__(27)('species');
 
 module.exports = function(original){
   var C;
@@ -2487,18 +3049,18 @@ module.exports = function(original){
 };
 
 /***/ }),
-/* 72 */
+/* 86 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 9.4.2.3 ArraySpeciesCreate(originalArray, length)
-var speciesConstructor = __webpack_require__(71);
+var speciesConstructor = __webpack_require__(85);
 
 module.exports = function(original, length){
   return new (speciesConstructor(original))(length);
 };
 
 /***/ }),
-/* 73 */
+/* 87 */
 /***/ (function(module, exports) {
 
 // 7.2.1 RequireObjectCoercible(argument)
@@ -2508,11 +3070,11 @@ module.exports = function(it){
 };
 
 /***/ }),
-/* 74 */
+/* 88 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var isObject = __webpack_require__(4)
-  , document = __webpack_require__(1).document
+var isObject = __webpack_require__(8)
+  , document = __webpack_require__(5).document
   // in old IE typeof document.createElement is 'object'
   , is = isObject(document) && isObject(document.createElement);
 module.exports = function(it){
@@ -2520,14 +3082,14 @@ module.exports = function(it){
 };
 
 /***/ }),
-/* 75 */
+/* 89 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var global    = __webpack_require__(1)
-  , core      = __webpack_require__(8)
-  , hide      = __webpack_require__(10)
-  , redefine  = __webpack_require__(82)
-  , ctx       = __webpack_require__(22)
+var global    = __webpack_require__(5)
+  , core      = __webpack_require__(13)
+  , hide      = __webpack_require__(15)
+  , redefine  = __webpack_require__(96)
+  , ctx       = __webpack_require__(24)
   , PROTOTYPE = 'prototype';
 
 var $export = function(type, name, source){
@@ -2568,7 +3130,7 @@ $export.R = 128; // real proto method for `library`
 module.exports = $export;
 
 /***/ }),
-/* 76 */
+/* 90 */
 /***/ (function(module, exports) {
 
 var hasOwnProperty = {}.hasOwnProperty;
@@ -2577,43 +3139,43 @@ module.exports = function(it, key){
 };
 
 /***/ }),
-/* 77 */
+/* 91 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = !__webpack_require__(9) && !__webpack_require__(23)(function(){
-  return Object.defineProperty(__webpack_require__(74)('div'), 'a', {get: function(){ return 7; }}).a != 7;
+module.exports = !__webpack_require__(14) && !__webpack_require__(25)(function(){
+  return Object.defineProperty(__webpack_require__(88)('div'), 'a', {get: function(){ return 7; }}).a != 7;
 });
 
 /***/ }),
-/* 78 */
+/* 92 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // fallback for non-array-like ES3 and non-enumerable old V8 strings
-var cof = __webpack_require__(21);
+var cof = __webpack_require__(23);
 module.exports = Object('z').propertyIsEnumerable(0) ? Object : function(it){
   return cof(it) == 'String' ? it.split('') : Object(it);
 };
 
 /***/ }),
-/* 79 */
+/* 93 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 7.2.2 IsArray(argument)
-var cof = __webpack_require__(21);
+var cof = __webpack_require__(23);
 module.exports = Array.isArray || function isArray(arg){
   return cof(arg) == 'Array';
 };
 
 /***/ }),
-/* 80 */
+/* 94 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var anObject       = __webpack_require__(69)
-  , IE8_DOM_DEFINE = __webpack_require__(77)
-  , toPrimitive    = __webpack_require__(87)
+var anObject       = __webpack_require__(83)
+  , IE8_DOM_DEFINE = __webpack_require__(91)
+  , toPrimitive    = __webpack_require__(101)
   , dP             = Object.defineProperty;
 
-exports.f = __webpack_require__(9) ? Object.defineProperty : function defineProperty(O, P, Attributes){
+exports.f = __webpack_require__(14) ? Object.defineProperty : function defineProperty(O, P, Attributes){
   anObject(O);
   P = toPrimitive(P, true);
   anObject(Attributes);
@@ -2626,7 +3188,7 @@ exports.f = __webpack_require__(9) ? Object.defineProperty : function defineProp
 };
 
 /***/ }),
-/* 81 */
+/* 95 */
 /***/ (function(module, exports) {
 
 module.exports = function(bitmap, value){
@@ -2639,18 +3201,18 @@ module.exports = function(bitmap, value){
 };
 
 /***/ }),
-/* 82 */
+/* 96 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var global    = __webpack_require__(1)
-  , hide      = __webpack_require__(10)
-  , has       = __webpack_require__(76)
-  , SRC       = __webpack_require__(24)('src')
+var global    = __webpack_require__(5)
+  , hide      = __webpack_require__(15)
+  , has       = __webpack_require__(90)
+  , SRC       = __webpack_require__(26)('src')
   , TO_STRING = 'toString'
   , $toString = Function[TO_STRING]
   , TPL       = ('' + $toString).split(TO_STRING);
 
-__webpack_require__(8).inspectSource = function(it){
+__webpack_require__(13).inspectSource = function(it){
   return $toString.call(it);
 };
 
@@ -2676,10 +3238,10 @@ __webpack_require__(8).inspectSource = function(it){
 });
 
 /***/ }),
-/* 83 */
+/* 97 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var global = __webpack_require__(1)
+var global = __webpack_require__(5)
   , SHARED = '__core-js_shared__'
   , store  = global[SHARED] || (global[SHARED] = {});
 module.exports = function(key){
@@ -2687,7 +3249,7 @@ module.exports = function(key){
 };
 
 /***/ }),
-/* 84 */
+/* 98 */
 /***/ (function(module, exports) {
 
 // 7.1.4 ToInteger
@@ -2698,32 +3260,32 @@ module.exports = function(it){
 };
 
 /***/ }),
-/* 85 */
+/* 99 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 7.1.15 ToLength
-var toInteger = __webpack_require__(84)
+var toInteger = __webpack_require__(98)
   , min       = Math.min;
 module.exports = function(it){
   return it > 0 ? min(toInteger(it), 0x1fffffffffffff) : 0; // pow(2, 53) - 1 == 9007199254740991
 };
 
 /***/ }),
-/* 86 */
+/* 100 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 7.1.13 ToObject(argument)
-var defined = __webpack_require__(73);
+var defined = __webpack_require__(87);
 module.exports = function(it){
   return Object(defined(it));
 };
 
 /***/ }),
-/* 87 */
+/* 101 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 7.1.1 ToPrimitive(input [, PreferredType])
-var isObject = __webpack_require__(4);
+var isObject = __webpack_require__(8);
 // instead of the ES6 spec version, we didn't implement @@toPrimitive case
 // and the second argument - flag - preferred type is a string
 module.exports = function(it, S){
@@ -2736,14 +3298,14 @@ module.exports = function(it, S){
 };
 
 /***/ }),
-/* 88 */
+/* 102 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 // 22.1.3.9 Array.prototype.findIndex(predicate, thisArg = undefined)
-var $export = __webpack_require__(75)
-  , $find   = __webpack_require__(70)(6)
+var $export = __webpack_require__(89)
+  , $find   = __webpack_require__(84)(6)
   , KEY     = 'findIndex'
   , forced  = true;
 // Shouldn't skip holes
@@ -2753,13 +3315,97 @@ $export($export.P + $export.F * forced, 'Array', {
     return $find(this, callbackfn, arguments.length > 1 ? arguments[1] : undefined);
   }
 });
-__webpack_require__(68)(KEY);
+__webpack_require__(82)(KEY);
 
 /***/ }),
-/* 89 */
+/* 103 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(11)();
+exports = module.exports = __webpack_require__(1)();
+// imports
+
+
+// module
+exports.push([module.i, "\n.dao-dropdown-menu[data-v-00a0f62d] {\n  font-size: 14px;\n  min-width: 160px;\n  padding: 5px 0;\n  list-style: none;\n  border-radius: 5px;\n  background-color: #ffffff;\n  box-shadow: 0 0 0 1px rgba(61, 68, 79, 0.06), 0 5px 12px 0 rgba(61, 68, 79, 0.3);\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 104 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(1)();
+// imports
+
+
+// module
+exports.push([module.i, "\n.dao-dropdown {\n  display: inline-block;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 105 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(1)();
+// imports
+
+
+// module
+exports.push([module.i, "\n.dao-callout[data-v-5fac9fca] {\n  position: relative;\n  line-height: 24px;\n  display: flex;\n}\n.dao-callout.error[data-v-5fac9fca] {\n    color: #b81f17;\n    background-color: #fcedec;\n}\n.dao-callout.error .bold-line[data-v-5fac9fca] {\n      background-color: #d52218;\n}\n.dao-callout.error .content[data-v-5fac9fca] {\n      border-color: #f0c2c0;\n}\n.dao-callout.error .content a[data-v-5fac9fca] {\n        color: #b81f17;\n}\n.dao-callout.error .close[data-v-5fac9fca] {\n      color: #f0c2c0;\n      opacity: .5;\n      cursor: pointer;\n}\n.dao-callout.error .close[data-v-5fac9fca]:hover {\n        color: #f0c2c0;\n        opacity: 1;\n}\n.dao-callout.warning[data-v-5fac9fca] {\n    color: #b17b10;\n    background-color: #fbf2df;\n}\n.dao-callout.warning .bold-line[data-v-5fac9fca] {\n      background-color: #d09010;\n}\n.dao-callout.warning .content[data-v-5fac9fca] {\n      border-color: #f0dbb1;\n}\n.dao-callout.warning .content a[data-v-5fac9fca] {\n        color: #b17b10;\n}\n.dao-callout.warning .close[data-v-5fac9fca] {\n      color: #f0dbb1;\n      opacity: .5;\n      cursor: pointer;\n}\n.dao-callout.warning .close[data-v-5fac9fca]:hover {\n        color: #f0dbb1;\n        opacity: 1;\n}\n.dao-callout.info[data-v-5fac9fca] {\n    color: #0a60cc;\n    background-color: #f1f7fe;\n}\n.dao-callout.info .bold-line[data-v-5fac9fca] {\n      background-color: #096dec;\n}\n.dao-callout.info .content[data-v-5fac9fca] {\n      border-color: #c0d8f6;\n}\n.dao-callout.info .content a[data-v-5fac9fca] {\n        color: #0a60cc;\n}\n.dao-callout.info .close[data-v-5fac9fca] {\n      color: #c0d8f6;\n      opacity: .5;\n      cursor: pointer;\n}\n.dao-callout.info .close[data-v-5fac9fca]:hover {\n        color: #c0d8f6;\n        opacity: 1;\n}\n.dao-callout .bold-line[data-v-5fac9fca] {\n    width: 3px;\n    border-radius: 2px 0 0 2px;\n    flex: 0 0 auto;\n}\n.dao-callout .content[data-v-5fac9fca] {\n    padding: 5px 10px 5px 15px;\n    border: 1px solid;\n    border-radius: 0 2px 2px 0;\n    border-left-width: 0;\n    word-break: break-all;\n}\n.dao-callout .content a[data-v-5fac9fca] {\n      margin: 0 5px;\n      cursor: pointer;\n      text-decoration: none;\n      border-bottom: 1px solid;\n}\n.dao-callout .close[data-v-5fac9fca] {\n    margin-left: 10px;\n}\n.dao-callout.normal[data-v-5fac9fca] {\n    display: inline-flex;\n}\n.dao-callout.normal .content[data-v-5fac9fca] {\n      display: flex;\n      justify-content: space-between;\n}\n.dao-callout.normal .close[data-v-5fac9fca] {\n      flex: none;\n      margin-top: 5px;\n}\n.dao-callout.big .content[data-v-5fac9fca] {\n    flex: auto;\n}\n.dao-callout.big .title[data-v-5fac9fca] {\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n}\n.dao-callout.big .title-text[data-v-5fac9fca] {\n    font-weight: 500;\n    font-size: 16px;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 106 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(1)();
+// imports
+
+
+// module
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 107 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(1)();
+// imports
+
+
+// module
+exports.push([module.i, "\n.dao-dropdown.dao-dropdown-is-open > .dao-dropdown-rel > .dao-dropdown-item[data-v-6acd61e1] {\n  color: #ffffff;\n  background-color: #3890ff;\n}\n.dao-dropdown.dao-dropdown-is-open > .dao-dropdown-rel > .dao-dropdown-item svg[data-v-6acd61e1] {\n    fill: #ffffff;\n}\n.dao-dropdown-item.dao-dropdown-item-base[data-v-6acd61e1] {\n  font-size: 14px;\n  line-height: 16px;\n  height: 30px;\n  padding: 7px 10px;\n  cursor: pointer;\n  color: #3d444f;\n}\n.dao-dropdown-item.dao-dropdown-item-base svg[data-v-6acd61e1] {\n    width: 16px;\n    height: 16px;\n    vertical-align: middle;\n    fill: #3d444f;\n}\n.dao-dropdown-item.dao-dropdown-item-base[data-v-6acd61e1]:hover {\n    color: #ffffff;\n    background-color: #3890ff;\n}\n.dao-dropdown-item.dao-dropdown-item-base:hover svg[data-v-6acd61e1] {\n      fill: #ffffff;\n}\n.dao-dropdown-item.dao-dropdown-item-disabled[data-v-6acd61e1] {\n  font-size: 14px;\n  line-height: 16px;\n  height: 30px;\n  padding: 7px 10px;\n  cursor: not-allowed;\n  color: #ccd1d9;\n}\n.dao-dropdown-item.dao-dropdown-item-disabled svg[data-v-6acd61e1] {\n    width: 16px;\n    height: 16px;\n    vertical-align: middle;\n    fill: #ccd1d9;\n}\n.dao-dropdown-item.dao-dropdown-item-subtitle[data-v-6acd61e1] {\n  font-size: 12px;\n  line-height: 20px;\n  height: 21px;\n  padding: 0 10px;\n  color: #9ba3af;\n  border-top: 1px solid #e4e7ed;\n  background-color: #f5f7fa;\n}\n.dao-dropdown-item.dao-dropdown-item-divided[data-v-6acd61e1] {\n  height: 1px;\n  margin: 5px 0;\n  background-color: #e4e7ed;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 108 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(1)();
+// imports
+
+
+// module
+exports.push([module.i, "\n.dao-select-dropdown .dao-dropdown {\n  width: 100%;\n}\n.dao-select-dropdown .dao-select-dropdown {\n  margin: -5px 0 0 !important;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 109 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(1)();
 // imports
 
 
@@ -2770,35 +3416,1358 @@ exports.push([module.i, "\n.dao-modal-backdrop {\n  position: fixed;\n  z-index:
 
 
 /***/ }),
-/* 90 */
+/* 110 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(11)();
+exports = module.exports = __webpack_require__(1)();
 // imports
 
 
 // module
-exports.push([module.i, "\n.dao-callout[data-v-22616d1c] {\n  position: relative;\n  line-height: 24px;\n  display: flex;\n}\n.dao-callout.error[data-v-22616d1c] {\n    color: #b81f17;\n    background-color: #fcedec;\n}\n.dao-callout.error .bold-line[data-v-22616d1c] {\n      background-color: #d52218;\n}\n.dao-callout.error .content[data-v-22616d1c] {\n      border-color: #f0c2c0;\n}\n.dao-callout.error .content a[data-v-22616d1c] {\n        color: #b81f17;\n}\n.dao-callout.error .close[data-v-22616d1c] {\n      color: #f0c2c0;\n      opacity: .5;\n      cursor: pointer;\n}\n.dao-callout.error .close[data-v-22616d1c]:hover {\n        color: #f0c2c0;\n        opacity: 1;\n}\n.dao-callout.warning[data-v-22616d1c] {\n    color: #b17b10;\n    background-color: #fbf2df;\n}\n.dao-callout.warning .bold-line[data-v-22616d1c] {\n      background-color: #d09010;\n}\n.dao-callout.warning .content[data-v-22616d1c] {\n      border-color: #f0dbb1;\n}\n.dao-callout.warning .content a[data-v-22616d1c] {\n        color: #b17b10;\n}\n.dao-callout.warning .close[data-v-22616d1c] {\n      color: #f0dbb1;\n      opacity: .5;\n      cursor: pointer;\n}\n.dao-callout.warning .close[data-v-22616d1c]:hover {\n        color: #f0dbb1;\n        opacity: 1;\n}\n.dao-callout.info[data-v-22616d1c] {\n    color: #0a60cc;\n    background-color: #f1f7fe;\n}\n.dao-callout.info .bold-line[data-v-22616d1c] {\n      background-color: #096dec;\n}\n.dao-callout.info .content[data-v-22616d1c] {\n      border-color: #c0d8f6;\n}\n.dao-callout.info .content a[data-v-22616d1c] {\n        color: #0a60cc;\n}\n.dao-callout.info .close[data-v-22616d1c] {\n      color: #c0d8f6;\n      opacity: .5;\n      cursor: pointer;\n}\n.dao-callout.info .close[data-v-22616d1c]:hover {\n        color: #c0d8f6;\n        opacity: 1;\n}\n.dao-callout .bold-line[data-v-22616d1c] {\n    width: 3px;\n    border-radius: 2px 0 0 2px;\n    flex: 0 0 auto;\n}\n.dao-callout .content[data-v-22616d1c] {\n    padding: 5px 10px 5px 15px;\n    border: 1px solid;\n    border-radius: 0 2px 2px 0;\n    border-left-width: 0;\n    word-break: break-all;\n}\n.dao-callout .content a[data-v-22616d1c] {\n      margin: 0 5px;\n      cursor: pointer;\n      text-decoration: none;\n      border-bottom: 1px solid;\n}\n.dao-callout .close[data-v-22616d1c] {\n    margin-left: 10px;\n}\n.dao-callout.normal[data-v-22616d1c] {\n    display: inline-flex;\n}\n.dao-callout.normal .content[data-v-22616d1c] {\n      display: flex;\n      justify-content: space-between;\n}\n.dao-callout.normal .close[data-v-22616d1c] {\n      flex: none;\n      margin-top: 5px;\n}\n.dao-callout.big .content[data-v-22616d1c] {\n    flex: auto;\n}\n.dao-callout.big .title[data-v-22616d1c] {\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n}\n.dao-callout.big .title-text[data-v-22616d1c] {\n    font-weight: 500;\n    font-size: 16px;\n}\n", ""]);
+exports.push([module.i, "\n.dao-switch[data-v-fdc62962] {\n  display: inline-flex;\n  align-items: center;\n  position: relative;\n}\n.dao-switch-input[data-v-fdc62962] {\n    display: none;\n}\n.dao-switch-core[data-v-fdc62962] {\n    display: inline-block;\n    background: #fff;\n    border: 1px solid #e4e7ed;\n    position: relative;\n    box-sizing: border-box;\n    overflow: visible;\n    width: 54px;\n    height: 32px;\n    padding: 0;\n    margin: 0;\n    border-radius: 20px;\n    cursor: pointer;\n    box-shadow: #dfdfdf 0 0 0 0 inset;\n    transition: 0.3s ease-out all;\n    -webkit-transition: 0.3s ease-out all;\n    top: -1px;\n}\n.dao-switch-checked[data-v-fdc62962] {\n    background: #22c36a;\n    border-color: #22c36a;\n}\n.dao-switch-button[data-v-fdc62962] {\n    top: 0;\n    left: 0;\n    position: absolute;\n    transition: 0.3s ease-out all;\n    z-index: 20;\n    border-radius: 100%;\n    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);\n    width: 30px;\n    height: 30px;\n    background-color: #fff;\n}\n.dao-switch-label[data-v-fdc62962] {\n    position: absolute;\n    left: 0;\n    top: 0;\n    z-index: 10;\n}\n.dao-switch-label span[data-v-fdc62962] {\n      line-height: 1;\n      top: 9px;\n      position: absolute;\n      font-size: 13px;\n      display: inline-block;\n}\n.dao-switch-label .off-text[data-v-fdc62962] {\n      right: 10%;\n      color: #a9a9a9;\n}\n.dao-switch-label .on-text[data-v-fdc62962] {\n      left: 10%;\n      color: #fff;\n}\n.dao-switch-notice[data-v-fdc62962] {\n    margin-left: 10px;\n}\n.disabled[data-v-fdc62962] {\n  opacity: 0.50;\n  cursor: not-allowed;\n  pointer-events: none;\n}\n", ""]);
 
 // exports
 
 
 /***/ }),
-/* 91 */
+/* 111 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(11)();
-// imports
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
+ * @fileOverview Kickass library to create and place poppers near their reference elements.
+ * @version {{version}}
+ * @license
+ * Copyright (c) 2016 Federico Zivolo and contributors
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
+
+//
+// Cross module loader
+// Supported: Node, AMD, Browser globals
+//
+;(function (root, factory) {
+    if (true) {
+        // AMD. Register as an anonymous module.
+        !(__WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
+				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+				(__WEBPACK_AMD_DEFINE_FACTORY__.call(exports, __webpack_require__, exports, module)) :
+				__WEBPACK_AMD_DEFINE_FACTORY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+    } else if (typeof module === 'object' && module.exports) {
+        // Node. Does not work with strict CommonJS, but
+        // only CommonJS-like environments that support module.exports,
+        // like Node.
+        module.exports = factory();
+    } else {
+        // Browser globals (root is window)
+        root.Popper = factory();
+    }
+}(this, function () {
+
+    'use strict';
+
+    var root = window;
+
+    // default options
+    var DEFAULTS = {
+        // placement of the popper
+        placement: 'bottom',
+
+        gpuAcceleration: true,
+
+        // shift popper from its origin by the given amount of pixels (can be negative)
+        offset: 0,
+
+        // the element which will act as boundary of the popper
+        boundariesElement: 'viewport',
+
+        // amount of pixel used to define a minimum distance between the boundaries and the popper
+        boundariesPadding: 5,
+
+        // popper will try to prevent overflow following this order,
+        // by default, then, it could overflow on the left and on top of the boundariesElement
+        preventOverflowOrder: ['left', 'right', 'top', 'bottom'],
+
+        // the behavior used by flip to change the placement of the popper
+        flipBehavior: 'flip',
+
+        arrowElement: '[x-arrow]',
+
+        // list of functions used to modify the offsets before they are applied to the popper
+        modifiers: [ 'shift', 'offset', 'preventOverflow', 'keepTogether', 'arrow', 'flip', 'applyStyle'],
+
+        modifiersIgnored: [],
+    };
+
+    /**
+     * Create a new Popper.js instance
+     * @constructor Popper
+     * @param {HTMLElement} reference - The reference element used to position the popper
+     * @param {HTMLElement|Object} popper
+     *      The HTML element used as popper, or a configuration used to generate the popper.
+     * @param {String} [popper.tagName='div'] The tag name of the generated popper.
+     * @param {Array} [popper.classNames=['popper']] Array of classes to apply to the generated popper.
+     * @param {Array} [popper.attributes] Array of attributes to apply, specify `attr:value` to assign a value to it.
+     * @param {HTMLElement|String} [popper.parent=window.document.body] The parent element, given as HTMLElement or as query string.
+     * @param {String} [popper.content=''] The content of the popper, it can be text, html, or node; if it is not text, set `contentType` to `html` or `node`.
+     * @param {String} [popper.contentType='text'] If `html`, the `content` will be parsed as HTML. If `node`, it will be appended as-is.
+     * @param {String} [popper.arrowTagName='div'] Same as `popper.tagName` but for the arrow element.
+     * @param {Array} [popper.arrowClassNames='popper__arrow'] Same as `popper.classNames` but for the arrow element.
+     * @param {String} [popper.arrowAttributes=['x-arrow']] Same as `popper.attributes` but for the arrow element.
+     * @param {Object} options
+     * @param {String} [options.placement=bottom]
+     *      Placement of the popper accepted values: `top(-start, -end), right(-start, -end), bottom(-start, -right),
+     *      left(-start, -end)`
+     *
+     * @param {HTMLElement|String} [options.arrowElement='[x-arrow]']
+     *      The DOM Node used as arrow for the popper, or a CSS selector used to get the DOM node. It must be child of
+     *      its parent Popper. Popper.js will apply to the given element the style required to align the arrow with its
+     *      reference element.
+     *      By default, it will look for a child node of the popper with the `x-arrow` attribute.
+     *
+     * @param {Boolean} [options.gpuAcceleration=true]
+     *      When this property is set to true, the popper position will be applied using CSS3 translate3d, allowing the
+     *      browser to use the GPU to accelerate the rendering.
+     *      If set to false, the popper will be placed using `top` and `left` properties, not using the GPU.
+     *
+     * @param {Number} [options.offset=0]
+     *      Amount of pixels the popper will be shifted (can be negative).
+     *
+     * @param {String|Element} [options.boundariesElement='viewport']
+     *      The element which will define the boundaries of the popper position, the popper will never be placed outside
+     *      of the defined boundaries (except if `keepTogether` is enabled)
+     *
+     * @param {Number} [options.boundariesPadding=5]
+     *      Additional padding for the boundaries
+     *
+     * @param {Array} [options.preventOverflowOrder=['left', 'right', 'top', 'bottom']]
+     *      Order used when Popper.js tries to avoid overflows from the boundaries, they will be checked in order,
+     *      this means that the last ones will never overflow
+     *
+     * @param {String|Array} [options.flipBehavior='flip']
+     *      The behavior used by the `flip` modifier to change the placement of the popper when the latter is trying to
+     *      overlap its reference element. Defining `flip` as value, the placement will be flipped on
+     *      its axis (`right - left`, `top - bottom`).
+     *      You can even pass an array of placements (eg: `['right', 'left', 'top']` ) to manually specify
+     *      how alter the placement when a flip is needed. (eg. in the above example, it would first flip from right to left,
+     *      then, if even in its new placement, the popper is overlapping its reference element, it will be moved to top)
+     *
+     * @param {Array} [options.modifiers=[ 'shift', 'offset', 'preventOverflow', 'keepTogether', 'arrow', 'flip', 'applyStyle']]
+     *      List of functions used to modify the data before they are applied to the popper, add your custom functions
+     *      to this array to edit the offsets and placement.
+     *      The function should reflect the @params and @returns of preventOverflow
+     *
+     * @param {Array} [options.modifiersIgnored=[]]
+     *      Put here any built-in modifier name you want to exclude from the modifiers list
+     *      The function should reflect the @params and @returns of preventOverflow
+     *
+     * @param {Boolean} [options.removeOnDestroy=false]
+     *      Set to true if you want to automatically remove the popper when you call the `destroy` method.
+     */
+    function Popper(reference, popper, options) {
+        this._reference = reference.jquery ? reference[0] : reference;
+        this.state = { onCreateCalled: false };
+
+        // if the popper variable is a configuration object, parse it to generate an HTMLElement
+        // generate a default popper if is not defined
+        var isNotDefined = typeof popper === 'undefined' || popper === null;
+        var isConfig = popper && Object.prototype.toString.call(popper) === '[object Object]';
+        if (isNotDefined || isConfig) {
+            this._popper = this.parse(isConfig ? popper : {});
+        }
+        // otherwise, use the given HTMLElement as popper
+        else {
+            this._popper = popper.jquery ? popper[0] : popper;
+        }
+
+        // with {} we create a new object with the options inside it
+        this._options = Object.assign({}, DEFAULTS, options);
+
+        // refactoring modifiers' list
+        this._options.modifiers = this._options.modifiers.map(function(modifier){
+            // remove ignored modifiers
+            if (this._options.modifiersIgnored.indexOf(modifier) !== -1) return;
+
+            // set the x-placement attribute before everything else because it could be used to add margins to the popper
+            // margins needs to be calculated to get the correct popper offsets
+            if (modifier === 'applyStyle') {
+                this._popper.setAttribute('x-placement', this._options.placement);
+            }
+
+            // return predefined modifier identified by string or keep the custom one
+            return this.modifiers[modifier] || modifier;
+        }.bind(this));
+
+        // make sure to apply the popper position before any computation
+        this.state.position = this._getPosition(this._popper, this._reference);
+        setStyle(this._popper, { position: this.state.position});
+
+        // determine how we should set the origin of offsets
+        this.state.isParentTransformed = this._getIsParentTransformed(this._popper);
+
+        // fire the first update to position the popper in the right place
+        this.update();
+
+        // setup event listeners, they will take care of update the position in specific situations
+        this._setupEventListeners();
+        return this;
+    }
 
 
-// module
-exports.push([module.i, "\n.dao-switch[data-v-5471f490] {\n  display: inline-flex;\n  align-items: center;\n  position: relative;\n}\n.dao-switch-input[data-v-5471f490] {\n    display: none;\n}\n.dao-switch-core[data-v-5471f490] {\n    display: inline-block;\n    background: #fff;\n    border: 1px solid #e4e7ed;\n    position: relative;\n    box-sizing: border-box;\n    overflow: visible;\n    width: 54px;\n    height: 32px;\n    padding: 0;\n    margin: 0;\n    border-radius: 20px;\n    cursor: pointer;\n    box-shadow: #dfdfdf 0 0 0 0 inset;\n    transition: 0.3s ease-out all;\n    -webkit-transition: 0.3s ease-out all;\n    top: -1px;\n}\n.dao-switch-checked[data-v-5471f490] {\n    background: #22c36a;\n    border-color: #22c36a;\n}\n.dao-switch-button[data-v-5471f490] {\n    top: 0;\n    left: 0;\n    position: absolute;\n    transition: 0.3s ease-out all;\n    z-index: 20;\n    border-radius: 100%;\n    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);\n    width: 30px;\n    height: 30px;\n    background-color: #fff;\n}\n.dao-switch-label[data-v-5471f490] {\n    position: absolute;\n    left: 0;\n    top: 0;\n    z-index: 10;\n}\n.dao-switch-label span[data-v-5471f490] {\n      line-height: 1;\n      top: 9px;\n      position: absolute;\n      font-size: 13px;\n      display: inline-block;\n}\n.dao-switch-label .off-text[data-v-5471f490] {\n      right: 10%;\n      color: #a9a9a9;\n}\n.dao-switch-label .on-text[data-v-5471f490] {\n      left: 10%;\n      color: #fff;\n}\n.dao-switch-notice[data-v-5471f490] {\n    margin-left: 10px;\n}\n.disabled[data-v-5471f490] {\n  opacity: 0.50;\n  cursor: not-allowed;\n  pointer-events: none;\n}\n", ""]);
+    //
+    // Methods
+    //
+    /**
+     * Destroy the popper
+     * @method
+     * @memberof Popper
+     */
+    Popper.prototype.destroy = function() {
+        this._popper.removeAttribute('x-placement');
+        this._popper.style.left = '';
+        this._popper.style.position = '';
+        this._popper.style.top = '';
+        this._popper.style[getSupportedPropertyName('transform')] = '';
+        this._removeEventListeners();
 
-// exports
+        // remove the popper if user explicity asked for the deletion on destroy
+        if (this._options.removeOnDestroy) {
+            this._popper.parentNode.removeChild(this._popper);
+        }
+        return this;
+    };
+
+    /**
+     * Updates the position of the popper, computing the new offsets and applying the new style
+     * @method
+     * @memberof Popper
+     */
+    Popper.prototype.update = function() {
+        var data = { instance: this, styles: {} };
+
+        // make sure to apply the popper position before any computation
+        this.state.position = this._getPosition(this._popper, this._reference);
+        setStyle(this._popper, { position: this.state.position});
+
+        // to avoid useless computations we throttle the popper position refresh to 60fps
+        root.requestAnimationFrame(function() {
+            var now = root.performance.now();
+            if(now - this.state.lastFrame <= 16) {
+                // this update fired to early! drop it
+                return;
+            }
+            this.state.lastFrame = now;
+
+            // store placement inside the data object, modifiers will be able to edit `placement` if needed
+            // and refer to _originalPlacement to know the original value
+            data.placement = this._options.placement;
+            data._originalPlacement = this._options.placement;
+
+            // compute the popper and trigger offsets and put them inside data.offsets
+            data.offsets = this._getOffsets(this._popper, this._reference, data.placement);
+
+            // get boundaries
+            data.boundaries = this._getBoundaries(data, this._options.boundariesPadding, this._options.boundariesElement);
+
+            data = this.runModifiers(data, this._options.modifiers);
+
+            if (!isFunction(this.state.createCalback)) {
+                this.state.onCreateCalled = true;
+            }
+            if (!this.state.onCreateCalled) {
+                this.state.onCreateCalled = true;
+                if (isFunction(this.state.createCalback)) {
+                    this.state.createCalback(this);
+                }
+            } else if (isFunction(this.state.updateCallback)) {
+                this.state.updateCallback(data);
+            }
+        }.bind(this));
+    };
+
+    /**
+     * If a function is passed, it will be executed after the initialization of popper with as first argument the Popper instance.
+     * @method
+     * @memberof Popper
+     * @param {Function} callback
+     */
+    Popper.prototype.onCreate = function(callback) {
+        // the createCallbacks return as first argument the popper instance
+        this.state.createCalback = callback;
+        return this;
+    };
+
+    /**
+     * If a function is passed, it will be executed after each update of popper with as first argument the set of coordinates and informations
+     * used to style popper and its arrow.
+     * NOTE: it doesn't get fired on the first call of the `Popper.update()` method inside the `Popper` constructor!
+     * @method
+     * @memberof Popper
+     * @param {Function} callback
+     */
+    Popper.prototype.onUpdate = function(callback) {
+        this.state.updateCallback = callback;
+        return this;
+    };
+
+    /**
+     * Helper used to generate poppers from a configuration file
+     * @method
+     * @memberof Popper
+     * @param config {Object} configuration
+     * @returns {HTMLElement} popper
+     */
+    Popper.prototype.parse = function(config) {
+        var defaultConfig = {
+            tagName: 'div',
+            classNames: [ 'popper' ],
+            attributes: [],
+            parent: root.document.body,
+            content: '',
+            contentType: 'text',
+            arrowTagName: 'div',
+            arrowClassNames: [ 'popper__arrow' ],
+            arrowAttributes: [ 'x-arrow']
+        };
+        config = Object.assign({}, defaultConfig, config);
+
+        var d = root.document;
+
+        var popper = d.createElement(config.tagName);
+        addClassNames(popper, config.classNames);
+        addAttributes(popper, config.attributes);
+        if (config.contentType === 'node') {
+            popper.appendChild(config.content.jquery ? config.content[0] : config.content);
+        }else if (config.contentType === 'html') {
+            popper.innerHTML = config.content;
+        } else {
+            popper.textContent = config.content;
+        }
+
+        if (config.arrowTagName) {
+            var arrow = d.createElement(config.arrowTagName);
+            addClassNames(arrow, config.arrowClassNames);
+            addAttributes(arrow, config.arrowAttributes);
+            popper.appendChild(arrow);
+        }
+
+        var parent = config.parent.jquery ? config.parent[0] : config.parent;
+
+        // if the given parent is a string, use it to match an element
+        // if more than one element is matched, the first one will be used as parent
+        // if no elements are matched, the script will throw an error
+        if (typeof parent === 'string') {
+            parent = d.querySelectorAll(config.parent);
+            if (parent.length > 1) {
+                console.warn('WARNING: the given `parent` query(' + config.parent + ') matched more than one element, the first one will be used');
+            }
+            if (parent.length === 0) {
+                throw 'ERROR: the given `parent` doesn\'t exists!';
+            }
+            parent = parent[0];
+        }
+        // if the given parent is a DOM nodes list or an array of nodes with more than one element,
+        // the first one will be used as parent
+        if (parent.length > 1 && parent instanceof Element === false) {
+            console.warn('WARNING: you have passed as parent a list of elements, the first one will be used');
+            parent = parent[0];
+        }
+
+        // append the generated popper to its parent
+        parent.appendChild(popper);
+
+        return popper;
+
+        /**
+         * Adds class names to the given element
+         * @function
+         * @ignore
+         * @param {HTMLElement} target
+         * @param {Array} classes
+         */
+        function addClassNames(element, classNames) {
+            classNames.forEach(function(className) {
+                element.classList.add(className);
+            });
+        }
+
+        /**
+         * Adds attributes to the given element
+         * @function
+         * @ignore
+         * @param {HTMLElement} target
+         * @param {Array} attributes
+         * @example
+         * addAttributes(element, [ 'data-info:foobar' ]);
+         */
+        function addAttributes(element, attributes) {
+            attributes.forEach(function(attribute) {
+                element.setAttribute(attribute.split(':')[0], attribute.split(':')[1] || '');
+            });
+        }
+
+    };
+
+    /**
+     * Helper used to get the position which will be applied to the popper
+     * @method
+     * @memberof Popper
+     * @param config {HTMLElement} popper element
+     * @returns {HTMLElement} reference element
+     */
+    Popper.prototype._getPosition = function(popper, reference) {
+        var container = getOffsetParent(reference);
+
+        // Decide if the popper will be fixed
+        // If the reference element is inside a fixed context, the popper will be fixed as well to allow them to scroll together
+        var isParentFixed = isFixed(container);
+        return isParentFixed ? 'fixed' : 'absolute';
+    };
+
+    /**
+     * Helper used to determine if the popper's parent is transformed.
+     * @param  {[type]} popper [description]
+     * @return {[type]}        [description]
+     */
+    Popper.prototype._getIsParentTransformed = function(popper) {
+      return isTransformed(popper.parentNode);
+    };
+
+    /**
+     * Get offsets to the popper
+     * @method
+     * @memberof Popper
+     * @access private
+     * @param {Element} popper - the popper element
+     * @param {Element} reference - the reference element (the popper will be relative to this)
+     * @returns {Object} An object containing the offsets which will be applied to the popper
+     */
+    Popper.prototype._getOffsets = function(popper, reference, placement) {
+        placement = placement.split('-')[0];
+        var popperOffsets = {};
+
+        popperOffsets.position = this.state.position;
+        var isParentFixed = popperOffsets.position === 'fixed';
+
+        var isParentTransformed = this.state.isParentTransformed;
+
+        //
+        // Get reference element position
+        //
+        var offsetParent = (isParentFixed && isParentTransformed) ? getOffsetParent(reference) : getOffsetParent(popper);
+        var referenceOffsets = getOffsetRectRelativeToCustomParent(reference, offsetParent, isParentFixed, isParentTransformed);
+
+        //
+        // Get popper sizes
+        //
+        var popperRect = getOuterSizes(popper);
+
+        //
+        // Compute offsets of popper
+        //
+
+        // depending by the popper placement we have to compute its offsets slightly differently
+        if (['right', 'left'].indexOf(placement) !== -1) {
+            popperOffsets.top = referenceOffsets.top + referenceOffsets.height / 2 - popperRect.height / 2;
+            if (placement === 'left') {
+                popperOffsets.left = referenceOffsets.left - popperRect.width;
+            } else {
+                popperOffsets.left = referenceOffsets.right;
+            }
+        } else {
+            popperOffsets.left = referenceOffsets.left + referenceOffsets.width / 2 - popperRect.width / 2;
+            if (placement === 'top') {
+                popperOffsets.top = referenceOffsets.top - popperRect.height;
+            } else {
+                popperOffsets.top = referenceOffsets.bottom;
+            }
+        }
+
+        // Add width and height to our offsets object
+        popperOffsets.width   = popperRect.width;
+        popperOffsets.height  = popperRect.height;
+
+
+        return {
+            popper: popperOffsets,
+            reference: referenceOffsets
+        };
+    };
+
+
+    /**
+     * Setup needed event listeners used to update the popper position
+     * @method
+     * @memberof Popper
+     * @access private
+     */
+    Popper.prototype._setupEventListeners = function() {
+        // NOTE: 1 DOM access here
+        this.state.updateBound = this.update.bind(this);
+        root.addEventListener('resize', this.state.updateBound);
+        // if the boundariesElement is window we don't need to listen for the scroll event
+        if (this._options.boundariesElement !== 'window') {
+            var target = getScrollParent(this._reference);
+            // here it could be both `body` or `documentElement` thanks to Firefox, we then check both
+            if (target === root.document.body || target === root.document.documentElement) {
+                target = root;
+            }
+            target.addEventListener('scroll', this.state.updateBound);
+        }
+    };
+
+    /**
+     * Remove event listeners used to update the popper position
+     * @method
+     * @memberof Popper
+     * @access private
+     */
+    Popper.prototype._removeEventListeners = function() {
+        // NOTE: 1 DOM access here
+        root.removeEventListener('resize', this.state.updateBound);
+        if (this._options.boundariesElement !== 'window') {
+            var target = getScrollParent(this._reference);
+            // here it could be both `body` or `documentElement` thanks to Firefox, we then check both
+            if (target === root.document.body || target === root.document.documentElement) {
+                target = root;
+            }
+            target.removeEventListener('scroll', this.state.updateBound);
+        }
+        this.state.updateBound = null;
+    };
+
+    /**
+     * Computed the boundaries limits and return them
+     * @method
+     * @memberof Popper
+     * @access private
+     * @param {Object} data - Object containing the property "offsets" generated by `_getOffsets`
+     * @param {Number} padding - Boundaries padding
+     * @param {Element} boundariesElement - Element used to define the boundaries
+     * @returns {Object} Coordinates of the boundaries
+     */
+    Popper.prototype._getBoundaries = function(data, padding, boundariesElement) {
+        // NOTE: 1 DOM access here
+        var boundaries = {};
+        var width, height;
+        if (boundariesElement === 'window') {
+            var body = root.document.body,
+                html = root.document.documentElement;
+
+            height = Math.max( body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight );
+            width = Math.max( body.scrollWidth, body.offsetWidth, html.clientWidth, html.scrollWidth, html.offsetWidth );
+
+            boundaries = {
+                top: 0,
+                right: width,
+                bottom: height,
+                left: 0
+            };
+        } else if (boundariesElement === 'viewport') {
+            var offsetParent = getOffsetParent(this._popper);
+            var scrollParent = getScrollParent(this._popper);
+            var offsetParentRect = getOffsetRect(offsetParent);
+
+            // if the popper is fixed we don't have to substract scrolling from the boundaries
+            var scrollTop = data.offsets.popper.position === 'fixed' ? 0 : scrollParent.scrollTop;
+            var scrollLeft = data.offsets.popper.position === 'fixed' ? 0 : scrollParent.scrollLeft;
+
+            boundaries = {
+                top: 0 - (offsetParentRect.top - scrollTop),
+                right: root.document.documentElement.clientWidth - (offsetParentRect.left - scrollLeft),
+                bottom: root.document.documentElement.clientHeight - (offsetParentRect.top - scrollTop),
+                left: 0 - (offsetParentRect.left - scrollLeft)
+            };
+        } else {
+            if (getOffsetParent(this._popper) === boundariesElement) {
+                boundaries = {
+                    top: 0,
+                    left: 0,
+                    right: boundariesElement.clientWidth,
+                    bottom: boundariesElement.clientHeight
+                };
+            } else {
+                boundaries = getOffsetRect(boundariesElement);
+            }
+        }
+        boundaries.left += padding;
+        boundaries.right -= padding;
+        boundaries.top = boundaries.top + padding;
+        boundaries.bottom = boundaries.bottom - padding;
+        return boundaries;
+    };
+
+
+    /**
+     * Loop trough the list of modifiers and run them in order, each of them will then edit the data object
+     * @method
+     * @memberof Popper
+     * @access public
+     * @param {Object} data
+     * @param {Array} modifiers
+     * @param {Function} ends
+     */
+    Popper.prototype.runModifiers = function(data, modifiers, ends) {
+        var modifiersToRun = modifiers.slice();
+        if (ends !== undefined) {
+            modifiersToRun = this._options.modifiers.slice(0, getArrayKeyIndex(this._options.modifiers, ends));
+        }
+
+        modifiersToRun.forEach(function(modifier) {
+            if (isFunction(modifier)) {
+                data = modifier.call(this, data);
+            }
+        }.bind(this));
+
+        return data;
+    };
+
+    /**
+     * Helper used to know if the given modifier depends from another one.
+     * @method
+     * @memberof Popper
+     * @returns {Boolean}
+     */
+
+    Popper.prototype.isModifierRequired = function(requesting, requested) {
+        var index = getArrayKeyIndex(this._options.modifiers, requesting);
+        return !!this._options.modifiers.slice(0, index).filter(function(modifier) {
+            return modifier === requested;
+        }).length;
+    };
+
+    //
+    // Modifiers
+    //
+
+    /**
+     * Modifiers list
+     * @namespace Popper.modifiers
+     * @memberof Popper
+     * @type {Object}
+     */
+    Popper.prototype.modifiers = {};
+
+    /**
+     * Apply the computed styles to the popper element
+     * @method
+     * @memberof Popper.modifiers
+     * @argument {Object} data - The data object generated by `update` method
+     * @returns {Object} The same data object
+     */
+    Popper.prototype.modifiers.applyStyle = function(data) {
+        // apply the final offsets to the popper
+        // NOTE: 1 DOM access here
+        var styles = {
+            position: data.offsets.popper.position
+        };
+
+        // round top and left to avoid blurry text
+        var left = Math.round(data.offsets.popper.left);
+        var top = Math.round(data.offsets.popper.top);
+
+        // if gpuAcceleration is set to true and transform is supported, we use `translate3d` to apply the position to the popper
+        // we automatically use the supported prefixed version if needed
+        var prefixedProperty;
+        if (this._options.gpuAcceleration && (prefixedProperty = getSupportedPropertyName('transform'))) {
+            styles[prefixedProperty] = 'translate3d(' + left + 'px, ' + top + 'px, 0)';
+            styles.top = 0;
+            styles.left = 0;
+        }
+        // othwerise, we use the standard `left` and `top` properties
+        else {
+            styles.left =left;
+            styles.top = top;
+        }
+
+        // any property present in `data.styles` will be applied to the popper,
+        // in this way we can make the 3rd party modifiers add custom styles to it
+        // Be aware, modifiers could override the properties defined in the previous
+        // lines of this modifier!
+        Object.assign(styles, data.styles);
+
+        setStyle(this._popper, styles);
+
+        // set an attribute which will be useful to style the tooltip (use it to properly position its arrow)
+        // NOTE: 1 DOM access here
+        this._popper.setAttribute('x-placement', data.placement);
+
+        // if the arrow style has been computed, apply the arrow style
+        if (data.offsets.arrow) {
+            setStyle(data.arrowElement, data.offsets.arrow);
+        }
+
+        // return the data object to allow chaining of other modifiers
+        return data;
+    };
+
+    /**
+     * Modifier used to shift the popper on the start or end of its reference element side
+     * @method
+     * @memberof Popper.modifiers
+     * @argument {Object} data - The data object generated by `update` method
+     * @returns {Object} The data object, properly modified
+     */
+    Popper.prototype.modifiers.shift = function(data) {
+        var placement = data.placement;
+        var basePlacement = placement.split('-')[0];
+        var shiftVariation = placement.split('-')[1];
+
+        // if shift shiftVariation is specified, run the modifier
+        if (shiftVariation) {
+            var reference = data.offsets.reference;
+            var popper = getPopperClientRect(data.offsets.popper);
+
+            var shiftOffsets = {
+                y: {
+                    start:  { top: reference.top },
+                    end:    { top: reference.top + reference.height - popper.height }
+                },
+                x: {
+                    start:  { left: reference.left },
+                    end:    { left: reference.left + reference.width - popper.width }
+                }
+            };
+
+            var axis = ['bottom', 'top'].indexOf(basePlacement) !== -1 ? 'x' : 'y';
+
+            data.offsets.popper = Object.assign(popper, shiftOffsets[axis][shiftVariation]);
+        }
+
+        return data;
+    };
+
+
+    /**
+     * Modifier used to make sure the popper does not overflows from it's boundaries
+     * @method
+     * @memberof Popper.modifiers
+     * @argument {Object} data - The data object generated by `update` method
+     * @returns {Object} The data object, properly modified
+     */
+    Popper.prototype.modifiers.preventOverflow = function(data) {
+        var order = this._options.preventOverflowOrder;
+        var popper = getPopperClientRect(data.offsets.popper);
+
+        var check = {
+            left: function() {
+                var left = popper.left;
+                if (popper.left < data.boundaries.left) {
+                    left = Math.max(popper.left, data.boundaries.left);
+                }
+                return { left: left };
+            },
+            right: function() {
+                var left = popper.left;
+                if (popper.right > data.boundaries.right) {
+                    left = Math.min(popper.left, data.boundaries.right - popper.width);
+                }
+                return { left: left };
+            },
+            top: function() {
+                var top = popper.top;
+                if (popper.top < data.boundaries.top) {
+                    top = Math.max(popper.top, data.boundaries.top);
+                }
+                return { top: top };
+            },
+            bottom: function() {
+                var top = popper.top;
+                if (popper.bottom > data.boundaries.bottom) {
+                    top = Math.min(popper.top, data.boundaries.bottom - popper.height);
+                }
+                return { top: top };
+            }
+        };
+
+        order.forEach(function(direction) {
+            data.offsets.popper = Object.assign(popper, check[direction]());
+        });
+
+        return data;
+    };
+
+    /**
+     * Modifier used to make sure the popper is always near its reference
+     * @method
+     * @memberof Popper.modifiers
+     * @argument {Object} data - The data object generated by _update method
+     * @returns {Object} The data object, properly modified
+     */
+    Popper.prototype.modifiers.keepTogether = function(data) {
+        var popper  = getPopperClientRect(data.offsets.popper);
+        var reference = data.offsets.reference;
+        var f = Math.floor;
+
+        if (popper.right < f(reference.left)) {
+            data.offsets.popper.left = f(reference.left) - popper.width;
+        }
+        if (popper.left > f(reference.right)) {
+            data.offsets.popper.left = f(reference.right);
+        }
+        if (popper.bottom < f(reference.top)) {
+            data.offsets.popper.top = f(reference.top) - popper.height;
+        }
+        if (popper.top > f(reference.bottom)) {
+            data.offsets.popper.top = f(reference.bottom);
+        }
+
+        return data;
+    };
+
+    /**
+     * Modifier used to flip the placement of the popper when the latter is starting overlapping its reference element.
+     * Requires the `preventOverflow` modifier before it in order to work.
+     * **NOTE:** This modifier will run all its previous modifiers everytime it tries to flip the popper!
+     * @method
+     * @memberof Popper.modifiers
+     * @argument {Object} data - The data object generated by _update method
+     * @returns {Object} The data object, properly modified
+     */
+    Popper.prototype.modifiers.flip = function(data) {
+        // check if preventOverflow is in the list of modifiers before the flip modifier.
+        // otherwise flip would not work as expected.
+        if (!this.isModifierRequired(this.modifiers.flip, this.modifiers.preventOverflow)) {
+            console.warn('WARNING: preventOverflow modifier is required by flip modifier in order to work, be sure to include it before flip!');
+            return data;
+        }
+
+        if (data.flipped && data.placement === data._originalPlacement) {
+            // seems like flip is trying to loop, probably there's not enough space on any of the flippable sides
+            return data;
+        }
+
+        var placement = data.placement.split('-')[0];
+        var placementOpposite = getOppositePlacement(placement);
+        var variation = data.placement.split('-')[1] || '';
+
+        var flipOrder = [];
+        if(this._options.flipBehavior === 'flip') {
+            flipOrder = [
+                placement,
+                placementOpposite
+            ];
+        } else {
+            flipOrder = this._options.flipBehavior;
+        }
+
+        flipOrder.forEach(function(step, index) {
+            if (placement !== step || flipOrder.length === index + 1) {
+                return;
+            }
+
+            placement = data.placement.split('-')[0];
+            placementOpposite = getOppositePlacement(placement);
+
+            var popperOffsets = getPopperClientRect(data.offsets.popper);
+
+            // this boolean is used to distinguish right and bottom from top and left
+            // they need different computations to get flipped
+            var a = ['right', 'bottom'].indexOf(placement) !== -1;
+
+            // using Math.floor because the reference offsets may contain decimals we are not going to consider here
+            if (
+                a && Math.floor(data.offsets.reference[placement]) > Math.floor(popperOffsets[placementOpposite]) ||
+                !a && Math.floor(data.offsets.reference[placement]) < Math.floor(popperOffsets[placementOpposite])
+            ) {
+                // we'll use this boolean to detect any flip loop
+                data.flipped = true;
+                data.placement = flipOrder[index + 1];
+                if (variation) {
+                    data.placement += '-' + variation;
+                }
+                data.offsets.popper = this._getOffsets(this._popper, this._reference, data.placement).popper;
+
+                data = this.runModifiers(data, this._options.modifiers, this._flip);
+            }
+        }.bind(this));
+        return data;
+    };
+
+    /**
+     * Modifier used to add an offset to the popper, useful if you more granularity positioning your popper.
+     * The offsets will shift the popper on the side of its reference element.
+     * @method
+     * @memberof Popper.modifiers
+     * @argument {Object} data - The data object generated by _update method
+     * @returns {Object} The data object, properly modified
+     */
+    Popper.prototype.modifiers.offset = function(data) {
+        var offset = this._options.offset;
+        var popper  = data.offsets.popper;
+
+        if (data.placement.indexOf('left') !== -1) {
+            popper.top -= offset;
+        }
+        else if (data.placement.indexOf('right') !== -1) {
+            popper.top += offset;
+        }
+        else if (data.placement.indexOf('top') !== -1) {
+            popper.left -= offset;
+        }
+        else if (data.placement.indexOf('bottom') !== -1) {
+            popper.left += offset;
+        }
+        return data;
+    };
+
+    /**
+     * Modifier used to move the arrows on the edge of the popper to make sure them are always between the popper and the reference element
+     * It will use the CSS outer size of the arrow element to know how many pixels of conjuction are needed
+     * @method
+     * @memberof Popper.modifiers
+     * @argument {Object} data - The data object generated by _update method
+     * @returns {Object} The data object, properly modified
+     */
+    Popper.prototype.modifiers.arrow = function(data) {
+        var arrow  = this._options.arrowElement;
+
+        // if the arrowElement is a string, suppose it's a CSS selector
+        if (typeof arrow === 'string') {
+            arrow = this._popper.querySelector(arrow);
+        }
+
+        // if arrow element is not found, don't run the modifier
+        if (!arrow) {
+            return data;
+        }
+
+        // the arrow element must be child of its popper
+        if (!this._popper.contains(arrow)) {
+            console.warn('WARNING: `arrowElement` must be child of its popper element!');
+            return data;
+        }
+
+        // arrow depends on keepTogether in order to work
+        if (!this.isModifierRequired(this.modifiers.arrow, this.modifiers.keepTogether)) {
+            console.warn('WARNING: keepTogether modifier is required by arrow modifier in order to work, be sure to include it before arrow!');
+            return data;
+        }
+
+        var arrowStyle  = {};
+        var placement   = data.placement.split('-')[0];
+        var popper      = getPopperClientRect(data.offsets.popper);
+        var reference   = data.offsets.reference;
+        var isVertical  = ['left', 'right'].indexOf(placement) !== -1;
+
+        var len         = isVertical ? 'height' : 'width';
+        var side        = isVertical ? 'top' : 'left';
+        var altSide     = isVertical ? 'left' : 'top';
+        var opSide      = isVertical ? 'bottom' : 'right';
+        var arrowSize   = getOuterSizes(arrow)[len];
+
+        //
+        // extends keepTogether behavior making sure the popper and its reference have enough pixels in conjuction
+        //
+
+        // top/left side
+        if (reference[opSide] - arrowSize < popper[side]) {
+            data.offsets.popper[side] -= popper[side] - (reference[opSide] - arrowSize);
+        }
+        // bottom/right side
+        if (reference[side] + arrowSize > popper[opSide]) {
+            data.offsets.popper[side] += (reference[side] + arrowSize) - popper[opSide];
+        }
+
+        // compute center of the popper
+        var center = reference[side] + (reference[len] / 2) - (arrowSize / 2);
+
+        // Compute the sideValue using the updated popper offsets
+        var sideValue = center - getPopperClientRect(data.offsets.popper)[side];
+
+        // prevent arrow from being placed not contiguously to its popper
+        sideValue = Math.max(Math.min(popper[len] - arrowSize, sideValue), 0);
+        arrowStyle[side] = sideValue;
+        arrowStyle[altSide] = ''; // make sure to remove any old style from the arrow
+
+        data.offsets.arrow = arrowStyle;
+        data.arrowElement = arrow;
+
+        return data;
+    };
+
+
+    //
+    // Helpers
+    //
+
+    /**
+     * Get the outer sizes of the given element (offset size + margins)
+     * @function
+     * @ignore
+     * @argument {Element} element
+     * @returns {Object} object containing width and height properties
+     */
+    function getOuterSizes(element) {
+        // NOTE: 1 DOM access here
+        var _display = element.style.display, _visibility = element.style.visibility;
+        element.style.display = 'block'; element.style.visibility = 'hidden';
+        var calcWidthToForceRepaint = element.offsetWidth;
+
+        // original method
+        var styles = root.getComputedStyle(element);
+        var x = parseFloat(styles.marginTop) + parseFloat(styles.marginBottom);
+        var y = parseFloat(styles.marginLeft) + parseFloat(styles.marginRight);
+        var result = { width: element.offsetWidth + y, height: element.offsetHeight + x };
+
+        // reset element styles
+        element.style.display = _display; element.style.visibility = _visibility;
+        return result;
+    }
+
+    /**
+     * Get the opposite placement of the given one/
+     * @function
+     * @ignore
+     * @argument {String} placement
+     * @returns {String} flipped placement
+     */
+    function getOppositePlacement(placement) {
+        var hash = {left: 'right', right: 'left', bottom: 'top', top: 'bottom' };
+        return placement.replace(/left|right|bottom|top/g, function(matched){
+            return hash[matched];
+        });
+    }
+
+    /**
+     * Given the popper offsets, generate an output similar to getBoundingClientRect
+     * @function
+     * @ignore
+     * @argument {Object} popperOffsets
+     * @returns {Object} ClientRect like output
+     */
+    function getPopperClientRect(popperOffsets) {
+        var offsets = Object.assign({}, popperOffsets);
+        offsets.right = offsets.left + offsets.width;
+        offsets.bottom = offsets.top + offsets.height;
+        return offsets;
+    }
+
+    /**
+     * Given an array and the key to find, returns its index
+     * @function
+     * @ignore
+     * @argument {Array} arr
+     * @argument keyToFind
+     * @returns index or null
+     */
+    function getArrayKeyIndex(arr, keyToFind) {
+        var i = 0, key;
+        for (key in arr) {
+            if (arr[key] === keyToFind) {
+                return i;
+            }
+            i++;
+        }
+        return null;
+    }
+
+    /**
+     * Get CSS computed property of the given element
+     * @function
+     * @ignore
+     * @argument {Eement} element
+     * @argument {String} property
+     */
+    function getStyleComputedProperty(element, property) {
+        // NOTE: 1 DOM access here
+        var css = root.getComputedStyle(element, null);
+        return css[property];
+    }
+
+    /**
+     * Returns the offset parent of the given element
+     * @function
+     * @ignore
+     * @argument {Element} element
+     * @returns {Element} offset parent
+     */
+    function getOffsetParent(element) {
+        // NOTE: 1 DOM access here
+        var offsetParent = element.offsetParent;
+        return offsetParent === root.document.body || !offsetParent ? root.document.documentElement : offsetParent;
+    }
+
+    /**
+     * Returns the scrolling parent of the given element
+     * @function
+     * @ignore
+     * @argument {Element} element
+     * @returns {Element} offset parent
+     */
+    function getScrollParent(element) {
+        if (element === root.document) {
+            // Firefox puts the scrollTOp value on `documentElement` instead of `body`, we then check which of them is
+            // greater than 0 and return the proper element
+            if (root.document.body.scrollTop) {
+                return root.document.body;
+            } else {
+                return root.document.documentElement;
+            }
+        }
+
+        // Firefox want us to check `-x` and `-y` variations as well
+        if (
+            ['scroll', 'auto'].indexOf(getStyleComputedProperty(element, 'overflow')) !== -1 ||
+            ['scroll', 'auto'].indexOf(getStyleComputedProperty(element, 'overflow-x')) !== -1 ||
+            ['scroll', 'auto'].indexOf(getStyleComputedProperty(element, 'overflow-y')) !== -1
+        ) {
+            // If the detected scrollParent is body, we perform an additional check on its parentNode
+            // in this way we'll get body if the browser is Chrome-ish, or documentElement otherwise
+            // fixes issue #65
+            return element === root.document.body ? getScrollParent(element.parentNode) : element;
+        }
+        return element.parentNode ? getScrollParent(element.parentNode) : element;
+    }
+
+    /**
+     * Check if the given element is fixed or is inside a fixed parent
+     * @function
+     * @ignore
+     * @argument {Element} element
+     * @argument {Element} customContainer
+     * @returns {Boolean} answer to "isFixed?"
+     */
+    function isFixed(element) {
+        if (element === root.document.body || element.nodeName === 'HTML') {
+            return false;
+        }
+        if (getStyleComputedProperty(element, 'position') === 'fixed') {
+            return true;
+        }
+        return element.parentNode ? isFixed(element.parentNode) : element;
+    }
+
+    /**
+     * Check if the given element has transforms applied to itself or a parent
+     * @param  {Element} element
+     * @return {Boolean} answer to "isTransformed?"
+     */
+    function isTransformed(element) {
+      if (element === root.document.body) {
+          return false;
+      }
+      if (getStyleComputedProperty(element, 'transform') !== 'none') {
+          return true;
+      }
+      return element.parentNode ? isTransformed(element.parentNode) : element;
+    }
+
+    /**
+     * Set the style to the given popper
+     * @function
+     * @ignore
+     * @argument {Element} element - Element to apply the style to
+     * @argument {Object} styles - Object with a list of properties and values which will be applied to the element
+     */
+    function setStyle(element, styles) {
+        function is_numeric(n) {
+            return (n !== '' && !isNaN(parseFloat(n)) && isFinite(n));
+        }
+        Object.keys(styles).forEach(function(prop) {
+            var unit = '';
+            // add unit if the value is numeric and is one of the following
+            if (['width', 'height', 'top', 'right', 'bottom', 'left'].indexOf(prop) !== -1 && is_numeric(styles[prop])) {
+                unit = 'px';
+            }
+            element.style[prop] = styles[prop] + unit;
+        });
+    }
+
+    /**
+     * Check if the given variable is a function
+     * @function
+     * @ignore
+     * @argument {Element} element - Element to check
+     * @returns {Boolean} answer to: is a function?
+     */
+    function isFunction(functionToCheck) {
+        var getType = {};
+        return functionToCheck && getType.toString.call(functionToCheck) === '[object Function]';
+    }
+
+    /**
+     * Get the position of the given element, relative to its offset parent
+     * @function
+     * @ignore
+     * @param {Element} element
+     * @return {Object} position - Coordinates of the element and its `scrollTop`
+     */
+    function getOffsetRect(element) {
+        var elementRect = {
+            width: element.offsetWidth,
+            height: element.offsetHeight,
+            left: element.offsetLeft,
+            top: element.offsetTop
+        };
+
+        elementRect.right = elementRect.left + elementRect.width;
+        elementRect.bottom = elementRect.top + elementRect.height;
+
+        // position
+        return elementRect;
+    }
+
+    /**
+     * Get bounding client rect of given element
+     * @function
+     * @ignore
+     * @param {HTMLElement} element
+     * @return {Object} client rect
+     */
+    function getBoundingClientRect(element) {
+        var rect = element.getBoundingClientRect();
+        return {
+            left: rect.left,
+            top: rect.top,
+            right: rect.right,
+            bottom: rect.bottom,
+            width: rect.right - rect.left,
+            height: rect.bottom - rect.top
+        };
+    }
+
+    /**
+     * Given an element and one of its parents, return the offset
+     * @function
+     * @ignore
+     * @param {HTMLElement} element
+     * @param {HTMLElement} parent
+     * @return {Object} rect
+     */
+    function getOffsetRectRelativeToCustomParent(element, parent, fixed, transformed) {
+        var elementRect = getBoundingClientRect(element);
+        var parentRect = getBoundingClientRect(parent);
+
+        if (fixed && !transformed) {
+            var scrollParent = getScrollParent(parent);
+            parentRect.top += scrollParent.scrollTop;
+            parentRect.bottom += scrollParent.scrollTop;
+            parentRect.left += scrollParent.scrollLeft;
+            parentRect.right += scrollParent.scrollLeft;
+        }
+
+        var rect = {
+            top: elementRect.top - parentRect.top ,
+            left: elementRect.left - parentRect.left ,
+            bottom: (elementRect.top - parentRect.top) + elementRect.height,
+            right: (elementRect.left - parentRect.left) + elementRect.width,
+            width: elementRect.width,
+            height: elementRect.height
+        };
+        return rect;
+    }
+
+    /**
+     * Get the prefixed supported property name
+     * @function
+     * @ignore
+     * @argument {String} property (camelCase)
+     * @returns {String} prefixed property (camelCase)
+     */
+    function getSupportedPropertyName(property) {
+        var prefixes = ['', 'ms', 'webkit', 'moz', 'o'];
+
+        for (var i = 0; i < prefixes.length; i++) {
+            var toCheck = prefixes[i] ? prefixes[i] + property.charAt(0).toUpperCase() + property.slice(1) : property;
+            if (typeof root.document.body.style[toCheck] !== 'undefined') {
+                return toCheck;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * The Object.assign() method is used to copy the values of all enumerable own properties from one or more source
+     * objects to a target object. It will return the target object.
+     * This polyfill doesn't support symbol properties, since ES5 doesn't have symbols anyway
+     * Source: https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Object/assign
+     * @function
+     * @ignore
+     */
+    if (!Object.assign) {
+        Object.defineProperty(Object, 'assign', {
+            enumerable: false,
+            configurable: true,
+            writable: true,
+            value: function(target) {
+                if (target === undefined || target === null) {
+                    throw new TypeError('Cannot convert first argument to object');
+                }
+
+                var to = Object(target);
+                for (var i = 1; i < arguments.length; i++) {
+                    var nextSource = arguments[i];
+                    if (nextSource === undefined || nextSource === null) {
+                        continue;
+                    }
+                    nextSource = Object(nextSource);
+
+                    var keysArray = Object.keys(nextSource);
+                    for (var nextIndex = 0, len = keysArray.length; nextIndex < len; nextIndex++) {
+                        var nextKey = keysArray[nextIndex];
+                        var desc = Object.getOwnPropertyDescriptor(nextSource, nextKey);
+                        if (desc !== undefined && desc.enumerable) {
+                            to[nextKey] = nextSource[nextKey];
+                        }
+                    }
+                }
+                return to;
+            }
+        });
+    }
+
+    if (!root.requestAnimationFrame) {
+        /* jshint ignore:start */
+        var lastTime = 0;
+        var vendors = ['ms', 'moz', 'webkit', 'o'];
+        for(var x = 0; x < vendors.length && !root.requestAnimationFrame; ++x) {
+            root.requestAnimationFrame = root[vendors[x]+'RequestAnimationFrame'];
+            root.cancelAnimationFrame = root[vendors[x]+'CancelAnimationFrame'] || root[vendors[x]+'CancelRequestAnimationFrame'];
+        }
+
+        if (!root.requestAnimationFrame) {
+            root.requestAnimationFrame = function(callback, element) {
+                var currTime = new Date().getTime();
+                var timeToCall = Math.max(0, 16 - (currTime - lastTime));
+                var id = root.setTimeout(function() { callback(currTime + timeToCall); },
+                                           timeToCall);
+                lastTime = currTime + timeToCall;
+                return id;
+            };
+        }
+
+        if (!root.cancelAnimationFrame) {
+            root.cancelAnimationFrame = function(id) {
+                clearTimeout(id);
+            };
+        }
+        /* jshint ignore:end */
+    }
+
+    return Popper;
+}));
 
 
 /***/ }),
-/* 92 */
+/* 112 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -2807,7 +4776,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"color-icon_android\" > <title>an
 module.exports = sprite.add(image, "color-icon_android");
 
 /***/ }),
-/* 93 */
+/* 113 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -2816,7 +4785,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"color-icon_apple\" > <title>appl
 module.exports = sprite.add(image, "color-icon_apple");
 
 /***/ }),
-/* 94 */
+/* 114 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -2825,7 +4794,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"color-icon_browser\" > <title>br
 module.exports = sprite.add(image, "color-icon_browser");
 
 /***/ }),
-/* 95 */
+/* 115 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -2834,7 +4803,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"color-icon_chrome\" > <title>chr
 module.exports = sprite.add(image, "color-icon_chrome");
 
 /***/ }),
-/* 96 */
+/* 116 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -2843,7 +4812,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"color-icon_edge\" > <title>edge<
 module.exports = sprite.add(image, "color-icon_edge");
 
 /***/ }),
-/* 97 */
+/* 117 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -2852,7 +4821,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"color-icon_firefox\" xmlns:xlink
 module.exports = sprite.add(image, "color-icon_firefox");
 
 /***/ }),
-/* 98 */
+/* 118 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -2861,7 +4830,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"color-icon_ie\" > <title>ie</tit
 module.exports = sprite.add(image, "color-icon_ie");
 
 /***/ }),
-/* 99 */
+/* 119 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -2870,7 +4839,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"color-icon_jboss\" > <title>colo
 module.exports = sprite.add(image, "color-icon_jboss");
 
 /***/ }),
-/* 100 */
+/* 120 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -2879,7 +4848,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"color-icon_linux\" xmlns:xlink=\
 module.exports = sprite.add(image, "color-icon_linux");
 
 /***/ }),
-/* 101 */
+/* 121 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -2888,7 +4857,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"color-icon_microsoft\" > <title>
 module.exports = sprite.add(image, "color-icon_microsoft");
 
 /***/ }),
-/* 102 */
+/* 122 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -2897,7 +4866,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"color-icon_nginx\" > <title>colo
 module.exports = sprite.add(image, "color-icon_nginx");
 
 /***/ }),
-/* 103 */
+/* 123 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -2906,7 +4875,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"color-icon_nodejs\" > <title>col
 module.exports = sprite.add(image, "color-icon_nodejs");
 
 /***/ }),
-/* 104 */
+/* 124 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -2915,7 +4884,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"color-icon_opera\" xmlns:xlink=\
 module.exports = sprite.add(image, "color-icon_opera");
 
 /***/ }),
-/* 105 */
+/* 125 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -2924,7 +4893,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"color-icon_pc\" xmlns:xlink=\"ht
 module.exports = sprite.add(image, "color-icon_pc");
 
 /***/ }),
-/* 106 */
+/* 126 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -2933,7 +4902,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"color-icon_php\" > <title>color-
 module.exports = sprite.add(image, "color-icon_php");
 
 /***/ }),
-/* 107 */
+/* 127 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -2942,7 +4911,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"color-icon_python\" > <title>col
 module.exports = sprite.add(image, "color-icon_python");
 
 /***/ }),
-/* 108 */
+/* 128 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -2951,7 +4920,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"color-icon_qq-browser\" xmlns:xl
 module.exports = sprite.add(image, "color-icon_qq-browser");
 
 /***/ }),
-/* 109 */
+/* 129 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -2960,7 +4929,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"color-icon_ruby\" xmlns:xlink=\"
 module.exports = sprite.add(image, "color-icon_ruby");
 
 /***/ }),
-/* 110 */
+/* 130 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -2969,7 +4938,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"color-icon_safari\" xmlns:xlink=
 module.exports = sprite.add(image, "color-icon_safari");
 
 /***/ }),
-/* 111 */
+/* 131 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -2978,7 +4947,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"color-icon_sougou-browser\" xmln
 module.exports = sprite.add(image, "color-icon_sougou-browser");
 
 /***/ }),
-/* 112 */
+/* 132 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -2987,7 +4956,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"color-icon_tomcat\" > <title>col
 module.exports = sprite.add(image, "color-icon_tomcat");
 
 /***/ }),
-/* 113 */
+/* 133 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -2996,7 +4965,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"color-icon_win\" > <title>win</t
 module.exports = sprite.add(image, "color-icon_win");
 
 /***/ }),
-/* 114 */
+/* 134 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -3005,7 +4974,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"color-icon_win10\" > <title>win1
 module.exports = sprite.add(image, "color-icon_win10");
 
 /***/ }),
-/* 115 */
+/* 135 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -3014,7 +4983,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon\" > <title>placeholder</tit
 module.exports = sprite.add(image, "icon");
 
 /***/ }),
-/* 116 */
+/* 136 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -3023,7 +4992,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_air-traffic-tower\" > <titl
 module.exports = sprite.add(image, "icon_air-traffic-tower");
 
 /***/ }),
-/* 117 */
+/* 137 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -3032,7 +5001,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_archive\" > <title>archive<
 module.exports = sprite.add(image, "icon_archive");
 
 /***/ }),
-/* 118 */
+/* 138 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -3041,7 +5010,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_arrow-down\" > <title>arrow
 module.exports = sprite.add(image, "icon_arrow-down");
 
 /***/ }),
-/* 119 */
+/* 139 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -3050,7 +5019,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_arrow-left\" > <title>arrow
 module.exports = sprite.add(image, "icon_arrow-left");
 
 /***/ }),
-/* 120 */
+/* 140 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -3059,7 +5028,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_arrow-right\" > <title>arro
 module.exports = sprite.add(image, "icon_arrow-right");
 
 /***/ }),
-/* 121 */
+/* 141 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -3068,7 +5037,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_arrow-top\" > <title>arrow-
 module.exports = sprite.add(image, "icon_arrow-top");
 
 /***/ }),
-/* 122 */
+/* 142 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -3077,7 +5046,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_attachment\" > <title>attac
 module.exports = sprite.add(image, "icon_attachment");
 
 /***/ }),
-/* 123 */
+/* 143 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -3086,7 +5055,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_audit\" > <title>audit</tit
 module.exports = sprite.add(image, "icon_audit");
 
 /***/ }),
-/* 124 */
+/* 144 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -3095,7 +5064,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_aws\" > <title>aws</title> 
 module.exports = sprite.add(image, "icon_aws");
 
 /***/ }),
-/* 125 */
+/* 145 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -3104,7 +5073,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_badge-best\" > <title>badge
 module.exports = sprite.add(image, "icon_badge-best");
 
 /***/ }),
-/* 126 */
+/* 146 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -3113,7 +5082,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_badge-code\" > <title>badge
 module.exports = sprite.add(image, "icon_badge-code");
 
 /***/ }),
-/* 127 */
+/* 147 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -3122,7 +5091,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_badge-upload\" > <title>bad
 module.exports = sprite.add(image, "icon_badge-upload");
 
 /***/ }),
-/* 128 */
+/* 148 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -3131,7 +5100,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_badge-verified\" > <title>b
 module.exports = sprite.add(image, "icon_badge-verified");
 
 /***/ }),
-/* 129 */
+/* 149 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -3140,7 +5109,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_bell\" > <title>bell</title
 module.exports = sprite.add(image, "icon_bell");
 
 /***/ }),
-/* 130 */
+/* 150 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -3149,7 +5118,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_block\" > <title>block</tit
 module.exports = sprite.add(image, "icon_block");
 
 /***/ }),
-/* 131 */
+/* 151 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -3158,7 +5127,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_board\" > <title>board</tit
 module.exports = sprite.add(image, "icon_board");
 
 /***/ }),
-/* 132 */
+/* 152 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -3167,7 +5136,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_book\" > <title>book</title
 module.exports = sprite.add(image, "icon_book");
 
 /***/ }),
-/* 133 */
+/* 153 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -3176,7 +5145,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_bridge-network\" > <title>b
 module.exports = sprite.add(image, "icon_bridge-network");
 
 /***/ }),
-/* 134 */
+/* 154 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -3185,7 +5154,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_browser\" > <title>browser<
 module.exports = sprite.add(image, "icon_browser");
 
 /***/ }),
-/* 135 */
+/* 155 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -3194,7 +5163,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_building\" > <title>buildin
 module.exports = sprite.add(image, "icon_building");
 
 /***/ }),
-/* 136 */
+/* 156 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -3203,7 +5172,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_calendar\" > <title>calenda
 module.exports = sprite.add(image, "icon_calendar");
 
 /***/ }),
-/* 137 */
+/* 157 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -3212,7 +5181,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_camera\" > <title>camera</t
 module.exports = sprite.add(image, "icon_camera");
 
 /***/ }),
-/* 138 */
+/* 158 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -3221,7 +5190,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_caret-down\" > <title>caret
 module.exports = sprite.add(image, "icon_caret-down");
 
 /***/ }),
-/* 139 */
+/* 159 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -3230,7 +5199,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_caret-left\" > <title>caret
 module.exports = sprite.add(image, "icon_caret-left");
 
 /***/ }),
-/* 140 */
+/* 160 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -3239,7 +5208,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_caret-right\" > <title>care
 module.exports = sprite.add(image, "icon_caret-right");
 
 /***/ }),
-/* 141 */
+/* 161 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -3248,7 +5217,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_caret-up\" > <title>caret-u
 module.exports = sprite.add(image, "icon_caret-up");
 
 /***/ }),
-/* 142 */
+/* 162 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -3257,7 +5226,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_ccw-alt\" > <title>ccw-alt<
 module.exports = sprite.add(image, "icon_ccw-alt");
 
 /***/ }),
-/* 143 */
+/* 163 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -3266,7 +5235,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_ccw\" > <title>ccw</title> 
 module.exports = sprite.add(image, "icon_ccw");
 
 /***/ }),
-/* 144 */
+/* 164 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -3275,7 +5244,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_centos\" > <title>centos</t
 module.exports = sprite.add(image, "icon_centos");
 
 /***/ }),
-/* 145 */
+/* 165 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -3284,7 +5253,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_checklist\" > <title>checkl
 module.exports = sprite.add(image, "icon_checklist");
 
 /***/ }),
-/* 146 */
+/* 166 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -3293,7 +5262,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_checkmark-small\" > <title>
 module.exports = sprite.add(image, "icon_checkmark-small");
 
 /***/ }),
-/* 147 */
+/* 167 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -3302,7 +5271,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_checkmark\" > <title>checkm
 module.exports = sprite.add(image, "icon_checkmark");
 
 /***/ }),
-/* 148 */
+/* 168 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -3311,7 +5280,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_chess-pawn\" > <title>pawn<
 module.exports = sprite.add(image, "icon_chess-pawn");
 
 /***/ }),
-/* 149 */
+/* 169 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -3320,7 +5289,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_chess-rook\" > <title>rook<
 module.exports = sprite.add(image, "icon_chess-rook");
 
 /***/ }),
-/* 150 */
+/* 170 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -3329,7 +5298,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_circle-rotate\" > <title>ci
 module.exports = sprite.add(image, "icon_circle-rotate");
 
 /***/ }),
-/* 151 */
+/* 171 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -3338,7 +5307,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_city\" > <title>city</title
 module.exports = sprite.add(image, "icon_city");
 
 /***/ }),
-/* 152 */
+/* 172 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -3347,7 +5316,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_clipboard-success\" > <titl
 module.exports = sprite.add(image, "icon_clipboard-success");
 
 /***/ }),
-/* 153 */
+/* 173 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -3356,7 +5325,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_clipboard\" > <title>clipbo
 module.exports = sprite.add(image, "icon_clipboard");
 
 /***/ }),
-/* 154 */
+/* 174 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -3365,7 +5334,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_clock\" > <title>clock</tit
 module.exports = sprite.add(image, "icon_clock");
 
 /***/ }),
-/* 155 */
+/* 175 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -3374,7 +5343,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_close-circled\" > <title>cl
 module.exports = sprite.add(image, "icon_close-circled");
 
 /***/ }),
-/* 156 */
+/* 176 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -3383,7 +5352,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_cloud-line\" > <title>cloud
 module.exports = sprite.add(image, "icon_cloud-line");
 
 /***/ }),
-/* 157 */
+/* 177 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -3392,7 +5361,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_comment-line\" > <title>com
 module.exports = sprite.add(image, "icon_comment-line");
 
 /***/ }),
-/* 158 */
+/* 178 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -3401,7 +5370,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_console\" > <title>console<
 module.exports = sprite.add(image, "icon_console");
 
 /***/ }),
-/* 159 */
+/* 179 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -3410,7 +5379,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_container-small\" > <title>
 module.exports = sprite.add(image, "icon_container-small");
 
 /***/ }),
-/* 160 */
+/* 180 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -3419,7 +5388,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_convert-file\" > <title>con
 module.exports = sprite.add(image, "icon_convert-file");
 
 /***/ }),
-/* 161 */
+/* 181 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -3428,7 +5397,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_convert\" > <title>convert<
 module.exports = sprite.add(image, "icon_convert");
 
 /***/ }),
-/* 162 */
+/* 182 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -3437,7 +5406,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_cpu\" > <title>cpu</title> 
 module.exports = sprite.add(image, "icon_cpu");
 
 /***/ }),
-/* 163 */
+/* 183 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -3446,7 +5415,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_cross\" > <title>cross</tit
 module.exports = sprite.add(image, "icon_cross");
 
 /***/ }),
-/* 164 */
+/* 184 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -3455,7 +5424,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_crown\" > <title>crown</tit
 module.exports = sprite.add(image, "icon_crown");
 
 /***/ }),
-/* 165 */
+/* 185 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -3464,7 +5433,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_cw-alt\" > <title>cw-alt</t
 module.exports = sprite.add(image, "icon_cw-alt");
 
 /***/ }),
-/* 166 */
+/* 186 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -3473,7 +5442,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_cw\" > <title>cw</title> <p
 module.exports = sprite.add(image, "icon_cw");
 
 /***/ }),
-/* 167 */
+/* 187 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -3482,7 +5451,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_danger\" > <title>danger</t
 module.exports = sprite.add(image, "icon_danger");
 
 /***/ }),
-/* 168 */
+/* 188 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -3491,7 +5460,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_daocloud\" > <title>daoclou
 module.exports = sprite.add(image, "icon_daocloud");
 
 /***/ }),
-/* 169 */
+/* 189 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -3500,7 +5469,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_daomirror\" > <title>daomir
 module.exports = sprite.add(image, "icon_daomirror");
 
 /***/ }),
-/* 170 */
+/* 190 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -3509,7 +5478,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_datadog\" > <title>datadog<
 module.exports = sprite.add(image, "icon_datadog");
 
 /***/ }),
-/* 171 */
+/* 191 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -3518,7 +5487,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_dce\" > <title>dce</title> 
 module.exports = sprite.add(image, "icon_dce");
 
 /***/ }),
-/* 172 */
+/* 192 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -3527,7 +5496,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_deploy\" > <title>deploy</t
 module.exports = sprite.add(image, "icon_deploy");
 
 /***/ }),
-/* 173 */
+/* 193 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -3536,7 +5505,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_desktop\" > <title>desktop<
 module.exports = sprite.add(image, "icon_desktop");
 
 /***/ }),
-/* 174 */
+/* 194 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -3545,7 +5514,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_docker-image\" > <title>doc
 module.exports = sprite.add(image, "icon_docker-image");
 
 /***/ }),
-/* 175 */
+/* 195 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -3554,7 +5523,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_docker\" > <title>docker</t
 module.exports = sprite.add(image, "icon_docker");
 
 /***/ }),
-/* 176 */
+/* 196 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -3563,7 +5532,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_down-arrow\" > <title>down-
 module.exports = sprite.add(image, "icon_down-arrow");
 
 /***/ }),
-/* 177 */
+/* 197 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -3572,7 +5541,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_download\" > <title>downloa
 module.exports = sprite.add(image, "icon_download");
 
 /***/ }),
-/* 178 */
+/* 198 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -3581,7 +5550,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_draft\" > <title>draft</tit
 module.exports = sprite.add(image, "icon_draft");
 
 /***/ }),
-/* 179 */
+/* 199 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -3590,7 +5559,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_drive-small\" > <title>driv
 module.exports = sprite.add(image, "icon_drive-small");
 
 /***/ }),
-/* 180 */
+/* 200 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -3599,7 +5568,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_eject\" > <title>eject</tit
 module.exports = sprite.add(image, "icon_eject");
 
 /***/ }),
-/* 181 */
+/* 201 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -3608,7 +5577,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_emoji\" > <title>emoji</tit
 module.exports = sprite.add(image, "icon_emoji");
 
 /***/ }),
-/* 182 */
+/* 202 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -3617,7 +5586,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_etcd\" > <title>etcd</title
 module.exports = sprite.add(image, "icon_etcd");
 
 /***/ }),
-/* 183 */
+/* 203 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -3626,7 +5595,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_eye-slash\" > <title>eye-sl
 module.exports = sprite.add(image, "icon_eye-slash");
 
 /***/ }),
-/* 184 */
+/* 204 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -3635,7 +5604,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_eye\" > <title>eye</title> 
 module.exports = sprite.add(image, "icon_eye");
 
 /***/ }),
-/* 185 */
+/* 205 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -3644,7 +5613,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_fedora\" > <title>fedora</t
 module.exports = sprite.add(image, "icon_fedora");
 
 /***/ }),
-/* 186 */
+/* 206 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -3653,7 +5622,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_file-code\" > <title>file-c
 module.exports = sprite.add(image, "icon_file-code");
 
 /***/ }),
-/* 187 */
+/* 207 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -3662,7 +5631,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_file-docker-image\" > <titl
 module.exports = sprite.add(image, "icon_file-docker-image");
 
 /***/ }),
-/* 188 */
+/* 208 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -3671,7 +5640,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_file-dockerfile\" > <title>
 module.exports = sprite.add(image, "icon_file-dockerfile");
 
 /***/ }),
-/* 189 */
+/* 209 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -3680,7 +5649,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_file-picture\" > <title>fil
 module.exports = sprite.add(image, "icon_file-picture");
 
 /***/ }),
-/* 190 */
+/* 210 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -3689,7 +5658,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_file-stack\" > <title>file-
 module.exports = sprite.add(image, "icon_file-stack");
 
 /***/ }),
-/* 191 */
+/* 211 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -3698,7 +5667,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_file-text\" > <title>file-t
 module.exports = sprite.add(image, "icon_file-text");
 
 /***/ }),
-/* 192 */
+/* 212 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -3707,7 +5676,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_file-zip\" > <title>file-zi
 module.exports = sprite.add(image, "icon_file-zip");
 
 /***/ }),
-/* 193 */
+/* 213 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -3716,7 +5685,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_file\" > <title>file</title
 module.exports = sprite.add(image, "icon_file");
 
 /***/ }),
-/* 194 */
+/* 214 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -3725,7 +5694,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_filter\" > <title>filter</t
 module.exports = sprite.add(image, "icon_filter");
 
 /***/ }),
-/* 195 */
+/* 215 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -3734,7 +5703,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_folder-move\" > <title>fold
 module.exports = sprite.add(image, "icon_folder-move");
 
 /***/ }),
-/* 196 */
+/* 216 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -3743,7 +5712,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_folder-plugin\" > <title>fo
 module.exports = sprite.add(image, "icon_folder-plugin");
 
 /***/ }),
-/* 197 */
+/* 217 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -3752,7 +5721,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_folder\" > <title>folder</t
 module.exports = sprite.add(image, "icon_folder");
 
 /***/ }),
-/* 198 */
+/* 218 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -3761,7 +5730,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_foot\" > <title>foot</title
 module.exports = sprite.add(image, "icon_foot");
 
 /***/ }),
-/* 199 */
+/* 219 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -3770,7 +5739,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_gift\" > <title>gift</title
 module.exports = sprite.add(image, "icon_gift");
 
 /***/ }),
-/* 200 */
+/* 220 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -3779,7 +5748,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_git-branch\" > <title>git-b
 module.exports = sprite.add(image, "icon_git-branch");
 
 /***/ }),
-/* 201 */
+/* 221 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -3788,7 +5757,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_git-commit\" > <title>git-c
 module.exports = sprite.add(image, "icon_git-commit");
 
 /***/ }),
-/* 202 */
+/* 222 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -3797,7 +5766,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_git\" > <title>git</title> 
 module.exports = sprite.add(image, "icon_git");
 
 /***/ }),
-/* 203 */
+/* 223 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -3806,7 +5775,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_github\" > <title>github</t
 module.exports = sprite.add(image, "icon_github");
 
 /***/ }),
-/* 204 */
+/* 224 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -3815,7 +5784,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_gitlab\" > <title>icon_gitl
 module.exports = sprite.add(image, "icon_gitlab");
 
 /***/ }),
-/* 205 */
+/* 225 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -3824,7 +5793,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_globe-alt\" > <title>globe-
 module.exports = sprite.add(image, "icon_globe-alt");
 
 /***/ }),
-/* 206 */
+/* 226 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -3833,7 +5802,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_globe\" > <title>globe</tit
 module.exports = sprite.add(image, "icon_globe");
 
 /***/ }),
-/* 207 */
+/* 227 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -3842,7 +5811,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_graylog2\" > <title>graylog
 module.exports = sprite.add(image, "icon_graylog2");
 
 /***/ }),
-/* 208 */
+/* 228 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -3851,7 +5820,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_hashtag\" > <title>hashtag<
 module.exports = sprite.add(image, "icon_hashtag");
 
 /***/ }),
-/* 209 */
+/* 229 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -3860,7 +5829,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_heart\" > <title>heart</tit
 module.exports = sprite.add(image, "icon_heart");
 
 /***/ }),
-/* 210 */
+/* 230 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -3869,7 +5838,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_id\" > <title>id</title> <p
 module.exports = sprite.add(image, "icon_id");
 
 /***/ }),
-/* 211 */
+/* 231 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -3878,7 +5847,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_inbox\" > <title>inbox</tit
 module.exports = sprite.add(image, "icon_inbox");
 
 /***/ }),
-/* 212 */
+/* 232 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -3887,7 +5856,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_info\" > <title>info</title
 module.exports = sprite.add(image, "icon_info");
 
 /***/ }),
-/* 213 */
+/* 233 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -3896,7 +5865,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_jboss\" > <title>icon_jboss
 module.exports = sprite.add(image, "icon_jboss");
 
 /***/ }),
-/* 214 */
+/* 234 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -3905,7 +5874,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_key\" > <title>key</title> 
 module.exports = sprite.add(image, "icon_key");
 
 /***/ }),
-/* 215 */
+/* 235 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -3914,7 +5883,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_link\" > <title>link</title
 module.exports = sprite.add(image, "icon_link");
 
 /***/ }),
-/* 216 */
+/* 236 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -3923,7 +5892,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_linux\" > <title>linux</tit
 module.exports = sprite.add(image, "icon_linux");
 
 /***/ }),
-/* 217 */
+/* 237 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -3932,7 +5901,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_list\" > <title>list</title
 module.exports = sprite.add(image, "icon_list");
 
 /***/ }),
-/* 218 */
+/* 238 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -3941,7 +5910,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_local-drive-small\" > <titl
 module.exports = sprite.add(image, "icon_local-drive-small");
 
 /***/ }),
-/* 219 */
+/* 239 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -3950,7 +5919,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_location\" > <title>locatio
 module.exports = sprite.add(image, "icon_location");
 
 /***/ }),
-/* 220 */
+/* 240 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -3959,7 +5928,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_lock-small\" > <title>lock-
 module.exports = sprite.add(image, "icon_lock-small");
 
 /***/ }),
-/* 221 */
+/* 241 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -3968,7 +5937,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_log-in\" > <title>log-in</t
 module.exports = sprite.add(image, "icon_log-in");
 
 /***/ }),
-/* 222 */
+/* 242 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -3977,7 +5946,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_log-out\" > <title>log-out<
 module.exports = sprite.add(image, "icon_log-out");
 
 /***/ }),
-/* 223 */
+/* 243 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -3986,7 +5955,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_log\" > <title>log</title> 
 module.exports = sprite.add(image, "icon_log");
 
 /***/ }),
-/* 224 */
+/* 244 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -3995,7 +5964,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_mail\" > <title>mail</title
 module.exports = sprite.add(image, "icon_mail");
 
 /***/ }),
-/* 225 */
+/* 245 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -4004,7 +5973,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_maintenance\" > <title>main
 module.exports = sprite.add(image, "icon_maintenance");
 
 /***/ }),
-/* 226 */
+/* 246 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -4013,7 +5982,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_meter\" > <title>meter</tit
 module.exports = sprite.add(image, "icon_meter");
 
 /***/ }),
-/* 227 */
+/* 247 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -4022,7 +5991,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_microsoft\" > <title>icon_m
 module.exports = sprite.add(image, "icon_microsoft");
 
 /***/ }),
-/* 228 */
+/* 248 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -4031,7 +6000,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_minus-circled\" > <title>mi
 module.exports = sprite.add(image, "icon_minus-circled");
 
 /***/ }),
-/* 229 */
+/* 249 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -4040,7 +6009,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_mobile\" > <title>mobile</t
 module.exports = sprite.add(image, "icon_mobile");
 
 /***/ }),
-/* 230 */
+/* 250 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -4049,7 +6018,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_moon\" > <title>moon</title
 module.exports = sprite.add(image, "icon_moon");
 
 /***/ }),
-/* 231 */
+/* 251 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -4058,7 +6027,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_network\" > <title>network<
 module.exports = sprite.add(image, "icon_network");
 
 /***/ }),
-/* 232 */
+/* 252 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -4067,7 +6036,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_nginx\" > <title>icon_nginx
 module.exports = sprite.add(image, "icon_nginx");
 
 /***/ }),
-/* 233 */
+/* 253 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -4076,7 +6045,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_node-small\" > <title>node-
 module.exports = sprite.add(image, "icon_node-small");
 
 /***/ }),
-/* 234 */
+/* 254 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -4085,7 +6054,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_nodejs\" > <title>icon_node
 module.exports = sprite.add(image, "icon_nodejs");
 
 /***/ }),
-/* 235 */
+/* 255 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -4094,7 +6063,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_notebook\" > <title>noteboo
 module.exports = sprite.add(image, "icon_notebook");
 
 /***/ }),
-/* 236 */
+/* 256 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -4103,7 +6072,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_octopus\" > <title>octopus<
 module.exports = sprite.add(image, "icon_octopus");
 
 /***/ }),
-/* 237 */
+/* 257 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -4112,7 +6081,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_open-in-new\" > <title>open
 module.exports = sprite.add(image, "icon_open-in-new");
 
 /***/ }),
-/* 238 */
+/* 258 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -4121,7 +6090,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_openstack\" > <title>openst
 module.exports = sprite.add(image, "icon_openstack");
 
 /***/ }),
-/* 239 */
+/* 259 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -4130,7 +6099,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_outgoing\" > <title>outgoin
 module.exports = sprite.add(image, "icon_outgoing");
 
 /***/ }),
-/* 240 */
+/* 260 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -4139,7 +6108,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_overlay-network\" > <title>
 module.exports = sprite.add(image, "icon_overlay-network");
 
 /***/ }),
-/* 241 */
+/* 261 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -4148,7 +6117,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_package\" > <title>package<
 module.exports = sprite.add(image, "icon_package");
 
 /***/ }),
-/* 242 */
+/* 262 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -4157,7 +6126,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_paint-brush\" > <title>pain
 module.exports = sprite.add(image, "icon_paint-brush");
 
 /***/ }),
-/* 243 */
+/* 263 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -4166,7 +6135,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_pause\" > <title>pause</tit
 module.exports = sprite.add(image, "icon_pause");
 
 /***/ }),
-/* 244 */
+/* 264 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -4175,7 +6144,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_pencil-edit\" > <title>penc
 module.exports = sprite.add(image, "icon_pencil-edit");
 
 /***/ }),
-/* 245 */
+/* 265 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -4184,7 +6153,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_pencil\" > <title>pencil</t
 module.exports = sprite.add(image, "icon_pencil");
 
 /***/ }),
-/* 246 */
+/* 266 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -4193,7 +6162,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_php\" > <title>icon_php</ti
 module.exports = sprite.add(image, "icon_php");
 
 /***/ }),
-/* 247 */
+/* 267 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -4202,7 +6171,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_picture\" > <title>picture<
 module.exports = sprite.add(image, "icon_picture");
 
 /***/ }),
-/* 248 */
+/* 268 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -4211,7 +6180,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_pie-chart\" > <title>pie-ch
 module.exports = sprite.add(image, "icon_pie-chart");
 
 /***/ }),
-/* 249 */
+/* 269 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -4220,7 +6189,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_play\" > <title>play</title
 module.exports = sprite.add(image, "icon_play");
 
 /***/ }),
-/* 250 */
+/* 270 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -4229,7 +6198,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_plugged\" > <title>plugged<
 module.exports = sprite.add(image, "icon_plugged");
 
 /***/ }),
-/* 251 */
+/* 271 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -4238,7 +6207,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_plus-circled\" > <title>plu
 module.exports = sprite.add(image, "icon_plus-circled");
 
 /***/ }),
-/* 252 */
+/* 272 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -4247,7 +6216,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_plus\" > <title>plus</title
 module.exports = sprite.add(image, "icon_plus");
 
 /***/ }),
-/* 253 */
+/* 273 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -4256,7 +6225,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_pull\" > <title>pull</title
 module.exports = sprite.add(image, "icon_pull");
 
 /***/ }),
-/* 254 */
+/* 274 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -4265,7 +6234,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_push\" > <title>push</title
 module.exports = sprite.add(image, "icon_push");
 
 /***/ }),
-/* 255 */
+/* 275 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -4274,7 +6243,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_puzzle\" > <title>puzzle</t
 module.exports = sprite.add(image, "icon_puzzle");
 
 /***/ }),
-/* 256 */
+/* 276 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -4283,7 +6252,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_python\" > <title>icon_pyth
 module.exports = sprite.add(image, "icon_python");
 
 /***/ }),
-/* 257 */
+/* 277 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -4292,7 +6261,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_question-mark\" > <title>qu
 module.exports = sprite.add(image, "icon_question-mark");
 
 /***/ }),
-/* 258 */
+/* 278 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -4301,7 +6270,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_question\" > <title>questio
 module.exports = sprite.add(image, "icon_question");
 
 /***/ }),
-/* 259 */
+/* 279 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -4310,7 +6279,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_ram-memory\" > <title>ram-m
 module.exports = sprite.add(image, "icon_ram-memory");
 
 /***/ }),
-/* 260 */
+/* 280 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -4319,7 +6288,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_redhat\" > <title>redhat</t
 module.exports = sprite.add(image, "icon_redhat");
 
 /***/ }),
-/* 261 */
+/* 281 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -4328,7 +6297,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_reply-line\" > <title>reply
 module.exports = sprite.add(image, "icon_reply-line");
 
 /***/ }),
-/* 262 */
+/* 282 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -4337,7 +6306,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_resize-handle\" > <title>re
 module.exports = sprite.add(image, "icon_resize-handle");
 
 /***/ }),
-/* 263 */
+/* 283 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -4346,7 +6315,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_ruby\" > <title>icon_ruby</
 module.exports = sprite.add(image, "icon_ruby");
 
 /***/ }),
-/* 264 */
+/* 284 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -4355,7 +6324,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_scale\" > <title>expand</ti
 module.exports = sprite.add(image, "icon_scale");
 
 /***/ }),
-/* 265 */
+/* 285 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -4364,7 +6333,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_scaleio\" > <title>scaleio<
 module.exports = sprite.add(image, "icon_scaleio");
 
 /***/ }),
-/* 266 */
+/* 286 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -4373,7 +6342,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_science\" > <title>science<
 module.exports = sprite.add(image, "icon_science");
 
 /***/ }),
-/* 267 */
+/* 287 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -4382,7 +6351,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_search-circled\" > <title>s
 module.exports = sprite.add(image, "icon_search-circled");
 
 /***/ }),
-/* 268 */
+/* 288 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -4391,7 +6360,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_search\" > <title>search</t
 module.exports = sprite.add(image, "icon_search");
 
 /***/ }),
-/* 269 */
+/* 289 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -4400,7 +6369,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_server-alt\" > <title>serve
 module.exports = sprite.add(image, "icon_server-alt");
 
 /***/ }),
-/* 270 */
+/* 290 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -4409,7 +6378,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_service\" > <title>service<
 module.exports = sprite.add(image, "icon_service");
 
 /***/ }),
-/* 271 */
+/* 291 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -4418,7 +6387,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_setting\" > <title>setting<
 module.exports = sprite.add(image, "icon_setting");
 
 /***/ }),
-/* 272 */
+/* 292 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -4427,7 +6396,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_shop-line\" > <title>shop-l
 module.exports = sprite.add(image, "icon_shop-line");
 
 /***/ }),
-/* 273 */
+/* 293 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -4436,7 +6405,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_splunk\" > <title>splunk</t
 module.exports = sprite.add(image, "icon_splunk");
 
 /***/ }),
-/* 274 */
+/* 294 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -4445,7 +6414,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_stack-file\" > <title>stack
 module.exports = sprite.add(image, "icon_stack-file");
 
 /***/ }),
-/* 275 */
+/* 295 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -4454,7 +6423,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_stack-small\" > <title>stac
 module.exports = sprite.add(image, "icon_stack-small");
 
 /***/ }),
-/* 276 */
+/* 296 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -4463,7 +6432,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_star-half\" > <title>star-h
 module.exports = sprite.add(image, "icon_star-half");
 
 /***/ }),
-/* 277 */
+/* 297 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -4472,7 +6441,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_star-line\" > <title>star-l
 module.exports = sprite.add(image, "icon_star-line");
 
 /***/ }),
-/* 278 */
+/* 298 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -4481,7 +6450,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_star\" > <title>star</title
 module.exports = sprite.add(image, "icon_star");
 
 /***/ }),
-/* 279 */
+/* 299 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -4490,7 +6459,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_status-dash\" > <title>stat
 module.exports = sprite.add(image, "icon_status-dash");
 
 /***/ }),
-/* 280 */
+/* 300 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -4499,7 +6468,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_status-dot-small\" > <title
 module.exports = sprite.add(image, "icon_status-dot-small");
 
 /***/ }),
-/* 281 */
+/* 301 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -4508,7 +6477,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_status-dot\" > <title>statu
 module.exports = sprite.add(image, "icon_status-dot");
 
 /***/ }),
-/* 282 */
+/* 302 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -4517,7 +6486,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_status-empty-dot\" > <title
 module.exports = sprite.add(image, "icon_status-empty-dot");
 
 /***/ }),
-/* 283 */
+/* 303 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -4526,7 +6495,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_status-half-dot\" > <title>
 module.exports = sprite.add(image, "icon_status-half-dot");
 
 /***/ }),
-/* 284 */
+/* 304 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -4535,7 +6504,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_status-progress-circle\" > 
 module.exports = sprite.add(image, "icon_status-progress-circle");
 
 /***/ }),
-/* 285 */
+/* 305 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -4544,7 +6513,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_status-progress-cross\" > <
 module.exports = sprite.add(image, "icon_status-progress-cross");
 
 /***/ }),
-/* 286 */
+/* 306 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -4553,7 +6522,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_status-slash-dot\" > <title
 module.exports = sprite.add(image, "icon_status-slash-dot");
 
 /***/ }),
-/* 287 */
+/* 307 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -4562,7 +6531,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_status-three-dots\" > <titl
 module.exports = sprite.add(image, "icon_status-three-dots");
 
 /***/ }),
-/* 288 */
+/* 308 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -4571,7 +6540,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_status-two-dots\" > <title>
 module.exports = sprite.add(image, "icon_status-two-dots");
 
 /***/ }),
-/* 289 */
+/* 309 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -4580,7 +6549,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_status\" > <title>status</t
 module.exports = sprite.add(image, "icon_status");
 
 /***/ }),
-/* 290 */
+/* 310 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -4589,7 +6558,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_stop\" > <title>stop</title
 module.exports = sprite.add(image, "icon_stop");
 
 /***/ }),
-/* 291 */
+/* 311 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -4598,7 +6567,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_store\" > <title>store</tit
 module.exports = sprite.add(image, "icon_store");
 
 /***/ }),
-/* 292 */
+/* 312 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -4607,7 +6576,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_subversion\" > <title>subve
 module.exports = sprite.add(image, "icon_subversion");
 
 /***/ }),
-/* 293 */
+/* 313 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -4616,7 +6585,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_success\" > <title>success<
 module.exports = sprite.add(image, "icon_success");
 
 /***/ }),
-/* 294 */
+/* 314 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -4625,7 +6594,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_suse\" > <title>suse</title
 module.exports = sprite.add(image, "icon_suse");
 
 /***/ }),
-/* 295 */
+/* 315 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -4634,7 +6603,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_swap\" > <title>swap</title
 module.exports = sprite.add(image, "icon_swap");
 
 /***/ }),
-/* 296 */
+/* 316 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -4643,7 +6612,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_swarm\" > <title>swarm</tit
 module.exports = sprite.add(image, "icon_swarm");
 
 /***/ }),
-/* 297 */
+/* 317 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -4652,7 +6621,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_tag\" > <title>tag</title> 
 module.exports = sprite.add(image, "icon_tag");
 
 /***/ }),
-/* 298 */
+/* 318 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -4661,7 +6630,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_tomcat\" > <title>icon_tomc
 module.exports = sprite.add(image, "icon_tomcat");
 
 /***/ }),
-/* 299 */
+/* 319 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -4670,7 +6639,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_trash\" > <title>trash</tit
 module.exports = sprite.add(image, "icon_trash");
 
 /***/ }),
-/* 300 */
+/* 320 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -4679,7 +6648,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_twitter\" > <title>twitter<
 module.exports = sprite.add(image, "icon_twitter");
 
 /***/ }),
-/* 301 */
+/* 321 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -4688,7 +6657,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_ubuntu\" > <title>ubuntu</t
 module.exports = sprite.add(image, "icon_ubuntu");
 
 /***/ }),
-/* 302 */
+/* 322 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -4697,7 +6666,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_unplugged\" > <title>unplug
 module.exports = sprite.add(image, "icon_unplugged");
 
 /***/ }),
-/* 303 */
+/* 323 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -4706,7 +6675,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_up-arrow\" > <title>up-arro
 module.exports = sprite.add(image, "icon_up-arrow");
 
 /***/ }),
-/* 304 */
+/* 324 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -4715,7 +6684,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_update\" > <title>update</t
 module.exports = sprite.add(image, "icon_update");
 
 /***/ }),
-/* 305 */
+/* 325 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -4724,7 +6693,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_upload\" > <title>upload</t
 module.exports = sprite.add(image, "icon_upload");
 
 /***/ }),
-/* 306 */
+/* 326 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -4733,7 +6702,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_user\" > <title>user</title
 module.exports = sprite.add(image, "icon_user");
 
 /***/ }),
-/* 307 */
+/* 327 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -4742,7 +6711,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_virtual-machine\" > <title>
 module.exports = sprite.add(image, "icon_virtual-machine");
 
 /***/ }),
-/* 308 */
+/* 328 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -4751,7 +6720,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_vsphere\" > <title>vsphere<
 module.exports = sprite.add(image, "icon_vsphere");
 
 /***/ }),
-/* 309 */
+/* 329 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -4760,7 +6729,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_warning\" > <title>warning<
 module.exports = sprite.add(image, "icon_warning");
 
 /***/ }),
-/* 310 */
+/* 330 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -4769,7 +6738,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_wechat\" > <title>wechat</t
 module.exports = sprite.add(image, "icon_wechat");
 
 /***/ }),
-/* 311 */
+/* 331 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -4778,7 +6747,7 @@ var image = "<symbol viewBox=\"0 0 32 32\" id=\"icon_wrench\" > <title>wrench</t
 module.exports = sprite.add(image, "icon_wrench");
 
 /***/ }),
-/* 312 */
+/* 332 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -4787,7 +6756,7 @@ var image = "<symbol viewBox=\"0 0 200 40\" id=\"banner_construction\" > <title>
 module.exports = sprite.add(image, "banner_construction");
 
 /***/ }),
-/* 313 */
+/* 333 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -4796,7 +6765,7 @@ var image = "<symbol viewBox=\"0 0 200 40\" id=\"banner_moon\" > <title>moon</ti
 module.exports = sprite.add(image, "banner_moon");
 
 /***/ }),
-/* 314 */
+/* 334 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -4805,7 +6774,7 @@ var image = "<symbol viewBox=\"0 0 64 64\" id=\"icon_app-center-big\" > <title>a
 module.exports = sprite.add(image, "icon_app-center-big");
 
 /***/ }),
-/* 315 */
+/* 335 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -4814,7 +6783,7 @@ var image = "<symbol viewBox=\"0 0 64 64\" id=\"icon_chart\" > <title>icon</titl
 module.exports = sprite.add(image, "icon_chart");
 
 /***/ }),
-/* 316 */
+/* 336 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -4823,7 +6792,7 @@ var image = "<symbol viewBox=\"0 0 64 64\" id=\"icon_chat\" > <title>chat</title
 module.exports = sprite.add(image, "icon_chat");
 
 /***/ }),
-/* 317 */
+/* 337 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -4832,7 +6801,7 @@ var image = "<symbol viewBox=\"0 0 64 64\" id=\"icon_container\" > <title>contai
 module.exports = sprite.add(image, "icon_container");
 
 /***/ }),
-/* 318 */
+/* 338 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -4841,7 +6810,7 @@ var image = "<symbol viewBox=\"0 0 64 64\" id=\"icon_docker-image-big\" > <title
 module.exports = sprite.add(image, "icon_docker-image-big");
 
 /***/ }),
-/* 319 */
+/* 339 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -4850,7 +6819,7 @@ var image = "<symbol viewBox=\"0 0 64 64\" id=\"icon_drive\" > <title>drive</tit
 module.exports = sprite.add(image, "icon_drive");
 
 /***/ }),
-/* 320 */
+/* 340 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -4859,7 +6828,7 @@ var image = "<symbol viewBox=\"0 0 64 64\" id=\"icon_history\" > <title>icon_his
 module.exports = sprite.add(image, "icon_history");
 
 /***/ }),
-/* 321 */
+/* 341 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -4868,7 +6837,7 @@ var image = "<symbol viewBox=\"0 0 64 64\" id=\"icon_machine-cluster-big\" > <ti
 module.exports = sprite.add(image, "icon_machine-cluster-big");
 
 /***/ }),
-/* 322 */
+/* 342 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -4877,7 +6846,7 @@ var image = "<symbol viewBox=\"0 0 64 64\" id=\"icon_megaphone-alt\" > <title>ic
 module.exports = sprite.add(image, "icon_megaphone-alt");
 
 /***/ }),
-/* 323 */
+/* 343 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -4886,7 +6855,7 @@ var image = "<symbol viewBox=\"0 0 64 64\" id=\"icon_megaphone\" > <title>icon</
 module.exports = sprite.add(image, "icon_megaphone");
 
 /***/ }),
-/* 324 */
+/* 344 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -4895,7 +6864,7 @@ var image = "<symbol viewBox=\"0 0 64 64\" id=\"icon_node\" > <title>node</title
 module.exports = sprite.add(image, "icon_node");
 
 /***/ }),
-/* 325 */
+/* 345 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -4904,7 +6873,7 @@ var image = "<symbol viewBox=\"0 0 64 64\" id=\"icon_paper-plane\" > <title>pape
 module.exports = sprite.add(image, "icon_paper-plane");
 
 /***/ }),
-/* 326 */
+/* 346 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -4913,7 +6882,7 @@ var image = "<symbol viewBox=\"0 0 64 64\" id=\"icon_puzzle-big\" > <title>puzzl
 module.exports = sprite.add(image, "icon_puzzle-big");
 
 /***/ }),
-/* 327 */
+/* 347 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -4922,7 +6891,7 @@ var image = "<symbol viewBox=\"0 0 64 64\" id=\"icon_radar\" > <title>radar</tit
 module.exports = sprite.add(image, "icon_radar");
 
 /***/ }),
-/* 328 */
+/* 348 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -4931,7 +6900,7 @@ var image = "<symbol viewBox=\"0 0 64 64\" id=\"icon_register\" > <title>icon_re
 module.exports = sprite.add(image, "icon_register");
 
 /***/ }),
-/* 329 */
+/* 349 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -4940,7 +6909,7 @@ var image = "<symbol viewBox=\"0 0 64 64\" id=\"icon_stack-alt\" > <title>stack-
 module.exports = sprite.add(image, "icon_stack-alt");
 
 /***/ }),
-/* 330 */
+/* 350 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -4949,7 +6918,7 @@ var image = "<symbol viewBox=\"0 0 64 64\" id=\"icon_stack\" > <title>stack</tit
 module.exports = sprite.add(image, "icon_stack");
 
 /***/ }),
-/* 331 */
+/* 351 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -4958,7 +6927,7 @@ var image = "<symbol viewBox=\"0 0 64 64\" id=\"icon_users\" > <title>users</tit
 module.exports = sprite.add(image, "icon_users");
 
 /***/ }),
-/* 332 */
+/* 352 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -4967,7 +6936,7 @@ var image = "<symbol viewBox=\"0 0 64 64\" id=\"icon_virtual-machine-big\" > <ti
 module.exports = sprite.add(image, "icon_virtual-machine-big");
 
 /***/ }),
-/* 333 */
+/* 353 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -4976,7 +6945,7 @@ var image = "<symbol viewBox=\"0 0 128 64\" id=\"pic_app-stack\" > <title>app-st
 module.exports = sprite.add(image, "pic_app-stack");
 
 /***/ }),
-/* 334 */
+/* 354 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -4985,7 +6954,7 @@ var image = "<symbol viewBox=\"0 0 128 64\" id=\"pic_chat\" > <title>chat</title
 module.exports = sprite.add(image, "pic_chat");
 
 /***/ }),
-/* 335 */
+/* 355 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -4994,7 +6963,7 @@ var image = "<symbol viewBox=\"0 0 128 64\" id=\"pic_checklist\" > <title>checkl
 module.exports = sprite.add(image, "pic_checklist");
 
 /***/ }),
-/* 336 */
+/* 356 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -5003,7 +6972,7 @@ var image = "<symbol viewBox=\"0 0 128 64\" id=\"pic_docker-image-shield\" > <ti
 module.exports = sprite.add(image, "pic_docker-image-shield");
 
 /***/ }),
-/* 337 */
+/* 357 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -5012,7 +6981,7 @@ var image = "<symbol viewBox=\"0 0 128 64\" id=\"pic_docker-image\" > <title>doc
 module.exports = sprite.add(image, "pic_docker-image");
 
 /***/ }),
-/* 338 */
+/* 358 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -5021,7 +6990,7 @@ var image = "<symbol viewBox=\"0 0 128 64\" id=\"pic_drive\" > <title>pic_drive<
 module.exports = sprite.add(image, "pic_drive");
 
 /***/ }),
-/* 339 */
+/* 359 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -5030,7 +6999,7 @@ var image = "<symbol viewBox=\"0 0 128 64\" id=\"pic_edit-yaml\" > <title>edit-y
 module.exports = sprite.add(image, "pic_edit-yaml");
 
 /***/ }),
-/* 340 */
+/* 360 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -5039,7 +7008,7 @@ var image = "<symbol viewBox=\"0 0 128 64\" id=\"pic_email\" > <title>email</tit
 module.exports = sprite.add(image, "pic_email");
 
 /***/ }),
-/* 341 */
+/* 361 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -5048,7 +7017,7 @@ var image = "<symbol viewBox=\"0 0 128 64\" id=\"pic_image-repo\" > <title>Artbo
 module.exports = sprite.add(image, "pic_image-repo");
 
 /***/ }),
-/* 342 */
+/* 362 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -5057,7 +7026,7 @@ var image = "<symbol viewBox=\"0 0 128 64\" id=\"pic_network\" > <title>pic_netw
 module.exports = sprite.add(image, "pic_network");
 
 /***/ }),
-/* 343 */
+/* 363 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -5066,7 +7035,7 @@ var image = "<symbol viewBox=\"0 0 128 64\" id=\"pic_node\" > <title>pic_node</t
 module.exports = sprite.add(image, "pic_node");
 
 /***/ }),
-/* 344 */
+/* 364 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -5075,7 +7044,7 @@ var image = "<symbol viewBox=\"0 0 128 64\" id=\"pic_plug\" > <title>pic</title>
 module.exports = sprite.add(image, "pic_plug");
 
 /***/ }),
-/* 345 */
+/* 365 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -5084,7 +7053,7 @@ var image = "<symbol viewBox=\"0 0 128 64\" id=\"pic_stack-repo\" > <title>Artbo
 module.exports = sprite.add(image, "pic_stack-repo");
 
 /***/ }),
-/* 346 */
+/* 366 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -5093,7 +7062,7 @@ var image = "<symbol viewBox=\"0 0 128 64\" id=\"pic_success\" > <title>pic</tit
 module.exports = sprite.add(image, "pic_success");
 
 /***/ }),
-/* 347 */
+/* 367 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -5102,7 +7071,7 @@ var image = "<symbol viewBox=\"0 0 128 64\" id=\"pic_virtual-machine\" > <title>
 module.exports = sprite.add(image, "pic_virtual-machine");
 
 /***/ }),
-/* 348 */
+/* 368 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -5111,7 +7080,7 @@ var image = "<symbol viewBox=\"0 0 128 64\" id=\"pic_warehouse\" > <title>wareho
 module.exports = sprite.add(image, "pic_warehouse");
 
 /***/ }),
-/* 349 */
+/* 369 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -5120,7 +7089,7 @@ var image = "<symbol viewBox=\"0 0 330 88\" id=\"dashboard_lenovo\" > <title>len
 module.exports = sprite.add(image, "dashboard_lenovo");
 
 /***/ }),
-/* 350 */
+/* 370 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -5129,7 +7098,7 @@ var image = "<symbol viewBox=\"0 0 330 88\" id=\"dashboard_vmware\" > <title>vmw
 module.exports = sprite.add(image, "dashboard_vmware");
 
 /***/ }),
-/* 351 */
+/* 371 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -5138,7 +7107,7 @@ var image = "<symbol viewBox=\"0 0 330 88\" id=\"dashboard_xen\" > <title>xen</t
 module.exports = sprite.add(image, "dashboard_xen");
 
 /***/ }),
-/* 352 */
+/* 372 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -5147,7 +7116,7 @@ var image = "<symbol viewBox=\"0 0 200 200\" id=\"image-icon_fedora\" > <title>A
 module.exports = sprite.add(image, "image-icon_fedora");
 
 /***/ }),
-/* 353 */
+/* 373 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -5156,7 +7125,7 @@ var image = "<symbol viewBox=\"0 0 200 200\" id=\"image-icon_nginx\" > <title>Ar
 module.exports = sprite.add(image, "image-icon_nginx");
 
 /***/ }),
-/* 354 */
+/* 374 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -5165,7 +7134,7 @@ var image = "<symbol viewBox=\"0 0 200 200\" id=\"image-icon_php\" > <title>Artb
 module.exports = sprite.add(image, "image-icon_php");
 
 /***/ }),
-/* 355 */
+/* 375 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -5174,7 +7143,7 @@ var image = "<symbol viewBox=\"0 0 200 200\" id=\"image-icon_postgres\" > <title
 module.exports = sprite.add(image, "image-icon_postgres");
 
 /***/ }),
-/* 356 */
+/* 376 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -5183,7 +7152,7 @@ var image = "<symbol viewBox=\"0 0 200 200\" id=\"image-icon_python\" > <title>A
 module.exports = sprite.add(image, "image-icon_python");
 
 /***/ }),
-/* 357 */
+/* 377 */
 /***/ (function(module, exports, __webpack_require__) {
 
 ;
@@ -5192,7 +7161,7 @@ var image = "<symbol viewBox=\"0 0 200 200\" id=\"image-icon_redis\" > <title>Ar
 module.exports = sprite.add(image, "image-icon_redis");
 
 /***/ }),
-/* 358 */
+/* 378 */
 /***/ (function(module, exports) {
 
 /**
@@ -5442,20 +7411,20 @@ module.exports = Sprite;
 
 
 /***/ }),
-/* 359 */
+/* 379 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
 /* styles */
-__webpack_require__(363)
+__webpack_require__(388)
 
-var Component = __webpack_require__(12)(
+var Component = __webpack_require__(3)(
   /* script */
-  __webpack_require__(33),
+  __webpack_require__(36),
   /* template */
-  __webpack_require__(37),
+  __webpack_require__(45),
   /* scopeId */
-  "data-v-22616d1c",
+  "data-v-5fac9fca",
   /* cssModules */
   null
 )
@@ -5464,18 +7433,63 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 360 */
+/* 380 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
 /* styles */
-__webpack_require__(362)
+__webpack_require__(390)
+__webpack_require__(389)
 
-var Component = __webpack_require__(12)(
+var Component = __webpack_require__(3)(
   /* script */
-  __webpack_require__(34),
+  __webpack_require__(37),
   /* template */
-  __webpack_require__(36),
+  __webpack_require__(46),
+  /* scopeId */
+  "data-v-6acd61e1",
+  /* cssModules */
+  null
+)
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 381 */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+/* styles */
+__webpack_require__(386)
+
+var Component = __webpack_require__(3)(
+  /* script */
+  __webpack_require__(38),
+  /* template */
+  __webpack_require__(43),
+  /* scopeId */
+  "data-v-00a0f62d",
+  /* cssModules */
+  null
+)
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 382 */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+/* styles */
+__webpack_require__(387)
+
+var Component = __webpack_require__(3)(
+  /* script */
+  __webpack_require__(39),
+  /* template */
+  __webpack_require__(44),
   /* scopeId */
   null,
   /* cssModules */
@@ -5486,20 +7500,20 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 361 */
+/* 383 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
 /* styles */
-__webpack_require__(364)
+__webpack_require__(392)
 
-var Component = __webpack_require__(12)(
+var Component = __webpack_require__(3)(
   /* script */
-  __webpack_require__(35),
+  __webpack_require__(40),
   /* template */
-  __webpack_require__(38),
+  __webpack_require__(48),
   /* scopeId */
-  "data-v-5471f490",
+  null,
   /* cssModules */
   null
 )
@@ -5508,23 +7522,67 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 362 */
+/* 384 */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+/* styles */
+__webpack_require__(391)
+
+var Component = __webpack_require__(3)(
+  /* script */
+  __webpack_require__(41),
+  /* template */
+  __webpack_require__(47),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 385 */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+/* styles */
+__webpack_require__(393)
+
+var Component = __webpack_require__(3)(
+  /* script */
+  __webpack_require__(42),
+  /* template */
+  __webpack_require__(49),
+  /* scopeId */
+  "data-v-fdc62962",
+  /* cssModules */
+  null
+)
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 386 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(89);
+var content = __webpack_require__(103);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // add the styles to the DOM
-var update = __webpack_require__(13)(content, {});
+var update = __webpack_require__(2)(content, {});
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
 	// When the styles change, update the <style> tags
 	if(!content.locals) {
-		module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-rewriter.js?{\"id\":\"data-v-17753554\",\"scoped\":false,\"hasInlineConfig\":false}!../../../node_modules/sass-loader/lib/loader.js!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./dao-modal.vue", function() {
-			var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-rewriter.js?{\"id\":\"data-v-17753554\",\"scoped\":false,\"hasInlineConfig\":false}!../../../node_modules/sass-loader/lib/loader.js!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./dao-modal.vue");
+		module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-rewriter.js?{\"id\":\"data-v-00a0f62d\",\"scoped\":true,\"hasInlineConfig\":false}!../../../node_modules/sass-loader/lib/loader.js!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./dao-dropdown-menu.vue", function() {
+			var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-rewriter.js?{\"id\":\"data-v-00a0f62d\",\"scoped\":true,\"hasInlineConfig\":false}!../../../node_modules/sass-loader/lib/loader.js!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./dao-dropdown-menu.vue");
 			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 			update(newContent);
 		});
@@ -5534,23 +7592,23 @@ if(false) {
 }
 
 /***/ }),
-/* 363 */
+/* 387 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(90);
+var content = __webpack_require__(104);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // add the styles to the DOM
-var update = __webpack_require__(13)(content, {});
+var update = __webpack_require__(2)(content, {});
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
 	// When the styles change, update the <style> tags
 	if(!content.locals) {
-		module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-rewriter.js?{\"id\":\"data-v-22616d1c\",\"scoped\":true,\"hasInlineConfig\":false}!../../../node_modules/sass-loader/lib/loader.js!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./dao-callout.vue", function() {
-			var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-rewriter.js?{\"id\":\"data-v-22616d1c\",\"scoped\":true,\"hasInlineConfig\":false}!../../../node_modules/sass-loader/lib/loader.js!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./dao-callout.vue");
+		module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-rewriter.js?{\"id\":\"data-v-079be322\",\"scoped\":false,\"hasInlineConfig\":false}!../../../node_modules/sass-loader/lib/loader.js!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./dao-dropdown.vue", function() {
+			var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-rewriter.js?{\"id\":\"data-v-079be322\",\"scoped\":false,\"hasInlineConfig\":false}!../../../node_modules/sass-loader/lib/loader.js!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./dao-dropdown.vue");
 			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 			update(newContent);
 		});
@@ -5560,23 +7618,23 @@ if(false) {
 }
 
 /***/ }),
-/* 364 */
+/* 388 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(91);
+var content = __webpack_require__(105);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // add the styles to the DOM
-var update = __webpack_require__(13)(content, {});
+var update = __webpack_require__(2)(content, {});
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
 	// When the styles change, update the <style> tags
 	if(!content.locals) {
-		module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-rewriter.js?{\"id\":\"data-v-5471f490\",\"scoped\":true,\"hasInlineConfig\":false}!../../../node_modules/sass-loader/lib/loader.js!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./dao-switch.vue", function() {
-			var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-rewriter.js?{\"id\":\"data-v-5471f490\",\"scoped\":true,\"hasInlineConfig\":false}!../../../node_modules/sass-loader/lib/loader.js!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./dao-switch.vue");
+		module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-rewriter.js?{\"id\":\"data-v-5fac9fca\",\"scoped\":true,\"hasInlineConfig\":false}!../../../node_modules/sass-loader/lib/loader.js!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./dao-callout.vue", function() {
+			var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-rewriter.js?{\"id\":\"data-v-5fac9fca\",\"scoped\":true,\"hasInlineConfig\":false}!../../../node_modules/sass-loader/lib/loader.js!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./dao-callout.vue");
 			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 			update(newContent);
 		});
@@ -5586,42 +7644,179 @@ if(false) {
 }
 
 /***/ }),
-/* 365 */
+/* 389 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(106);
+if(typeof content === 'string') content = [[module.i, content, '']];
+// add the styles to the DOM
+var update = __webpack_require__(2)(content, {});
+if(content.locals) module.exports = content.locals;
+// Hot Module Replacement
+if(false) {
+	// When the styles change, update the <style> tags
+	if(!content.locals) {
+		module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-rewriter.js?{\"id\":\"data-v-6acd61e1\",\"scoped\":false,\"hasInlineConfig\":false}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=1!./dao-dropdown-item.vue", function() {
+			var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-rewriter.js?{\"id\":\"data-v-6acd61e1\",\"scoped\":false,\"hasInlineConfig\":false}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=1!./dao-dropdown-item.vue");
+			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+			update(newContent);
+		});
+	}
+	// When the module is disposed, remove the <style> tags
+	module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 390 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(107);
+if(typeof content === 'string') content = [[module.i, content, '']];
+// add the styles to the DOM
+var update = __webpack_require__(2)(content, {});
+if(content.locals) module.exports = content.locals;
+// Hot Module Replacement
+if(false) {
+	// When the styles change, update the <style> tags
+	if(!content.locals) {
+		module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-rewriter.js?{\"id\":\"data-v-6acd61e1\",\"scoped\":true,\"hasInlineConfig\":false}!../../../node_modules/sass-loader/lib/loader.js!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./dao-dropdown-item.vue", function() {
+			var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-rewriter.js?{\"id\":\"data-v-6acd61e1\",\"scoped\":true,\"hasInlineConfig\":false}!../../../node_modules/sass-loader/lib/loader.js!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./dao-dropdown-item.vue");
+			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+			update(newContent);
+		});
+	}
+	// When the module is disposed, remove the <style> tags
+	module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 391 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(108);
+if(typeof content === 'string') content = [[module.i, content, '']];
+// add the styles to the DOM
+var update = __webpack_require__(2)(content, {});
+if(content.locals) module.exports = content.locals;
+// Hot Module Replacement
+if(false) {
+	// When the styles change, update the <style> tags
+	if(!content.locals) {
+		module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-rewriter.js?{\"id\":\"data-v-d4c5ec6e\",\"scoped\":false,\"hasInlineConfig\":false}!../../../node_modules/sass-loader/lib/loader.js!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./dropdown.vue", function() {
+			var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-rewriter.js?{\"id\":\"data-v-d4c5ec6e\",\"scoped\":false,\"hasInlineConfig\":false}!../../../node_modules/sass-loader/lib/loader.js!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./dropdown.vue");
+			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+			update(newContent);
+		});
+	}
+	// When the module is disposed, remove the <style> tags
+	module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 392 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(109);
+if(typeof content === 'string') content = [[module.i, content, '']];
+// add the styles to the DOM
+var update = __webpack_require__(2)(content, {});
+if(content.locals) module.exports = content.locals;
+// Hot Module Replacement
+if(false) {
+	// When the styles change, update the <style> tags
+	if(!content.locals) {
+		module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-rewriter.js?{\"id\":\"data-v-e7260056\",\"scoped\":false,\"hasInlineConfig\":false}!../../../node_modules/sass-loader/lib/loader.js!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./dao-modal.vue", function() {
+			var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-rewriter.js?{\"id\":\"data-v-e7260056\",\"scoped\":false,\"hasInlineConfig\":false}!../../../node_modules/sass-loader/lib/loader.js!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./dao-modal.vue");
+			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+			update(newContent);
+		});
+	}
+	// When the module is disposed, remove the <style> tags
+	module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 393 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(110);
+if(typeof content === 'string') content = [[module.i, content, '']];
+// add the styles to the DOM
+var update = __webpack_require__(2)(content, {});
+if(content.locals) module.exports = content.locals;
+// Hot Module Replacement
+if(false) {
+	// When the styles change, update the <style> tags
+	if(!content.locals) {
+		module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-rewriter.js?{\"id\":\"data-v-fdc62962\",\"scoped\":true,\"hasInlineConfig\":false}!../../../node_modules/sass-loader/lib/loader.js!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./dao-switch.vue", function() {
+			var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-rewriter.js?{\"id\":\"data-v-fdc62962\",\"scoped\":true,\"hasInlineConfig\":false}!../../../node_modules/sass-loader/lib/loader.js!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./dao-switch.vue");
+			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+			update(newContent);
+		});
+	}
+	// When the module is disposed, remove the <style> tags
+	module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 394 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var _assign = __webpack_require__(30);
+var _assign = __webpack_require__(33);
 
 var _assign2 = _interopRequireDefault(_assign);
 
-var _keys = __webpack_require__(31);
+var _keys = __webpack_require__(34);
 
 var _keys2 = _interopRequireDefault(_keys);
 
-__webpack_require__(32);
+__webpack_require__(35);
 
-var _daoCallout = __webpack_require__(26);
+var _daoCallout = __webpack_require__(28);
 
 var _daoCallout2 = _interopRequireDefault(_daoCallout);
 
-var _daoModal = __webpack_require__(27);
+var _daoModal = __webpack_require__(30);
 
 var _daoModal2 = _interopRequireDefault(_daoModal);
 
-var _daoSwitch = __webpack_require__(29);
+var _daoSwitch = __webpack_require__(32);
 
 var _daoSwitch2 = _interopRequireDefault(_daoSwitch);
 
-__webpack_require__(28);
+var _daoDropdown = __webpack_require__(29);
+
+var _daoDropdown2 = _interopRequireDefault(_daoDropdown);
+
+__webpack_require__(31);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var daoStyle = {
   daoCallout: _daoCallout2.default,
   daoModal: _daoModal2.default,
-  daoSwitch: _daoSwitch2.default
+  daoSwitch: _daoSwitch2.default,
+  daoDropdown: _daoDropdown2.default,
+  daoDropdownMenu: _daoDropdown2.default.Menu,
+  daoDropdownItem: _daoDropdown2.default.Item
 };
 
 var install = function install(Vue) {

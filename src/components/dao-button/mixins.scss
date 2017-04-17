@@ -1,4 +1,6 @@
 @mixin button-variant($color, $background, $border) {
+  $generate-colors: generate-color($background);
+
   color: $color;
   border-color: $border;
   background-color: $background;
@@ -8,7 +10,6 @@
   box-shadow: $btn-box-shadow;
   text-shadow: $btn-text-shadow;
 
-  $generate-colors: generate-color($background);
   &:hover {
     background-image: linear-gradient(to top, rgba(map_get($generate-colors, 'darken'), .5) 0%,
     rgba(map_get($generate-colors, 'lighten'), .5) 100%);
