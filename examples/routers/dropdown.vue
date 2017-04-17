@@ -1,0 +1,407 @@
+<template>
+  <div>
+    <div class="dao-table-container">
+      <div class="dao-table-toolbar">
+        <div class="btn-group">
+          <div class="dao-btn-group">
+            <div class="dao-btn ghost">保存</div>
+            <div class="dao-btn dao-icon ghost">
+              <svg class="icon"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon_down-arrow"></use></svg>
+            </div>
+          </div>
+          <div class="dao-btn-group">
+            <div class="dao-btn ghost">保存</div>
+            <div class="dao-btn ghost">保存</div>
+            <div class="dao-btn ghost">保存</div>
+          </div>
+          <dao-dropdown
+            class="dao-btn-group"
+            :append-to-body="true"
+            trigger="click"
+            placement="bottom">
+            <div class="dao-btn ghost">保存</div>
+            <div class="dao-btn dao-icon ghost">
+              <svg class="icon"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon_down-arrow"></use></svg>
+            </div>
+            <dao-dropdown-menu slot="list">
+              <dao-dropdown-item :is-title="true">扩展</dao-dropdown-item>
+              <dao-dropdown-item>
+                <svg class="icon"><use xlink:href="#icon"></use></svg>
+                <span class="text">扩展</span>
+              </dao-dropdown-item>
+              <dao-dropdown-item :is-divided="true"></dao-dropdown-item>
+              <dao-dropdown-item>扩展</dao-dropdown-item>
+            </dao-dropdown-menu>
+          </dao-dropdown>
+          <div class="dao-btn-group">
+            <div class="dao-btn ghost">保存</div>
+            <dao-dropdown
+              trigger="click"
+              :placement="placement">
+              <div class="dao-btn dao-icon ghost">
+                <svg class="icon"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon_down-arrow"></use></svg>
+              </div>
+              <dao-dropdown-menu slot="list">
+                <dao-dropdown-item :is-title="true">扩展</dao-dropdown-item>
+                <dao-dropdown-item>
+                  <svg class="icon"><use xlink:href="#icon"></use></svg>
+                  <span class="text">扩展</span>
+                </dao-dropdown-item>
+                <dao-dropdown-item :is-divided="true"></dao-dropdown-item>
+                <dao-dropdown-item>扩展</dao-dropdown-item>
+              </dao-dropdown-menu>
+            </dao-dropdown>
+          </div>
+          <div class="dao-btn ghost has-icon">
+            <svg class="icon">
+              <use xlink:href="#icon_tag"></use>
+            </svg>
+            <span class="text">编辑标签</span>
+          </div>
+          <dao-dropdown
+            :placement="placement">
+            <button class="dao-btn blue" href="javascript:void(0)">
+              下拉菜单
+            </button>
+            <dao-dropdown-menu slot="list">
+              <dao-dropdown-item :is-title="true">扩展</dao-dropdown-item>
+              <dao-dropdown-item>
+                <svg class="icon"><use xlink:href="#icon"></use></svg>
+                <span class="text">扩展</span>
+              </dao-dropdown-item>
+              <dao-dropdown-item :is-divided="true"></dao-dropdown-item>
+              <dao-dropdown-item>扩展</dao-dropdown-item>
+            </dao-dropdown-menu>
+          </dao-dropdown>
+        </div>
+        <div class="table-count">
+          <span>共 10 容器，已选中 0 个容器</span>
+        </div>
+        <div class="table-filters">
+          <!-- <dao-input-container search="true">
+            <input placeholder="搜索" type="text">
+          </dao-input-container> -->
+          <div class="dao-btn ghost has-icon">
+            <svg class="icon">
+              <use xlink:href="#icon_filter"></use>
+            </svg>
+            <span class="text">过滤</span>
+          </div>
+          <div dao-dropdown class="dao-btn-group">
+            <div dao-dropdown-toggle class="dao-btn ghost has-icon">
+              <svg class="icon">
+                <use xlink:href="#icon_eye"></use>
+              </svg>
+              <span class="text">视图</span>
+            </div>
+            <div dao-dropdown-menu role="menu" class="dropdown-menu-left" aria-labelledby="single-button">
+              <ul>
+                <li role="menuitem">姓名</li>
+                <li role="menuitem">电子邮箱</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="dao-table-main">
+        <table class="dao-table row sortable">
+          <thead>
+            <tr>
+              <th>
+                <input type="checkbox">
+                <svg>
+                  <use xlink:href="#icon_user"></use>
+                </svg>
+                <span>姓名</span>
+              </th>
+              <th>
+                <svg>
+                  <use xlink:href="#icon_mail"></use>
+                </svg>
+                <span>电子邮箱</span>
+              </th>
+              <th>用户ID</th>
+              <th class="sorted descending">首次访问</th>
+              <th class="sorted ascending">注册时间</th>
+            </tr>
+          </thead>
+          <tr class="selected">
+            <!-- 姓名 -->
+            <td class="name">
+              <svg>
+                <use xlink:href="#icon_user"></use>
+              </svg>
+              <a>zhangshanghai</a>
+            </td>
+            <!-- 电子邮箱 -->
+            <td class="link">
+              <a href="">
+                <svg>
+                  <use xlink:href="#icon_mail"></use>
+                </svg>
+                <span>hifreeplums@hotmail.com</span>
+              </a>
+            </td>
+            <!-- 用户ID -->
+            <td class="ellipsis" style="max-width:100px">
+              47f10a62-546c-4096-be4b-bf2d8d470a32
+            </td>
+            <!-- 首次访问 -->
+            <td>19 分钟前</td>
+            <!-- 注册时间 -->
+            <td>11 小时前</td>
+          </tr>
+          <tr>
+            <!-- 姓名 -->
+            <td class="name">
+              <input type="checkbox">
+              <svg>
+                <use xlink:href="#icon_user"></use>
+              </svg>
+              <a>zhangshanghai</a>
+            </td>
+            <!-- 电子邮箱 -->
+            <td>
+              <svg>
+                <use xlink:href="#icon_mail"></use>
+              </svg>
+              <span>hifreeplums@hotmail.com</span>
+            </td>
+            <!-- 用户ID -->
+            <td class="ellipsis" style="max-width:100px">
+              47f10a62-546c-4096-be4b-bf2d8d470a32
+            </td>
+            <!-- 首次访问 -->
+            <td>19 分钟前</td>
+            <!-- 注册时间 -->
+            <td>
+              <dao-dropdown
+                :placement="placement"
+                trigger="click"
+                :append-to-body="true">
+                <button class="dao-btn blue">
+                  下拉菜单
+                </button>
+                <dao-dropdown-menu slot="list">
+                  <dao-dropdown-item :is-title="true">扩展</dao-dropdown-item>
+                  <dao-dropdown-item>
+                    <svg class="icon"><use xlink:href="#icon"></use></svg>
+                    <span class="text">扩展</span>
+                  </dao-dropdown-item>
+                  <dao-dropdown-item :is-divided="true"></dao-dropdown-item>
+                  <dao-dropdown-item>扩展</dao-dropdown-item>
+                </dao-dropdown-menu>
+              </dao-dropdown>
+            </td>
+          </tr>
+          <tr>
+            <!-- 姓名 -->
+            <td class="name">
+              <input type="checkbox">
+              <svg>
+                <use xlink:href="#icon_user"></use>
+              </svg>
+              <a>zhangshanghai</a>
+            </td>
+            <!-- 电子邮箱 -->
+            <td>hifreeplums@hotmail.com</td>
+            <!-- 用户ID -->
+            <td class="ellipsis" style="max-width:100px">
+              47f10a62-546c-4096-be4b-bf2d8d470a32
+            </td>
+            <!-- 首次访问 -->
+            <td>19 分钟前</td>
+            <!-- 注册时间 -->
+            <td>
+              <dao-dropdown
+                :placement="placement"
+                trigger="click"
+                :append-to-body="true">
+                <button class="dao-btn blue">
+                  下拉菜单
+                </button>
+                <dao-dropdown-menu slot="list">
+                  <dao-dropdown-item :is-title="true">扩展</dao-dropdown-item>
+                  <dao-dropdown-item>
+                    <svg class="icon"><use xlink:href="#icon"></use></svg>
+                    <span class="text">扩展</span>
+                  </dao-dropdown-item>
+                  <dao-dropdown-item :is-divided="true"></dao-dropdown-item>
+                  <dao-dropdown-item>扩展</dao-dropdown-item>
+                </dao-dropdown-menu>
+              </dao-dropdown>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="dao-pagination">
+        <button class="dao-btn ghost has-icon">
+          <svg class="icon"><use xlink:href="#icon_caret-left"></use></svg><span class="text">上一页</span>
+        </button>
+        <button class="dao-btn ghost has-icon">
+          <span class="text">下一页</span><svg class="icon"><use xlink:href="#icon_caret-right"></use></svg>
+        </button>
+        <span class="dao-page-number">第 1 页，共 5 页</span>
+      </div>
+    </div>
+    
+
+    <!-- <dao-dropdown
+      trigger="click"
+      :append-to-body="false"
+      :placement="placement">
+      <button class="dao-btn blue">
+        下拉菜单
+      </button>
+      <dao-dropdown-menu slot="list">
+        <dao-dropdown-item :is-title="true">扩展</dao-dropdown-item>
+        <dao-dropdown-item @click="f1">扩展</dao-dropdown-item>
+        <dao-dropdown-item :is-disabled="true">
+          <svg class="icon"><use xlink:href="#icon"></use></svg>
+          <span class="text">扩展</span>
+        </dao-dropdown-item>
+        <dao-dropdown-item :is-divided="true"></dao-dropdown-item>
+        <dao-dropdown placement="right-start" :append-to-body="false">
+          <dao-dropdown-item>
+            <span>扩展</span>
+            <svg style="width:16px;height:16px;float:right;"><use xlink:href="#icon_caret-right"></use></svg>
+          </dao-dropdown-item>
+          <dao-dropdown-menu slot="list">
+            <dao-dropdown-item @click="f2">adsfasd</dao-dropdown-item>
+            <dao-dropdown placement="right-start" :append-to-body="false">
+              <dao-dropdown-item>
+                <span>adsfasd</span>
+                <svg style="width:16px;height:16px;float:right;"><use xlink:href="#icon_caret-right"></use></svg>
+              </dao-dropdown-item>
+              <dao-dropdown-menu slot="list">
+                <dao-dropdown-item @click="f2">adsfasd</dao-dropdown-item>
+              </dao-dropdown-menu>
+            </dao-dropdown>
+            
+          </dao-dropdown-menu>
+        </dao-dropdown>
+      </dao-dropdown-menu>
+    </dao-dropdown> -->
+
+    <!-- <dao-dropdown
+      :append-to-body="false"
+      :placement="placement">
+      <button class="dao-btn blue">
+        下拉菜单
+      </button>
+      <dao-dropdown-menu slot="list">
+        <dao-dropdown-item :is-title="true">扩展</dao-dropdown-item>
+        <dao-dropdown-item @click="f1">扩展</dao-dropdown-item>
+        <dao-dropdown-item :is-disabled="true">
+          <svg class="icon"><use xlink:href="#icon"></use></svg>
+          <span class="text">扩展</span>
+        </dao-dropdown-item>
+        <dao-dropdown-item :is-divided="true"></dao-dropdown-item>
+        <dao-dropdown placement="right-start" :append-to-body="false">
+          <dao-dropdown-item>
+            <span>扩展</span>
+            <svg style="width:16px;height:16px;float:right;"><use xlink:href="#icon_caret-right"></use></svg>
+          </dao-dropdown-item>
+          <dao-dropdown-menu slot="list">
+            <dao-dropdown-item @click="f2">adsfasd</dao-dropdown-item>
+            <dao-dropdown placement="right-start" :append-to-body="false">
+              <dao-dropdown-item>
+                <span>adsfasd</span>
+                <svg style="width:16px;height:16px;float:right;"><use xlink:href="#icon_caret-right"></use></svg>
+              </dao-dropdown-item>
+              <dao-dropdown-menu slot="list">
+                <dao-dropdown-item @click="f2">adsfasd</dao-dropdown-item>
+              </dao-dropdown-menu>
+            </dao-dropdown>
+            
+          </dao-dropdown-menu>
+        </dao-dropdown>
+      </dao-dropdown-menu>
+    </dao-dropdown> -->
+
+    <!-- <dao-dropdown
+      :placement="placement">
+      <button class="dao-btn blue" href="javascript:void(0)">
+        下拉菜单
+      </button>
+      <dao-dropdown-menu slot="list">
+        <dao-dropdown-item :is-title="true">扩展</dao-dropdown-item>
+        <dao-dropdown-item>
+          <svg class="icon"><use xlink:href="#icon"></use></svg>
+          <span class="text">扩展</span>
+        </dao-dropdown-item>
+        <dao-dropdown-item :is-divided="true"></dao-dropdown-item>
+        <dao-dropdown-item>扩展</dao-dropdown-item>
+      </dao-dropdown-menu>
+    </dao-dropdown> -->
+
+    <!-- <Dropdown trigger="click">
+      <a href="javascript:void(0)">
+        北京小吃
+        <Icon type="arrow-down-b"></Icon>
+      </a>
+      <Dropdown-menu slot="list">
+        <Dropdown-item>驴打滚</Dropdown-item>
+        <Dropdown-item>炸酱面</Dropdown-item>
+        <Dropdown-item disabled>豆汁儿</Dropdown-item>
+        <Dropdown placement="right-start">
+          <Dropdown-item>
+            北京烤鸭
+            <Icon type="ios-arrow-right"></Icon>
+          </Dropdown-item>
+          <Dropdown-menu slot="list">
+            <Dropdown-item>挂炉烤鸭</Dropdown-item>
+            <Dropdown-item>焖炉烤鸭</Dropdown-item>
+          </Dropdown-menu>
+        </Dropdown>
+        <Dropdown-item>冰糖葫芦</Dropdown-item>
+      </Dropdown-menu>
+    </Dropdown> -->
+    
+    <!-- <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br> -->
+  </div>
+</template>
+<style lang="scss" scoped>
+  .extend-body {
+    width:3000px;height:50px;background-color:blue;
+  }
+  table {
+    border: 1px solid black;
+  }
+  tr {
+    border-bottom: 1px solid black;
+    &:nth-last-child {
+      border-bottom: none;
+    }
+    td {
+      padding: 10px;
+      border-right: 1px solid black;
+      &:nth-last-of-type(1) {
+        border-right: none;
+      }
+    }
+  }
+
+</style>
+<script>
+  export default {
+    data() {
+      return {
+        placement: 'bottom-start',
+      };
+    },
+    methods: {
+      f1() {
+        alert(1);
+      },
+      f2() {
+        alert(2);
+      },
+    },
+  };
+</script>

@@ -1,0 +1,15 @@
+* {
+  box-sizing: border-box;
+}
+
+svg.icon {
+  width: 16px;
+  height: 16px;
+  fill: currentColor;
+  display: inline-block;
+  vertical-align: middle;
+  & + .text {
+    display: inline-block;
+    vertical-align: middle;
+  }
+}

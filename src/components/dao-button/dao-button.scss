@@ -162,3 +162,10 @@ a.dao-btn {
     }
   }
 }
+
+.dao-btn {
+  &.btn-sm {
+    font-size: 13px;
+    padding: 5px 10px;
+  }
+}
