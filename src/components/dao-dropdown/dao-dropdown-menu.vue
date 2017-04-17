@@ -1,8 +1,8 @@
 <template>
-    <ul class="dao-dropdown-menu"><slot></slot></ul>
+  <ul class="dao-dropdown-menu"><slot></slot></ul>
 </template>
 <script>
-    export default {};
+  export default {};
 </script>
 <style scoped lang="scss">
   @import '../dao-color.scss';

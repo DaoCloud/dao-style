@@ -1,9 +1,9 @@
 // scss-lint:disable QualifyingElement
 
 // for variable
-@import "./dao-mixin.scss";
-@import "./variables.scss";
-@import "./mixins.scss";
+@import './dao-mixin.scss';
+@import './variables.scss';
+@import './mixins.scss';
 
 // 控制 dao-btn 与 dao-btn 之间的间隙
 .dao-btn + .dao-btn,
@@ -16,13 +16,13 @@
 // Make the div behave like a button
 .dao-btn-group,
 .dao-btn-group-vertical {
+  position: relative;
   // 之所以用inline-table是因为如果里面有两个 dao-button，
   // 并且两个 dao-button 的 HTML 之间有空格或换行的话，
   // 实际显示出来的两个 dao-button 之间会有一个空隙，
   // 改成 inline-table 就不会有空隙了，但目前不知道会不会有副作用
-  display: inline-table;
 
-  position: relative;
+  display: inline-table;
 
   vertical-align: middle; // match .dao-btn alignment given font-size hack above
   > .dao-btn {
@@ -131,13 +131,13 @@
 // See https://github.com/twbs/bootstrap/pull/12794 and
 // https://github.com/twbs/bootstrap/pull/14559 for more information.
 
-[data-toggle="buttons"] {
+[data-toggle='buttons'] {
   > .dao-btn, > .dao-btn-group > .dao-btn {
-    input[type="radio"],
-    input[type="checkbox"] {
-      clip: rect(0,0,0,0);
-
+    input[type='radio'],
+    input[type='checkbox'] {
       position: absolute;
+
+      clip: rect(0,0,0,0);
 
       pointer-events: none;
     }

@@ -2,45 +2,44 @@
 //
 // Used in conjunction with global variables to enable certain theme features.
 @mixin box-shadow($shadow...) {
-    @if $enable-shadows {
-        box-shadow: $shadow;
-    }
+  @if $enable-shadows {
+    box-shadow: $shadow;
+  }
 }
 
 @mixin drop-shadow($shadow...) {
-    @if $enable-shadows {
-        filter: drop-shadow($shadow);
-
-        // IE 10+
-        @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
-            // fallback to box-shadow
-            box-shadow:$shadow;
-        }
+  @if $enable-shadows {
+    filter: drop-shadow($shadow);
+    // IE 10+
+    @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+      // fallback to box-shadow
+      box-shadow: $shadow;
     }
+  }
 }
 
 
 @mixin text-shadow($shadow...) {
-    text-shadow: $shadow;
+  text-shadow: $shadow;
 }
 
 @mixin transition($transition...) {
-    @if $enable-transitions {
-        transition: $transition;
-    }
+  @if $enable-transitions {
+    transition: $transition;
+  }
 }
 
 @mixin box-sizing($box-sizing) {
-    box-sizing: $box-sizing;
-    & *,
-    & *::before,
-    & *::after {
-        box-sizing: inherit;
-    }
+  box-sizing: $box-sizing;
+  & *,
+  & *::before,
+  & *::after {
+    box-sizing: inherit;
+  }
 }
 
 @function shade($color, $percentage) {
-    @return mix(black, $color, $percentage);
+  @return mix(black, $color, $percentage);
 }
 
 @mixin hover {
@@ -48,28 +47,31 @@
     // See Media Queries Level 4: http://drafts.csswg.org/mediaqueries/#hover
     // Currently shimmed by https://github.com/twbs/mq4-hover-shim
     @media (hover: hover) {
-      &:hover { @content }
+      &:hover {
+        @content
+      }
     }
   }
   @else {
-    &:hover { @content }
+    &:hover {
+      @content
+    }
   }
 }
 
 @mixin hover-focus {
-    @if $enable-hover-media-query {
-        &:focus {
-            @content
-        }
-        @include hover {
-            @content
-        }
+  @if $enable-hover-media-query {
+    @include hover {
+      @content
     }
-    @else {
-        &:focus,
-        &:hover {
-            @content
-        }
+    &:focus {
+      @content
     }
+  }
+  @else {
+    &:focus,
+    &:hover {
+      @content
+    }
+  }
 }
-

@@ -18,12 +18,15 @@
       height: 30px;
       padding: 7px 10px;
 
-      color: $black-dark;
       cursor: pointer;
+
+      color: $black-dark;
       svg {
         width: 16px;
         height: 16px;
+
         vertical-align: middle;
+
         fill: $black-dark;
       }
       &:hover {
@@ -41,12 +44,15 @@
       height: 30px;
       padding: 7px 10px;
 
-      color: $grey-light;
       cursor: not-allowed;
+
+      color: $grey-light;
       svg {
         width: 16px;
         height: 16px;
+
         vertical-align: middle;
+
         fill: $grey-light;
       }
     }

@@ -10,11 +10,7 @@
     <!-- </transition> -->
   </div>
 </template>
-<style lang="scss">
-  .dao-dropdown {
-    display: inline-block;
-  }
-</style>
+
 <script>
   import daoDrop from '../dao-select/dropdown.vue';
   import clickoutside from '../../directives/clickoutside';
@@ -147,3 +143,9 @@
     }
   };
 </script>
+
+<style lang="scss">
+  .dao-dropdown {
+    display: inline-block;
+  }
+</style>

@@ -208,10 +208,9 @@
         </button>
         <span class="dao-page-number">第 1 页，共 5 页</span>
       </div>
-    </div>
-    
+    </div>    
 
-    <!-- <dao-dropdown
+    <dao-dropdown
       trigger="click"
       :append-to-body="false"
       :placement="placement">
@@ -246,113 +245,10 @@
           </dao-dropdown-menu>
         </dao-dropdown>
       </dao-dropdown-menu>
-    </dao-dropdown> -->
-
-    <!-- <dao-dropdown
-      :append-to-body="false"
-      :placement="placement">
-      <button class="dao-btn blue">
-        下拉菜单
-      </button>
-      <dao-dropdown-menu slot="list">
-        <dao-dropdown-item :is-title="true">扩展</dao-dropdown-item>
-        <dao-dropdown-item @click="f1">扩展</dao-dropdown-item>
-        <dao-dropdown-item :is-disabled="true">
-          <svg class="icon"><use xlink:href="#icon"></use></svg>
-          <span class="text">扩展</span>
-        </dao-dropdown-item>
-        <dao-dropdown-item :is-divided="true"></dao-dropdown-item>
-        <dao-dropdown placement="right-start" :append-to-body="false">
-          <dao-dropdown-item>
-            <span>扩展</span>
-            <svg style="width:16px;height:16px;float:right;"><use xlink:href="#icon_caret-right"></use></svg>
-          </dao-dropdown-item>
-          <dao-dropdown-menu slot="list">
-            <dao-dropdown-item @click="f2">adsfasd</dao-dropdown-item>
-            <dao-dropdown placement="right-start" :append-to-body="false">
-              <dao-dropdown-item>
-                <span>adsfasd</span>
-                <svg style="width:16px;height:16px;float:right;"><use xlink:href="#icon_caret-right"></use></svg>
-              </dao-dropdown-item>
-              <dao-dropdown-menu slot="list">
-                <dao-dropdown-item @click="f2">adsfasd</dao-dropdown-item>
-              </dao-dropdown-menu>
-            </dao-dropdown>
-            
-          </dao-dropdown-menu>
-        </dao-dropdown>
-      </dao-dropdown-menu>
-    </dao-dropdown> -->
-
-    <!-- <dao-dropdown
-      :placement="placement">
-      <button class="dao-btn blue" href="javascript:void(0)">
-        下拉菜单
-      </button>
-      <dao-dropdown-menu slot="list">
-        <dao-dropdown-item :is-title="true">扩展</dao-dropdown-item>
-        <dao-dropdown-item>
-          <svg class="icon"><use xlink:href="#icon"></use></svg>
-          <span class="text">扩展</span>
-        </dao-dropdown-item>
-        <dao-dropdown-item :is-divided="true"></dao-dropdown-item>
-        <dao-dropdown-item>扩展</dao-dropdown-item>
-      </dao-dropdown-menu>
-    </dao-dropdown> -->
-
-    <!-- <Dropdown trigger="click">
-      <a href="javascript:void(0)">
-        北京小吃
-        <Icon type="arrow-down-b"></Icon>
-      </a>
-      <Dropdown-menu slot="list">
-        <Dropdown-item>驴打滚</Dropdown-item>
-        <Dropdown-item>炸酱面</Dropdown-item>
-        <Dropdown-item disabled>豆汁儿</Dropdown-item>
-        <Dropdown placement="right-start">
-          <Dropdown-item>
-            北京烤鸭
-            <Icon type="ios-arrow-right"></Icon>
-          </Dropdown-item>
-          <Dropdown-menu slot="list">
-            <Dropdown-item>挂炉烤鸭</Dropdown-item>
-            <Dropdown-item>焖炉烤鸭</Dropdown-item>
-          </Dropdown-menu>
-        </Dropdown>
-        <Dropdown-item>冰糖葫芦</Dropdown-item>
-      </Dropdown-menu>
-    </Dropdown> -->
-    
-    <!-- <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br> -->
+    </dao-dropdown>
   </div>
 </template>
-<style lang="scss" scoped>
-  .extend-body {
-    width:3000px;height:50px;background-color:blue;
-  }
-  table {
-    border: 1px solid black;
-  }
-  tr {
-    border-bottom: 1px solid black;
-    &:nth-last-child {
-      border-bottom: none;
-    }
-    td {
-      padding: 10px;
-      border-right: 1px solid black;
-      &:nth-last-of-type(1) {
-        border-right: none;
-      }
-    }
-  }
 
-</style>
 <script>
   export default {
     data() {
