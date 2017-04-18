@@ -16,9 +16,7 @@ dao-checkbox
 
 dao-modal
 
-~~dao-dropdown~~
-
-~~dao-dropdown-tab~~
+dao-dropdown
 
 ~~dao-icon-with-text~~
 

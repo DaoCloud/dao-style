@@ -1,0 +1,145 @@
+// scss-lint:disable QualifyingElement
+
+// for variable
+@import './dao-mixin.scss';
+@import './variables.scss';
+@import './mixins.scss';
+
+// 控制 dao-btn 与 dao-btn 之间的间隙
+.dao-btn + .dao-btn,
+.dao-btn + .dao-btn-group,
+.dao-btn-group + .dao-btn,
+.dao-btn-group + .dao-btn-group {
+  margin-left: 10px;
+}
+
+// Make the div behave like a button
+.dao-btn-group,
+.dao-btn-group-vertical {
+  position: relative;
+  // 之所以用inline-table是因为如果里面有两个 dao-button，
+  // 并且两个 dao-button 的 HTML 之间有空格或换行的话，
+  // 实际显示出来的两个 dao-button 之间会有一个空隙，
+  // 改成 inline-table 就不会有空隙了，但目前不知道会不会有副作用
+
+  display: inline-table;
+
+  vertical-align: middle; // match .dao-btn alignment given font-size hack above
+  > .dao-btn {
+    position: relative;
+
+    @include hover {
+      z-index: 2;
+    }
+    // 修复宽度不够导致 dao-btn-group 内部的 dao-btn 换行问题
+    // float: left;
+    // Bring the "active" button to the front
+    &:focus,
+    &:active,
+    &.active {
+      z-index: 2;
+    }
+  }
+}
+
+.dao-btn-group {
+  white-space: nowrap; // 修复宽度不够导致 dao-btn-group 内部的 dao-btn 换行问题
+}
+
+// Prevent double borders when buttons are next to each other
+.dao-btn-group {
+  .dao-btn + .dao-btn,
+  .dao-btn + .dao-btn-group,
+  .dao-btn-group + .dao-btn,
+  .dao-btn-group + .dao-btn-group,
+  .dao-btn + .dao-dropdown,
+  .dao-dropdown + .dao-btn,
+  .dao-dropdown + .dao-dropdown {
+    margin-left: -$input-btn-border-width;
+  }
+}
+
+
+// Custom edits for including btn-groups within btn-groups (useful for including dropdown buttons within a btn-group)
+.dao-btn-group > .dao-btn:not(:first-child):not(:last-child):not(.dao-dropdown-toggle) {
+  border-radius: 0;
+}
+
+// Set corners individual because sometimes a single button can be in a .dao-btn-group and we need :first-child and :last-child to both match
+.dao-btn-group > .dao-btn:first-child {
+  margin-left: 0;
+  &:not(:last-child):not(.dao-dropdown-toggle) {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    // @include border-right-radius(0);
+  }
+}
+// Need .dao-dropdown-toggle since :last-child doesn't apply given a .dropdown-menu immediately after it
+.dao-btn-group > .dao-btn:last-child:not(:first-child),
+.dao-btn-group > .dao-dropdown-toggle:not(:first-child) {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  // @include border-left-radius(0);
+}
+
+// Custom edits for including btn-groups within btn-groups (useful for including dropdown buttons within a btn-group)
+.dao-btn-group > .dao-btn-group {
+  // 修复宽度不够导致 dao-btn-group 内部的 dao-btn 换行问题
+  // float: left;
+}
+
+// 修复在win下高度多1px
+.dao-btn-group > .dao-icon {
+  height: 32px;
+}
+.dao-btn-group > .dao-btn-group:not(:first-child):not(:last-child) > .dao-btn {
+  border-radius: 0;
+}
+.dao-btn-group > .dao-btn-group:first-child:not(:last-child) {
+  > .dao-btn:last-child, > .dao-dropdown-toggle {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    // @include border-right-radius(0);
+  }
+}
+.dao-btn-group > .dao-btn-group:last-child:not(:first-child) > .dao-btn:first-child {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  // @include border-left-radius(0);
+}
+
+.dao-btn-group > .dao-dropdown {
+  &:not(:first-child) > .dao-dropdown-rel > .dao-btn {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+  &:not(:last-child) > .dao-dropdown-rel > .dao-btn {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+}
+
+// Checkbox and radio options
+//
+// In order to support the browser's form validation feedback, powered by the
+// `required` attribute, we have to "hide" the inputs via `clip`. We cannot use
+// `display: none;` or `visibility: hidden;` as that also hides the popover.
+// Simply visually hiding the inputs via `opacity` would leave them clickable in
+// certain cases which is prevented by using `clip` and `pointer-events`.
+// This way, we ensure a DOM element is visible to position the popover from.
+//
+// See https://github.com/twbs/bootstrap/pull/12794 and
+// https://github.com/twbs/bootstrap/pull/14559 for more information.
+
+[data-toggle='buttons'] {
+  > .dao-btn, > .dao-btn-group > .dao-btn {
+    input[type='radio'],
+    input[type='checkbox'] {
+      position: absolute;
+
+      clip: rect(0,0,0,0);
+
+      pointer-events: none;
+    }
+  }
+}
