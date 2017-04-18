@@ -4,17 +4,16 @@
   color: $color;
   border-color: $border;
   background-color: $background;
-  background-image: linear-gradient(to top, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.06) 100%),
-  linear-gradient(to top, rgba(map_get($generate-colors, 'darken'), 0.5) 0%,
-  rgba(map_get($generate-colors, 'lighten'), 0.5) 100%);
+  background-image: linear-gradient(to top, rgba(255, 255, 255, .06) 0%, rgba(255, 255, 255, .06) 100%),
+  linear-gradient(to top, rgba(map_get($generate-colors, 'darken'), .5) 0%,
+  rgba(map_get($generate-colors, 'lighten'), .5) 100%);
   box-shadow: $btn-box-shadow;
   text-shadow: $btn-text-shadow;
 
   &:hover {
-    background-image: linear-gradient(to top, rgba(map_get($generate-colors, 'darken'), 0.5) 0%,
-    rgba(map_get($generate-colors, 'lighten'), 0.5) 100%);
+    background-image: linear-gradient(to top, rgba(map_get($generate-colors, 'darken'), .5) 0%,
+    rgba(map_get($generate-colors, 'lighten'), .5) 100%);
   }
-
   &:active,
   &.active {
     background-image: none;
@@ -32,46 +31,48 @@
 }
 
 @mixin text-shadow($shadow...) {
-    text-shadow: $shadow;
+  text-shadow: $shadow;
 }
 
 @mixin box-sizing($box-sizing) {
-    box-sizing: $box-sizing;
-    & *,
-    & *::before,
-    & *::after {
-        box-sizing: inherit;
-    }
+  box-sizing: $box-sizing;
+  & *,
+  & *::before,
+  & *::after {
+    box-sizing: inherit;
+  }
 }
 
 @mixin hover-focus {
-    @if $enable-hover-media-query {
-        &:focus {
-            @content
-        }
-        @include hover {
-            @content
-        }
+  @if $enable-hover-media-query {
+    @include hover {
+      @content
     }
-    @else {
-        &:focus,
-        &:hover {
-            @content
-        }
+    &:focus {
+      @content
     }
+  }
+  @else {
+    &:focus,
+    &:hover {
+      @content
+    }
+  }
 }
 
 @mixin button-size($btn-padding-y, $btn-padding-x, $font-size-base, $line-height-base, $btn-border-radius-base) {
-  padding: $btn-padding-y $btn-padding-x;
   font-size: $font-size-base;
   line-height: $line-height-base;
+
+  padding: $btn-padding-y $btn-padding-x;
+
   border-radius: $btn-border-radius-base;
 }
 
 @mixin transition($transition...) {
-    @if $enable-transitions {
-        transition: $transition;
-    }
+  @if $enable-transitions {
+    transition: $transition;
+  }
 }
 
 @mixin tab-focus() {
@@ -84,16 +85,17 @@
 
 
 @mixin box-shadow($shadow...) {
-    @if $enable-shadows {
-        box-shadow: $shadow;
-    }
+  @if $enable-shadows {
+    box-shadow: $shadow;
+  }
 }
 
 @mixin clearfix() {
   &:before,
   &:after {
-    content: " "; // 1
     display: table; // 2
+
+    content: ' '; // 1
   }
   &:after {
     clear: both;
