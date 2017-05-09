@@ -44,7 +44,7 @@
     "popper.js": "^0.6.4"
   },
   "peerDependencies": {
-    "vue": "^2.1.10"
+    "vue": "^2.3.2"
   },
   "devDependencies": {
     "autoprefixer-loader": "^2.0.0",
@@ -85,6 +85,7 @@
     "mocha": "^3.2.0",
     "node-sass": "^4.5.0",
     "phantomjs-prebuilt": "^2.1.13",
+    "qq": "^0.3.5",
     "sass-loader": "^6.0.3",
     "sinon": "^1.17.7",
     "sinon-chai": "^2.8.0",
