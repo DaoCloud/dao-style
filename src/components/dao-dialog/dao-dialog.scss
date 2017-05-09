@@ -1,6 +1,6 @@
 @import '../dao-color.scss';
 
-.dao-modal-backdrop {
+.dao-dialog-backdrop {
   position: fixed;
   z-index: 9998;
   top: 0;
@@ -16,13 +16,13 @@
   background-color: rgba(31, 33, 38, .3);
 }
 
-.dao-modal-wrapper {
+.dao-dialog-wrapper {
   display: table-cell;
 
   vertical-align: middle;
 }
 
-.dao-modal-container {
+.dao-dialog-container {
   display: flex;
   overflow: auto;
   flex-direction: column;
@@ -36,12 +36,12 @@
   border-radius: 4px;
   background-color: $white;
   box-shadow: 0 3px 30px 0 rgba(0, 0, 0, .2);
-  &.dao-modal-lg {
+  &.dao-dialog-lg {
     width: 900px;
   }
 }
 
-.dao-modal-header {
+.dao-dialog-header {
   padding: 12px 20px;
 
   border-bottom: 1px solid $white-dark;
@@ -62,13 +62,13 @@
   }
 }
 
-.dao-modal-body {
+.dao-dialog-body {
   overflow: auto;
 
   flex: 0 1 auto;
 }
 
-.dao-modal-footer {
+.dao-dialog-footer {
   padding: 9px 20px;
 
   text-align: right;
@@ -81,26 +81,26 @@
 
 /*
  * The following styles are auto-applied to elements with
- * transition="dao-modal" when their visibility is toggled
+ * transition="dao-dialog" when their visibility is toggled
  * by Vue.js.
  *
- * You can easily play with the dao-modal transition by editing
+ * You can easily play with the dao-dialog transition by editing
  * these styles.
  */
 
-.dao-modal-enter {
+.dao-dialog-enter {
   opacity: 0;
 }
 
-.dao-modal-leave-active {
+.dao-dialog-leave-active {
   opacity: 0;
 }
 
-.dao-modal-enter .dao-modal-container {
+.dao-dialog-enter .dao-dialog-container {
   transform: translate(0, -25%);
   transition: transform .3s ease-out;
 }
 
-.dao-modal-leave-active .dao-modal-container {
+.dao-dialog-leave-active .dao-dialog-container {
   transform: translate(0, 0);
 }

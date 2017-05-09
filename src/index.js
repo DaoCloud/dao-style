@@ -1,11 +1,10 @@
 // es6 polyfill
 import 'core-js/fn/array/find-index';
-import './components/dao-svg/svg';
 
 import daoCallout from './components/dao-callout';
+import daoDialog from './components/dao-dialog';
 import daoDropdown from './components/dao-dropdown';
 import { daoInput, daoEditableInput } from './components/dao-input';
-import daoModal from './components/dao-modal';
 import daoPopover from './components/dao-popover';
 import { daoProgress, daoProgressPulsing, daoProgressStacked } from './components/dao-progress';
 import daoSteps from './components/dao-steps';
@@ -17,12 +16,12 @@ import './components/dao-svg/svg';
 
 const daoStyle = {
   daoCallout,
+  daoDialog,
   daoDropdown,
   daoDropdownMenu: daoDropdown.Menu,
   daoDropdownItem: daoDropdown.Item,
   daoEditableInput,
   daoInput,
-  daoModal,
   daoPopover,
   daoProgress,
   daoProgressStacked,

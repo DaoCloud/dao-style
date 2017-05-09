@@ -1,19 +1,17 @@
 <template>
-  <transition name="dao-modal">
-    <div class="dao-modal-backdrop" v-show="visible">
-      <div class="dao-modal-wrapper" @click.self="handleWrapperClick">
-        <div :class="['dao-modal-container', sizeClass]">
-          <div class="dao-modal-header">
-            <slot name="header">
-              <h3>{{title}}</h3>
-            </slot>
+  <transition name="dao-dialog">
+    <div class="dao-dialog-backdrop" v-show="visible">
+      <div class="dao-dialog-wrapper" @click.self="handleWrapperClick">
+        <div :class="['dao-dialog-container', sizeClass]">
+          <div class="dao-dialog-header">
+            <h3> {{title}} </h3>
           </div>
 
-          <div class="dao-modal-body">
+          <div class="dao-dialog-body">
             <slot name="body"></slot>
           </div>
 
-          <div class="dao-modal-footer">
+          <div class="dao-dialog-footer">
             <slot name="footer"></slot>
           </div>
         </div>
@@ -24,11 +22,12 @@
 <script>
 import { getScrollBarSize } from '../../utils/assist';
 export default {
-  name: 'DaoModal',
+  name: 'DaoDialog',
   props: {
     title: {
       type: String,
-      default: ''
+      default: '',
+      required: true,
     },
     value: {
       type: Boolean,
@@ -37,12 +36,13 @@ export default {
     size: {
       type: String,
       default: '',
+      validator: (value) => value === 'lg' || value === '',
     },
     scrollable: {
       type: Boolean,
       default: false
     },
-    closeOnClickModal: {
+    closeOnClickdialog: {
       type: Boolean,
       default: true,
     },
@@ -59,7 +59,7 @@ export default {
   computed: {
     sizeClass() {
       if (this.size) {
-        return `dao-modal-${this.size}`;
+        return `dao-dialog-${this.size}`;
       }
 
       return '';
@@ -72,7 +72,7 @@ export default {
       this.$emit('on-cancel');
     },
     handleWrapperClick() {
-      if (this.closeOnClickModal) {
+      if (this.closeOnClickdialog) {
         this.close();
       }
     },
@@ -140,5 +140,5 @@ export default {
 </script>
 
 <style lang="scss">
-@import './dao-modal.scss';
+  @import './dao-dialog.scss';
 </style>

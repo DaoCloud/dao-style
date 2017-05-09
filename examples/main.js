@@ -10,8 +10,8 @@ import daoStyle from '../src/index';
 import button from './routers/button.vue';
 import card from './routers/card.vue';
 import dropdown from './routers/dropdown.vue';
+import dialog from './routers/dialog.vue';
 import input from './routers/input.vue';
-import modal from './routers/modal.vue';
 import popover from './routers/popover.vue';
 import progress from './routers/progress.vue';
 import steps from './routers/steps.vue';
@@ -28,6 +28,12 @@ Vue.config.debug = true;
 // 路由配置
 const router = new VueRouter({
   routes: [{
+    path: '/dropdown',
+    component: dropdown,
+  }, {
+    path: '/dialog',
+    component: dialog,
+  }, {
     path: '/button',
     component: button,
   }, {
@@ -39,9 +45,6 @@ const router = new VueRouter({
   }, {
     path: '/input',
     component: input,
-  }, {
-    path: '/modal',
-    component: modal,
   }, {
     path: '/popover',
     component: popover,

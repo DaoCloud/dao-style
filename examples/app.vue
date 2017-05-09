@@ -147,7 +147,7 @@ li + li {
           <router-link to="/loading-bar">LoadingBar</router-link>
         </li>
         <li>
-          <router-link to="/modal">Modal</router-link>
+          <router-link to="/dialog">Dialog</router-link>
         </li>
         <li>
           <router-link to="/message">Message</router-link>
