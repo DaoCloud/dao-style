@@ -1,4 +1,7 @@
 # multi-step
+
+multi-step 是一个多步骤视图组件。代码请参照目录：[src/components/dao-multi-step](../src/components/dao-multi-step)。
+
 ## 使用方法
 ### HTML
 ```HTML
