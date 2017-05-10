@@ -1,13 +1,13 @@
 # tabs ( 标签 )
 
-tabs 是 标签组件。代码请参照目录 : [src/components/dao-tabs](https://github.com/DaoCloud/dao-style-vue/tree/develop/src/components/dao-tabs)
+tabs 是 标签组件。代码请参照目录 : [src/components/dao-tabs](../src/components/dao-tabs)
 
 ## 使用方法
 
 ### html 使用方法
 
 ```HTML
-<dao-tabs size="lg" direction="right">
+<dao-tabs direction="right">
   <dao-tab-item heading="标题1">
     <h3> HTML 渲染 </h3>
     <label>Name</label>
@@ -25,21 +25,20 @@ tabs 是 标签组件。代码请参照目录 : [src/components/dao-tabs](https:
 
 #### 组件接受的参数
 
-参数名 | 类型 | 说明 | 是否必填 | 默认值
+参数名 | 类型 | 说明 | 默认值 | 是否必填
 -|-|-|-|-
-size | String | 设置 tab 的尺寸。 有 3 个 选项, `sm`,`md`, `lg` (可以自己样式控制) | 可选 | md
-direction | String | 控制 tab 的标签的方向。 有 2 个 选项, `left`, `right` | 可选 | left
+direction | String | 控制 tab 的标签的方向。 有 2 个 选项, `left`, `right` | left | 否
 
 ### dao-tab-item
 
 #### 组件接受的参数
 
-参数名 | 类型 | 说明 | 是否必填 | 默认值
+参数名 | 类型 | 说明 | 默认值 | 是否必填
 -|-|-|-|-
-heading | String | tab 标签名的内容。 | 必选 | \
+heading | String | tab 标签名的内容。 | \ | 是
 
 #### slot
 
 slot名称 | 说明
 -|-
-- | tab 的内容
+ -- | tab 的内容
