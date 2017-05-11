@@ -51,8 +51,8 @@
     // },
     data() {
       return {
-        prefixCls: prefixCls,
-        currentVisible: this.visible
+        prefixCls,
+        currentVisible: this.visible,
       };
     },
     watch: {

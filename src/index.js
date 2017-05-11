@@ -9,9 +9,10 @@ import daoDropdown from './components/dao-dropdown';
 import { daoInput, daoEditableInput } from './components/dao-input';
 import daoPopover from './components/dao-popover';
 import { daoProgress, daoProgressPulsing, daoProgressStacked } from './components/dao-progress';
+import daoSelect from './components/dao-select';
+import daoSettingLayout from './components/dao-setting-layout';
 import daoSteps from './components/dao-steps';
 import daoSwitch from './components/dao-switch';
-import daoSettingLayout from './components/dao-setting-layout';
 import daoTab from './components/dao-tab';
 import daoTooltip from './components/dao-tooltip';
 // directives
@@ -28,10 +29,13 @@ const daoStyleComponents = {
   daoDropdownItem: daoDropdown.Item,
   daoEditableInput,
   daoInput,
+  daoOption: daoSelect.Option,
+  daoOptionGroup: daoSelect.Group,
   daoPopover,
   daoProgress,
-  daoProgressStacked,
   daoProgressPulsing,
+  daoProgressStacked,
+  daoSelect,
   daoSteps,
   daoStep: daoSteps.step,
   daoSubstep: daoSteps.substep,
