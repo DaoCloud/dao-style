@@ -106,8 +106,6 @@
     }
   }
   tr {
-    padding-right: $row-tr-padding-horizontal - $row-td-padding-horizontal;
-    padding-left: $row-tr-padding-horizontal - $row-td-padding-horizontal;
     // shame
     display: table-row;
     // chrome 有 bug，必须要这么写
@@ -172,8 +170,6 @@
   }
   tr {
     border-color: $border-outer-color;
-    padding-right: $row-tr-padding-horizontal - $row-td-padding-horizontal;
-    padding-left: $row-tr-padding-horizontal - $row-td-padding-horizontal;
   }
   td {
     padding: 0 $row-td-padding-horizontal;

@@ -158,6 +158,9 @@ li + li {
         <li>
           <router-link to="/notice">Notice</router-link>
         </li>
+        <li>
+          <router-link to="/editable-table">EditableTable</router-link>
+        </li>
       </ul>
     </nav>
     <router-view></router-view>

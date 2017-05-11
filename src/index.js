@@ -8,6 +8,7 @@ import daoDialog from './components/dao-dialog';
 import daoDropdown from './components/dao-dropdown';
 import { daoInput, daoEditableInput } from './components/dao-input';
 import daoPopover from './components/dao-popover';
+import daoEditableTable from './components/dao-editable-table';
 import { daoProgress, daoProgressPulsing, daoProgressStacked } from './components/dao-progress';
 import daoSelect from './components/dao-select';
 import daoSettingLayout from './components/dao-setting-layout';
@@ -28,6 +29,7 @@ const daoStyleComponents = {
   daoDropdownMenu: daoDropdown.Menu,
   daoDropdownItem: daoDropdown.Item,
   daoEditableInput,
+  daoEditableTable,
   daoInput,
   daoOption: daoSelect.Option,
   daoOptionGroup: daoSelect.Group,
@@ -40,6 +42,7 @@ const daoStyleComponents = {
   daoStep: daoSteps.step,
   daoSubstep: daoSteps.substep,
   daoStepContent: daoSteps.content,
+  daoProgressStacked,
   daoSwitch,
   daoSettingLayout,
   daoSettingSection: daoSettingLayout.Section,
