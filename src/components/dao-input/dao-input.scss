@@ -1,0 +1,457 @@
+@import "./variables.scss";
+
+// $old-seletor: 原来的选择器
+// $new-seletors: 需要共用代码的新的选择器，支持 string 格式，如'input'；支持array格式，如('input', 'textarea')
+// $new-seletor-ext: 新的选择器需要再次拓展，一般情况是遇到伪类需要将伪类写在最后
+// 为了将 dao-input 普通用法脱离成单独的 class 而写的 mixin。兼容之前的用法并新增 .dao-control 用语 input 本身
+@mixin e($old-seletor, $new-seletors, $new-seletor-ext: null) {
+  // @at-root 回到最外层
+  // 新的选择器需要公用原来的样式
+  @each $new-seletor in $new-seletors {
+    @at-root #{$new-seletor}#{$dao-control-name} {
+      @if $new-seletor-ext == null {
+        @content;
+      } @else {
+        // $new-seletor-ext 新的选择器需要再次拓展，一般情况是遇到伪类需要将伪类写在最后
+        @each $var in $new-seletor-ext {
+          &#{$var} {
+            @content;
+          }
+        }
+      }
+    }
+  }
+  // 存在旧样式
+  @if $old-seletor != null {
+    // 兼容之前的css样式
+    #{$old-seletor} {
+      @content;
+    }
+  }
+}
+
+@mixin input-icon-background {
+  background-size: $input-icon-width $input-icon-height;
+  background-repeat: no-repeat;
+  background-position: right 8px center;
+}
+
+.dao-input {
+  &-group-addon {
+    padding: 8px 10px;
+    font-weight: 400;
+    line-height: 1;
+    height: $input-height;
+    background-color: $input-disabled-bg-color;
+    color: $input-disabled-color;
+    border: $input-border;
+    border-radius: $input-border-radius;
+    text-align: center;
+  }
+  &-inner {
+    position: relative;
+  }
+  &,
+  &-container {
+    display: inline-flex;
+    align-items: center;
+    flex-wrap: wrap;
+    vertical-align: middle;
+    input {
+      @include e('&', ('input', 'textarea')) {
+        margin: 0;
+        flex: none;
+        outline: none;
+        padding: $input-normal-padding;
+        width: $input-width;
+        height: $input-height;
+        color: $input-color;
+        transition: all .25s ease;
+        font-size: $font-base;
+        @include box-shadow(none);
+        background-color: white;
+        // 为了防止在 disabled 和 default 之间切换的时候，背景图icon也发生 transition 动画
+        // 所以需要用到 @include input-icon-background;
+        @include input-icon-background;
+        border: $input-border;
+        border-radius: $input-border-radius;
+        line-height: 1;
+        // 将 vertical-align: bottom 改成了 vertical-align: middle 了，不知道会不会有其他影响
+        vertical-align: middle;
+        // margin-right: 5px;
+        & + .dao-btn {
+          margin-left: $input-btn-blank;
+        }
+        &::placeholder {
+          color: $input-placeholder-color;
+        }
+      }
+    }
+    & + .dao-btn {
+      margin-left: $input-btn-blank;
+    }
+    &.message-bottom {
+      flex-direction: column;
+      align-items: flex-start;
+      vertical-align: top;
+      .dao-input-message {
+        margin: 6px 0 0;
+      }
+      &.no-message-icon .dao-input-message > .icon {
+        display: none;
+      }
+    }
+    &.success {
+      input {
+        border: 1px solid $input-success-color;
+        border-radius: 2px;
+        @include box-shadow(0 0 0 2px $input-success-shadow-color);
+      }
+    }
+    &.error {
+      input,
+      input:focus,
+      input:active {
+        border: 1px solid $input-error-color;
+        border-radius: 2px;
+        @include box-shadow(0 0 0 2px $input-error-shadow-color);
+      }
+    }
+    // 一定要在 input:focus, input:active 前面才能使用默认样式 :focus, :active
+    &.search input {
+      @include e('&', 'input.search') {
+        height: 32px;
+        line-height: 30px;
+        margin-right: 15px;
+        width: 200px;
+        border-radius: 17px;
+        padding: 0 10px 0 30px;
+        background-size: $input-icon-width $input-icon-height;
+        background-repeat: no-repeat;
+        background-position: left 8px center;
+        background-image: url($searchIconActiveSvg);
+        box-shadow: 0 1px 0 0 rgba($white, .8), inset 0 1px 3px 0 rgba($grey-light, .3);
+        @each $var in ('.required', '[required]') {
+          &#{$var} {
+            background-image: url($searchIconSvg);
+          }
+          &#{$var}:valid {
+            @include box-shadow(0 1px 0 0 rgba($white, .8));
+          }
+          &#{$var}:focus, &#{$var}:active {
+            @include box-shadow(0 0 0 2px $input-info-shadow-color);
+          }
+          @each $behavior in (':valid', ':focus', ':active') {
+            &#{$var}#{$behavior} {
+              background-image: url($searchIconActiveSvg);
+            }
+          }
+        }
+      }
+    }
+    &.info input,
+    input:focus,
+    input:active {
+      @include e('&', ('input', 'textarea'), (':focus', ':active')) {
+        border: 1px solid $input-info-color;
+        @include box-shadow(0 0 0 2px $input-info-shadow-color);
+      }
+    }
+    &.disabled input,
+    input[disabled],
+    &.readonly input,
+    input[readonly] {
+      @include e('&', ('input', 'textarea'), ('.disabled', '[disabled]', '.readonly', '[readonly]')) {
+        background-color: $input-disabled-bg-color;
+        color: $input-disabled-color;
+        border: $input-border;
+        border-radius: $input-border-radius;
+        cursor: not-allowed;
+        // 修正在 disabled 中 focus 以及 active 状态下仍有 box-shadow
+        &:focus,
+        &:active {
+          @include box-shadow(none);
+        }
+      }
+      @include e('&', 'input', ('.disabled', '[disabled]', '.readonly', '[readonly]')) {
+        padding: $input-icon-padding;
+        background-image: url($disabledIconSvg);
+      }
+    }
+    &.icon-inside {
+      position: relative;
+      &.info,
+      &.error,
+      &.success,
+      &.loading {
+        input {
+          @include e('&', 'input', ('.info', '.error', '.success')) {
+            padding: $input-icon-padding;
+          }
+        }
+      }
+
+      .info-icon,
+      .error-icon,
+      .success-icon,
+      .loading-icon {
+        z-index: 2;
+        position: absolute;
+        margin-right: 0;
+        width: $input-icon-width;
+        height: $input-icon-height;
+        right: $input-icon-align-blank;
+        top: 8px;
+        svg {
+          width: 100%;
+          height: 100%;
+        }
+      }
+      .loading-icon svg {
+        fill: $input-info-color;
+        -webkit-animation: spin 1.5s infinite linear;
+        animation: spin 1.5s infinite linear;
+      }
+      .info-icon svg {
+        fill: $input-info-color;
+      }
+      .error-icon svg {
+        fill: $input-error-color;
+      }
+      .success-icon svg {
+        fill: $input-success-color;
+      }
+      .icon + .dao-popover {
+        padding: 0;
+        margin-right: 0;
+        border: none;
+        border-radius: 5px;
+        font-size: 12px;
+        line-height: 20px;
+        color: white;
+        // 下面两行属性修复 dao-input 中提示的 popover 因为中英文空格、标点符号使得一句话换行问题。
+        // 原因是 dao-input-container 使用了 inline-flex 布局导致直接子元素当 display: block 受到影响。
+        // 将 display 设置为 table 可解决因为中英文空格、标点符号使得一句话换行问题。
+        // word-break: break-word使很长的一段没有空格、标点符号的英文单词能够强制换行。
+        // 不能用 word-wrap: break-word; 强制换行。
+        display: table!important;
+        word-break: break-word;
+        .arrow {
+          border-width: 10px;
+        }
+        &.right {
+          margin-left: 23px;
+        }
+        &.left > .arrow {
+          right: -10px;
+          margin-top: -10px;
+        }
+        &.top {
+          margin-top: -12px;
+        }
+        &.bottom > .arrow {
+          top: -5px;
+        }
+        &.top-right {
+          .arrow {
+            transform: translateX(-1px) rotate(45deg) !important;
+          }
+        }
+        &.top-right,
+        &.bottom-right {
+          transform: translate(7px, -1px);
+          > .arrow {
+            margin-right: 4px !important;
+          }
+        }
+        &.right-top {
+          top: 0 !important;
+        }
+        &.right > .arrow,
+        &.right > .arrow:after {
+          border-left-width: 0;
+        }
+        &.left > .arrow,
+        &.left > .arrow:after {
+          border-right-width: 0;
+        }
+        &.top > .arrow,
+        &.top > .arrow:after {
+          border-bottom-width: 0;
+        }
+        &.bottom > .arrow,
+        &.bottom > .arrow:after {
+          border-top-width: 0;
+        }
+        .dao-popover-content {
+          word-wrap: break-word;
+          padding: 6px 11px;
+        }
+      }
+      .info-icon + .dao-popover {
+        background-color: $input-info-color;
+        max-width: none;
+        &.right > .arrow,
+        &.right > .arrow:after {
+          border-right-color: $input-info-color;
+        }
+        &.left > .arrow,
+        &.left > .arrow:after {
+          border-left-color: $input-info-color;
+        }
+        &.top > .arrow,
+        &.top > .arrow:after {
+          border-top-color: $input-info-color;
+        }
+        &.bottom > .arrow,
+        &.bottom > .arrow:after {
+          border-bottom-color: $input-info-color;
+        }
+      }
+      .error-icon + .dao-popover {
+        background-color: $input-error-color;
+        max-width: none;
+        &.right > .arrow,
+        &.right > .arrow:after {
+          border-right-color: $input-error-color;
+        }
+        &.left > .arrow,
+        &.left > .arrow:after {
+          border-left-color: $input-error-color;
+        }
+        &.top > .arrow,
+        &.top > .arrow:after {
+          border-top-color: $input-error-color;
+        }
+        &.bottom > .arrow,
+        &.bottom > .arrow:after {
+          border-bottom-color: $input-error-color;
+        }
+      }
+      .success-icon + .dao-popover {
+        background-color: $input-success-color;
+        max-width: none;
+        &.right > .arrow,
+        &.right > .arrow:after {
+          border-right-color: $input-success-color;
+        }
+        &.left > .arrow,
+        &.left > .arrow:after {
+          border-left-color: $input-success-color;
+        }
+        &.top > .arrow,
+        &.top > .arrow:after {
+          border-top-color: $input-success-color;
+        }
+        &.bottom > .arrow,
+        &.bottom > .arrow:after {
+          border-bottom-color: $input-success-color;
+        }
+      }
+    }
+    &.dao-input-group {
+      width: $input-width;
+      .dao-input-inner,
+      input {
+        flex: 1;
+        width: 100%;
+        z-index: 1;
+      }
+      .dao-input-container {
+        flex: 1;
+        width: auto;
+        &,
+        & > :first-child {
+          margin: 0;
+          width: 100%;
+        }
+      }
+      .dao-select {
+        width: auto;
+      }
+      .dao-input-group-addon:not(:last-child),
+      .dao-select:not(:last-child) .dao-select-input {
+        border-right: 0;
+      }
+      .dao-input-group-addon:not(:last-child),
+      .dao-input-inner:not(:last-child) input,
+      .dao-select:not(:last-child) .dao-select-input,
+      .dao-input-container:not(:last-child) input {
+        border-bottom-right-radius: 0;
+        border-top-right-radius: 0;
+        margin-right: 0;
+      }
+      .dao-input-inner + .dao-input-group-addon,
+      .dao-input-inner + .dao-select .dao-select-input {
+        border-left: 0;
+      }
+      .dao-input-group-addon:not(:first-child),
+      .dao-input-inner:not(:first-child) input,
+      .dao-select:not(:first-child) .dao-select-input,
+      .dao-input-container:not(:first-child) input {
+        border-bottom-left-radius: 0;
+        border-top-left-radius: 0;
+        margin-left: 0;
+      }
+    }
+    &.block {
+      display: flex;
+      width: 100%;
+      width: 100%;
+      .dao-input-group {
+        width: 100%;
+      }
+      input {
+        width: 100%;
+      }
+    }
+  }
+  &-message {
+    // 因为布局是 flex 导致 message 中的 icon 在提示语句较长的时候会变小，所以先暂时将 flex 布局取消掉
+    // flex: auto;
+    // display: flex;
+    // align-items: center;
+    word-break: break-all;
+    margin-left: 10px;
+    > span {
+      vertical-align: middle;
+    }
+    @at-root .no-message-icon & > .icon {
+      display: none;
+    }
+    &.error {
+      color: $error-message-color;
+    }
+    &.success {
+      color: $success-message-color;
+    }
+  }
+}
+textarea#{$dao-control-name} {
+  min-height: $input-height;
+  height: auto;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  line-height: 24px;
+}
+
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(359deg);
+    transform: rotate(359deg);
+  }
+}
+@keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(359deg);
+    transform: rotate(359deg);
+  }
+}

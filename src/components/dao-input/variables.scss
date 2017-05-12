@@ -1,0 +1,44 @@
+@import "../dao-color.scss";
+@import "../dao-variables.scss";
+@import "../dao-mixins.scss";
+
+$input-color: $black-dark;
+$input-border: 1px solid $grey-light;
+$input-border-radius: 2px;
+$input-placeholder-color: $grey-dark;
+$input-disabled-bg-color: $white-light;
+$input-disabled-color: $grey-dark;
+$input-success-color: $green;
+$input-error-color: $red;
+$input-info-color: $blue;
+$input-shadow-color-opacity: 0.15;
+// sass 中也有 rgba，可以直接写16进制色彩代码，透明度，它会直接编译成 css 中的 rgba
+$input-success-shadow-color: rgba($green, $input-shadow-color-opacity);
+$input-error-shadow-color: rgba($red, $input-shadow-color-opacity);
+$input-info-shadow-color: rgba($blue, $input-shadow-color-opacity);
+$input-icon-align-blank: 8px;
+$input-icon-width: 16px;
+$input-icon-height: 16px;
+$success-message-color: $green;
+$error-message-color: $red;
+$input-width: 574px/2;
+$input-height: 32px;
+$input-search-icon-color: $grey-light;
+$input-search-icon-active-color: $grey-dark;
+$input-btn-blank: 20px;
+$dao-control-name: '.dao-control';
+$input-normal-padding: 0 10px;
+// 因为还有可能是 0 10px 0 30px 这种情况，为了重置 padding，所以再都设置一遍
+$input-icon-padding: 0 30px 0 10px;
+
+$errorIconSvg: svg-inline("<svg fill='" + $input-error-color + "' viewBox='0 0 32 32'><path d='M31.431,27.954L17.181,3.274a1.364,1.364,0,0,0-2.362,0L0.569,27.954A1.364,1.364,0,0,0,1.751,30h28.5A1.364,1.364,0,0,0,31.431,27.954ZM16,27.129a1.539,1.539,0,1,1,1.539-1.539A1.539,1.539,0,0,1,16,27.129Zm1.135-4.677H14.865l-0.4-11.6h3.078Z'/></svg>");
+$successIconSvg: svg-inline("<svg fill='" + $input-success-color + "' viewBox='0 0 32 32'><path d='M16,1.2A14.8,14.8,0,1,0,30.8,16,14.8,14.8,0,0,0,16,1.2ZM13.773,23.268L6.956,16.452l2.177-2.177,4.64,4.64L22.867,9.82,25.044,12Z'/></svg>");
+$infoIconSvg: svg-inline("<svg fill='" + $input-info-color + "' viewBox='0 0 32 32'><path d='M16,1.2A14.8,14.8,0,1,0,30.8,16,14.8,14.8,0,0,0,16,1.2ZM15.645,24.88a1.539,1.539,0,1,1,1.539-1.539A1.539,1.539,0,0,1,15.645,24.88Zm2.7-7.56a2.182,2.182,0,0,0-1.16,1.944v0.8H14.106v-0.8a5.217,5.217,0,0,1,2.846-4.69,2.261,2.261,0,0,0,1.386-1.762,2.352,2.352,0,0,0-4.677,0H10.583a5.422,5.422,0,0,1,10.833,0A5.215,5.215,0,0,1,18.344,17.32Z'/></svg>");
+$disabledIconSvg: svg-inline("<svg fill='" + $input-disabled-color + "' viewBox='0 0 32 32'><path d='M22,14V11.9a6,6,0,1,0-12,0V14H8V24H24V14H22ZM12,11.9a4,4,0,1,1,8,0V14H12V11.9Z'/></svg>");
+$searchIconSvg: svg-inline("<svg fill='" + $input-search-icon-color + "' viewBox='0 0 32 32'><path d='M31.164,28.336l-8.39-8.39a12.024,12.024,0,1,0-2.828,2.828l8.39,8.39ZM3.5,13A9.5,9.5,0,1,1,13,22.5,9.511,9.511,0,0,1,3.5,13Z'/></svg>");
+$searchIconActiveSvg: svg-inline("<svg fill='" + $input-search-icon-active-color + "' viewBox='0 0 32 32'><path d='M31.164,28.336l-8.39-8.39a12.024,12.024,0,1,0-2.828,2.828l8.39,8.39ZM3.5,13A9.5,9.5,0,1,1,13,22.5,9.511,9.511,0,0,1,3.5,13Z'/></svg>");
+$requiredIconSvg: svg-inline("<svg fill='" + $input-info-color + "' viewBox='0 0 32 32'><circle cx='16' cy='16' r='5'/></svg>");
+
+
+
+

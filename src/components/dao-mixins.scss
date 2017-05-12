@@ -1,0 +1,126 @@
+// Toggles
+//
+// Used in conjunction with global variables to enable certain theme features.
+@mixin box-shadow($shadow...) {
+  @if $enable-shadows {
+    box-shadow: $shadow;
+  }
+}
+
+@mixin drop-shadow($shadow...) {
+  @if $enable-shadows {
+    filter: drop-shadow($shadow);
+    // IE 10+
+    @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+      // fallback to box-shadow
+      box-shadow: $shadow;
+    }
+  }
+}
+
+
+@mixin text-shadow($shadow...) {
+  text-shadow: $shadow;
+}
+
+@mixin transition($transition...) {
+  @if $enable-transitions {
+    transition: $transition;
+  }
+}
+
+@mixin box-sizing($box-sizing) {
+  box-sizing: $box-sizing;
+  & *,
+  & *::before,
+  & *::after {
+    box-sizing: inherit;
+  }
+}
+
+@function shade($color, $percentage) {
+  @return mix(black, $color, $percentage);
+}
+
+@mixin hover {
+  @if $enable-hover-media-query {
+    // See Media Queries Level 4: http://drafts.csswg.org/mediaqueries/#hover
+    // Currently shimmed by https://github.com/twbs/mq4-hover-shim
+    @media (hover: hover) {
+      &:hover {
+        @content;
+      }
+    }
+  }
+  @else {
+    &:hover {
+      @content;
+    }
+  }
+}
+
+@mixin hover-focus {
+  @if $enable-hover-media-query {
+    @include hover {
+      @content;
+    }
+    &:focus {
+      @content;
+    }
+  }
+  @else {
+    &:focus,
+    &:hover {
+      @content;
+    }
+  }
+}
+
+@mixin tab-focus() {
+  // WebKit-specific. Other browsers will keep their default outline style.
+  // (Initially tried to also force default via `outline: initial`,
+  // but that seems to erroneously remove the outline in Firefox altogether.)
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+
+@mixin clearfix() {
+  &:before,
+  &:after {
+    display: table; // 2
+
+    content: ' '; // 1
+  }
+  &:after {
+    clear: both;
+  }
+}
+
+// Replace `$search` with `$replace` in `$string`
+// @param {String} $string - Initial string
+// @param {String} $search - Substring to replace
+// @param {String} $replace ('') - New value
+// @return {String} - Updated string
+@function str-replace($string, $search, $replace: '') {
+  $index: str-index($string, $search);
+
+  @if $index {
+    @return str-slice($string, 1, $index - 1) + $replace + str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
+  }
+
+  @return $string;
+}
+
+// Convert svg into data url
+@function svg-inline($string){
+  $result: $string;
+  $result: str-replace($string, "<svg", "<svg xmlns='http://www.w3.org/2000/svg'");
+  $result: str-replace($result, '%', '%25');
+  $result: str-replace($result, '#', '%23');
+  $result: str-replace($result, '"', '%22');
+  $result: str-replace($result, "'", '%27');
+  $result: str-replace($result, ' ', '%20');
+  $result: str-replace($result, '<', '%3C');
+  $result: str-replace($result, '>', '%3E');
+  @return "data:image/svg+xml;utf8," + $result;
+}
