@@ -30,36 +30,6 @@
   );
 }
 
-@mixin text-shadow($shadow...) {
-  text-shadow: $shadow;
-}
-
-@mixin box-sizing($box-sizing) {
-  box-sizing: $box-sizing;
-  & *,
-  & *::before,
-  & *::after {
-    box-sizing: inherit;
-  }
-}
-
-@mixin hover-focus {
-  @if $enable-hover-media-query {
-    @include hover {
-      @content
-    }
-    &:focus {
-      @content
-    }
-  }
-  @else {
-    &:focus,
-    &:hover {
-      @content
-    }
-  }
-}
-
 @mixin button-size($btn-padding-y, $btn-padding-x, $font-size-base, $line-height-base, $btn-border-radius-base) {
   font-size: $font-size-base;
   line-height: $line-height-base;
@@ -67,37 +37,4 @@
   padding: $btn-padding-y $btn-padding-x;
 
   border-radius: $btn-border-radius-base;
-}
-
-@mixin transition($transition...) {
-  @if $enable-transitions {
-    transition: $transition;
-  }
-}
-
-@mixin tab-focus() {
-  // WebKit-specific. Other browsers will keep their default outline style.
-  // (Initially tried to also force default via `outline: initial`,
-  // but that seems to erroneously remove the outline in Firefox altogether.)
-  outline: 5px auto -webkit-focus-ring-color;
-  outline-offset: -2px;
-}
-
-
-@mixin box-shadow($shadow...) {
-  @if $enable-shadows {
-    box-shadow: $shadow;
-  }
-}
-
-@mixin clearfix() {
-  &:before,
-  &:after {
-    display: table; // 2
-
-    content: ' '; // 1
-  }
-  &:after {
-    clear: both;
-  }
 }

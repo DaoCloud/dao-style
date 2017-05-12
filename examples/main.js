@@ -7,9 +7,10 @@ import VueRouter from 'vue-router';
 import App from './app.vue';
 import daoStyle from '../src/index';
 
-import dropdown from './routers/dropdown';
-import modal from './routers/modal';
-import button from './routers/button';
+import dropdown from './routers/dropdown.vue';
+import modal from './routers/modal.vue';
+import button from './routers/button.vue';
+import input from './routers/input.vue';
 
 Vue.use(VueRouter);
 Vue.use(daoStyle);
@@ -28,11 +29,16 @@ const router = new VueRouter({
   }, {
     path: '/button',
     component: button,
+  }, {
+    path: '/input',
+    component: input,
   }],
 });
 
-new Vue({
-  el: '#app',
-  router: router,
-  render: h => h(App)
-});
+(function initApp() {
+  return new Vue({
+    el: '#app',
+    router,
+    render: h => h(App),
+  });
+}());

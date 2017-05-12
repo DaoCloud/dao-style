@@ -1,7 +1,8 @@
 // scss-lint:disable QualifyingElement
 
 // for variable
-@import './dao-mixin.scss';
+@import '../dao-variables.scss';
+@import '../dao-mixins.scss';
 @import './variables.scss';
 @import './mixins.scss';
 
