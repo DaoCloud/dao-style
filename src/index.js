@@ -10,6 +10,7 @@ import daoPopover from './components/dao-popover';
 import { daoProgress, daoProgressPulsing, daoProgressStacked } from './components/dao-progress';
 import daoSteps from './components/dao-steps';
 import daoSwitch from './components/dao-switch';
+import daoSettingLayout from './components/dao-setting-layout';
 import daoTab from './components/dao-tab';
 import daoTooltip from './components/dao-tooltip';
 import './components/dao-svg/svg';
@@ -30,6 +31,9 @@ const daoStyle = {
   daoSubstep: daoSteps.substep,
   daoStepContent: daoSteps.content,
   daoSwitch,
+  daoSettingLayout,
+  daoSettingSection: daoSettingLayout.Section,
+  daoSettingItem: daoSettingLayout.Item,
   daoTab,
   daoTabItem: daoTab.Item,
   daoTooltip,

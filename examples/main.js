@@ -15,6 +15,7 @@ import modal from './routers/modal.vue';
 import popover from './routers/popover.vue';
 import progress from './routers/progress.vue';
 import steps from './routers/steps.vue';
+import settingLayout from './routers/settingLayout.vue';
 import tab from './routers/tab.vue';
 import tooltip from './routers/tooltip.vue';
 
@@ -50,6 +51,9 @@ const router = new VueRouter({
   }, {
     path: '/steps',
     component: steps,
+  }, {
+    path: '/setting-layout',
+    component: settingLayout,
   }, {
     path: '/tab',
     component: tab,

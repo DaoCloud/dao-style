@@ -1,0 +1,200 @@
+@import "~daoColor";
+
+$font-color-dark: $black-dark;
+$font-color-light: $grey-dark;
+$font-color-title: $black-light;
+$color-label-svg: $grey-light;
+$border: 1px solid $white-dark;
+$border-color: $white-dark;
+$background-color-body: $white;
+$background-color-title: $white-light;
+$background-color-footer: $white-lighter;
+$padding-layout-title: 25px 20px 0;
+$padding-layout-footer: 20px;
+$padding-section: 30px 20px;
+$font-size-1: 18px;
+$font-size-2: 16px;
+$font-size-3: 14px;
+$min-width-label: 135px;
+$border-radius-size: 4px;
+
+.dao-setting {
+  &-layout {
+    color: $font-color-dark;
+    font-size: $font-size-3;
+    font-weight: 400;
+    border: $border;
+    border-radius: $border-radius-size;
+    box-shadow: 0 1px 4px rgba(204, 209, 217, 0.3);
+    background-color: $background-color-body;
+    line-height: 1;
+    &:not(:first-of-type) {
+      margin-top: 30px;
+    }
+  }
+  &-layout-title {
+    position: relative;
+    padding: $padding-layout-title;
+    background-color: $background-color-title;
+    border-radius: $border-radius-size $border-radius-size 0 0;
+    border-bottom: $border;
+    box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.6);
+    .dao-setting {
+      &-title {
+        font-size: $font-size-1;
+        font-weight: 400;
+        // margin: 0;
+        margin-bottom: 25px;
+        .helper-text {
+          margin-bottom: -5px;
+        }
+      }
+      &-title-toggle {
+        position: absolute;
+        font-size: $font-size-3;
+        right: 30px;
+        bottom: 50%;
+        transform: translateY(50%);
+      }
+    }
+  }
+
+  &-section {
+    position: relative;
+    padding: $padding-section;
+    :first-child.dao-setting-title {
+      margin-top: -10px;
+    }
+    > .dao-setting-title {
+      &:not(:first-child) {
+        margin-top: 20px;
+      }
+      margin-bottom: 0;
+      // 左右两边有渐变的 hr
+      &:after {
+        position: absolute;
+        content: '';
+        display: block;
+        width: 100%;
+        margin: 10px 0 0;
+        border: none;
+        background: linear-gradient(to right, transparent 0, $border-color 30px, $border-color calc(100% - 30px), transparent 100%);
+        height: 1px;
+        transform: translateX(-30px);
+      }
+    }
+
+    // select all .dao-setting-section except the first one
+    & ~ .dao-setting-section {
+      border-top: $border;
+    }
+  }
+
+  &-title {
+    margin-bottom: 30px;
+    color: $font-color-title;
+    font-size: $font-size-2;
+    line-height: 1;
+    .helper-text {
+      margin-top: 12px;
+      font-size: $font-size-3;
+      color: $font-color-light;
+    }
+    + div.dao-setting-item {
+      margin-top: 40px;
+    }
+  }
+  &-item {
+    display: flex;
+    &:not(:first-child) {
+      margin-top: 20px;
+    }
+    // &:first-child {
+      .dao-setting-content > :first-child {
+        &.dao-btn,
+        &.dao-input-container,
+        &.dao-editable-input,
+        &.dao-switch,
+        &.dao-select,
+        &.higher-ele,
+        &.dao-clipboard,
+        input.dao-control {
+          margin-top: -10px;
+        }
+      }
+    // }
+    &:last-child {
+      .dao-setting-content > :last-child {
+        &.dao-btn,
+        &.dao-input-container,
+        &.dao-editable-input,
+        &.dao-switch,
+        &.dao-select,
+        &.higher-ele,
+        &.dao-clipboard,
+        input.dao-control {
+          margin-bottom: -10px;
+        }
+      }
+    }
+  }
+  &-label {
+    flex: none;
+    // margin-right: 75px;
+    min-width: $min-width-label;
+    padding-right: 15px;
+    svg {
+      width: 16px;
+      height: 16px;
+      fill: $color-label-svg;
+      vertical-align: middle;
+      margin-top: -2px;
+      cursor: pointer;
+    }
+  }
+  &-content {
+    flex: auto;
+    min-width: 300px;
+    & > * {
+      vertical-align: middle;
+      &:first-child:not(.dao-btn){
+        line-height: 24px;
+        margin-top: -5px;
+        margin-bottom: -5px;
+      }
+      &:not(:first-child) {
+        margin-top: 20px;
+        &:not(.dao-btn) {
+          line-height: 24px;
+          margin-top: 15px;
+          margin-bottom: -5px;
+        }
+      }
+    }
+    .helper-text-top {
+      color: $font-color-title;
+    }
+    .helper-text {
+      color: $font-color-light;
+    }
+    .dao-table-container {
+      line-height: 24px;
+      padding: 0;
+    }
+  }
+  &-layout-footer {
+    background-color: $background-color-footer;
+    padding: $padding-layout-footer;
+    border-radius: 0 0 $border-radius-size $border-radius-size;
+    border-top: $border;
+  }
+}
+
+@media (max-width: 765px) {
+  .dao-setting-item {
+    flex-wrap: wrap;
+  }
+  .dao-setting-label {
+    margin-bottom: 20px;
+  }
+}
