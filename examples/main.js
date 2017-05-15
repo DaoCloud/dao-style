@@ -7,6 +7,7 @@ import VueRouter from 'vue-router';
 import App from './app.vue';
 import daoStyle from '../src/index';
 
+import autocomplete from './routers/autocomplete.vue';
 import button from './routers/button.vue';
 import card from './routers/card.vue';
 import dropdown from './routers/dropdown.vue';
@@ -31,17 +32,17 @@ Vue.config.debug = true;
 // 路由配置
 const router = new VueRouter({
   routes: [{
-    path: '/dropdown',
-    component: dropdown,
-  }, {
-    path: '/dialog',
-    component: dialog,
+    path: '/autocomplete',
+    component: autocomplete,
   }, {
     path: '/button',
     component: button,
   }, {
     path: '/card',
     component: card,
+  }, {
+    path: '/dialog',
+    component: dialog,
   }, {
     path: '/dropdown',
     component: dropdown,
@@ -61,14 +62,14 @@ const router = new VueRouter({
     path: '/select',
     component: select,
   }, {
-    path: '/steps',
-    component: steps,
-  }, {
     path: '/select-all',
     component: selectAll,
   }, {
     path: '/setting-layout',
     component: settingLayout,
+  }, {
+    path: '/steps',
+    component: steps,
   }, {
     path: '/tab',
     component: tab,
