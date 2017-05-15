@@ -1,82 +1,127 @@
 @import '../dao-color.scss';
+$font-color: #3d444f;
+$dialog-overlay: rgba(31, 33, 38, .3);
+$dialog-header-bg-color: #f5f7fa;
+$dialog-header-bg-img: linear-gradient(0deg, rgb(242,244,247) 0%, rgb(245,247,250) 100%);
+$resizeSvg: "data:image/svg+xml;utf8,%3Csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20fill=%27%23ccd1d9%27%20viewBox=%270%200%2032%2032%27%3E%3Cg%3E%3Cpolygon%20points=%2721.414%2028%2028%2021.414%2028%2018.586%2018.586%2028%2021.414%2028%27/%3E%3Cpolygon%20points=%275.414%2028%2028%205.414%2028%202.586%202.586%2028%205.414%2028%27/%3E%3Cpolygon%20points=%2713.414%2028%2028%2013.414%2028%2010.586%2010.586%2028%2013.414%2028%27/%3E%3C/g%3E%3C/svg%3E";
+
 
 .dao-dialog-backdrop {
   position: fixed;
-  z-index: 9998;
   top: 0;
   left: 0;
-
   display: table;
-
   width: 100%;
   height: 100%;
-
+  background-color: $dialog-overlay;
+  z-index: 9998;
   transition: opacity .3s ease;
+}
 
-  background-color: rgba(31, 33, 38, .3);
+.dao-dialog-wrapper %dialogBody {
+  flex: 1 1 auto;
+  padding: 20px;
+  background-color: white;
+  color: $font-color;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 21px;
+  overflow-y: auto;
+}
+
+.dao-dialog-body {
+  @extend %dialogBody;
+}
+
+.dao-dialog__multiStep {
+  .dao-dialog-body {
+    display: flex;
+    padding: 0;
+    transition: transform .3s;
+  }
+  .dao-dialog-step {
+    flex: 1;
+    padding: 20px;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+}
+
+.dao-dialog-feature__text {
+  @extend %dialogBody;
 }
 
 .dao-dialog-wrapper {
   display: table-cell;
-
   vertical-align: middle;
+
+  &.dao-dialog__feature .dao-dialog-body {
+    padding: 0;
+  }
 }
 
 .dao-dialog-container {
   display: flex;
-  overflow: auto;
   flex-direction: column;
-
   width: 600px;
-  max-height: calc(100% - 100px);
   margin: 0 auto;
-
-  transition: all .3s ease;
-
   border-radius: 4px;
   background-color: $white;
   box-shadow: 0 3px 30px 0 rgba(0, 0, 0, .2);
-  &.dao-dialog-lg {
-    width: 900px;
-  }
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
-.dao-dialog-header {
-  padding: 12px 20px;
-
-  border-bottom: 1px solid $white-dark;
-  background-image:    -moz-linear-gradient( 90deg, #f2f4f7 0%, $white-light 100%);
-  background-image: -webkit-linear-gradient( 90deg, #f2f4f7 0%, $white-light 100%);
-  background-image:     -ms-linear-gradient( 90deg, #f2f4f7 0%, $white-light 100%);
-  box-shadow: inset 0 1px 0 0 rgba($white, .6);
-
-  flex: 0 0 auto;
-  h3 {
-    font-size: 18px;
-    font-weight: normal;
-    line-height: 26px;
-
-    margin: 0;
-
-    color: $black-dark;
+.dao-dialog-wrapper {
+  &[size='sm'] {
+    .dao-dialog-container {
+      height: 200px;
+    }
   }
-}
+  &[size='md'] {
+    .dao-dialog-container {
+      height: 400px;
+    }
+  }
+  &[size='lg'] {
+    .dao-dialog-container {
+      width: 900px;
+      height: 600px;
+    }
+  }
 
-.dao-dialog-body {
-  overflow: auto;
+  &[size='resize'] {
+    .dao-dialog-container {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      height: 400px;
+      transform: translateX(-50%) translateY(-50%);
+      resize: both;
 
-  flex: 0 1 auto;
+      &::after {
+        content: '';
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        height: 16px;
+        width: 16px;
+        cursor: nwse-resize;
+        background: url($resizeSvg);
+      }
+    }
+  }
 }
 
 .dao-dialog-footer {
-  padding: 9px 20px;
-
-  text-align: right;
-
-  border-top: 1px solid $white-dark;
-  background-color: $white-light;
-
   flex: 0 0 auto;
+  padding: 9px 20px;
+  text-align: right;
+  border-top: 1px solid $white-dark;
+  background-color: $dialog-header-bg-color;
+  background-image: $dialog-header-bg-img;
+  border-radius: 0 0 4px 4px;
+  box-shadow: inset 0 -1px 0  #e4e7ed;
 }
 
 /*
@@ -87,19 +132,36 @@
  * You can easily play with the dao-dialog transition by editing
  * these styles.
  */
-
-.dao-dialog-enter {
-  opacity: 0;
+.dao-dialog-enter-active {
+  .dao-dialog-wrapper {
+    animation: showDialog .3s;
+  }
 }
 
+@keyframes showDialog {
+  0% {
+    transform: scale(0.7);
+    -webkit-transform: scale(0.7);
+  }
+  100% {
+    transform: scale(1);
+    -webkit-transform: scale(1);
+  }
+}
+
+// 滑动进入
+// .dao-dialog-enter {
+//   opacity: 0.5;
+// }
+//
 .dao-dialog-leave-active {
   opacity: 0;
 }
-
-.dao-dialog-enter .dao-dialog-container {
-  transform: translate(0, -25%);
-  transition: transform .3s ease-out;
-}
+//
+// .dao-dialog-enter .dao-dialog-container {
+//   transform: translate(0, -25%);
+//   transition: transform .3s ease-out;
+// }
 
 .dao-dialog-leave-active .dao-dialog-container {
   transform: translate(0, 0);

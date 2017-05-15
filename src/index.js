@@ -17,6 +17,7 @@ import './components/dao-svg/svg';
 const daoStyle = {
   daoCallout,
   daoDialog,
+  daoDialogStep: daoDialog.Step,
   daoDropdown,
   daoDropdownMenu: daoDropdown.Menu,
   daoDropdownItem: daoDropdown.Item,

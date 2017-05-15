@@ -28,7 +28,7 @@ li + li {
 <template>
   <div class="container">
     <nav>
-      <ul>
+      <ul class="container-body">
         <li>
           <router-link to="/affix">Affix</router-link>
         </li>
