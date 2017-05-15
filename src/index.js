@@ -4,6 +4,7 @@ import 'core-js/fn/array/find-index';
 import daoCallout from './components/dao-callout';
 import daoModal from './components/dao-modal';
 import daoSwitch from './components/dao-switch';
+import daoTooltip from './components/dao-tooltip';
 import daoDropdown from './components/dao-dropdown';
 import daoInput from './components/dao-input';
 import './components/dao-svg/svg';
@@ -12,6 +13,7 @@ const daoStyle = {
   daoCallout,
   daoModal,
   daoSwitch,
+  daoTooltip,
   daoDropdown,
   daoDropdownMenu: daoDropdown.Menu,
   daoDropdownItem: daoDropdown.Item,

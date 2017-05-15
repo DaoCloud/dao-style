@@ -11,6 +11,7 @@ import dropdown from './routers/dropdown.vue';
 import modal from './routers/modal.vue';
 import button from './routers/button.vue';
 import input from './routers/input.vue';
+import tooltip from './routers/tooltip';
 
 Vue.use(VueRouter);
 Vue.use(daoStyle);
@@ -32,6 +33,9 @@ const router = new VueRouter({
   }, {
     path: '/input',
     component: input,
+  }, {
+    path: '/tooltip',
+    component: tooltip,
   }],
 });
 
