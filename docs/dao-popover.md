@@ -1,6 +1,6 @@
 # popover（提示框）
 
-popover 是一个现实提示框的组件。代码请参照目录：[src/components/dao-popover](../src/components/dao-popover)。
+popover 是一个显示提示框的组件。代码请参照目录：[src/components/dao-popover](../src/components/dao-popover)。
 
 ## 使用方法
 
