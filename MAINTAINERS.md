@@ -1,12 +1,12 @@
-# Dao Style Maintainer 文件
+# Dao Style Vue Maintainer 文件
 
-此文件描述了运营项目 daocloud/dao-style 的负责人(也称Maintainer)。
+此文件描述了运营项目 daocloud/dao-style-vue 的负责人(也称Maintainer)。
  
 Maintainer的职责有：
 
 * 诊断分类用户issue，[详见/Issue-分类.md](project/Issue-分类.md)；
 * 分类审核用户PR，[详见/PR-审核流程.md](project/PR-审核流程.md)；
-* 制定项目的roadmap，[详见/roadmap.md](roadmap.md)；
+* 制定项目的roadmap，[详见/ROADMAP.md](ROADMAP.md)；
 * 维护项目的其他内容，如：CHANGELOG.md，版本发布等。
 
 
@@ -50,6 +50,9 @@ Maintainer的职责有：
 				"select-all", 
 				"svg", 
 				"tab",
+			],
+			"yank1": [
+				"progress",
 			],
 			"Ye-Ting": [],
 			"ZhuJingSi": [
@@ -110,6 +113,11 @@ Maintainer的职责有：
 	Name = "vivian-xu"
 	Email = "vivian.zhang@daocloud.io"
 	GitHub = "vivian-xu"
+
+	[people.yank1]
+	Name = "Kay Yan"
+	Email = "kay.yan@daocloud.io"
+	GitHub = "yank1"
 
 	[people.Ye-Ting]
 	Name = "Ting Ye"

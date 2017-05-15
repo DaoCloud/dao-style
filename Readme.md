@@ -1,18 +1,18 @@
 # dao-style-vue
 
-dao-style-vue 是一个基于 Vue  2.0 框架的 web UI 组件库。
+dao-style-vue 是一个基于 Vue 2.0 框架的 web UI 组件库。
 
 ## 引导链接
 
 - [主页]()
-- [文档]()
+- [文档](docs)
 - [常见问题FAQ](FAQ.md)
 - 项目参与
   - [问题反馈](https://github.com/DaoCloud/dao-style-vue/issues/new)
-  - [贡献指南]()
+  - [贡献指南](project)
 - 安装部署
-  - [快速安装](README.md#快速安装)
-  - [示例代码]()
+  - [快速安装](#快速安装)
+  - [示例代码](#示例代码)
 - 关于项目
   - [ROADMAP](ROADMAP.md)
   - [变更日志CHANGELOG](CHANGELOG.md)
@@ -20,24 +20,27 @@ dao-style-vue 是一个基于 Vue  2.0 框架的 web UI 组件库。
   - [模块主要负责人](README.md#模块主要负责人)
   - [License](README.md#LICENSE)
 
-## 启动本地测试环境
+## 快速安装
 
-1. `npm install`
-2. `bower install`
-3. `gulp serve`
-
-## 压缩打包
-`npm run build-gulp`
+## 示例代码
 
 ## 浏览器支持
 
+|浏览器类型|浏览器版本支持|
+|--------|---------|
+| Chrome| |
+| Safari| |
+| firefox||
+| IE     ||
+
 ## 贡献指南
 
-如果您仅仅是使用dao-style，请跳过此部分。
+如果您仅仅是使用 dao-style-vue，请跳过此部分。
 
 ## 常见问题FAQ（frequently asked questions）
 
 ## 模块主要负责人
+
 <table>
   <thead>
     <th>负责人</th>
@@ -66,14 +69,14 @@ dao-style-vue 是一个基于 Vue  2.0 框架的 web UI 组件库。
       <td>select-all</td>
     </tr>
     <tr>
-      <td>Henry</td>
+      <td>刘世奇</td>
       <td>color</td>
       <td>checkbox</td>
       <td>feedback</td>
       <td>select</td>
     </tr>
     <tr>
-      <td>Cisy</td>
+      <td>朱静思</td>
       <td>multistep</td>
       <td>callout</td>
       <td>setting-layout</td>
@@ -87,11 +90,18 @@ dao-style-vue 是一个基于 Vue  2.0 框架的 web UI 组件库。
       <td>card</td>
     </tr>
     <tr>
-      <td>Aaron</td>
+      <td>乔安然</td>
       <td>dropdown</td>
       <td>list-group</td>
       <td>chip</td>
       <td>clipboard</td>
+    </tr>
+    <tr>
+      <td>颜开</td>
+      <td>progress</td>
+      <td></td>
+      <td></td>
+      <td></td>
     </tr>
   </tbody>
 </table>
