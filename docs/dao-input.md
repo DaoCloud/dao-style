@@ -117,6 +117,8 @@ Editable Input 是一个可以编辑的 Disabled Input。当我们不希望用�
 | 事件名称 | 说明 | 回调参数 |
 |:-------:|:---:|:-------:|
 | click | 点击 Input 内的图标时触发 | (event: Event) |
+| keyup | 按键弹起时触发 | (event: Event) |
+| keydown | 按下按键时触发 | (event: Event) |
 | blur | 在 Input 失去焦点时触发 | (event: Event) |
 | focus | 在 Input 获得焦点时触发 | (event: Event) |
 | change | 在 Input 值改变时触发 | (value: String \| Number) |
