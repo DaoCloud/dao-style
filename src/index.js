@@ -11,6 +11,7 @@ import { daoInput, daoEditableInput } from './components/dao-input';
 import daoPopover from './components/dao-popover';
 import daoEditableTable from './components/dao-editable-table';
 import { daoProgress, daoProgressPulsing, daoProgressStacked } from './components/dao-progress';
+import daoRadio from './components/dao-radio';
 import daoSelect from './components/dao-select';
 import daoSettingLayout from './components/dao-setting-layout';
 import daoSteps from './components/dao-steps';
@@ -37,16 +38,17 @@ const daoStyleComponents = {
   daoProgress,
   daoProgressPulsing,
   daoProgressStacked,
+  daoRadio,
+  daoRadioGroup: daoRadio.group,
   daoSelect,
+  daoSettingLayout,
+  daoSettingItem: daoSettingLayout.Item,
+  daoSettingSection: daoSettingLayout.Section,
   daoSteps,
   daoStep: daoSteps.step,
-  daoSubstep: daoSteps.substep,
   daoStepContent: daoSteps.content,
-  daoProgressStacked,
+  daoSubstep: daoSteps.substep,
   daoSwitch,
-  daoSettingLayout,
-  daoSettingSection: daoSettingLayout.Section,
-  daoSettingItem: daoSettingLayout.Item,
   daoTab,
   daoTabItem: daoTab.Item,
   daoTooltip,

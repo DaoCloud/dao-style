@@ -1,10 +1,6 @@
-@import '../dao-color.scss';
+@import './variables.scss';
 
-$radio-font-color: $black-dark;
-$radio-font-disable-color: $grey-dark;
-$radio-font-size: 14px;
-$radio-height: 24px;
-.dao-radio {
+.dao-radio-simple {
   position: relative;
   display: block;
   line-height: $radio-height;
@@ -28,7 +24,7 @@ $radio-height: 24px;
   input[type='radio'] {
     position: absolute;
     margin-left: -20px;
-    margin-top: 5px;
+    margin-top: 6px;
     &[disabled],
     &.disabled {
       cursor: not-allowed;
