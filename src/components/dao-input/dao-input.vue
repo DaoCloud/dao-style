@@ -22,6 +22,8 @@
         @input="handleInput"
         @focus="handleFocus"
         @blur="handleBlur"
+        @keyup="handleKeyUp"
+        @keydown="handleKeyDown"
       >
       <span class="icon loading-icon" v-show="status === 'loading' && iconInside">
         <svg>
@@ -108,6 +110,12 @@
       },
       handleFocus(event) {
         this.$emit('focus', event);
+      },
+      handleKeyUp(event) {
+        this.$emit('keyup', event);
+      },
+      handleKeyDown(event) {
+        this.$emit('keydown', event);
       },
       handleInput(event) {
         const value = event.target.value;
