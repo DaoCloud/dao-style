@@ -3,7 +3,7 @@
     @before-leave="scrollBodyTop" @after-leave="doDestroy">
     <div
       class="dao-dialog-backdrop"
-      v-show="value"
+      v-show="visible"
     >
       <div
         class="dao-dialog-wrapper"
@@ -21,7 +21,6 @@
             :title="config.title"
             v-if="config.showHeader && config.type !== 'feature'"
           />
-
           <div
             ref="body"
             class="dao-dialog-body"
@@ -55,7 +54,7 @@ import daoDialogHeader from './dao-dialog-header/dao-dialog-header';
 export default {
   name: 'DaoDialog',
   props: {
-    value: {
+    visible: {
       type: Boolean,
       default: false,
     },
@@ -69,7 +68,7 @@ export default {
           size: 'md',
           showHeader: true,
           showFooter: true,
-          closeOnClickModal: true,
+          closeOnClickOutside: true,
           closeOnPressEscape: true,
         };
       },
@@ -130,7 +129,7 @@ export default {
     },
     // close dialog
     doClose() {
-      this.$emit('input', false);
+      this.$emit('update:visible', false);
     },
     // 确认操作
     clickConfirm() {
@@ -144,13 +143,13 @@ export default {
     },
     // 点击 wrapper 时
     handleWrapperClick() {
-      if (this.config.closeOnClickModal) {
+      if (this.config.closeOnClickOutside) {
         this.doClose();
       }
     },
     // 按 ESC 键时
     EscClose(e) {
-      if (this.value && this.config.closeOnPressEscape && e.keyCode === 27) {
+      if (this.visible && this.config.closeOnPressEscape && e.keyCode === 27) {
         this.doClose();
       }
     },
@@ -173,7 +172,7 @@ export default {
     document.body.style.overflowY = '';
   },
   watch: {
-    value(newVal, oldVal) {
+    visible(newVal, oldVal) {
       if(newVal) {
         this.$emit('dao-dialog-open');
       } else {
