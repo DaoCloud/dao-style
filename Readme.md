@@ -10,6 +10,7 @@ dao-style-vue 是一个基于 Vue 2.0 框架的 web UI 组件库。
 - 项目参与
   - [问题反馈](https://github.com/DaoCloud/dao-style-vue/issues/new)
   - [贡献指南](project)
+  - [测试](test/README.md)
 - 安装部署
   - [快速安装](#快速安装)
   - [示例代码](#示例代码)

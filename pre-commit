@@ -21,7 +21,7 @@ echo "\nValidating Javascript:\n"
 
 for FILE in $STAGED_FILES
 do
-  "$ESLINT" -c .eslintrc.js "$FILE"
+  "$ESLINT" "$FILE"
 
   if [[ "$?" == 0 ]]; then
     echo "\t\033[32mESLint Passed: $FILE\033[0m"
