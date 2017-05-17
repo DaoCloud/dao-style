@@ -7,11 +7,11 @@ $tab-nav-item-backgound: #f5f7fa;
 $tab-nav-item-link-color: #a2a9b5;
 $tab-nav-item-link-color-active: #3890ff;
 
-.dao-tabs-nav {
+.dao-tab-nav {
   border-bottom: $tab-nav-item-border-color solid 1px;
   padding: $tab-nav-padding;
 
-  .dao-tabs-nav-item {
+  .dao-tab-nav-item {
     display: inline-block;
     padding: $tab-nav-item-padding-vertical $tab-nav-item-padding-horizon;
     margin-bottom: -1px;

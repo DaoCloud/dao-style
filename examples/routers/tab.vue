@@ -2,7 +2,7 @@
   <div>
     <div class="demo-block">
       <h2 class="demo-block__title"> Demo 1 </h2>
-      <dao-tabs direction="right" >
+      <dao-tab direction="right" >
         <dao-tab-item heading="标题1">
           <p class="demo-tab-wrap first">
             Some Tab Content
@@ -22,17 +22,17 @@
             <button type="submit" name="button" class="dao-btn blue"> 提交 </button>
           </div>
         </dao-tab-item>
-      </dao-tabs>
+      </dao-tab>
     </div>
     <div class="demo-block">
       <h2 class="demo-block__title"> Demo 2 </h2>
-      <dao-tabs direction="left" >
+      <dao-tab direction="left" >
         <dao-tab-item :heading="tab.heading" key="index" v-for="(tab, index) in tabs" >
           <p class="demo-tab-wrap">
             {{tab.body}}
           </p>
         </dao-tab-item>
-      </dao-tabs>
+      </dao-tab>
     </div>
   </div>
 </template>

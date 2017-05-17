@@ -23,7 +23,7 @@ export default {
     },
   },
   mounted() {
-    this.$parent.addTabs(this);
+    this.$parent.addTab(this);
     this.active = this.updateActive();
   },
   beforeDestroy () {
@@ -31,7 +31,7 @@ export default {
     if (this.$el && this.$el.parentNode) {
       this.$el.parentNode.removeChild(this.$el);
     }
-    this.$parent.removeTabs(this);
+    this.$parent.removeTab(this);
   },
 };
 </script>

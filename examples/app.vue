@@ -93,7 +93,7 @@ li + li {
           <router-link to="/circle">Circle</router-link>
         </li>
         <li>
-          <router-link to="/tabs">Tabs</router-link>
+          <router-link to="/tab">Tab</router-link>
         </li>
         <li>
           <router-link to="/tooltip">Tooltip</router-link>

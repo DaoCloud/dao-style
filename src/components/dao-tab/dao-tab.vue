@@ -1,11 +1,11 @@
 <template>
-  <div class="dao-tabs"
+  <div class="dao-tab"
     :class="{ right: direction === 'right' }"
   >
-    <div class="dao-tabs__header">
-      <DaoTabsNav :tabs="tabs" v-model="activeName" />
+    <div class="dao-tab__header">
+      <DaoTabNav :tabList="tabList"/>
     </div>
-    <div class="dao-tabs__body">
+    <div class="dao-tab__body">
       <slot>
         等待加载 Tab 数据
       </slot>
@@ -13,12 +13,12 @@
   </div>
 </template>
 <style lang="scss">
-  @import './dao-tabs.scss';
+  @import './dao-tab.scss';
 </style>
 <script>
-import DaoTabsNav from './dao-tabs-nav/dao-tabs-nav';
+import DaoTabNav from './dao-tab-nav/dao-tab-nav';
 export default {
-  name: 'DaoTabs',
+  name: 'DaoTab',
   props: {
     direction: {
       type: String,
@@ -31,30 +31,31 @@ export default {
   },
   data() {
     return {
-      tabs: [],
+      tabList: [],
       activeName: '0',
     };
   },
   methods: {
-    addTabs(item) {
-      this.tabs.push(item);
+    addTab(item) {
+      this.tabList.push(item);
     },
-    removeTabs(item) {
-      const tabs = this.tabs;
+    removeTab(item) {
+      const tabs = this.tabList;
       const idx = tabs.indexOf(item);
       if (idx >= 0) {
         tabs.splice(idx, 1);
       }
+      this.tabList = tabs;
     },
   },
   watch: {
-    tabs(value) {
+    tabList(value) {
       // 只在刚加载进数据的时候执行一次
       this.activeName = value[0].heading;
     },
   },
   components: {
-    DaoTabsNav,
+    DaoTabNav,
   },
 };
 </script>
