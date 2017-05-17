@@ -69,12 +69,8 @@
       :message="message"
       :status="statusError"
       placeholder="请输入内容">
-      <template slot="prepend">
-        <span class="dao-input-group-addon">http://</span>
-      </template>
-      <template slot="append">
-        <span class="dao-input-group-addon">.com</span>
-      </template>
+      <span slot="prepend">http://</span>
+      <span slot="append">.com</span>
     </dao-input>
     <br><br><br>
     <dao-input
@@ -84,6 +80,20 @@
     </dao-input>
     <br><br><br>
     <input class="dao-control search" type="text" placeholder="搜索(使用纯样式)" v-model="demoSearchByClass" required>
+    <br><br><br>
+    <dao-editable-input
+      v-model="demoEditable"
+      placeholder="不能输入 4 或 6"
+      :message="demoEditableMessage"
+      :status="demoEditableStatus"
+      :icon-inside="true"
+      :is-editable="true"
+      save-btn-content="确认"
+      :edit-state="true"
+      :on-check="demoCheck"
+      :on-success="demoEditableSuccess">
+      <span slot="append">GB</span>
+    </dao-editable-input>
     <br><br><br>
     <textarea class="dao-control" type="text" rows="3" placeholder="请填写内容" v-model="demoTextarea"></textarea>
   </div>
@@ -108,12 +118,30 @@
         demoInputGroup: '',
         demoSearch: '',
         demoSearchByClass: '',
+        demoEditable: 'editable',
+        demoEditableMessage: '',
+        demoEditableStatus: '',
         demoTextarea: '',
         statusLoading: 'loading',
         statusError: 'error',
         statusSuccess: 'success',
         statusInfo: 'info',
       };
+    },
+    methods: {
+      demoCheck() {
+        if (this.demoEditable === '4' || this.demoEditable === '6') {
+          this.demoEditableMessage = '不能输入 4 或 6';
+          this.demoEditableStatus = 'error';
+          return false;
+        }
+        this.demoEditableMessage = '';
+        this.demoEditableStatus = '';
+        return true;
+      },
+      demoEditableSuccess() {
+        console.log('保存成功');
+      },
     },
   };
 </script>

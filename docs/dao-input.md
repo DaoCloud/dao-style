@@ -46,12 +46,11 @@ Input 是一个 32 像素高的（包括 border）表单组件（form component�
 
 Editable Input 是一个可以编辑的 Disabled Input。当我们不希望用户轻易编辑某些字段，我们可以使用这个组件。
 
-功能为输入时，实时验证输入信息。额外提供功能：enter 键保存数据，esc 键取消修改。
+功能为保存时，验证输入的值。额外提供功能：enter 键保存数据，esc 键取消修改。
 
 ``` html
-<dao-input
+<dao-editable-input
   v-model=""
-  type="editable"
   [save-btn-content=""]
   [:edit-state=""]
   [:disabled=""]
@@ -75,7 +74,7 @@ Editable Input 是一个可以编辑的 Disabled Input。当我们不希望用�
   [:max=""]
   [:min=""]
   [:step=""]>
-</dao-input>
+</dao-editable-input>
 ```
 
 #### Textarea
@@ -100,7 +99,7 @@ Editable Input 是一个可以编辑的 Disabled Input。当我们不希望用�
 | disabled | Boolean | 禁用 | false | 否 |
 | icon-inside | Boolean | 当需要弹出 popover 提示 | false | 否 |
 | message | String | 提示的内容，可为空字符串，必选组合参数 (info, success, error)中一个，可选组合参数 icon-inside, class, message-placement | - | 否 |
-| message-placement | String | 提示内容的位置，必选组合参数 message，可选值 right-top，top-right | right-top | 否 |
+| message-placement | String | 提示内容的位置，必选组合参数 message，可选值 top-end，right-start | top-end | 否 |
 | message-no-icon | Boolean | 提示信息前不带图标，只在 icon-inside 值为 false 时生效 | false | 否 |
 | search | Boolean | 搜索输入框 | false | 否 |
 | status | String | 状态，可选值（loading/info/success/error） | - | 否 |
@@ -120,12 +119,19 @@ Editable Input 是一个可以编辑的 Disabled Input。当我们不希望用�
 
 | 事件名称 | 说明 | 回调参数 |
 |:-------:|:---:|:-------:|
-| click | 点击 Input 内的图标时触发 | (event: Event) |
 | keyup | 按键弹起时触发 | (event: Event) |
 | keydown | 按下按键时触发 | (event: Event) |
 | blur | 在 Input 失去焦点时触发 | (event: Event) |
 | focus | 在 Input 获得焦点时触发 | (event: Event) |
 | change | 在 Input 值改变时触发 | (value: String \| Number) |
+
+### 组件 Slot 接受的参数
+
+|参数名|类型|说明|默认值|是否必填|
+|-----|---|----|----|---|
+| prepend | HTML | Input Group 前置内容 |-|否|
+| append | HTML | Input Group 后置内容 |-|否|
+| button | HTML | Input 插入按钮，可更优雅的将按钮与提示信息组合呈现 |-|否|
 
 ### Editable Input 接受的参数
 
@@ -133,7 +139,6 @@ Editable Input 是一个可以编辑的 Disabled Input。当我们不希望用�
 
 | 参数名 | 类型 | 说明 | 默认值 | 是否必填 |
 |:-----:|:----:|:---:|:-----:|:------:|
-| type | String | 类型，必填值：editable | text | 是 |
 | save-btn-content | String | 保存按钮中显示的内容 | 保存 | 否 |
 | edit-state | Boolean | 初始编辑状态 | false | 否 |
 | on-check | Function | 检查输入的函数，符合要求返回 true，否则返回 false | - | 否 |
