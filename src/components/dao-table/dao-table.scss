@@ -1,0 +1,530 @@
+@import './dao-table-variable.scss';
+@import './dao-table-components.scss';
+
+.dao-table-main {
+  width: 100%;
+  overflow: auto;
+}
+
+.dao-table {
+  display: flex;
+  flex-direction: column;
+  color: $item-minor-color;
+  border: 1px solid $border-outer-color;
+  border-radius: 3px;
+  text-align: left;
+  margin: 0;
+  width: 100%;
+  overflow: visible;
+  thead {
+    background: $thead-bg;
+    tr {
+      background: $thead-bg;
+      height: $row-th-height;
+      line-height: $row-th-height;
+      border-bottom: 1px solid $border-outer-color;
+    }
+  }
+  tr {
+    display: flex;
+    border-bottom: 1px solid $border-inner-color;
+  }
+  tbody {
+    background: $tbody-bg;
+    tr:last-child {
+      border-bottom: none !important;
+    }
+  }
+  th {
+    display: block;
+    flex: 1 1 auto;
+    // 为了适应firefox而加，并且设置为!important
+    flex-basis: auto !important;
+    // 为了适应firefox而加，并且设置为!important----end
+    width: 0;
+    font-weight: normal;
+    white-space: nowrap;
+  }
+  td {
+    display: block;
+    position: relative;
+    flex: 1 1 auto;
+    // 为了适应firefox而加，并且设置为!important
+    flex-basis: auto !important;
+    // 为了适应firefox而加，并且设置为!important----end
+    width: 0;
+    margin: auto;
+    line-height: normal;
+    white-space: nowrap;
+    overflow: visible;
+    .dao-progress {
+      display: inline-block;
+    }
+    .dao-progress-stacked {
+      display: inline-flex;
+    }
+  }
+  svg {
+    @include svg-in-table();
+  }
+  .dao-dropdown-toggle {
+    svg {
+      margin-right: 0;
+    }
+  }
+  span {
+    vertical-align: middle;
+  }
+}
+
+// row 表格由于要呈现很长的数据，所以必须要能横向滚动，这个时候用 flex 就不合适了。所以还是弄一个 table 的版本。
+.dao-table.row {
+  // 这里莫名其妙有margin-left:-15px，我也不知道哪里来的，先覆盖掉
+  margin-left: 0;
+  margin-right: 0;
+  // chrome 有 bug，必须要这么写
+  border-bottom: none;
+  // shame
+  display: table;
+  thead {
+    tr {
+      height: $row-th-height;
+    }
+  }
+  th {
+    padding: 0 $row-th-padding-horizontal;
+    // shame
+    display: table-cell;
+    &.right {
+      text-align: right;
+    }
+    input[type=checkbox] {
+      margin-right: $svg-margin-right;
+    }
+    + th {
+      border-left: solid 1px $border-outer-color;
+    }
+  }
+  tr {
+    padding-right: $row-tr-padding-horizontal - $row-td-padding-horizontal;
+    padding-left: $row-tr-padding-horizontal - $row-td-padding-horizontal;
+    // shame
+    display: table-row;
+    // chrome 有 bug，必须要这么写
+    &:last-child {
+      border-bottom: 1px solid $border-outer-color !important;
+    }
+  }
+  td {
+    padding: 0 $row-td-padding-horizontal;
+    height: $row-td-height;
+    line-height: $row-td-height;
+    font-weight: normal;
+    font-size: $row-font-size;
+    color: $item-major-color;
+    word-break: break-all;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    // shame
+    display: table-cell;
+    + td {
+      border-left: solid 1px $border-outer-color;
+    }
+    &.left {
+      text-align: left;
+    }
+    &.right {
+      text-align: right;
+    }
+    &.link {
+      color: $item-link-color;
+    }
+    &.name {
+      font-weight: 600;
+      color: $item-link-color;
+    }
+    input[type=checkbox] {
+      vertical-align: middle;
+      margin-right: 5px;
+    }
+  }
+}
+
+// 以下是新版的 row
+.dao-table.flexrow {
+  // 这里莫名其妙有margin-left:-15px，我也不知道哪里来的，先覆盖掉
+  margin-left: 0;
+  margin-right: 0;
+  thead {
+    tr {
+      height: $row-th-height;
+    }
+  }
+  th {
+    padding: 0 $row-th-padding-horizontal;
+    &.right {
+      text-align: right;
+    }
+    input[type=checkbox] {
+      margin-right: $svg-margin-right;
+    }
+  }
+  tr {
+    border-color: $border-outer-color;
+    padding-right: $row-tr-padding-horizontal - $row-td-padding-horizontal;
+    padding-left: $row-tr-padding-horizontal - $row-td-padding-horizontal;
+  }
+  td {
+    padding: 0 $row-td-padding-horizontal;
+    height: $row-td-height;
+    line-height: $row-td-height;
+    font-weight: normal;
+    font-size: $row-font-size;
+    color: $item-major-color;
+    border-color: $border-outer-color;
+    word-break: break-all;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    + td {
+      border-left: solid 1px $border-outer-color;
+    }
+    &.left {
+      text-align: left;
+    }
+    &.right {
+      text-align: right;
+    }
+    &.link, .name {
+      color: $item-link-color;
+    }
+    &.name {
+      font-weight: 600;
+    }
+    input[type=checkbox] {
+      vertical-align: middle;
+      margin-right: 5px;
+    }
+  }
+}
+
+.dao-table.slat, .dao-table-slat {
+  thead {
+    tr {
+      height: $row-th-height;
+    }
+  }
+  tbody {
+    position: relative;
+    display: block;
+    overflow-y: auto;
+    border-radius: 1px;
+    @include scroll-hint();
+    tr {
+      height: $slat-tr-height;
+      transform: translateZ(0px);
+      &.selected {
+        border-image: 1 linear-gradient(to right,
+          rgba($blue, 0.8) 0,
+          rgba($blue, 0.8) 6px,
+          $selected-border-color 6px,
+          $selected-border-color 100%);
+        // 为了适应safari浏览器
+        border-width: 0px;
+        border-bottom-width: 1px;
+        // 为了适应safari浏览器----end
+        background: $selected-bg-opacity !important;
+        box-shadow: 10px 0px 0px -5px rgba($blue, 0.8) inset;
+        &+ .slat2 {
+          background: $slat2-selected-opacity !important;
+        }
+      }
+      &:not(.slat2):hover {
+        background: $hover-bg-opacity;
+        &+ .slat2 {
+          border-color: $hover-border-color;
+          background: $slat2-hover-bg-opacity;
+        }
+      }
+    }
+  }
+  .slat2 {
+    min-height: $slat2-height;
+    height: auto;
+    border-bottom: 1px solid $border-outer-color;
+    background: $slat2-bg-opacity;
+    padding-left: $slat-tr-margin-left;
+    td {
+      min-height: 24px;
+      margin-top: 9px;
+      margin-bottom: 9px;
+      white-space: normal;
+      display: flex;
+      line-height: 24px;
+      span {
+        vertical-align: middle;
+      }
+    }
+  }
+  .slat2-container {
+    flex: 1;
+  }
+  .slat2-label {
+    flex: 0 0 auto;
+  }
+  th {
+    margin-right: $slat-td-margin-right;
+    &.operation {
+      min-width: 200px;
+    }
+  }
+  td {
+    margin-right: $slat-td-margin-right;
+    color: $item-major-color;
+    // 让最后一列居右，可以通过operation做到这一点，以后可以删掉这行
+    &:last-child:not(:first-child) {
+      text-align: right;
+    }
+    // 扩大具有 tooltip 的 td 的 hover 范围
+    &[dao-tooltip] {
+      // 计算出实际的 margin-top 偏移量
+      border-top: transparent solid ($slat-tr-height - $minor-major-margin - $major-height - $minor-height) / 2 ;
+      border-bottom:  transparent solid ($slat-tr-height - $minor-major-margin - $major-height - $minor-height) / 2;
+    }
+    // 保证操作列能够完全显示
+    &.operation {
+      text-align: right;
+      min-width: 200px;
+      overflow: visible;
+    }
+    // 这一条规则适用于老版的表格，同时左边没有 checkbox 的情况
+    &.name:first-child {
+      margin-left: $slat-tr-margin-left;
+    }
+  }
+  .th-name{
+    margin-left: $slat-tr-margin-left;
+    input + svg {
+      margin-left: $checkbox-padding;
+    }
+    &.checkbox-padding {
+      svg {
+        margin-left: $checkbox-padding + $checkbox-width;
+      }
+    }
+  }
+  .td-name {
+    display: flex;
+    margin-left: $slat-tr-margin-left;
+  }
+  .item-checkbox {
+    width: ($checkbox-td-size - $checkbox-width) / 2;
+    text-align: right;
+    line-height: $checkbox-td-size;
+    margin-right: $checkbox-padding;
+    overflow: visible;
+    flex: 0 0 auto;
+    text-align: center;
+  }
+  .item-logo {
+    display: inline-block;
+    height: $logo-height;
+    width: $logo-height;
+    flex: 0 0 auto;
+  }
+  .item-logo-text {
+    display: inline-block;
+    margin: auto;
+    flex: 0 1 auto;
+    margin-left: 10px;
+    width: calc(100% - #{$logo-height} - 10px);
+    overflow: hidden;
+    .item-minor, .item-major {
+      display: flex;
+      // 防止 小徽章上边框被切掉
+      overflow: visible;
+      a, span {
+        flex: 0 1 auto;
+        display: inline-block;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      svg, .small-badge {
+        flex: 0 0 auto;
+      }
+    }
+  }
+  .item-major, .item-link, .item-minor, .item-name {
+    display: block;
+    width: 100%;
+    margin: auto;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .item-major, .item-link, .item-name {
+    font-size: $major-size;
+    line-height: $major-size;
+    height: $major-height;
+    vertical-align: middle;
+  }
+  .item-flex {
+    display: flex;
+    // 防止 小徽章上边框被切掉
+    overflow: visible;
+    a, span {
+      flex: 0 1 auto;
+      display: inline-block;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    svg, .small-badge {
+      flex: 0 0 auto;
+    }
+  }
+  .item-major {
+    color: $item-major-color;
+  }
+  .item-minor {
+    font-size: $minor-size;
+    line-height: $minor-size;
+    height: $minor-height;
+    margin-top: $minor-major-margin;
+    color: $item-minor-color;
+    span {
+      vertical-align: top;
+    }
+    svg {
+      height: 16px;
+      width: 16px;
+    }
+  }
+  .item-link a {
+    vertical-align: middle;
+  }
+  .item-danger {
+    color: $table-danger-color;
+  }
+  .item-success {
+    color: $table-success-color;
+  }
+  .checkbox {
+    flex: 0 0 auto;
+    text-align: center;
+    padding: 0;
+    width: $checkbox-td-size;
+    margin-right: 0;
+  }
+}
+
+.dao-table-container {
+  padding-top: $table-margin;
+}
+
+.dao-table-toolbar {
+  height: $toolbar-height;
+  .btn-group {
+    display: inline-block;
+  }
+  .dao-btn-group {
+    margin-left: 10px;
+  }
+  .table-count {
+    line-height: 34px;
+    margin-left: 18px;
+    display: inline-block;
+    color: $item-minor-color;
+  }
+  .table-filters {
+    float: right;
+    .search {
+      display: inline-block;
+      vertical-align: middle;
+    }
+  }
+}
+
+.dao-pagination {
+  margin: 20px 0;
+  .dao-page-number {
+    font-size: 14px;
+    color: $item-minor-color;
+    margin-left: 20px;
+  }
+}
+
+.edit-table {
+  td, th {
+    width: 0;
+    flex: 1 1 auto;
+    text-align: left;
+  }
+  .ellipsis {
+    max-width: 400px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  td .dao-btn {
+    padding: 5px 11px;
+  }
+  .operate-col {
+    border-left: none !important;
+  }
+  .operate {
+    float: right;
+    svg {
+      margin: 0 9px;
+      fill: $item-minor-color;
+      cursor: pointer;
+      transition: fill 0.3s;
+      &:hover,
+      &.focus {
+        fill: $item-major-color;
+      }
+    }
+  }
+  .editing {
+    input {
+      width: auto;
+      min-width: 61px;
+      height: 26px;
+    }
+    select {
+      min-width: auto;
+      height: 26px;
+      border: 1px solid $border-color;
+      border-radius: 2px;
+      outline: none;
+    }
+    .switch {
+      cursor: pointer;
+    }
+    .operate {
+      display: flex;
+      justify-content: center;
+      float: none;
+    }
+  }
+  .table-bottom {
+    display: flex;
+    align-items: center;
+    margin-top: 19px;
+    .error-info {
+      flex: auto;
+      text-align: center;
+      color: #f1483f;
+    }
+  }
+  .empty-state {
+    padding: 40px;
+    text-align: center;
+    color: #9ba3af;
+    background-color: #fbfcfc;
+    border: 1px dashed #e4e7ed;
+    .empty-state-title {
+      font-size: 18px;
+      font-weight: 500;
+      line-height: 40px;
+    }
+  }
+}
