@@ -1,3 +1,4 @@
 import daoInput from './dao-input.vue';
+import daoEditableInput from './dao-editable-input.vue';
 
-export default daoInput;
+export { daoInput, daoEditableInput };

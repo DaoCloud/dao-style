@@ -4,7 +4,7 @@ import './components/dao-svg/svg';
 
 import daoCallout from './components/dao-callout';
 import daoDropdown from './components/dao-dropdown';
-import daoInput from './components/dao-input';
+import { daoInput, daoEditableInput } from './components/dao-input';
 import daoModal from './components/dao-modal';
 import daoPopover from './components/dao-popover';
 import { daoProgress, daoProgressPulsing, daoProgressStacked } from './components/dao-progress';
@@ -20,6 +20,7 @@ const daoStyle = {
   daoDropdown,
   daoDropdownMenu: daoDropdown.Menu,
   daoDropdownItem: daoDropdown.Item,
+  daoEditableInput,
   daoInput,
   daoModal,
   daoPopover,

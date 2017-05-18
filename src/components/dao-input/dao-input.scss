@@ -38,15 +38,18 @@
 
 .dao-input {
   &-group-addon {
-    padding: 8px 10px;
-    font-weight: 400;
-    line-height: 1;
-    height: $input-height;
-    background-color: $input-disabled-bg-color;
-    color: $input-disabled-color;
-    border: $input-border;
-    border-radius: $input-border-radius;
-    text-align: center;
+    display: inline-flex;
+    & > *:not(.dao-select) {
+      padding: 8px 10px;
+      font-weight: 400;
+      line-height: 1;
+      height: $input-height;
+      background-color: $input-disabled-bg-color;
+      color: $input-disabled-color;
+      border: $input-border;
+      border-radius: $input-border-radius;
+      text-align: center;
+    }
   }
   &-inner {
     position: relative;
@@ -122,7 +125,6 @@
       @include e('&', 'input.search') {
         height: 32px;
         line-height: 30px;
-        margin-right: 15px;
         width: 200px;
         border-radius: 17px;
         padding: 0 10px 0 30px;
@@ -369,11 +371,11 @@
       .dao-select {
         width: auto;
       }
-      .dao-input-group-addon:not(:last-child),
+      .dao-input-group-addon.prepend > *:last-child,
       .dao-select:not(:last-child) .dao-select-input {
         border-right: 0;
       }
-      .dao-input-group-addon:not(:last-child),
+      .dao-input-group-addon.prepend > *:last-child,
       .dao-input-inner:not(:last-child) input,
       .dao-select:not(:last-child) .dao-select-input,
       .dao-input-container:not(:last-child) input {
@@ -381,11 +383,11 @@
         border-top-right-radius: 0;
         margin-right: 0;
       }
-      .dao-input-inner + .dao-input-group-addon,
+      .dao-input-group-addon.append > *:first-child,
       .dao-input-inner + .dao-select .dao-select-input {
         border-left: 0;
       }
-      .dao-input-group-addon:not(:first-child),
+      .dao-input-group-addon.append > *:first-child,
       .dao-input-inner:not(:first-child) input,
       .dao-select:not(:first-child) .dao-select-input,
       .dao-input-container:not(:first-child) input {

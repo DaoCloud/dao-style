@@ -12,7 +12,9 @@
       'no-message-icon': messageNoIcon,
       'dao-input-group': $slots.prepend || $slots.append
     }">
-    <slot name="prepend"></slot>
+    <div class="dao-input-group-addon prepend" v-if="$slots.prepend">
+      <slot name="prepend"></slot>
+    </div>
     <div class="dao-input-inner">
       <input
         v-bind="$props"
@@ -25,28 +27,31 @@
         @keyup="handleKeyUp"
         @keydown="handleKeyDown"
       >
-      <span class="icon loading-icon" v-show="status === 'loading' && iconInside">
+      <span class="icon loading-icon" v-if="status === 'loading' && iconInside">
         <svg>
           <use xlink:href="#icon_status-progress-circle"></use>
         </svg>
       </span>
-      <span class="icon info-icon" v-show="status === 'info' && iconInside">
+      <span class="icon info-icon" v-if="status === 'info' && iconInside">
         <svg>
           <use xlink:href="#icon_question"></use>
         </svg>
       </span>
-      <span class="icon error-icon" v-show="status === 'error' && iconInside">
+      <span class="icon error-icon" v-if="status === 'error' && iconInside">
         <svg>
           <use xlink:href="#icon_warning"></use>
         </svg>
       </span>
-      <span class="icon success-icon" v-show="status === 'success' && iconInside">
+      <span class="icon success-icon" v-if="status === 'success' && iconInside">
         <svg>
           <use xlink:href="#icon_success"></use>
         </svg>
       </span>
     </div>
-    <slot name="append"></slot>
+    <div class="dao-input-group-addon append" v-if="$slots.append">
+      <slot name="append"></slot>
+    </div>
+    <slot name="button"></slot>
     <div class="dao-input-message error" v-if="status === 'error' && !!message && !iconInside && !$slots.prepend && !$slots.append">
       <svg class="icon"><use xlink:href="#icon_danger"></use></svg>
       <span v-html="message"></span>
@@ -74,7 +79,10 @@
       value: [String, Number],
       iconInside: Boolean,
       message: String,
-      messagePlacement: String,
+      messagePlacement: {
+        type: String,
+        default: 'top-end',
+      },
       messageNoIcon: Boolean,
       search: Boolean,
       status: String,
@@ -105,9 +113,6 @@
       handleBlur(event) {
         this.$emit('blur', event);
       },
-      inputSelect() {
-        this.$refs.input.select();
-      },
       handleFocus(event) {
         this.$emit('focus', event);
       },
@@ -127,9 +132,6 @@
         if (value === this.currentValue) return;
         this.currentValue = value;
       },
-    },
-    created() {
-      this.$on('inputSelect', this.inputSelect);
     },
   };
 </script>
