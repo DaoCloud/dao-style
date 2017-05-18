@@ -21,9 +21,11 @@ popover 是一个显示提示框的组件。代码请参照目录：[src/compone
 
 |参数名|类型|说明|默认值|是否必填|
 |-----|---|----|----|---|
-| trigger | String | 触发方式，可选值 ```click, focus, hover``` |-|是|
+| trigger | String | 触发方式，可选值 ```click, focus, hover``` | click |否|
 | content | String | 提示内容 |-|否|
 | placement | String | 提示框出现位置，可选值 ```top, top-start, top-end, bottom, bottom-start, bottom-end, left, left-start, left-end, right, right-start, right-end```。 |bottom|否|
+| always | Boolean | 是否强制显示 |false|否|
+| disabled | Boolean | 是否不可用 |false|否|
 
 ### 组件 Slot 接受的参数
 
