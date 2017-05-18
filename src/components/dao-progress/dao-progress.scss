@@ -1,0 +1,128 @@
+@import '../dao-color.scss';
+
+$height: 8px;
+$pulsing-width: 120px;
+// 要改 stripe 色带宽度，就改下面这个就行了
+$stripe-width: 4px;
+$stripe-width-total: $stripe-width * 2 * 0.866; // 二分之根号3
+$stripe-width-thick: ($stripe-width + 0.5) * 0.866; // 二分之根号3
+$grey: #767b84;
+
+@mixin inner() {
+  height: 100%;
+  width: 100%;
+  opacity: 0.8;
+  mix-blend-mode: multiply;
+  transition: 0.5s linear;
+}
+
+@mixin progress () {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: $height;
+  border-radius: $height / 2;
+  background-color: $white-light;
+  box-shadow: 0 0 0 1px $white-dark inset;
+  transform: translateZ(0);
+  &.dao-progress-error {
+    background-color: generate-color($red, -3);
+    box-shadow: 0 0 0 1px generate-color($red, -2) inset;
+  }
+}
+
+.dao-progress {
+  @include progress();
+}
+
+.dao-progress-usage {
+  @include inner();
+  background-image: linear-gradient(to right,
+    rgb(34,195,106) 0%,
+    rgb(34,195,106) 40%,
+    rgb(247,179,43) 80%,
+    rgb(241,72,63) 100%);
+  border-radius: $height / 2;
+}
+
+.dao-progress-pulsing {
+  @include inner();
+  position: relative;
+  background-color: $blue;
+  border-top-left-radius: $height / 2;
+  border-bottom-left-radius: $height / 2;
+}
+
+.dao-progress-pulsing-overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background-image: linear-gradient( to right, transparent 0,
+    transparent 10%,
+    rgba(255, 255, 255, 0.3) 50%,
+    transparent 90%,
+    transparent 100%);
+  background-size: $pulsing-width 100%;
+  transition: 0.5s linear;
+  animation: 1.5s linear move infinite;
+  @keyframes move {
+    from {
+      background-position: 0;
+    }
+    to {
+      background-position: $pulsing-width;
+    }
+  }
+}
+
+.dao-progress-basic {
+  @include inner();
+  background-color: $blue;
+  border-top-left-radius: $height / 2;
+  border-bottom-left-radius: $height / 2;
+}
+
+.dao-progress-stacked {
+  @include progress();
+  display: flex;
+}
+
+.dao-progress-green {
+  @include inner();
+  flex: 1 1 auto;
+  background-color: $green;
+}
+
+.dao-progress-red {
+  @include inner();
+  flex: 1 1 auto;
+  background-color: $red;
+}
+
+.dao-progress-stripe {
+  @include inner();
+  flex: 1 1 auto;
+  background-image: repeating-linear-gradient(-60deg,
+    $grey-light 0,
+    $grey-light $stripe-width-thick,
+    $grey-dark $stripe-width-thick,
+    $grey-dark $stripe-width-total);
+  background-size: calc(100% + #{$stripe-width * 2});
+  animation: 0.4s linear move2 infinite;
+  @keyframes move2 {
+    from {
+      background-position: -$stripe-width * 2;
+    }
+    to {
+      background-position: 0;
+    }
+  }
+}
+
+.dao-progress-black {
+  @include inner();
+  flex: 1 1 auto;
+  background-color: $black-light;
+}
