@@ -1,26 +1,26 @@
 // es6 polyfill
 import 'core-js/fn/array/find-index';
+import './components/dao-svg/svg';
 
 import daoCallout from './components/dao-callout';
-import daoModal from './components/dao-modal';
-import daoSwitch from './components/dao-switch';
-import daoTooltip from './components/dao-tooltip';
 import daoDropdown from './components/dao-dropdown';
 import daoInput from './components/dao-input';
+import daoModal from './components/dao-modal';
+import daoSwitch from './components/dao-switch';
 import daoTab from './components/dao-tab';
-import './components/dao-svg/svg';
+import daoTooltip from './components/dao-tooltip';
 
 const daoStyle = {
   daoCallout,
-  daoModal,
-  daoSwitch,
-  daoTooltip,
   daoDropdown,
   daoDropdownMenu: daoDropdown.Menu,
   daoDropdownItem: daoDropdown.Item,
   daoInput,
+  daoModal,
+  daoSwitch,
   daoTab,
   daoTabItem: daoTab.Item,
+  daoTooltip,
 };
 
 function install(Vue) {
