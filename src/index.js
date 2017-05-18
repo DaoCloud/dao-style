@@ -8,9 +8,11 @@ import daoInput from './components/dao-input';
 import daoModal from './components/dao-modal';
 import daoPopover from './components/dao-popover';
 import { daoProgress, daoProgressPulsing, daoProgressStacked } from './components/dao-progress';
+import daoSteps from './components/dao-steps';
 import daoSwitch from './components/dao-switch';
 import daoTab from './components/dao-tab';
 import daoTooltip from './components/dao-tooltip';
+import './components/dao-svg/svg';
 
 const daoStyle = {
   daoCallout,
@@ -23,6 +25,10 @@ const daoStyle = {
   daoProgress,
   daoProgressStacked,
   daoProgressPulsing,
+  daoSteps,
+  daoStep: daoSteps.step,
+  daoSubstep: daoSteps.substep,
+  daoStepContent: daoSteps.content,
   daoSwitch,
   daoTab,
   daoTabItem: daoTab.Item,

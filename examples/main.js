@@ -14,6 +14,7 @@ import input from './routers/input.vue';
 import modal from './routers/modal.vue';
 import popover from './routers/popover.vue';
 import progress from './routers/progress.vue';
+import steps from './routers/steps.vue';
 import tab from './routers/tab.vue';
 import tooltip from './routers/tooltip.vue';
 
@@ -46,6 +47,9 @@ const router = new VueRouter({
   }, {
     path: '/progress',
     component: progress,
+  }, {
+    path: '/steps',
+    component: steps,
   }, {
     path: '/tab',
     component: tab,
