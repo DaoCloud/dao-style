@@ -2,6 +2,7 @@
 import 'core-js/fn/array/find-index';
 import './components/dao-svg/svg';
 
+// components
 import daoCallout from './components/dao-callout';
 import daoDialog from './components/dao-dialog';
 import daoDropdown from './components/dao-dropdown';
@@ -13,8 +14,12 @@ import daoSwitch from './components/dao-switch';
 import daoSettingLayout from './components/dao-setting-layout';
 import daoTab from './components/dao-tab';
 import daoTooltip from './components/dao-tooltip';
+// directives
+import daoSelectAll from './directives/dao-select-all';
+// svg
+import './components/dao-svg/svg';
 
-const daoStyle = {
+const daoStyleComponents = {
   daoCallout,
   daoDialog,
   daoDialogStep: daoDialog.Step,
@@ -40,9 +45,16 @@ const daoStyle = {
   daoTooltip,
 };
 
+const daoStyleDirectives = {
+  'dao-select-all': daoSelectAll,
+};
+
 function install(Vue) {
-  Object.keys(daoStyle).forEach((key) => {
-    Vue.component(key, daoStyle[key]);
+  Object.keys(daoStyleComponents).forEach((key) => {
+    Vue.component(key, daoStyleComponents[key]);
+  });
+  Object.keys(daoStyleDirectives).forEach((key) => {
+    Vue.directive(key, daoStyleDirectives[key]);
   });
 }
 
@@ -51,4 +63,4 @@ if (typeof window !== 'undefined' && window.Vue) {
   install(window.Vue);
 }
 
-module.exports = Object.assign(daoStyle, { install }); // eslint-disable-line no-undef
+module.exports = Object.assign({ install });
