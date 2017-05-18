@@ -7,14 +7,14 @@ tab 是 标签组件。代码请参照目录 : [src/components/dao-tab](../src/c
 ### html 使用方法
 
 ```HTML
-<dao-tab direction="right">
+<dao-tab [direction="right"]>
   <dao-tab-item heading="标题1">
-    <h3> HTML 渲染 </h3>
-    <label>Name</label>
+    <h3> [HTML 渲染] </h3>
+    <label>[Name]</label>
     <input type="text" />
   </dao-tab-item>
   <dao-tab-item heading="标题2">
-    Tab 2
+    [Tab 2]
   </dao-tab-item>
 </dao-tab>
 ```
