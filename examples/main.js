@@ -12,6 +12,7 @@ import card from './routers/card.vue';
 import dropdown from './routers/dropdown.vue';
 import input from './routers/input.vue';
 import modal from './routers/modal.vue';
+import popover from './routers/popover.vue';
 import progress from './routers/progress.vue';
 import tab from './routers/tab.vue';
 import tooltip from './routers/tooltip.vue';
@@ -39,6 +40,9 @@ const router = new VueRouter({
   }, {
     path: '/modal',
     component: modal,
+  }, {
+    path: '/popover',
+    component: popover,
   }, {
     path: '/progress',
     component: progress,
