@@ -8,7 +8,7 @@ Select 是由 Select 和 Option-Group 以及 Option 三个组件组合而成。
 
 ### html 使用方法
 
-```
+``` HTML
 <dao-select v-model="option">
   <dao-option-group v-bind:label="name">
     <dao-option v-bind:value="mimo" v-bind:label="mimo"></dao-option>

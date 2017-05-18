@@ -1,10 +1,11 @@
-# Card
+# Card (卡片)
 
 Card 是一个将信息以卡片的形式呈现的组件。代码请参照目录：[src/components/dao-card](../src/components/dao-card)。
 
 ## 使用方法
 
 ### html 使用方法
+
 ``` html
 <div class="dao-card-layout">
   <div class="dao-card-col">

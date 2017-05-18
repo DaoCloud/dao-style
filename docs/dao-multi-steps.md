@@ -3,7 +3,9 @@
 multi-step 是一个多步骤视图组件。代码请参照目录：[src/components/dao-multi-step](../src/components/dao-multi-step)。
 
 ## 使用方法
+
 ### HTML
+
 ```HTML
 <dao-multi-steps
    [v-on:index=""]
@@ -21,6 +23,7 @@ multi-step 是一个多步骤视图组件。代码请参照目录：[src/compone
 ```
 
 ## 参数
+
 ### \<dao-multi-steps> 接受的属性 
 
 | 参数名        | 类型       | 说明                                       | 默认值  | 是否必填 |
