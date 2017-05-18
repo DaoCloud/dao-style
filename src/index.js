@@ -6,6 +6,7 @@ import daoCallout from './components/dao-callout';
 import daoDropdown from './components/dao-dropdown';
 import daoInput from './components/dao-input';
 import daoModal from './components/dao-modal';
+import daoPopover from './components/dao-popover';
 import { daoProgress, daoProgressPulsing, daoProgressStacked } from './components/dao-progress';
 import daoSwitch from './components/dao-switch';
 import daoTab from './components/dao-tab';
@@ -18,6 +19,7 @@ const daoStyle = {
   daoDropdownItem: daoDropdown.Item,
   daoInput,
   daoModal,
+  daoPopover,
   daoProgress,
   daoProgressStacked,
   daoProgressPulsing,

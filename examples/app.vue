@@ -99,7 +99,7 @@ li + li {
           <router-link to="/tooltip">Tooltip</router-link>
         </li>
         <li>
-          <router-link to="/poptip">Poptip</router-link>
+          <router-link to="/popover">Popover</router-link>
         </li>
         <li>
           <router-link to="/slider">Slider</router-link>
