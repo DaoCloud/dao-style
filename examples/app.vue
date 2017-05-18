@@ -28,7 +28,7 @@ li + li {
 <template>
   <div class="container">
     <nav>
-      <ul>
+      <ul class="container-body">
         <li>
           <router-link to="/affix">Affix</router-link>
         </li>
@@ -147,7 +147,7 @@ li + li {
           <router-link to="/loading-bar">LoadingBar</router-link>
         </li>
         <li>
-          <router-link to="/modal">Modal</router-link>
+          <router-link to="/dialog">Dialog</router-link>
         </li>
         <li>
           <router-link to="/message">Message</router-link>
