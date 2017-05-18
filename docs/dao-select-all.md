@@ -8,8 +8,8 @@ v-dao-select-all 是一个实现鼠标点击全选功能的自定义指令。代
 
 ```HTML
 <input class="dao-control" type="text" v-model="" v-dao-select-all>
-<textarea [v-dao-select-all]></textarea>
-<div [v-dao-select-all]></div>
+<textarea v-dao-select-all></textarea>
+<div v-dao-select-all></div>
 ```
 
 ## 指令
