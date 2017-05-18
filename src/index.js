@@ -3,6 +3,7 @@ import 'core-js/fn/array/find-index';
 import './components/dao-svg/svg';
 
 // components
+import daoAutocomplete from './components/dao-autocomplete';
 import daoCallout from './components/dao-callout';
 import daoDialog from './components/dao-dialog';
 import daoDropdown from './components/dao-dropdown';
@@ -18,10 +19,9 @@ import daoTab from './components/dao-tab';
 import daoTooltip from './components/dao-tooltip';
 // directives
 import daoSelectAll from './directives/dao-select-all';
-// svg
-import './components/dao-svg/svg';
 
 const daoStyleComponents = {
+  daoAutocomplete,
   daoCallout,
   daoDialog,
   daoDialogStep: daoDialog.Step,

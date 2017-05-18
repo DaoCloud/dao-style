@@ -30,6 +30,9 @@ li + li {
     <nav>
       <ul class="container-body">
         <li>
+          <router-link to="/autocomplete">AutoComplete</router-link>
+        </li>
+        <li>
           <router-link to="/affix">Affix</router-link>
         </li>
         <li>
