@@ -1,13 +1,13 @@
-# tabs ( 标签 )
+# tab ( 标签 )
 
-tabs 是 标签组件。代码请参照目录 : [src/components/dao-tabs](../src/components/dao-tabs)
+tab 是 标签组件。代码请参照目录 : [src/components/dao-tab](../src/components/dao-tab)
 
 ## 使用方法
 
 ### html 使用方法
 
 ```HTML
-<dao-tabs direction="right">
+<dao-tab direction="right">
   <dao-tab-item heading="标题1">
     <h3> HTML 渲染 </h3>
     <label>Name</label>
@@ -16,12 +16,12 @@ tabs 是 标签组件。代码请参照目录 : [src/components/dao-tabs](../src
   <dao-tab-item heading="标题2">
     Tab 2
   </dao-tab-item>
-</dao-tabs>
+</dao-tab>
 ```
 
 ## 组件参数
 
-### dao-tabs
+### dao-tab
 
 #### 组件接受的参数
 

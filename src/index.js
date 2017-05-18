@@ -7,6 +7,7 @@ import daoSwitch from './components/dao-switch';
 import daoTooltip from './components/dao-tooltip';
 import daoDropdown from './components/dao-dropdown';
 import daoInput from './components/dao-input';
+import daoTab from './components/dao-tab';
 import './components/dao-svg/svg';
 
 const daoStyle = {
@@ -18,6 +19,8 @@ const daoStyle = {
   daoDropdownMenu: daoDropdown.Menu,
   daoDropdownItem: daoDropdown.Item,
   daoInput,
+  daoTab,
+  daoTabItem: daoTab.Item,
 };
 
 function install(Vue) {

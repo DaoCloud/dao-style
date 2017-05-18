@@ -1,0 +1,38 @@
+$tab-font-size: 14px;
+$tab-nav-padding: 0 10px;
+$tab-nav-item-padding-vertical: 10px;
+$tab-nav-item-padding-horizon: 15px;
+$tab-nav-item-border-color: #e4e7ed;
+$tab-nav-item-backgound: #f5f7fa;
+$tab-nav-item-link-color: #a2a9b5;
+$tab-nav-item-link-color-active: #3890ff;
+
+.dao-tab-nav {
+  border-bottom: $tab-nav-item-border-color solid 1px;
+  padding: $tab-nav-padding;
+
+  .dao-tab-nav-item {
+    display: inline-block;
+    padding: $tab-nav-item-padding-vertical $tab-nav-item-padding-horizon;
+    margin-bottom: -1px;
+    background: $tab-nav-item-backgound;
+    border: $tab-nav-item-border-color solid 1px;
+    border-right: none;
+    color: $tab-nav-item-link-color;
+    font-size: $tab-font-size;
+    list-style: none;
+    cursor: pointer;
+
+    &:last-child {
+      border-right: $tab-nav-item-border-color solid 1px;
+    }
+
+    &.active {
+      padding-top: $tab-nav-item-padding-vertical - 1px;
+      background: white;
+      border-bottom: transparent solid 1px;
+      border-top: $tab-nav-item-link-color-active solid 2px;
+      color: $tab-nav-item-link-color-active;
+    }
+  }
+}
