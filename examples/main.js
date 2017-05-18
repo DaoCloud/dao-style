@@ -21,6 +21,7 @@ import steps from './routers/steps.vue';
 import selectAll from './routers/select-all.vue';
 import settingLayout from './routers/settingLayout.vue';
 import tab from './routers/tab.vue';
+import table from './routers/table.vue';
 import tooltip from './routers/tooltip.vue';
 
 Vue.use(VueRouter);
@@ -73,6 +74,9 @@ const router = new VueRouter({
   }, {
     path: '/tab',
     component: tab,
+  }, {
+    path: '/table',
+    component: table,
   }, {
     path: '/tooltip',
     component: tooltip,
