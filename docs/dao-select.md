@@ -8,25 +8,54 @@ Select 是由 Select 和 Option-Group 以及 Option 三个组件组合而成。
 
 ### html 使用方法
 
+#### 普遍用法
+
 ```html
 <dao-select 
   v-model="option"
   [placeholder="请选择"]
   [:loading="true"]
   [loading-text="加载中"]
-  [:async="vm.getOptions"]
+  [:async="getOptions"]
   [:disabled="false"]
   [:with-btn="false"]
   [btn-content="按钮"]
   [:with-search="false"]
   [search-placeholder="搜索"]
-  [:with-tab="false"]
   [menu-class="menuClass"]
   [no-data-text="无数据"]
   [no-match-text="无匹配数据"]>
-  <dao-option-group v-bind:label="name">
-    <dao-option v-bind:value="mimo" v-bind:label="mimo"></dao-option>
+  <dao-option-group :label="name">
+    <dao-option :value="mimo" :label="mimo"></dao-option>
   </dao-option-group>
+</dao-select>
+```
+
+#### 特殊情况：with-tab
+
+```html
+<dao-select
+  v-model="option"
+  :with-tab="true"
+  [placeholder="请选择"]
+  [:loading="true"]
+  [loading-text="加载中"]
+  [:async="getOptions"]
+  [:disabled="false"]
+  [menu-class="menuClass"]
+  [no-data-text="无数据"]>
+  <dao-tab direction="left">
+    <dao-tab-item heading="标题1">
+      <dao-option-group :label="male">
+        <dao-option :value="mimo" :label="mimo"></dao-option>
+      </dao-option-group>
+    </dao-tab-item>
+    <dao-tab-item heading="标题2">
+      <dao-option-group :label="female">
+        <dao-option :value="mary" :label="mary"></dao-option>
+      </dao-option-group>
+    </dao-tab-item>
+  </dao-tab>
 </dao-select>
 ```
 
@@ -45,6 +74,7 @@ Select 是由 Select 和 Option-Group 以及 Option 三个组件组合而成。
 | btn-content | string | 控制 select 带的 button 内的文字 | - | 否 |
 | with-search | boolean | 是否有搜索框 | false | 否 |
 | search-placeholder | string | 搜索框默认文本 | - | 否 |
+| search-method | String | Function | 搜索方法：若传入的是一个 String，则这个 String 需要是 option 中 value 的一个 key；若传入的是一个 Function，则 Function 接受参数为 option value 值，需返回 true 或 false | - | 否 |
 | with-tab | boolean | 是否有 tab | false | 否 |
 | menu-class | string | select 下拉菜单的类名 | - | 否 |
 | no-data-text | string | select 无数据时显示的文字 | '无数据' | 否 |
