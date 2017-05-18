@@ -68,13 +68,13 @@ Select 是由 Select 和 Option-Group 以及 Option 三个组件组合而成。
 | placeholder | string | 控制在未选中选项时显示的文字 | - | 否 |
 | loading |	boolean |	控制 select 显示 loading 状态 |	false | 否 |
 | loading-text | string | loading 状态显示文字 | '加载中' | 否 |
-| async | function | 控制异步获取数据 | - | 否 |
+| async | function | 控制异步获取数据，传入的 function 需要返回一个 Promise| - | 否 |
 | disabled | boolean | 控制 select 的 disable 状态 | false | 否 |
 | with-btn | boolean | 控制 select 是否带 button | false | 否 |
 | btn-content | string | 控制 select 带的 button 内的文字 | - | 否 |
 | with-search | boolean | 是否有搜索框 | false | 否 |
 | search-placeholder | string | 搜索框默认文本 | - | 否 |
-| search-method | String | Function | 搜索方法：若传入的是一个 String，则这个 String 需要是 option 中 value 的一个 key；若传入的是一个 Function，则 Function 接受参数为 option value 值，需返回 true 或 false | - | 否 |
+| search-method | string / function | 搜索方法：若传入的是一个 string，则这个 string 需要是 option 中 value 的一个 key；若传入的是一个 function，则 function 接受的参数为 option 的 value 值，需返回 true 或 false | - | 否 |
 | with-tab | boolean | 是否有 tab | false | 否 |
 | menu-class | string | select 下拉菜单的类名 | - | 否 |
 | no-data-text | string | select 无数据时显示的文字 | '无数据' | 否 |
