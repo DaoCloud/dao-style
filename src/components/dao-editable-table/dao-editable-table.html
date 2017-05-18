@@ -1,0 +1,46 @@
+<div class="dao-editable-table">
+  <table class="dao-table flexrow" v-if="rows.length > 0">
+    <thead>
+      <tr>
+        <th v-for="th in header">{{ th.text }}</th>
+        <th class="det-edit-col">编辑</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="det-tr" v-for="(row, index) in rows" :class="{activate: index === activatedRow}">
+        <td v-for="td in row">
+          <dao-input class="det-input"
+            type="text"
+            v-if="td.type === 'input'"
+            v-model="td.value"
+            @change="updateValue()"
+            @focus="focusRow(index)"
+            @blur="blurRow">
+          </dao-input>
+          <input
+            type="checkbox"
+            v-if="td.type === 'checkbox'"
+            :name="td.name"
+            v-model="td.value"
+            @change="updateValue()">
+          <label :for="td.name" v-if="td.type === 'checkbox'">{{td.label}}</label>
+          <select
+            :name="td.name"
+            v-if="td.type === 'select'"
+            v-model="td.value"
+            @change="updateValue()">
+            <option v-for="option in td.options" :text="option" :value="option">{{option}}</option>
+          </select>
+          <span v-if="td.type === 'text'">{{ td.value }}</span>
+        </td>
+        <td class="det-edit-col">
+          <svg class="det-remove-btn" @click="removeRow(row)"><use xlink:href="#icon_minus-circled"></use></svg>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="det-add" @click="addRow">
+    <svg class="det-add-btn"><use xlink:href="#icon_plus-circled"></use></svg>
+    <span class="det-add-span">添加</span>
+  </div>
+</div>

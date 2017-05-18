@@ -11,6 +11,7 @@ import button from './routers/button.vue';
 import card from './routers/card.vue';
 import dropdown from './routers/dropdown.vue';
 import dialog from './routers/dialog.vue';
+import editableTable from './routers/editable-table.vue';
 import input from './routers/input.vue';
 import popover from './routers/popover.vue';
 import progress from './routers/progress.vue';
@@ -44,6 +45,9 @@ const router = new VueRouter({
   }, {
     path: '/dropdown',
     component: dropdown,
+  }, {
+    path: '/editable-table',
+    component: editableTable,
   }, {
     path: '/input',
     component: input,
