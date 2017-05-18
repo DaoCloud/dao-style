@@ -1,5 +1,6 @@
 // es6 polyfill
 import 'core-js/fn/array/find-index';
+import './components/dao-svg/svg';
 
 import daoCallout from './components/dao-callout';
 import daoDialog from './components/dao-dialog';
