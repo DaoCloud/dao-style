@@ -16,6 +16,7 @@ import editableTable from './routers/editable-table.vue';
 import input from './routers/input.vue';
 import popover from './routers/popover.vue';
 import progress from './routers/progress.vue';
+import radio from './routers/radio.vue';
 import select from './routers/select.vue';
 import steps from './routers/steps.vue';
 import selectAll from './routers/select-all.vue';
@@ -59,6 +60,9 @@ const router = new VueRouter({
   }, {
     path: '/progress',
     component: progress,
+  }, {
+    path: '/radio',
+    component: radio,
   }, {
     path: '/select',
     component: select,
