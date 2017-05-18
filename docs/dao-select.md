@@ -8,8 +8,22 @@ Select 是由 Select 和 Option-Group 以及 Option 三个组件组合而成。
 
 ### html 使用方法
 
-``` HTML
-<dao-select v-model="option">
+```html
+<dao-select 
+  v-model="option"
+  [placeholder="请选择"]
+  [:loading="true"]
+  [loading-text="加载中"]
+  [:async="vm.getOptions"]
+  [:disabled="false"]
+  [:with-btn="false"]
+  [btn-content="按钮"]
+  [:with-search="false"]
+  [search-placeholder="搜索"]
+  [:with-tab="false"]
+  [menu-class="menuClass"]
+  [no-data-text="无数据"]
+  [no-match-text="无匹配数据"]>
   <dao-option-group v-bind:label="name">
     <dao-option v-bind:value="mimo" v-bind:label="mimo"></dao-option>
   </dao-option-group>
