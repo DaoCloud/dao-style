@@ -13,7 +13,6 @@ import daoSwitch from './components/dao-switch';
 import daoSettingLayout from './components/dao-setting-layout';
 import daoTab from './components/dao-tab';
 import daoTooltip from './components/dao-tooltip';
-import './components/dao-svg/svg';
 
 const daoStyle = {
   daoCallout,
