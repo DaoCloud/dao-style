@@ -7,13 +7,13 @@ import VueRouter from 'vue-router';
 import App from './app.vue';
 import daoStyle from '../src/index';
 
-import dropdown from './routers/dropdown.vue';
-import modal from './routers/modal.vue';
 import button from './routers/button.vue';
-import input from './routers/input.vue';
-import tooltip from './routers/tooltip.vue';
 import card from './routers/card.vue';
+import dropdown from './routers/dropdown.vue';
+import input from './routers/input.vue';
+import modal from './routers/modal.vue';
 import tab from './routers/tab.vue';
+import tooltip from './routers/tooltip.vue';
 
 Vue.use(VueRouter);
 Vue.use(daoStyle);
@@ -24,26 +24,26 @@ Vue.config.debug = true;
 // 路由配置
 const router = new VueRouter({
   routes: [{
-    path: '/dropdown',
-    component: dropdown,
-  }, {
-    path: '/modal',
-    component: modal,
-  }, {
     path: '/button',
     component: button,
-  }, {
-    path: '/input',
-    component: input,
-  }, {
-    path: '/tooltip',
-    component: tooltip,
   }, {
     path: '/card',
     component: card,
   }, {
+    path: '/dropdown',
+    component: dropdown,
+  }, {
+    path: '/input',
+    component: input,
+  }, {
+    path: '/modal',
+    component: modal,
+  }, {
     path: '/tab',
     component: tab,
+  }, {
+    path: '/tooltip',
+    component: tooltip,
   }],
 });
 
