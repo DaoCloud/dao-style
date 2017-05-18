@@ -94,7 +94,10 @@
       // 绑定获取 value 事件
       this.$on('pipe-value', (v) => {
         if (this.value === v) {
+          this.active = true;
           this.dispatchOnChosen(this.value);
+        } else {
+          this.active = false;
         }
       });
     },
