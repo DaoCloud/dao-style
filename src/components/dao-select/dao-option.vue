@@ -62,10 +62,15 @@
       label: String,
     },
     beforeCreate() {
+      // 绑定获取 value 事件
+      this.$on('pipe-value', (v) => {
+        this.notActive();
+        if (this.value === v) this.isActive();
+      });
       // 绑定选择事件
-      this.$on('is-chosen', (v) => {
-        if (this.value === v) return;
-        this.active = false;
+      this.$on('status', (val) => {
+        this.notActive();
+        if (this.value === val) this.isActive();
       });
       // 绑定搜索事件
       this.$on('search', (filter, filterMethod) => {
@@ -84,21 +89,12 @@
             this.matchedFilter = filterMethod(filter);
             break;
           default:
-          // 默认根据 label 来搜索
+            // 默认根据 label 来搜索
             if (!filterMethod) {
               this.matchedFilter = (this.label ? this.label.indexOf(filter) > -1 : true);
             }
         }
         this.dispatch('Option-group', 'search-result');
-      });
-      // 绑定获取 value 事件
-      this.$on('pipe-value', (v) => {
-        if (this.value === v) {
-          this.active = true;
-          this.dispatchOnChosen(this.value);
-        } else {
-          this.active = false;
-        }
       });
     },
     data() {
@@ -108,13 +104,14 @@
       };
     },
     methods: {
+      // 处理点击事件
       handleClick() {
         if (this.disabled) return;
-        this.active = true;
-        this.dispatchOnChosen(this.value);
+        // 触发 select 中的 on-chosen 事件
+        this.dispatch('Select', 'on-chosen', this.value);
       },
       // 触发选择事件
-      dispatchOnChosen(val) {
+      changeSelectedText() {
         // 获取 slot 中的 dom 节点
         const nodes = this.$slots.default;
         let nodesString = '';
@@ -129,7 +126,15 @@
         } else {
           nodesString = this.label;
         }
-        this.dispatch('Select', 'on-chosen', val, nodesString);
+        this.dispatch('Select', 'change-display', nodesString);
+      },
+      // 当前选中
+      isActive() {
+        this.active = true;
+        this.changeSelectedText();
+      },
+      notActive() {
+        this.active = false;
       },
     },
   };
