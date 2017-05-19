@@ -74,6 +74,20 @@
     </dao-input>
     <br><br><br>
     <dao-input
+      v-model="demoInputGroupSelect"
+      :icon-inside="true"
+      :message="message"
+      :status="statusError"
+      placeholder="请输入内容">
+      <dao-select slot="prepend" v-model="selectPrepend">
+        <dao-option-group>
+          <dao-option value="http://">http://</dao-option>
+          <dao-option value="https://">https://</dao-option>
+        </dao-option-group>
+      </dao-select>
+    </dao-input>
+    <br><br><br>
+    <dao-input
       v-model="demoSearch"
       :search="true"
       placeholder="搜索">
@@ -116,6 +130,8 @@
         demoIconInsideError: '',
         demoIconInsideInfo: '',
         demoInputGroup: '',
+        demoInputGroupSelect: '',
+        selectPrepend: 'https://',
         demoSearch: '',
         demoSearchByClass: '',
         demoEditable: 'editable',

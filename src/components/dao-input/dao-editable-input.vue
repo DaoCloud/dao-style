@@ -86,6 +86,8 @@
     },
     methods: {
       setCurrentValue(value) {
+        // 内部修改值的时候要同步外部双向绑定的值
+        this.$emit('input', value);
         if (value === this.currentValue) return;
         this.currentValue = value;
       },
@@ -115,7 +117,14 @@
           this.isEdit = false;
           this.savedValue = this.currentValue;
           this.onSuccess();
+          return;
         }
+        /*
+          内部的 currentMessage 和 currentStatus 修改了，但是 this.message 和 this.status 没修改，
+          之后再修改 this.message 和 this.status 没有被 watch 到，这时候需要强制更新下 currentMessage 和 currentStatus 的值
+        */
+        this.setCurrentMessage(this.message);
+        this.setCurrentStatus(this.status);
       },
       cancel() {
         this.setCurrentValue(this.savedValue);
@@ -134,10 +143,11 @@
 @import "../dao-color.scss";
 .dao-editable-input {
   display: inline-flex;
+  .dao-popover {
+    width: 100%;
+  }
   .edit-op{
-    line-height: 32px;
     padding-left: 20px;
-    height: 32px;
     .edit-op-toggle{
       color: $grey-dark;
       cursor: pointer;
@@ -154,5 +164,6 @@
       }
     }
   }
+
 }
 </style>
