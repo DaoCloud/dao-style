@@ -1,1 +1,3 @@
-src/directives
+build/
+changelogs/
+dist/

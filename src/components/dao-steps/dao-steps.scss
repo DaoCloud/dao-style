@@ -1,0 +1,138 @@
+@import '../dao-color.scss';
+
+.dao-steps {
+  &-sidebar {
+    float: left;
+    width: 200px;
+    margin-right: 20px;
+  }
+  &-content {
+    float: left;
+    width: calc(100% - 220px);
+  }
+  .dao-step {
+    &:last-child .dao-substep:last-child:after {
+      display: none;
+    }
+  }
+  .title {
+    color: $grey-light;
+    display: inline-block;
+  }
+  .dao-step-title,
+  .dao-substep {
+    padding: 8px 0;
+    font-size: 14px;
+    line-height: 24px;
+    position: relative;
+    &:after {
+      content: "";
+      display: block;
+      width: 2px;
+      background-color: rgba(204, 209, 216, 0.5);
+      position: absolute;
+      top: 64%;
+      bottom: -44%;
+      left: 7px;
+    }
+  }
+  .dao-step-title {
+    &:after {
+      top: 74%;
+    }
+  }
+  .dao-substep:last-child:after {
+    bottom: -30%;
+  }
+  &:not(.noClick) {
+    .dao-step:not(.noClick):not(.noActive) .dao-substep:not(.noClick):not(.noActive) {
+      cursor: pointer;
+      &:hover {
+        .title {
+          color: $grey-dark;
+        }
+      }
+    }
+  }
+  .caret {
+    display: inline-block;
+    margin-right: 10px;
+    width: 16px;
+    height: 16px;
+    color: white;
+    text-align: center;
+    line-height: 16px;
+    font-size: 12px;
+    border-radius: 50%;
+    background-color: $grey-light;
+  }
+  .dot {
+    display: inline-block;
+    margin-right: 10px;
+    width: 16px;
+    height: 16px;
+    text-align: center;
+    &:before {
+      display: inline-block;
+      content: '';
+      width: 4px;
+      height: 4px;
+      border: solid 1px $grey-light;
+      border-radius: 50%;
+    }
+  }
+  .visited,
+  .active {
+    &.dao-step .dao-step-title {
+      .caret {
+        background-color: $grey-dark;
+      }
+      .title {
+        color: $grey-dark;
+      }
+      &:after {
+        background-color: rgba(89, 95, 105, 0.4);
+      }
+    }
+  }
+  .visited {
+    &.dao-substep {
+      &:after {
+        background-color: rgba(89, 95, 105, 0.4);
+      }
+    }
+    &.dao-substep {
+      .title {
+        color: $black-light;
+      }
+      &:after {
+        top: 44%;
+      }
+      .dot {
+        visibility: hidden;
+      }
+    }
+  }
+  .active {
+    &.dao-substep {
+      .title {
+        color: $blue;
+      }
+      &:after {
+        top: 64%;
+      }
+      .dot{
+        visibility: visible;
+        &:before {
+          background-color: $blue;
+          border-color: transparent;
+        }
+      }
+    }
+  }
+  .dao-step.noActive .dao-substep .title,
+  .dao-step .dao-substep.noActive .title {
+    color: $grey-light;
+    cursor: not-allowed;
+  }
+}

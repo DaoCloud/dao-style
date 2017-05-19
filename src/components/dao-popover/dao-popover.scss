@@ -1,0 +1,149 @@
+@import '../dao-color.scss';
+$zindex-popover: 1070 !default;
+$popover-max-width: 200px !default;
+$popover-color: #fff !default;
+$popover-bg: #fff !default;
+// Base class
+.dao-popover {
+  display: inline-block;
+}
+.dao-popover-popper {
+  font-size: 13px;
+  line-height: 22px;
+
+  position: absolute;
+  z-index: $zindex-popover;
+
+  display: block;
+
+  transform: scale(1);
+  transform-origin: center left;
+
+  border-radius: 5px;
+  box-shadow: 0 0 0 1px rgba(16, 22, 26, .1), 0 2px 4px rgba(16, 22, 26, .2), 0 8px 24px rgba(16, 22, 26, .2);
+  // Wrapper for the popover content
+  .dao-popover-inner {
+    position: relative;
+
+    max-width: $popover-max-width;
+    min-width: 60px;
+    padding: 10px;
+
+    text-align: left;
+    word-break: break-all;
+
+    color: $black-dark;
+    border-radius: 5px;
+    background-color: $popover-bg;
+  }
+  // Arrows
+  .dao-popover-arrow {
+    position: absolute;
+
+    width: 30px;
+    height: 30px;
+    svg {
+      transform: rotate(0);
+    }
+    &:before {
+      position: absolute;
+      top: 5px;
+      right: 6px;
+
+      display: block;
+
+      width: 20px;
+      height: 20px;
+
+      content: '';
+      transform: rotate(45deg);
+
+      border-radius: 2px;
+      box-shadow: 1px 1px 6px rgba(16, 22, 26, .2);
+    }
+  }
+}
+
+.dao-popover-popper {
+  &[x-placement^='top'] {
+    margin-bottom: 17px;
+    .dao-popover-arrow {
+      bottom: -11px;
+      svg {
+        transform: rotate(-90deg);
+      }
+    }
+  }
+  &[x-placement^='right'] {
+    margin-left: 17px;
+    .dao-popover-arrow {
+      left: -11px;
+    }
+  }
+  &[x-placement^='bottom'] {
+    margin-top: 17px;
+    .dao-popover-arrow {
+      top: -11px;
+      svg {
+        transform: rotate(90deg);
+      }
+    }
+  }
+  &[x-placement^='left'] {
+    margin-right: 17px;
+    .dao-popover-arrow {
+      right: -11px;
+      svg {
+        transform: rotate(180deg);
+      }
+    }
+  }
+}
+
+.dao-popover-popper[x-placement='top'] .dao-popover-arrow {
+  left: 50%;
+
+  transform: translateX(-50%);
+}
+.dao-popover-popper[x-placement='top-start'] .dao-popover-arrow {
+  left: 16px;
+}
+.dao-popover-popper[x-placement='top-end'] .dao-popover-arrow {
+  right: 16px;
+}
+
+.dao-popover-popper[x-placement='bottom'] .dao-popover-arrow {
+  left: 50%;
+
+  transform: translateX(-50%);
+}
+.dao-popover-popper[x-placement='bottom-start'] .dao-popover-arrow {
+  left: 16px;
+}
+.dao-popover-popper[x-placement='bottom-end'] .dao-popover-arrow {
+  right: 16px;
+}
+
+.dao-popover-popper[x-placement='left'] .dao-popover-arrow {
+  top: 50%;
+
+  transform: translateY(-50%);
+}
+.dao-popover-popper[x-placement='left-start'] .dao-popover-arrow {
+  top: 8px;
+}
+.dao-popover-popper[x-placement='left-end'] .dao-popover-arrow {
+  bottom: 8px;
+}
+
+.dao-popover-popper[x-placement='right'] .dao-popover-arrow {
+  top: 50%;
+
+  transform: translateY(-50%);
+}
+.dao-popover-popper[x-placement='right-start'] .dao-popover-arrow {
+  top: 8px;
+}
+.dao-popover-popper[x-placement='right-end'] .dao-popover-arrow {
+  bottom: 8px;
+}

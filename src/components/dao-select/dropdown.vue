@@ -1,5 +1,5 @@
 <template>
-  <div class="dao-select-dropdown" :style="styles"><slot></slot></div>
+  <div :class="['dao-select-dropdown', ...dropClass]" :style="styles"><slot></slot></div>
 </template>
 <style lang="scss">
   // .dao-select-dropdown {
@@ -13,8 +13,9 @@
   }
 </style>
 <script>
-  import { getStyle } from '../../utils/assist';
   import Popper from 'popper.js';
+  import { getStyle } from '../../utils/assist';
+
   const dropdownMargin = 8;
 
   export default {
@@ -22,22 +23,23 @@
     props: {
       placement: {
         type: String,
-        default: 'bottom-start'
+        default: 'bottom-start',
       },
       appendToBody: {
         type: Boolean,
         default: false,
       },
+      dropClass: Array,
     },
-    data () {
+    data() {
       return {
         popper: null,
-        width: ''
+        width: '',
       };
     },
     computed: {
-      styles () {
-        let style = {};
+      styles() {
+        const style = {};
         if (this.width) {
           style.width = `${this.width}px`;
         }
@@ -53,10 +55,10 @@
         }
 
         return style;
-      }
+      },
     },
     methods: {
-      update () {
+      update() {
         if (this.popper) {
           this.$nextTick(() => {
             this.popper.update();
@@ -70,17 +72,17 @@
               forceAbsolute: true,
               boundariesElement: 'body',
             });
-            this.popper.onCreate(popper => {
+            this.popper.onCreate((popper) => {
               this.resetTransformOrigin(popper);
             });
           });
         }
         // set a height for parent is Modal and Select's width is 100%
         if (this.$parent.$options.name === 'iSelect') {
-          this.width = parseInt(getStyle(this.$parent.$el, 'width'));
+          this.width = window.parseInt(getStyle(this.$parent.$el, 'width'));
         }
       },
-      destroy () {
+      destroy() {
         if (this.popper) {
           this.resetTransformOrigin(this.popper);
           // setTimeout(() => {
@@ -90,22 +92,22 @@
         }
       },
       resetTransformOrigin(popper) {
-        let placementMap = {top: 'bottom', bottom: 'top'};
-        let placement = popper._popper.getAttribute('x-placement').split('-')[0];
-        let origin = placementMap[placement];
-        popper._popper.style.transformOrigin = `center ${ origin }`;
-      }
+        const placementMap = { top: 'bottom', bottom: 'top' };
+        const placement = popper._popper.getAttribute('x-placement').split('-')[0];
+        const origin = placementMap[placement];
+        popper._popper.style.transformOrigin = `center ${origin}`;
+      },
     },
     mounted() {
       if (this.appendToBody) {
         document.body.appendChild(this.$el);
       }
     },
-    created () {
+    created() {
       this.$on('on-update-popper', this.update);
       this.$on('on-destroy-popper', this.destroy);
     },
-    beforeDestroy () {
+    beforeDestroy() {
       if (this.popper) {
         this.popper.destroy();
       }

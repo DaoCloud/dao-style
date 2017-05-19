@@ -1,0 +1,78 @@
+@import './variables.scss';
+
+.dao-radio-plus {
+  padding: 0 10px 10px 0;
+  float: left;
+  &-wrap {
+    height: 122px;
+    cursor: pointer;
+    border-radius: $border-radius;
+  }
+  &.disabled .dao-radio-plus-content {
+    cursor: not-allowed;
+  }
+  .dao-radio-plus-content {
+    border: 1px solid $grey-light;
+    border-bottom: none;
+    border-radius: $border-radius $border-radius 0 0;
+    padding: 19px 30px 8px;
+    text-align: center;
+    &:hover,
+    &:active {
+      background-color: $radio-block-hover;
+      box-shadow: 0 1px 1px rgba(0, 0, 0, 0.08);
+    }
+    .radio-plus-img {
+      margin: 0 auto;
+      margin-bottom: 13px;
+      width: 32px;
+      height: 32px;
+      svg {
+        width: 100%;
+        height: 100%;
+      }
+    }
+    .radio-plus-text {
+      font-size: 14px;
+      line-height: normal;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+      min-width: 70px;
+      color: $black-dark;
+    }
+  }
+  .dao-select {
+    width: 100%;
+    .dao-select-switch {
+      border-radius: 0 0 $border-radius $border-radius!important;
+    }
+  }
+  &.active {
+    .dao-radio-plus-wrap {
+      opacity: 1;
+      background-image: linear-gradient(0deg, #f0f7ff, #fbfdff);
+      background-color: #f7fbff;
+      box-shadow: 0 0 0 2px rgba(56, 144, 255, 0.15);
+    }
+    .dao-radio-plus-content, .dao-select-switch {
+      border-color: $blue!important;
+    }
+    // .dao-radio-plus-content,
+    .dao-select-switch-text {
+      color: $link-color!important;
+    }
+    .dao-select-switch svg {
+      fill: $blue!important;
+    }
+    .dao-radio-plus-content {
+      &:hover,
+      &:active {
+        opacity: 1;
+        background-image: linear-gradient(0deg, #f0f7ff, #fbfdff);
+        background-color: #f7fbff;
+        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.08);
+      }
+    }
+  }
+}

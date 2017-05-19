@@ -1,0 +1,97 @@
+@import '../dao-color.scss';
+// 表格容器的属性
+$table-margin: 16px;
+// 板布局表格长宽
+$slat-tr-height: 82px;
+$slat2-height: 42px;
+$logo-height: 50px;
+// 行布局的长宽
+$row-th-height: 40px;
+$row-td-height: 40px;
+// 板布局表格边距
+$slat-tr-margin-left: 20px;
+$slat-td-margin-right: 30px;
+// 行布局边距
+$row-td-padding-horizontal: 10px;
+$row-th-padding-horizontal: 10px;
+// 边框颜色
+$border-inner-color: $white-dark-lighter;
+$border-outer-color: $white-dark;
+// 字的颜色
+$item-link-color: $blue;
+$item-minor-color: $grey-dark;
+$item-major-color: $black-light;
+// 背景颜色
+$thead-bg: $white-dark-lighter;
+$tbody-bg: $white;
+// 选中背景颜色
+$selected-bg: #edf6ff;//rgb(237, 246, 255);
+$selected-bg-opacity: rgba(75, 165, 255, 0.1);
+// slat2背景颜色
+$slat2-bg: $white-light;//rgb(245, 247, 250);
+$slat2-bg-opacity: rgba(155, 175, 205, 0.1);
+// 选中slat2背景颜色
+$slat2-selected-bg: #e5f0ff;//rgb(229, 240, 255);
+$slat2-selected-opacity: rgba(125, 180, 255, 0.2);
+// hover 背景颜色
+$hover-bg: #f6faff;//rgb(246, 250, 255)
+$hover-bg-opacity: rgba(165, 205, 255, 0.1);
+// hover slat2背景颜色
+$slat2-hover-bg: #eef5ff;//rgb(238, 245, 255)
+$slat2-hover-bg-opacity: rgba(85, 155, 255, 0.1);
+$selected-border-color: #deecff;
+$hover-border-color: #e7f1ff;
+$table-danger-color: $red;
+$table-success-color: $green;
+$border-color: $grey-light;
+// 字体大小
+$name-size: 15px;
+$major-size: 15px;
+$major-height: 18px;
+$minor-size: 13px;
+$minor-height: 16px;
+$minor-major-margin: 4px;
+$row-font-size: 14px;
+$checkbox-td-size: 50px;
+$checkbox-width: 16px;
+$checkbox-padding: 15px;
+$slat-font-size: 15px;
+
+$svg-size: 14px;
+
+//高度宽度
+$toolbar-height: 50px;
+$svg-margin-right: 4px;
+
+@mixin svg-in-table() {
+  vertical-align: middle;
+  fill: currentcolor;
+  width: $svg-size;
+  height: $svg-size;
+  margin-right: $svg-margin-right;
+}
+
+@mixin scroll-hint() {
+	background:
+    /* Shadow covers */
+    linear-gradient(white 30%, rgba(255,255,255,0)),
+    linear-gradient(rgba(255,255,255,0), white 70%) 0 100%,
+
+    /* Shadows */
+    radial-gradient(50% 0, farthest-side, rgba(0,0,0,.2), rgba(0,0,0,0)),
+    radial-gradient(50% 100%,farthest-side, rgba(0,0,0,.2), rgba(0,0,0,0)) 0 100%;
+  background:
+    /* Shadow covers */
+    linear-gradient(white 30%, rgba(255,255,255,0)),
+    linear-gradient(rgba(255,255,255,0), white 70%) 0 100%,
+
+    /* Shadows */
+    radial-gradient(farthest-side at 50% 0, rgba(0,0,0,.2), rgba(0,0,0,0)),
+    radial-gradient(farthest-side at 50% 100%, rgba(0,0,0,.2), rgba(0,0,0,0)) 0 100%;
+  background-repeat: no-repeat;
+  background-color: white;
+  background-size: 100% 40px, 100% 40px, 100% 14px, 100% 14px;
+
+  /* Opera doesn't support this in the shorthand */
+  background-attachment: local, local, scroll, scroll;
+}

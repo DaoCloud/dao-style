@@ -1,0 +1,22 @@
+<div class="dao-autocomplete">
+  <dao-input type="text"
+    ref="input"
+    v-model="inputText"
+    @keyup="keyup"
+    @keyup.up="upArrow"
+    @keyup.down="downArrow"
+    @keyup.enter="enter"
+    @focus="show"
+    @blur="hide"></dao-input>
+  <dao-drop class="dao-autocomplete-dropdown" v-show="isShow && filteredOption.length > 0">
+    <ul class="dao-autocomplete-ul">
+      <li class="dao-autocomplete-li"
+        v-for="(o, index) in filteredOption"
+        :class="{current: optionIndex === index}"
+        @mouseover="hoverOption(index)"
+        @mousedown="clickOption()">
+        {{ o.text }}
+      </li>
+    </ul>
+  </dao-drop>
+</div>

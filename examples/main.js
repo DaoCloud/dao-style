@@ -7,9 +7,23 @@ import VueRouter from 'vue-router';
 import App from './app.vue';
 import daoStyle from '../src/index';
 
-import dropdown from './routers/dropdown';
-import modal from './routers/modal';
-import button from './routers/button';
+import autocomplete from './routers/autocomplete.vue';
+import button from './routers/button.vue';
+import card from './routers/card.vue';
+import dropdown from './routers/dropdown.vue';
+import dialog from './routers/dialog.vue';
+import editableTable from './routers/editable-table.vue';
+import input from './routers/input.vue';
+import popover from './routers/popover.vue';
+import progress from './routers/progress.vue';
+import radio from './routers/radio.vue';
+import select from './routers/select.vue';
+import steps from './routers/steps.vue';
+import selectAll from './routers/select-all.vue';
+import settingLayout from './routers/settingLayout.vue';
+import tab from './routers/tab.vue';
+import table from './routers/table.vue';
+import tooltip from './routers/tooltip.vue';
 
 Vue.use(VueRouter);
 Vue.use(daoStyle);
@@ -20,19 +34,66 @@ Vue.config.debug = true;
 // 路由配置
 const router = new VueRouter({
   routes: [{
-    path: '/dropdown',
-    component: dropdown,
-  }, {
-    path: '/modal',
-    component: modal,
+    path: '/autocomplete',
+    component: autocomplete,
   }, {
     path: '/button',
     component: button,
+  }, {
+    path: '/card',
+    component: card,
+  }, {
+    path: '/dialog',
+    component: dialog,
+  }, {
+    path: '/dropdown',
+    component: dropdown,
+  }, {
+    path: '/editable-table',
+    component: editableTable,
+  }, {
+    path: '/input',
+    component: input,
+  }, {
+    path: '/popover',
+    component: popover,
+  }, {
+    path: '/progress',
+    component: progress,
+  }, {
+    path: '/radio',
+    component: radio,
+  }, {
+    path: '/select',
+    component: select,
+  }, {
+    path: '/select-all',
+    component: selectAll,
+  }, {
+    path: '/setting-layout',
+    component: settingLayout,
+  }, {
+    path: '/steps',
+    component: steps,
+  }, {
+    path: '/tab',
+    component: tab,
+  }, {
+    path: '/table',
+    component: table,
+  }, {
+    path: '/tooltip',
+    component: tooltip,
+  }, {
+    path: '*',
+    redirect: '/button',
   }],
 });
 
-new Vue({
-  el: '#app',
-  router: router,
-  render: h => h(App)
-});
+(function initApp() {
+  return new Vue({
+    el: '#app',
+    router,
+    render: h => h(App),
+  });
+}());

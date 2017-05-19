@@ -1,0 +1,33 @@
+@import './variables.scss';
+
+.dao-radio-simple {
+  position: relative;
+  display: block;
+  line-height: $radio-height;
+  &.disabled {
+    label {
+      cursor: not-allowed;
+      color: $radio-font-disable-color;
+    }
+  }
+  label {
+    padding-left: 20px;
+    margin-bottom: 0;
+    font-weight: normal;
+    cursor: pointer;
+    color: $radio-font-color;
+    font-size: $radio-font-size;
+    &+label {
+      margin-left: 10px;
+    }
+  }
+  input[type='radio'] {
+    position: absolute;
+    margin-left: -20px;
+    margin-top: 6px;
+    &[disabled],
+    &.disabled {
+      cursor: not-allowed;
+    }
+  }
+}
