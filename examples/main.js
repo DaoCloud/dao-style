@@ -84,6 +84,9 @@ const router = new VueRouter({
   }, {
     path: '/tooltip',
     component: tooltip,
+  }, {
+    path: '*',
+    redirect: '/button',
   }],
 });
 

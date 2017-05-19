@@ -30,10 +30,10 @@ li + li {
     <nav>
       <ul class="container-body">
         <li>
-          <router-link to="/autocomplete">AutoComplete</router-link>
+          <router-link to="/button">Button</router-link>
         </li>
         <li>
-          <router-link to="/button">Button</router-link>
+          <router-link to="/autocomplete">AutoComplete</router-link>
         </li>
         <li>
           <router-link to="/setting-layout">Setting Layout</router-link>
