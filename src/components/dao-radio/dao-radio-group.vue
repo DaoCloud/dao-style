@@ -22,7 +22,10 @@
     componnetName: 'Radio-group',
     props: {
       name: String,
-      gridCol: Number,
+      gridCol: {
+        type: Number,
+        default: 4,
+      },
       type: {
         type: String,
         default: 'simple',

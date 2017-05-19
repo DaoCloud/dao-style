@@ -325,9 +325,9 @@
       // 处理点击事件
       handleClick() {
         if (this.isDisabled) return;
-        if (this.async && !this.asyncCompelete) {
-          this.handleAsync((res) => {
-            this.menuVisible = res;
+        if (this.async && !this.asyncCompelete && !this.menuVisible) {
+          this.handleAsync(() => {
+            this.toggleMenu();
           });
         } else {
           this.toggleMenu();
