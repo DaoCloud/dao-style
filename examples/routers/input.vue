@@ -9,11 +9,19 @@
     <br><br><br>
     <dao-input
       v-model="demoDisabled"
-      :disabled="disabled"
+      disabled
       placeholder="请输入内容">
     </dao-input>
     <br><br><br>
     <input class="dao-control" type="text" disabled="disabled" placeholder="使用纯样式" v-model="demoDisabledByClass">
+    <br><br><br>
+    <dao-input
+      v-model="demoSizeSM"
+      size="sm"
+      placeholder="请输入内容，小号 Input">
+    </dao-input>
+    <br><br><br>
+    <input class="dao-control" size="sm" type="text" placeholder="使用纯样式，小号 Input" v-model="demoSizeSMByClass">
     <br><br><br>
     <dao-input
       v-model="demoSuccess"
@@ -26,21 +34,21 @@
       v-model="demoErrorBottomNoIcon"
       :message="message"
       message-placement="bottom"
-      :message-no-icon="true"
+      message-no-icon
       :status="statusError"
       placeholder="请输入内容">
     </dao-input>
     <br><br><br>
     <dao-input
       v-model="demoLoading"
-      :icon-inside="true"
+      icon-inside
       :status="statusLoading"
       placeholder="请输入内容">
     </dao-input>
     <br><br><br>
     <dao-input
       v-model="demoIconInsideSuccess"
-      :icon-inside="true"
+      icon-inside
       :message="message"
       :status="statusSuccess"
       placeholder="请输入内容">
@@ -48,7 +56,7 @@
     <br><br><br>
     <dao-input
       v-model="demoIconInsideError"
-      :icon-inside="true"
+      icon-inside
       :message="message"
       :status="statusError"
       placeholder="请输入内容">
@@ -57,7 +65,7 @@
     <br><br><br>
     <dao-input
       v-model="demoIconInsideInfo"
-      :icon-inside="true"
+      icon-inside
       :message="message"
       :status="statusInfo"
       placeholder="请输入内容">
@@ -65,7 +73,7 @@
     <br><br><br>
     <dao-input
       v-model="demoInputGroup"
-      :icon-inside="true"
+      icon-inside
       :message="message"
       :status="statusError"
       placeholder="请输入内容">
@@ -75,7 +83,7 @@
     <br><br><br>
     <dao-input
       v-model="demoInputGroupSelect"
-      :icon-inside="true"
+      icon-inside
       :message="message"
       :status="statusError"
       placeholder="请输入内容">
@@ -89,7 +97,7 @@
     <br><br><br>
     <dao-input
       v-model="demoSearch"
-      :search="true"
+      search
       placeholder="搜索">
     </dao-input>
     <br><br><br>
@@ -100,8 +108,7 @@
       placeholder="不能输入 4 或 6"
       :message="demoEditableMessage"
       :status="demoEditableStatus"
-      :icon-inside="true"
-      :is-editable="true"
+      icon-inside
       save-btn-content="确认"
       :edit-state="true"
       :on-check="demoCheck"
@@ -120,9 +127,10 @@
         message: '输入错误',
         demoNormal: '',
         demoNormalByClass: '',
-        disabled: true,
         demoDisabled: '',
         demoDisabledByClass: '',
+        demoSizeSM: '',
+        demoSizeSMByClass: '',
         demoSuccess: '',
         demoErrorBottomNoIcon: '',
         demoLoading: '',

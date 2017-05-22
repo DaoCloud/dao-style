@@ -10,7 +10,8 @@
       'icon-inside': iconInside,
       'message-bottom': messagePlacement === 'bottom' && !iconInside,
       'no-message-icon': messageNoIcon,
-      'dao-input-group': $slots.prepend || $slots.append
+      'dao-input-group': $slots.prepend || $slots.append,
+      'input-sm': size === 'sm'
     }">
     <div class="dao-input-group-addon prepend" v-if="$slots.prepend">
       <slot name="prepend"></slot>
@@ -92,6 +93,7 @@
       },
       disabled: Boolean,
       value: [String, Number],
+      size: String,
       iconInside: Boolean,
       message: String,
       messagePlacement: {
