@@ -9,7 +9,7 @@
       </div>
     </div>
     <slot></slot>
-    <div class="dao-setting-layout-footer">
+    <div class="dao-setting-layout-footer" v-if="footer">
       <slot name="footer"></slot>
     </div>
   </div>
