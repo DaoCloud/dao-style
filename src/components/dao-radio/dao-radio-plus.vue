@@ -10,7 +10,7 @@
       <div class="radio-select">
         <dao-select :async="async" :disabled="disabled" v-model="select" :placeholder="selectTitle" :loading="loading" @change="handleSelectChange">
           <dao-option-group no-data-text="暂无结果">
-            <dao-option v-for="option in options" :value="option.value" :label="option.label"></dao-option>
+            <dao-option v-for="(option, index) in options" :key="index" :value="option.value" :label="option.label"></dao-option>
           </dao-option-group>
         </dao-select>
       </div>
