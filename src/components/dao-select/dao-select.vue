@@ -1,10 +1,10 @@
 <template>
-  <div :class="['dao-select']" v-clickoutside:dao-select-dropdown="handleClose">
+  <div :class="['dao-select', {'sm-select': size === 'sm'}]" v-clickoutside:dao-select-dropdown="closeMenu">
     <div :class="['dao-select-main', {'disabled': isDisabled, 'with-btn': withBtn}]" @click="handleClick">
-      <div :class="['dao-select-switch', {'open': currentVisible}]">
+      <div :class="['dao-select-switch', {'open': menuVisible}]">
         <div class="dao-select-switch-text">
-          <div v-show="showPlaceholder" class="placeholder">{{ placeholder }}</div>
-          <div v-show="showSelectedText">
+          <div v-show="!selectedText && !isLoading" class="placeholder">{{ placeholder }}</div>
+          <div v-show="selectedText && !isLoading" style="line-height: 1;">
             <span v-html="selectedText"></span>
           </div>
           <div v-show="isLoading" class="switch-loading">
@@ -22,7 +22,7 @@
       </div>
       <button v-if="withBtn" type="button" :class="['dao-btn', 'blue', 'dao-select-btn', {'disabled': disabled}]" @click.stop="handleBtnClick">{{ btnContent }}</button>
     </div>
-    <dao-drop :drop-class="[menuClass, {'withSearch': withSearch, 'withTab': withTab}]" v-show="currentVisible" placement="bottom" :append-to-body="optionsAppendToBody" ref="drop">
+    <dao-drop :drop-class="[menuClass, {'withSearch': withSearch, 'withTab': withTab}]" v-show="menuVisible" placement="bottom" :append-to-body="optionsAppendToBody" ref="drop">
       <div class="search-container" v-if="withSearch">
         <input class="dao-control search" type="text" :placeholder="searchPlaceholder" v-model="filter" required>
       </div>
@@ -53,25 +53,34 @@
   .dao-select {
     width: 287px;
     position: relative;
+    height: 32px;
+    &.sm-select {
+      height: 26px;
+      width: 200px;
+    }
     .dao-select-main {
       color: $select-color;
       position: relative;
       display: inline-block;
       width: 100%;
+      height: 100%;
       .dao-select-switch {
         width: 100%;
         display: flex;
         overflow: hidden;
         border: 1px solid $select-border-color;
         border-radius: $select-border-radius;
-        height: 32px;
+        height: 100%;
+        justify-content: center;
+        align-items: center;
         background-image: $select-bg-img;
         cursor: pointer;
         &-text {
           height: 100%;
-          padding-left: 10px;
+          padding: 0 10px;
           flex: 1;
-          line-height: 30px;
+          display: inline-flex;
+          align-items: center;
           user-select: none;
         }
         &:hover {
@@ -87,10 +96,10 @@
         color: $select-default-color;
       }
       .icon-box {
-        padding: 7px;
-        display: inline-block;
-        height: 30px;
-        line-height: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
         width: 30px;
         .icon {
           width: 16px;
@@ -254,34 +263,42 @@
         default: false,
       },
       value: {},
+      // 指定 select 的大小
+      size: String,
     },
     watch: {
-      currentVisible(val) {
+      menuVisible(val) {
         this.$emit('visible-change', Boolean(val));
       },
       filter(val) {
         this.broadcast('Option', 'search', val, this.searchMethod);
       },
       value(val) {
-        this.broadcast('Option', 'pipe-value', val);
+        // 更新 option 的 active 状态
+        this.broadcast('Option', 'status', val);
       },
     },
-    created() {
-      this.$on('on-chosen', (v, text) => {
-        this.currentVisible = false;
-        this.selectedValue = v;
-        this.selectedText = text;
-        this.broadcast('Option', 'is-chosen', v);
+    beforeCreate() {
+      this.$on('on-chosen', (val) => {
+        this.closeMenu();
+        this.selectedValue = val;
+      });
+      this.$on('change-display', (content) => {
+        this.selectedText = content;
+      });
+      this.$on('deal-async', (callback) => {
+        this.handleAsync(callback);
       });
     },
     mounted() {
       this.broadcast('Option-group', 'init-group', this.noDataText, this.noMatchText);
+      // 在挂载时将当前 value 传递给 option
       this.broadcast('Option', 'pipe-value', this.value);
     },
     data() {
       return {
         isLoading: this.loading,
-        currentVisible: false,
+        menuVisible: false,
         asyncCompelete: false,
         selectedText: '',
         filter: '',
@@ -291,49 +308,67 @@
       isDisabled() {
         return this.disabled || this.isLoading;
       },
-      showPlaceholder() {
-        if (this.selectedValue === 0 || this.selectedValue === '') {
-          return false;
-        }
-        return !this.isLoading && !this.selectedValue;
-      },
-      showSelectedText() {
-        if (this.selectedValue === 0 || this.selectedValue === '') {
-          return true;
-        }
-        return !this.isLoading && this.selectedValue;
-      },
       selectedValue: {
         get() {
           return this.value;
         },
         set(val) {
+          // 触发 input 事件实现双向绑定
           this.$emit('input', val);
+          // 触发 change 事件
           this.$emit('change', val);
         },
       },
+
     },
     methods: {
+      // 处理点击事件
       handleClick() {
         if (this.isDisabled) return;
         if (this.async && !this.asyncCompelete) {
-          this.isLoading = true;
-          this.async()
-            .then(() => {
-              this.isLoading = false;
-              this.asyncCompelete = true;
-              this.currentVisible = !this.currentVisible;
-            });
-          return;
+          this.handleAsync((res) => {
+            this.menuVisible = res;
+          });
+        } else {
+          this.toggleMenu();
         }
-        this.currentVisible = !this.currentVisible;
       },
+      // 处理按钮点击事件
       handleBtnClick() {
         if (this.isDisabled) return;
         this.$emit('btn-event', this.selectedValue);
       },
-      handleClose() {
-        this.currentVisible = false;
+      // 处理 async
+      handleAsync(callback) {
+        this.isLoading = true;
+        this.async()
+          .then(() => {
+            this.asyncSuccess();
+            return true;
+          })
+          .catch(() => {
+            this.asyncFail();
+            return false;
+          })
+          .then(res => callback(res));
+      },
+      // async 方法成功
+      asyncSuccess() {
+        this.isLoading = false;
+        this.asyncCompelete = true;
+      },
+      // async 方法失败
+      asyncFail() {
+        this.isLoading = false;
+        this.asyncCompelete = false;
+      },
+      // 关闭下拉框
+      closeMenu() {
+        this.menuVisible = false;
+      },
+      // 切换下拉框打开/关闭
+      toggleMenu() {
+        this.menuVisible = !this.menuVisible;
       },
     },
   };

@@ -17,7 +17,18 @@
         <dao-option :value="5">这是选项五</dao-option>
       </dao-option-group>
     </dao-select>
+    <br>
+    <button class="dao-btn blue" @click="changeSimple">change simple</button>
 
+    <br><br>
+    <h2>small select</h2>
+    <br><hr style="border-style: dashed;"><br>
+    <dao-select v-model="small" placeholder="一个小型下拉框" size="sm">
+      <dao-option :value="1">option1</dao-option>
+      <dao-option :value="2">option2</dao-option>
+      <dao-option :value="3">option3</dao-option>
+      <dao-option :value="4">option4</dao-option>
+    </dao-select>
     <br>
     <h1>select with search</h1>
     <br><hr><br>
@@ -97,6 +108,7 @@
     data() {
       return {
         simple: 0,
+        small: 1,
         search: undefined,
         button: 2,
         disabled: undefined,
@@ -133,6 +145,18 @@
         return p.then((res) => {
           this.options = res;
         });
+      },
+      changeSimple() {
+        if (this.simple === 5) {
+          this.type = 0;
+        } else if (this.simple === 0) {
+          this.type = 1;
+        }
+        if (this.type) {
+          this.simple += 1;
+        } else {
+          this.simple -= 1;
+        }
       },
     },
   };
