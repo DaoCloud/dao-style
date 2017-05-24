@@ -15,6 +15,7 @@ $tab-nav-item-link-color-active: #3890ff;
     display: inline-block;
     padding: $tab-nav-item-padding-vertical $tab-nav-item-padding-horizon;
     margin-bottom: -1px;
+    line-height: 1;
     background: $tab-nav-item-backgound;
     border: $tab-nav-item-border-color solid 1px;
     border-right: none;
