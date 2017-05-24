@@ -12,32 +12,37 @@ Input 是一个 32 像素高的（包括 border）表单组件（form component�
 <dao-input
   v-model=""
   [type=""]
-  [:disabled=""]
+  [disabled]
   [value=""]
-  [:icon-inside=""]
+  [size=""]
+  [icon-inside]
+  [status=""]
   [message=""]
   [message-placement=""]
   [:message-no-icon=""]
-  [:search=""]
-  [status=""]
-  [:required=""]
+  [search]
+  [required]
   [placeholder=""]
-  [:readonly=""]
-  [:autofocus=""]
+  [readonly]
+  [autofocus]
   [name=""]
   [form=""]
-  [:maxlength=""]
-  [:minlength =""]
-  [:max=""]
-  [:min=""]
-  [:step=""]>
+  [maxlength=""]
+  [minlength =""]
+  [max=""]
+  [min=""]
+  [step=""]>
 </dao-input>
 ```
 
 #### 普通 Input 纯样式
 
 ``` html
-<input class="dao-control" type="text" v-model="input">
+<input
+  class="dao-control"
+  type="text"
+  v-model="input"
+  [size=""]>
 ```
 
 #### Editable Input
@@ -57,23 +62,24 @@ Editable Input 是一个可以编辑的 Disabled Input。当我们不希望用�
   [:on-check=""]
   [:on-success=""]
   [value=""]
-  [:icon-inside=""]
+  [size=""]
+  [icon-inside]
+  [status=""]
   [message=""]
   [message-placement=""]
   [:message-no-icon=""]
-  [:search=""]
-  [status=""]
-  [:required=""]
+  [search]
+  [required]
   [placeholder=""]
-  [:readonly=""]
-  [:autofocus=""]
+  [readonly]
+  [autofocus]
   [name=""]
   [form=""]
-  [:maxlength=""]
-  [:minlength =""]
-  [:max=""]
-  [:min=""]
-  [:step=""]>
+  [maxlength=""]
+  [minlength =""]
+  [max=""]
+  [min=""]
+  [step=""]>
 </dao-editable-input>
 ```
 
@@ -97,12 +103,13 @@ Editable Input 是一个可以编辑的 Disabled Input。当我们不希望用�
 | type | String | 类型，可选值（原生值） | text | 否 |
 | value | String, Number | 绑定值 | - | 否 |
 | disabled | Boolean | 禁用 | false | 否 |
+| size | String | 尺寸，可选值（sm） | - | 否 |
 | icon-inside | Boolean | 当需要弹出 popover 提示 | false | 否 |
-| message | String | 提示的内容，可为空字符串，必选组合参数 (info, success, error)中一个，可选组合参数 icon-inside, class, message-placement | - | 否 |
+| status | String | 状态，可选值（loading/info/success/error） | - | 否 |
+| message | String | 提示的内容，可为空字符串，必选组合参数 status，可选组合参数 icon-inside, message-placement | - | 否 |
 | message-placement | String | 提示内容的位置，必选组合参数 message，可选值 top-end，right-start | top-end | 否 |
 | message-no-icon | Boolean | 提示信息前不带图标，只在 icon-inside 值为 false 时生效 | false | 否 |
 | search | Boolean | 搜索输入框 | false | 否 |
-| status | String | 状态，可选值（loading/info/success/error） | - | 否 |
 | required | Boolean | 必填 | false | 否 |
 | placeholder | String | 	输入框占位文本 | - | 否 |
 | readonly | Boolean | 	原生属性，是否只读 | false | 否 |

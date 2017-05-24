@@ -58,6 +58,13 @@
         isInput: false,
       };
     },
+    watch: {
+      content() {
+        if (this.popperJS) {
+          this.popperJS.update();
+        }
+      },
+    },
     created() {
       if (this.always) {
         this.visible = true;
