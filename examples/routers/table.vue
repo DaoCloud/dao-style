@@ -1,5 +1,6 @@
 <template>
   <div>
+    <h1>板布局（slat）表格</h1>
     <div class="dao-table-container">
       <div class="dao-table-toolbar">
         <div class="btn-group">
@@ -95,6 +96,33 @@
                 </div>
                 <div class="item-minor">2/4 个运行中的任务</div>
               </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <h1>行布局（row）表格</h1>
+    <div class="dao-table-container">
+      <div class="dao-table-main">
+        <table class="dao-table row">
+          <thead>
+            <tr>
+              <th></th>
+              <th>车牌</th>
+              <th>车载终端编号</th>
+              <th>VIN</th>
+              <th>SMI</th>
+              <th>所属车型</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td></td>
+              <td>x</td>
+              <td>x</td>
+              <td>x</td>
+              <td>x</td>
+              <td>x</td>
             </tr>
           </tbody>
         </table>
