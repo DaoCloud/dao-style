@@ -43,6 +43,9 @@ li + li {
           <router-link to="/checkbox">Checkbox</router-link>
         </li> -->
         <li>
+          <router-link to="/clipboard">Clipboard</router-link>
+        </li>
+        <li>
           <router-link to="/dialog">Dialog</router-link>
         </li>
         <li>
