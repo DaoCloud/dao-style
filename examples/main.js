@@ -7,20 +7,21 @@ import VueRouter from 'vue-router';
 import App from './app.vue';
 import daoStyle from '../src/index';
 
+// 请按照组件名称的字典顺序添加以下模块
 import autocomplete from './routers/autocomplete.vue';
 import button from './routers/button.vue';
 import card from './routers/card.vue';
-import dropdown from './routers/dropdown.vue';
 import dialog from './routers/dialog.vue';
+import dropdown from './routers/dropdown.vue';
 import editableTable from './routers/editable-table.vue';
 import input from './routers/input.vue';
 import popover from './routers/popover.vue';
 import progress from './routers/progress.vue';
 import radio from './routers/radio.vue';
 import select from './routers/select.vue';
-import steps from './routers/steps.vue';
 import selectAll from './routers/select-all.vue';
 import settingLayout from './routers/settingLayout.vue';
+import steps from './routers/steps.vue';
 import tab from './routers/tab.vue';
 import table from './routers/table.vue';
 import tooltip from './routers/tooltip.vue';

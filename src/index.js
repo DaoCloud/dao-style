@@ -2,14 +2,14 @@
 import 'core-js/fn/array/find-index';
 import './components/dao-svg/svg';
 
-// components
+// 请按照名称的字典顺序添加以下 component
 import daoAutocomplete from './components/dao-autocomplete';
 import daoCallout from './components/dao-callout';
 import daoDialog from './components/dao-dialog';
 import daoDropdown from './components/dao-dropdown';
-import { daoInput, daoEditableInput } from './components/dao-input';
-import daoPopover from './components/dao-popover';
+import { daoEditableInput, daoInput } from './components/dao-input';
 import daoEditableTable from './components/dao-editable-table';
+import daoPopover from './components/dao-popover';
 import { daoProgress, daoProgressPulsing, daoProgressStacked } from './components/dao-progress';
 import daoRadio from './components/dao-radio';
 import daoSelect from './components/dao-select';
@@ -18,17 +18,19 @@ import daoSteps from './components/dao-steps';
 import daoSwitch from './components/dao-switch';
 import daoTab from './components/dao-tab';
 import daoTooltip from './components/dao-tooltip';
-// directives
+
+// 请按照名称的字典顺序添加以下 directives
 import daoSelectAll from './directives/dao-select-all';
 
 const daoStyleComponents = {
+  // 请按照名称的字典顺序添加以下内容
   daoAutocomplete,
   daoCallout,
   daoDialog,
   daoDialogStep: daoDialog.Step,
   daoDropdown,
-  daoDropdownMenu: daoDropdown.Menu,
   daoDropdownItem: daoDropdown.Item,
+  daoDropdownMenu: daoDropdown.Menu,
   daoEditableInput,
   daoEditableTable,
   daoInput,
@@ -41,12 +43,12 @@ const daoStyleComponents = {
   daoRadio,
   daoRadioGroup: daoRadio.group,
   daoSelect,
-  daoSettingLayout,
   daoSettingItem: daoSettingLayout.Item,
+  daoSettingLayout,
   daoSettingSection: daoSettingLayout.Section,
-  daoSteps,
   daoStep: daoSteps.step,
   daoStepContent: daoSteps.content,
+  daoSteps,
   daoSubstep: daoSteps.substep,
   daoSwitch,
   daoTab,
