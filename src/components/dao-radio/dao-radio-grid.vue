@@ -4,7 +4,7 @@
       <use xlink:href="#icon_success"></use>
     </svg>
     <div class="dao-radio-grid-wrap" @click="handleClick" v-if="type !== 'card'">
-      <div v-if="defaultTemplate">
+      <slot>
         <div class="dao-radio-grid-img">
           <slot name="icon"></slot>
         </div>
@@ -15,29 +15,29 @@
         <div class="dao-radio-grid-description">
           {{description}}
         </div>
-      </div>
-      <slot v-if="!defaultTemplate"></slot>
+      </slot>
     </div>
     <div class="dao-radio-grid-wrap dao-card" @click="handleClick" v-if="type === 'card'">
       <svg class="checked-icon" v-show="checked">
         <use xlink:href="#icon_success"></use>
       </svg>
-      <div class="dao-card-main" v-if="defaultTemplate">
-        <div class="icon">
-          <slot name="icon"></slot>
-        </div>
-        <div class="content">
-          <div class="title">
-            <span>{{headline}}</span>
-            <span>
-              <slot name="headlineSupplement"></slot>
-            </span>
+      <slot>
+        <div class="dao-card-main" v-if="defaultTemplate">
+          <div class="icon">
+            <slot name="icon"></slot>
           </div>
-          <div class="sub-title">{{subheadline}}</div>
-          <div class="desc">{{description}}</div>
+          <div class="content">
+            <div class="title">
+              <span>{{headline}}</span>
+              <span>
+                <slot name="headlineSupplement"></slot>
+              </span>
+            </div>
+            <div class="sub-title">{{subheadline}}</div>
+            <div class="desc">{{description}}</div>
+          </div>
         </div>
-      </div>
-      <slot v-if="!defaultTemplate"></slot>
+      </slot>
     </div>
   </div>
 </template>

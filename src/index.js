@@ -5,6 +5,7 @@ import './components/dao-svg/svg';
 // 请按照名称的字典顺序添加以下 component
 import daoAutocomplete from './components/dao-autocomplete';
 import daoCallout from './components/dao-callout';
+import daoClipboard from './components/dao-clipboard';
 import daoDialog from './components/dao-dialog';
 import daoDropdown from './components/dao-dropdown';
 import { daoEditableInput, daoInput } from './components/dao-input';
@@ -26,6 +27,7 @@ const daoStyleComponents = {
   // 请按照名称的字典顺序添加以下内容
   daoAutocomplete,
   daoCallout,
+  daoClipboard,
   daoDialog,
   daoDialogStep: daoDialog.Step,
   daoDropdown,
