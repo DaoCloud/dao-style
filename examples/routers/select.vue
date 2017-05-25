@@ -98,7 +98,7 @@
     <br><hr><br>
 
     <dao-select v-model="asynchronous" placeholder="异步获取数据下拉框" :async="async">
-      <dao-option v-for="option in options" :value="option.value" :label="option.text">{{ option.text }}</dao-option>    
+      <dao-option v-for="option in options" :key="option.value" :value="option.value" :label="option.text">{{ option.text }}</dao-option>    
     </dao-select>
 
   </div>

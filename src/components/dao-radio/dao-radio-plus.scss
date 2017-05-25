@@ -2,7 +2,7 @@
 
 .dao-radio-plus {
   padding: 0 10px 10px 0;
-  float: left;
+  width: 100%;
   &-wrap {
     height: 122px;
     cursor: pointer;
@@ -59,7 +59,7 @@
       border-color: $blue!important;
     }
     // .dao-radio-plus-content,
-    .dao-select-switch-text {
+    .dao-select-switch-text *{
       color: $link-color!important;
     }
     .dao-select-switch svg {
