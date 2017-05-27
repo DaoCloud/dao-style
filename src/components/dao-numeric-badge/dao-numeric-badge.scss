@@ -1,0 +1,39 @@
+@import "../dao-color.scss";
+@mixin numeric-badge($circle-radius: 10px, $bgc: #ccd1d9, $bgc-active: #3890ff) {
+  display: inline-block;
+  box-sizing: border-box;
+  color: white;
+  background-color: $bgc;
+  text-align: center;
+  text-shadow: none;
+  font-weight: normal;
+  $horizontal-padding: $circle-radius * 0.5;
+  $font-size: $circle-radius * 2 - $horizontal-padding;
+  $scale: $font-size / 12px;
+  font-size: $font-size;
+  @if $scale < 1 {
+    $circle-radius: $circle-radius / $scale;
+    $horizontal-padding: $horizontal-padding / $scale;
+    font-size: 12px;
+    -webkit-transform: scale($scale);
+    transform: scale($scale);
+    transform-style: flat;
+  }
+  line-height: $circle-radius * 2;
+  height: $circle-radius * 2;
+  min-width: $circle-radius * 2;
+  padding: 0 $horizontal-padding;
+  border-radius: $circle-radius;
+  &.active {
+    background-color: $bgc-active;
+  }
+}
+
+.dao-numeric-badge {
+  @include numeric-badge(8px);
+  &.ghost {
+    background-color: transparent;
+    color: $black-light;
+    box-shadow: 0 0 0 1px $black-light inset;
+  }
+}
