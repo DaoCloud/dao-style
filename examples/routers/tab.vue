@@ -8,7 +8,7 @@
             Some Tab Content
           </p>
         </dao-tab-item>
-        <dao-tab-item heading="标题2">
+        <dao-tab-item heading="Heading2">
           <div class="demo-tab-wrap">
             <h3>Item 2</h3>
             <div class="demo-tab-input__wrap">
