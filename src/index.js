@@ -10,6 +10,7 @@ import daoDialog from './components/dao-dialog';
 import daoDropdown from './components/dao-dropdown';
 import { daoEditableInput, daoInput } from './components/dao-input';
 import daoEditableTable from './components/dao-editable-table';
+import daoNumericBadge from './components/dao-numeric-badge';
 import daoPopover from './components/dao-popover';
 import { daoProgress, daoProgressPulsing, daoProgressStacked } from './components/dao-progress';
 import daoRadio from './components/dao-radio';
@@ -36,6 +37,7 @@ const daoStyleComponents = {
   daoEditableInput,
   daoEditableTable,
   daoInput,
+  daoNumericBadge,
   daoOption: daoSelect.Option,
   daoOptionGroup: daoSelect.Group,
   daoPopover,
