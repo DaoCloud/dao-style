@@ -1,8 +1,9 @@
 <template>
   <transition name="dao-dialog" @before-enter="beforeEnter"
-    @before-leave="scrollBodyTop" @after-leave="doDestroy">
+    @after-enter="getScroll" @before-leave="scrollBodyTop" @after-leave="doDestroy">
     <div
       class="dao-dialog-backdrop"
+      :class="{backdrop__scroll: isNeedScroll}"
       v-show="visible"
     >
       <div
@@ -51,6 +52,7 @@
 </template>
 <script>
 import daoDialogHeader from './dao-dialog-header/dao-dialog-header';
+import { getStyle } from '../../utils/assist';
 export default {
   name: 'DaoDialog',
   props: {
@@ -79,6 +81,7 @@ export default {
       steps: [],
       activeStep: -1,
       stepItemWidth: -1,
+      isNeedScroll: false,
     };
   },
   computed: {
@@ -96,7 +99,7 @@ export default {
         };
       }
       return '';
-    }
+    },
   },
   methods: {
     // 还原 scrollTop = 0
@@ -117,6 +120,17 @@ export default {
       // 禁止 body 滚动
       document.body.style.overflowY = 'hidden';
       document.addEventListener('keydown', this.EscClose);
+    },
+    getScroll() {
+      // 判断是否需要 scroll
+      const container = this.$refs.container;
+      const height = parseInt(getStyle(container, 'height'), 10);
+      const windowHeight = window.innerHeight
+        || document.documentElement.clientHeight
+        || document.body.clientHeight;
+      if (height > windowHeight) {
+        this.isNeedScroll = true;
+      }
     },
     // destroy
     doDestroy() {

@@ -16,11 +16,19 @@ $resizeSvg: "data:image/svg+xml;utf8,%3Csvg%20xmlns=%27http://www.w3.org/2000/sv
   background-color: $dialog-overlay;
   z-index: 9998;
   transition: opacity .3s ease;
+
+  &.backdrop__scroll {
+    display: block;
+    overflow-y: auto;
+
+    .dao-dialog-wrapper {
+      display: block;
+    }
+  }
 }
 
 .dao-dialog-wrapper %dialogBody {
   flex: 1 1 auto;
-  padding: 20px;
   background-color: white;
   color: $font-color;
   font-size: 14px;
@@ -41,7 +49,6 @@ $resizeSvg: "data:image/svg+xml;utf8,%3Csvg%20xmlns=%27http://www.w3.org/2000/sv
   }
   .dao-dialog-step {
     flex: 1;
-    padding: 20px;
     overflow-x: hidden;
     overflow-y: auto;
   }
@@ -49,11 +56,13 @@ $resizeSvg: "data:image/svg+xml;utf8,%3Csvg%20xmlns=%27http://www.w3.org/2000/sv
 
 .dao-dialog-feature__text {
   @extend %dialogBody;
+  padding: 20px;
 }
 
 .dao-dialog-wrapper {
   display: table-cell;
   vertical-align: middle;
+  padding: 20px 0;
 
   &.dao-dialog__feature .dao-dialog-body {
     padding: 0;
@@ -91,6 +100,8 @@ $resizeSvg: "data:image/svg+xml;utf8,%3Csvg%20xmlns=%27http://www.w3.org/2000/sv
   }
 
   &[size='resize'] {
+    height: 100%;
+
     .dao-dialog-container {
       position: absolute;
       left: 50%;
