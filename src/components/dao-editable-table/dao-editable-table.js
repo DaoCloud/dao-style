@@ -66,6 +66,11 @@ export default {
     };
   },
   watch: {
+    value(val) {
+      if (val === this.rows) return;
+      this.rows = val;
+      this.blurRow();
+    },
   },
   methods: {
     addRow() {
