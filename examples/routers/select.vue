@@ -3,19 +3,7 @@
     <h1>simple select</h1>
     <br><hr><br>
     <dao-select v-model="simple" placeholder="一个简单下拉框" no-data-text="无选项">
-      <dao-option-group label="这是一个标签">
-        <dao-option :value="0">这是选项零</dao-option>
-        <dao-option :value="1">这是选项一</dao-option>
-        <dao-option :value="2">
-          <svg class="icon"><use xlink:href="#color-icon_apple"></use></svg>
-          这是选项二
-        </dao-option>
-        <dao-option :value="3" label="这是选项三"></dao-option>
-      </dao-option-group>
-      <dao-option-group label="这又是一个标签">
-        <dao-option :value="4" :disabled="true">这是选项四</dao-option>
-        <dao-option :value="5">这是选项五</dao-option>
-      </dao-option-group>
+      <dao-option v-for="item in items" :value="item.value" :label="item.text"></dao-option>
     </dao-select>
     <br>
     <button class="dao-btn blue" @click="changeSimple">change simple</button>
@@ -107,7 +95,7 @@
   export default {
     data() {
       return {
-        simple: 0,
+        simple: 1,
         small: 1,
         search: undefined,
         button: 2,
@@ -116,6 +104,16 @@
         loading: undefined,
         asynchronous: undefined,
         options: [],
+        items: [{
+          value: 1,
+          text: '选项一',
+        }, {
+          value: 2,
+          text: '选项二',
+        }, {
+          value: 3,
+          text: '选项三',
+        }],
       };
     },
     methods: {
@@ -147,9 +145,9 @@
         });
       },
       changeSimple() {
-        if (this.simple === 5) {
+        if (this.simple === 3) {
           this.type = 0;
-        } else if (this.simple === 0) {
+        } else if (this.simple === 1) {
           this.type = 1;
         }
         if (this.type) {

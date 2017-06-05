@@ -273,10 +273,6 @@
       filter(val) {
         this.broadcast('Option', 'search', val, this.searchMethod);
       },
-      value(val) {
-        // 更新 option 的 active 状态
-        this.broadcast('Option', 'status', val);
-      },
     },
     beforeCreate() {
       this.$on('on-chosen', (val) => {
@@ -294,6 +290,10 @@
       this.broadcast('Option-group', 'init-group', this.noDataText, this.noMatchText);
       // 在挂载时将当前 value 传递给 option
       this.broadcast('Option', 'pipe-value', this.value);
+    },
+    beforeUpdate() {
+      // 更新 option 的 active 状态
+      this.broadcast('Option', 'status', this.value);
     },
     data() {
       return {
