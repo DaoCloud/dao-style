@@ -45,21 +45,25 @@ export default {
       this.isShow = false;
     },
     blur() {
-      this.updateValue();
+      this.updateValue(this.inputText);
       this.hide();
     },
+    // 点击下拉菜单选项的事件
     clickOption() {
       this.chooseOption();
     },
+    // 鼠标 hover 在下拉菜单的选项上
     hoverOption(optionIndex) {
       this.optionIndex = optionIndex;
     },
+    // 从下拉菜单选择一个选项
     chooseOption() {
       this.inputText = this.filteredOption[this.optionIndex].text;
       const newValue = _.find(this.filteredOption, { text: this.inputText }).value;
       this.updateValue(newValue);
       this.optionIndex = 0;
     },
+    // 更新外部 v-model 所绑定的值
     updateValue(value) {
       this.$emit('input', value);
     },
