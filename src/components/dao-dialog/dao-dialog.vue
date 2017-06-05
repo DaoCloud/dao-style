@@ -11,7 +11,7 @@
         :class="{
           [typeClass]: true,
         }"
-        :size="config.type !== 'feature' ? config.size : ''"
+        :size="config.type !== 'feature' ? (config.size || 'md') : ''"
         @click.self="handleWrapperClick"
       >
         <div
@@ -19,8 +19,8 @@
           ref="container"
         >
           <daoDialogHeader
-            :title="config.title"
-            v-if="config.showHeader && config.type !== 'feature'"
+            :title="config.title || ''"
+            v-if="config.showHeader !== false && config.type !== 'feature'"
           />
           <div
             ref="body"
@@ -28,7 +28,7 @@
             :style="styleBody">
             <slot></slot>
           </div>
-          <div class="dao-dialog-footer" v-if="config.showFooter">
+          <div class="dao-dialog-footer" v-if="config.showFooter !== false">
             <slot name="footer" v-if="config.type==='multiStep'">
               <button class="dao-btn blue"
                 :disabled="activeStep <= 0"
@@ -157,13 +157,13 @@ export default {
     },
     // 点击 wrapper 时
     handleWrapperClick() {
-      if (this.config.closeOnClickOutside) {
+      if (this.config.closeOnClickOutside !== false) {
         this.doClose();
       }
     },
     // 按 ESC 键时
     EscClose(e) {
-      if (this.visible && this.config.closeOnPressEscape && e.keyCode === 27) {
+      if (this.visible && (this.config.closeOnPressEscape !== false) && e.keyCode === 27) {
         this.doClose();
       }
     },
