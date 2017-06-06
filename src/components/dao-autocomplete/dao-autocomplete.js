@@ -6,16 +6,8 @@ export default {
   components: { daoDrop },
   props: ['value', 'options'],
   data() {
-    // 如果一开始同时传进来 model 和 option 的话，那就要根据 model 来找到 options 中对应的 text
-    let initText = '';
-    if (this.value && this.options.length > 0) {
-      const initOption = _.find(this.options, o => (o === this.value || o.value === this.value));
-      if (initOption) {
-        initText = initOption.text ? initOption.text : initOption;
-      }
-    }
     return {
-      inputText: initText,
+      inputText: '',
       isShow: false,
       optionIndex: 0,
     };
@@ -67,6 +59,20 @@ export default {
     updateValue(value) {
       this.$emit('input', value);
     },
+    // 当从组件外部改变 v-model 时，同步组件内部的 inputText
+    syncValue() {
+      // 如果外部修改的 v-model 和组件自己的 inputText 一样，那就不用同步了
+      if (this.value === this.inputText) return;
+      // 如果有选项的话，那就要根据 value 来找到选项中对应的 text
+      let initText = '';
+      if (this.value && this.options.length > 0) {
+        const initOption = _.find(this.options, o => (o === this.value || o.value === this.value));
+        if (initOption) {
+          initText = initOption.text ? initOption.text : initOption;
+        }
+      }
+      this.inputText = initText;
+    },
     keyup() {
       this.show();
     },
@@ -89,6 +95,11 @@ export default {
         this.updateValue(this.inputText);
       }
       this.hide();
+    },
+  },
+  watch: {
+    value() {
+      this.syncValue();
     },
   },
 };

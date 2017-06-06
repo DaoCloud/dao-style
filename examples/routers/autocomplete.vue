@@ -44,7 +44,10 @@ export default {
   created() {
     setTimeout(() => {
       this.options3 = options2;
-    }, 300);
+      setTimeout(() => {
+        this.model3 = 'cherry';
+      }, 0);
+    }, 0);
   },
 };
 </script>
