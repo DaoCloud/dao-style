@@ -236,6 +236,7 @@
         <dao-dialog
           :config="dialogConfig[6].config"
           :visible.sync="dialogConfig[6].visible"
+          :step.sync="dialogConfig[6].step"
           @dao-dialog-close="handleClose"
           @dao-dialog-open="handleOpen"
         >
@@ -301,8 +302,8 @@
         <dao-dialog
           :config="dialogConfig[7].config"
           :visible.sync="dialogConfig[7].visible"
+          :step.sync="dialogConfig[7].step"
           @dao-dialog-close="handleClose"
-          @dao-dialog-open="handleOpen"
         >
           <dao-dialog-step>
             <div class="pure-text">
@@ -349,8 +350,8 @@
             </div>
           </dao-dialog-step>
           <div slot="footer" v-if="dialogConfig[7].hasFooter">
-            <button class="dao-btn ghost" @click="">哈哈</button>
-            <button class="dao-btn blue" @click="">确认</button>
+            <button class="dao-btn ghost" @click="goToTwo()">到第2页</button>
+            <button class="dao-btn blue" @click="goToFour()">到第4页</button>
           </div>
         </dao-dialog>
       </div>
@@ -453,6 +454,7 @@
               closeOnPressEscape: true,
             },
             visible: false,
+            step: 3,
           },
           {
             config: {
@@ -465,16 +467,17 @@
               closeOnPressEscape: true,
             },
             visible: false,
+            step: 2,
             hasFooter: true,
           },
         ],
       };
     },
     methods: {
-      handleConfirm () {
+      handleConfirm() {
         console.info('点击了确定');
       },
-      handleCancel () {
+      handleCancel() {
         console.info('点击了取消');
       },
       handleClose() {
@@ -482,6 +485,12 @@
       },
       handleOpen() {
         console.info('要打开了');
+      },
+      goToTwo() {
+        this.dialogConfig[7].step = 1;
+      },
+      goToFour() {
+        this.dialogConfig[7].step = 3;
       },
     },
   };

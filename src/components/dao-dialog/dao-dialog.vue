@@ -11,7 +11,7 @@
         :class="{
           [typeClass]: true,
         }"
-        :size="config.type !== 'feature' ? (config.size || 'md') : ''"
+        :size="config.type !== 'feature' ? (config.size) : ''"
         @click.self="handleWrapperClick"
       >
         <div
@@ -53,6 +53,7 @@
 <script>
 import daoDialogHeader from './dao-dialog-header/dao-dialog-header';
 import { getStyle } from '../../utils/assist';
+
 export default {
   name: 'DaoDialog',
   props: {
@@ -63,7 +64,7 @@ export default {
     config: {
       type: Object,
       required: true,
-      default: function() {
+      default: function () {
         return {
           title: '',
           type: 'normal',
@@ -75,6 +76,7 @@ export default {
         };
       },
     },
+    step: Number,
   },
   data() {
     return {
@@ -94,8 +96,8 @@ export default {
     styleBody() {
       if (this.config.type === 'multiStep') {
         return {
-          width: `${this.steps.length*100}%`,
-          transform: `translateX(-${(this.activeStep)/this.steps.length *100}%)`,
+          width: `${this.steps.length * 100}%`,
+          transform: `translateX(-${(this.activeStep) / this.steps.length * 100}%)`,
         };
       }
       return '';
@@ -104,11 +106,11 @@ export default {
   methods: {
     // 还原 scrollTop = 0
     scrollBodyTop() {
-      if(this.$refs.body.scrollTop !== 0) {
+      if (this.$refs.body.scrollTop !== 0) {
         this.$refs.body.scrollTop = 0;
       }
 
-      if(this.config.type === 'multiStep' && this.steps.length > 0) {
+      if (this.config.type === 'multiStep' && this.steps.length > 0) {
         this.steps.forEach((item) => {
           if (item.$el.scrollTop !== 0) {
             item.$el.scrollTop = 0;
@@ -138,7 +140,7 @@ export default {
       document.removeEventListener('keydown', this.EscClose);
 
       if (this.config.type === 'multiStep') {
-        this.activeStep = 0;
+        this.activeStep = (this.step >= 0 && this.step <= this.steps.length - 1) ? this.step : 0;
       }
     },
     // close dialog
@@ -181,13 +183,17 @@ export default {
       this.activeStep += 1;
     },
   },
-  beforeDestroy () {
+  mounted() {
+    this.activeStep = (this.step !== this.activeStep && this.step >= 0 &&
+      this.steps.length >= this.step + 1) ? this.step : 0;
+  },
+  beforeDestroy() {
     document.removeEventListener('keydown', this.EscClose);
     document.body.style.overflowY = '';
   },
   watch: {
     visible(newVal, oldVal) {
-      if(newVal) {
+      if (newVal) {
         this.$emit('dao-dialog-open');
       } else {
         this.$emit('dao-dialog-close');
@@ -197,7 +203,20 @@ export default {
     steps(val) {
       if (val && val.length > 0) {
         val.forEach((step, idx) => step.index = idx);
-        this.activeStep = 0;
+        this.activeStep = (this.step >= 0 && val.length >= this.step + 1) ? this.step : 0;
+      }
+    },
+    activeStep(val) {
+      if (val === this.step) return;
+      this.$emit('update:step', val);
+    },
+    step(newVal) {
+      if (newVal !== this.activeStep) {
+        if (newVal >= 0 && newVal <= this.steps.length - 1) {
+          this.activeStep = newVal;
+        } else {
+          this.$emit('update:step', this.activeStep);
+        }
       }
     },
   },
