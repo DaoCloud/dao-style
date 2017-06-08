@@ -101,6 +101,9 @@ export default {
       this.hide();
     },
   },
+  created() {
+    this.syncValue();
+  },
   watch: {
     value() {
       this.syncValue();
