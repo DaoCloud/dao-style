@@ -37,7 +37,11 @@ export default {
       this.isShow = false;
     },
     blur() {
-      this.updateValue(this.inputText);
+      // 要检测一下 inputText 是否在 options 中
+      if (!_.find(this.filteredOption, { text: this.inputText }).value) {
+        // 如果不是的话，才需要 update
+        this.updateValue(this.inputText);
+      }
       this.hide();
     },
     // 点击下拉菜单选项的事件
