@@ -1,5 +1,5 @@
 <template>
-  <div :data-clipboard-text="content">{{ caption }}</div>
+  <div :data-clipboard-text="content"><slot>{{ caption }}</slot></div>
 </template>
 
 <script>

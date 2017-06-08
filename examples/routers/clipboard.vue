@@ -32,6 +32,15 @@
           </div>
         </dao-tab-item>
       </dao-tab>
+      <h2> Copy Block without button </h2>
+      <br>
+      <dao-copy-block :with-btn="false">asjdahkdjagsd
+      jahgsdjgajsgdagjs</dao-copy-block>
+      <br>
+      <br>
+      <h2> Copy Block with button </h2>
+      <br>
+      <dao-copy-block>asjdahkdjagsdjahgsdjgajsgdagjs</dao-copy-block>
     </div>
   </div>
 </template>
