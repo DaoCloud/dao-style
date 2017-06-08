@@ -21,10 +21,20 @@
         :style="{left: stop * 100 + '%'}"
         v-for="stop in stops">
       </div>
+      <div class="dao-slider-tip-wrap">
+        <div
+          class="dao-slider-tip"
+          v-show="step"
+          :style="{left: stop * 100 + '%'}"
+          v-for="stop in stops">
+          {{updateNewVal(stop)}}
+        </div>
+      </div>
     </div>
     <div class="show">
       Inside Pos: {{this.curtPos}}<br/>
       Inside Value: {{this.value}}
+      <!-- Inside Value: {{this.value.toFixed(1)}} -->
     </div>
   </div>
 </template>
@@ -44,7 +54,7 @@
         required: false,
         validator(val) {
           return val > 0;
-        }
+        },
       },
       value: {
         type: Number,
@@ -68,7 +78,7 @@
         }
 
         const stopCount = (this.range[1] - this.range[0]) / this.step;
-        const stepWidth = 1/stopCount;
+        const stepWidth = 1 / stopCount;
         const result = [0];
 
         for (let i = 1; i < stopCount; i++) {
@@ -76,7 +86,20 @@
         }
         result.push(1);
         return result;
-      }
+      },
+      helfStepWidth() {
+        if (!this.step) {
+          return false;
+        }
+        return this.step / (this.range[1] - this.range[0]) / 2;
+      },
+      lastHalf() {
+        if (!this.step) {
+          return false;
+        }
+        const stopsLen = this.stops.length;
+        return (this.stops[stopsLen - 1] - this.stops[stopsLen - 2]) / 2;
+      },
     },
     methods: {
       // drag
@@ -93,7 +116,7 @@
         // 右滑 > 0
         const diff = e.clientX - this.startX;
 
-        if (this.curtPos >= 1 && diff > 0){
+        if (this.curtPos >= 1 && diff > 0) {
           this.curtPos = 1;
           return;
         }
@@ -101,7 +124,7 @@
           this.curtPos = 0;
           return;
         }
-        this.curtPos = this.curtPos + diff/this.sliderWidth;
+        this.curtPos = this.getCurPos(e.clientX);
         this.startX = e.clientX;
       },
       onHandleDragEnd(e) {
@@ -121,8 +144,7 @@
       },
       // track 的 click 事件
       onHandleClick(e) {
-        const newPos = this.curtPos + (e.clientX - this.startX)/this.sliderWidth;
-
+        const newPos = this.getCurPos(e.clientX);
         if (newPos < 0 || newPos > 1) return;
 
         if (this.step && this.stops) {
@@ -134,23 +156,28 @@
       },
       getCurtPosInSteps(newPos) {
         if (!this.stops || !this.step) return;
-
-        let newPosArray = [];
-        const helfStepWidth = this.step / (this.range[1] - this.range[0]) / 2;
-        newPosArray = this.stops.filter((stop, idx, array) =>
-          ((stop - helfStepWidth) <= newPos) && (newPos < (stop + helfStepWidth)));
-        this.curtPos = newPosArray[0];
-        this.startX = this.trackLeft + this.curtPos * this.sliderWidth;
+        const stopsLen = this.stops.length;
+        // 倒数第一个 stop 与倒数第二个 stop 之间的距离不一定是 this.helfStepWidth
+        if (newPos > this.stops[stopsLen - 2]) {
+          this.curtPos = (newPos <= this.stops[stopsLen - 2] + this.lastHalf) ? this.stops[stopsLen - 2] : this.stops[stopsLen - 1];
+        } else {
+          const tempNewPos = this.stops.find(stop => ((stop - this.helfStepWidth) <= newPos) && (newPos < (stop + this.helfStepWidth)));
+          this.curtPos = tempNewPos || this.curtPos;
+        }
+        this.startX = this.trackLeft + (this.curtPos * this.sliderWidth);
+      },
+      getCurPos(curClientX) {
+        return (curClientX - this.trackLeft) / this.sliderWidth;
       },
       // value -> position
       updateCurPosition(val) {
-        const newPos = (val - this.range[0])/(this.range[1] - this.range[0]);
+        const newPos = (val - this.range[0]) / (this.range[1] - this.range[0]);
         return (newPos >= 0 && newPos <= 1) ? newPos : null;
       },
       // position -> value
       updateNewVal(pos) {
-        const newVal = pos * (this.range[1] - this.range[0]) + this.range[0];
-        return newVal;
+        const newVal = (pos * (this.range[1] - this.range[0])) + this.range[0];
+        return parseInt(newVal.toFixed(1), 10);
       },
     },
     watch: {
@@ -181,7 +208,7 @@
         }
 
         this.trackLeft = this.$refs.track.offsetLeft;
-        this.startX = this.trackLeft + this.curtPos * this.sliderWidth;
+        this.startX = this.trackLeft + (this.curtPos * this.sliderWidth);
       });
     },
   };
