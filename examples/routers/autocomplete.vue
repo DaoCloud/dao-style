@@ -36,7 +36,7 @@ export default {
       options1,
       options2,
       options3: [],
-      model1: '',
+      model1: 'apple',
       model2: '',
       model3: '',
     };
