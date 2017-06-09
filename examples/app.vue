@@ -39,9 +39,9 @@ li + li {
         <li>
           <router-link to="/card">Card</router-link>
         </li>
-        <!-- <li>
+        <li>
           <router-link to="/checkbox">Checkbox</router-link>
-        </li> -->
+        </li>
         <li>
           <router-link to="/clipboard">Clipboard</router-link>
         </li>
