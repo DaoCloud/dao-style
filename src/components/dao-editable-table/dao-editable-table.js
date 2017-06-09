@@ -69,7 +69,7 @@ export default {
     value(val) {
       if (val === this.rows) return;
       this.rows = val;
-      this.blurRow();
+      this.inactivateRow();
     },
   },
   methods: {
@@ -82,8 +82,12 @@ export default {
       this.rows.splice(index, 1);
       this.$emit('input', this.rows);
     },
-    blurRow() {
+    inactivateRow() {
       this.activatedRow = null;
+    },
+    onBlur() {
+      this.updateValue();
+      this.inactivateRow();
     },
     focusRow(rowIndex) {
       this.activatedRow = rowIndex;
