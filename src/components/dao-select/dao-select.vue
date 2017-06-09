@@ -209,6 +209,7 @@
   }
 </style>
 <script>
+  import { find } from 'lodash';
   import daoDrop from './dropdown.vue';
   import clickoutside from '../../directives/clickoutside';
   import Emitter from '../../mixins/emitter';
@@ -267,40 +268,49 @@
       size: String,
     },
     watch: {
+      // 控制下拉的显示和隐藏
       menuVisible(val) {
         this.$emit('visible-change', Boolean(val));
       },
+      // 搜索
       filter(val) {
         this.broadcast('Option', 'search', val, this.searchMethod);
       },
+      value(val) {
+        // 当 v-model 绑定的 value 值变化时更新一下 option 的状态
+        this.updateOptionStatus(val);
+      },
     },
     beforeCreate() {
+      // select 初始化，获取所有的 options 的 value 和 节点
+      this.$on('init', (value, nodesString) => {
+        // 如果已经有这个值则不在添加进去
+        if (!find(this.options, { value })) {
+          this.options.push({ value, nodesString });
+        }
+      });
+      // 绑定一个 on-chosen 事件，定义当 option 点击选择之后需要做的事情
       this.$on('on-chosen', (val) => {
         this.closeMenu();
         this.selectedValue = val;
       });
-      this.$on('change-display', (content) => {
-        this.selectedText = content;
-      });
+      // 绑定处理异步的事件
       this.$on('deal-async', (callback) => {
         this.handleAsync(callback);
       });
     },
     mounted() {
+      // 挂载时把没有选项或没有搜索到的选项时默认文本传递给 option group
       this.broadcast('Option-group', 'init-group', this.noDataText, this.noMatchText);
-      // 在挂载时将当前 value 传递给 option
-      this.broadcast('Option', 'pipe-value', this.value);
-    },
-    beforeUpdate() {
-      // 更新 option 的 active 状态
-      this.broadcast('Option', 'status', this.value);
+      // 挂载时更新一下 option 的状态
+      this.updateOptionStatus(this.selectedValue);
     },
     data() {
       return {
+        options: [],
         isLoading: this.loading,
         menuVisible: false,
         asyncCompelete: false,
-        selectedText: '',
         filter: '',
       };
     },
@@ -319,7 +329,10 @@
           this.$emit('change', val);
         },
       },
-
+      selectedText() {
+        const option = find(this.options, { value: this.selectedValue });
+        return option ? option.nodesString : '';
+      },
     },
     methods: {
       // 处理点击事件
@@ -369,6 +382,10 @@
       // 切换下拉框打开/关闭
       toggleMenu() {
         this.menuVisible = !this.menuVisible;
+      },
+      // 更新 option 状态
+      updateOptionStatus(val) {
+        this.broadcast('Option', 'status', val);
       },
     },
   };

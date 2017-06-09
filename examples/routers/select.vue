@@ -7,6 +7,7 @@
     </dao-select>
     <br>
     <button class="dao-btn blue" @click="changeSimple">change simple</button>
+    <button class="dao-btn ghost" @click="simple = undefined">set undefined</button>
 
     <br><br>
     <h2>small select</h2>
@@ -145,6 +146,7 @@
         });
       },
       changeSimple() {
+        if (typeof this.simple !== 'number') this.simple = 0;
         if (this.simple === 3) {
           this.type = 0;
         } else if (this.simple === 1) {
