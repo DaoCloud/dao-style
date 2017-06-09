@@ -79,6 +79,7 @@ Select 是由 Select 和 Option-Group 以及 Option 三个组件组合而成。
 | menu-class | string | select 下拉菜单的类名 | - | 否 |
 | no-data-text | string | select 无数据时显示的文字 | '无数据' | 否 |
 | no-match-text | string | select 搜索无匹配数据时显示的文字 | '无匹配数据' | 否 |
+| size | string | select 的尺寸，可选值有 'sm' | - | 否 |
 
 ### Select 事件
 
