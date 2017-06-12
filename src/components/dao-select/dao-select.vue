@@ -4,7 +4,7 @@
       <div :class="['dao-select-switch', {'open': menuVisible}]">
         <div class="dao-select-switch-text">
           <div v-show="!selectedText && !isLoading" class="placeholder">{{ placeholder }}</div>
-          <div v-show="selectedText && !isLoading" style="line-height: 1;">
+          <div v-show="selectedText && !isLoading" class="selected-text">
             <span v-html="selectedText"></span>
           </div>
           <div v-show="isLoading" class="switch-loading">
@@ -79,6 +79,7 @@
           height: 100%;
           padding: 0 10px;
           flex: 1;
+          overflow: hidden;
           display: inline-flex;
           align-items: center;
           user-select: none;
@@ -94,6 +95,11 @@
       }
       .placeholder {
         color: $select-default-color;
+      }
+      .selected-text {
+        line-height: 1;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
       .icon-box {
         display: flex;

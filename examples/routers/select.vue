@@ -106,7 +106,7 @@
         options: [],
         items: [{
           value: 1,
-          text: '选项一',
+          text: 'abcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabc',
         }, {
           value: 2,
           text: '选项二',
