@@ -341,7 +341,7 @@
       .dao-input-group {
         width: 100%;
       }
-      input {
+      input, .dao-input-inner, .dao-input-inner > .dao-popover {
         width: 100%;
       }
     }

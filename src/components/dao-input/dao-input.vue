@@ -11,7 +11,8 @@
       'message-bottom': messagePlacement === 'bottom' && !iconInside,
       'no-message-icon': messageNoIcon,
       'dao-input-group': $slots.prepend || $slots.append,
-      'input-sm': size === 'sm'
+      'input-sm': size === 'sm',
+      'block': block
     }">
     <div class="dao-input-group-addon prepend" v-if="$slots.prepend">
       <slot name="prepend"></slot>
@@ -110,6 +111,7 @@
         },
         default: '',
       },
+      block: Boolean,
       required: Boolean,
       // 以下使用 input 原生属性，不做特殊处理
       placeholder: String,
