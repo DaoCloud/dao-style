@@ -9,58 +9,20 @@ Maintainer的职责有：
 * 制定项目的roadmap，[详见/ROADMAP.md](ROADMAP.md)；
 * 维护项目的其他内容，如：CHANGELOG.md，版本发布等。
 
-
 [Org]
 
 	[Org."核心维护者"]
 		people = {
-			"cinderyx": [
-				"button", 
-				"card", 
-				"input", 
-				"pseudo-disable",
-			],
-			"jamiefang":[],
-			"lsq645599166": [
-				"checkbox", 
-				"color", 
-				"feedback", 
-				"select",
-			],
-			"mimoning": [
-				"icon-with-text", 
-				"popover", 
-				"radio", 
-				"switch",
-			],
-			"qar": [
-				"chip", 
-				"clipborad", 
-				"dropdown", 
-				"list-group",
-			],
-			"tanbowensg": [
-				"autocomplete", 
-				"layout", 
-				"progress", 
-				"table",
-			],
-			"vivian-xu": [
-				"editor", 
-				"select-all", 
-				"svg", 
-				"tab",
-			],
-			"yank1": [
-				"progress",
-			],
-			"Ye-Ting": [],
-			"ZhuJingSi": [
-				"callout", 
-				"dialog", 
-				"multistep", 
-				"setting-layout",
-			],
+			"cinderyx",
+			"jamiefang",
+			"lsq645599166",
+			"mimoning",
+			"qar",
+			"tanbowensg",
+			"vivian-xu",
+			"yank1",
+			"Ye-Ting":,
+			"ZhuJingSi"
 		}
 
 	[Org."文档维护者"]
