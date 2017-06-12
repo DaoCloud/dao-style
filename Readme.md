@@ -42,70 +42,15 @@ dao-style-vue 是一个基于 Vue 2.0 框架的 web UI 组件库。
 
 ## 模块主要负责人
 
-<table>
-  <thead>
-    <th>负责人</th>
-    <th colspan="4">组件</th>
-  </thead>
-  <tbody>
-    <tr>
-      <td>欧阳宁</td>
-      <td>icon-with-text</td>
-      <td>popover</td>
-      <td>radio</td>
-      <td>switch</td>
-    </tr>
-    <tr>
-      <td>谈博文</td>
-      <td>table</td>
-      <td>autocomplete</td>
-      <td>progress</td>
-      <td>layout</td>
-    </tr>
-    <tr>
-      <td>张晓旭</td>
-      <td>tab</td>
-      <td>svg</td>
-      <td>editor</td>
-      <td>select-all</td>
-    </tr>
-    <tr>
-      <td>刘世奇</td>
-      <td>color</td>
-      <td>checkbox</td>
-      <td>feedback</td>
-      <td>select</td>
-    </tr>
-    <tr>
-      <td>朱静思</td>
-      <td>multistep</td>
-      <td>callout</td>
-      <td>setting-layout</td>
-      <td>dialog</td>
-    </tr>
-    <tr>
-      <td>胡心悦</td>
-      <td>button</td>
-      <td>input</td>
-      <td>pseudo-disable</td>
-      <td>card</td>
-    </tr>
-    <tr>
-      <td>乔安然</td>
-      <td>dropdown</td>
-      <td>list-group</td>
-      <td>chip</td>
-      <td>clipboard</td>
-    </tr>
-    <tr>
-      <td>颜开</td>
-      <td>progress</td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-  </tbody>
-</table>
+|负责人|组件集合|
+|--------|---------|
+| 欧阳宁|`radio`、`select`、`clipboard` |
+| 谈博文| `autocomplete `、`progress `、`editable-table`|
+| 张晓旭|`tab`、`dialog`|
+| 刘世奇|`popover`、 `tooltip`、 `list-group`|
+| 朱静思|`steps`, `setting-layout`、 `select－all`、`numeric-badge`|
+| 胡心悦|`button`、`input`、`card`|
+| 乔安然|`switch`、 `dropdown`|
 
 ## LICENSE
 
