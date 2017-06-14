@@ -1,9 +1,9 @@
 @import './dao-table-variable.scss';
 @import './dao-table-components.scss';
 
-.dao-table-main {
-  width: 100%;
-  overflow: auto;
+.dao-table-container {
+  display: flex;
+  flex-direction: column;
 }
 
 .dao-table {
@@ -414,12 +414,8 @@
   }
 }
 
-.dao-table-container {
-  padding-top: $table-margin;
-}
-
 .dao-table-toolbar {
-  height: $toolbar-height;
+  margin-bottom: 16px;
   .btn-group {
     display: inline-block;
   }

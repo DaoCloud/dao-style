@@ -1,6 +1,4 @@
 @import '../dao-color.scss';
-// 表格容器的属性
-$table-margin: 16px;
 // 板布局表格长宽
 $slat-tr-height: 82px;
 $slat2-height: 42px;
@@ -60,7 +58,7 @@ $slat-font-size: 15px;
 $svg-size: 14px;
 
 //高度宽度
-$toolbar-height: 50px;
+$toolbar-height: 34px;
 $svg-margin-right: 4px;
 
 @mixin svg-in-table() {
