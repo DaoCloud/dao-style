@@ -62,11 +62,6 @@
       label: String,
     },
     beforeCreate() {
-      // 绑定获取 value 事件
-      this.$on('pipe-value', (v) => {
-        this.notActive();
-        if (this.value === v) this.isActive();
-      });
       // 绑定选择事件
       this.$on('status', (val) => {
         this.notActive();
@@ -97,21 +92,18 @@
         this.dispatch('Option-group', 'search-result');
       });
     },
+    mounted() {
+      // 在 option 挂载时将自己的 value 和 slot 中的节点字符串传递给 select
+      this.dispatch('Select', 'init', this.value, this.nodesString);
+    },
     data() {
       return {
         active: false,
         matchedFilter: true,
       };
     },
-    methods: {
-      // 处理点击事件
-      handleClick() {
-        if (this.disabled) return;
-        // 触发 select 中的 on-chosen 事件
-        this.dispatch('Select', 'on-chosen', this.value);
-      },
-      // 触发选择事件
-      changeSelectedText() {
+    computed: {
+      nodesString() {
         // 获取 slot 中的 dom 节点
         const nodes = this.$slots.default;
         let nodesString = '';
@@ -126,12 +118,19 @@
         } else {
           nodesString = this.label;
         }
-        this.dispatch('Select', 'change-display', nodesString);
+        return nodesString;
+      },
+    },
+    methods: {
+      // 处理点击事件
+      handleClick() {
+        if (this.disabled) return;
+        // 触发 select 中的 on-chosen 事件
+        this.dispatch('Select', 'on-chosen', this.value);
       },
       // 当前选中
       isActive() {
         this.active = true;
-        this.changeSelectedText();
       },
       notActive() {
         this.active = false;
