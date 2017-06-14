@@ -22,6 +22,15 @@ export default {
             type: 'input',
             name: 'name',
             default: '',
+            validate(row, all) {
+              if (row.name === '') {
+                return '不能是空的';
+              }
+              if (all.filter(r => r.name === row.name).length > 1) {
+                return '姓名不能重复';
+              }
+              return true;
+            },
           },
           {
             type: 'select',
@@ -42,13 +51,17 @@ export default {
           },
         ],
       },
-      model: [],
+      model: [
+        { name: 'bowen', gender: '男', single: true, company: 'DaoCloud' },
+        { name: 'mimo', gender: '男', single: false, company: 'DaoCloud' },
+        { name: 'kay', gender: '男', single: false, company: 'DaoCloud' },
+        { name: 'jamie', gender: '男', single: true, company: 'DaoCloud' },
+      ],
     };
   },
   watch: {
-    // 如果 question 发生改变，这个函数就会运行
     model(newModel) {
-      console.log('改变了', newModel);
+      console.log('model 更新了', newModel);
     },
   },
 };
