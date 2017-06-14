@@ -24,7 +24,7 @@ export default {
             default: '',
             validate(row, all) {
               if (row.name === '') {
-                return '不能是空的';
+                return '姓名不能是空的';
               }
               if (all.filter(r => r.name === row.name).length > 1) {
                 return '姓名不能重复';
@@ -61,7 +61,7 @@ export default {
   },
   watch: {
     model(newModel) {
-      console.log('model 更新了', newModel);
+      console.log('model 已更新', newModel);
     },
   },
 };
