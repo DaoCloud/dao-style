@@ -13,9 +13,8 @@
             type="text"
             v-if="td.type === 'input'"
             v-model="td.value"
-            @change="updateValue()"
             @focus="focusRow(index)"
-            @blur="blurRow">
+            @blur="onBlur">
           </dao-input>
           <input
             type="checkbox"
