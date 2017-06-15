@@ -8,6 +8,19 @@
     <input class="dao-control" type="text" placeholder="使用纯样式" v-model="demoNormalByClass">
     <br><br><br>
     <dao-input
+      v-model="demoNormal"
+      :class="{'demo-width': isWidthLimit}"
+      block
+      placeholder="block 不限制宽度">
+    </dao-input>
+    <br>
+    <dao-switch
+      :option="{ on: '通过样式限制宽度，限制为 40%', off: '不限制宽度' }"
+      :with-notice="true"
+      v-model="isWidthLimit">
+    </dao-switch>
+    <br><br><br>
+    <dao-input
       v-model="demoDisabled"
       disabled
       placeholder="请输入内容">
@@ -127,6 +140,7 @@
         message: '输入错误',
         demoNormal: '',
         demoNormalByClass: '',
+        isWidthLimit: false,
         demoDisabled: '',
         demoDisabledByClass: '',
         demoSizeSM: '',
@@ -169,3 +183,8 @@
     },
   };
 </script>
+<style lang="scss" scoped>
+  .demo-width {
+    width: 40%;
+  }
+</style>

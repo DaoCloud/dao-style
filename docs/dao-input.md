@@ -21,6 +21,7 @@ Input 是一个 32 像素高的（包括 border）表单组件（form component�
   [message-placement=""]
   [:message-no-icon=""]
   [search]
+  [block]
   [required]
   [placeholder=""]
   [readonly]
@@ -110,6 +111,7 @@ Editable Input 是一个可以编辑的 Disabled Input。当我们不希望用�
 | message-placement | String | 提示内容的位置，必选组合参数 message，可选值 top-end，right-start | top-end | 否 |
 | message-no-icon | Boolean | 提示信息前不带图标，只在 icon-inside 值为 false 时生效 | false | 否 |
 | search | Boolean | 搜索输入框 | false | 否 |
+| block | Boolean | 不限制 input 宽度 | false | 否 |
 | required | Boolean | 必填 | false | 否 |
 | placeholder | String | 	输入框占位文本 | - | 否 |
 | readonly | Boolean | 	原生属性，是否只读 | false | 否 |
@@ -142,7 +144,7 @@ Editable Input 是一个可以编辑的 Disabled Input。当我们不希望用�
 
 ### Editable Input 接受的参数
 
-支持 Input 所有普通用法。
+支持 Input 所有普通用法，除了 block 参数。
 
 | 参数名 | 类型 | 说明 | 默认值 | 是否必填 |
 |:-----:|:----:|:---:|:-----:|:------:|
