@@ -34,15 +34,17 @@ export default {
   data() {
     return {
       options1,
-      options2,
+      options2: [],
       options3: [],
-      model1: 'apple',
-      model2: '',
+      model1: '',
+      model2: 'banana',
       model3: '',
     };
   },
   created() {
     setTimeout(() => {
+      this.model1 = 'apple';
+      this.options2 = options2;
       this.options3 = options2;
       setTimeout(() => {
         this.model3 = 'cherry';

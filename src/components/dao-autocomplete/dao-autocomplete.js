@@ -108,5 +108,8 @@ export default {
     value() {
       this.syncValue();
     },
+    options() {
+      this.syncValue();
+    },
   },
 };
