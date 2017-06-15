@@ -29,6 +29,7 @@ const daoStyleComponents = {
   daoAutocomplete,
   daoCallout,
   daoClipboard,
+  daoCopyBlock: daoClipboard.CopyBlock,
   daoDialog,
   daoDialogStep: daoDialog.Step,
   daoDropdown,
