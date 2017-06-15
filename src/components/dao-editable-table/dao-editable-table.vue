@@ -61,4 +61,12 @@ svg.det-remove-btn {
     }
   }
 }
+.det-select {
+  width: 100% !important;
+  display: inline-block;
+  vertical-align: middle;
+  .dao-select-main {
+    display: block !important;
+  }
+}
 </style>

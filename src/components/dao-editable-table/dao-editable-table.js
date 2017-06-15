@@ -37,28 +37,28 @@ export default {
   methods: {
     // 根据 model 生成一行数据，不传 model 就直接生成一行默认的数据
     generateRow(model) {
-      const resultRow = this.config.body.map((tr) => {
+      const resultRow = this.config.body.map((td) => {
         let value;
-        switch (tr.type) {
+        switch (td.type) {
           case 'input':
           case 'select':
-            value = tr.default || '';
+            value = td.default || '';
             break;
           case 'checkbox':
-            value = tr.default || false;
+            value = td.default || false;
             break;
           case 'text':
-            value = tr.default || '';
+            value = td.default || '';
             break;
           default:
         }
         return {
-          name: tr.name,
-          type: tr.type,
+          name: td.name,
+          type: td.type,
           value,
-          options: tr.options || null,
-          label: tr.label || '',
-          validate: tr.validate || null,
+          options: td.options || null,
+          label: td.label || '',
+          validate: td.validate || null,
         };
       });
       // 如果有预先设置的值的话，就要把默认值塞进去
