@@ -336,7 +336,10 @@
         },
       },
       selectedText() {
-        const option = find(this.options, { value: this.selectedValue });
+        // 如果传入的 option 值为对象格式，而且传入的 v-model 为 {} 空对象，
+        // lodash 的 find 会找到 options 里面的第一项，而 lodash 的 some 会返回 true
+        // 所以这里使用原生的 filter 筛出值之后选择第一项
+        const option = this.options.filter(v => v.value === this.selectedValue)[0];
         return option ? option.nodesString : '';
       },
     },
