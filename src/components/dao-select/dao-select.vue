@@ -215,7 +215,7 @@
   }
 </style>
 <script>
-  import { find } from 'lodash';
+  import { find, findIndex } from 'lodash';
   import daoDrop from './dropdown.vue';
   import clickoutside from '../../directives/clickoutside';
   import Emitter from '../../mixins/emitter';
@@ -289,17 +289,21 @@
     },
     beforeCreate() {
       // select 初始化，获取所有的 options 的 value 和 节点
-      this.$on('init', (value, nodesString) => {
+      this.$on('init', (value, nodesString, callback) => {
         // 如果已经有这个值则不在添加进去
         if (!find(this.options, { value, nodesString })) {
           this.options.push({ value, nodesString });
         }
+        // 如果这个值和已选值相等则调用回调，将 option 的状态修改一下
+        if (value === this.selectedValue) {
+          callback();
+        }
       });
       // select 选项池更新，删除已被销毁的 option
       this.$on('option-destroy', (value) => {
-        const option = find(this.options, { value });
-        if (option) {
-          this.options.splice(this.options.indexOf(option), 1);
+        const index = findIndex(this.options, { value });
+        if (index > -1) {
+          this.options.splice(index, 1);
         }
       });
       // 绑定一个 on-chosen 事件，定义当 option 点击选择之后需要做的事情

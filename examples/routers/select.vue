@@ -105,7 +105,7 @@
         disabled: undefined,
         tab: undefined,
         loading: undefined,
-        asynchronous: undefined,
+        asynchronous: 2,
         options: [],
         items: [{
           value: 1,
