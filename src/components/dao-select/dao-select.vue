@@ -291,8 +291,15 @@
       // select 初始化，获取所有的 options 的 value 和 节点
       this.$on('init', (value, nodesString) => {
         // 如果已经有这个值则不在添加进去
-        if (!find(this.options, { value })) {
+        if (!find(this.options, { value, nodesString })) {
           this.options.push({ value, nodesString });
+        }
+      });
+      // select 选项池更新，删除已被销毁的 option
+      this.$on('option-destroy', (value) => {
+        const option = find(this.options, { value });
+        if (option) {
+          this.options.splice(this.options.indexOf(option), 1);
         }
       });
       // 绑定一个 on-chosen 事件，定义当 option 点击选择之后需要做的事情
@@ -338,8 +345,8 @@
       selectedText() {
         // 如果传入的 option 值为对象格式，而且传入的 v-model 为 {} 空对象，
         // lodash 的 find 会找到 options 里面的第一项，而 lodash 的 some 会返回 true
-        // 所以这里使用原生的 filter 筛出值之后选择第一项
-        const option = this.options.filter(v => v.value === this.selectedValue)[0];
+        // 所以这里使用原生的 find 筛出值之后选择第一项
+        const option = this.options.find(v => v.value === this.selectedValue);
         return option ? option.nodesString : '';
       },
     },
