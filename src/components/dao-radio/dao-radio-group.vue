@@ -4,6 +4,8 @@
   </div>
 </template>
 <style lang="scss">
+  @import './variables.scss';
+
   .dao-radio-group {
     *zoom: 1;
     &:before,
@@ -14,6 +16,10 @@
     }
     &:after {
       clear: both;
+    }
+    // 特殊样式，只好加在这里
+    > div:first-child .dao-radio-block {
+      border-top: 1px solid $border-color;
     }
   }
 </style>
