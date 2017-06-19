@@ -42,6 +42,12 @@ $popover-bg: #fff !default;
 
     width: 30px;
     height: 30px;
+    .pt-popover-arrow-border {
+      fill: #10161a;
+    }
+    .pt-popover-arrow-fill {
+      fill: $white;
+    }
     svg {
       transform: rotate(0);
     }
