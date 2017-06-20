@@ -14,6 +14,9 @@
     background: #FFFCED;
   }
 }
+.det-td {
+  overflow: visible !important;
+}
 .det-add {
   display: inline-block;
   color: $blue;
@@ -35,9 +38,11 @@ svg.det-remove-btn {
 }
 .det-input.dao-input-container {
   width: 100%;
-  transform: translateY(-2px);
   .dao-input-inner {
     width: 100%;
+  }
+  .icon {
+    top: 0 !important;
   }
   input {
     width: 100%;

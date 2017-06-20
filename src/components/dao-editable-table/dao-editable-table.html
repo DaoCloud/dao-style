@@ -8,12 +8,13 @@
     </thead>
     <tbody>
       <tr class="det-tr" v-for="(row, index) in rows" :class="{activate: index === activatedRow}">
-        <td v-for="td in row">
+        <td class="det-td" v-for="td in row">
           <dao-input class="det-input"
             type="text"
             v-if="td.type === 'input'"
             v-model="td.value"
             size="sm"
+            :block="true"
             icon-inside
             @change="td.invalid = td.validate(rowToModel(row), model)"
             :message="typeof(td.invalid) === 'string' ? td.invalid : ''"
