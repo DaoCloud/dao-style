@@ -15,6 +15,7 @@
   }
 }
 .det-add {
+  display: inline-block;
   color: $blue;
   margin-top: 15px;
   cursor: pointer;
