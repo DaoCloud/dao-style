@@ -16,9 +16,8 @@
             size="sm"
             :block="true"
             icon-inside
-            @change="td.invalid = td.validate(rowToModel(row), model)"
-            :message="typeof(td.invalid) === 'string' ? td.invalid : ''"
-            :status="typeof(td.invalid) === 'string' ? 'error' : ''"
+            :message="typeof(td.valid) === 'string' ? td.valid : ''"
+            :status="typeof(td.valid) === 'string' ? 'error' : ''"
             @focus="focusRow(index)"
             @blur="onBlur">
           </dao-input>
@@ -27,13 +26,13 @@
             v-if="td.type === 'checkbox'"
             :name="td.name"
             v-model="td.value"
-            @change="updateModel()">
+            @change="validteAndUpdate()">
           <label :for="td.name" v-if="td.type === 'checkbox'">{{td.label}}</label>
           <select
             :name="td.name"
             v-if="td.type === 'select'"
             v-model="td.value"
-            @change="updateModel()">
+            @change="validteAndUpdate()">
             <option v-for="option in td.options" :text="option" :value="option">{{option}}</option>
           </select>
           <span v-if="td.type === 'text'">{{ td.value }}</span>

@@ -68,10 +68,10 @@ export default {
         });
       }
       // 最后要执行一次验证，否则在新添加行的时候如果预先设置的值未通过验证的话是不会提示错误的
-      return _.map(resultRow, (td) => {
+      return _.map(resultRow , (td) => {
         const temp = td;
         if (td.validate) {
-          temp.invalid = td.validate(this.rowToModel(resultRow), this.model);
+          temp.valid = td.validate(this.rowToModel(resultRow), this.model);
         }
         return temp;
       });
@@ -101,21 +101,31 @@ export default {
       this.rows.splice(index, 1);
       this.updateModel();
     },
+    focusRow(rowIndex) {
+      this.activatedRow = rowIndex;
+    },
     inactivateRow() {
       this.activatedRow = null;
     },
     onBlur() {
-      this.updateModel();
+      this.validteAndUpdate();
       this.inactivateRow();
     },
-    focusRow(rowIndex) {
-      this.activatedRow = rowIndex;
+    // 验证数据
+    validate() {
+      _.forEach(this.rows, (row) => {
+        _.forEach(row, (td) => {
+          if (td.type === 'input' && td.validate) {
+            td.valid = td.validate(row, this.rows);
+          }
+        });
+      });
     },
     // 更新 model
     updateModel() {
       let valid = true;
       _.forEach(this.rows, (row) => {
-        if (_.some(row, td => typeof td.invalid === 'string')) {
+        if (_.some(row, td => _.isString(td.valid))) {
           valid = false;
           return false;
         }
@@ -124,6 +134,10 @@ export default {
       if (valid) {
         this.$emit('input', this.model);
       }
+    },
+    validteAndUpdate() {
+      this.validate();
+      this.updateModel();
     },
   },
   created() {
