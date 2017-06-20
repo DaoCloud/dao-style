@@ -50,6 +50,7 @@ export default {
             type: 'checkbox',
             name: 'single',
             default: false,
+            label: '单身',
           },
           {
             type: 'text',
@@ -106,4 +107,5 @@ export default {
 | name     | String         | 它是 result 对象中的属性名称。                      | -              | 是    |
 | default  | String/Boolean | 默认值。类型根据这个字段的 type 来决定。                  | `''` 和 `false` | 否    |
 | options  | Array          | 只有当这个字段的 type 是 `'select'` 的时候才需要。具体传入的参数参考 dao-select。 | -              | 否    |
+| label | String          | 只有当这个字段的 type 是 `'checkbox'` 的时候才需要，它是 checkbox 的 label。 | -              | 否    |
 | validate | Function       | 验证函数。这个函数应该是个纯函数。它接受两个参数，第一个是当前行的数据，第二个是所有行的数据，如果返回 `true`，表示验证通过。如果返回其他字符串，表示验证不通过，且错误信息是字符串内容。 | -              | 否    |
