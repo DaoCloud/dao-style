@@ -3,11 +3,13 @@
     <h1>simple select</h1>
     <br><hr><br>
     <dao-select v-model="simple" placeholder="一个简单下拉框" no-data-text="无选项">
-      <dao-option v-for="item in items" :value="item.value" :label="item.text"></dao-option>
+      <dao-option v-for="item in items" :key="item.value" :value="item.value" :label="item.text"></dao-option>
     </dao-select>
     <br>
     <button class="dao-btn blue" @click="changeSimple">change simple</button>
     <button class="dao-btn ghost" @click="simple = undefined">set undefined</button>
+    <button class="dao-btn green" @click="items.pop()">pop one option</button>
+    <button class="dao-btn yellow" @click="items.shift()">shift one option</button>
 
     <br><br>
     <h2>small select</h2>
@@ -103,7 +105,7 @@
         disabled: undefined,
         tab: undefined,
         loading: undefined,
-        asynchronous: undefined,
+        asynchronous: 2,
         options: [],
         items: [{
           value: 1,

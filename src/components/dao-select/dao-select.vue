@@ -215,7 +215,7 @@
   }
 </style>
 <script>
-  import { find } from 'lodash';
+  import { find, findIndex } from 'lodash';
   import daoDrop from './dropdown.vue';
   import clickoutside from '../../directives/clickoutside';
   import Emitter from '../../mixins/emitter';
@@ -289,10 +289,21 @@
     },
     beforeCreate() {
       // select 初始化，获取所有的 options 的 value 和 节点
-      this.$on('init', (value, nodesString) => {
+      this.$on('init', (value, nodesString, callback) => {
         // 如果已经有这个值则不在添加进去
-        if (!find(this.options, { value })) {
+        if (!find(this.options, { value, nodesString })) {
           this.options.push({ value, nodesString });
+        }
+        // 如果这个值和已选值相等则调用回调，将 option 的状态修改一下
+        if (value === this.selectedValue) {
+          callback();
+        }
+      });
+      // select 选项池更新，删除已被销毁的 option
+      this.$on('option-destroy', (value) => {
+        const index = findIndex(this.options, { value });
+        if (index > -1) {
+          this.options.splice(index, 1);
         }
       });
       // 绑定一个 on-chosen 事件，定义当 option 点击选择之后需要做的事情
@@ -336,7 +347,10 @@
         },
       },
       selectedText() {
-        const option = find(this.options, { value: this.selectedValue });
+        // 如果传入的 option 值为对象格式，而且传入的 v-model 为 {} 空对象，
+        // lodash 的 find 会找到 options 里面的第一项，而 lodash 的 some 会返回 true
+        // 所以这里使用原生的 find 筛出值之后选择第一项
+        const option = this.options.find(v => v.value === this.selectedValue);
         return option ? option.nodesString : '';
       },
     },
