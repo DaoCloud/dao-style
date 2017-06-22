@@ -11,7 +11,7 @@
       <template slot="headlineSupplement"><slot name="headlineSupplement"></slot></template>
       <slot></slot>
     </dao-radio-grid>
-    <dao-radio-plus v-if="type === 'plus'" :name="name" :headline="headline" :radio-value="label" :disabled="disabled" :select-title="selectTitle" :options="options" :async="async" @input="handleInput" @select-change="handleSelectChange">
+    <dao-radio-plus v-if="type === 'plus'" :name="name" :headline="headline" :radio-value="label" :disabled="disabled" :select-title="selectTitle" :options="options || []" :async="async" @input="handleInput" @select-change="handleSelectChange">
       <template slot="icon"><slot name="icon"></slot></template>
     </dao-radio-plus>
   </div>

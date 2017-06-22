@@ -103,7 +103,10 @@
         simple: undefined,
         block: undefined,
         grid: undefined,
-        plus: '苹果2',
+        plus: {
+          value: '苹果1',
+          select: 2,
+        },
         options: [{
           value: 1,
           label: '1111',
@@ -133,7 +136,7 @@
           label: '3333',
         }];
         const p = new Promise((res, rej) => {
-          if (false) {
+          if (true) {
             setTimeout(() => {
               res(options);
             }, 2000);
@@ -148,7 +151,7 @@
         });
       },
       handleSelectChange(v) {
-        console.log(v);
+        console.log('select-change', v);
       },
     },
   };
