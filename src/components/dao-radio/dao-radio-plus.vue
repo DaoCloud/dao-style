@@ -8,7 +8,7 @@
         <div class="radio-plus-text">{{ headline }}</div>
       </div>
       <div class="radio-select">
-        <dao-select :async="async" :disabled="disabled" v-model="select" :placeholder="selectTitle" :loading="loading" @change="handleSelectChange">
+        <dao-select ref="select" :async="async" :disabled="disabled" v-model="select" :placeholder="selectTitle" :loading="loading" @change="handleSelectChange">
           <dao-option-group no-data-text="暂无结果">
             <dao-option v-for="option in options" :key="option.value" :value="option.value" :label="option.label"></dao-option>
           </dao-option-group>
@@ -60,7 +60,6 @@
       return {
         loading: false,
         select: undefined,
-        asyncComplete: false,
       };
     },
     computed: {
@@ -69,6 +68,10 @@
       },
       checked() {
         return this.value.value === this.radioValue;
+      },
+      asyncComplete() {
+        console.log(this.$refs.select.asyncComplete)
+        return this.$refs.select.asyncComplete;
       },
     },
     watch: {
@@ -123,8 +126,7 @@
         if (this.asyncComplete) {
           this.chooseOption(this.value);
         } else {
-          this.broadcast('Select', 'deal-async', (complete) => {
-            this.asyncComplete = complete;
+          this.broadcast('Select', 'deal-async', () => {
             this.chooseOption(this.value);
           });
         }
