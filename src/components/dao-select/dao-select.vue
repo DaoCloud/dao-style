@@ -81,6 +81,7 @@
           flex: 1;
           overflow: hidden;
           display: inline-flex;
+          white-space: nowrap;
           align-items: center;
           user-select: none;
         }
