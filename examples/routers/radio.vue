@@ -78,10 +78,10 @@
       <dao-radio headline="this is headline" v-model="plus" label="苹果1" select-title="请选择" :options="options" @select-change="handleSelectChange">
         <svg slot="icon"><use xlink:href="#color-icon_apple"></use></svg>
       </dao-radio>
-      <dao-radio headline="this is headline" v-model="plus" label="苹果2" select-title="请选择" :options="asyncOptions" :async="async">
+      <dao-radio headline="this is headline" v-model="plus" label="苹果2" select-title="请选择" :options="asyncOptions" :async="async" @select-change="handleSelectChange">
         <svg slot="icon"><use xlink:href="#color-icon_apple"></use></svg>
       </dao-radio>
-      <dao-radio headline="this is headline" v-model="plus" label="苹果3" select-title="请选择">
+      <dao-radio headline="this is headline" v-model="plus" label="苹果3" select-title="请选择" @select-change="handleSelectChange">
         <svg slot="icon"><use xlink:href="#color-icon_apple"></use></svg>
       </dao-radio>
       <dao-radio headline="this is headline" v-model="plus" label="苹果4" select-title="请选择" :disabled="true">
@@ -151,7 +151,7 @@
         });
       },
       handleSelectChange(v) {
-        console.log('select-change', v);
+        console.log('demo-change', v);
       },
     },
   };

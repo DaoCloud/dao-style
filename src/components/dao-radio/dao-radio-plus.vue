@@ -37,6 +37,13 @@
     props: {
       headline: String,
       selectTitle: String,
+      /*
+        option 的数据格式为：
+        [{
+          value: 1,
+          text: '1111',
+        }]
+      */
       options: Array,
       async: Function,
       disabled: {
@@ -70,64 +77,65 @@
         return this.value.value === this.radioValue;
       },
       asyncComplete() {
-        console.log(this.$refs.select.asyncComplete)
         return this.$refs.select.asyncComplete;
       },
     },
     watch: {
-      // 当 value 即绑定的 v-model 值变化时
-      value(val) {
-        // 如果 v-model 值和 radioValue 值不等，则将 select 值重置为 undefined
-        this.select = undefined;
-        if (val.value === this.radioValue) {
-          // 如果有 async 方法，则处理一下该方法
-          if (this.async) {
-            this.handleAsync();
-            return;
-          }
-          // 相等，则确定 select 的值
-          this.chooseOption(val);
-        }
+      checked(val) {
+        if (!val) this.select = undefined;
       },
     },
     methods: {
       // 处理点击事件
       handleClick() {
         if (this.disabled) return;
-        // 点击时，调用 onCheck 方法
-        this.onCheck();
-      },
-      // radio 选中时需要执行
-      onCheck() {
-        // 将自身的 radioValue 和 select 整合赋值给 v-model
+        // 首先把自身的 radioValue 值赋给 v-model 使其选中
         this.$emit('input', {
           value: this.radioValue,
           select: this.select,
         });
+        // 点击时，处理 check
+        this.handleCheck();
+      },
+      // 手动或 js 将 radio 选中时需要执行
+      handleCheck() {
+        // 首先需要判断是否有 async 方法
+        if (this.async) {
+          this.handleAsync();
+        } else {
+          this.chooseOption();
+        }
       },
       // 处理 select 的 change 事件
       handleSelectChange() {
-        this.onCheck();
-        this.$emit('select-change', this.value);
+        // 当 select 的值被改变，即选中了一个选项时，仅仅需要把这个值给 emit 出去赋给 v-model
+        const value = {
+          value: this.radioValue,
+          select: this.select,
+        };
+        this.$emit('input', value);
+        this.$emit('select-change', value);
       },
       // select 选择某个选项
-      chooseOption(value) {
+      chooseOption() {
         // 当 v-model 值变化时，修改现有 select 的选中值
         // v-model 中选中值在 options 中，select 更新为 v-model 的选中值
         // 不在，则默认选中第一项
         this.select = this.options.length ? this.options[0].value : undefined;
-        if (find(this.options, { value: value.select })) {
-          this.select = value.select;
+        if (find(this.options, { value: this.value.select })) {
+          this.select = this.value.select;
         }
+        // 选择完 option 之后，还需要把 option 值给 emit 出去
+        this.handleSelectChange();
       },
       // 处理 async function
       handleAsync() {
         // 如果 async 方法已执行
         if (this.asyncComplete) {
-          this.chooseOption(this.value);
+          this.chooseOption();
         } else {
           this.broadcast('Select', 'deal-async', () => {
-            this.chooseOption(this.value);
+            this.chooseOption();
           });
         }
       },
