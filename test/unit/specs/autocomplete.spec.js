@@ -30,7 +30,7 @@ describe('Autocomplete', () => {
     const dropElm = vm.$el.querySelector('.dao-autocomplete-dropdown');
     expect(dropElm.style.display).to.equal('none');
     expect(inputElm.value).to.equal('apple');
-    // expect(inputElm.getAttribute('placeholder')).to.equal('placeholder');
+    expect(inputElm.getAttribute('placeholder')).to.equal('placeholder');
     inputElm.focus();
     vm.$nextTick(() => {
       expect(dropElm.querySelectorAll('li').length).to.equal(1);
@@ -92,6 +92,39 @@ describe('Autocomplete', () => {
       vm.$nextTick(() => {
         expect(dropElm.style.display).to.not.equal('none');
         expect(dropElm.querySelectorAll('li').length).to.equal(2);
+        done();
+      });
+    });
+
+    it('click outside to close dropdown', (done) => {
+      const opt = ['test', 'test2', 'model2', 'model3'];
+      vm = createVue({
+        template: `
+        <div class="container">
+          <dao-autocomplete
+            ref="autocomplete"
+            :options="opt"
+            :value="value"
+            placeholder="placeholder">
+          </dao-autocomplete>
+          <div class="other" style="width: 100px;height: 100px"></div>
+        </div>
+      `,
+        data() {
+          return {
+            opt,
+            value: 'test',
+          };
+        },
+      }, true);
+      const inputElm = vm.$el.querySelector('input');
+      const dropElm = vm.$el.querySelector('.dao-autocomplete-dropdown');
+      const other = vm.$el.querySelector('.other');
+      inputElm.focus();
+      vm.value = '';
+      other.click();
+      vm.$nextTick(() => {
+        expect(dropElm.style.display).to.equal('none');
         done();
       });
     });
