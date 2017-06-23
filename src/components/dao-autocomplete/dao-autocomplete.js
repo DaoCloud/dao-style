@@ -4,7 +4,7 @@ import _ from 'lodash';
 export default {
   name: 'DaoAutocomplete',
   components: { daoDrop },
-  props: ['value', 'options'],
+  props: ['value', 'options', 'placeholder'],
   data() {
     return {
       inputText: '',
