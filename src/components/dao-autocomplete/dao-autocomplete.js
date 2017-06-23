@@ -26,7 +26,7 @@ export default {
       });
     },
     filteredOption() {
-      return _.filter(this.vmOptions, o => o.text.includes(this.inputText));
+      return _.filter(this.vmOptions, o => o.text.indexOf(this.inputText) > -1);
     },
   },
   methods: {
