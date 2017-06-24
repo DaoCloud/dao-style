@@ -81,6 +81,7 @@
           flex: 1;
           overflow: hidden;
           display: inline-flex;
+          white-space: nowrap;
           align-items: center;
           user-select: none;
         }
@@ -327,7 +328,7 @@
         options: [],
         isLoading: this.loading,
         menuVisible: false,
-        asyncCompelete: false,
+        asyncComplete: false,
         filter: '',
       };
     },
@@ -358,7 +359,7 @@
       // 处理点击事件
       handleClick() {
         if (this.isDisabled) return;
-        if (this.async && !this.asyncCompelete && !this.menuVisible) {
+        if (this.async && !this.asyncComplete && !this.menuVisible) {
           this.handleAsync(() => {
             this.toggleMenu();
           });
@@ -388,12 +389,12 @@
       // async 方法成功
       asyncSuccess() {
         this.isLoading = false;
-        this.asyncCompelete = true;
+        this.asyncComplete = true;
       },
       // async 方法失败
       asyncFail() {
         this.isLoading = false;
-        this.asyncCompelete = false;
+        this.asyncComplete = false;
       },
       // 关闭下拉框
       closeMenu() {

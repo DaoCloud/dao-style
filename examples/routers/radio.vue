@@ -78,10 +78,10 @@
       <dao-radio headline="this is headline" v-model="plus" label="苹果1" select-title="请选择" :options="options" @select-change="handleSelectChange">
         <svg slot="icon"><use xlink:href="#color-icon_apple"></use></svg>
       </dao-radio>
-      <dao-radio headline="this is headline" v-model="plus" label="苹果2" select-title="请选择" :options="asyncOptions" :async="async">
+      <dao-radio headline="this is headline" v-model="plus" label="苹果2" select-title="请选择" :options="asyncOptions" :async="async" @select-change="handleSelectChange">
         <svg slot="icon"><use xlink:href="#color-icon_apple"></use></svg>
       </dao-radio>
-      <dao-radio headline="this is headline" v-model="plus" label="苹果3" select-title="请选择">
+      <dao-radio headline="this is headline" v-model="plus" label="苹果3" select-title="请选择" @select-change="handleSelectChange">
         <svg slot="icon"><use xlink:href="#color-icon_apple"></use></svg>
       </dao-radio>
       <dao-radio headline="this is headline" v-model="plus" label="苹果4" select-title="请选择" :disabled="true">
@@ -103,7 +103,10 @@
         simple: undefined,
         block: undefined,
         grid: undefined,
-        plus: '苹果2',
+        plus: {
+          value: '苹果1',
+          select: 2,
+        },
         options: [{
           value: 1,
           label: '1111',
@@ -133,7 +136,7 @@
           label: '3333',
         }];
         const p = new Promise((res, rej) => {
-          if (false) {
+          if (true) {
             setTimeout(() => {
               res(options);
             }, 2000);
@@ -148,7 +151,7 @@
         });
       },
       handleSelectChange(v) {
-        console.log(v);
+        console.log('demo-change', v);
       },
     },
   };
