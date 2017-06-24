@@ -2,6 +2,8 @@
 
 dao-style-vue 项目的测试包含 **单元测试** 以及 **集成测试** 两种。
 
+dao-style-vue 测试代码在项目中的协作流程图可以参见 [测试协作流程](../project/测试协作流程.md) 。
+
 ## 单元测试
 
 dao-style-vue 项目的单元测试使用 [Karma](http://karma-runner.github.io/) 进行自动化测试。如何编写 Vue 2.0 框架下的单元测试，请查阅 [中文文档](https://cn.vuejs.org/v2/guide/unit-testing.html#main)。
