@@ -4,7 +4,7 @@ import _ from 'lodash';
 export default {
   name: 'DaoAutocomplete',
   components: { daoDrop },
-  props: ['value', 'options'],
+  props: ['value', 'options', 'placeholder'],
   data() {
     return {
       inputText: '',
@@ -26,7 +26,7 @@ export default {
       });
     },
     filteredOption() {
-      return _.filter(this.vmOptions, o => o.text.includes(this.inputText));
+      return _.filter(this.vmOptions, o => o.text.indexOf(this.inputText) > -1);
     },
   },
   methods: {
@@ -38,8 +38,9 @@ export default {
     },
     blur() {
       // 要检测一下 inputText 是否在 options 中
-      if (!_.get(_.find(this.filteredOption, { text: this.inputText }), 'value')) {
-        // 如果不是的话，才需要 update
+      const option = _.find(this.filteredOption, { text: this.inputText });
+      if (option && option.value) {
+        // 如果不在的话，才需要 update
         this.updateValue(this.inputText);
       }
       this.hide();
@@ -73,6 +74,8 @@ export default {
         const initOption = _.find(this.options, o => (o === this.value || o.value === this.value));
         if (initOption) {
           initText = initOption.text ? initOption.text : initOption;
+        } else {
+          initText = this.value;
         }
       }
       this.inputText = initText;
