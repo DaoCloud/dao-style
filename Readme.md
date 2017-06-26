@@ -44,13 +44,13 @@ dao-style-vue 是一个基于 Vue 2.0 框架的 web UI 组件库。
 
 |负责人|组件集合|
 |--------|---------|
-| 欧阳宁|`radio`、`select`、`clipboard` |
-| 谈博文| `autocomplete `、`progress `、`editable-table`|
-| 张晓旭|`tab`、`dialog`|
-| 刘世奇|`popover`、 `tooltip`、 `list-group`|
-| 朱静思|`steps`, `setting-layout`、 `select－all`、`numeric-badge`|
-| 胡心悦|`button`、`input`、`card`|
-| 乔安然|`switch`、 `dropdown`|
+| 欧阳宁|`clipboard`、`radio`、`select`|
+| 谈博文|`autocomplete `、`editable-table`、`progress `、`table`|
+| 张晓旭|`dialog`、`tab`|
+| 刘世奇|`list-group`、`popover`、`tooltip`、 |
+| 朱静思|`numeric-badge`、`select－all`、`setting-layout`、`steps`|
+| 胡心悦|`button`、`card`、`input`|
+| 乔安然|`dropdown`、`switch`|
 
 ## LICENSE
 
