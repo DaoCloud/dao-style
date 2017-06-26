@@ -1,6 +1,3 @@
-/**
- * Created by jixiaomeng on 2017/6/19.
- */
 import { createVue, destroyVM } from '../util';
 
 describe('Autocomplete', () => {
@@ -96,7 +93,7 @@ describe('Autocomplete', () => {
       });
     });
 
-    it('click outside to close dropdown', (done) => {
+    it('blur to close dropdown', (done) => {
       const opt = ['test', 'test2', 'model2', 'model3'];
       vm = createVue({
         template: `
@@ -107,7 +104,6 @@ describe('Autocomplete', () => {
             :value="value"
             placeholder="placeholder">
           </dao-autocomplete>
-          <div class="other" style="width: 100px;height: 100px"></div>
         </div>
       `,
         data() {
@@ -119,10 +115,9 @@ describe('Autocomplete', () => {
       }, true);
       const inputElm = vm.$el.querySelector('input');
       const dropElm = vm.$el.querySelector('.dao-autocomplete-dropdown');
-      const other = vm.$el.querySelector('.other');
       inputElm.focus();
       vm.value = '';
-      other.click();
+      inputElm.blur();
       vm.$nextTick(() => {
         expect(dropElm.style.display).to.equal('none');
         done();
