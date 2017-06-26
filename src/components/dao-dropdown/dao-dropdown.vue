@@ -144,8 +144,4 @@
   };
 </script>
 
-<style lang="scss">
-  .dao-dropdown {
-    display: inline-block;
-  }
-</style>
+<style lang="scss" src="./dao-dropdown.scss"></style>

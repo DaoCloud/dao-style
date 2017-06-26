@@ -22,7 +22,7 @@
     "dist:style": "gulp --gulpfile build/build-style.js",
     "dist:dev": "webpack --config build/webpack.dist.dev.config.js",
     "dist:prod": "webpack --config build/webpack.dist.prod.config.js",
-    "dist": "npm run dist:style && npm run dist:dev && npm run dist:prod",
+    "dist": "npm run dist:style && npm run dist:prod",
     "lint": "eslint --fix --ext .js,.vue src",
     "unit": "karma start test/unit/karma.conf.js --single-run",
     "test": "npm run unit",

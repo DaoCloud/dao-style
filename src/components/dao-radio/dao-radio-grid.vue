@@ -43,10 +43,6 @@
 </template>
 <style lang="scss">
   @import './dao-radio-grid.scss';
-  .dao-radio-grid.card {
-    float: none;
-    padding: 0;
-  }
 </style>
 <script>
   export default {

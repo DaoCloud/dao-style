@@ -8,23 +8,7 @@
   </div>
 </template>
 <style lang="scss">
-  $select-default-color: #9ba3af;
-
-  .dao-select-category {
-    &-label {
-      color: $select-default-color;
-      padding: 0px 10px;
-      background-color: #f5f7fa;
-      border-top: 1px solid #e4e7ed;
-      font-size: 12px;
-      height: 20px;
-      line-height: 20px;
-    }
-    .dao-select-noOption {
-      padding: 10px 20px 5px 20px;
-      color: $select-default-color;
-    }
-  }
+  @import './dao-option-group.scss';
 </style>
 <script>
   import Emitter from '../../mixins/emitter';

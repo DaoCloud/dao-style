@@ -17,9 +17,7 @@
   </div>
 </template>
 <style lang="scss">
-  .radio-box {
-    float: left;
-  }
+  @import './dao-radio.scss';
 </style>
 <script>
   import daoRadioSimple from './dao-radio-simple.vue';

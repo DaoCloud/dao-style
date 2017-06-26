@@ -2,15 +2,7 @@
   <div :class="['dao-select-dropdown', ...dropClass]" :style="styles"><slot></slot></div>
 </template>
 <style lang="scss">
-  // .dao-select-dropdown {
-  //   display: inline-block;
-  // }
-  .dao-select-dropdown .dao-dropdown {
-    width: 100%;
-  }
-  .dao-select-dropdown .dao-select-dropdown {
-    margin: -5px 0 0 !important;
-  }
+  @import './dropdown.scss';
 </style>
 <script>
   import Popper from 'popper.js';
