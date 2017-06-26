@@ -38,7 +38,7 @@ export default {
     },
     blur() {
       // 要检测一下 inputText 是否在 options 中
-      if (!_.find(this.filteredOption, { text: this.inputText }).value) {
+      if (!_.get(_.find(this.filteredOption, { text: this.inputText }), 'value')) {
         // 如果不是的话，才需要 update
         this.updateValue(this.inputText);
       }
