@@ -67,14 +67,8 @@ export default {
           _.find(resultRow, td => td.name === key).value = val;
         });
       }
-      // 最后要执行一次验证，否则在新添加行的时候如果预先设置的值未通过验证的话是不会提示错误的
-      return _.map(resultRow , (td) => {
-        const temp = td;
-        if (td.validate) {
-          temp.valid = td.validate(this.rowToModel(resultRow), this.model);
-        }
-        return temp;
-      });
+
+      return resultRow;
     },
     // 把 model 的数据塞到当前的表格中
     modelToRow(model) {
@@ -93,12 +87,14 @@ export default {
     // 添加一行
     addRow() {
       this.rows.push(this.generateRow());
+      this.validate();
       this.updateModel();
     },
     // 删除一行
     removeRow(row) {
       const index = this.rows.indexOf(row);
       this.rows.splice(index, 1);
+      this.validate();
       this.updateModel();
     },
     focusRow(rowIndex) {
@@ -116,7 +112,7 @@ export default {
       _.forEach(this.rows, (row) => {
         _.forEach(row, (td) => {
           if (td.type === 'input' && td.validate) {
-            td.valid = td.validate(row, this.rows);
+            td.valid = td.validate(this.rowToModel(row), this.model);
           }
         });
       });
