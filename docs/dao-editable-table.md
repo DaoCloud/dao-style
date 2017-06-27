@@ -92,6 +92,11 @@ export default {
 | config  | Object | 配置对象。具体内容见 [config 对象](#config-对象) | -    | 是    |
 | v-model | Object | 数据绑定的对象                            | -    | 是    |
 
+### 组件的事件
+| 事件名称 | 说明 | 回调参数 |
+|:-------:|:---:|:-------:|
+| valid | 在每次修改可编辑表格的内容之后，v-model 更新之前触发。 | (valid: Boolean) |
+
 ### config 对象
 
 | 参数名    | 类型     | 说明                                       | 默认值  | 是否必填 |

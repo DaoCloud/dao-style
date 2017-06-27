@@ -39,6 +39,7 @@ export default {
       model1: '',
       model2: 'banana',
       model3: '',
+      isValid1: false,
     };
   },
   created() {

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <dao-editable-table :config="config" v-model="model"></dao-editable-table>
+    <dao-editable-table :config="config" v-model="model" @valid="validChange"></dao-editable-table>
   </div>
 </template>
 <script>
@@ -88,6 +88,11 @@ export default {
         type: '字符串',
       }],
     };
+  },
+  methods: {
+    validChange(val) {
+      console.log('验证结果改变', val);
+    },
   },
   watch: {
     model(newModel) {
