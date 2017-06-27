@@ -74,10 +74,10 @@
     },
     methods: {
       importAll(svgsRoute) {
-        svgsRoute.keys().forEach(name => {
+        svgsRoute.keys().forEach((name) => {
           const nameArr = name.split('/');
           const len = nameArr.length;
-          const NameString = nameArr[len-1];
+          const NameString = nameArr[len - 1];
           const newName = NameString.substring(0, NameString.length - 4);
           this.svgs.push(newName);
         });
@@ -86,7 +86,6 @@
     created() {
       const svgsRoute = require.context('@/components/dao-svg', true, /\.svg$/);
       this.importAll(svgsRoute);
-      console.log(this.svgs);
     },
   };
 </script>
