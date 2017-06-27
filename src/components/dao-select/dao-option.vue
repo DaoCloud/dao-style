@@ -59,7 +59,7 @@
         default: false,
       },
       value: {},
-      label: String,
+      label: [String, Number],
     },
     beforeCreate() {
       // 绑定选择事件
