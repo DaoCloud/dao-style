@@ -11,36 +11,36 @@ setting-layout 是一套表单布局方面的规范。代码请参照目录：[s
 
 ```html
 <dao-setting-layout>
-  <div slot="layout-title">[大标题]</div>
-  <div slot="layout-title-helper">[大标题说明文字]</div>
+  <template slot="layout-title">[大标题]</template>
+  <template slot="layout-title-helper">[大标题说明文字]</template>
   <!-- 第一个 section -->
   <dao-setting-section>
-    <div slot="section-title">[块内容标题]</div>
-    <div slot="section-title-helper">[块内容标题说明文字]</div>
-    <div slot="label">[左侧小标题]</div>
-    <div slot="content">[右侧内容]</div>
-    <div slot="content-helper">[右侧内容说明文字]</div>
+    <template slot="section-title">[块内容标题]</template>
+    <template slot="section-title-helper">[块内容标题说明文字]</template>
+    <template slot="label">[左侧小标题]</template>
+    <template slot="content">[右侧内容，需要换行显示的内容一定要用 &lt;div&gt; 包起来]</template>
+    <template slot="content-helper">[右侧内容说明文字]</template>
   </dao-setting-section>
   <!-- 两个 section 之间是会有分割线的 -->
   <!-- 第二个 section -->
   <dao-setting-section>
-    <div slot="section-title">[块内容标题]</div>
-    <div slot="section-title-helper">[块内容标题说明文字]</div>
+    <template slot="section-title">[块内容标题]</template>
+    <template slot="section-title-helper">[块内容标题说明文字]</template>
     <!-- 第一个 item -->
     <dao-setting-item>
-      <div slot="label">[左侧小标题]</div>
-      <div slot="content">[右侧内容]</div>
-      <div slot="content-helper">[右侧内容说明文字]</div>
+      <template slot="label">[左侧小标题]</template>
+      <template slot="content">[右侧内容]</template>
+      <template slot="content-helper">[右侧内容说明文字]</template>
     </dao-setting-item>
     <!-- 两个 item 之间是不会有分割线的，一般情况下用不到 item -->
     <!-- 第二个 item -->
     <dao-setting-item>
-      <div slot="label">[左侧小标题]</div>
-      <div slot="content">[右侧内容]</div>
-      <div slot="content-helper">[右侧内容说明文字]</div>
+      <template slot="label">[左侧小标题]</template>
+      <template slot="content">[右侧内容]</template>
+      <template slot="content-helper">[右侧内容说明文字]</template>
     </dao-setting-item>
   </dao-setting-section>
-  <div slot="footer">[footer]</div>
+  <template slot="footer">[footer]</template>
 </dao-setting-layout>
 ```
 

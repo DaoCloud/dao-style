@@ -110,8 +110,7 @@ $border-radius-size: 4px;
       margin-top: 20px;
     }
     // &:first-child {
-      .dao-setting-content > :first-child,
-      .dao-setting-content > :first-child > :first-child {
+      .dao-setting-content > :first-child {
         &.dao-btn,
         &.dao-input-container,
         &.dao-editable-input,
@@ -125,8 +124,7 @@ $border-radius-size: 4px;
       }
     // }
     &:last-child {
-      .dao-setting-content > :last-child,
-      .dao-setting-content > :last-child > :last-child {
+      .dao-setting-content > :last-child {
         &.dao-btn,
         &.dao-input-container,
         &.dao-editable-input,
