@@ -10,10 +10,13 @@
 .dao-autocomplete {
   width: 287px;
   height: 32px;
+  position: relative;
 }
 
 .dao-autocomplete-dropdown {
   z-index: 100;
+  position: absolute;
+  width: 100%;
   overflow: auto;
   max-height: 152px !important;
   list-style: none;

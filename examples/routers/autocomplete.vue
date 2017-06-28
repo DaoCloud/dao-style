@@ -1,14 +1,25 @@
 <template>
-  <div>
-    <h1>基础版</h1>
-    <span>value: {{model1}}</span>
-    <dao-autocomplete :options="options1" v-model="model1" placeholder="请输入文本"></dao-autocomplete>
-    <h1>基础版（text/value）形式</h1>
-    <span>value: {{model2}}</span>
-    <dao-autocomplete :options="options2" v-model="model2" placeholder="请输入文本"></dao-autocomplete>
-    <h1>基础版（text/value）形式、异步数据</h1>
-    <span>value: {{model3}}</span>
-    <dao-autocomplete :options="options3" v-model="model3" placeholder="请输入文本"></dao-autocomplete>
+  <div class="container">
+    <section>
+        <h1>基础版</h1>
+        <span>value: {{model1}}</span>
+        <dao-autocomplete :options="options1" v-model="model1" placeholder="请输入文本"></dao-autocomplete>
+    </section>
+
+    <section>
+      <h1>基础版（text/value）形式</h1>
+      <span>value: {{model2}}</span>
+      <dao-autocomplete :options="options2" v-model="model2" placeholder="请输入文本"></dao-autocomplete>
+    </section>
+
+    <section>
+      <h1>基础版（text/value）形式、异步数据</h1>
+      <span>value: {{model3}}</span>
+      <dao-autocomplete :options="options3" v-model="model3" placeholder="请输入文本"></dao-autocomplete>
+      <br />
+      <span>AutoComplete 的选项列表不会撑开其他元素</span>
+      <dao-autocomplete :options="options3" v-model="model3" placeholder="请输入文本"></dao-autocomplete>
+    </section>
   </div>
 </template>
 <script>
@@ -55,7 +66,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-div {
-  margin-bottom: 150px;
-}
+  section {
+    margin-bottom: 150px;
+  }
 </style>
