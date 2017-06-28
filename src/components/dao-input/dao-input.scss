@@ -228,6 +228,8 @@
           // 将 display 设置为 table 可解决因为中英文空格、标点符号使得一句话换行问题。
           // 是受到了外层样式是 flex 布局的影响
           display: table!important;
+          // 为了解决在 editable-table 中 input with popover 时，popover 多了边框的问题
+          border-collapse: collapse;
           .dao-popover-inner {
             color: $white;
           }
