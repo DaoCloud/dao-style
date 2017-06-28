@@ -51,6 +51,7 @@
     }
   }
   .dao-select {
+    display: inline-block;
     width: 287px;
     position: relative;
     height: 32px;
