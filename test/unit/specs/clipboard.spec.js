@@ -62,17 +62,20 @@ describe('clipboard', () => {
 
     it('error callback', (done) => {
       const onError = sinon.spy();
+      const onSuccess = sinon.spy();
       vm = createVue({
         template: `
         <dao-clipboard
             caption="caption"
             content="content"
+            :on-success="onSuccess"
             :on-error="onError"
         >
         </dao-clipboard>
       `,
         data() {
           return {
+            onSuccess,
             onError,
           };
         },
@@ -81,11 +84,13 @@ describe('clipboard', () => {
       vm.$el.click();
       vm.$nextTick(() => {
         expect(onError.calledOnce).to.be.true;
+        expect(onSuccess.calledOnce).to.be.false;
         done();
       });
     });
 
     it('success callback', (done) => {
+      const onError = sinon.spy();
       const onSuccess = sinon.spy();
       vm = createVue({
         template: `
@@ -93,12 +98,14 @@ describe('clipboard', () => {
             caption="caption"
             content="content"
             :on-success="onSuccess"
+            :on-error="onError"
         >
         </dao-clipboard>
       `,
         data() {
           return {
             onSuccess,
+            onError,
           };
         },
       }, true);
@@ -106,6 +113,7 @@ describe('clipboard', () => {
       vm.$el.click();
       vm.$nextTick(() => {
         expect(onSuccess.calledOnce).to.be.true;
+        expect(onError.calledOnce).to.be.false;
         done();
       });
     });
