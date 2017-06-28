@@ -41,6 +41,8 @@ export default {
       const option = _.find(this.filteredOption, { text: this.inputText });
       if (option && option.value) {
         // 如果不在的话，才需要 update
+        this.updateValue(option.value);
+      } else {
         this.updateValue(this.inputText);
       }
       this.hide();
