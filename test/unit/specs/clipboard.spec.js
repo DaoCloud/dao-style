@@ -31,6 +31,21 @@ describe('clipboard', () => {
     expect(vm.$el.getAttribute('data-clipboard-text')).to.equal(content);
   });
 
+  it('slot', () => {
+    vm = createVue({
+      template: `
+        <dao-clipboard 
+            caption="caption"
+            content="content"
+        >
+            <div class="inner">
+            </div>
+        </dao-clipboard>
+      `,
+    });
+    expect(vm.$el.querySelector('.inner')).to.exist;
+  });
+
   describe('callback function called correctly', () => {
     let stub;
 
