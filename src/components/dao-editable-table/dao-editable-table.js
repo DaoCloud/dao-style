@@ -127,6 +127,7 @@ export default {
         }
         return true;
       });
+      this.$emit('valid', valid);
       if (valid) {
         this.$emit('input', this.model);
       }
