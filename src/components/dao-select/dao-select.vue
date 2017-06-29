@@ -292,9 +292,13 @@
     beforeCreate() {
       // select 初始化，获取所有的 options 的 value 和 节点
       this.$on('init', (value, nodesString, callback) => {
-        // 如果已经有这个值则不在添加进去
-        if (!find(this.options, { value, nodesString })) {
+        // 首先查看是否有这个 value 在 options 中
+        const opt = find(this.options, { value });
+        if (!opt) {
           this.options.push({ value, nodesString });
+        } else {
+          // 如果在的话，则更新一下 nodeSting
+          opt.nodesString = nodesString;
         }
         // 如果这个值和已选值相等则调用回调，将 option 的状态修改一下
         if (value === this.selectedValue) {

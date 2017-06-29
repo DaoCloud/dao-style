@@ -96,6 +96,10 @@
       // 在 option 挂载时将自己的 value 和 slot 中的节点字符串传递给 select
       this.dispatch('Select', 'init', this.value, this.nodesString, this.isActive.bind(this));
     },
+    updated() {
+      // option 更新之后 maybe 也需要传递一下 value 和 slot 的内容给 select
+      this.dispatch('Select', 'init', this.value, this.nodesString, this.isActive.bind(this));
+    },
     destroyed() {
       // 在被销毁时将自己的 value 从 select 的 options 中去除
       this.dispatch('Select', 'option-destroy', this.value);
