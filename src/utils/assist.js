@@ -58,9 +58,7 @@ const SPECIAL_CHARS_REGEXP = /([\:\-\_]+(.))/g;
 const MOZ_HACK_REGEXP = /^moz([A-Z])/;
 
 function camelCase(name) {
-  return name.replace(SPECIAL_CHARS_REGEXP, function(_, separator, letter, offset) {
-    return offset ? letter.toUpperCase() : letter;
-  }).replace(MOZ_HACK_REGEXP, 'Moz$1');
+  return name.replace(SPECIAL_CHARS_REGEXP, (_, separator, letter, offset) => offset ? letter.toUpperCase() : letter).replace(MOZ_HACK_REGEXP, 'Moz$1');
 }
 // getStyle
 export function getStyle(element, styleName) {
@@ -102,7 +100,7 @@ function typeOf(obj) {
     '[object RegExp]': 'regExp',
     '[object Undefined]': 'undefined',
     '[object Null]': 'null',
-    '[object Object]': 'object'
+    '[object Object]': 'object',
   };
   return map[toString.call(obj)];
 }
@@ -125,7 +123,7 @@ function deepCopy(data) {
       o.push(deepCopy(data[i]));
     }
   } else if (t === 'object') {
-    for (let i in data) {
+    for (const i in data) {
       o[i] = deepCopy(data[i]);
     }
   }
@@ -141,7 +139,7 @@ export function scrollTop(el, from = 0, to, duration = 500) {
       window.webkitRequestAnimationFrame ||
       window.mozRequestAnimationFrame ||
       window.msRequestAnimationFrame ||
-      function(callback) {
+      function (callback) {
         return window.setTimeout(callback, 1000 / 60);
       }
     );
@@ -191,7 +189,7 @@ function findComponentDownward(content, componentName) {
   let children = null;
 
   if (childrens.length) {
-    childrens.forEach(child => {
+    childrens.forEach((child) => {
       const name = child.$options.name;
       if (name === componentName) {
         children = child;
@@ -219,7 +217,7 @@ function findComponentsDownward(content, componentName, components = []) {
   const childrens = content.$children;
 
   if (childrens.length) {
-    childrens.forEach(child => {
+    childrens.forEach((child) => {
       const name = child.$options.name;
       const childs = child.$children;
 
