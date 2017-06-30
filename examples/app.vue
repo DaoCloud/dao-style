@@ -78,6 +78,9 @@ li + li {
         <li>
           <router-link to="/steps">Steps</router-link>
         </li>
+        <li>
+          <router-link to="/svg">Svg</router-link>
+        </li>
         <!-- <li>
           <router-link to="/switch">Switch</router-link>
         </li> -->

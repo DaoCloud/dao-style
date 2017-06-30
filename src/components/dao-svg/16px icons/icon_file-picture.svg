@@ -1,9 +1,9 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-  <title>file-picture</title>
+  <title>icon_file-picture</title>
   <g>
     <g>
       <path d="M28,6V30H4V2H24V0H4A2,2,0,0,0,2,2V30a2,2,0,0,0,2,2H28a2,2,0,0,0,2-2V6Z"/>
-      <path d="M25,0V2.9A2.1,2.1,0,0,0,27.1,5H30Z"/>
+      <path d="M25,0V3a2,2,0,0,0,2,2h3Z"/>
     </g>
     <circle cx="20.5" cy="14" r="2.25"/>
     <polygon points="26 28 26 23.5 22 19.5 19 22.5 13 16.5 6 23.5 6 28 26 28"/>

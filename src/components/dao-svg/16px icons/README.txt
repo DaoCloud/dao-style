@@ -13,3 +13,5 @@ Some easy things to check to make sure your icon set feels consistent:
 - Do they have either relatively similar silhouettes (eg. all contained in circles) or relatively unique silhouettes?
 -
 https://medium.com/shopify-ux/product-vs-marketing-illustration-7ac474dfe2ed#.s1dbo45wy
+
+image-icons will be removed
