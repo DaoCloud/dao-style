@@ -1,5 +1,5 @@
-import daoDrop from '../dao-select/dropdown.vue';
 import _ from 'lodash';
+import daoDrop from '../dao-select/dropdown.vue';
 
 export default {
   name: 'DaoAutocomplete',
