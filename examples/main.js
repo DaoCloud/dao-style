@@ -29,6 +29,7 @@ import svg from './routers/svg.vue';
 import tab from './routers/tab.vue';
 import table from './routers/table.vue';
 import tooltip from './routers/tooltip.vue';
+import tooltipDirective from './routers/tooltip-directive.vue';
 
 Vue.use(VueRouter);
 Vue.use(daoStyle);
@@ -101,6 +102,9 @@ const router = new VueRouter({
   }, {
     path: '/tooltip',
     component: tooltip,
+  }, {
+    path: '/tooltip-directive',
+    component: tooltipDirective,
   }, {
     path: '*',
     redirect: '/button',

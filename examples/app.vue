@@ -96,6 +96,9 @@ li + li {
         <li>
           <router-link to="/tooltip">Tooltip</router-link>
         </li>
+        <li>
+          <router-link to="/tooltip-directive">Tooltip Directive</router-link>
+        </li>
       </ul>
     </nav>
     <router-view></router-view>
