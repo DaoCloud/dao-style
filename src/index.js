@@ -32,7 +32,7 @@ import daoTooltip from './components/dao-tooltip';
 
 // 请按照名称的字典顺序添加以下 directives
 import daoSelectAll from './directives/dao-select-all';
-import daoTooltipDirective from './directives/dao-tooltip/dao-tooltip';
+import daoTooltipDirective from './directives/dao-tooltip';
 
 const daoStyleComponents = {
   // 请按照名称的字典顺序添加以下内容

@@ -1,5 +1,4 @@
 import Popper from 'popper.js';
-import './dao-tooltip.scss';
 
 const prefixCls = 'dao-tooltip';
 
@@ -11,7 +10,6 @@ function setProperties(el, binding) {
     el.popper._content = binding.value.content || '';
     el.popper._delay = binding.value.delay;
     el.popper._disabled = binding.value.disabled;
-
   } else if (typeof binding.value === 'string') {
     el.popper._content = binding.value;
   } else {
