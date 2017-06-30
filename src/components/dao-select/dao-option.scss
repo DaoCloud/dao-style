@@ -1,0 +1,36 @@
+.dao-option-item {
+  padding: 5px 10px 5px 30px;
+  cursor: pointer;
+  line-height: 20px;
+  word-break: break-all;
+  position: relative;
+
+  svg.checkmark {
+    visibility: hidden;
+    position: absolute;
+    left: 10px;
+    top: 7.5px;
+  }
+  svg.icon + span.text{
+    display: inline;
+    margin-left: 0px;
+    line-height: 22px;
+  }
+}
+.dao-option-item:hover {
+  background-color: #3890ff;
+  color: #fff;
+}
+.dao-option-item.disabled {
+  cursor: not-allowed;
+  color: rgb(204, 209, 217);
+  background: #fff;
+}
+.dao-option-item.active {
+  svg {
+    visibility: visible;
+  }
+  svg.icon + span.text {
+    margin-left: 0px;
+  }
+}

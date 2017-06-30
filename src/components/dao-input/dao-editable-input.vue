@@ -140,30 +140,5 @@
 </script>
 
 <style lang="scss">
-@import "../dao-color.scss";
-.dao-editable-input {
-  display: inline-flex;
-  .dao-popover {
-    width: 100%;
-  }
-  .edit-op{
-    padding-left: 20px;
-    .edit-op-toggle{
-      color: $grey-dark;
-      cursor: pointer;
-      svg {
-        fill: $grey-dark;
-        width: 16px;
-        height: 16px;
-        vertical-align: middle;
-      }
-      .text {
-        margin-left: 5px;
-        vertical-align: middle;
-        line-height: 16px;
-      }
-    }
-  }
-
-}
+@import './dao-editable-input.scss';
 </style>
