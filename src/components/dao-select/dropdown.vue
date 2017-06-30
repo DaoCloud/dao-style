@@ -57,15 +57,16 @@
           });
         } else {
           this.$nextTick(() => {
+            const that = this;
             this.popper = new Popper(this.$parent.$refs.reference, this.$el, {
               gpuAcceleration: false,
               placement: this.placement,
               boundariesPadding: 0,
               forceAbsolute: true,
               boundariesElement: 'body',
-            });
-            this.popper.onCreate((popper) => {
-              this.resetTransformOrigin(popper);
+              onCreate(data) {
+                that.resetTransformOrigin(data.instance);
+              },
             });
           });
         }
@@ -85,9 +86,9 @@
       },
       resetTransformOrigin(popper) {
         const placementMap = { top: 'bottom', bottom: 'top' };
-        const placement = popper._popper.getAttribute('x-placement').split('-')[0];
+        const placement = popper.popper.getAttribute('x-placement').split('-')[0];
         const origin = placementMap[placement];
-        popper._popper.style.transformOrigin = `center ${origin}`;
+        popper.popper.style.transformOrigin = `center ${origin}`;
       },
     },
     mounted() {
