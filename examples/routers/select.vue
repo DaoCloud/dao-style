@@ -10,6 +10,7 @@
     <button class="dao-btn ghost" @click="simple = undefined">set undefined</button>
     <button class="dao-btn green" @click="items.pop()">pop one option</button>
     <button class="dao-btn yellow" @click="items.shift()">shift one option</button>
+    <button class="dao-btn red" @click="items[0].text = 'test_text'">change the text</button>
 
     <br><br>
     <h2>small select</h2>
