@@ -81,9 +81,9 @@ li + li {
         <li>
           <router-link to="/svg">Svg</router-link>
         </li>
-        <!-- <li>
+        <li>
           <router-link to="/switch">Switch</router-link>
-        </li> -->
+        </li>
         <li>
           <router-link to="/progress">Progress</router-link>
         </li>
