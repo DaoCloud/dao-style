@@ -2,15 +2,7 @@
   <div :class="['dao-select-dropdown', ...dropClass]" :style="styles"><slot></slot></div>
 </template>
 <style lang="scss">
-  // .dao-select-dropdown {
-  //   display: inline-block;
-  // }
-  .dao-select-dropdown .dao-dropdown {
-    width: 100%;
-  }
-  .dao-select-dropdown .dao-select-dropdown {
-    margin: -5px 0 0 !important;
-  }
+  @import './dropdown.scss';
 </style>
 <script>
   import Popper from 'popper.js';
@@ -65,15 +57,16 @@
           });
         } else {
           this.$nextTick(() => {
+            const that = this;
             this.popper = new Popper(this.$parent.$refs.reference, this.$el, {
               gpuAcceleration: false,
               placement: this.placement,
               boundariesPadding: 0,
               forceAbsolute: true,
               boundariesElement: 'body',
-            });
-            this.popper.onCreate((popper) => {
-              this.resetTransformOrigin(popper);
+              onCreate(data) {
+                that.resetTransformOrigin(data.instance);
+              },
             });
           });
         }
@@ -93,9 +86,9 @@
       },
       resetTransformOrigin(popper) {
         const placementMap = { top: 'bottom', bottom: 'top' };
-        const placement = popper._popper.getAttribute('x-placement').split('-')[0];
+        const placement = popper.popper.getAttribute('x-placement').split('-')[0];
         const origin = placementMap[placement];
-        popper._popper.style.transformOrigin = `center ${origin}`;
+        popper.popper.style.transformOrigin = `center ${origin}`;
       },
     },
     mounted() {

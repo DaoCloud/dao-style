@@ -1,9 +1,9 @@
 @import './dao-table-variable.scss';
 @import './dao-table-components.scss';
 
-.dao-table-main {
-  width: 100%;
-  overflow: auto;
+.dao-table-container {
+  display: flex;
+  flex-direction: column;
 }
 
 .dao-table {
@@ -79,6 +79,7 @@
 
 // row 表格由于要呈现很长的数据，所以必须要能横向滚动，这个时候用 flex 就不合适了。所以还是弄一个 table 的版本。
 .dao-table.row {
+  border-collapse: collapse;
   // 这里莫名其妙有margin-left:-15px，我也不知道哪里来的，先覆盖掉
   margin-left: 0;
   margin-right: 0;
@@ -413,12 +414,8 @@
   }
 }
 
-.dao-table-container {
-  padding-top: $table-margin;
-}
-
 .dao-table-toolbar {
-  height: $toolbar-height;
+  margin-bottom: 16px;
   .btn-group {
     display: inline-block;
   }

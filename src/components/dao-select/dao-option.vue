@@ -9,42 +9,7 @@
   </div>
 </template>
 <style lang="scss">
-  .dao-option-item {
-    padding: 5px 10px 5px 30px;
-    cursor: pointer;
-    line-height: 20px;
-    word-break: break-all;
-    position: relative;
-
-    svg.checkmark {
-      visibility: hidden;
-      position: absolute;
-      left: 10px;
-      top: 7.5px;
-    }
-    svg.icon + span.text{
-      display: inline;
-      margin-left: 0px;
-      line-height: 22px;
-    }
-  }
-  .dao-option-item:hover {
-    background-color: #3890ff;
-    color: #fff;
-  }
-  .dao-option-item.disabled {
-    cursor: not-allowed;
-    color: rgb(204, 209, 217);
-    background: #fff;
-  }
-  .dao-option-item.active {
-    svg {
-      visibility: visible;
-    }
-    svg.icon + span.text {
-      margin-left: 0px;
-    }
-  }
+  @import './dao-option.scss';
 </style>
 <script>
   import Emitter from '../../mixins/emitter';
@@ -59,13 +24,13 @@
         default: false,
       },
       value: {},
-      label: String,
+      label: [String, Number],
     },
     beforeCreate() {
       // 绑定选择事件
-      this.$on('is-chosen', (v) => {
-        if (this.value === v) return;
-        this.active = false;
+      this.$on('status', (val) => {
+        this.notActive();
+        if (this.value === val) this.isActive();
       });
       // 绑定搜索事件
       this.$on('search', (filter, filterMethod) => {
@@ -84,22 +49,25 @@
             this.matchedFilter = filterMethod(filter);
             break;
           default:
-          // 默认根据 label 来搜索
+            // 默认根据 label 来搜索
             if (!filterMethod) {
               this.matchedFilter = (this.label ? this.label.indexOf(filter) > -1 : true);
             }
         }
         this.dispatch('Option-group', 'search-result');
       });
-      // 绑定获取 value 事件
-      this.$on('pipe-value', (v) => {
-        if (this.value === v) {
-          this.active = true;
-          this.dispatchOnChosen(this.value);
-        } else {
-          this.active = false;
-        }
-      });
+    },
+    mounted() {
+      // 在 option 挂载时将自己的 value 和 slot 中的节点字符串传递给 select
+      this.dispatch('Select', 'init', this.value, this.nodesString, this.isActive.bind(this));
+    },
+    updated() {
+      // option 更新之后 maybe 也需要传递一下 value 和 slot 的内容给 select
+      this.dispatch('Select', 'init', this.value, this.nodesString, this.isActive.bind(this));
+    },
+    destroyed() {
+      // 在被销毁时将自己的 value 从 select 的 options 中去除
+      this.dispatch('Select', 'option-destroy', this.value);
     },
     data() {
       return {
@@ -107,14 +75,8 @@
         matchedFilter: true,
       };
     },
-    methods: {
-      handleClick() {
-        if (this.disabled) return;
-        this.active = true;
-        this.dispatchOnChosen(this.value);
-      },
-      // 触发选择事件
-      dispatchOnChosen(val) {
+    computed: {
+      nodesString() {
         // 获取 slot 中的 dom 节点
         const nodes = this.$slots.default;
         let nodesString = '';
@@ -129,7 +91,22 @@
         } else {
           nodesString = this.label;
         }
-        this.dispatch('Select', 'on-chosen', val, nodesString);
+        return nodesString;
+      },
+    },
+    methods: {
+      // 处理点击事件
+      handleClick() {
+        if (this.disabled) return;
+        // 触发 select 中的 on-chosen 事件
+        this.dispatch('Select', 'on-chosen', this.value);
+      },
+      // 当前选中
+      isActive() {
+        this.active = true;
+      },
+      notActive() {
+        this.active = false;
       },
     },
   };

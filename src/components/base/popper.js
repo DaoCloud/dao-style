@@ -78,13 +78,13 @@ export default {
 
       options.placement = this.placement;
       options.offset = this.offset;
-
-      this.popperJS = new Popper(reference, popper, options);
-      this.popperJS.onCreate(popper => {
-        this.resetTransformOrigin(popper);
+      options.onCreate = (data) => {
+        this.resetTransformOrigin(data.instance);
         this.$nextTick(this.updatePopper);
         this.$emit('created', this);
-      });
+      };
+
+      this.popperJS = new Popper(reference, popper, options);
     },
     updatePopper() {
       this.popperJS ? this.popperJS.update() : this.createPopper();
@@ -101,9 +101,9 @@ export default {
     },
     resetTransformOrigin(popper) {
       let placementMap = {top: 'bottom', bottom: 'top', left: 'right', right: 'left'};
-      let placement = popper._popper.getAttribute('x-placement').split('-')[0];
+      let placement = popper.popper.getAttribute('x-placement').split('-')[0];
       let origin = placementMap[placement];
-      popper._popper.style.transformOrigin = ['top', 'bottom'].indexOf(placement) > -1 ? `center ${ origin }` : `${ origin } center`;
+      popper.popper.style.transformOrigin = ['top', 'bottom'].indexOf(placement) > -1 ? `center ${ origin }` : `${ origin } center`;
     }
   },
   beforeDestroy() {

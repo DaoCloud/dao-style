@@ -4,25 +4,17 @@
   </div>
 </template>
 <style lang="scss">
-  .dao-radio-group {
-    *zoom: 1;
-    &:before,
-    &:after {
-      display: table;
-      line-height: 0;
-      content: "";
-    }
-    &:after {
-      clear: both;
-    }
-  }
+  @import './dao-radio-group.scss';
 </style>
 <script>
   export default {
     componnetName: 'Radio-group',
     props: {
       name: String,
-      gridCol: Number,
+      gridCol: {
+        type: Number,
+        default: 4,
+      },
       type: {
         type: String,
         default: 'simple',

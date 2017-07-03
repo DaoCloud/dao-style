@@ -7,23 +7,30 @@ import VueRouter from 'vue-router';
 import App from './app.vue';
 import daoStyle from '../src/index';
 
+// 请按照组件名称的字典顺序添加以下模块
 import autocomplete from './routers/autocomplete.vue';
 import button from './routers/button.vue';
 import card from './routers/card.vue';
-import dropdown from './routers/dropdown.vue';
+import checkbox from './routers/checkbox.vue';
+import clipboard from './routers/clipboard.vue';
 import dialog from './routers/dialog.vue';
+import dropdown from './routers/dropdown.vue';
 import editableTable from './routers/editable-table.vue';
 import input from './routers/input.vue';
+import numericBadge from './routers/numeric-badge.vue';
 import popover from './routers/popover.vue';
 import progress from './routers/progress.vue';
 import radio from './routers/radio.vue';
 import select from './routers/select.vue';
-import steps from './routers/steps.vue';
 import selectAll from './routers/select-all.vue';
-import settingLayout from './routers/settingLayout.vue';
+import settingLayout from './routers/setting-layout.vue';
+import steps from './routers/steps.vue';
+import svg from './routers/svg.vue';
+import switchExample from './routers/switch.vue';
 import tab from './routers/tab.vue';
 import table from './routers/table.vue';
 import tooltip from './routers/tooltip.vue';
+import tooltipDirective from './routers/tooltip-directive.vue';
 
 Vue.use(VueRouter);
 Vue.use(daoStyle);
@@ -43,6 +50,12 @@ const router = new VueRouter({
     path: '/card',
     component: card,
   }, {
+    path: '/checkbox',
+    component: checkbox,
+  }, {
+    path: '/clipboard',
+    component: clipboard,
+  }, {
     path: '/dialog',
     component: dialog,
   }, {
@@ -54,6 +67,9 @@ const router = new VueRouter({
   }, {
     path: '/input',
     component: input,
+  }, {
+    path: '/numeric-badge',
+    component: numericBadge,
   }, {
     path: '/popover',
     component: popover,
@@ -76,6 +92,12 @@ const router = new VueRouter({
     path: '/steps',
     component: steps,
   }, {
+    path: '/svg',
+    component: svg,
+  }, {
+    path: '/switch',
+    component: switchExample,
+  }, {
     path: '/tab',
     component: tab,
   }, {
@@ -84,6 +106,9 @@ const router = new VueRouter({
   }, {
     path: '/tooltip',
     component: tooltip,
+  }, {
+    path: '/tooltip-directive',
+    component: tooltipDirective,
   }, {
     path: '*',
     redirect: '/button',

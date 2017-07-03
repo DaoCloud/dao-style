@@ -1,13 +1,14 @@
 <div class="dao-autocomplete">
   <dao-input type="text"
     ref="input"
+    :placeholder="placeholder"
     v-model="inputText"
     @keyup="keyup"
     @keyup.up="upArrow"
     @keyup.down="downArrow"
     @keyup.enter="enter"
     @focus="show"
-    @blur="hide"></dao-input>
+    @blur="blur"></dao-input>
   <dao-drop class="dao-autocomplete-dropdown" v-show="isShow && filteredOption.length > 0">
     <ul class="dao-autocomplete-ul">
       <li class="dao-autocomplete-li"

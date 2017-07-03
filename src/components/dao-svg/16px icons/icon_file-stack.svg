@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-  <title>file-stack</title>
+  <title>icon_file-stack</title>
   <g>
     <g>
       <polygon points="9 14 16 10 23 14 16 18 9 14"/>
@@ -8,7 +8,7 @@
     </g>
     <g>
       <path d="M28,6V30H4V2H24V0H4A2,2,0,0,0,2,2V30a2,2,0,0,0,2,2H28a2,2,0,0,0,2-2V6Z"/>
-      <path d="M25,0V2.9A2.1,2.1,0,0,0,27.1,5H30Z"/>
+      <path d="M25,0V3a2,2,0,0,0,2,2h3Z"/>
     </g>
   </g>
 </svg>

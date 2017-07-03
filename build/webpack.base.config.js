@@ -54,11 +54,7 @@ module.exports = {
         ]
       }, {
         test: /\.svg$/,
-        loader: 'svg-sprite-loader?' + JSON.stringify({
-          name: '[name]',
-          prefixize: true,
-          regExp: '../src/components/dao-svg/**/(.*)\\.svg'
-        }),
+        loader: 'svg-sprite-loader',
       },
       { test: /\.(gif|jpg|png|woff|eot|ttf)\??.*$/, loader: 'url-loader?limit=8192' },
       { test: /\.(html|tpl)$/, loader: 'html-loader' }

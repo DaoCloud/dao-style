@@ -1,7 +1,6 @@
 @import './variables.scss';
 
 .dao-radio-grid {
-  float: left;
   padding: 0 5px;
   position: relative;
   white-space: nowrap;
@@ -87,5 +86,9 @@
     .dao-radio-grid-img img {
       fill: #3890ff;
     }
+  }
+  &.card {
+    float: none;
+    padding: 0;
   }
 }

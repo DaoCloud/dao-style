@@ -3,7 +3,7 @@
 请您按照规范确认这个PR的类型：<!--在相对应类型的 [] 输入 x，此PR能且仅能属于以下种类中的一种。输入x时，请确保[]内只有x字母，没有任何空格字节-->
 
 <!-- 确保源分支基于 develop 分支创建，并向develop 分支提起PR请求（本项目 90% 的PR属于此类型）-->
-- [ ] feature/docs PR 
+- [ ] feature/fix/docs PR 
 <!-- 确保源分支基于 master 分支创建，并向 master 分支提PR，以及向develop分支提PR（只有绝少数PR属于此类型）-->
 - [ ] hotfix PR 
 <!-- 确保源分支基于 develop 分支创建，并向 master 分支提PR，以及向develop分支提PR（只有绝少数PR属于此类型）-->

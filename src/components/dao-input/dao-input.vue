@@ -10,23 +10,37 @@
       'icon-inside': iconInside,
       'message-bottom': messagePlacement === 'bottom' && !iconInside,
       'no-message-icon': messageNoIcon,
-      'dao-input-group': $slots.prepend || $slots.append
+      'dao-input-group': $slots.prepend || $slots.append,
+      'input-sm': size === 'sm',
+      'block': block
     }">
     <div class="dao-input-group-addon prepend" v-if="$slots.prepend">
       <slot name="prepend"></slot>
     </div>
-    <div class="dao-input-inner">
-      <input
-        v-bind="$props"
-        :value="currentValue"
-        :required="isRequired"
-        ref="input"
-        @input="handleInput"
-        @focus="handleFocus"
-        @blur="handleBlur"
-        @keyup="handleKeyUp"
-        @keydown="handleKeyDown"
-      >
+    <div class="dao-input-inner" :class="{'has-append': !!$slots.append}">
+      <dao-popover
+        :content="currentMessage"
+        :class="{
+          'info': status === 'info' && iconInside,
+          'error': status === 'error' && iconInside,
+          'success': status === 'success' && iconInside,
+          'hide': !iconInside || !messageEnabled,
+        }"
+        :placement="iconInsideMessagePlacement"
+        :always="iconInside"
+        :disabled="!iconInside || !messageEnabled">
+        <input
+          v-bind="$props"
+          :value="currentValue"
+          :required="isRequired"
+          ref="input"
+          @input="handleInput"
+          @focus="handleFocus"
+          @blur="handleBlur"
+          @keyup="handleKeyUp"
+          @keydown="handleKeyDown"
+        >
+      </dao-popover>
       <span class="icon loading-icon" v-if="status === 'loading' && iconInside">
         <svg>
           <use xlink:href="#icon_status-progress-circle"></use>
@@ -63,11 +77,14 @@
   </div>
 </template>
 <script>
+  import { oneOf } from '../../utils/assist';
+
   export default {
     name: 'DaoInput',
     data() {
       return {
         currentValue: this.value,
+        currentMessage: this.message,
       };
     },
     props: {
@@ -77,15 +94,24 @@
       },
       disabled: Boolean,
       value: [String, Number],
+      size: String,
       iconInside: Boolean,
       message: String,
       messagePlacement: {
-        type: String,
+        validator(value) {
+          return oneOf(value, ['top', 'top-start', 'top-end', 'bottom', 'bottom-start', 'bottom-end', 'left', 'left-start', 'left-end', 'right', 'right-start', 'right-end']);
+        },
         default: 'top-end',
       },
       messageNoIcon: Boolean,
       search: Boolean,
-      status: String,
+      status: {
+        validator(value) {
+          return oneOf(value, ['', 'loading', 'info', 'error', 'success']);
+        },
+        default: '',
+      },
+      block: Boolean,
       required: Boolean,
       // 以下使用 input 原生属性，不做特殊处理
       placeholder: String,
@@ -103,10 +129,22 @@
       isRequired() {
         return this.required || this.search;
       },
+      messageEnabled() {
+        return oneOf(this.status, ['info', 'error', 'success']) && !!this.message;
+      },
+      iconInsideMessagePlacement() {
+        if (oneOf(this.messagePlacement, ['top-end', 'right-start', 'right'])) {
+          return this.messagePlacement;
+        }
+        return 'top-end';
+      },
     },
     watch: {
       value(val) {
         this.setCurrentValue(val);
+      },
+      message(val) {
+        this.setCurrentMessage(val);
       },
     },
     methods: {
@@ -131,6 +169,10 @@
       setCurrentValue(value) {
         if (value === this.currentValue) return;
         this.currentValue = value;
+      },
+      setCurrentMessage(message) {
+        if (message === this.currentMessage) return;
+        this.currentMessage = message;
       },
     },
   };

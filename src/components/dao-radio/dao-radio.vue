@@ -1,5 +1,5 @@
 <template>
-  <div :class="[{'dao-card-col': type === 'card'}]" :style="collumn">
+  <div :class="[{'dao-card-col': type === 'card'}, {'radio-box': isGrid}]" :style="collumn">
     <dao-radio-simple v-if="type === 'simple'" :name="name" :radio-value="label" :disabled="disabled" @input="handleInput">
       <slot></slot>
     </dao-radio-simple>
@@ -11,11 +11,14 @@
       <template slot="headlineSupplement"><slot name="headlineSupplement"></slot></template>
       <slot></slot>
     </dao-radio-grid>
-    <!--<dao-radio-plus v-if="type === 'plus'" :name="name" :headline="headline" :radio-value="label" :disabled="disabled" :select-title="selectTitle" :options="options" :async="async" @input="handleInput">
+    <dao-radio-plus v-if="type === 'plus'" :name="name" :headline="headline" :radio-value="label" :disabled="disabled" :select-title="selectTitle" :options="options || []" :async="async" @input="handleInput" @select-change="handleSelectChange">
       <template slot="icon"><slot name="icon"></slot></template>
-    </dao-radio-plus>-->
+    </dao-radio-plus>
   </div>
 </template>
+<style lang="scss">
+  @import './dao-radio.scss';
+</style>
 <script>
   import daoRadioSimple from './dao-radio-simple.vue';
   import daoRadioBlock from './dao-radio-block.vue';
@@ -50,18 +53,24 @@
       };
     },
     computed: {
+      isGrid() {
+        return this.type !== 'simple' && this.type !== 'block';
+      },
       defaultTemplate() {
         return Boolean(this.$slots.icon || this.$slots.headlineSupplement);
       },
       collumn() {
-        return {
+        return this.isGrid ? {
           width: `${100 / window.parseInt(this.gridCol, 10)}%`,
-        };
+        } : {};
       },
     },
     methods: {
       handleInput(v) {
         this.$emit('input', v);
+      },
+      handleSelectChange(v) {
+        this.$emit('select-change', v);
       },
     },
   };

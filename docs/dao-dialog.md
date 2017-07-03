@@ -126,6 +126,7 @@ dialog 是一个弹出框组件。代码请参照目录: [src/components/dao-dia
     <dao-dialog
       :config="config"
       :visible.sync="visible"
+      [:step.sync]="step"
       [@dao-dialog-close]="handleClose"
       [@dao-dialog-open]="handleOpen"
 
@@ -153,6 +154,7 @@ dialog 是一个弹出框组件。代码请参照目录: [src/components/dao-dia
           closeOnPressEscape: true,
         },
         visible: false,
+        step: 2,
       };
     },
     methods: {
@@ -177,6 +179,7 @@ dialog 是一个弹出框组件。代码请参照目录: [src/components/dao-dia
 -|-|-|-|-
 config | Object | 配置对象, 具体内容见 [config 对象](#config) | - | 是
 visible | Boolean | 控制 dao-dialog 是否显示的参数, 与父组件双向绑定 ( 需要加 sync 修饰符 ) | false | 是
+step | Number | `config.type = multiStep` 时，可以用来同步 (控制) dialog 内当前所在页的页数，最小为 0, 最大为 multiStep 的 step 总数减一 | 0 | 否
 
 #### config 对象 <span id="config"></span>
 
@@ -186,7 +189,7 @@ type | String | 设置 dialog 的类型。 可选 `normal`, `feature`, `multiSte
 title | String | 设置 dialog 的 title | '' | 否
 showHeader | Boolean | 设置 dialog 的 header 是否显示, 若此参数为 false,  __title 的设置无效__ | true | 否
 showFooter | Boolean | 设置 dialog 的 footer 是否显示, 若此参数为 false, __dao-dialog-confirm, dao-dialog-cancel 事件的设置无效__ | true | 否
-size | String | 设置 dialog 的大小。 可选 `sm`, `md`, `lg`, `resize` | md / 无高度限制  | 否
+size | String | 设置 dialog 的大小。 可选 `sm`, `md`, `lg`, `resize` | 无高度限制  | 否
 closeOnClickOutside | Boolean | 设置点击 dialog 外面( 遮罩层 ) 是否隐藏 dialog | true | 否
 closeOnPressEscape | Boolean | 设置按键 ESC 时是否隐藏 dialog | true | 否
 

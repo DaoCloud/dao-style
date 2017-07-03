@@ -1,80 +1,6 @@
 <template>
   <li :class="classes" @click="handleClick"><slot></slot></li>
 </template>
-<style scoped lang="scss">
-  @import '../dao-color.scss';
-  .dao-dropdown.dao-dropdown-is-open > .dao-dropdown-rel > .dao-dropdown-item {
-    color: $white;
-    background-color: $blue;
-    svg {
-      fill: $white;
-    }
-  }
-  .dao-dropdown-item {
-    &.dao-dropdown-item-base {
-      font-size: 14px;
-      line-height: 16px;
-
-      height: 30px;
-      padding: 7px 10px;
-
-      cursor: pointer;
-
-      color: $black-dark;
-      svg {
-        width: 16px;
-        height: 16px;
-
-        vertical-align: middle;
-
-        fill: $black-dark;
-      }
-      &:hover {
-        color: $white;
-        background-color: $blue;
-        svg {
-          fill: $white;
-        }
-      }
-    }
-    &.dao-dropdown-item-disabled {
-      font-size: 14px;
-      line-height: 16px;
-
-      height: 30px;
-      padding: 7px 10px;
-
-      cursor: not-allowed;
-
-      color: $grey-light;
-      svg {
-        width: 16px;
-        height: 16px;
-
-        vertical-align: middle;
-
-        fill: $grey-light;
-      }
-    }
-    &.dao-dropdown-item-subtitle {
-      font-size: 12px;
-      line-height: 20px;
-
-      height: 21px;
-      padding: 0 10px;
-
-      color: $grey-dark;
-      border-top: 1px solid $white-dark;
-      background-color: $white-light;
-    }
-    &.dao-dropdown-item-divided {
-      height: 1px;
-      margin: 5px 0;
-
-      background-color: $white-dark;
-    }
-  }
-</style>
 <script>
   const prefixCls = 'dao-dropdown-item';
   export default {
@@ -125,6 +51,7 @@
           this.$nextTick(() => {
             $parent.currentVisible = true;
           });
+          return;
         } else if (hasChildren) {
           this.$parent.$emit('on-haschild-click');
         } else {
@@ -133,18 +60,8 @@
           }
         }
         this.$emit('click');
-        // console.log('click');
-        // $parent.$emit('on-click', this.name);
       }
     },
-    // mounted() {
-    //   this.$on('on-click', () => {
-    //     console.log('click');
-    //     // const $parent = this.hasParent();
-    //     // if ($parent) $parent.$emit('on-click', key);
-    //   });
-    // },
   };
 </script>
-<style>
-</style>
+<style scoped lang="scss" src="./dao-dropdown-item.scss"></style>

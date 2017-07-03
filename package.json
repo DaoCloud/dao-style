@@ -1,6 +1,5 @@
 {
   "name": "dao-style-vue",
-  "version": "1.0.0",
   "title": "daoStyle",
   "description": "dao style with Vue.js",
   "keywords": [
@@ -23,7 +22,7 @@
     "dist:style": "gulp --gulpfile build/build-style.js",
     "dist:dev": "webpack --config build/webpack.dist.dev.config.js",
     "dist:prod": "webpack --config build/webpack.dist.prod.config.js",
-    "dist": "npm run dist:style && npm run dist:dev && npm run dist:prod",
+    "dist": "npm run dist:style && npm run dist:prod",
     "lint": "eslint --fix --ext .js,.vue src",
     "unit": "karma start test/unit/karma.conf.js --single-run",
     "test": "npm run unit",
@@ -40,10 +39,11 @@
   },
   "dependencies": {
     "async-validator": "^1.6.7",
+    "clipboard": "1.6.1",
     "core-js": "^2.4.1",
     "deepmerge": "^1.3.1",
     "lodash": "^4.17.4",
-    "popper.js": "^0.6.4"
+    "popper.js": "^1.10.5"
   },
   "peerDependencies": {
     "vue": "^2.3.2"
@@ -95,7 +95,7 @@
     "sinon": "^1.17.7",
     "sinon-chai": "^2.8.0",
     "style-loader": "^0.13.1",
-    "svg-sprite-loader": "0.0.16",
+    "svg-sprite-loader": "^3.0.5",
     "url-loader": "^0.5.7",
     "vue": "^2.2.1",
     "vue-hot-reload-api": "^1.3.3",

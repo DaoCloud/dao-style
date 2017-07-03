@@ -8,29 +8,35 @@
     </thead>
     <tbody>
       <tr class="det-tr" v-for="(row, index) in rows" :class="{activate: index === activatedRow}">
-        <td v-for="td in row">
+        <td v-for="td in row" class="det-td">
           <dao-input class="det-input"
             type="text"
             v-if="td.type === 'input'"
             v-model="td.value"
-            @change="updateValue()"
+            size="sm"
+            :block="true"
+            icon-inside
+            :message="typeof(td.valid) === 'string' ? td.valid : ''"
+            :status="typeof(td.valid) === 'string' ? 'error' : ''"
             @focus="focusRow(index)"
-            @blur="blurRow">
+            @blur="onBlur">
           </dao-input>
           <input
             type="checkbox"
             v-if="td.type === 'checkbox'"
             :name="td.name"
             v-model="td.value"
-            @change="updateValue()">
+            @change="validteAndUpdate()">
           <label :for="td.name" v-if="td.type === 'checkbox'">{{td.label}}</label>
-          <select
+          <dao-select
+            class="det-select"
             :name="td.name"
             v-if="td.type === 'select'"
             v-model="td.value"
-            @change="updateValue()">
-            <option v-for="option in td.options" :text="option" :value="option">{{option}}</option>
-          </select>
+            size="sm"
+            @change="validteAndUpdate()">
+            <dao-option v-for="option in td.options" :value="option.value || option" :label="option.label || option"></dao-option>
+          </dao-select>
           <span v-if="td.type === 'text'">{{ td.value }}</span>
         </td>
         <td class="det-edit-col">

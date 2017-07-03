@@ -1,6 +1,6 @@
 <template>
   <div>
-    <dao-editable-table :config="config" v-model="model"></dao-editable-table>
+    <dao-editable-table :config="config" v-model="model" @valid="validChange"></dao-editable-table>
   </div>
 </template>
 <script>
@@ -9,46 +9,94 @@ export default {
     return {
       config: {
         header: [
-          '姓名',
-          '性别',
-          '单身',
-          {
-            text: 'DaoCloud',
-            tooltip: '道客',
-          },
+          '变量 ID',
+          '变量名',
+          '类型',
+          '变量描述',
+          '是否必填',
+          '默认值',
         ],
-        body: [
-          {
-            type: 'input',
-            name: 'name',
-            default: '',
+        body: [{
+          type: 'input',
+          name: 'id',
+          default: '',
+          validate(row, all) {
+            if (row.id === '') {
+              return '变量 ID 不能为空';
+            }
+            if (all.filter(r => r.id === row.id).length > 1) {
+              return '变量 ID 不能重复';
+            }
+            return true;
           },
-          {
-            type: 'select',
-            name: 'gender',
-            options: ['男', '女'], // 此处具体的用法还要根据 select 而定
-            default: '男',
+        }, {
+          type: 'input',
+          name: 'name',
+          default: '',
+          validate(row) {
+            if (row.name === '') {
+              return '变量名不能为空';
+            }
+            return true;
           },
-          {
-            type: 'checkbox',
-            name: 'single',
-            default: false,
-            label: '单身',
+        }, {
+          type: 'select',
+          name: 'type',
+          options: ['字符串', '布尔值', 'url', '密码', '文本'], // 此处具体的用法还要根据 select 而定
+          default: '字符串',
+        }, {
+          type: 'input',
+          name: 'description',
+          default: '',
+          validate(row) {
+            if (row.description === '') {
+              return '变量描述不能为空';
+            }
+            return true;
           },
-          {
-            type: 'text',
-            name: 'company',
-            default: 'DaoCloud',
+        }, {
+          type: 'checkbox',
+          name: 'required',
+          default: true,
+          label: '必填',
+        }, {
+          type: 'input',
+          name: 'default',
+          default: '',
+          validate(row) {
+            if (row.type === '布尔值' && row.default !== 'true' && row.default !== 'false') {
+              console.log('currentRow1', row);
+              return '默认值与类型不符';
+            }
+            if (row.type === 'url') {
+              const urlReg = /^(https?:\/\/)?[a-z0-9-]+(\.[a-z0-9-]+)+\.?(\/.*)?$/i;
+              if (!urlReg.test(row.default)) {
+                console.log('currentRow2', row);
+                return '默认值与类型不符';
+              }
+            }
+            return true;
           },
-        ],
+        }],
       },
-      model: [],
+      model: [{
+        default: 'root',
+        description: 'The Root Password of MySQL',
+        id: 'mysql_root_password',
+        name: 'Root Password',
+        required: true,
+        type: '字符串',
+      }],
     };
   },
+  methods: {
+    validChange(val) {
+      console.log('验证结果改变', val);
+    },
+  },
   watch: {
-    // 如果 question 发生改变，这个函数就会运行
     model(newModel) {
-      console.log('改变了', newModel);
+      console.log('model 已更新', newModel);
     },
   },
 };

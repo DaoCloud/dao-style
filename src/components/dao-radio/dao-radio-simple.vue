@@ -14,7 +14,7 @@
     name: 'Radio-simple',
     componentName: 'Radio-simple',
     props: {
-      radioValue: String,
+      radioValue: {},
       name: String,
       disabled: {
         type: Boolean,

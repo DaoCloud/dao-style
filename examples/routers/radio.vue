@@ -18,9 +18,9 @@
       </dao-radio>
     </dao-radio-group>
     <br>
-    <!--<h1>grid radio</h1>
+    <h1>grid radio</h1>
     <br><hr><br>
-    <dao-radio-group type="grid" :grid-col="4">
+    <dao-radio-group type="grid" :grid-col="5">
       <dao-radio label="111" v-model="grid" headline="this is a headline" description="this is a description">
         <svg slot="icon"><use xlink:href="#color-icon_apple"></use></svg>
       </dao-radio>
@@ -34,7 +34,7 @@
         <svg slot="icon"><use xlink:href="#color-icon_apple"></use></svg>
       </dao-radio>
     </dao-radio-group>
-    <br>-->
+    <br>
     <h1>card radio</h1>
     <br><hr><br>
     <dao-radio-group name="test" type="card">
@@ -70,14 +70,21 @@
       </dao-radio>
     </dao-radio-group>
 
-    <dao-radio-group name="plus" type="plus" :grid-col="3">
-      <dao-radio headline="this is headline" v-model="plus" label="苹果1" select-title="请选择" :options="options">
+    <br>
+    <h1>plus radio</h1>
+    <br><hr><br>
+
+    <dao-radio-group name="plus" type="plus" :grid-col="4">
+      <dao-radio headline="this is headline" v-model="plus" label="苹果1" select-title="请选择" :options="options" @select-change="handleSelectChange">
         <svg slot="icon"><use xlink:href="#color-icon_apple"></use></svg>
       </dao-radio>
-      <dao-radio headline="this is headline" v-model="plus" label="苹果2" select-title="请选择" :options="asyncOptions" :async="async">
+      <dao-radio headline="this is headline" v-model="plus" label="苹果2" select-title="请选择" :options="asyncOptions" :async="async" @select-change="handleSelectChange">
         <svg slot="icon"><use xlink:href="#color-icon_apple"></use></svg>
       </dao-radio>
-      <dao-radio headline="this is headline" v-model="plus" label="苹果3" select-title="请选择">
+      <dao-radio headline="this is headline" v-model="plus" label="苹果3" select-title="请选择" @select-change="handleSelectChange">
+        <svg slot="icon"><use xlink:href="#color-icon_apple"></use></svg>
+      </dao-radio>
+      <dao-radio headline="this is headline" v-model="plus" label="苹果4" select-title="请选择" :disabled="true">
         <svg slot="icon"><use xlink:href="#color-icon_apple"></use></svg>
       </dao-radio>
     </dao-radio-group>
@@ -96,7 +103,10 @@
         simple: undefined,
         block: undefined,
         grid: undefined,
-        plus: undefined,
+        plus: {
+          value: '苹果1',
+          select: 2,
+        },
         options: [{
           value: 1,
           label: '1111',
@@ -131,12 +141,17 @@
               res(options);
             }, 2000);
           } else {
-            rej(0);
+            setTimeout(() => {
+              rej(0);
+            }, 2000);
           }
         });
         return p.then((res) => {
           this.asyncOptions = res;
         });
+      },
+      handleSelectChange(v) {
+        console.log('demo-change', v);
       },
     },
   };

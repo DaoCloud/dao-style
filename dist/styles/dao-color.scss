@@ -1,0 +1,38 @@
+// color
+$blue: #3890ff;
+$green: #22c36a;
+$yellow: #f7b32b;
+$orange: #f56e25;
+$red: #f1483f;
+$purple: #7354e2;
+
+// grey
+$black-dark: #3d444f;
+$black-darker: #1f2126;
+$black-light: #595f69;
+$grey-dark: #9ba3af;
+$grey-light: #ccd1d9;
+$white-dark: #e4e7ed;
+$white-dark-lighter: #f1f3f6;
+$white-light: #f5f7fa;
+$white-lighter: #fbfcfc;
+$white: #ffffff;
+
+// function
+@function generate-color($base-color, $level) {
+  @if $level == -3 {
+    @return desaturate(lighten($base-color, 36), 15);
+  } @else if $level == -2 {
+    @return desaturate(lighten($base-color, 25), 25);
+  } @else if $level == -1 {
+    @return lighten($base-color, 4);
+  } @else if $level == 1 {
+    @return desaturate(darken($base-color, 7), 11);
+  } @else if $level == 2 {
+    @return desaturate(darken($base-color, 13), 7);
+  } @else if $level == 3 {
+    @return desaturate(darken($base-color, 19), 9);
+  } @else {
+    @return $base-color;
+  }
+}

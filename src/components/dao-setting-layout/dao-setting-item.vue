@@ -1,6 +1,6 @@
 <template>
   <div class="dao-setting-item">
-    <div class="dao-setting-label">
+    <div class="dao-setting-label" v-if="label">
       <slot name="label"></slot>
     </div>
     <div class="dao-setting-content">
@@ -17,12 +17,8 @@ export default {
   data() {
     return {
       label: this.$slots.label,
-      content: this.$slots.content,
       contentHelper: this.$slots['content-helper'],
     };
   },
 };
 </script>
-<style lang="scss">
-@import './dao-setting-layout.scss';
-</style>

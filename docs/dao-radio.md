@@ -116,7 +116,7 @@ Radio 是一个单选框组件。代码请参照目录：[src/components/dao-rad
 ```html
 <dao-radio-group type="plus" [name="sex"]>
 
-  <dao-radio-plus
+  <dao-radio
     v-model="vm.sex"
     headline="sex" 
     value="sex"
@@ -125,10 +125,35 @@ Radio 是一个单选框组件。代码请参照目录：[src/components/dao-rad
     [:async="vm.getSexOptions"]>
 
     <img slot="icon" src="male.png">
+    <!-- slot="icon" 不能缺失 -->
 
-  </dao-radio-plus>
+  </dao-radio>
 
 </dao-radio-group>
+```
+
+### js 使用方法
+
+1. dao-radio plus
+
+```js
+// v-model 格式
+{
+  value: 1, // radio 的选中值
+  select: 2, // select 的选中值
+}
+
+// options 格式
+[
+  {
+    value: 1,
+    text: '1',
+  },
+  {
+    value: 2,
+    text: '2',
+  }
+]
 ```
 
 ## 组件参数
@@ -177,4 +202,9 @@ Radio 是一个单选框组件。代码请参照目录：[src/components/dao-rad
 | headline | string | 指定 radio-plus 中的标题 | - | 否 |
 | select-title | string | radio-plus 中 select 的默认显示 | - | 否 |
 | options | object | radio-plus 中 select 的选项数据 | - | 否 |
-| async | function | radio-plus 中获取 select 中数据的函数 | - | 否 |
+| async | function | radio-plus 中获取 select 中数据的函数，当你传入了此参数时，该 function 会在 radio 被 check 或点击 radio 中的 select 时触发。另外值得注意的是，这个 async 方法必须返回一个 Promise，当这个 Promise 成功 resolve 之后就不在调用这个 function | - | 否 |
+
+#### Radio-Plus 事件
+| 事件名称 | 说明 | 回调参数 |
+|---------|-----|---------|
+| select-change | 这是 Radio-Plus 中 select 值改变时的回调事件 | {value: radio 的选中值, select: select 的选中值} |

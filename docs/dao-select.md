@@ -25,8 +25,10 @@ Select 是由 Select 和 Option-Group 以及 Option 三个组件组合而成。
   [menu-class="menuClass"]
   [no-data-text="无数据"]
   [no-match-text="无匹配数据"]>
-  <dao-option-group :label="name">
-    <dao-option :value="mimo" :label="mimo"></dao-option>
+  <dao-option-group [label="name"]>
+    <dao-option :value="mimo" :label="mimo">
+      <!--此处可以传入自定义模板的内容，建议使用单行内容-->
+    </dao-option>
   </dao-option-group>
 </dao-select>
 ```
@@ -46,13 +48,17 @@ Select 是由 Select 和 Option-Group 以及 Option 三个组件组合而成。
   [no-data-text="无数据"]>
   <dao-tab direction="left">
     <dao-tab-item heading="标题1">
-      <dao-option-group :label="male">
-        <dao-option :value="mimo" :label="mimo"></dao-option>
+      <dao-option-group [label="male"]>
+        <dao-option :value="mimo" :label="mimo">
+          <!--此处可以传入自定义模板的内容，建议使用单行内容-->
+        </dao-option>
       </dao-option-group>
     </dao-tab-item>
     <dao-tab-item heading="标题2">
-      <dao-option-group :label="female">
-        <dao-option :value="mary" :label="mary"></dao-option>
+      <dao-option-group [label="female"]>
+        <dao-option :value="mary" :label="mary">
+          <!--此处可以传入自定义模板的内容，建议使用单行内容-->
+        </dao-option>
       </dao-option-group>
     </dao-tab-item>
   </dao-tab>
@@ -79,6 +85,7 @@ Select 是由 Select 和 Option-Group 以及 Option 三个组件组合而成。
 | menu-class | string | select 下拉菜单的类名 | - | 否 |
 | no-data-text | string | select 无数据时显示的文字 | '无数据' | 否 |
 | no-match-text | string | select 搜索无匹配数据时显示的文字 | '无匹配数据' | 否 |
+| size | string | select 的尺寸，可选值有 'sm' | - | 否 |
 
 ### Select 事件
 
@@ -99,6 +106,12 @@ Select 是由 Select 和 Option-Group 以及 Option 三个组件组合而成。
 
 | 参数 | 类型 | 说明 | 默认值 | 是否必填 |
 |-----|-------|------|--------|------|
-| value | string / number / object ... | 选项的值 | - | 是 |
-| label | string | 选项的标签 / number | - | 否 |
+| value | string / number / object ... | 选项的值，选中时会传递给 select 的 v-model | - | 是 |
+| label | string / number | 选项的标签，当选项没有传入 slot 模板时，此 label 为选项显示的默认文本 | - | 是 |
 | disabled | boolean | 是否禁用该选项 | false | 否 |
+
+### Option slot
+| 参数 | 类型 | 说明 | 默认值 | 是否必填 |
+|-----|------|-----|-------|---------|
+| content | html / text | 可以自定义 option 的显示模板，不传入的话默认显示 option 的 label | option 的 label | 否 |
+

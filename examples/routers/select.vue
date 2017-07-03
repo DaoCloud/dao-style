@@ -3,21 +3,24 @@
     <h1>simple select</h1>
     <br><hr><br>
     <dao-select v-model="simple" placeholder="一个简单下拉框" no-data-text="无选项">
-      <dao-option-group label="这是一个标签">
-        <dao-option :value="0">这是选项零</dao-option>
-        <dao-option :value="1">这是选项一</dao-option>
-        <dao-option :value="2">
-          <svg class="icon"><use xlink:href="#color-icon_apple"></use></svg>
-          这是选项二
-        </dao-option>
-        <dao-option :value="3" label="这是选项三"></dao-option>
-      </dao-option-group>
-      <dao-option-group label="这又是一个标签">
-        <dao-option :value="4" :disabled="true">这是选项四</dao-option>
-        <dao-option :value="5">这是选项五</dao-option>
-      </dao-option-group>
+      <dao-option v-for="item in items" :key="item.value" :value="item.value" :label="item.text"></dao-option>
     </dao-select>
+    <br>
+    <button class="dao-btn blue" @click="changeSimple">change simple</button>
+    <button class="dao-btn ghost" @click="simple = undefined">set undefined</button>
+    <button class="dao-btn green" @click="items.pop()">pop one option</button>
+    <button class="dao-btn yellow" @click="items.shift()">shift one option</button>
+    <button class="dao-btn red" @click="items[0].text = 'test_text'">change the text</button>
 
+    <br><br>
+    <h2>small select</h2>
+    <br><hr style="border-style: dashed;"><br>
+    <dao-select v-model="small" placeholder="一个小型下拉框" size="sm">
+      <dao-option :value="1">option1</dao-option>
+      <dao-option :value="2">option2</dao-option>
+      <dao-option :value="3">option3</dao-option>
+      <dao-option :value="4">option4</dao-option>
+    </dao-select>
     <br>
     <h1>select with search</h1>
     <br><hr><br>
@@ -87,7 +90,7 @@
     <br><hr><br>
 
     <dao-select v-model="asynchronous" placeholder="异步获取数据下拉框" :async="async">
-      <dao-option v-for="option in options" :value="option.value" :label="option.text">{{ option.text }}</dao-option>    
+      <dao-option v-for="option in options" :key="option.value" :value="option.value" :label="option.text">{{ option.text }}</dao-option>    
     </dao-select>
 
   </div>
@@ -96,14 +99,25 @@
   export default {
     data() {
       return {
-        simple: 0,
+        simple: 1,
+        small: 1,
         search: undefined,
         button: 2,
         disabled: undefined,
         tab: undefined,
         loading: undefined,
-        asynchronous: undefined,
+        asynchronous: 2,
         options: [],
+        items: [{
+          value: 1,
+          text: 'abcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabc',
+        }, {
+          value: 2,
+          text: '选项二',
+        }, {
+          value: 3,
+          text: '选项三',
+        }],
       };
     },
     methods: {
@@ -133,6 +147,19 @@
         return p.then((res) => {
           this.options = res;
         });
+      },
+      changeSimple() {
+        if (typeof this.simple !== 'number') this.simple = 0;
+        if (this.simple === 3) {
+          this.type = 0;
+        } else if (this.simple === 1) {
+          this.type = 1;
+        }
+        if (this.type) {
+          this.simple += 1;
+        } else {
+          this.simple -= 1;
+        }
       },
     },
   };

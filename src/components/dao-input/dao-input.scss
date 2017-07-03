@@ -223,174 +223,114 @@
       .success-icon svg {
         fill: $input-success-color;
       }
-      .icon + .dao-popover {
-        padding: 0;
-        margin-right: 0;
-        border: none;
-        border-radius: 5px;
-        font-size: 12px;
-        line-height: 20px;
-        color: white;
-        // 下面两行属性修复 dao-input 中提示的 popover 因为中英文空格、标点符号使得一句话换行问题。
-        // 原因是 dao-input-container 使用了 inline-flex 布局导致直接子元素当 display: block 受到影响。
-        // 将 display 设置为 table 可解决因为中英文空格、标点符号使得一句话换行问题。
-        // word-break: break-word使很长的一段没有空格、标点符号的英文单词能够强制换行。
-        // 不能用 word-wrap: break-word; 强制换行。
-        display: table!important;
-        word-break: break-word;
-        .arrow {
-          border-width: 10px;
-        }
-        &.right {
-          margin-left: 23px;
-        }
-        &.left > .arrow {
-          right: -10px;
-          margin-top: -10px;
-        }
-        &.top {
-          margin-top: -12px;
-        }
-        &.bottom > .arrow {
-          top: -5px;
-        }
-        &.top-right {
-          .arrow {
-            transform: translateX(-1px) rotate(45deg) !important;
+      .dao-popover:not(.hide) {
+        .dao-popover-popper {
+          // 将 display 设置为 table 可解决因为中英文空格、标点符号使得一句话换行问题。
+          // 是受到了外层样式是 flex 布局的影响
+          display: table!important;
+          // 为了解决在 editable-table 中 input with popover 时，popover 多了边框的问题
+          border-collapse: collapse;
+          .dao-popover-inner {
+            color: $white;
           }
         }
-        &.top-right,
-        &.bottom-right {
-          transform: translate(7px, -1px);
-          > .arrow {
-            margin-right: 4px !important;
+      }
+      .dao-popover.info {
+        & .dao-popover-inner {
+          background-color: $input-info-color;
+        }
+        .dao-popover-arrow {
+          &:before {
+            background-color: $input-info-color;
+          }
+          & .pt-popover-arrow-border,
+          & .pt-popover-arrow-fill {
+            fill: $input-info-color;
           }
         }
-        &.right-top {
-          top: 0 !important;
+      }
+      .dao-popover.error {
+        & .dao-popover-inner {
+          background-color: $input-error-color;
         }
-        &.right > .arrow,
-        &.right > .arrow:after {
-          border-left-width: 0;
-        }
-        &.left > .arrow,
-        &.left > .arrow:after {
-          border-right-width: 0;
-        }
-        &.top > .arrow,
-        &.top > .arrow:after {
-          border-bottom-width: 0;
-        }
-        &.bottom > .arrow,
-        &.bottom > .arrow:after {
-          border-top-width: 0;
-        }
-        .dao-popover-content {
-          word-wrap: break-word;
-          padding: 6px 11px;
+        .dao-popover-arrow {
+          &:before {
+            background-color: $input-error-color;
+          }
+          & .pt-popover-arrow-border,
+          & .pt-popover-arrow-fill {
+            fill: $input-error-color;
+          }
         }
       }
-      .info-icon + .dao-popover {
-        background-color: $input-info-color;
-        max-width: none;
-        &.right > .arrow,
-        &.right > .arrow:after {
-          border-right-color: $input-info-color;
+      .dao-popover.success {
+        & .dao-popover-inner {
+          background-color: $input-success-color;
         }
-        &.left > .arrow,
-        &.left > .arrow:after {
-          border-left-color: $input-info-color;
-        }
-        &.top > .arrow,
-        &.top > .arrow:after {
-          border-top-color: $input-info-color;
-        }
-        &.bottom > .arrow,
-        &.bottom > .arrow:after {
-          border-bottom-color: $input-info-color;
+        .dao-popover-arrow {
+          &:before {
+            background-color: $input-success-color;
+          }
+          & .pt-popover-arrow-border,
+          & .pt-popover-arrow-fill {
+            fill: $input-success-color;
+          }
         }
       }
-      .error-icon + .dao-popover {
-        background-color: $input-error-color;
-        max-width: none;
-        &.right > .arrow,
-        &.right > .arrow:after {
-          border-right-color: $input-error-color;
-        }
-        &.left > .arrow,
-        &.left > .arrow:after {
-          border-left-color: $input-error-color;
-        }
-        &.top > .arrow,
-        &.top > .arrow:after {
-          border-top-color: $input-error-color;
-        }
-        &.bottom > .arrow,
-        &.bottom > .arrow:after {
-          border-bottom-color: $input-error-color;
-        }
+    }
+    .dao-popover-popper[x-placement='top-end'] {
+      transform: translateY(12px);
+      .dao-popover-arrow {
+        right: 1px!important;
       }
-      .success-icon + .dao-popover {
-        background-color: $input-success-color;
-        max-width: none;
-        &.right > .arrow,
-        &.right > .arrow:after {
-          border-right-color: $input-success-color;
-        }
-        &.left > .arrow,
-        &.left > .arrow:after {
-          border-left-color: $input-success-color;
-        }
-        &.top > .arrow,
-        &.top > .arrow:after {
-          border-top-color: $input-success-color;
-        }
-        &.bottom > .arrow,
-        &.bottom > .arrow:after {
-          border-bottom-color: $input-success-color;
-        }
+    }
+    .dao-popover-popper[x-placement='right-start'] {
+      transform: translateX(2px);
+      .dao-popover-arrow {
+        top: 1px!important;
       }
     }
     &.dao-input-group {
       width: $input-width;
+      .dao-popover {
+        width: 100%;
+      }
       .dao-input-inner,
       input {
         flex: 1;
         width: 100%;
         z-index: 1;
       }
-      .dao-input-container {
-        flex: 1;
-        width: auto;
-        &,
-        & > :first-child {
-          margin: 0;
-          width: 100%;
-        }
-      }
       .dao-select {
         width: auto;
       }
-      .dao-input-group-addon.prepend > *:last-child,
-      .dao-select:not(:last-child) .dao-select-input {
-        border-right: 0;
+      .dao-input-group-addon.prepend {
+        & > *,
+        & > .dao-select .dao-select-switch {
+          border-right: 0;
+        }
       }
-      .dao-input-group-addon.prepend > *:last-child,
-      .dao-input-inner:not(:last-child) input,
-      .dao-select:not(:last-child) .dao-select-input,
-      .dao-input-container:not(:last-child) input {
+      .dao-input-group-addon.prepend > *,
+      .dao-input-group-addon.append > *:not(:last-child),
+      // 通过兄弟选择器无法选出拥有 append 节点的 .dao-input-inner 中的 input，所以需要多添加一个 class has-append
+      .dao-input-inner.has-append input,
+      .dao-input-group-addon.prepend .dao-select .dao-select-switch,
+      .dao-input-group-addon.append .dao-select:not(:last-child) .dao-select-switch {
         border-bottom-right-radius: 0;
         border-top-right-radius: 0;
         margin-right: 0;
       }
-      .dao-input-group-addon.append > *:first-child,
-      .dao-input-inner + .dao-select .dao-select-input {
-        border-left: 0;
+      .dao-input-group-addon.append {
+        & > *,
+        & > .dao-select .dao-select-switch {
+          border-left: 0;
+        }
       }
-      .dao-input-group-addon.append > *:first-child,
-      .dao-input-inner:not(:first-child) input,
-      .dao-select:not(:first-child) .dao-select-input,
-      .dao-input-container:not(:first-child) input {
+      .dao-input-group-addon.append > *,
+      .dao-input-group-addon.prepend > *:not(:first-child),
+      .dao-input-group-addon.prepend + .dao-input-inner input,
+      .dao-input-group-addon.append .dao-select .dao-select-switch,
+      .dao-input-group-addon.prepend .dao-select:not(:first-child) .dao-select-switch {
         border-bottom-left-radius: 0;
         border-top-left-radius: 0;
         margin-left: 0;
@@ -403,8 +343,47 @@
       .dao-input-group {
         width: 100%;
       }
-      input {
+      input, .dao-input-inner, .dao-input-inner > .dao-popover {
         width: 100%;
+      }
+    }
+    &.input-sm {
+      input {
+        @include e('&', ('input.input-sm', "input[size='sm']")) {
+          padding-top: 5px;
+          padding-bottom: 5px;
+          height: $input-height-sm;
+        }
+      }
+      &:not(.search) {
+        @include e('& input', ('input.input-sm', "input[size='sm']"), (':not(.search)')) {
+          padding-left: 5px;
+          padding-right: 5px;
+        }
+      }
+      &.icon-inside {
+        .info-icon,
+        .error-icon,
+        .success-icon,
+        .loading-icon {
+          top: 5px;
+        }
+      }
+      .dao-popover-popper[x-placement='top-end'] {
+        transform: translateY(10px);
+        .dao-popover-arrow {
+          right: 1px!important;
+        }
+      }
+      .dao-popover-popper[x-placement='right-start'] {
+        transform: translateX(2px);
+        .dao-popover-arrow {
+          top: -1px!important;
+        }
+      }
+      .dao-input-group-addon  > *:not(.dao-select) {
+        padding: 5px 6px;
+        height: $input-height-sm;
       }
     }
   }
