@@ -51,6 +51,7 @@
           this.$nextTick(() => {
             $parent.currentVisible = true;
           });
+          return;
         } else if (hasChildren) {
           this.$parent.$emit('on-haschild-click');
         } else {
@@ -59,17 +60,8 @@
           }
         }
         this.$emit('click');
-        // console.log('click');
-        // $parent.$emit('on-click', this.name);
       }
     },
-    // mounted() {
-    //   this.$on('on-click', () => {
-    //     console.log('click');
-    //     // const $parent = this.hasParent();
-    //     // if ($parent) $parent.$emit('on-click', key);
-    //   });
-    // },
   };
 </script>
 <style scoped lang="scss" src="./dao-dropdown-item.scss"></style>
