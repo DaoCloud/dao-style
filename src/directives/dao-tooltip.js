@@ -71,10 +71,11 @@ export default {
     $content.appendChild($inner);
     $popper.appendChild($content);
 
-    if (binding.value.appendToBody === 'false') {
+    if (binding.value.appendToBody === false) {
       el.appendChild($popper);
     } else {
       document.body.appendChild($popper);
+      $popper.className += ` append-to-body ${binding.value.popperCls ? binding.value.popperCls.join(' ') : ''}`;
     }
 
     const options = Object.assign({}, binding.value, { placement });
@@ -92,7 +93,7 @@ export default {
     el.removeEventListener('mouseenter', handleShowPopper);
     el.removeEventListener('mouseleave', handleClosePopper);
     el.popper.destroy();
-    if (binding.value.appendToBody === 'false') {
+    if (binding.value.appendToBody === false) {
       el.removeChild(el.popper.popper);
     } else {
       document.body.removeChild(el.popper.popper);

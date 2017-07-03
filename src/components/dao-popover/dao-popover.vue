@@ -51,6 +51,7 @@
         type: Boolean,
         default: false,
       },
+      popperCls: Array,
     },
     data() {
       return {

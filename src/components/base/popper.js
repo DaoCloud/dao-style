@@ -36,6 +36,7 @@ export default {
       type: Boolean,
       default: true,
     },
+    popperCls: Array,
     // visible: {
     //   type: Boolean,
     //   default: false
@@ -43,15 +44,22 @@ export default {
   },
   data () {
     return {
-      visible: this.value
+      visible: this.value,
     };
+  },
+  computed: {
+    $popper() {
+      return this.popper || this.$refs.popper;
+    },
+    $reference() {
+      return this.reference || this.$refs.reference;
+    },
   },
   watch: {
     value: {
       immediate: true,
       handler(val) {
         this.visible = val;
-        this.$emit('input', val);
       }
     },
     visible(val) {
@@ -61,18 +69,19 @@ export default {
         this.destroyPopper();
         this.$emit('on-popper-hide');
       }
-      this.$emit('input', val);
+      this.$emit('on-visible-change', val);
     }
   },
   methods: {
     createPopper() {
+      debugger;
       if (!/^(top|bottom|left|right)(-start|-end)?$/g.test(this.placement)) {
         return;
       }
 
       const options = this.options;
-      const popper = this.popper || this.$refs.popper;
-      const reference = this.reference || this.$refs.reference;
+      const popper = this.$popper;
+      const reference = this.$reference;
 
       if (!popper || !reference) return;
 
@@ -87,6 +96,7 @@ export default {
         this.$nextTick(this.updatePopper);
         this.$emit('created', this);
       };
+      console.log(reference);
 
       this.popperJS = new Popper(reference, popper, options);
     },
@@ -114,15 +124,17 @@ export default {
   },
   beforeDestroy() {
     if (this.appendToBody) {
-      document.body.removeChild(this.popper || this.$refs.popper);
+      document.body.removeChild(this.$popper);
     }
     if (this.popperJS) {
       this.popperJS.destroy();
     }
   },
   mounted() {
+    this.createPopper();
     if (this.appendToBody) {
-      document.body.appendChild(this.popper || this.$refs.popper);
+      document.body.appendChild(this.$popper);
+      this.$popper.className += ` append-to-body ${this.popperCls ? this.popperCls.join(' ') : ''}`;
     }
   },
 };

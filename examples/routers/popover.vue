@@ -32,7 +32,7 @@
         <dao-popover content="Right Center 文字提示" placement="right">
           <button class="dao-btn ghost">右边</button>
         </dao-popover><br><br>
-        <dao-popover content="Right Bottom 文字提示" placement="right-end" :append-to-body="true">
+        <dao-popover content="Right Bottom 文字提示" placement="right-end" :append-to-body="false">
           <button class="dao-btn ghost">右下</button>
         </dao-popover>
       </div>

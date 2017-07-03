@@ -18,8 +18,8 @@
             </div>
             <div class="bottom">
                 <button class="dao-btn ghost" v-dao-tooltip:bottom-start="'Directive Tooltip'"> 下</button>
-                <button class="dao-btn ghost" v-dao-tooltip:bottom.appendToBody="'Directive Tooltip'"> 下</button>
-                <button class="dao-btn ghost" v-dao-tooltip:bottom.always="{ content: 'aaa', appendToBody: true }"> 下always</button>
+                <button class="dao-btn ghost" v-dao-tooltip:bottom="'Directive Tooltip'"> 下</button>
+                <button class="dao-btn ghost" v-dao-tooltip:bottom.always="{ content: 'aaa', appendToBody: false }"> 下always</button>
             </div>
         </div>
     </div>

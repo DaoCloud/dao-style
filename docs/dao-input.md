@@ -106,6 +106,7 @@ Editable Input 是一个可以编辑的 Disabled Input。当我们不希望用�
 | disabled | Boolean | 禁用 | false | 否 |
 | size | String | 尺寸，可选值（sm） | - | 否 |
 | icon-inside | Boolean | 当需要弹出 popover 提示 | false | 否 |
+| append-to-body | Boolean | 弹出的提示是否appendToBody | true | 否 |
 | status | String | 状态，可选值（loading/info/success/error） | - | 否 |
 | message | String | 提示的内容，可为空字符串，必选组合参数 status，可选组合参数 icon-inside, message-placement | - | 否 |
 | message-placement | String | 提示内容的位置，必选组合参数 message，可选值 top-end，right-start | top-end | 否 |

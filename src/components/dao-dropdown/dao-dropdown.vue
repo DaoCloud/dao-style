@@ -3,25 +3,25 @@
     <div :class="[prefixCls + '-rel']" ref="reference" @click="handleClick">
       <slot></slot>
     </div>
-    <!-- <transition :name="transition"> -->
-    <dao-drop v-show="currentVisible" :placement="placement" :append-to-body="appendToBody" ref="drop">
-      <slot name="list"></slot>
-    </dao-drop>
-    <!-- </transition> -->
+    <div :class="[prefixCls + '-popper', 'dao-select-dropdown']" v-show="currentVisible" ref="popper">
+      <div :class="[prefixCls + '-inner']">
+        <slot name="list"></slot>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-  import daoDrop from '../dao-select/dropdown.vue';
   import clickoutside from '../../directives/clickoutside';
   import { oneOf } from '../../utils/assist';
+  import Popper from '../base/popper';
 
   const prefixCls = 'dao-dropdown';
 
   export default {
     name: 'Dropdown',
     directives: { clickoutside },
-    components: { daoDrop },
+    mixins: [Popper],
     props: {
       trigger: {
         validator(value) {
@@ -29,44 +29,12 @@
         },
         default: 'hover'
       },
-      placement: {
-        validator(value) {
-          return oneOf(value, ['top', 'top-start', 'top-end', 'bottom', 'bottom-start', 'bottom-end', 'left', 'left-start', 'left-end', 'right', 'right-start', 'right-end']);
-        },
-        default: 'bottom'
-      },
-      visible: {
-        type: Boolean,
-        default: false
-      },
-      appendToBody: {
-        type: Boolean,
-        default: true,
-      },
     },
-    // computed: {
-    //   transition() {
-    //     return ['bottom-start', 'bottom', 'bottom-end'].indexOf(this.placement) > -1 ? 'slide-up' : 'fade';
-    //   }
-    // },
     data() {
       return {
         prefixCls,
         currentVisible: this.visible,
       };
-    },
-    watch: {
-      visible(val) {
-        this.currentVisible = val;
-      },
-      currentVisible(val) {
-        if (val) {
-          this.$refs.drop.update();
-        } else {
-          this.$refs.drop.destroy();
-        }
-        this.$emit('on-visible-change', val);
-      }
     },
     methods: {
       handleClick() {

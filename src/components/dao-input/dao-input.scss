@@ -223,72 +223,6 @@
       .success-icon svg {
         fill: $input-success-color;
       }
-      .dao-popover:not(.hide) {
-        .dao-popover-popper {
-          // 将 display 设置为 table 可解决因为中英文空格、标点符号使得一句话换行问题。
-          // 是受到了外层样式是 flex 布局的影响
-          display: table!important;
-          // 为了解决在 editable-table 中 input with popover 时，popover 多了边框的问题
-          border-collapse: collapse;
-          .dao-popover-inner {
-            color: $white;
-          }
-        }
-      }
-      .dao-popover.info {
-        & .dao-popover-inner {
-          background-color: $input-info-color;
-        }
-        .dao-popover-arrow {
-          &:before {
-            background-color: $input-info-color;
-          }
-          & .pt-popover-arrow-border,
-          & .pt-popover-arrow-fill {
-            fill: $input-info-color;
-          }
-        }
-      }
-      .dao-popover.error {
-        & .dao-popover-inner {
-          background-color: $input-error-color;
-        }
-        .dao-popover-arrow {
-          &:before {
-            background-color: $input-error-color;
-          }
-          & .pt-popover-arrow-border,
-          & .pt-popover-arrow-fill {
-            fill: $input-error-color;
-          }
-        }
-      }
-      .dao-popover.success {
-        & .dao-popover-inner {
-          background-color: $input-success-color;
-        }
-        .dao-popover-arrow {
-          &:before {
-            background-color: $input-success-color;
-          }
-          & .pt-popover-arrow-border,
-          & .pt-popover-arrow-fill {
-            fill: $input-success-color;
-          }
-        }
-      }
-    }
-    .dao-popover-popper[x-placement='top-end'] {
-      transform: translateY(12px);
-      .dao-popover-arrow {
-        right: 1px!important;
-      }
-    }
-    .dao-popover-popper[x-placement='right-start'] {
-      transform: translateX(2px);
-      .dao-popover-arrow {
-        top: 1px!important;
-      }
     }
     &.dao-input-group {
       width: $input-width;
@@ -434,5 +368,79 @@ textarea#{$dao-control-name} {
   100% {
     -webkit-transform: rotate(359deg);
     transform: rotate(359deg);
+  }
+}
+
+// TODO
+// 因为appendToBody，此处把样式单独抽离出来了，很不优雅，未来需要还原回去。
+
+.dao-input-container .icon-inside .dao-popover:not(.hide) .dao-popover-popper,
+.dao-popover-popper:not(.hide).append-to-body.dao-input-popover {
+  // 将 display 设置为 table 可解决因为中英文空格、标点符号使得一句话换行问题。
+  // 是受到了外层样式是 flex 布局的影响
+  display: table!important;
+  // 为了解决在 editable-table 中 input with popover 时，popover 多了边框的问题
+  border-collapse: collapse;
+  .dao-popover-inner {
+    color: $white;
+  }
+}
+.dao-input-container .icon-inside .dao-popover.info,
+.dao-popover-popper.info.append-to-body.dao-input-popover {
+  & .dao-popover-inner {
+    background-color: $input-info-color;
+  }
+  .dao-popover-arrow {
+    &:before {
+      background-color: $input-info-color;
+    }
+    & .pt-popover-arrow-border,
+    & .pt-popover-arrow-fill {
+      fill: $input-info-color;
+    }
+  }
+}
+.dao-input-container .icon-inside .dao-popover.error,
+.dao-popover-popper.error.append-to-body.dao-input-popover {
+  & .dao-popover-inner {
+    background-color: $input-error-color;
+  }
+  .dao-popover-arrow {
+    &:before {
+      background-color: $input-error-color;
+    }
+    & .pt-popover-arrow-border,
+    & .pt-popover-arrow-fill {
+      fill: $input-error-color;
+    }
+  }
+}
+.dao-input-container .icon-inside .dao-popover.success,
+.dao-popover-popper.success.append-to-body.dao-input-popover {
+  & .dao-popover-inner {
+    background-color: $input-success-color;
+  }
+  .dao-popover-arrow {
+    &:before {
+      background-color: $input-success-color;
+    }
+    & .pt-popover-arrow-border,
+    & .pt-popover-arrow-fill {
+      fill: $input-success-color;
+    }
+  }
+}
+.dao-input-container .dao-popover-popper[x-placement='top-end'],
+.dao-popover-popper[x-placement='top-end'].append-to-body.dao-input-popover {
+  transform: translateY(12px);
+  .dao-popover-arrow {
+    right: 1px!important;
+  }
+}
+.dao-input-container .dao-popover-popper[x-placement='right-start'],
+.dao-popover-popper[x-placement='right-start'].append-to-body.dao-input-popover {
+  transform: translateX(2px);
+  .dao-popover-arrow {
+    top: 1px!important;
   }
 }
