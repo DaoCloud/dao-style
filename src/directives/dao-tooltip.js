@@ -49,14 +49,7 @@ function handleClosePopper(e) {
 export default {
   name: 'Tooltip',
   bind(el, binding, vnode) {
-    const { start = false, end = false } = binding.modifiers;
-    let modifier = '';
-    if (start) {
-      modifier = '-start';
-    } else if (end) {
-      modifier = '-end';
-    }
-    const placement = (binding.arg || 'auto') + modifier;
+    const placement = binding.arg || 'auto';
 
     // make wrapper
     const $popper = document.createElement('div');
@@ -78,7 +71,11 @@ export default {
     $content.appendChild($inner);
     $popper.appendChild($content);
 
-    el.appendChild($popper);
+    if (binding.value.appendToBody === 'false') {
+      el.appendChild($popper);
+    } else {
+      document.body.appendChild($popper);
+    }
 
     const options = Object.assign({}, binding.value, { placement });
 
@@ -91,11 +88,15 @@ export default {
     el.addEventListener('mouseenter', handleShowPopper);
     el.addEventListener('mouseleave', handleClosePopper);
   },
-  unbind(el, biding, vnode, oldVnode) {
+  unbind(el, binding, vnode, oldVnode) {
     el.removeEventListener('mouseenter', handleShowPopper);
     el.removeEventListener('mouseleave', handleClosePopper);
     el.popper.destroy();
-    el.removeChild(el.popper.popper);
+    if (binding.value.appendToBody === 'false') {
+      el.removeChild(el.popper.popper);
+    } else {
+      document.body.removeChild(el.popper.popper);
+    }
   },
   componentUpdated(el, binding, vnode, oldVnode) {
     setProperties(el, binding);

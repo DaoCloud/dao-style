@@ -32,6 +32,10 @@ export default {
         };
       }
     },
+    appendToBody: {
+      type: Boolean,
+      default: true,
+    },
     // visible: {
     //   type: Boolean,
     //   default: false
@@ -91,8 +95,10 @@ export default {
     },
     doDestroy() {
       if (this.visible) return;
-      this.popperJS.destroy();
-      this.popperJS = null;
+      if (this.popperJS) {
+        this.popperJS.destroy();
+        this.popperJS = null;
+      }
     },
     destroyPopper() {
       if (this.popperJS) {
@@ -104,11 +110,19 @@ export default {
       let placement = popper.popper.getAttribute('x-placement').split('-')[0];
       let origin = placementMap[placement];
       popper.popper.style.transformOrigin = ['top', 'bottom'].indexOf(placement) > -1 ? `center ${ origin }` : `${ origin } center`;
-    }
+    },
   },
   beforeDestroy() {
+    if (this.appendToBody) {
+      document.body.removeChild(this.popper || this.$refs.popper);
+    }
     if (this.popperJS) {
       this.popperJS.destroy();
     }
-  }
+  },
+  mounted() {
+    if (this.appendToBody) {
+      document.body.appendChild(this.popper || this.$refs.popper);
+    }
+  },
 };
