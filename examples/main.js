@@ -26,6 +26,7 @@ import selectAll from './routers/select-all.vue';
 import settingLayout from './routers/setting-layout.vue';
 import steps from './routers/steps.vue';
 import svg from './routers/svg.vue';
+import switchExample from './routers/switch.vue';
 import tab from './routers/tab.vue';
 import table from './routers/table.vue';
 import tooltip from './routers/tooltip.vue';
@@ -93,6 +94,9 @@ const router = new VueRouter({
   }, {
     path: '/svg',
     component: svg,
+  }, {
+    path: '/switch',
+    component: switchExample,
   }, {
     path: '/tab',
     component: tab,
