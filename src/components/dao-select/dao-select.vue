@@ -146,13 +146,15 @@
     data() {
       return {
         options: [],
-        isLoading: this.loading,
         menuVisible: false,
         asyncComplete: false,
         filter: '',
       };
     },
     computed: {
+      isLoading() {
+        return this.loading;
+      },
       isDisabled() {
         return this.disabled || this.isLoading;
       },
