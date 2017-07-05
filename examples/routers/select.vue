@@ -79,12 +79,13 @@
     <h1>select loading</h1>
     <br><hr><br>
 
-    <dao-select v-model="loading" placeholder="加载中的下拉框" :loading="true" loading-text="加载中的下拉框">
+    <dao-select v-model="loading" placeholder="加载中的下拉框" :loading="loadingState" loading-text="加载中的下拉框">
       <dao-option-group>
         <dao-option :value="1" label="Hello"></dao-option>
       </dao-option-group>
     </dao-select>
-
+    <br>
+    <button type="button" class="dao-btn blue dao-select-btn" @click="loadingState = !loadingState" >切换加载状态</button>
     <br>
     <h1>select async</h1>
     <br><hr><br>
@@ -106,6 +107,7 @@
         disabled: undefined,
         tab: undefined,
         loading: undefined,
+        loadingState: true,
         asynchronous: 2,
         options: [],
         items: [{

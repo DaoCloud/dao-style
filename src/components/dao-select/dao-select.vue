@@ -107,6 +107,10 @@
         // 当 v-model 绑定的 value 值变化时更新一下 option 的状态
         this.updateOptionStatus(val);
       },
+      // 控制组件加载状态
+      loading(val) {
+        this.isLoading = val;
+      },
     },
     beforeCreate() {
       // select 初始化，获取所有的 options 的 value 和 节点
