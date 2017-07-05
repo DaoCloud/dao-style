@@ -64,3 +64,9 @@ export defualt {
 | v-model     | String | 绑定的值                                     | -    | 是    |
 | placeholder | String | 占位符                                      | -    | 否    |
 | options     | Array  | 备选的选项。其中可以是字符串，也可以是 text/value 形式的对象。其中，`text` 的值是用来展示和筛选的，`value` 的值是用来绑定到 model 上的。也就是说，`value` 对用户来说是感知不到的。如果数组里的元素是字符串的话，那么 text 和 value 就是一样的。options 还支持异步修改。 | -    | 是    |
+
+## 事件
+
+| 事件名称 | 说明 | 回调参数 |
+|:-------:|:---:|:-------:|
+| change | 在 AutoComplete 值改变时触发 | (value: String) |

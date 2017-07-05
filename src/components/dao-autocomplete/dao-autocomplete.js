@@ -65,6 +65,7 @@ export default {
     // 更新外部 v-model 所绑定的值
     updateValue(value) {
       this.$emit('input', value);
+      this.$emit('change', value);
     },
     // 当从组件外部改变 v-model 时，同步组件内部的 inputText
     syncValue() {
