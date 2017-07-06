@@ -15,7 +15,7 @@
     <br><br>
     <h2>small select</h2>
     <br><hr style="border-style: dashed;"><br>
-    <dao-select v-model="small" placeholder="一个小型下拉框" size="sm">
+    <dao-select v-model="small" placeholder="一个小型下拉框" size="sm" :append-to-body="false">
       <dao-option :value="1">option1</dao-option>
       <dao-option :value="2">option2</dao-option>
       <dao-option :value="3">option3</dao-option>

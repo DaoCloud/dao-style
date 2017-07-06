@@ -1,85 +1,83 @@
-/**
- * https://github.com/freeze-component/vue-popper
- * */
 import Popper from 'popper.js';
+import { getStyle } from '../../utils/assist';
+
+const dropdownMargin = 8;
 
 export default {
   props: {
     placement: {
       type: String,
-      default: 'bottom'
+      default: 'bottom',
     },
     boundariesPadding: {
       type: Number,
-      default: 5
+      default: 5,
     },
     reference: Object,
     popper: Object,
     offset: {
-      default: 0
-    },
-    value: {
-      type: Boolean,
-      default: false
+      default: 0,
     },
     transition: String,
-    options: {
+    popperOptions: {
       type: Object,
-      default () {
+      default() {
         return {
           gpuAcceleration: false,
-          boundariesElement: 'body'  // todo 暂时注释，发现在 vue 2 里方向暂时可以自动识别了，待验证(还是有问题的)
+          // boundariesElement: 'body',  // todo 暂时注释，发现在 vue 2 里方向暂时可以自动识别了，待验证(还是有问题的)
+          modifiers: {
+            preventOverflow: {
+              enabled: false,
+            },
+          },
         };
-      }
+      },
     },
     appendToBody: {
       type: Boolean,
       default: true,
     },
     popperCls: Array,
-    // visible: {
-    //   type: Boolean,
-    //   default: false
-    // }
   },
-  data () {
+  data() {
     return {
-      visible: this.value,
+      visible: false,
+      initClass: '',
     };
   },
   computed: {
     $popper() {
-      return this.popper || this.$refs.popper;
+      const res = this.popper || this.$refs.popper;
+      return '$el' in res ? res.$el : res; // 判断这个popper是纯dom还是vue组件
     },
     $reference() {
-      return this.reference || this.$refs.reference;
+      const res = this.reference || this.$refs.reference;
+      return '$el' in res ? res.$el : res;
     },
   },
+  // TODO 几所所有组件都是使用自己的变量来控制popper的显示，并没有复用这个visible
   watch: {
-    value: {
-      immediate: true,
-      handler(val) {
-        this.visible = val;
-      }
-    },
     visible(val) {
+      this.updatePopper();
       if (val) {
-        this.updatePopper();
+        this.$nextTick(() => this.updatePopper());
       } else {
-        this.destroyPopper();
-        this.$emit('on-popper-hide');
+        // this.doDestroy();
+        this.$emit('popper-hide');
       }
-      this.$emit('on-visible-change', val);
-    }
+      this.$emit('visible-change', val);
+    },
+    popperCls(val) {
+      this.$popper.className = `${this.initClass} append-to-body ${this.popperCls ? this.popperCls.join(' ') : ''}`;
+    },
   },
   methods: {
     createPopper() {
-      debugger;
-      if (!/^(top|bottom|left|right)(-start|-end)?$/g.test(this.placement)) {
+      if (!/^(top|bottom|left|right|auto)(-start|-end)?$/g.test(this.placement)) {
         return;
       }
 
-      const options = this.options;
+      const options = this.popperOptions;
       const popper = this.$popper;
       const reference = this.$reference;
 
@@ -96,9 +94,32 @@ export default {
         this.$nextTick(this.updatePopper);
         this.$emit('created', this);
       };
-      console.log(reference);
+      options.onUpdate = (data) => {
+        if (['DaoSelect', 'DaoAutocomplete'].includes(this.$options.name)) { // 这些组件需要单独设置宽度
+          data.instance.popper.style.width = getStyle(reference, 'width');
+        }
+      };
+
+      if (['DaoSelect', 'DaoAutocomplete'].includes(this.$options.name)) { // 这些组件需要单独设置宽度
+        if (options.placement === 'bottom') {
+          options.placement = 'bottom-start';
+        } else if (options.placement === 'top') {
+          options.placement = 'top-start';
+        }
+        popper.style.width = getStyle(reference, 'width');
+        if (this.placement.indexOf('bottom') > -1) {
+          popper.style['margin-top'] = `${dropdownMargin}px`;
+        } else if (this.placement.indexOf('top') > -1) {
+          popper.style['margin-bottom'] = `${dropdownMargin}px`;
+        } else if (this.placement.indexOf('left') > -1) {
+          popper.style['margin-right'] = `${dropdownMargin}px`;
+        } else if (this.placement.indexOf('right') > -1) {
+          popper.style['margin-left'] = `${dropdownMargin}px`;
+        }
+      }
 
       this.popperJS = new Popper(reference, popper, options);
+      this.popperJS.update();
     },
     updatePopper() {
       this.popperJS ? this.popperJS.update() : this.createPopper();
@@ -116,14 +137,14 @@ export default {
       }
     },
     resetTransformOrigin(popper) {
-      let placementMap = {top: 'bottom', bottom: 'top', left: 'right', right: 'left'};
-      let placement = popper.popper.getAttribute('x-placement').split('-')[0];
-      let origin = placementMap[placement];
-      popper.popper.style.transformOrigin = ['top', 'bottom'].indexOf(placement) > -1 ? `center ${ origin }` : `${ origin } center`;
+      const placementMap = { top: 'bottom', bottom: 'top', left: 'right', right: 'left' };
+      const placement = popper.popper.getAttribute('x-placement').split('-')[0];
+      const origin = placementMap[placement];
+      popper.popper.style.transformOrigin = ['top', 'bottom'].indexOf(placement) > -1 ? `center ${origin}` : `${origin} center`;
     },
   },
   beforeDestroy() {
-    if (this.appendToBody) {
+    if (this.appendToBody && this.$popper) {
       document.body.removeChild(this.$popper);
     }
     if (this.popperJS) {
@@ -132,9 +153,17 @@ export default {
   },
   mounted() {
     this.createPopper();
-    if (this.appendToBody) {
+    this.initClass = this.$popper.className;
+    if (this.appendToBody && this.$popper) {
       document.body.appendChild(this.$popper);
-      this.$popper.className += ` append-to-body ${this.popperCls ? this.popperCls.join(' ') : ''}`;
+      this.$popper.className = `${this.initClass} append-to-body ${this.popperCls ? this.popperCls.join(' ') : ''}`;
+      if (!this.$popper.style.zIndex) {
+        this.$popper.style.zIndex = 9998; // TODO 这里是为了防止被dialog遮住，但是写死9998也会有一些问题。
+      }
     }
+  },
+  created() {
+    this.$on('update-popper', this.updatePopper);
+    this.$on('destroy-popper', this.doDestroy);
   },
 };

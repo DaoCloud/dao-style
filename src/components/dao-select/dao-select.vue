@@ -1,7 +1,7 @@
 <template>
   <div :class="['dao-select', {'sm-select': size === 'sm'}]" v-clickoutside:dao-select-dropdown="closeMenu">
-    <div :class="['dao-select-main', {'disabled': isDisabled, 'with-btn': withBtn}]" @click="handleClick">
-      <div :class="['dao-select-switch', {'open': menuVisible}]">
+    <div :class="['dao-select-main', 'dao-select-rel', {'disabled': isDisabled, 'with-btn': withBtn}]" @click="handleClick" ref="reference">
+      <div :class="['dao-select-switch', {'open': visible}]">
         <div class="dao-select-switch-text">
           <div v-show="!selectedText && !isLoading" class="placeholder">{{ placeholder }}</div>
           <div v-show="selectedText && !isLoading" class="selected-text">
@@ -22,29 +22,31 @@
       </div>
       <button v-if="withBtn" type="button" :class="['dao-btn', 'blue', 'dao-select-btn', {'disabled': disabled}]" @click.stop="handleBtnClick">{{ btnContent }}</button>
     </div>
-    <dao-drop :drop-class="[menuClass, {'withSearch': withSearch, 'withTab': withTab}]" v-show="menuVisible" placement="bottom" :append-to-body="optionsAppendToBody" ref="drop">
+    <div :class="[menuClass, 'dao-select-popper', 'dao-select-dropdown', {'withSearch': withSearch, 'withTab': withTab}]" v-show="visible" ref="popper">
       <div class="search-container" v-if="withSearch">
         <input class="dao-control search" type="text" :placeholder="searchPlaceholder" v-model="filter" required>
       </div>
       <div class="option-list">
         <slot></slot>
       </div>
-    </dao-drop>
+    </div>
   </div>
 </template>
 <style lang="scss">
   @import './dao-select.scss';
+  @import './dropdown.scss';
 </style>
 <script>
   import { find, findIndex } from 'lodash';
   import daoDrop from './dropdown.vue';
   import clickoutside from '../../directives/clickoutside';
   import Emitter from '../../mixins/emitter';
+  import Popper from '../base/popper';
 
   export default {
-    name: 'Select',
+    name: 'DaoSelect',
     componentName: 'Select',
-    mixins: [Emitter],
+    mixins: [Emitter, Popper],
     directives: { clickoutside },
     components: { daoDrop },
     props: {
@@ -86,19 +88,12 @@
       },
       async: Function,
       menuClass: String,
-      optionsAppendToBody: {
-        type: Boolean,
-        default: false,
-      },
       value: {},
       // 指定 select 的大小
       size: String,
     },
     watch: {
       // 控制下拉的显示和隐藏
-      menuVisible(val) {
-        this.$emit('visible-change', Boolean(val));
-      },
       // 搜索
       filter(val) {
         this.broadcast('Option', 'search', val, this.searchMethod);
@@ -151,7 +146,6 @@
       return {
         options: [],
         isLoading: this.loading,
-        menuVisible: false,
         asyncComplete: false,
         filter: '',
       };
@@ -183,7 +177,7 @@
       // 处理点击事件
       handleClick() {
         if (this.isDisabled) return;
-        if (this.async && !this.asyncComplete && !this.menuVisible) {
+        if (this.async && !this.asyncComplete && !this.visible) {
           this.handleAsync(() => {
             this.toggleMenu();
           });
@@ -222,11 +216,11 @@
       },
       // 关闭下拉框
       closeMenu() {
-        this.menuVisible = false;
+        this.visible = false;
       },
       // 切换下拉框打开/关闭
       toggleMenu() {
-        this.menuVisible = !this.menuVisible;
+        this.visible = !this.visible;
       },
       // 更新 option 状态
       updateOptionStatus(val) {

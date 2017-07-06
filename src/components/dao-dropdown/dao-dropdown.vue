@@ -3,7 +3,7 @@
     <div :class="[prefixCls + '-rel']" ref="reference" @click="handleClick">
       <slot></slot>
     </div>
-    <div :class="[prefixCls + '-popper', 'dao-select-dropdown']" v-show="currentVisible" ref="popper">
+    <div :class="[prefixCls + '-popper', 'dao-select-dropdown']" v-show="visible" ref="popper">
       <div :class="[prefixCls + '-inner']">
         <slot name="list"></slot>
       </div>
@@ -33,7 +33,6 @@
     data() {
       return {
         prefixCls,
-        currentVisible: this.visible,
       };
     },
     methods: {
@@ -42,7 +41,7 @@
         if (this.trigger !== 'click') {
           return false;
         }
-        this.currentVisible = !this.currentVisible;
+        this.visible = !this.visible;
       },
       handleMouseenter() {
         if (this.trigger === 'custom') return false;
@@ -51,7 +50,7 @@
         }
         clearTimeout(this.timeout);
         this.timeout = setTimeout(() => {
-          this.currentVisible = true;
+          this.visible = true;
         }, 250);
       },
       handleMouseleave() {
@@ -61,7 +60,7 @@
         }
         clearTimeout(this.timeout);
         this.timeout = setTimeout(() => {
-          this.currentVisible = false;
+          this.visible = false;
         }, 150);
       },
       handleClose() {
@@ -69,7 +68,7 @@
         if (this.trigger !== 'click') {
           return false;
         }
-        this.currentVisible = false;
+        this.visible = false;
       },
       hasParent() {
         const $parent = this.$parent.$parent.$parent;
@@ -90,20 +89,20 @@
         if ($parent) {
           this.$nextTick(() => {
             if (this.trigger === 'custom') return false;
-            this.currentVisible = false;
+            this.visible = false;
           });
           $parent.$emit('on-hover-click');
         } else {
           this.$nextTick(() => {
             if (this.trigger === 'custom') return false;
-            this.currentVisible = false;
+            this.visible = false;
           });
         }
       });
       this.$on('on-haschild-click', () => {
         this.$nextTick(() => {
           if (this.trigger === 'custom') return false;
-          this.currentVisible = true;
+          this.visible = true;
         });
         const $parent = this.hasParent();
         if ($parent) $parent.$emit('on-haschild-click');

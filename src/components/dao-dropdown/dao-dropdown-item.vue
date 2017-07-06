@@ -49,7 +49,7 @@
         const hasChildren = this.$parent && this.$parent.$options.name === 'Dropdown';
         if (this.isDisabled) {
           this.$nextTick(() => {
-            $parent.currentVisible = true;
+            $parent.visible = true;
           });
           return;
         } else if (hasChildren) {

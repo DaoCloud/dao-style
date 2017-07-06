@@ -1,11 +1,16 @@
 import Popper from 'popper.js';
+import { getStyle } from '../utils/assist';
 
 const prefixCls = 'dao-tooltip';
 
 // 通过指令参数设置popper的属性
 function setProperties(el, binding) {
-  el.popper._always = binding.modifiers.always;
-  el.popper._controlled = binding.modifiers.controlled;
+  if (binding.modifiers.always) {
+    el.popper._always = binding.modifiers.always;
+  }
+  if (binding.modifiers.controlled) {
+    el.popper._controlled = binding.modifiers.controlled;
+  }
   if (typeof binding.value === 'object') {
     el.popper._content = binding.value.content || '';
     el.popper._delay = binding.value.delay;
@@ -76,6 +81,7 @@ export default {
     } else {
       document.body.appendChild($popper);
       $popper.className += ` append-to-body ${binding.value.popperCls ? binding.value.popperCls.join(' ') : ''}`;
+      $popper.style.zIndex = 9998; // TODO 这里是为了防止被dialog遮住，但是写死9998也会有一些问题。
     }
 
     const options = Object.assign({}, binding.value, { placement });
