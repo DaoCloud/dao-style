@@ -3,7 +3,7 @@
     <section>
         <h1>基础版</h1>
         <span>value: {{model1}}</span>
-        <dao-autocomplete :options="options1" v-model="model1" placeholder="请输入文本"></dao-autocomplete>
+        <dao-autocomplete :options="options1" v-model="model1" @change="onChange" placeholder="请输入文本"></dao-autocomplete>
     </section>
 
     <section>
@@ -62,6 +62,11 @@ export default {
         this.model3 = 'cherry';
       }, 0);
     }, 0);
+  },
+  methods: {
+    onChange(val) {
+      console.log('数据变了', val);
+    },
   },
 };
 </script>
