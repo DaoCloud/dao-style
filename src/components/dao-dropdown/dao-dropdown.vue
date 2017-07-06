@@ -1,5 +1,5 @@
 <template>
-  <div :class="[prefixCls, {'dao-dropdown-is-open': currentVisible}]" v-clickoutside:dao-select-dropdown="handleClose" @mouseenter="handleMouseenter" @mouseleave="handleMouseleave">
+  <div :class="[prefixCls, {'dao-dropdown-is-open': visible}]" v-clickoutside:dao-select-dropdown="handleClose" @mouseenter="handleMouseenter" @mouseleave="handleMouseleave">
     <div :class="[prefixCls + '-rel']" ref="reference" @click="handleClick">
       <slot></slot>
     </div>
@@ -107,7 +107,17 @@
         const $parent = this.hasParent();
         if ($parent) $parent.$emit('on-haschild-click');
       });
-    }
+      if (this.appendToBody) {
+        this.$refs.popper.addEventListener('click', (e) => {
+          if (e.target.className.includes('dao-dropdown-item')) {
+            this.$nextTick(() => {
+              if (this.trigger === 'custom') return false;
+              this.visible = false;
+            });
+          }
+        });
+      }
+    },
   };
 </script>
 

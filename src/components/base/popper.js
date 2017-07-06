@@ -29,6 +29,9 @@ export default {
             preventOverflow: {
               enabled: false,
             },
+            hide: {
+              enabled: false,
+            },
           },
         };
       },
@@ -48,11 +51,11 @@ export default {
   computed: {
     $popper() {
       const res = this.popper || this.$refs.popper;
-      return '$el' in res ? res.$el : res; // 判断这个popper是纯dom还是vue组件
+      return res && '$el' in res ? res.$el : res; // 判断这个popper是纯dom还是vue组件
     },
     $reference() {
       const res = this.reference || this.$refs.reference;
-      return '$el' in res ? res.$el : res;
+      return res && '$el' in res ? res.$el : res;
     },
   },
   // TODO 几所所有组件都是使用自己的变量来控制popper的显示，并没有复用这个visible
