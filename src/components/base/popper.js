@@ -29,6 +29,9 @@ export default {
             preventOverflow: {
               enabled: false,
             },
+            hide: {
+              enabled: false,
+            },
           },
         };
       },
