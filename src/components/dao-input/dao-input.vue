@@ -28,6 +28,8 @@
         }"
         :placement="iconInsideMessagePlacement"
         :always="iconInside"
+        :popper-cls="popperCls"
+        :append-to-body="appendToBody"
         :disabled="!iconInside || !messageEnabled">
         <input
           v-bind="$props"
@@ -124,6 +126,10 @@
       max: Number,
       min: Number,
       step: Number,
+      appendToBody: {
+        type: Boolean,
+        default: true,
+      },
     },
     computed: {
       isRequired() {
@@ -137,6 +143,13 @@
           return this.messagePlacement;
         }
         return 'top-end';
+      },
+      popperCls() {
+        return [
+          this.iconInside && this.status,
+          (!this.iconInside || !this.messageEnabled) && 'hide',
+          'dao-input-popover',
+        ].filter(i => !!i);
       },
     },
     watch: {

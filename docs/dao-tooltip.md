@@ -10,7 +10,8 @@ tooltip 是一个提示文字的组件。代码请参照目录：[src/components
 <dao-tooltip
   [content="content"]
   [placement="placement"]
-  [delay="delay"]>
+  [delay="delay"]
+  [append-to-body="appendToBody"]>
   <div slot="content"></div>
 </dao-tooltip>
 ```
@@ -24,6 +25,7 @@ tooltip 是一个提示文字的组件。代码请参照目录：[src/components
 | content | String | 提示文字 |-|是|
 | placement | String | 提示框出现位置，可选值 ```top, top-start, top-end, bottom, bottom-start, bottom-end, left, left-start, left-end, right, right-start, right-end```。 |bottom|否|
 | delay | Number | 延时多长时间显示提示文字 |0|否|
+| appendToBody | Boolean | 是否将元素添加到body |true|否|
 
 ### 组件 Slot 接受的参数
 

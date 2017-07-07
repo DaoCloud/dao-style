@@ -10,7 +10,8 @@ popover 是一个显示提示框的组件。代码请参照目录：[src/compone
 <dao-popover
   trigger="trigger"
   [content="content"]
-  [placement="placement"]>
+  [placement="placement"]
+  [append-to-body="appendToBody"]>
   <div slot="content"></div>
 </dao-popover>
 ```
@@ -26,6 +27,7 @@ popover 是一个显示提示框的组件。代码请参照目录：[src/compone
 | placement | String | 提示框出现位置，可选值 ```top, top-start, top-end, bottom, bottom-start, bottom-end, left, left-start, left-end, right, right-start, right-end```。 |bottom|否|
 | always | Boolean | 是否强制显示 |false|否|
 | disabled | Boolean | 是否不可用 |false|否|
+| appendToBody | Boolean | 是否将元素添加到body |true|否|
 
 ### 组件 Slot 接受的参数
 
