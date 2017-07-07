@@ -53,6 +53,10 @@ export default {
       // 只在刚加载进数据的时候执行一次
       this.activeName = value[0].heading;
     },
+    activeName(newV, oldV) {
+      if (newV === oldV) return;
+      this.$emit('changeTab', newV);
+    },
   },
   components: {
     DaoTabNav,

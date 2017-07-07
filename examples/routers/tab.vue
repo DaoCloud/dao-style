@@ -2,7 +2,7 @@
   <div>
     <div class="demo-block">
       <h2 class="demo-block__title"> Demo 1 </h2>
-      <dao-tab direction="right" >
+      <dao-tab direction="right" @changeTab="onHandleChangeTab">
         <dao-tab-item heading="标题1">
           <p class="demo-tab-wrap first">
             Some Tab Content
@@ -81,6 +81,11 @@
           },
         ],
       }
-    }
+    },
+    methods: {
+      onHandleChangeTab(active) {
+        console.log(`changeTab to ${active}`);
+      },
+    },
   };
 </script>
