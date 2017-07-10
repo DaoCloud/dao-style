@@ -128,6 +128,7 @@ export default {
       this.popperJS.update();
       this.$popper.popper = this.popperJS;
       this.$popper.reference = this.$reference;
+      this.$reference.popper = this.$popper;
     },
     updatePopper() {
       this.popperJS ? this.popperJS.update() : this.createPopper();

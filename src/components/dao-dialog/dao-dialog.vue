@@ -51,6 +51,7 @@
   </transition>
 </template>
 <script>
+import _ from 'lodash';
 import daoDialogHeader from './dao-dialog-header/dao-dialog-header';
 import { getStyle } from '../../utils/assist';
 
@@ -85,6 +86,7 @@ export default {
       stepItemWidth: -1,
       isNeedScroll: false,
       poppers: [],
+      throttleScrollHandler: () => {},
     };
   },
   computed: {
@@ -199,14 +201,32 @@ export default {
       }
       this.activeStep += 1;
     },
+    scrollHandler() {
+      const references = Array.from(this.$refs.body.querySelectorAll('[class$=-rel]'));
+      const dialogRect = this.$refs.body.getBoundingClientRect();
+      references.forEach((r) => {
+        const rect = r.getBoundingClientRect();
+        if (
+          rect.bottom < dialogRect.top ||
+          rect.top > dialogRect.bottom
+        ) {
+          r.popper.style.visibility = 'hidden';
+        } else {
+          r.popper.style.visibility = '';
+        }
+      });
+    },
   },
   mounted() {
     this.activeStep = (this.step !== this.activeStep && this.step >= 0 &&
       this.steps.length >= this.step + 1) ? this.step : 0;
+    this.throttleScrollHandler = _.throttle(this.scrollHandler, 200);
+    this.$refs.body.addEventListener('scroll', this.throttleScrollHandler);
   },
   beforeDestroy() {
     document.removeEventListener('keydown', this.EscClose);
     document.body.style.overflowY = '';
+    this.$refs.body.removeEventListener('scroll', this.throttleScrollHandler);
   },
   watch: {
     visible(newVal, oldVal) {
