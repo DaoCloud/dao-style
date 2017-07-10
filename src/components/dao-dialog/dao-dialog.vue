@@ -84,6 +84,7 @@ export default {
       activeStep: -1,
       stepItemWidth: -1,
       isNeedScroll: false,
+      poppers: [],
     };
   },
   computed: {
@@ -95,6 +96,22 @@ export default {
     },
     styleBody() {
       if (this.config.type === 'multiStep') {
+        this.poppers.forEach(popper => {
+          if (this.$refs.body.contains(popper.reference)) {
+            popper.style.visibility = 'hidden';
+          }
+        });
+        this.$nextTick(() => {
+          const that = this;
+          setTimeout(() => {
+            that.poppers.forEach((popper) => {
+              if ('popper' in popper) {
+                popper.popper.update();
+              }
+              popper.style.visibility = '';
+            });
+          }, 300);
+        });
         return {
           width: `${this.steps.length * 100}%`,
           transform: `translateX(-${(this.activeStep) / this.steps.length * 100}%)`,
@@ -193,10 +210,19 @@ export default {
   },
   watch: {
     visible(newVal, oldVal) {
+      this.poppers = Array.from(document.querySelectorAll('.append-to-body'));
       if (newVal) {
         this.$emit('dao-dialog-open');
+        this.poppers.forEach((popper) => {
+          popper.style.visibility = '';
+        });
       } else {
         this.$emit('dao-dialog-close');
+        this.poppers.forEach((popper) => {
+          if (this.$refs.body.contains(popper.reference)) {
+            popper.style.visibility = 'hidden';
+          }
+        });
       }
     },
     // multiStep

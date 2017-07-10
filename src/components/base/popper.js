@@ -72,6 +72,9 @@ export default {
     },
     popperCls(val) {
       this.$popper.className = `${this.initClass} append-to-body ${this.popperCls ? this.popperCls.join(' ') : ''}`;
+      this.$nextTick(() => {
+        this.updatePopper();
+      });
     },
   },
   methods: {
@@ -123,6 +126,8 @@ export default {
 
       this.popperJS = new Popper(reference, popper, options);
       this.popperJS.update();
+      this.$popper.popper = this.popperJS;
+      this.$popper.reference = this.$reference;
     },
     updatePopper() {
       this.popperJS ? this.popperJS.update() : this.createPopper();
