@@ -98,10 +98,13 @@ export default {
     },
     styleBody() {
       if (this.config.type === 'multiStep') {
-        this.poppers.forEach(popper => {
-          if (this.$refs.body.contains(popper.reference)) {
-            popper.style.visibility = 'hidden';
-          }
+        this.$nextTick(() => {
+          this.poppers = Array.from(document.querySelectorAll('.append-to-body'));
+          this.poppers.forEach(popper => {
+            if (this.$refs.body.contains(popper.reference)) {
+              popper.style.visibility = 'hidden';
+            }
+          });
         });
         this.$nextTick(() => {
           const that = this;
@@ -112,7 +115,7 @@ export default {
               }
               popper.style.visibility = '';
             });
-          }, 300);
+          }, 350);
         });
         return {
           width: `${this.steps.length * 100}%`,
@@ -205,6 +208,7 @@ export default {
       const references = Array.from(this.$refs.body.querySelectorAll('[class$=-rel]'));
       const dialogRect = this.$refs.body.getBoundingClientRect();
       references.forEach((r) => {
+        if (!r.popper) return;
         const rect = r.getBoundingClientRect();
         if (
           rect.bottom < dialogRect.top ||

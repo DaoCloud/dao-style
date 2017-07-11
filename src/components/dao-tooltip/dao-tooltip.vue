@@ -52,6 +52,23 @@
         prefixCls,
       };
     },
+    computed: {
+      realVisible() {
+        return !this.disabled && (this.visible || this.always);
+      },
+    },
+    watch: {
+      realVisible(val) {
+        this.updatePopper();
+        if (val) {
+          this.$nextTick(() => this.updatePopper());
+        } else {
+          this.doDestroy();
+          this.$emit('popper-hide');
+        }
+        this.$emit('visible-change', val);
+      },
+    },
     methods: {
       handleShowPopper() {
         this.timeout = setTimeout(() => {

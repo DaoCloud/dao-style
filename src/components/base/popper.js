@@ -61,20 +61,26 @@ export default {
   // TODO 几所所有组件都是使用自己的变量来控制popper的显示，并没有复用这个visible
   watch: {
     visible(val) {
+      if (['Popover', 'Tooltip'].includes(this.$options.name)) return;
       this.updatePopper();
       if (val) {
         this.$nextTick(() => this.updatePopper());
       } else {
-        // this.doDestroy();
+        this.doDestroy();
         this.$emit('popper-hide');
       }
       this.$emit('visible-change', val);
     },
     popperCls(val) {
       this.$popper.className = `${this.initClass} append-to-body ${this.popperCls ? this.popperCls.join(' ') : ''}`;
-      this.$nextTick(() => {
-        this.updatePopper();
-      });
+      if (this.popperCls && this.popperCls.includes('hide')) {
+        this.doDestroy();
+        this.$emit('popper-hide');
+      } else {
+        this.$nextTick(() => {
+          this.updatePopper();
+        });
+      }
     },
   },
   methods: {
@@ -129,12 +135,24 @@ export default {
       this.$popper.popper = this.popperJS;
       this.$popper.reference = this.$reference;
       this.$reference.popper = this.$popper;
+
+      if (this.appendToBody && this.$popper) {
+        document.body.appendChild(this.$popper);
+        this.$popper.className = `${this.initClass} append-to-body ${this.popperCls ? this.popperCls.join(' ') : ''}`;
+        if (!this.$popper.style.zIndex) {
+          this.$popper.style.zIndex = 9998; // TODO 这里是为了防止被dialog遮住，但是写死9998也会有一些问题。
+        }
+      }
     },
     updatePopper() {
+      if (this.popperCls && this.popperCls.includes('hide')) return;
       this.popperJS ? this.popperJS.update() : this.createPopper();
     },
     doDestroy() {
       if (this.visible) return;
+      if (this.appendToBody && this.$popper && this.$popper.parentNode === document.body) {
+        document.body.removeChild(this.$popper);
+      }
       if (this.popperJS) {
         this.popperJS.destroy();
         this.popperJS = null;
@@ -153,7 +171,7 @@ export default {
     },
   },
   beforeDestroy() {
-    if (this.appendToBody && this.$popper) {
+    if (this.appendToBody && this.$popper && this.$popper.parentNode === document.body) {
       document.body.removeChild(this.$popper);
     }
     if (this.popperJS) {
@@ -161,15 +179,8 @@ export default {
     }
   },
   mounted() {
-    this.createPopper();
+    // this.createPopper();
     this.initClass = this.$popper.className;
-    if (this.appendToBody && this.$popper) {
-      document.body.appendChild(this.$popper);
-      this.$popper.className = `${this.initClass} append-to-body ${this.popperCls ? this.popperCls.join(' ') : ''}`;
-      if (!this.$popper.style.zIndex) {
-        this.$popper.style.zIndex = 9998; // TODO 这里是为了防止被dialog遮住，但是写死9998也会有一些问题。
-      }
-    }
   },
   created() {
     this.$on('update-popper', this.updatePopper);

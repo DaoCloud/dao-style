@@ -3,7 +3,7 @@
     <div :class="[prefixCls + '-rel']" ref="reference" @click="handleClick" @mousedown="handleFocus(false)" @mouseup="handleBlur(false)">
       <slot></slot>
     </div>
-    <div :class="[prefixCls + '-popper']" ref="popper" v-show="!disabled && (visible || always) && ($slots.content || content)">
+    <div :class="[prefixCls + '-popper']" ref="popper" v-show="realVisible">
       <div :class="[prefixCls + '-arrow']">
         <svg viewBox="0 0 30 30">
           <path class="pt-popover-arrow-border" d="M8.11 6.302c1.015-.936 1.887-2.922 1.887-4.297v26c0-1.378-.868-3.357-1.888-4.297L.925 17.09c-1.237-1.14-1.233-3.034 0-4.17L8.11 6.302z" fill-opacity="0.1"></path>
@@ -56,6 +56,7 @@
       return {
         prefixCls,
         isInput: false,
+        visible: false,
       };
     },
     watch: {
@@ -63,6 +64,21 @@
         if (this.popperJS) {
           this.popperJS.update();
         }
+      },
+      realVisible(val) {
+        this.updatePopper();
+        if (val) {
+          this.$nextTick(() => this.updatePopper());
+        } else {
+          this.doDestroy();
+          this.$emit('popper-hide');
+        }
+        this.$emit('visible-change', val);
+      },
+    },
+    computed: {
+      realVisible() {
+        return !this.disabled && (this.visible || this.always) && (this.$slots.content || this.content);
       },
     },
     created() {
@@ -122,6 +138,7 @@
           this.isInput = true;
         }
       }
+      if (this.realVisible) this.updatePopper();
     },
     beforeDestroy() {
       const $children = this.getInputChildren();
