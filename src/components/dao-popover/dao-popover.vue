@@ -1,5 +1,5 @@
 <template>
-  <div :class="[prefixCls]" @mouseenter="handleMouseenter" @mouseleave="handleMouseleave" v-clickoutside="handleClose">
+  <div :class="[prefixCls]" @mouseenter="handleMouseenter" @mouseleave="handleMouseleave" v-clickoutside:dao-popover-popper="handleClose">
     <div :class="[prefixCls + '-rel']" ref="reference" @click="handleClick" @mousedown="handleFocus(false)" @mouseup="handleBlur(false)">
       <slot></slot>
     </div>
