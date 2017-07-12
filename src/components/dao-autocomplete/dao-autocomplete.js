@@ -1,14 +1,15 @@
 import daoDrop from '../dao-select/dropdown.vue';
 import _ from 'lodash';
+import Popper from '../base/popper';
 
 export default {
   name: 'DaoAutocomplete',
   components: { daoDrop },
+  mixins: [Popper],
   props: ['value', 'options', 'placeholder'],
   data() {
     return {
       inputText: '',
-      isShow: false,
       optionIndex: 0,
     };
   },
@@ -31,10 +32,10 @@ export default {
   },
   methods: {
     show() {
-      this.isShow = true;
+      this.visible = true;
     },
     hide() {
-      this.isShow = false;
+      this.visible = false;
     },
     blur() {
       // 要检测一下 inputText 是否在 options 中
@@ -116,6 +117,11 @@ export default {
     },
     options() {
       this.syncValue();
+    },
+    isShow(val) {
+      this.updatePopper();
+      this.$nextTick(() => this.updatePopper());
+      this.$emit('visible-change', Boolean(val));
     },
   },
 };

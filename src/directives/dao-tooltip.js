@@ -1,11 +1,16 @@
 import Popper from 'popper.js';
+import { getStyle } from '../utils/assist';
 
 const prefixCls = 'dao-tooltip';
 
 // 通过指令参数设置popper的属性
 function setProperties(el, binding) {
-  el.popper._always = binding.modifiers.always;
-  el.popper._controlled = binding.modifiers.controlled;
+  if (binding.modifiers.always) {
+    el.popper._always = binding.modifiers.always;
+  }
+  if (binding.modifiers.controlled) {
+    el.popper._controlled = binding.modifiers.controlled;
+  }
   if (typeof binding.value === 'object') {
     el.popper._content = binding.value.content || '';
     el.popper._delay = binding.value.delay;
@@ -49,14 +54,7 @@ function handleClosePopper(e) {
 export default {
   name: 'Tooltip',
   bind(el, binding, vnode) {
-    const { start = false, end = false } = binding.modifiers;
-    let modifier = '';
-    if (start) {
-      modifier = '-start';
-    } else if (end) {
-      modifier = '-end';
-    }
-    const placement = (binding.arg || 'auto') + modifier;
+    const placement = binding.arg || 'auto';
 
     // make wrapper
     const $popper = document.createElement('div');
@@ -78,7 +76,13 @@ export default {
     $content.appendChild($inner);
     $popper.appendChild($content);
 
-    el.appendChild($popper);
+    if (binding.value.appendToBody === false) {
+      el.appendChild($popper);
+    } else {
+      document.body.appendChild($popper);
+      $popper.className += ` append-to-body ${binding.value.popperCls ? binding.value.popperCls.join(' ') : ''}`;
+      $popper.style.zIndex = 9998; // TODO 这里是为了防止被dialog遮住，但是写死9998也会有一些问题。
+    }
 
     const options = Object.assign({}, binding.value, { placement });
 
@@ -91,11 +95,15 @@ export default {
     el.addEventListener('mouseenter', handleShowPopper);
     el.addEventListener('mouseleave', handleClosePopper);
   },
-  unbind(el, biding, vnode, oldVnode) {
+  unbind(el, binding, vnode, oldVnode) {
     el.removeEventListener('mouseenter', handleShowPopper);
     el.removeEventListener('mouseleave', handleClosePopper);
     el.popper.destroy();
-    el.removeChild(el.popper.popper);
+    if (binding.value.appendToBody === false) {
+      el.removeChild(el.popper.popper);
+    } else {
+      document.body.removeChild(el.popper.popper);
+    }
   },
   componentUpdated(el, binding, vnode, oldVnode) {
     setProperties(el, binding);

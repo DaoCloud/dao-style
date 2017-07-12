@@ -51,6 +51,7 @@
   </transition>
 </template>
 <script>
+import _ from 'lodash';
 import daoDialogHeader from './dao-dialog-header/dao-dialog-header';
 import { getStyle } from '../../utils/assist';
 
@@ -84,6 +85,8 @@ export default {
       activeStep: -1,
       stepItemWidth: -1,
       isNeedScroll: false,
+      poppers: [],
+      throttleScrollHandler: () => {},
     };
   },
   computed: {
@@ -95,6 +98,25 @@ export default {
     },
     styleBody() {
       if (this.config.type === 'multiStep') {
+        this.$nextTick(() => {
+          this.poppers = Array.from(document.querySelectorAll('.append-to-body'));
+          this.poppers.forEach(popper => {
+            if (this.$refs.body.contains(popper.reference)) {
+              popper.style.visibility = 'hidden';
+            }
+          });
+        });
+        this.$nextTick(() => {
+          const that = this;
+          setTimeout(() => {
+            that.poppers.forEach((popper) => {
+              if ('popper' in popper) {
+                popper.popper.update();
+              }
+              popper.style.visibility = '';
+            });
+          }, 350);
+        });
         return {
           width: `${this.steps.length * 100}%`,
           transform: `translateX(-${(this.activeStep) / this.steps.length * 100}%)`,
@@ -182,21 +204,49 @@ export default {
       }
       this.activeStep += 1;
     },
+    scrollHandler() {
+      const references = Array.from(this.$refs.body.querySelectorAll('[class$=-rel]'));
+      const dialogRect = this.$refs.body.getBoundingClientRect();
+      references.forEach((r) => {
+        if (!r.popper) return;
+        const rect = r.getBoundingClientRect();
+        if (
+          rect.bottom < dialogRect.top ||
+          rect.top > dialogRect.bottom
+        ) {
+          r.popper.style.visibility = 'hidden';
+        } else {
+          r.popper.style.visibility = '';
+        }
+      });
+    },
   },
   mounted() {
     this.activeStep = (this.step !== this.activeStep && this.step >= 0 &&
       this.steps.length >= this.step + 1) ? this.step : 0;
+    this.throttleScrollHandler = _.throttle(this.scrollHandler, 200);
+    this.$refs.body.addEventListener('scroll', this.throttleScrollHandler);
   },
   beforeDestroy() {
     document.removeEventListener('keydown', this.EscClose);
     document.body.style.overflowY = '';
+    this.$refs.body.removeEventListener('scroll', this.throttleScrollHandler);
   },
   watch: {
     visible(newVal, oldVal) {
+      this.poppers = Array.from(document.querySelectorAll('.append-to-body'));
       if (newVal) {
         this.$emit('dao-dialog-open');
+        this.poppers.forEach((popper) => {
+          popper.style.visibility = '';
+        });
       } else {
         this.$emit('dao-dialog-close');
+        this.poppers.forEach((popper) => {
+          if (this.$refs.body.contains(popper.reference)) {
+            popper.style.visibility = 'hidden';
+          }
+        });
       }
     },
     // multiStep
