@@ -67,6 +67,30 @@
         </tr>
       </table>
     </div>
+    <div>
+      <div class="dao-btn-group">
+        <dao-tooltip content="this is a test button group" placement="top">
+          <button class="dao-btn blue">with tooltip</button>
+        </dao-tooltip>
+        <button class="dao-btn green">without</button>
+        <dao-tooltip content="this is a test button group" placement="top">
+          <button class="dao-btn yellow">with</button>
+        </dao-tooltip>
+        <button class="dao-btn red">with</button>
+      </div>
+    </div>
+    <br>
+    <div class="dao-btn-group">
+        <dao-tooltip content="this is a test button group" placement="top">
+          <button class="dao-btn ghost">with tooltip</button>
+        </dao-tooltip>
+        <button class="dao-btn ghost">without</button>
+        <dao-tooltip content="this is a test button group" placement="top">
+          <button class="dao-btn ghost">with</button>
+        </dao-tooltip>
+        <button class="dao-btn ghost">with</button>
+      </div>
+    </div>
   </div>
 </template>
 <script>
