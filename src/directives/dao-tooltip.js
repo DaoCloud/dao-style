@@ -5,6 +5,7 @@ const prefixCls = 'dao-tooltip';
 
 // 通过指令参数设置popper的属性
 function setProperties(el, binding) {
+  el.popper._appendToBody = !(binding.value.appendToBody === false);
   if (binding.modifiers.always) {
     el.popper._always = binding.modifiers.always;
   }
@@ -26,10 +27,23 @@ function setProperties(el, binding) {
 function setAttributes($inner, el) {
   const popper = el.popper;
   $inner.innerHTML = el.popper._content;
-  popper.popper.style.display =
-    (!popper._disabled && (popper._visible || popper._always))
-    ? ''
-    : 'none';
+  if (!popper.popper) return;
+  const isShow = !popper._disabled && (popper._visible || popper._always);
+
+  /**
+   *  如果appendToBody popper显示和隐藏是通过直接在document body上移除和添加该元素
+   *  否则，设置popper元素的display属性
+   */
+  if (popper._appendToBody) {
+    if (isShow && popper.popper.parentNode !== document.body) {
+      document.body.appendChild(popper.popper);
+    }
+    if (!isShow && popper.popper.parentNode === document.body) {
+      document.body.removeChild(popper.popper);
+    }
+  } else {
+    popper.popper.style.display = isShow ? '' : 'none';
+  }
 }
 
 function handleShowPopper(e) {
@@ -59,7 +73,6 @@ export default {
     // make wrapper
     const $popper = document.createElement('div');
     $popper.setAttribute('class', `${prefixCls}-popper`);
-    $popper.style.display = 'none';
 
     // make container
     const $content = document.createElement('div');
@@ -77,11 +90,11 @@ export default {
     $popper.appendChild($content);
 
     if (binding.value.appendToBody === false) {
+      $popper.style.display = 'none';
       el.appendChild($popper);
     } else {
-      document.body.appendChild($popper);
       $popper.className += ` append-to-body ${binding.value.popperCls ? binding.value.popperCls.join(' ') : ''}`;
-      $popper.style.zIndex = 9998; // TODO 这里是为了防止被dialog遮住，但是写死9998也会有一些问题。
+      $popper.style.zIndex = 9999; // TODO 这里是为了防止被dialog遮住，但是写死9999也会有一些问题。
     }
 
     const options = Object.assign({}, binding.value, { placement });
@@ -100,8 +113,8 @@ export default {
     el.removeEventListener('mouseleave', handleClosePopper);
     el.popper.destroy();
     if (binding.value.appendToBody === false) {
-      el.removeChild(el.popper.popper);
-    } else {
+      if (el.popper.popper) el.removeChild(el.popper.popper);
+    } else if (el.popper.popper && el.popper.popper.parentNode === document.body) {
       document.body.removeChild(el.popper.popper);
     }
   },
