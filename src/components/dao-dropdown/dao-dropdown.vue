@@ -107,14 +107,17 @@
         const $parent = this.hasParent();
         if ($parent) $parent.$emit('on-haschild-click');
       });
+      // 选择popper元素下的ul的子代dao-dropdown-item-base的元素，添加click监听,点击的时候关闭popper
       if (this.appendToBody) {
-        this.$refs.popper.addEventListener('click', (e) => {
-          if (e.target.className.includes('dao-dropdown-item')) {
-            this.$nextTick(() => {
-              if (this.trigger === 'custom') return false;
-              this.visible = false;
-            });
-          }
+        Array.from(this.$refs.popper.querySelectorAll('ul.dao-dropdown-menu > li.dao-dropdown-item-base')).forEach((li) => {
+          li.addEventListener('click', this.handleClose);
+        });
+      }
+    },
+    beforeDestroy() {
+      if (this.appendToBody) {
+        Array.from(this.$refs.popper.querySelectorAll('ul.dao-dropdown-menu > li.dao-dropdown-item-base')).forEach((li) => {
+          li.removeEventListener('click', this.handleClose);
         });
       }
     },
