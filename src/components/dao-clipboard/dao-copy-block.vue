@@ -33,14 +33,19 @@
         default: true,
       },
     },
-    computed: {
-      content() {
-        return this.$slots.default[0].text;
-      },
+    // 原本简单的用 computed 无法及时的获取到已修改的内容
+    // 改成当组件挂载和更新之后赋值，可以及时获取
+    // 暂时没有想到更好的解决办法，留待改进
+    mounted() {
+      this.content = this.$slots.default[0].text;
+    },
+    updated() {
+      this.content = this.$slots.default[0].text;
     },
     data() {
       return {
         copied: false,
+        content: '',
       };
     },
     methods: {

@@ -40,7 +40,8 @@
       <br>
       <h2> Copy Block with button </h2>
       <br>
-      <dao-copy-block>asjdahkdjagsdjahgsdjgajsgdagjs</dao-copy-block>
+      <dao-copy-block>asjdahkdjagsdjah {{ text }} gsdjgajsgdagjs</dao-copy-block>
+      <button class="dao-btn ghost" @click="text = `${Math.random()}`">change</button>
     </div>
   </div>
 </template>
@@ -48,12 +49,17 @@
 <script>
   export default {
     name: 'ClipboardRouter',
+    data() {
+      return {
+        text: 'mimo',
+      };
+    },
     methods: {
-      greeting: function() {
+      greeting() {
         alert('content copied');
-      }
-    }
-  }
+      },
+    },
+  };
 </script>
 
 <style lang="scss" scoped>
