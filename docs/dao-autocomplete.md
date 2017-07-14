@@ -14,7 +14,9 @@ dao-autocomplete 是一个自动补全的组件。代码请参照目录：[src/c
 <dao-autocomplete
   v-model="model"
   :options="options"
-  [placeholder="请输入内容"]>
+  [placeholder="请输入内容"]
+  [:append-to-body="appendToBody"]
+  [:popper-cls="popperCls"]>
 </dao-autocomplete>
 ```
 
@@ -64,6 +66,8 @@ export defualt {
 | v-model     | String | 绑定的值                                     | -    | 是    |
 | placeholder | String | 占位符                                      | -    | 否    |
 | options     | Array  | 备选的选项。其中可以是字符串，也可以是 text/value 形式的对象。其中，`text` 的值是用来展示和筛选的，`value` 的值是用来绑定到 model 上的。也就是说，`value` 对用户来说是感知不到的。如果数组里的元素是字符串的话，那么 text 和 value 就是一样的。options 还支持异步修改。 | -    | 是    |
+| appendToBody | Boolean | 是否将 popper 元素添加到 body |true|否|
+| popperCls | Array | appendToBody 之后为 popper 元素添加的类，一般用于修改 popper 元素的样式 | - |否|
 
 ## 事件
 
