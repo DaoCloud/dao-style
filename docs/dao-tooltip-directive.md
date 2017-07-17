@@ -19,7 +19,8 @@ tooltip-directive 是一个显示提示文字的指令。代码请参照目录�
 | content | String | 提示文字 |-|是|
 | delay | Number | 延时多长时间显示提示文字 | 0 |否|
 | disabled | Boolean | 禁用 | false |否|
-| appendToBody | Boolean | 元素是否添加到body上 | false |否|
+| appendToBody | Boolean | 是否将 tooltip 元素添加到 body |true|否|
+| popperCls | Array | appendToBody 之后为 tooltip 元素添加的类，一般用于修改 tooltip 元素的样式 | - |否|
 
 ### 指令绑定的参数 placement
 |参数名|类型|说明|默认值|是否必填|
@@ -30,6 +31,5 @@ tooltip-directive 是一个显示提示文字的指令。代码请参照目录�
 
 |修饰符名|类型|说明|默认值|是否必填|
 |-----|---|----|----|---|
-| always | Boolean | 指定为true时一直存在 | false |否|
-| controlled | Boolean | 指定为true时鼠标移出不会消失 | false |否|
-
+| always | Boolean | tooltip 一直存在 | false |否|
+| controlled | Boolean | 鼠标移出时 tooltip 不会消失 | false |否|

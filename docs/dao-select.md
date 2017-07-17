@@ -11,7 +11,7 @@ Select 是由 Select 和 Option-Group 以及 Option 三个组件组合而成。
 #### 普遍用法
 
 ```html
-<dao-select 
+<dao-select
   v-model="option"
   [placeholder="请选择"]
   [:loading="true"]
@@ -24,7 +24,9 @@ Select 是由 Select 和 Option-Group 以及 Option 三个组件组合而成。
   [search-placeholder="搜索"]
   [menu-class="menuClass"]
   [no-data-text="无数据"]
-  [no-match-text="无匹配数据"]>
+  [no-match-text="无匹配数据"]
+  [:append-to-body="appendToBody"]
+  [:popper-cls="popperCls"]>
   <dao-option-group [label="name"]>
     <dao-option :value="mimo" :label="mimo">
       <!--此处可以传入自定义模板的内容，建议使用单行内容-->
@@ -45,7 +47,9 @@ Select 是由 Select 和 Option-Group 以及 Option 三个组件组合而成。
   [:async="getOptions"]
   [:disabled="false"]
   [menu-class="menuClass"]
-  [no-data-text="无数据"]>
+  [no-data-text="无数据"]
+  [:append-to-body="appendToBody"]
+  [:popper-cls="popperCls"]>
   <dao-tab direction="left">
     <dao-tab-item heading="标题1">
       <dao-option-group [label="male"]>
@@ -86,6 +90,8 @@ Select 是由 Select 和 Option-Group 以及 Option 三个组件组合而成。
 | no-data-text | string | select 无数据时显示的文字 | '无数据' | 否 |
 | no-match-text | string | select 搜索无匹配数据时显示的文字 | '无匹配数据' | 否 |
 | size | string | select 的尺寸，可选值有 'sm' | - | 否 |
+| appendToBody | Boolean | 是否将 popper 元素添加到 body |true|否|
+| popperCls | Array | appendToBody 之后为 popper 元素添加的类，一般用于修改 popper 元素的样式 | - |否|
 
 ### Select 事件
 
@@ -114,4 +120,3 @@ Select 是由 Select 和 Option-Group 以及 Option 三个组件组合而成。
 | 参数 | 类型 | 说明 | 默认值 | 是否必填 |
 |-----|------|-----|-------|---------|
 | content | html / text | 可以自定义 option 的显示模板，不传入的话默认显示 option 的 label | option 的 label | 否 |
-
