@@ -18,14 +18,9 @@
 .dao-btn-group,
 .dao-btn-group-vertical {
   position: relative;
-  // 之所以用inline-table是因为如果里面有两个 dao-button，
-  // 并且两个 dao-button 的 HTML 之间有空格或换行的话，
-  // 实际显示出来的两个 dao-button 之间会有一个空隙，
-  // 改成 inline-table 就不会有空隙了，但目前不知道会不会有副作用
+  display: inline-flex;
+  align-items: center;
 
-  display: inline-table;
-
-  vertical-align: middle; // match .dao-btn alignment given font-size hack above
   > .dao-btn {
     position: relative;
 
