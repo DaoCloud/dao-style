@@ -1,6 +1,7 @@
 <template>
   <div>
     <dao-editable-table :config="config" v-model="model" @valid="validChange"></dao-editable-table>
+    <button class="dao-btn blue" @click="changeHeader">添加一列</button>
   </div>
 </template>
 <script>
@@ -92,6 +93,14 @@ export default {
   methods: {
     validChange(val) {
       console.log('验证结果改变', val);
+    },
+    changeHeader() {
+      this.config.header.push('最大值');
+      this.config.body.push({
+        type: 'input',
+        name: 'age',
+        default: 50,
+      });
     },
   },
   watch: {
