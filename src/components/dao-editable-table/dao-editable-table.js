@@ -12,13 +12,7 @@ export default {
   },
   props: ['config', 'value'],
   data() {
-    // 略微处理一下外面传进来的参数
-    const header = this.config.header.map(h => ({
-      text: h.text ? h.text : h,
-      tooltip: h.tooltip,
-    }));
     return {
-      header,
       activatedRow: null,
       rows: [],
     };
@@ -27,11 +21,26 @@ export default {
     model() {
       return _.map(this.rows, this.rowToModel);
     },
+    header() {
+      return this.config.header.map(h => ({
+        text: h.text ? h.text : h,
+        tooltip: h.tooltip,
+      }));
+    },
   },
   watch: {
     // 当 model 变化时，要把 model 的数据转换成对应的 row 形式的数据
     value(newModel) {
       this.modelToRow(newModel);
+    },
+    config: {
+      handler: function() {
+        // 当 config 改变时，使用 input 事件，触发父组件 v-model 更新
+        // 使整个 rows 根据新的 config 和 model 重新生成
+        this.$emit('input', this.model);
+        this.validteAndUpdate();
+      },
+      deep: true,
     },
   },
   methods: {
