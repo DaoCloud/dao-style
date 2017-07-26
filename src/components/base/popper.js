@@ -3,6 +3,8 @@ import { getStyle } from '../../utils/assist';
 
 const dropdownMargin = 8;
 
+// TODO 这个popper mixin写的有点乱，耦合度有点高，破坏组件的封装性，到时候需要重构一下
+
 export default {
   props: {
     placement: {
@@ -46,6 +48,7 @@ export default {
     return {
       visible: false,
       initClass: '',
+      forceNotAppendToBody: false,
     };
   },
   computed: {
@@ -136,7 +139,7 @@ export default {
       this.$popper.reference = this.$reference;
       this.$reference.popper = this.$popper;
 
-      if (this.appendToBody && this.$popper) {
+      if (this.appendToBody && !this.forceNotAppendToBody && this.$popper) {
         document.body.appendChild(this.$popper);
         this.$popper.className = `${this.initClass} append-to-body ${this.popperCls ? this.popperCls.join(' ') : ''}`;
         if (!this.$popper.style.zIndex) {
@@ -150,7 +153,7 @@ export default {
     },
     doDestroy() {
       if (this.visible) return;
-      if (this.appendToBody && this.$popper && this.$popper.parentNode === document.body) {
+      if (this.appendToBody && !this.forceNotAppendToBody && this.$popper && this.$popper.parentNode === document.body) {
         document.body.removeChild(this.$popper);
       }
       if (this.popperJS) {
@@ -171,7 +174,7 @@ export default {
     },
   },
   beforeDestroy() {
-    if (this.appendToBody && this.$popper && this.$popper.parentNode === document.body) {
+    if (this.appendToBody && !forceNotAppendToBody && this.$popper && this.$popper.parentNode === document.body) {
       document.body.removeChild(this.$popper);
     }
     if (this.popperJS) {

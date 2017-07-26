@@ -71,7 +71,7 @@
         this.visible = false;
       },
       hasParent() {
-        const $parent = this.$parent.$parent.$parent;
+        const $parent = this.$parent.$parent;
         if ($parent && $parent.$options.name === 'Dropdown') {
           return $parent;
         } else {
@@ -84,6 +84,9 @@
       //   const $parent = this.hasParent();
       //   if ($parent) $parent.$emit('on-click', key);
       // });
+      if (this.hasParent()) {
+        this.forceNotAppendToBody = true;
+      }
       this.$on('on-hover-click', () => {
         const $parent = this.hasParent();
         if ($parent) {
