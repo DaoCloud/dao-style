@@ -18,6 +18,7 @@
             icon-inside
             :message="typeof(td.valid) === 'string' ? td.valid : ''"
             :status="typeof(td.valid) === 'string' ? 'error' : ''"
+            :show-tooltip-only-hover="true"
             @focus="focusRow(index)"
             @blur="onBlur">
           </dao-input>
