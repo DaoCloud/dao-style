@@ -85,6 +85,15 @@
     </dao-input>
     <br><br><br>
     <dao-input
+      v-model="demoIconInsideError"
+      icon-inside
+      :message="message"
+      :status="statusError"
+      :show-tooltip-only-hover="true"
+      placeholder="hover icon 会出现 tooltip">
+    </dao-input>
+    <br><br><br>
+    <dao-input
       v-model="demoInputGroup"
       icon-inside
       :message="message"
