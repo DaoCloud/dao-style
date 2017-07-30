@@ -30,7 +30,7 @@
         :always="iconInside"
         :popper-cls="popperCls"
         :append-to-body="appendToBody"
-        :disabled="!iconInside || !messageEnabled">
+        :disabled="!iconInside || !messageEnabled || (showTooltipOnlyHover && !hovered)">
         <input
           v-bind="$props"
           :value="currentValue"
@@ -43,22 +43,22 @@
           @keydown="handleKeyDown"
         >
       </dao-popover>
-      <span class="icon loading-icon" v-if="status === 'loading' && iconInside">
+      <span class="icon loading-icon" v-if="status === 'loading' && iconInside" @mouseover="hoverIcon" @mouseleave="leaveIcon">
         <svg>
           <use xlink:href="#icon_status-progress-circle"></use>
         </svg>
       </span>
-      <span class="icon info-icon" v-if="status === 'info' && iconInside">
+      <span class="icon info-icon" v-if="status === 'info' && iconInside" @mouseover="hoverIcon" @mouseleave="leaveIcon">
         <svg>
           <use xlink:href="#icon_question"></use>
         </svg>
       </span>
-      <span class="icon error-icon" v-if="status === 'error' && iconInside">
+      <span class="icon error-icon" v-if="status === 'error' && iconInside" @mouseover="hoverIcon" @mouseleave="leaveIcon">
         <svg>
           <use xlink:href="#icon_warning"></use>
         </svg>
       </span>
-      <span class="icon success-icon" v-if="status === 'success' && iconInside">
+      <span class="icon success-icon" v-if="status === 'success' && iconInside" @mouseover="hoverIcon" @mouseleave="leaveIcon">
         <svg>
           <use xlink:href="#icon_success"></use>
         </svg>
@@ -87,6 +87,7 @@
       return {
         currentValue: this.value,
         currentMessage: this.message,
+        hovered: false,
       };
     },
     props: {
@@ -130,6 +131,7 @@
         type: Boolean,
         default: true,
       },
+      showTooltipOnlyHover: Boolean,
     },
     computed: {
       isRequired() {
@@ -161,6 +163,12 @@
       },
     },
     methods: {
+      hoverIcon() {
+        this.hovered = true;
+      },
+      leaveIcon() {
+        this.hovered = false;
+      },
       handleBlur(event) {
         this.$emit('blur', event);
       },
