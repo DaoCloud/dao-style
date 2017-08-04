@@ -45,7 +45,7 @@
     },
     methods: {
       handleClick () {
-        const $parent = this.$parent.$parent.$parent;
+        const $parent = this.$parent.$parent;
         const hasChildren = this.$parent && this.$parent.$options.name === 'Dropdown';
         if (this.isDisabled) {
           this.$nextTick(() => {
