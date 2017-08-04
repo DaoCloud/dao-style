@@ -41,6 +41,9 @@ $checkbox-height: 24px;
     margin-top: 6px;
     margin-left: -20px;
 
+    width: $checkbox-font-size;
+    height: $checkbox-font-size;
+
     outline: none;
     &[disabled],
     &.disabled {
