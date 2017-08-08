@@ -3,8 +3,9 @@
     <h2>连续值的</h2>
     <dao-slider
       v-model="valueA"
-      :range="rangeA"
-      :onChange="handleChange"
+      :min="rangeA.min"
+      :max="rangeA.max"
+      @onChange="handleChangeA"
     >
     </dao-slider>
     <div class="show">
@@ -13,13 +14,30 @@
     <h2>离散值的</h2>
     <dao-slider
       v-model="valueB"
-      :range="rangeB"
+      :min="rangeB.min"
+      :max="rangeB.max"
       :step="step"
-      :onChange="handleChange"
+      :disabled="false"
+      @onChange="handleChangeB"
     >
     </dao-slider>
     <div class="show">
       outside Value: {{this.valueB}}
+    </div>
+
+    <dao-slider
+      v-model="valueC"
+      :min="rangeC.min"
+      :max="rangeC.max"
+      :step="step"
+      :showStops="true"
+      :showTips="true"
+      :disabled="true"
+      @onChange="handleChangeC"
+    >
+    </dao-slider>
+    <div class="show">
+      outside Value: {{this.valueC}}
     </div>
   </div>
 </template>
@@ -28,16 +46,33 @@
     data() {
       return {
         valueA: 28,
-        rangeA: [20, 100],
+        rangeA: {
+          min: -20,
+          max: 100,
+        },
+        rangeB: {
+          min: -7,
+          max: 100,
+        },
+        rangeC: {
+          min: 0,
+          max: 100,
+        },
         valueB: 28,
-        rangeB: [20, 100],
+        valueC: 30,
         step: 7,
       };
     },
     methods: {
-      handleChange() {
-        console.log('value change!');
-      }
+      handleChangeA(data) {
+        console.log(`valueA change: ${data}`);
+      },
+      handleChangeB(data) {
+        console.log(`valueB change: ${data}`);
+      },
+      handleChangeC(data) {
+        console.log(`valueC change: ${data}`);
+      },
     },
   };
 </script>

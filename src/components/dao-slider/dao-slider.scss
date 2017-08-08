@@ -1,14 +1,51 @@
-$flag-size: 10px;
-$flag-color: rgb(255,82,82);
-$slider-height: 4px;
+@import '../dao-color.scss';
+$flag-size: 12px;
+$flag-color: $blue;
+$flag-bg: $white-light;
+$stop-bg: generate-color($blue, -2);
+$slider-height: 6px;
+$slider-default-bg: $white-dark;
+$slider-disabled-bg: generate-color($slider-default-bg, 1);
+$tip-color: $grey-dark;
+
+%width {
+  width: $slider-height / 2;
+}
 
 .dao-slider-track {
-  width: 100%;
-  height: $slider-height;
-  max-width: 1200px;
-  margin: 10px auto;
   position: relative;
-  background-color: rgba(0,0,0,0.38);
+  width: 100%;
+  max-width: 1200px;
+  height: $slider-height;
+  margin: 10px auto;
+  background-color: $slider-default-bg;
+  border-radius: 3px;
+
+  .dao-slider-stop-wrap {
+    .dao-slider-stop {
+      width: $slider-height;
+      height: $slider-height;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      background-color: $stop-bg;
+      border-radius: 50%;
+      transform: translateX(-50%) translateY(-50%);
+
+      &:first-child {
+        width: 0;
+      }
+      &:last-child {
+        @extend %width;
+      }
+    }
+
+    &.disabled-fill {
+      .dao-slider-stop {
+        background-color: $slider-disabled-bg;
+      }
+    }
+  }
 }
 
 .dao-slider-track__fill {
@@ -17,51 +54,54 @@ $slider-height: 4px;
   height: 100%;
   background-color: $flag-color;
   position: relative;
-}
+  border-radius: 3px;
 
-.dao-slider-track__flag {
-  display: flex;
-  content: '';
-  position: absolute;
-  left: 100%;
-  top: 50%;
-  width: 20px;
-  height: 20px;
-  margin-top: -10px;
-  margin-left: -10px;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-  background-color: transparent;
-  transition: all .4s cubic-bezier(.25,.8,.25,1);
-
-  &:after {
-    display: block;
+  .dao-slider-track__flag {
+    display: flex;
     content: '';
-    width: $flag-size;
-    height: $flag-size;
-    background-color: $flag-color;
-    border: 2px solid $flag-color;
-    border-radius: 50%;
+    position: absolute;
+    left: 100%;
+    top: 50%;
+    width: 20px;
+    height: 20px;
+    margin-top: -10px;
+    margin-left: -10px;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    background-color: transparent;
     transition: all .4s cubic-bezier(.25,.8,.25,1);
+
+    &:after {
+      display: block;
+      content: '';
+      width: $flag-size;
+      height: $flag-size;
+      background-color: $flag-bg;
+      box-shadow: 0 0 0px 2px $flag-color inset;
+      border-radius: 50%;
+      transition: all .4s cubic-bezier(.25,.8,.25,1);
+    }
+
+    &:hover,
+    &:active {
+      transform: scale(1.2);
+    }
   }
 
-  &:hover,
-  &:active {
-    transform: scale(1.5);
-  }
-}
+  &.disabled-fill {
+    background-color: $slider-disabled-bg;
 
-.dao-slider-stop {
-  width: $slider-height * 2;
-  height: $slider-height * 2;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  background-color: $flag-color;
-  // border: 2px solid $flag-color;
-  border-radius: 50%;
-  transform: translateX(-50%) translateY(-50%) ;
+    .dao-slider-track__flag {
+      &:after {
+        box-shadow: 0 0 0px 2px $slider-disabled-bg inset;
+      }
+      &:hover,
+      &:active {
+        transform: scale(1);
+      }
+    }
+  }
 }
 
 .dao-slider-tip-wrap {
@@ -70,6 +110,8 @@ $slider-height: 4px;
   .dao-slider-tip {
     position: absolute;
     margin-top: 5px;
+    color: $tip-color;
+    font-size: 12px;
     transform: translateX(-50%);
   }
 }

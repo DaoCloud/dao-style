@@ -5,9 +5,23 @@
       class="dao-slider-track"
       @click.prevent="onHandleClick"
       ref="track">
+      <!-- stops -->
+      <div
+        v-if="showStops"
+        class="dao-slider-stop-wrap"
+        :class="{'disabled-fill': disabled}">
+        <div
+          class="dao-slider-stop"
+          v-show="step"
+          :style="{left: stop * 100 + '%'}"
+          v-for="stop in stops">
+        </div>
+      </div>
+      <!-- fill track -->
       <div
         class="dao-slider-track__fill"
-        :style="{width: curtPos*100 + '%'}"
+        :class="{'disabled-fill': disabled}"
+        :style="{width: curtPos * 100 + '%'}"
         >
         <div
           class="dao-slider-track__flag"
@@ -15,13 +29,10 @@
           >
         </div>
       </div>
+      <!-- tips -->
       <div
-        class="dao-slider-stop"
-        v-show="step"
-        :style="{left: stop * 100 + '%'}"
-        v-for="stop in stops">
-      </div>
-      <div class="dao-slider-tip-wrap">
+        v-if="showTips"
+        class="dao-slider-tip-wrap">
         <div
           class="dao-slider-tip"
           v-show="step"
@@ -34,7 +45,6 @@
     <div class="show">
       Inside Pos: {{this.curtPos}}<br/>
       Inside Value: {{this.value}}
-      <!-- Inside Value: {{this.value.toFixed(1)}} -->
     </div>
   </div>
 </template>
@@ -44,10 +54,15 @@
   export default {
     name: 'DaoSlider',
     props: {
-      range: {
-        type: Array,
-        default: [0, 10],
-        required: true,
+      min: {
+        type: Number,
+        required: false,
+        default: 0,
+      },
+      max: {
+        type: Number,
+        required: false,
+        default: 10,
       },
       step: {
         type: Number,
@@ -60,7 +75,18 @@
         type: Number,
         default: 0,
       },
-      onChange: Function,
+      showStops: {
+        type: Boolean,
+        default: false,
+      },
+      showTips: {
+        type: Boolean,
+        default: true,
+      },
+      disabled: {
+        type: Boolean,
+        default: false,
+      },
     },
     data() {
       return {
@@ -68,7 +94,7 @@
         curtPos: 0,
         sliderWidth: 0,
         startX: null,
-        trackLeft: null,
+        baseStart: null,
       };
     },
     computed: {
@@ -77,12 +103,13 @@
           return false;
         }
 
-        const stopCount = (this.range[1] - this.range[0]) / this.step;
+        const stopCount = (this.max - this.min) / this.step;
         const stepWidth = 1 / stopCount;
         const result = [0];
 
-        for (let i = 1; i < stopCount; i++) {
+        for (let i = 1; i < stopCount;) {
           result.push(i * stepWidth);
+          i += 1;
         }
         result.push(1);
         return result;
@@ -91,7 +118,7 @@
         if (!this.step) {
           return false;
         }
-        return this.step / (this.range[1] - this.range[0]) / 2;
+        return this.step / (this.max - this.min) / 2;
       },
       lastHalf() {
         if (!this.step) {
@@ -104,6 +131,8 @@
     methods: {
       // drag
       onHandleMouseDown(e) {
+        console.log('onHandleMouseDown');
+        if (this.disabled) return;
         this.onHandleDragStart(e);
         window.addEventListener('mousemove', this.onHandleDragging);
         window.addEventListener('mouseup', this.onHandleDragEnd);
@@ -127,23 +156,30 @@
         this.curtPos = this.getCurPos(e.clientX);
         this.startX = e.clientX;
       },
+
       onHandleDragEnd(e) {
         console.log('drag end');
+        this.isDragging = false;
 
+        // 没有 step 时
+        // 使用 drag 来改变值的时候，
+        // value 在 onHandleDragging 的时候就会改变，
+        // 所以无法在这里调用 value watcher
+        // 所以必须在此调用 $emit('onChange', newVal)
         if (!this.step) {
           this.startX = e.clientX;
+          this.$emit('onChange', this.value);
         } else {
+          // 有 step 的时候，end 的时候调用 this.onHandleClick, 来确定 curtValue
           this.onHandleClick(e);
         }
         window.removeEventListener('mousemove', this.onHandleDragging);
         window.removeEventListener('mouseup', this.onHandleDragEnd);
-        this.isDragging = false;
-        if (!this.step) {
-          this.onChange();
-        }
       },
       // track 的 click 事件
+
       onHandleClick(e) {
+        if (this.disabled) return;
         const newPos = this.getCurPos(e.clientX);
         if (newPos < 0 || newPos > 1) return;
 
@@ -164,19 +200,20 @@
           const tempNewPos = this.stops.find(stop => ((stop - this.helfStepWidth) <= newPos) && (newPos < (stop + this.helfStepWidth)));
           this.curtPos = tempNewPos || this.curtPos;
         }
-        this.startX = this.trackLeft + (this.curtPos * this.sliderWidth);
+        this.startX = this.baseStart + (this.curtPos * this.sliderWidth);
+        console.log('getCurtPosInSteps');
       },
       getCurPos(curClientX) {
-        return (curClientX - this.trackLeft) / this.sliderWidth;
+        return (curClientX - this.baseStart) / this.sliderWidth;
       },
       // value -> position
       updateCurPosition(val) {
-        const newPos = (val - this.range[0]) / (this.range[1] - this.range[0]);
+        const newPos = (val - this.min) / (this.max - this.min);
         return (newPos >= 0 && newPos <= 1) ? newPos : null;
       },
       // position -> value
       updateNewVal(pos) {
-        const newVal = (pos * (this.range[1] - this.range[0])) + this.range[0];
+        const newVal = (pos * (this.max - this.min)) + this.min;
         return parseInt(newVal.toFixed(1), 10);
       },
     },
@@ -187,7 +224,7 @@
         }
       },
       value(newVal) {
-        if (!newVal) {
+        if (newVal !== 0 && !newVal) {
           return;
         }
         const newPosition = this.updateCurPosition(newVal);
@@ -195,7 +232,7 @@
           this.curtPos = newPosition;
         }
         if (!this.isDragging) {
-          this.onChange();
+          this.$emit('onChange', newVal);
         }
       },
     },
@@ -207,12 +244,12 @@
           this.getCurtPosInSteps(this.curtPos);
         }
 
-        this.trackLeft = this.$refs.track.offsetLeft;
-        this.startX = this.trackLeft + (this.curtPos * this.sliderWidth);
+        this.baseStart = this.$refs.track.offsetLeft;
+        this.startX = this.baseStart + (this.curtPos * this.sliderWidth);
       });
     },
   };
 </script>
-<style scoped lang="scss">
+<style lang="scss">
   @import "./dao-slider.scss";
 </style>
