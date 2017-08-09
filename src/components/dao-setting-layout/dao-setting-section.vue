@@ -24,21 +24,19 @@
 <script>
 export default {
   name: 'DaoSettingSection',
-  data() {
-    return {
-      sectionTitle () {
-        return this.$slots['section-title'];
-      },
-      sectionTitleHelper () {
-        return this.$slots['section-title-helper'];
-      },
-      label () {
-        return this.$slots.label;
-      },
-      contentHelper () {
-        return this.$slots['content-helper'];
-      },
-    };
+  methods: {
+    sectionTitle () {
+      return this.$slots['section-title'];
+    },
+    sectionTitleHelper () {
+      return this.$slots['section-title-helper'];
+    },
+    label () {
+      return this.$slots.label;
+    },
+    contentHelper () {
+      return this.$slots['content-helper'];
+    },
   },
 };
 </script>
