@@ -68,7 +68,7 @@ function handleClosePopper(e) {
 export default {
   name: 'Tooltip',
   bind(el, binding, vnode) {
-    const placement = binding.arg || 'auto';
+    const placement = binding.arg || 'top';
 
     // make wrapper
     const $popper = document.createElement('div');
@@ -122,4 +122,3 @@ export default {
     setProperties(el, binding);
   },
 };
-

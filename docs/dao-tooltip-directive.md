@@ -25,7 +25,7 @@ tooltip-directive 是一个显示提示文字的指令。代码请参照目录�
 ### 指令绑定的参数 placement
 |参数名|类型|说明|默认值|是否必填|
 |-----|---|----|----|---|
-| placement | String | 提示框出现位置，可选值 `top`, `bottom`, `left`, `right`, `auto`。当位置不为`auto`时可以跟上对齐参数，可选值 `-start`, `-end`。如`top-start`。 |auto|否|
+| placement | String | 提示框出现位置，可选值 `top`, `bottom`, `left`, `right`, `auto`。当位置不为`auto`时可以跟上对齐参数，可选值 `-start`, `-end`。如`top-start`。 | top |否|
 
 ### 指令绑定的修饰符 modifiers
 
