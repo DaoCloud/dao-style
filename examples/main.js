@@ -17,6 +17,7 @@ import dialog from './routers/dialog.vue';
 import dropdown from './routers/dropdown.vue';
 import editableTable from './routers/editable-table.vue';
 import input from './routers/input.vue';
+import listGroup from './routers/list-group.vue';
 import numericBadge from './routers/numeric-badge.vue';
 import popover from './routers/popover.vue';
 import progress from './routers/progress.vue';
@@ -67,6 +68,9 @@ const router = new VueRouter({
   }, {
     path: '/input',
     component: input,
+  }, {
+    path: '/list-group',
+    component: listGroup,
   }, {
     path: '/numeric-badge',
     component: numericBadge,
