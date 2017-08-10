@@ -1,5 +1,5 @@
 <template>
-  <div class="dao-radio-grid" :class="[{'active': checked, 'disabled': disabled, 'card': type === 'card'}]" v-model="value">
+  <div :class="['dao-radio-grid', {'active': checked, 'disabled': disabled, 'card': type === 'card'}]" v-model="value">
     <svg class="checked-icon" v-if="type !== 'card'" v-show="checked">
       <use xlink:href="#icon_success"></use>
     </svg>

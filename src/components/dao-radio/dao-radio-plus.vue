@@ -1,5 +1,5 @@
 <template>
-  <div class="dao-radio-plus" :class="[{'active': checked, 'disabled': disabled}]" v-model="value">
+  <div :class="['dao-radio-plus', {'active': checked, 'disabled': disabled}]" v-model="value">
     <div class="dao-radio-plus-wrap">
       <div class="dao-radio-plus-content" @click="handleClick">
         <div class="radio-plus-img">

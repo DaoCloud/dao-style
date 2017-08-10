@@ -1,5 +1,5 @@
 <template>
-  <div class="dao-radio-simple" :class="{'disabled': disabled}">
+  <div :class="['dao-radio-simple', {'disabled': disabled}]">
     <label>
       <input type="radio" :name="name" :value="radioValue" v-model="value" :disabled="disabled">
       <slot>{{ value }}</slot>
