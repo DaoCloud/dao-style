@@ -1,5 +1,5 @@
 <template>
-  <div class="dao-radio-block" :class="[{'active': value === radioValue, 'disabled': disabled}]" @click="handleClick">
+  <div :class="['dao-radio-block', {'active': value === radioValue, 'disabled': disabled}]" @click="handleClick">
     <div>
       <input type="radio" :name="name" :value="radioValue" v-model="value" :disabled="disabled">
       <slot></slot>
