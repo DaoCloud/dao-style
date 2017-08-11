@@ -33,3 +33,4 @@ tooltip-directive 是一个显示提示文字的指令。代码请参照目录�
 |-----|---|----|----|---|
 | always | Boolean | tooltip 一直存在 | false |否|
 | controlled | Boolean | 鼠标移出时 tooltip 不会消失 | false |否|
+| ellipsis | Boolean | 控制当文本过长省略时才出现 tooltip，否则不出现 | false |否|
