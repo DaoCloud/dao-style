@@ -12,6 +12,9 @@ function setProperties(el, binding) {
   if (binding.modifiers.controlled) {
     el.popper._controlled = binding.modifiers.controlled;
   }
+  if (binding.modifiers.ellipsis) {
+    el.popper._ellipsis = binding.modifiers.ellipsis;
+  }
   if (typeof binding.value === 'object') {
     el.popper._content = binding.value.content || '';
     el.popper._delay = binding.value.delay;
@@ -28,7 +31,7 @@ function setAttributes($inner, el) {
   const popper = el.popper;
   $inner.innerHTML = el.popper._content;
   if (!popper.popper) return;
-  const isShow = !popper._disabled && (popper._visible || popper._always);
+  const isShow = !popper._disabled && (popper._visible || popper._always) && (!popper._ellipsis || isEllipsisTooltip(el));
 
   /**
    *  如果appendToBody popper显示和隐藏是通过直接在document body上移除和添加该元素
@@ -63,6 +66,23 @@ function handleClosePopper(e) {
     setAttributes(el.$inner, el);
     el.popper.update();
   }
+}
+
+// 添加事件
+function addEvent(el) {
+  el.addEventListener('mouseenter', handleShowPopper);
+  el.addEventListener('mouseleave', handleClosePopper);
+}
+
+// 移除事件
+function removeEvent(el) {
+  el.removeEventListener('mouseenter', handleShowPopper);
+  el.removeEventListener('mouseleave', handleClosePopper);
+}
+
+// 处理当元素文本没有被省略时，不显示 tooltip
+function isEllipsisTooltip(el) {
+  return (el.offsetWidth < el.scrollWidth);
 }
 
 export default {
@@ -105,12 +125,10 @@ export default {
     setAttributes($inner, el);
   },
   inserted(el, binding, vnode, oldVnode) {
-    el.addEventListener('mouseenter', handleShowPopper);
-    el.addEventListener('mouseleave', handleClosePopper);
+    addEvent(el);
   },
   unbind(el, binding, vnode, oldVnode) {
-    el.removeEventListener('mouseenter', handleShowPopper);
-    el.removeEventListener('mouseleave', handleClosePopper);
+    removeEvent(el);
     el.popper.destroy();
     if (binding.value.appendToBody === false) {
       if (el.popper.popper) el.removeChild(el.popper.popper);
@@ -120,5 +138,6 @@ export default {
   },
   componentUpdated(el, binding, vnode, oldVnode) {
     setProperties(el, binding);
+    setAttributes(el.$inner, el);
   },
 };

@@ -22,6 +22,16 @@
                 <button class="dao-btn ghost" v-dao-tooltip:bottom.always="{ content: 'aaa', appendToBody: false }"> 下always</button>
             </div>
         </div>
+        <br>
+        <div class="ellipsis" v-dao-tooltip:top.ellipsis="'ellipsisText'">
+            {{ ellipsisText }}
+        </div>
+        <input class="dao-control" type="text" v-model="ellipsisText">
+        <br>
+        <br>
+        <div v-dao-tooltip:top.ellipsis="'这是一段未被省略掉的文本，应该不出现 tooltip'">
+            这是一段未被省略掉的文本，应该不出现 tooltip
+        </div>
     </div>
 </template>
 <script>
@@ -30,6 +40,7 @@
       return {
         delay: 1000,
         innerHtml: '<button>I am a button</button>',
+        ellipsisText: '这是一段被省略掉的文本，应该要出现一个 tooltip',
       };
     },
   };
@@ -52,5 +63,11 @@
     .bottom {
         clear: both;
         text-align: center;
+    }
+    .ellipsis {
+        width: 100px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
     }
 </style>
