@@ -46,7 +46,7 @@ export default {
   methods: {
     // 根据 model 生成一行数据，不传 model 就直接生成一行默认的数据
     generateRow(model) {
-      const resultRow = this.config.body.map((td) => {
+      let resultRow = this.config.body.map((td) => {
         let value;
         switch (td.type) {
           case 'input':
@@ -72,11 +72,12 @@ export default {
       });
       // 如果有预先设置的值的话，就要把默认值塞进去
       if (model) {
-        _.forEach(model, (val, key) => {
-          _.find(resultRow, td => td.name === key).value = val;
+        resultRow = _.map(resultRow, (row) => {
+          const r = row;
+          r.value = model[row.name];
+          return r;
         });
       }
-
       return resultRow;
     },
     // 把 model 的数据塞到当前的表格中

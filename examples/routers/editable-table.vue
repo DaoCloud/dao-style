@@ -87,6 +87,7 @@ export default {
         name: 'Root Password',
         required: true,
         type: '字符串',
+        placeholder: '此列不应显示，显示说明有 bug',
       }],
     };
   },
