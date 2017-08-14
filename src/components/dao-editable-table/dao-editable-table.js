@@ -68,6 +68,7 @@ export default {
           options: td.options || null,
           label: td.label || '',
           validate: td.validate || null,
+          placeholder: td.placeholder || null,
         };
       });
       // 如果有预先设置的值的话，就要把默认值塞进去
