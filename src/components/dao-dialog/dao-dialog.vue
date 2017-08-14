@@ -240,6 +240,7 @@ export default {
         this.poppers.forEach((popper) => {
           popper.style.visibility = '';
         });
+        this.scrollHandler();
       } else {
         this.$emit('dao-dialog-close');
         this.poppers.forEach((popper) => {
