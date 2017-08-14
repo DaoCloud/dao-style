@@ -63,7 +63,7 @@ export default {
         }, {
           type: 'input',
           name: 'default',
-          default: '',
+          placeholder: 'root',
           validate(row) {
             if (row.type === '布尔值' && row.default !== 'true' && row.default !== 'false') {
               console.log('currentRow1', row);
@@ -81,7 +81,7 @@ export default {
         }],
       },
       model: [{
-        default: 'root',
+        default: '',
         description: 'The Root Password of MySQL',
         id: 'mysql_root_password',
         name: 'Root Password',
