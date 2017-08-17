@@ -1,17 +1,4 @@
-@import '../dao-color.scss';
-$flag-size: 12px;
-$flag-color: $blue;
-$flag-bg: $white-light;
-$stop-bg: generate-color($blue, -2);
-$slider-height: 6px;
-$slider-default-bg: $white-dark;
-$slider-disabled-bg: generate-color($slider-default-bg, 1);
-$tip-color: $grey-dark;
-
-%width {
-  width: $slider-height / 2;
-}
-
+@import "./varibles.scss";
 .dao-slider-track {
   position: relative;
   width: 100%;
@@ -20,32 +7,6 @@ $tip-color: $grey-dark;
   margin: 10px auto;
   background-color: $slider-default-bg;
   border-radius: 3px;
-
-  .dao-slider-stop-wrap {
-    .dao-slider-stop {
-      width: $slider-height;
-      height: $slider-height;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      background-color: $stop-bg;
-      border-radius: 50%;
-      transform: translateX(-50%) translateY(-50%);
-
-      &:first-child {
-        width: 0;
-      }
-      &:last-child {
-        @extend %width;
-      }
-    }
-
-    &.disabled-fill {
-      .dao-slider-stop {
-        background-color: $slider-disabled-bg;
-      }
-    }
-  }
 }
 
 .dao-slider-track__fill {
@@ -101,17 +62,5 @@ $tip-color: $grey-dark;
         transform: scale(1);
       }
     }
-  }
-}
-
-.dao-slider-tip-wrap {
-  position: relative;
-
-  .dao-slider-tip {
-    position: absolute;
-    margin-top: 5px;
-    color: $tip-color;
-    font-size: 12px;
-    transform: translateX(-50%);
   }
 }

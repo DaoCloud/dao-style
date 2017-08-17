@@ -1,44 +1,53 @@
 <template>
   <div>
-    <h2>连续值的</h2>
-    <dao-slider
-      v-model="valueA"
-      :min="rangeA.min"
-      :max="rangeA.max"
-      @onChange="handleChangeA"
-    >
-    </dao-slider>
-    <div class="show">
-      outside Value: {{this.valueA}}
-    </div>
-    <h2>离散值的</h2>
-    <dao-slider
-      v-model="valueB"
-      :min="rangeB.min"
-      :max="rangeB.max"
-      :step="step"
-      :disabled="false"
-      @onChange="handleChangeB"
-    >
-    </dao-slider>
-    <div class="show">
-      outside Value: {{this.valueB}}
-    </div>
-
-    <dao-slider
-      v-model="valueC"
-      :min="rangeC.min"
-      :max="rangeC.max"
-      :step="step"
-      :showStops="true"
-      :showTips="true"
-      :disabled="true"
-      @onChange="handleChangeC"
-    >
-    </dao-slider>
-    <div class="show">
-      outside Value: {{this.valueC}}
-    </div>
+    <dao-setting-layout>
+      <template slot="layout-title">连续值的</template>
+      <dao-setting-section class="slider-section">
+        <dao-slider
+          v-model="valueA"
+          :min="rangeA.min"
+          :max="rangeA.max"
+          @onChange="handleChangeA"
+        />
+        <div class="show">
+          outside Value: {{this.valueA}}
+        </div>
+      </dao-setting-section>
+    </dao-setting-layout>
+    <dao-setting-layout>
+      <template slot="layout-title">离散值的</template>
+      <dao-setting-section>
+        <dao-slider
+          v-model="valueB"
+          :min="rangeB.min"
+          :max="rangeB.max"
+          :step="step"
+          :disabled="false"
+          @onChange="handleChangeB"
+        />
+        <div class="show">
+          outside Value: {{this.valueB}}
+        </div>
+      </dao-setting-section>
+    </dao-setting-layout>
+    <dao-setting-layout>
+      <template slot="layout-title">disabled</template>
+      <dao-setting-section>
+        <dao-slider
+          v-model="valueC"
+          :min="rangeC.min"
+          :max="rangeC.max"
+          :step="step"
+          :showStops="true"
+          :showTips="true"
+          :disabled="true"
+          @onChange="handleChangeC"
+        />
+        <div class="show">
+          outside Value: {{this.valueC}}
+        </div>
+      </dao-setting-section>
+    </dao-setting-layout>
   </div>
 </template>
 <script>
@@ -73,6 +82,12 @@
       handleChangeC(data) {
         console.log(`valueC change: ${data}`);
       },
+    },
+    created() {
+      setTimeout(() => {
+        console.log('change rangeB.min');
+        this.rangeB.min = -2;
+      }, 5000);
     },
   };
 </script>

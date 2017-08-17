@@ -1,22 +1,15 @@
 <template>
   <div class="dao-slider">
-    Dao Slider
     <div
       class="dao-slider-track"
       @click.prevent="onHandleClick"
       ref="track">
       <!-- stops -->
-      <div
-        v-if="showStops"
-        class="dao-slider-stop-wrap"
-        :class="{'disabled-fill': disabled}">
-        <div
-          class="dao-slider-stop"
-          v-show="step"
-          :style="{left: stop * 100 + '%'}"
-          v-for="stop in stops">
-        </div>
-      </div>
+      <DaoSliderStops
+        v-if="showStops && step"
+        :stops="stops"
+        :disabled="disabled"
+      />
       <!-- fill track -->
       <div
         class="dao-slider-track__fill"
@@ -30,27 +23,19 @@
         </div>
       </div>
       <!-- tips -->
-      <div
-        v-if="showTips"
-        class="dao-slider-tip-wrap">
-        <div
-          class="dao-slider-tip"
-          v-show="step"
-          :style="{left: stop * 100 + '%'}"
-          v-for="stop in stops">
-          {{updateNewVal(stop)}}
-        </div>
-      </div>
-    </div>
-    <div class="show">
-      Inside Pos: {{this.curtPos}}<br/>
-      Inside Value: {{this.value}}
+      <DaoSliderTips
+        v-if="step && showTips"
+        :stops="stops"
+        :max="max"
+        :min="min"
+      />
     </div>
   </div>
 </template>
 <script>
   import { getStyle } from '../../utils/assist';
-
+  import DaoSliderTips from './dao-slider-tips/';
+  import DaoSliderStops from './dao-slider-stops/';
   export default {
     name: 'DaoSlider',
     props: {
@@ -95,6 +80,7 @@
         sliderWidth: 0,
         startX: null,
         baseStart: null,
+        watchStops: [], // 专门用来 watch 的 stops的一个副本
       };
     },
     computed: {
@@ -107,14 +93,17 @@
         const stepWidth = 1 / stopCount;
         const result = [0];
 
-        for (let i = 1; i < stopCount;) {
+        for (let i = 1; i < stopCount; i++) {
           result.push(i * stepWidth);
-          i += 1;
         }
+
         result.push(1);
+        if (!_.isEqual(result, this.watchStops)) {
+          this.watchStops = result;
+        }
         return result;
       },
-      helfStepWidth() {
+      halfStepWidth() {
         if (!this.step) {
           return false;
         }
@@ -131,7 +120,6 @@
     methods: {
       // drag
       onHandleMouseDown(e) {
-        console.log('onHandleMouseDown');
         if (this.disabled) return;
         this.onHandleDragStart(e);
         window.addEventListener('mousemove', this.onHandleDragging);
@@ -158,7 +146,6 @@
       },
 
       onHandleDragEnd(e) {
-        console.log('drag end');
         this.isDragging = false;
 
         // 没有 step 时
@@ -177,7 +164,6 @@
         window.removeEventListener('mouseup', this.onHandleDragEnd);
       },
       // track 的 click 事件
-
       onHandleClick(e) {
         if (this.disabled) return;
         const newPos = this.getCurPos(e.clientX);
@@ -190,18 +176,17 @@
           this.startX = e.clientX;
         }
       },
-      getCurtPosInSteps(newPos) {
-        if (!this.stops || !this.step) return;
-        const stopsLen = this.stops.length;
-        // 倒数第一个 stop 与倒数第二个 stop 之间的距离不一定是 this.helfStepWidth
-        if (newPos > this.stops[stopsLen - 2]) {
-          this.curtPos = (newPos <= this.stops[stopsLen - 2] + this.lastHalf) ? this.stops[stopsLen - 2] : this.stops[stopsLen - 1];
+      getCurtPosInSteps(newPos, stops = this.stops) {
+        if (!stops || !this.step) return;
+        const stopsLen = stops.length;
+        // 倒数第一个 stop 与倒数第二个 stop 之间的距离不一定是 this.halfStepWidth
+        if (newPos > stops[stopsLen - 2]) {
+          this.curtPos = (newPos <= stops[stopsLen - 2] + this.lastHalf) ? stops[stopsLen - 2] : stops[stopsLen - 1];
         } else {
-          const tempNewPos = this.stops.find(stop => ((stop - this.helfStepWidth) <= newPos) && (newPos < (stop + this.helfStepWidth)));
+          const tempNewPos = stops.find(stop => ((stop - this.halfStepWidth) <= newPos) && (newPos < (stop + this.halfStepWidth)));
           this.curtPos = tempNewPos || this.curtPos;
         }
         this.startX = this.baseStart + (this.curtPos * this.sliderWidth);
-        console.log('getCurtPosInSteps');
       },
       getCurPos(curClientX) {
         return (curClientX - this.baseStart) / this.sliderWidth;
@@ -214,7 +199,7 @@
       // position -> value
       updateNewVal(pos) {
         const newVal = (pos * (this.max - this.min)) + this.min;
-        return parseInt(newVal.toFixed(1), 10);
+        return parseInt(newVal, 10);
       },
     },
     watch: {
@@ -235,6 +220,9 @@
           this.$emit('onChange', newVal);
         }
       },
+      watchStops(newV) {
+        this.getCurtPosInSteps(this.curtPos, newV);
+      },
     },
     mounted() {
       this.sliderWidth = parseInt(getStyle(this.$refs.track, 'width'), 10);
@@ -244,9 +232,13 @@
           this.getCurtPosInSteps(this.curtPos);
         }
 
-        this.baseStart = this.$refs.track.offsetLeft;
+        this.baseStart = this.$refs.track.getBoundingClientRect().left + window.pageXOffset;
         this.startX = this.baseStart + (this.curtPos * this.sliderWidth);
       });
+    },
+    components: {
+      DaoSliderTips,
+      DaoSliderStops,
     },
   };
 </script>
