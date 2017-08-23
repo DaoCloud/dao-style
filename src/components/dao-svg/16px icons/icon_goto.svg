@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
   <title>icon_goto</title>
-  <path d="M16,1A15,15,0,1,0,31,16,15,15,0,0,0,16,1Zm0,22V18H8V14h8V9l8.8,7Z"/>
+  <path d="M8,.5A7.5,7.5,0,1,0,15.5,8,7.5,7.5,0,0,0,8,.5Zm0,11V9H4V7H8V4.5L12.4,8Z"/>
 </svg>
