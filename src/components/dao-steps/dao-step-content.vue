@@ -1,5 +1,5 @@
 <template>
-  <div class="dao-step-content" v-show="isActive">
+  <div class="dao-step-content" v-if="isActive">
     <slot></slot>
   </div>
 </template>
