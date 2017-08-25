@@ -283,7 +283,7 @@ describe('Select', () => {
     vm = createVue({
       template: `
       <dao-select v-model="tab" placeholder="带标签下拉框" :with-tab="true">
-        <dao-tab direction="left" ref="tab">
+        <dao-tab direction="left">
           <dao-tab-item heading="标题1">
             <dao-option-group label="111">
               <dao-option :value="1">111_1</dao-option>
@@ -305,7 +305,7 @@ describe('Select', () => {
       },
     }, true);
     vm.$nextTick(() => {
-      const tabItems = vm.$refs.tab.$el.querySelectorAll('.dao-tab-nav-item');
+      const tabItems = vm.$el.querySelectorAll('.dao-tab-nav-item');
       expect(tabItems[0].textContent.indexOf('标题1') > -1).to.be.true;
       expect(tabItems[1].textContent.indexOf('标题2') > -1).to.be.true;
       done();

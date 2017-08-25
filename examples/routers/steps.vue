@@ -23,15 +23,7 @@
         <dao-substep index="4-2">4-2</dao-substep>
         <dao-substep index="4-3">4-3</dao-substep>
       </dao-step>
-      <dao-step-content slot="content" index="1-1">
-        步骤 1-1 的内容
-        <dao-popover
-          content="a"
-          placement="top-start"
-          :always="true">
-          <button class="dao-btn ghost">上左</button>
-        </dao-popover>
-      </dao-step-content>
+      <dao-step-content slot="content" index="1-1">步骤 1-1 的内容</dao-step-content>
       <dao-step-content slot="content" index="1-2">步骤 1-2 的内容</dao-step-content>
       <dao-step-content slot="content" index="1-3">步骤 1-3 的内容</dao-step-content>
       <dao-step-content slot="content" index="2-1">步骤 2-1 的内容</dao-step-content>
