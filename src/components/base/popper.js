@@ -170,6 +170,22 @@ export default {
       popper.popper.style.transformOrigin = ['top', 'bottom'].indexOf(placement) > -1 ? `center ${origin}` : `${origin} center`;
     },
   },
+  created() {
+    this.$on('update-popper', this.updatePopper);
+    this.$on('destroy-popper', this.doDestroy);
+  },
+  mounted() {
+    // this.createPopper();
+    this.initClass = this.$popper.className;
+  },
+  beforeUpdate() {
+    // 这里是为了解决 popover 触发元素隐藏时 popover 不会消失的问题
+    if (!this.$refs.reference.offsetWidth && !this.$refs.reference.offsetHeight) {
+      this.doDestroy();
+    } else {
+      this.updatePopper();
+    }
+  },
   beforeDestroy() {
     if (this.appendToBody && this.$popper && this.$popper.parentNode === document.body) {
       document.body.removeChild(this.$popper);
@@ -177,13 +193,5 @@ export default {
     if (this.popperJS) {
       this.popperJS.destroy();
     }
-  },
-  mounted() {
-    // this.createPopper();
-    this.initClass = this.$popper.className;
-  },
-  created() {
-    this.$on('update-popper', this.updatePopper);
-    this.$on('destroy-popper', this.doDestroy);
   },
 };
