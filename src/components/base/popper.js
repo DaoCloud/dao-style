@@ -190,7 +190,12 @@ export default {
     }
   },
   beforeDestroy() {
-    if (this.appendToBody && !forceNotAppendToBody && this.$popper && this.$popper.parentNode === document.body) {
+    if (
+      this.appendToBody &&
+      !this.forceNotAppendToBody &&
+      this.$popper &&
+      this.$popper.parentNode === document.body
+    ) {
       document.body.removeChild(this.$popper);
     }
     if (this.popperJS) {
