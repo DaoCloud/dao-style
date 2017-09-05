@@ -180,50 +180,6 @@
         background-image: url($disabledIconSvg);
       }
     }
-    &.icon-inside {
-      position: relative;
-      &.info,
-      &.error,
-      &.success,
-      &.loading {
-        input {
-          @include e('&', 'input', ('.info', '.error', '.success')) {
-            padding: $input-icon-padding;
-          }
-        }
-      }
-
-      .info-icon,
-      .error-icon,
-      .success-icon,
-      .loading-icon {
-        z-index: 2;
-        position: absolute;
-        margin-right: 0;
-        width: $input-icon-width;
-        height: $input-icon-height;
-        right: $input-icon-align-blank;
-        top: 8px;
-        svg {
-          width: 100%;
-          height: 100%;
-        }
-      }
-      .loading-icon svg {
-        fill: $input-info-color;
-        -webkit-animation: spin 1.5s infinite linear;
-        animation: spin 1.5s infinite linear;
-      }
-      .info-icon svg {
-        fill: $input-info-color;
-      }
-      .error-icon svg {
-        fill: $input-error-color;
-      }
-      .success-icon svg {
-        fill: $input-success-color;
-      }
-    }
     &.dao-input-group {
       width: $input-width;
       .dao-popover {
@@ -318,6 +274,50 @@
       .dao-input-group-addon  > *:not(.dao-select) {
         padding: 5px 6px;
         height: $input-height-sm;
+      }
+    }
+    &.icon-inside {
+      position: relative;
+      &.info,
+      &.error,
+      &.success,
+      &.loading {
+        input {
+          @include e('&', 'input', ('.info', '.error', '.success')) {
+            padding: $input-icon-padding;
+          }
+        }
+      }
+
+      .info-icon,
+      .error-icon,
+      .success-icon,
+      .loading-icon {
+        z-index: 2;
+        position: absolute;
+        margin-right: 0;
+        width: $input-icon-width;
+        height: $input-icon-height;
+        right: $input-icon-align-blank;
+        top: 8px;
+        svg {
+          width: 100%;
+          height: 100%;
+        }
+      }
+      .loading-icon svg {
+        fill: $input-info-color;
+        -webkit-animation: spin 1.5s infinite linear;
+        animation: spin 1.5s infinite linear;
+      }
+      .info-icon svg {
+        fill: $input-info-color;
+      }
+      .error-icon svg {
+        fill: $input-error-color;
+      }
+      .success-icon svg {
+        fill: $input-success-color;
       }
     }
   }
