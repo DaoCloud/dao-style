@@ -432,14 +432,14 @@ textarea#{$dao-control-name} {
 }
 .dao-input-container .dao-popover-popper[x-placement='top-end'],
 .dao-popover-popper[x-placement='top-end'].append-to-body.dao-input-popover {
-  transform: translateY(12px);
+  top: 12px!important;
   .dao-popover-arrow {
     right: 1px!important;
   }
 }
 .dao-input-container .dao-popover-popper[x-placement='right-start'],
 .dao-popover-popper[x-placement='right-start'].append-to-body.dao-input-popover {
-  transform: translateX(2px);
+  left: 2px!important;
   .dao-popover-arrow {
     top: 1px!important;
   }
