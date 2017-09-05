@@ -374,7 +374,7 @@ textarea#{$dao-control-name} {
 // TODO
 // 因为appendToBody，此处把样式单独抽离出来了，很不优雅，未来需要还原回去。
 
-.dao-input-container .icon-inside .dao-popover:not(.hide) .dao-popover-popper,
+.dao-input-container.icon-inside .dao-popover:not(.hide) .dao-popover-popper,
 .dao-popover-popper:not(.hide).append-to-body.dao-input-popover {
   // 将 display 设置为 table 可解决因为中英文空格、标点符号使得一句话换行问题。
   // 是受到了外层样式是 flex 布局的影响
@@ -385,7 +385,7 @@ textarea#{$dao-control-name} {
     color: $white;
   }
 }
-.dao-input-container .icon-inside .dao-popover.info,
+.dao-input-container.icon-inside .dao-popover.info,
 .dao-popover-popper.info.append-to-body.dao-input-popover {
   & .dao-popover-inner {
     background-color: $input-info-color;
@@ -400,7 +400,7 @@ textarea#{$dao-control-name} {
     }
   }
 }
-.dao-input-container .icon-inside .dao-popover.error,
+.dao-input-container.icon-inside .dao-popover.error,
 .dao-popover-popper.error.append-to-body.dao-input-popover {
   & .dao-popover-inner {
     background-color: $input-error-color;
@@ -415,7 +415,7 @@ textarea#{$dao-control-name} {
     }
   }
 }
-.dao-input-container .icon-inside .dao-popover.success,
+.dao-input-container.icon-inside .dao-popover.success,
 .dao-popover-popper.success.append-to-body.dao-input-popover {
   & .dao-popover-inner {
     background-color: $input-success-color;
