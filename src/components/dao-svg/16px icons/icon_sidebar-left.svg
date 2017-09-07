@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+  <title>icon_sidebar-left</title>
+  <g>
+    <path d="M13,1H3A1,1,0,0,0,2,2V14a1,1,0,0,0,1,1H13a1,1,0,0,0,1-1V2A1,1,0,0,0,13,1ZM11,14H3V2h8Z"/>
+    <polygon points="9 12 9 4 5 8 9 12"/>
+  </g>
+</svg>
