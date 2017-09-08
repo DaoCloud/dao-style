@@ -49,6 +49,7 @@ $resizeSvg: "data:image/svg+xml;utf8,%3Csvg%20xmlns=%27http://www.w3.org/2000/sv
   }
   .dao-dialog-step {
     flex: 1;
+    position: relative;
     overflow-x: hidden;
     overflow-y: auto;
   }
@@ -102,14 +103,9 @@ $resizeSvg: "data:image/svg+xml;utf8,%3Csvg%20xmlns=%27http://www.w3.org/2000/sv
   &[size='resize'] {
     height: 100%;
 
-    .dao-dialog-container {
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      height: 400px;
-      transform: translateX(-50%) translateY(-50%);
+    &>.dao-dialog-container {
+      position: relative;
       resize: both;
-
       &::after {
         content: '';
         position: absolute;
