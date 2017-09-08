@@ -16,7 +16,6 @@
   cursor: pointer;
   user-select: none;
   text-align: center;
-  vertical-align: middle;
   white-space: nowrap;
 
   @include box-sizing('border-box');
@@ -136,12 +135,10 @@ a.dao-btn {
     padding-bottom: $btn-has-icon-padding-y;
     .text {
       display: inline-block;
-      vertical-align: middle;
       margin:0 0 0 0;
     }
     svg.icon {
       display: inline-block;
-      vertical-align: middle;
     }
     svg.icon + .text {
       margin:0 0 0 5px;

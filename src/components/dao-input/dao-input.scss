@@ -59,7 +59,6 @@
     display: inline-flex;
     align-items: center;
     flex-wrap: wrap;
-    vertical-align: middle;
     input {
       @include e('&', ('input', 'textarea')) {
         margin: 0;
