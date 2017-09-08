@@ -111,6 +111,7 @@ export default {
 | type     | String         | 只接受这四个值：`'input'、'text'`、`'select'`、`'checkbox'`。分别表示输入框、固定文本、选择和是非题。 | -              | 是    |
 | name     | String         | 它是 result 对象中的属性名称。                      | -              | 是    |
 | default  | String/Boolean | 默认值。类型根据这个字段的 type 来决定。                  | `''` 和 `false` | 否    |
+| placeholder  | String | 占位符                  | `''` | 否    |
 | options  | Array          | 只有当这个字段的 type 是 `'select'` 的时候才需要。options 有两种格式，可以是 `['apple']`，也可以是 `[{label: 'apple', value: '苹果'}]`。 | -              | 否    |
 | label    | String         | 只有当这个字段的 type 是 `'checkbox'` 的时候才需要，它是 checkbox 的 label。 | -              | 否    |
 | validate | Function       | 验证函数。这个函数应该是个纯函数。它接受两个参数，第一个是当前行的数据，第二个是所有行的数据（包括新添加的行，不包括新删除的行），如果返回 `true`，表示验证通过。如果返回其他字符串，表示验证不通过，且错误信息是字符串内容。 | -              | 否    |
