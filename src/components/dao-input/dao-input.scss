@@ -179,50 +179,6 @@
         background-image: url($disabledIconSvg);
       }
     }
-    &.icon-inside {
-      position: relative;
-      &.info,
-      &.error,
-      &.success,
-      &.loading {
-        input {
-          @include e('&', 'input', ('.info', '.error', '.success')) {
-            padding: $input-icon-padding;
-          }
-        }
-      }
-
-      .info-icon,
-      .error-icon,
-      .success-icon,
-      .loading-icon {
-        z-index: 2;
-        position: absolute;
-        margin-right: 0;
-        width: $input-icon-width;
-        height: $input-icon-height;
-        right: $input-icon-align-blank;
-        top: 8px;
-        svg {
-          width: 100%;
-          height: 100%;
-        }
-      }
-      .loading-icon svg {
-        fill: $input-info-color;
-        -webkit-animation: spin 1.5s infinite linear;
-        animation: spin 1.5s infinite linear;
-      }
-      .info-icon svg {
-        fill: $input-info-color;
-      }
-      .error-icon svg {
-        fill: $input-error-color;
-      }
-      .success-icon svg {
-        fill: $input-success-color;
-      }
-    }
     &.dao-input-group {
       width: $input-width;
       .dao-popover {
@@ -319,6 +275,50 @@
         height: $input-height-sm;
       }
     }
+    &.icon-inside {
+      position: relative;
+      &.info,
+      &.error,
+      &.success,
+      &.loading {
+        input {
+          @include e('&', 'input', ('.info', '.error', '.success')) {
+            padding: $input-icon-padding;
+          }
+        }
+      }
+
+      .info-icon,
+      .error-icon,
+      .success-icon,
+      .loading-icon {
+        z-index: 2;
+        position: absolute;
+        margin-right: 0;
+        width: $input-icon-width;
+        height: $input-icon-height;
+        right: $input-icon-align-blank;
+        top: 8px;
+        svg {
+          width: 100%;
+          height: 100%;
+        }
+      }
+      .loading-icon svg {
+        fill: $input-info-color;
+        -webkit-animation: spin 1.5s infinite linear;
+        animation: spin 1.5s infinite linear;
+      }
+      .info-icon svg {
+        fill: $input-info-color;
+      }
+      .error-icon svg {
+        fill: $input-error-color;
+      }
+      .success-icon svg {
+        fill: $input-success-color;
+      }
+    }
   }
   &-message {
     // 因为布局是 flex 导致 message 中的 icon 在提示语句较长的时候会变小，所以先暂时将 flex 布局取消掉
@@ -373,7 +373,7 @@ textarea#{$dao-control-name} {
 // TODO
 // 因为appendToBody，此处把样式单独抽离出来了，很不优雅，未来需要还原回去。
 
-.dao-input-container .icon-inside .dao-popover:not(.hide) .dao-popover-popper,
+.dao-input-container.icon-inside .dao-popover:not(.hide) .dao-popover-popper,
 .dao-popover-popper:not(.hide).append-to-body.dao-input-popover {
   // 将 display 设置为 table 可解决因为中英文空格、标点符号使得一句话换行问题。
   // 是受到了外层样式是 flex 布局的影响
@@ -384,7 +384,7 @@ textarea#{$dao-control-name} {
     color: $white;
   }
 }
-.dao-input-container .icon-inside .dao-popover.info,
+.dao-input-container.icon-inside .dao-popover.info,
 .dao-popover-popper.info.append-to-body.dao-input-popover {
   & .dao-popover-inner {
     background-color: $input-info-color;
@@ -399,7 +399,7 @@ textarea#{$dao-control-name} {
     }
   }
 }
-.dao-input-container .icon-inside .dao-popover.error,
+.dao-input-container.icon-inside .dao-popover.error,
 .dao-popover-popper.error.append-to-body.dao-input-popover {
   & .dao-popover-inner {
     background-color: $input-error-color;
@@ -414,7 +414,7 @@ textarea#{$dao-control-name} {
     }
   }
 }
-.dao-input-container .icon-inside .dao-popover.success,
+.dao-input-container.icon-inside .dao-popover.success,
 .dao-popover-popper.success.append-to-body.dao-input-popover {
   & .dao-popover-inner {
     background-color: $input-success-color;
@@ -431,14 +431,14 @@ textarea#{$dao-control-name} {
 }
 .dao-input-container .dao-popover-popper[x-placement='top-end'],
 .dao-popover-popper[x-placement='top-end'].append-to-body.dao-input-popover {
-  transform: translateY(12px);
+  top: 12px!important;
   .dao-popover-arrow {
     right: 1px!important;
   }
 }
 .dao-input-container .dao-popover-popper[x-placement='right-start'],
 .dao-popover-popper[x-placement='right-start'].append-to-body.dao-input-popover {
-  transform: translateX(2px);
+  left: 2px!important;
   .dao-popover-arrow {
     top: 1px!important;
   }

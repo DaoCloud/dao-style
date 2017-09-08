@@ -24,7 +24,7 @@
           'info': status === 'info' && iconInside,
           'error': status === 'error' && iconInside,
           'success': status === 'success' && iconInside,
-          'hide': !iconInside || !messageEnabled,
+          'hide': !iconInside || !messageEnabled || (showTooltipOnlyHover && !hovered),
         }"
         :placement="iconInsideMessagePlacement"
         :always="iconInside"
@@ -149,7 +149,7 @@
       popperCls() {
         return [
           this.iconInside && this.status,
-          (!this.iconInside || !this.messageEnabled) && 'hide',
+          (!this.iconInside || !this.messageEnabled || (this.showTooltipOnlyHover && !this.hovered)) && 'hide',
           'dao-input-popover',
         ].filter(i => !!i);
       },
