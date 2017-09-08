@@ -25,6 +25,7 @@ import radio from './routers/radio.vue';
 import select from './routers/select.vue';
 import selectAll from './routers/select-all.vue';
 import settingLayout from './routers/setting-layout.vue';
+import slider from './routers/slider.vue';
 import steps from './routers/steps.vue';
 import svg from './routers/svg.vue';
 import switchExample from './routers/switch.vue';
@@ -92,6 +93,9 @@ const router = new VueRouter({
   }, {
     path: '/setting-layout',
     component: settingLayout,
+  }, {
+    path: '/slider',
+    component: slider,
   }, {
     path: '/steps',
     component: steps,
