@@ -1,5 +1,5 @@
-import daoDrop from '../dao-select/dropdown.vue';
 import _ from 'lodash';
+import daoDrop from '../dao-select/dropdown.vue';
 import Popper from '../base/popper';
 
 export default {
@@ -73,7 +73,7 @@ export default {
       // 如果外部修改的 v-model 和组件自己的 inputText 一样，那就不用同步了
       if (this.value === this.inputText) return;
       // 如果有选项的话，那就要根据 value 来找到选项中对应的 text
-      let initText = '';
+      let initText = this.value;
       if (this.value && this.options.length > 0) {
         const initOption = _.find(this.options, o => (o === this.value || o.value === this.value));
         if (initOption) {
