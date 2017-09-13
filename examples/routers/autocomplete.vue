@@ -26,6 +26,19 @@
       <span>value: {{model4}}</span>
       <dao-autocomplete :options="options4" v-model="model4" placeholder="请输入文本"></dao-autocomplete>
     </section>
+
+    <section>
+      <h1>错误提示版</h1>
+      <span>value: {{model5}}</span>
+      <dao-autocomplete
+        :options="options5"
+        v-model="model5"
+        placeholder="请输入文本"
+        icon-inside
+        :status="model5 === 'cherry' ? 'error' : ''"
+        :message="model5 === 'cherry' ? '值不能是 cherry' : ''"
+      ></dao-autocomplete>
+    </section>
   </div>
 </template>
 <script>
@@ -54,10 +67,12 @@ export default {
       options2: [],
       options3: [],
       options4: [],
+      options5: [],
       model1: '',
       model2: 'banana',
       model3: '',
       model4: '',
+      model5: '',
       isValid1: false,
     };
   },
@@ -69,6 +84,7 @@ export default {
       setTimeout(() => {
         this.model3 = 'cherry';
         this.model4 = 'cherry';
+        this.model5 = 'cherry';
       }, 0);
     }, 0);
   },

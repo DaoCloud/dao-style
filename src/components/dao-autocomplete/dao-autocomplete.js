@@ -1,10 +1,12 @@
 import _ from 'lodash';
 import daoDrop from '../dao-select/dropdown.vue';
+import DaoInput from '../dao-input/dao-input.vue';
 import Popper from '../base/popper';
 
 export default {
   name: 'DaoAutocomplete',
   components: { daoDrop },
+  extends: DaoInput,
   mixins: [Popper],
   props: ['value', 'options', 'placeholder'],
   data() {
