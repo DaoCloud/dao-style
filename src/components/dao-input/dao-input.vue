@@ -28,7 +28,7 @@
         }"
         :placement="iconInsideMessagePlacement"
         :always="iconInside"
-        :popper-cls="popperCls2Input"
+        :popper-cls="popperCls"
         :append-to-body="appendToBody"
         :disabled="!iconInside || !messageEnabled || (showTooltipOnlyHover && !hovered)">
         <input
@@ -146,7 +146,7 @@
         }
         return 'top-end';
       },
-      popperCls2Input() {
+      popperCls() {
         return [
           this.iconInside && this.status,
           (!this.iconInside || !this.messageEnabled || (this.showTooltipOnlyHover && !this.hovered)) && 'hide',
