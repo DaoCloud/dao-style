@@ -3,6 +3,9 @@
     ref="reference"
     :placeholder="placeholder"
     v-model="inputText"
+    icon-inside
+    :message="errorMsg"
+    :status="inputStatus"
     @keyup="keyup"
     @keyup.up="upArrow"
     @keyup.down="downArrow"

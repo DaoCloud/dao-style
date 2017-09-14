@@ -6,11 +6,12 @@ export default {
   name: 'DaoAutocomplete',
   components: { daoDrop },
   mixins: [Popper],
-  props: ['value', 'options', 'placeholder'],
+  props: ['value', 'options', 'placeholder', 'validate'],
   data() {
     return {
       inputText: '',
       optionIndex: 0,
+      isValid: true,
     };
   },
   computed: {
@@ -28,6 +29,14 @@ export default {
     },
     filteredOption() {
       return _.filter(this.vmOptions, o => o.text.indexOf(this.inputText) > -1);
+    },
+    inputStatus() {
+      if (_.isString(this.isValid)) return 'error';
+      return '';
+    },
+    errorMsg() {
+      if (_.isString(this.isValid)) return this.isValid;
+      return '';
     },
   },
   methods: {
@@ -65,8 +74,10 @@ export default {
     },
     // 更新外部 v-model 所绑定的值
     updateValue(value) {
-      this.$emit('input', value);
-      this.$emit('change', value);
+      if (this.isValid && _.isBoolean(this.isValid)) {
+        this.$emit('input', value);
+        this.$emit('change', value);
+      }
     },
     // 当从组件外部改变 v-model 时，同步组件内部的 inputText
     syncValue() {
@@ -122,6 +133,11 @@ export default {
       this.updatePopper();
       this.$nextTick(() => this.updatePopper());
       this.$emit('visible-change', Boolean(val));
+    },
+    inputText(val) {
+      if (this.validate) {
+        this.isValid = this.validate(val);
+      }
     },
   },
 };
