@@ -1,44 +1,83 @@
 @import './dao-table-variable.scss';
 @import './dao-table-components.scss';
+@import '../dao-color.scss';
+$tr-height: 30px;
 
-$thead-height: 24px;
+$font-size: 14px;
 
+$zebra-bg: #f1f7fe;
+$th-bg: $white-light;
+$selected-bg: #096dec;
+
+$outer-border: $grey-light;
+$inner-border: $white-dark;
 .dao-list-container {
   height: 100%;
   width: 100%;
   overflow: hidden;
 }
 
-.dao-list {
-  display: block;
+table.dao-list {
+  position: relative;
   height: 100%;
+
+  border: 1px solid $outer-border;
+  border-collapse: collapse;
 
   overflow: auto;
 }
 
-// thead {
-//   display: block;
-// }
+thead {
+  display: block;
+  // 注意 thead 的 tr 下面有一个 border，这 1px 的 border 不在 30px 中
+  height: $tr-height + 1;
+  
+  border-bottom: 1px solid $inner-border;
+  background: $white-light;
+}
 
 tbody {
-  // display: block;
-  // height: calc(100% - #{$thead-height});
-  // overflow: auto;
 }
 
 tr {
   display: flex;
+  height: 30px;
+  &:nth-child(even) {
+    background: $zebra-bg;
+  }
 }
 
 th, td {
   display: block;
   flex: 1 0 auto;
+  padding: 0 10px;
+
+  // 暂时的
+  width: 60px;
+
+  color: $black-dark;
+  font-size: $font-size;
+  font-weight: normal;
+  line-height: $tr-height;
   white-space: nowrap;
+  text-align: left;
   text-overflow: ellipsis;
   overflow: hidden;
-  // display: block;
+  svg {
+    width: 16px;
+    height: 16px;
+    vertical-align: middle;
+    fill: $grey-light;
+  }
+}
+
+th {
+  border-right: 1px solid $inner-border;
+  &:last-child {
+    border-right: none;
+  }
 }
 
 .service {
-  width: 45px;
+  // width: 45px;
 }

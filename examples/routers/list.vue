@@ -105,7 +105,7 @@
 </script>
 <style lang="scss" scoped>
 #thelist {
-  height: 150px;
-  width: 300px;
+  // height: 150px;
+  // width: 300px;
 }
 </style>
