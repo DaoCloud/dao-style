@@ -1,7 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
   <title>icon_file</title>
   <g>
-    <path d="M28,6V30H4V2H24V0H4A2,2,0,0,0,2,2V30a2,2,0,0,0,2,2H28a2,2,0,0,0,2-2V6Z"/>
-    <path d="M25,0V3a2,2,0,0,0,2,2h3Z"/>
+    <path d="M14,15H2V1h9V0H2A1,1,0,0,0,1,1V15a1,1,0,0,0,1,1H14a1,1,0,0,0,1-1V4H14Z"/>
+    <path d="M15,3H13a1,1,0,0,1-1-1V0Z"/>
   </g>
 </svg>
