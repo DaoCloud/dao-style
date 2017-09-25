@@ -1,0 +1,44 @@
+@import './dao-table-variable.scss';
+@import './dao-table-components.scss';
+
+$thead-height: 24px;
+
+.dao-list-container {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+.dao-list {
+  display: block;
+  height: 100%;
+
+  overflow: auto;
+}
+
+// thead {
+//   display: block;
+// }
+
+tbody {
+  // display: block;
+  // height: calc(100% - #{$thead-height});
+  // overflow: auto;
+}
+
+tr {
+  display: flex;
+}
+
+th, td {
+  display: block;
+  flex: 1 0 auto;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  // display: block;
+}
+
+.service {
+  width: 45px;
+}

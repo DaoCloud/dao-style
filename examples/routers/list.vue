@@ -1,11 +1,13 @@
 <template>
-  <dao-list
-    :columns="columns"
-    :rows="rows"
-    :config="config"
-    @create-service="onCreateService"
-    @remove-service="onRemoveService"
-    @pulse-service="onPulseService"></dao-list>
+  <div id="thelist">
+    <dao-list
+      :columns="columns"
+      :rows="rows"
+      :config="config"
+      @create-service="onCreateService"
+      @remove-service="onRemoveService"
+      @pulse-service="onPulseService"></dao-list>
+  </div>
 </template>
 <script>
   export default {
@@ -102,4 +104,8 @@
   };
 </script>
 <style lang="scss" scoped>
+#thelist {
+  height: 150px;
+  width: 300px;
+}
 </style>
