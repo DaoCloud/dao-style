@@ -24,31 +24,231 @@
             name: 'status',
             sortable: true,
           },
+          mode: {
+            text: '模式',
+            name: 'mode',
+            sortable: true,
+          },
+          containers: {
+            text: '容器数',
+            name: 'containers',
+            sortable: true,
+          },
           memory: {
             text: '内存限制',
             name: 'memory',
+            sortable: true,
+          },
+          cpu: {
+            text: 'CPU 限制',
+            name: 'cpu',
+            sortable: true,
+          },
+          creationTime: {
+            text: '创建时间',
+            name: 'creationTime',
             sortable: true,
           },
         },
         rows: [
           {
             service: {
-              text: 'dce-plugin',
-              value: 'dce-plugin',
+              text: 'dce-plugin-applb',
+              value: 'dce-plugin-applb',
               type: 'text',
             },
             status: {
               text: '正在运行',
               value: 'running',
-              type: 'text',
+              type: 'status',
               other: {
                 status: 'running',
               },
             },
-            memory: {
-              text: '1000M',
-              value: '1000000000',
+            mode: {
+              text: '弹性',
               type: 'text',
+              value: '弹性',
+            },
+            containers: {
+              text: '10',
+              type: 'text',
+              value: 10,
+            },
+            memory: {
+              text: '0.5M/1G',
+              type: 'text',
+              value: 5000000,
+            },
+            cpu: {
+              text: '0.5 核/3 核',
+              type: 'text',
+              value: 0.5,
+            },
+            creationTime: {
+              text: '2017-09-23',
+              type: 'text',
+              value: 115454154878,
+            },
+          },
+          {
+            service: {
+              text: 'dce-plugin-applb',
+              value: 'dce-plugin-applb',
+              type: 'text',
+            },
+            status: {
+              text: '正在运行',
+              value: 'running',
+              type: 'status',
+              other: {
+                status: 'running',
+              },
+            },
+            mode: {
+              text: '弹性',
+              type: 'text',
+              value: '弹性',
+            },
+            containers: {
+              text: '10',
+              type: 'text',
+              value: 10,
+            },
+            memory: {
+              text: '0.5M/1G',
+              type: 'text',
+              value: 5000000,
+            },
+            cpu: {
+              text: '0.5 核/3 核',
+              type: 'text',
+              value: 0.5,
+            },
+            creationTime: {
+              text: '2017-09-23',
+              type: 'text',
+              value: 115454154878,
+            },
+          },
+          {
+            service: {
+              text: 'dce-plugin-applb',
+              value: 'dce-plugin-applb',
+              type: 'text',
+            },
+            status: {
+              text: '正在运行',
+              value: 'running',
+              type: 'status',
+              other: {
+                status: 'running',
+              },
+            },
+            mode: {
+              text: '弹性',
+              type: 'text',
+              value: '弹性',
+            },
+            containers: {
+              text: '10',
+              type: 'text',
+              value: 10,
+            },
+            memory: {
+              text: '0.5M/1G',
+              type: 'text',
+              value: 5000000,
+            },
+            cpu: {
+              text: '0.5 核/3 核',
+              type: 'text',
+              value: 0.5,
+            },
+            creationTime: {
+              text: '2017-09-23',
+              type: 'text',
+              value: 115454154878,
+            },
+          },
+          {
+            service: {
+              text: 'dce-plugin-applb',
+              value: 'dce-plugin-applb',
+              type: 'text',
+            },
+            status: {
+              text: '正在运行',
+              value: 'running',
+              type: 'status',
+              other: {
+                status: 'running',
+              },
+            },
+            mode: {
+              text: '弹性',
+              type: 'text',
+              value: '弹性',
+            },
+            containers: {
+              text: '10',
+              type: 'text',
+              value: 10,
+            },
+            memory: {
+              text: '0.5M/1G',
+              type: 'text',
+              value: 5000000,
+            },
+            cpu: {
+              text: '0.5 核/3 核',
+              type: 'text',
+              value: 0.5,
+            },
+            creationTime: {
+              text: '2017-09-23',
+              type: 'text',
+              value: 115454154878,
+            },
+          },
+          {
+            service: {
+              text: 'dce-plugin-applb',
+              value: 'dce-plugin-applb',
+              type: 'text',
+            },
+            status: {
+              text: '正在运行',
+              value: 'running',
+              type: 'status',
+              other: {
+                status: 'running',
+              },
+            },
+            mode: {
+              text: '弹性',
+              type: 'text',
+              value: '弹性',
+            },
+            containers: {
+              text: '10',
+              type: 'text',
+              value: 10,
+            },
+            memory: {
+              text: '0.5M/1G',
+              type: 'text',
+              value: 5000000,
+            },
+            cpu: {
+              text: '0.5 核/3 核',
+              type: 'text',
+              value: 0.5,
+            },
+            creationTime: {
+              text: '2017-09-23',
+              type: 'text',
+              value: 115454154878,
             },
           },
         ],
