@@ -2,6 +2,7 @@
 @import './dao-table-components.scss';
 @import '../dao-color.scss';
 $tr-height: 30px;
+$td-checkbox-width: 54px;
 
 $font-size: 14px;
 
@@ -42,8 +43,13 @@ tbody {
 tr {
   display: flex;
   height: 30px;
+  color: $black-dark;
   &:nth-child(even) {
     background: $zebra-bg;
+  }
+  &.checked {
+    color: white;
+    background-color: $selected-bg;
   }
 }
 
@@ -55,7 +61,6 @@ th, td {
   // 暂时的
   width: 120px;
 
-  color: $black-dark;
   font-size: $font-size;
   font-weight: normal;
   line-height: $tr-height;
@@ -68,6 +73,12 @@ th, td {
     height: 16px;
     vertical-align: middle;
     fill: $grey-light;
+  }
+  &.checkbox {
+    width: $td-checkbox-width;
+    svg {
+      fill: $black-dark;
+    }
   }
 }
 

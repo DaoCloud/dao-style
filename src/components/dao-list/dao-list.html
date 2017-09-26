@@ -2,6 +2,12 @@
   <table class="dao-list flexrow">
     <thead>
       <tr>
+        <th class="checkbox">
+          <input type="checkbox">
+          <svg>
+            <use xlink:href="#icon_caret-down" v-model="allChecked"></use>
+          </svg>
+        </th>
         <th v-for="c in columnsOrder">
           {{columns[c].text}}
         </th>
@@ -9,7 +15,8 @@
       </tr>
     </thead>
     <tbody>
-      <tr v-for="r in currentRows">
+      <tr :class="{checked: r.$checked}" v-for="r in currentRows" @click="click(r, $event)">
+        <td class="checkbox"><input type="checkbox" v-model="r.$checked"></td>
         <td v-for="c in columnsOrder">{{r[c].text}}</td>
         <td>
           <svg>

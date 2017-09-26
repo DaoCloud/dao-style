@@ -10,6 +10,8 @@ export default {
   data() {
     return {
       page: 0,
+      allChecked: false,
+      selectedRows: [],
     };
   },
   computed: {
@@ -26,13 +28,18 @@ export default {
     sortedRows() {
       // TODO: 排序逻辑待完善
       const result = this.filteredRows;
-      // 基本上和 sortedRows 是一样的，区别在于 currentRows 里会添加 checked
-      this.currentRows = _.clone(result);
       return result;
+    },
+    // 基本和sortedRows是一样的，只是加了 checked
+    readyRows() {
+      _.forEach(this.sortedRows, (r) => {
+        this.$set(r, '$checked', false);
+      });
+      return this.sortedRows;
     },
     chunks() {
       // TODO：分页逻辑待完善
-      return [this.sortedRows];
+      return [this.readyRows];
     },
     // 指的是当前页的行
     currentRows() {
@@ -40,5 +47,31 @@ export default {
     },
   },
   methods: {
+    // 选中一行
+    checkRow(row, target) {
+      // 修改行的选中状态
+      this.$set(row, '$checked', target);
+      if (row.$checked && !this.selectedRows.includes(row)) {
+        // 如果这行被选中的话，就添加到选中的行数组里
+        this.selectedRows.push(row);
+      } else if (!row.$checked) {
+        // 如果取消选中就移除掉
+        _.remove(this.selectedRows, row);
+      }
+    },
+    // 点击某一行的事件
+    click(row, event) {
+      if (event.target.nodeName === 'use' ||
+        event.target.nodeName === 'svg' ||
+        event.target.nodeName === 'SPAN' ||
+        event.target.nodeName === 'A' ||
+        event.target.nodeName === 'BUTTON' ||
+        // 当其点在 popover 绑定元素上面也不能选中列表
+        event.path.some(node => node.classList && node.classList.contains('dao-popover'))
+      ) {
+        return;
+      }
+      this.checkRow(row, !row.$checked);
+    },
   },
 };
