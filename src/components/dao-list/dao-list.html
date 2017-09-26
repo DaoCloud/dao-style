@@ -1,32 +1,55 @@
 <div class="dao-list-container">
-  <table class="dao-list flexrow">
-    <thead>
-      <tr>
-        <th class="checkbox">
-          <input type="checkbox" class="round"
-            :class="{'half-check': isAllChecked === 'partial'}"
-            :checked="isAllChecked === 'yes'"
-            @click="checkAll()">
-          <svg>
-            <use xlink:href="#icon_caret-down"></use>
+  <div class="dao-list-main">
+    <div class="dao-list-topbar">
+      <dao-input class="dao-list-filter" size="sm" :placeholder="`搜索${tableName}`"></dao-input>
+      <div class="dao-list-pagination">
+        <span class="counts">共 10 个服务</span>
+        <div class="pagination">
+          <svg class="enable">
+            <use xlink:href="#icon_caret-left"></use>
           </svg>
-        </th>
-        <th v-for="c in columnsOrder">
-          {{columns[c].text}}
-        </th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr :class="{checked: r.$checked}" v-for="r in currentRows" @click="click(r, $event)">
-        <td class="checkbox"><input type="checkbox" class="round" :checked="r.$checked"></td>
-        <td v-for="c in columnsOrder">{{r[c].text}}</td>
-        <td>
+          <span class="page enable">1</span>
+          <span class="page enable">2</span>
+          <span class="page enable">3</span>
+          <span class="page enable">4</span>
+          <span class="page">...</span>
           <svg>
-            <use xlink:href="#icon_more"></use>
+            <use xlink:href="#icon_caret-right"></use>
           </svg>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+        </div>
+      </div>
+    </div>
+    <div class="dao-list-scrolldiv">
+      <table class="dao-list flexrow">
+        <thead>
+          <tr>
+            <th class="checkbox">
+              <input type="checkbox" class="round"
+                :class="{'half-check': isAllChecked === 'partial'}"
+                :checked="isAllChecked === 'yes'"
+                @click="checkAll()">
+              <svg>
+                <use xlink:href="#icon_caret-down"></use>
+              </svg>
+            </th>
+            <th v-for="c in columnsOrder">
+              {{columns[c].text}}
+            </th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr :class="{checked: r.$checked}" v-for="r in currentRows" @click="click(r, $event)">
+            <td class="checkbox"><input type="checkbox" class="round" :checked="r.$checked"></td>
+            <td v-for="c in columnsOrder">{{r[c].text}}</td>
+            <td>
+              <svg>
+                <use xlink:href="#icon_more"></use>
+              </svg>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>

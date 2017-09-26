@@ -14,6 +14,9 @@ export default {
     };
   },
   computed: {
+    tableName() {
+      return this.config.tableName;
+    },
     pageLimit() {
       return this.config.pagination.limit;
     },

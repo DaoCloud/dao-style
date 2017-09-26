@@ -253,6 +253,7 @@
           },
         ],
         config: {
+          tableName: '服务',
           columnsOrder: ['service', 'status', 'mode', 'containers', 'memory', 'creationTime', 'cpu'],
           sorting: {
             defaultSortBy: 'service',
@@ -305,7 +306,7 @@
 </script>
 <style lang="scss" scoped>
 #thelist {
-  // height: 150px;
+  height: 150px;
   // width: 300px;
 }
 </style>

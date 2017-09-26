@@ -2,34 +2,87 @@
 @import './dao-table-components.scss';
 @import '../dao-color.scss';
 $tr-height: 30px;
+// 这是算上上方1px边框的高度
+$topbar-height: 35px;
 $td-checkbox-width: 54px;
 
 $font-size: 14px;
 
 $zebra-bg: #f1f7fe;
 $th-bg: $white-light;
+
+$pagination-active-color: #217ef2;
 $selected-bg: #096dec;
 
 $outer-border: $grey-light;
 $inner-border: $white-dark;
 .dao-list-container {
+  display: flex;
   height: 100%;
   width: 100%;
   overflow: hidden;
 }
 
-table.dao-list {
-  position: relative;
-  height: 100%;
+.dao-list-main {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 
   border: 1px solid $outer-border;
+
+  svg {
+    width: 16px;
+    height: 16px;
+    vertical-align: text-bottom;
+    fill: currentColor;
+  }
+}
+
+.dao-list-topbar {
+  flex: 0 0 auto;
+  height: $topbar-height;
+
+  color: $grey-dark;
+  line-height: $topbar-height - 1;
+  border-bottom: 1px solid $outer-border;
+  .dao-list-filter {
+    display: inline-block;
+    height: 26px;
+    margin-left: 4px;
+    // TODO: 由于没办法给 input 直接修改vertical-align，所以只能覆盖了
+    input {
+      vertical-align: inherit;
+    }
+  }
+  .dao-list-pagination {
+    float: right;
+    .enable {
+      color: $pagination-active-color;
+      fill: $pagination-active-color;
+      cursor: pointer;
+    }
+    .pagination {
+      display: inline-block;
+    }
+  }
+}
+
+.dao-list-scrolldiv {
+  width: 100%;
+  overflow: auto;
+}
+
+table.dao-list {
+  display: block;
+  position: relative;
+  height: 100%;
+  width: 100%;
+
   border-collapse: collapse;
 
   overflow: auto;
 }
-
 thead {
-  display: block;
   // 注意 thead 的 tr 下面有一个 border，这 1px 的 border 不在 30px 中
   height: $tr-height + 1;
   
@@ -68,12 +121,6 @@ th, td {
   text-align: left;
   text-overflow: ellipsis;
   overflow: hidden;
-  svg {
-    width: 16px;
-    height: 16px;
-    vertical-align: text-bottom;
-    fill: $grey-light;
-  }
   &.checkbox {
     width: $td-checkbox-width;
     input {
