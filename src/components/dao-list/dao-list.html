@@ -2,123 +2,15 @@
   <table class="dao-list flexrow">
     <thead>
       <tr>
-        <th class="service">服务</th>
-        <th>状态</th>
-        <th>模式</th>
-        <th>容器数</th>
-        <th>内存限制</th>
-        <th>创建时间</th>
-        <th>CPU限制</th>
+        <th v-for="c in columnsOrder">
+          {{columns[c].text}}
+        </th>
         <th></th>
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td class="service">dce-plugin-applb</td>
-        <td>正在运行</td>
-        <td>弹性</td>
-        <td>10</td>
-        <td>0.5M/1G</td>
-        <td>0.5 核/3 核</td>
-        <td>2017-09-23</td>
-        <td>
-          <svg>
-            <use xlink:href="#icon_more"></use>
-          </svg>
-        </td>
-      </tr>
-      <tr>
-        <td class="service">dce-plugin-applb</td>
-        <td>正在运行</td>
-        <td>弹性</td>
-        <td>10</td>
-        <td>0.5M/1G</td>
-        <td>0.5 核/3 核</td>
-        <td>2017-09-23</td>
-        <td>
-          <svg>
-            <use xlink:href="#icon_more"></use>
-          </svg>
-        </td>
-      </tr>
-      <tr>
-        <td class="service">dce-plugin-applb</td>
-        <td>正在运行</td>
-        <td>弹性</td>
-        <td>10</td>
-        <td>0.5M/1G</td>
-        <td>0.5 核/3 核</td>
-        <td>2017-09-23</td>
-        <td>
-          <svg>
-            <use xlink:href="#icon_more"></use>
-          </svg>
-        </td>
-      </tr>
-      <tr>
-        <td class="service">dce-plugin-applb</td>
-        <td>正在运行</td>
-        <td>弹性</td>
-        <td>10</td>
-        <td>0.5M/1G</td>
-        <td>0.5 核/3 核</td>
-        <td>2017-09-23</td>
-        <td>
-          <svg>
-            <use xlink:href="#icon_more"></use>
-          </svg>
-        </td>
-      </tr>
-      <tr>
-        <td class="service">dce-plugin-applb</td>
-        <td>正在运行</td>
-        <td>弹性</td>
-        <td>10</td>
-        <td>0.5M/1G</td>
-        <td>0.5 核/3 核</td>
-        <td>2017-09-23</td>
-        <td>
-          <svg>
-            <use xlink:href="#icon_more"></use>
-          </svg>
-        </td>
-      </tr>
-      <tr>
-        <td class="service">dce-plugin-applb</td>
-        <td>正在运行</td>
-        <td>弹性</td>
-        <td>10</td>
-        <td>0.5M/1G</td>
-        <td>0.5 核/3 核</td>
-        <td>2017-09-23</td>
-        <td>
-          <svg>
-            <use xlink:href="#icon_more"></use>
-          </svg>
-        </td>
-      </tr>
-      <tr>
-        <td class="service">dce-plugin-applb</td>
-        <td>正在运行</td>
-        <td>弹性</td>
-        <td>10</td>
-        <td>0.5M/1G</td>
-        <td>0.5 核/3 核</td>
-        <td>2017-09-23</td>
-        <td>
-          <svg>
-            <use xlink:href="#icon_more"></use>
-          </svg>
-        </td>
-      </tr>
-      <tr>
-        <td class="service">dce-plugin-applb</td>
-        <td>正在运行</td>
-        <td>弹性</td>
-        <td>10</td>
-        <td>0.5M/1G</td>
-        <td>0.5 核/3 核</td>
-        <td>2017-09-23</td>
+      <tr v-for="r in currentRows">
+        <td v-for="c in columnsOrder">{{r[c].text}}</td>
         <td>
           <svg>
             <use xlink:href="#icon_more"></use>

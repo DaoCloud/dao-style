@@ -58,7 +58,7 @@ dao-list 是一个全新的列表。
           },
         ],
         config: {
-          columnOrder: ['service', 'status', 'memory'],
+          columnsOrder: ['service', 'status', 'memory'],
           sorting: {
             defaultSortBy: 'service',
             order: 'asc',
@@ -137,7 +137,7 @@ dao-list 是一个全新的列表。
 
 | 参数名         | 类型       | 说明                                       | 默认值         | 是否必填 |
 | ----------- | -------- | ---------------------------------------- | ----------- | ---- |
-| columnOrder | Array    | 分栏的顺序，每个元素是分栏的名字。                        | -           | 是    |
+| columnsOrder | Array    | 分栏的顺序，每个元素是分栏的名字。                        | -           | 是    |
 | sorting     | Object   | 排序相关的设置。具体属性见下表。                         | `undefined` | 否    |
 | filter      | Function | 筛选用的函数。接受一个字符串和所有行作为参数，返回 `true` 或者 `false`。如果不传，则没有搜索功能。 | `undefined` | 否    |
 | pagination  | Object   | 分页相关的设置。不传则不分页。具体属性见下表。                  | -           | 否    |

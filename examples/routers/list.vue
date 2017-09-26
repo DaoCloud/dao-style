@@ -253,7 +253,7 @@
           },
         ],
         config: {
-          columnOrder: ['service', 'status', 'memory'],
+          columnsOrder: ['service', 'status', 'mode', 'containers', 'memory', 'creationTime', 'cpu'],
           sorting: {
             defaultSortBy: 'service',
             order: 'asc',
