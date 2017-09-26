@@ -3,9 +3,12 @@
     <thead>
       <tr>
         <th class="checkbox">
-          <input type="checkbox">
+          <input type="checkbox" class="round"
+            :class="{'half-check': isAllChecked === 'partial'}"
+            :checked="isAllChecked === 'yes'"
+            @click="checkAll()">
           <svg>
-            <use xlink:href="#icon_caret-down" v-model="allChecked"></use>
+            <use xlink:href="#icon_caret-down"></use>
           </svg>
         </th>
         <th v-for="c in columnsOrder">
@@ -16,7 +19,7 @@
     </thead>
     <tbody>
       <tr :class="{checked: r.$checked}" v-for="r in currentRows" @click="click(r, $event)">
-        <td class="checkbox"><input type="checkbox" v-model="r.$checked"></td>
+        <td class="checkbox"><input type="checkbox" class="round" :checked="r.$checked"></td>
         <td v-for="c in columnsOrder">{{r[c].text}}</td>
         <td>
           <svg>

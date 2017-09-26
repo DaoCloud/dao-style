@@ -10,7 +10,6 @@ export default {
   data() {
     return {
       page: 0,
-      allChecked: false,
       selectedRows: [],
     };
   },
@@ -45,6 +44,15 @@ export default {
     currentRows() {
       return this.chunks[this.page];
     },
+    isAllChecked() {
+      const checkedRowsNumber = _.filter(this.currentRows, row => row.$checked).length;
+      if (checkedRowsNumber === 0) {
+        return 'no';
+      } else if (checkedRowsNumber < this.currentRows.length) {
+        return 'partial';
+      }
+      return 'yes';
+    },
   },
   methods: {
     // 选中一行
@@ -72,6 +80,14 @@ export default {
         return;
       }
       this.checkRow(row, !row.$checked);
+    },
+    // 点击全选框
+    checkAll() {
+      // 如果当前状态是 no 或者 partial，就要全部选中
+      const target = this.isAllChecked === 'no' || this.isAllChecked === 'partial';
+      _.forEach(this.currentRows, (row) => {
+        this.checkRow(row, target);
+      });
     },
   },
 };

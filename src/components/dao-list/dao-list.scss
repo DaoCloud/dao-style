@@ -71,11 +71,14 @@ th, td {
   svg {
     width: 16px;
     height: 16px;
-    vertical-align: middle;
+    vertical-align: text-bottom;
     fill: $grey-light;
   }
   &.checkbox {
     width: $td-checkbox-width;
+    input {
+      vertical-align: text-bottom;
+    }
     svg {
       fill: $black-dark;
     }
