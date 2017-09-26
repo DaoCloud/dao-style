@@ -56,13 +56,30 @@ $inner-border: $white-dark;
   }
   .dao-list-pagination {
     float: right;
-    .enable {
+    margin-right: 4px;
+    .pagination {
       color: $pagination-active-color;
-      fill: $pagination-active-color;
+      display: inline-block;
+    }
+    svg {
       cursor: pointer;
     }
-    .pagination {
+    .page {
       display: inline-block;
+      height: 26px;
+      width: 28px;
+
+      line-height: 26px;
+      border-radius: 3px;
+      text-align: center; 
+      cursor: pointer;
+    }
+    .disabled {
+      color: $grey-dark;
+      cursor: auto;
+    }
+    .active {
+      background: rgba(56, 144, 255, 0.15);
     }
   }
 }
