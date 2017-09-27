@@ -105,6 +105,9 @@ li + li {
         <li>
           <router-link to="/tooltip-directive">Tooltip Directive</router-link>
         </li>
+         <li>
+          <router-link to="/input-with-label">InputWithLabel</router-link>
+        </li>
       </ul>
     </nav>
     <router-view></router-view>
