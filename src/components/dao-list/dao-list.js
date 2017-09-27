@@ -1,16 +1,18 @@
 import _ from 'lodash';
 import StatusTd from './td/status-td.vue';
+import CheckAll from './check-all.vue';
 
 export default {
   name: 'DaoList',
   components: {
     StatusTd,
+    CheckAll,
   },
   props: ['columns', 'rows', 'config'],
   data() {
     return {
       page: 0,
-      selectedRows: [],
+      checkedRows: [],
     };
   },
   computed: {
@@ -33,14 +35,14 @@ export default {
       return result;
     },
     // 基本和sortedRows是一样的，只是加了 checked
-    readyRows() {
+    allRows() {
       _.forEach(this.sortedRows, (r) => {
         this.$set(r, '$checked', false);
       });
       return this.sortedRows;
     },
     chunks() {
-      return _.chunk(this.readyRows, this.pageLimit);
+      return _.chunk(this.allRows, this.pageLimit);
     },
     // 这个 pages 始终只包括当前页前后共五页的页码
     pages() {
@@ -58,21 +60,27 @@ export default {
       // 最后是一般情况，显示当前页和前后两页
       return [this.page - 2, this.page - 1, this.page, this.page + 1, this.page + 2];
     },
-    pagesNumber() {
-      return this.chunks.length;
-    },
-    rowsNumber() {
-      return this.readyRows.length;
-    },
     // 指的是当前页的行
     currentRows() {
       return this.chunks[this.page];
     },
+    currentRowsNumber() {
+      return this.currentRows.length;
+    },
+    checkedRowsNumber() {
+      return this.checkedRows.length;
+    },
+    pagesNumber() {
+      return this.chunks.length;
+    },
+    allRowsNumber() {
+      return this.allRows.length;
+    },
     isAllChecked() {
-      const checkedRowsNumber = _.filter(this.currentRows, row => row.$checked).length;
+      const checkedRowsNumber = _.filter(this.allRows, row => row.$checked).length;
       if (checkedRowsNumber === 0) {
         return 'no';
-      } else if (checkedRowsNumber < this.currentRows.length) {
+      } else if (checkedRowsNumber < this.allRows.length) {
         return 'partial';
       }
       return 'yes';
@@ -83,12 +91,12 @@ export default {
     checkRow(row, target) {
       // 修改行的选中状态
       this.$set(row, '$checked', target);
-      if (row.$checked && !this.selectedRows.includes(row)) {
+      if (row.$checked && !this.checkedRows.includes(row)) {
         // 如果这行被选中的话，就添加到选中的行数组里
-        this.selectedRows.push(row);
+        this.checkedRows.push(row);
       } else if (!row.$checked) {
         // 如果取消选中就移除掉
-        _.remove(this.selectedRows, row);
+        this.checkedRows = _.remove(this.checkedRows, row);
       }
     },
     // 点击某一行的事件
@@ -105,10 +113,22 @@ export default {
       }
       this.checkRow(row, !row.$checked);
     },
-    // 点击全选框
-    checkAll() {
-      // 如果当前状态是 no 或者 partial，就要全部选中
-      const target = this.isAllChecked === 'no' || this.isAllChecked === 'partial';
+    // 选中所有行
+    checkAll(wantToChecked) {
+      let target;
+      if (_.isBoolean(wantToChecked)) {
+        target = wantToChecked;
+      } else {
+        // 如果当前状态是 no 或者 partial，就要全部选中
+        target = this.isAllChecked === 'no' || this.isAllChecked === 'partial';
+      }
+      _.forEach(this.allRows, (row) => {
+        this.checkRow(row, target);
+      });
+    },
+    // 选中当前页所有行
+    checkPage() {
+      const target = !_.every(this.currentRows, r => r.$checked);
       _.forEach(this.currentRows, (row) => {
         this.checkRow(row, target);
       });
@@ -117,7 +137,6 @@ export default {
       this.page = p;
     },
     nextPage() {
-      console.log(this.page,123123)
       this.page = this.page + 1;
     },
     prevPage() {

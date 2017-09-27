@@ -3,7 +3,10 @@
     <div class="dao-list-topbar">
       <dao-input class="dao-list-filter" size="sm" :placeholder="`搜索${tableName}`"></dao-input>
       <div class="dao-list-pagination">
-        <span class="counts">共 {{rowsNumber}} 个服务</span>
+        <span class="counts">共 {{allRowsNumber}} 个 {{tableName}}</span>
+        <span class="counts" v-show="checkedRowsNumber > 0">
+          ，已选中 {{checkedRowsNumber}} 个 {{tableName}}
+        </span>
         <div class="pagination">
           <svg :class="{disabled: page === 0}" @click="prevPage">
             <use xlink:href="#icon_caret-left"></use>
@@ -26,10 +29,15 @@
               <input type="checkbox" class="round"
                 :class="{'half-check': isAllChecked === 'partial'}"
                 :checked="isAllChecked === 'yes'"
-                @click="checkAll()">
-              <svg>
-                <use xlink:href="#icon_caret-down"></use>
-              </svg>
+                @click.prevent="checkPage()">
+              <check-all
+                :currentRowsNumber="currentRowsNumber"
+                :allRowsNumber="allRowsNumber"
+                :checkedRowsNumber="checkedRowsNumber"
+                @check-page="checkPage(true)"
+                @check-all="checkAll(true)"
+                @uncheck-all="checkAll(false)">
+              </check-all>
             </th>
             <th v-for="c in columnsOrder">
               {{columns[c].text}}
