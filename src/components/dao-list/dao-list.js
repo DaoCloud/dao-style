@@ -1,11 +1,13 @@
 import _ from 'lodash';
 import StatusTd from './td/status-td.vue';
+import OperationTd from './td/operation-td.vue';
 import CheckAll from './check-all.vue';
 
 export default {
   name: 'DaoList',
   components: {
     StatusTd,
+    OperationTd,
     CheckAll,
   },
   props: ['columns', 'rows', 'config'],
@@ -24,6 +26,9 @@ export default {
     },
     columnsOrder() {
       return this.config.columnsOrder;
+    },
+    operations() {
+      return this.config.operations;
     },
     filteredRows() {
       // TODO: 筛选逻辑待完善

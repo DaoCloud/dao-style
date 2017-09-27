@@ -11,6 +11,7 @@
 </template>
 <script>
   import _ from 'lodash';
+
   export default {
     data() {
       return {
@@ -102,12 +103,12 @@
           },
           filter(key) {
             // ....
-            return true
+            return true;
           },
           pagination: {
             limit: 10,
           },
-          mainAction: {
+          mainOperation: {
             name: '添加服务',
             svg: 'plus',
             event: 'create-service',
@@ -115,12 +116,12 @@
             disabledSvg: 'key',
             disabledTooltip: '没有权限',
           },
-          actions: [
+          operations: [
             {
               name: '暂停',
               svg: 'pulse',
               event: 'pulse-service',
-              disabled: true,
+              disabled: false,
               disabledSvg: 'crown',
               disabledTooltip: '许可证到期',
             }, {
@@ -141,6 +142,7 @@
       onRemoveService(rows) {
       },
       onPulseService(rows) {
+        console.log('暂停容器', rows);
       },
     },
   };

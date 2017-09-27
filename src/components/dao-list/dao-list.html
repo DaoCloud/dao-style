@@ -49,11 +49,7 @@
           <tr :class="{checked: r.$checked}" v-for="r in currentRows" @click="click(r, $event)">
             <td class="checkbox"><input type="checkbox" class="round" :checked="r.$checked"></td>
             <td v-for="c in columnsOrder">{{r[c].text}}</td>
-            <td>
-              <svg>
-                <use xlink:href="#icon_more"></use>
-              </svg>
-            </td>
+            <operation-td :row="r" :operations="operations"></operation-td>
           </tr>
         </tbody>
       </table>

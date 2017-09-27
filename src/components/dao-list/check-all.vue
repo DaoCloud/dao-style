@@ -3,7 +3,7 @@
     trigger="click"
     :append-to-body="true"
     placement="bottom-start">
-    <svg class="popover-trigger">
+    <svg class="dropdown-trigger">
       <use xlink:href="#icon_caret-down"></use>
     </svg>
     <dao-dropdown-menu slot="list">
@@ -32,7 +32,7 @@ export default {
 };
 </script>
 <style lang="scss">
-  .popover-trigger {
+  .dropdown-trigger {
     cursor: pointer;
   }
 </style>
