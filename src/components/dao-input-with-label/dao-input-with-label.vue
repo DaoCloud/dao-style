@@ -29,7 +29,7 @@
       v-show="visible">
       <dao-dropdown-menu> 
         <div v-for="(tab, index) in filterCurrentOptions" :key="index">
-          <dao-dropdown-item :is-title="true">{{tab.tab_name}}</dao-dropdown-item>
+          <dao-dropdown-item :is-title="true">{{tab.tabName}}</dao-dropdown-item>
           <dao-dropdown v-if="key.operates.length" 
             v-for="(key, index) in tab.keys" 
             :key="index" 
