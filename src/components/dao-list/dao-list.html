@@ -3,17 +3,16 @@
     <div class="dao-list-topbar">
       <dao-input class="dao-list-filter" size="sm" :placeholder="`搜索${tableName}`"></dao-input>
       <div class="dao-list-pagination">
-        <span class="counts">共 10 个服务</span>
+        <span class="counts">共 {{rowsNumber}} 个服务</span>
         <div class="pagination">
-          <svg class="disabled">
+          <svg :class="{disabled: page === 0}" @click="prevPage">
             <use xlink:href="#icon_caret-left"></use>
           </svg>
-          <span class="page active">1</span>
-          <span class="page active">2</span>
-          <span class="page">3</span>
-          <span class="page">4</span>
-          <span class="page disabled">...</span>
-          <svg>
+          <span class="page" v-show="page > 2" @click="goToPage(0)">1</span><!--
+       --><span class="page disabled" v-show="page > 2">...</span><!--
+       --><span class="page" :class="{active: page == p}" v-for="p in pages" @click="goToPage(p)">{{p + 1}}</span><!--
+       --><span class="page disabled" v-show="page < pagesNumber - 3">...</span>
+          <svg :class="{disabled: page === pagesNumber - 1}" @click="nextPage">
             <use xlink:href="#icon_caret-right"></use>
           </svg>
         </div>

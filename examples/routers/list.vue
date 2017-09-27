@@ -10,6 +10,7 @@
   </div>
 </template>
 <script>
+  import _ from 'lodash';
   export default {
     data() {
       return {
@@ -50,10 +51,10 @@
             sortable: true,
           },
         },
-        rows: [
+        rows: _.map(Array(100), (v, i) => (
           {
             service: {
-              text: 'dce-plugin-applb',
+              text: `${i}dce-plugin-applb`,
               value: 'dce-plugin-applb',
               type: 'text',
             },
@@ -90,168 +91,8 @@
               type: 'text',
               value: 115454154878,
             },
-          },
-          {
-            service: {
-              text: 'dce-plugin-applb',
-              value: 'dce-plugin-applb',
-              type: 'text',
-            },
-            status: {
-              text: '正在运行',
-              value: 'running',
-              type: 'status',
-              other: {
-                status: 'running',
-              },
-            },
-            mode: {
-              text: '弹性',
-              type: 'text',
-              value: '弹性',
-            },
-            containers: {
-              text: '10',
-              type: 'text',
-              value: 10,
-            },
-            memory: {
-              text: '0.5M/1G',
-              type: 'text',
-              value: 5000000,
-            },
-            cpu: {
-              text: '0.5 核/3 核',
-              type: 'text',
-              value: 0.5,
-            },
-            creationTime: {
-              text: '2017-09-23',
-              type: 'text',
-              value: 115454154878,
-            },
-          },
-          {
-            service: {
-              text: 'dce-plugin-applb',
-              value: 'dce-plugin-applb',
-              type: 'text',
-            },
-            status: {
-              text: '正在运行',
-              value: 'running',
-              type: 'status',
-              other: {
-                status: 'running',
-              },
-            },
-            mode: {
-              text: '弹性',
-              type: 'text',
-              value: '弹性',
-            },
-            containers: {
-              text: '10',
-              type: 'text',
-              value: 10,
-            },
-            memory: {
-              text: '0.5M/1G',
-              type: 'text',
-              value: 5000000,
-            },
-            cpu: {
-              text: '0.5 核/3 核',
-              type: 'text',
-              value: 0.5,
-            },
-            creationTime: {
-              text: '2017-09-23',
-              type: 'text',
-              value: 115454154878,
-            },
-          },
-          {
-            service: {
-              text: 'dce-plugin-applb',
-              value: 'dce-plugin-applb',
-              type: 'text',
-            },
-            status: {
-              text: '正在运行',
-              value: 'running',
-              type: 'status',
-              other: {
-                status: 'running',
-              },
-            },
-            mode: {
-              text: '弹性',
-              type: 'text',
-              value: '弹性',
-            },
-            containers: {
-              text: '10',
-              type: 'text',
-              value: 10,
-            },
-            memory: {
-              text: '0.5M/1G',
-              type: 'text',
-              value: 5000000,
-            },
-            cpu: {
-              text: '0.5 核/3 核',
-              type: 'text',
-              value: 0.5,
-            },
-            creationTime: {
-              text: '2017-09-23',
-              type: 'text',
-              value: 115454154878,
-            },
-          },
-          {
-            service: {
-              text: 'dce-plugin-applb',
-              value: 'dce-plugin-applb',
-              type: 'text',
-            },
-            status: {
-              text: '正在运行',
-              value: 'running',
-              type: 'status',
-              other: {
-                status: 'running',
-              },
-            },
-            mode: {
-              text: '弹性',
-              type: 'text',
-              value: '弹性',
-            },
-            containers: {
-              text: '10',
-              type: 'text',
-              value: 10,
-            },
-            memory: {
-              text: '0.5M/1G',
-              type: 'text',
-              value: 5000000,
-            },
-            cpu: {
-              text: '0.5 核/3 核',
-              type: 'text',
-              value: 0.5,
-            },
-            creationTime: {
-              text: '2017-09-23',
-              type: 'text',
-              value: 115454154878,
-            },
-          },
-        ],
+          }
+        )),
         config: {
           tableName: '服务',
           columnsOrder: ['service', 'status', 'mode', 'containers', 'memory', 'creationTime', 'cpu'],
@@ -264,7 +105,7 @@
             return true
           },
           pagination: {
-            limit: 20,
+            limit: 10,
           },
           mainAction: {
             name: '添加服务',

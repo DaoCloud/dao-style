@@ -40,8 +40,29 @@ export default {
       return this.sortedRows;
     },
     chunks() {
-      // TODO：分页逻辑待完善
-      return [this.readyRows];
+      return _.chunk(this.readyRows, this.pageLimit);
+    },
+    // 这个 pages 始终只包括当前页前后共五页的页码
+    pages() {
+      const pagesNumber = this.chunks.length;
+      if (pagesNumber <= 5) {
+        // 如果总页数小于5，那就全显示
+        return _.map(this.chunks, (c, i) => i);
+      } else if (pagesNumber > 5 && this.page <= 2) {
+        // 如果总页数大于5，且当前页是第一或第二页，那就显示前五页
+        return _.map(this.chunks, (c, i) => i).slice(0, 5);
+      } else if (pagesNumber > 5 && this.page >= pagesNumber - 1 - 2) {
+        // 如果总页数大于5，且当前页是倒数第一或第二页，那就显示后五页
+        return _.map(this.chunks, (c, i) => i).slice(-5);
+      }
+      // 最后是一般情况，显示当前页和前后两页
+      return [this.page - 2, this.page - 1, this.page, this.page + 1, this.page + 2];
+    },
+    pagesNumber() {
+      return this.chunks.length;
+    },
+    rowsNumber() {
+      return this.readyRows.length;
     },
     // 指的是当前页的行
     currentRows() {
@@ -91,6 +112,16 @@ export default {
       _.forEach(this.currentRows, (row) => {
         this.checkRow(row, target);
       });
+    },
+    goToPage(p) {
+      this.page = p;
+    },
+    nextPage() {
+      console.log(this.page,123123)
+      this.page = this.page + 1;
+    },
+    prevPage() {
+      this.page = this.page - 1;
     },
   },
 };
