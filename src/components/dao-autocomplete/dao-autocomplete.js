@@ -1,16 +1,17 @@
-import daoDrop from '../dao-select/dropdown.vue';
 import _ from 'lodash';
+import daoDrop from '../dao-select/dropdown.vue';
 import Popper from '../base/popper';
 
 export default {
   name: 'DaoAutocomplete',
   components: { daoDrop },
   mixins: [Popper],
-  props: ['value', 'options', 'placeholder'],
+  props: ['value', 'options', 'placeholder', 'validate'],
   data() {
     return {
       inputText: '',
       optionIndex: 0,
+      isValid: true,
     };
   },
   computed: {
@@ -28,6 +29,14 @@ export default {
     },
     filteredOption() {
       return _.filter(this.vmOptions, o => o.text.indexOf(this.inputText) > -1);
+    },
+    inputStatus() {
+      if (_.isString(this.isValid)) return 'error';
+      return '';
+    },
+    errorMsg() {
+      if (_.isString(this.isValid)) return this.isValid;
+      return '';
     },
   },
   methods: {
@@ -65,15 +74,17 @@ export default {
     },
     // 更新外部 v-model 所绑定的值
     updateValue(value) {
-      this.$emit('input', value);
-      this.$emit('change', value);
+      if (this.isValid && _.isBoolean(this.isValid)) {
+        this.$emit('input', value);
+        this.$emit('change', value);
+      }
     },
     // 当从组件外部改变 v-model 时，同步组件内部的 inputText
     syncValue() {
       // 如果外部修改的 v-model 和组件自己的 inputText 一样，那就不用同步了
       if (this.value === this.inputText) return;
       // 如果有选项的话，那就要根据 value 来找到选项中对应的 text
-      let initText = '';
+      let initText = this.value;
       if (this.value && this.options.length > 0) {
         const initOption = _.find(this.options, o => (o === this.value || o.value === this.value));
         if (initOption) {
@@ -122,6 +133,11 @@ export default {
       this.updatePopper();
       this.$nextTick(() => this.updatePopper());
       this.$emit('visible-change', Boolean(val));
+    },
+    inputText(val) {
+      if (this.validate) {
+        this.isValid = this.validate(val);
+      }
     },
   },
 };
