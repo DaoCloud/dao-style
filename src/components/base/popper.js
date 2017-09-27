@@ -87,7 +87,7 @@ export default {
     },
   },
   methods: {
-    createPopper() {
+    createPopper(placement) {
       if (!/^(top|bottom|left|right|auto)(-start|-end)?$/g.test(this.placement)) {
         return;
       }
@@ -102,7 +102,7 @@ export default {
         this.popperJS.destroy();
       }
 
-      options.placement = this.placement;
+      options.placement = placement || this.placement;
       options.offset = this.offset;
       options.onCreate = (data) => {
         this.resetTransformOrigin(data.instance);
@@ -147,9 +147,9 @@ export default {
         }
       }
     },
-    updatePopper() {
+    updatePopper(placement) {
       if (this.popperCls && this.popperCls.includes('hide')) return;
-      this.popperJS ? this.popperJS.update() : this.createPopper();
+      this.popperJS ? this.popperJS.update() : this.createPopper(placement);
     },
     doDestroy() {
       if (this.visible) return;

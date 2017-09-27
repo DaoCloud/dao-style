@@ -19,6 +19,7 @@ import daoDialog from './components/dao-dialog';
 import daoDropdown from './components/dao-dropdown';
 import { daoEditableInput, daoInput } from './components/dao-input';
 import daoEditableTable from './components/dao-editable-table';
+import daoInputWithLabel from './components/dao-input-with-label';
 import daoList from './components/dao-list';
 import daoNumericBadge from './components/dao-numeric-badge';
 import daoPopover from './components/dao-popover';
@@ -50,6 +51,7 @@ const daoStyleComponents = {
   daoEditableInput,
   daoEditableTable,
   daoInput,
+  daoInputWithLabel,
   daoList,
   daoNumericBadge,
   daoOption: daoSelect.Option,

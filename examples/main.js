@@ -17,6 +17,7 @@ import dialog from './routers/dialog.vue';
 import dropdown from './routers/dropdown.vue';
 import editableTable from './routers/editable-table.vue';
 import input from './routers/input.vue';
+import inputWithLabel from './routers/input-with-label.vue';
 import list from './routers/list.vue';
 import listGroup from './routers/list-group.vue';
 import numericBadge from './routers/numeric-badge.vue';
@@ -70,6 +71,9 @@ const router = new VueRouter({
   }, {
     path: '/input',
     component: input,
+  }, {
+    path: '/input-with-label',
+    component: inputWithLabel,
   }, {
     path: '/list',
     component: list,
