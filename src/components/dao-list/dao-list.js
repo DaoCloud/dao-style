@@ -221,5 +221,13 @@ export default {
     prevPage() {
       this.page = this.page - 1;
     },
+    changeSortBy(sortBy) {
+      if (this.sortingConfig.sortBy === sortBy) {
+        this.sortingConfig.order = this.sortingConfig.order === 'asc' ? 'desc' : 'asc';
+      } else {
+        this.sortingConfig.sortBy = sortBy;
+        this.sortingConfig.order = 'asc';
+      }
+    },
   },
 };

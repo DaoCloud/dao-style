@@ -47,7 +47,7 @@
                 @uncheck-all="checkAll(false)">
               </check-all>
             </th>
-            <th v-for="c in columnsOrder">
+            <th v-for="c in columnsOrder" @click="changeSortBy(c)">
               {{columns[c].text}}
             </th>
             <th></th>
