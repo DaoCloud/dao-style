@@ -15,6 +15,7 @@ export default {
     return {
       page: 0,
       checkedRows: [],
+      filterText: '',
     };
   },
   computed: {
@@ -30,6 +31,61 @@ export default {
     operations() {
       return this.config.operations;
     },
+    filters() {
+      const filters = {};
+      // {
+      //   name: '节点类型',
+      //   val: 'node_type',
+      //   vals: [
+      //     {
+      //        name: '控制',
+      //        val: 'ctrl',
+      //     },
+      //     {
+      //        name: '普通',
+      //        val: 'normal',
+      //     },
+      //   ],
+      // },
+      _.forEach(this.rows, (r) => {
+        _.forEach(r, (td, key) => {
+          if (!filters[key]) {
+            filters[key] = {
+              // 一个问题就是，rows 里的有的属性可能 column 里没有，所以找不到 text
+              text: this.columns[key] ? this.columns[key].text : key,
+              options: [],
+            };
+          }
+          // 如果在这个 filter 的 options 里没找到这个 value，那就添加到 options 里
+          if (!_.find(filters[key].options, o => o.value === td.value)) {
+            filters[key].options.push({
+              text: td.text || '',
+              value: td.value,
+            });
+          }
+        });
+      });
+
+      return filters;
+    },
+    filterOptions() {
+      const filterGroup = {
+        tabName: '测试',
+        keys: [],
+      };
+
+      // 把 filters 转换成 input-with-label 要求的格式
+      filterGroup.keys = _.map(this.filters, (filter, name) => ({
+        name: filter.text,
+        val: name,
+        vals: _.map(filter.options, o => ({
+          name: o.text,
+          val: o.value,
+        })),
+      }));
+
+      return [filterGroup];
+    },
     filteredRows() {
       // TODO: 筛选逻辑待完善
       return this.rows;
@@ -41,7 +97,8 @@ export default {
     },
     // 基本和sortedRows是一样的，只是加了 checked
     allRows() {
-      _.forEach(this.sortedRows, (r) => {
+      const rowsClone = _.cloneDeep(this.sortedRows);
+      _.forEach(rowsClone, (r) => {
         this.$set(r, '$checked', false);
       });
       return this.sortedRows;

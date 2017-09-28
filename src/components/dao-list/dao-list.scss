@@ -46,12 +46,16 @@ $inner-border: $white-dark;
   line-height: $topbar-height - 1;
   border-bottom: 1px solid $outer-border;
   .dao-list-filter {
+    width: 514px;
     display: inline-block;
-    height: 26px;
     margin-left: 4px;
-    // TODO: 由于没办法给 input 直接修改vertical-align，所以只能覆盖了
+    // TODO: 由于没办法给 input 加 class，所以只能覆盖了
     input {
+      height: 26px;
       vertical-align: inherit;
+    }
+    .close-icon {
+      top: 0 !important;
     }
   }
   .dao-list-pagination {

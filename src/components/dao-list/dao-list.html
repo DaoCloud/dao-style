@@ -1,7 +1,14 @@
 <div class="dao-list-container">
   <div class="dao-list-main">
     <div class="dao-list-topbar">
-      <dao-input class="dao-list-filter" size="sm" :placeholder="`搜索${tableName}`"></dao-input>
+      <dao-input-with-label 
+        class="dao-list-filter"
+        v-model="filterText"
+        size="sm"
+        :placeholder="`搜索${tableName}`"
+        :options="filterOptions"
+        >
+      </dao-input-with-label>
       <div class="dao-list-pagination">
         <span class="counts">共 {{allRowsNumber}} 个 {{tableName}}</span>
         <span class="counts" v-show="checkedRowsNumber > 0">

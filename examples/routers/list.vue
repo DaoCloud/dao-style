@@ -92,6 +92,9 @@
               type: 'text',
               value: 115454154878,
             },
+            type: {
+              value: Math.sin(i) > 0 ? '正sin' : '负sin',
+            },
           }
         )),
         config: {
@@ -100,10 +103,6 @@
           sorting: {
             defaultSortBy: 'service',
             order: 'asc',
-          },
-          filter(key) {
-            // ....
-            return true;
           },
           pagination: {
             limit: 10,
