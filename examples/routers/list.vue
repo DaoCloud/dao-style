@@ -62,7 +62,7 @@
           {
             service: {
               text: `${i}dce-plugin-applb`,
-              value: 'dce-plugin-applb',
+              value: `${i}dce-plugin-applb`,
               type: 'text',
             },
             status: {

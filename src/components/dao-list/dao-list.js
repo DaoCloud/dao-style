@@ -18,6 +18,10 @@ export default {
       filterTextRaw: '',
       filterText: '',
       isAllChecked: false,
+      sortingConfig: {
+        sortBy: this.config.sorting.defaultSortBy,
+        order: this.config.sorting.order,
+      },
     };
   },
   computed: {
@@ -99,9 +103,12 @@ export default {
       });
     },
     sortedRows() {
-      // TODO: 排序逻辑待完善
-      const result = this.filteredRows;
-      return result;
+      if (!this.sortingConfig.sortBy) return _.clone(this.filteredRows);
+      return _.orderBy(
+        this.filteredRows,
+        r => r[this.sortingConfig.sortBy].value,
+        this.sortingConfig.order,
+      );
     },
     // 基本和sortedRows是一样的，只是加了 checked
     allRows() {
