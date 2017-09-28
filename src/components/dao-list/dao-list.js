@@ -16,6 +16,7 @@ export default {
       page: 0,
       checkedRows: [],
       filterText: '',
+      isAllChecked: false,
     };
   },
   computed: {
@@ -101,7 +102,7 @@ export default {
       _.forEach(rowsClone, (r) => {
         this.$set(r, '$checked', false);
       });
-      return this.sortedRows;
+      return rowsClone;
     },
     chunks() {
       return _.chunk(this.allRows, this.pageLimit);
@@ -137,22 +138,14 @@ export default {
     },
     allRowsNumber() {
       return this.allRows.length;
-    },
-    isAllChecked() {
-      const checkedRowsNumber = _.filter(this.allRows, row => row.$checked).length;
-      if (checkedRowsNumber === 0) {
-        return 'no';
-      } else if (checkedRowsNumber < this.allRows.length) {
-        return 'partial';
-      }
-      return 'yes';
-    },
+    }
   },
   methods: {
     // 选中一行
     checkRow(row, target) {
       // 修改行的选中状态
       this.$set(row, '$checked', target);
+      this.changeIsAllChecked();
       if (row.$checked && !this.checkedRows.includes(row)) {
         // 如果这行被选中的话，就添加到选中的行数组里
         this.checkedRows.push(row);
@@ -194,6 +187,16 @@ export default {
       _.forEach(this.currentRows, (row) => {
         this.checkRow(row, target);
       });
+    },
+    changeIsAllChecked() {
+      const checkedRowsNumber = _.filter(this.allRows, row => row.$checked).length;
+      if (checkedRowsNumber === 0) {
+        this.isAllChecked = 'no';
+      } else if (checkedRowsNumber < this.allRows.length) {
+        this.isAllChecked = 'partial';
+      } else {
+        this.isAllChecked = 'yes';
+      }
     },
     goToPage(p) {
       this.page = p;
