@@ -54,6 +54,9 @@ li + li {
         <li>
           <router-link to="/editable-table">EditableTable</router-link>
         </li>
+         <li>
+          <router-link to="/info-card">InfoCard</router-link>
+        </li>
         <li>
           <router-link to="/input">Input</router-link>
         </li>
