@@ -51,6 +51,12 @@
             name: 'creationTime',
             sortable: true,
           },
+          type: {
+            text: '类型',
+            name: 'type',
+            sortable: true,
+            isFilter: true,
+          },
         },
         rows: _.map(Array(100), (v, i) => (
           {
@@ -93,6 +99,7 @@
               value: 115454154878,
             },
             type: {
+              type: 'filter',
               value: Math.sin(i) > 0 ? '正sin' : '负sin',
             },
           }

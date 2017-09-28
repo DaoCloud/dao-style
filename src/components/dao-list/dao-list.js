@@ -15,6 +15,7 @@ export default {
     return {
       page: 0,
       checkedRows: [],
+      filterTextRaw: '',
       filterText: '',
       isAllChecked: false,
     };
@@ -23,7 +24,7 @@ export default {
     tableName() {
       return this.config.tableName;
     },
-    pageLimit() {
+    rowsLimitPerPage() {
       return this.config.pagination.limit;
     },
     columnsOrder() {
@@ -34,20 +35,6 @@ export default {
     },
     filters() {
       const filters = {};
-      // {
-      //   name: '节点类型',
-      //   val: 'node_type',
-      //   vals: [
-      //     {
-      //        name: '控制',
-      //        val: 'ctrl',
-      //     },
-      //     {
-      //        name: '普通',
-      //        val: 'normal',
-      //     },
-      //   ],
-      // },
       _.forEach(this.rows, (r) => {
         _.forEach(r, (td, key) => {
           if (!filters[key]) {
@@ -87,9 +74,29 @@ export default {
 
       return [filterGroup];
     },
+    // 根据筛选的查询语句转换成的筛选条件
+    filterQuery() {
+      // TODO: 这里先简单地判断查询语句是否合法，以后可能要改成正则
+      if (!this.filterText || !_.includes(this.filterText, ':')) return {};
+      const filterTextFragments = this.filterText.trim().split(' ');
+      const query = {};
+      _.forEach(filterTextFragments, (t) => {
+        const [name, value] = t.split(':');
+        query[name] = value;
+      });
+      return query;
+    },
     filteredRows() {
-      // TODO: 筛选逻辑待完善
-      return this.rows;
+      return _.filter(this.rows, (r) => {
+        let valid = true;
+        _.forEach(this.filterQuery, (value, name) => {
+          // TODO: 这里的判断条件可能要改成弱等于
+          if (!r[name] || r[name].value !== value) {
+            valid = false;
+          }
+        });
+        return valid;
+      });
     },
     sortedRows() {
       // TODO: 排序逻辑待完善
@@ -105,7 +112,7 @@ export default {
       return rowsClone;
     },
     chunks() {
-      return _.chunk(this.allRows, this.pageLimit);
+      return _.chunk(this.allRows, this.rowsLimitPerPage);
     },
     // 这个 pages 始终只包括当前页前后共五页的页码
     pages() {
@@ -125,7 +132,7 @@ export default {
     },
     // 指的是当前页的行
     currentRows() {
-      return this.chunks[this.page];
+      return this.chunks[this.page] || [];
     },
     currentRowsNumber() {
       return this.currentRows.length;
@@ -138,7 +145,7 @@ export default {
     },
     allRowsNumber() {
       return this.allRows.length;
-    }
+    },
   },
   methods: {
     // 选中一行

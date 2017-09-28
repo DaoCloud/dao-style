@@ -9,10 +9,10 @@
       ref='input' 
       v-model="currentValue"
       @keyup="handleKeyUp()"
-      @keydown="emit('keydown')"
+      @keydown="emit('keydown', $event)"
       @input="handleInput()"
-      @focus="emit('focus')"
-      @blur="emit('blur')">
+      @focus="emit('focus', $event)"
+      @blur="emit('blur', $event)">
     <span  
       class="icon close-icon"
       :class="{ disabled: !currentConfig.canReset || disabled}"

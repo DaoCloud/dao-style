@@ -3,7 +3,8 @@
     <div class="dao-list-topbar">
       <dao-input-with-label 
         class="dao-list-filter"
-        v-model="filterText"
+        v-model="filterTextRaw"
+        @keydown.enter="filterText = filterTextRaw"
         size="sm"
         :placeholder="`搜索${tableName}`"
         :options="filterOptions"
