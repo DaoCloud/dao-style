@@ -4,7 +4,7 @@
       onChange: onChange2
     }">
       <div class="drag-item" data-key="1" v-dao-draggable>Dragger 1</div>
-      <div class="drag-item" data-key="2" v-dao-draggable>Dragger 2</div>
+      <div class="drag-item" data-key="2" v-dao-draggable="{disabled: show}">Dragger 2</div>
       111
       <div class="drag-item" data-key="trash" v-dao-draggable>
         <svg class="icon">

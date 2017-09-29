@@ -53,16 +53,49 @@ function addListeners(elm) {
   elm.addEventListener('dragover', onDragOver);
   elm.addEventListener('dragend', onDragEnd);
   elm.addEventListener('drop', onDrop);
+  elm.hasListener = true;
+}
+
+// 移除事件
+function removeListeners(elm) {
+  elm.removeEventListener('dragstart', onDragStart);
+  elm.removeEventListener('dragenter', onDragEnter);
+  elm.removeEventListener('dragover', onDragOver);
+  elm.removeEventListener('dragend', onDragEnd);
+  elm.removeEventListener('drop', onDrop);
+  elm.hasListener = false;
 }
 
 // 指定绑定到元素上时
-function bind($el, binding, vnode) {
-  // 首先让元素可拖
+function bind($el, binding) {
+  // 如果绑定值设置了 disabled 为 true，则不绑定事件，也不让元素可拖
+  if (binding.value && binding.value.disabled) return;
+  // 让元素可拖
   $el.setAttribute('draggable', true);
   // 为元素绑定一堆的 drag 事件
   addListeners($el);
 }
 
+// 更新时
+function update($el, binding) {
+  // 如果指令值 disabled 为 true 且元素上面绑定了事件，移除事件，元素不可拖动
+  if (binding.value && binding.value.disabled && $el.hasListener) {
+    $el.removeAttribute('draggable');
+    return removeListeners($el);
+  }
+  // 其他情况
+  if (!$el.hasListener) {
+    $el.setAttribute('draggable', true);
+    return addListeners($el);
+  }
+  return undefined;
+}
+
 export default {
   bind,
+  update,
+  unbind($el) {
+    $el.removeAttribute('draggable');
+    removeListeners($el);
+  },
 };
