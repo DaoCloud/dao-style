@@ -6,7 +6,7 @@
       <div class="drag-item" data-key="1" v-dao-draggable="{style: 'color: red;'}">Dragger 1</div>
       <div class="drag-item" data-key="2" v-dao-draggable="{disabled: show}">Dragger 2</div>
       111
-      <div class="drag-item" data-key="trash" v-dao-draggable>
+      <div class="drag-item" data-key="trash" v-dao-draggable="{class: 'green'}">
         <svg class="icon">
           <use xlink:href="#icon_trash"></use>
         </svg>
@@ -52,6 +52,9 @@ export default {
   border-radius: 4px;
   border: 1px solid #eee;
   margin: 5px;
+}
+.green{
+  color: green;
 }
 </style>
 

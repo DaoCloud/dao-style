@@ -6,12 +6,16 @@ function init(binding) {
   const draggingStyle = (binding.value && binding.value.style)
     ? binding.value.style
     : 'opacity: 0.5';
+  const draggingClass = (binding.value && binding.value.class)
+  ? binding.value.class
+  : undefined;
   return {
     draggingStyle,
+    draggingClass,
   };
 }
 
-// 添加额外的样式
+// 添加额外的样式和 class
 function setExtraStyle(elm) {
   // 先获取原有的样式
   const originStyle = elm.getAttribute('style');
@@ -23,12 +27,16 @@ function setExtraStyle(elm) {
         : elm.dataDraggable.draggingStyle,
     );
   }
+  if (elm.dataDraggable.draggingClass) {
+    elm.classList.add(elm.dataDraggable.draggingClass);
+  }
 }
 
-// 去除额外的样式
+// 去除额外的样式和 class
 function remveExtraStyle(elm) {
   const originStyle = elm.getAttribute('style').replace(elm.dataDraggable.draggingStyle, '');
   elm.setAttribute('style', originStyle);
+  elm.classList.remove(elm.dataDraggable.draggingClass);
 }
 
 // 拖动开始时
@@ -124,6 +132,8 @@ function update($el, binding) {
     $el.setAttribute('draggable', true);
     return addListeners($el);
   }
+  // 更新数据
+  $el.dataDraggable = init(binding);
   return undefined;
 }
 
