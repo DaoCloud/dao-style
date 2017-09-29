@@ -1,4 +1,5 @@
 import _ from 'lodash';
+import DaoListTh from './th.vue';
 import StatusTd from './td/status-td.vue';
 import OperationTd from './td/operation-td.vue';
 import CheckAll from './check-all.vue';
@@ -9,9 +10,15 @@ export default {
     StatusTd,
     OperationTd,
     CheckAll,
+    DaoListTh,
   },
   props: ['columns', 'rows', 'config'],
   data() {
+    const columnsWidth = {};
+    _.forEach(this.columns, (c) => {
+      columnsWidth[c.name] = 'auto';
+    });
+
     return {
       page: 0,
       checkedRows: [],
@@ -22,6 +29,7 @@ export default {
         sortBy: this.config.sorting.defaultSortBy,
         order: this.config.sorting.order,
       },
+      columnsWidth,
     };
   },
   computed: {
@@ -239,6 +247,9 @@ export default {
     },
     refresh() {
       this.$emit('refresh');
+    },
+    onColumnResize(columnName, newWidth) {
+      this.columnsWidth[columnName] = `${newWidth}px`;
     },
   },
 };

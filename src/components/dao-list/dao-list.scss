@@ -115,7 +115,7 @@ $inner-border: $white-dark;
 }
 
 table.dao-list {
-  display: block;
+  table-layout: fixed;
   position: relative;
   height: 100%;
   width: 100%;
@@ -136,7 +136,6 @@ tbody {
 }
 
 tr {
-  display: flex;
   height: 30px;
   color: $black-dark;
   &:nth-child(even) {
@@ -149,12 +148,7 @@ tr {
 }
 
 th, td {
-  display: block;
-  flex: 1 0 auto;
   padding: 0 10px;
-
-  // 暂时的
-  width: 120px;
 
   font-size: $font-size;
   font-weight: normal;
