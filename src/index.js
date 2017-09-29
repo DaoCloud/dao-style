@@ -2,15 +2,6 @@
 import 'core-js/fn/array/find-index';
 import './components/dao-svg/svg';
 
-// 纯样式组件
-import './components/common.scss';
-import './components/dao-button/dao-button.scss';
-import './components/dao-button/dao-button-group.scss';
-import './components/dao-card/dao-card.scss';
-import './components/dao-checkbox/dao-checkbox.scss';
-import './components/dao-list-group/dao-list-group.scss';
-import './components/dao-table/dao-table.scss';
-
 // 请按照名称的字典顺序添加以下 component
 import daoAutocomplete from './components/dao-autocomplete';
 import daoCallout from './components/dao-callout';
