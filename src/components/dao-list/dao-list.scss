@@ -16,6 +16,11 @@ $selected-bg: #096dec;
 
 $outer-border: $grey-light;
 $inner-border: $white-dark;
+
+.invisible {
+  visibility: hidden;
+}
+
 .dao-list-container {
   display: flex;
   flex-direction: column;
@@ -33,6 +38,9 @@ $inner-border: $white-dark;
     cursor: not-allowed;
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), 0 1px 0 rgba(255, 255, 255, 0.9) !important;
     text-shadow: 0 1px 0 rgba(255, 255, 255, 0.9);
+  }
+  .sort-dropdown {
+    float: right;
   }
 }
 

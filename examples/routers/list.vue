@@ -174,7 +174,7 @@
 </script>
 <style lang="scss" scoped>
 #thelist {
-  height: 150px;
+  height: 350px;
   // width: 300px;
 }
 </style>

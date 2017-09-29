@@ -24,6 +24,42 @@
         </svg>
       </button>
     </div>
+    <dao-dropdown class="sort-dropdown"
+      trigger="click"
+      :append-to-body="true"
+      placement="bottom-end">
+      <button class="dao-btn ghost has-icon">
+        <svg class="icon">
+          <use xlink:href :href="`#icon_sort-${sortingConfig.order}`"></use>
+        </svg>
+        <span class="text">{{columns[sortingConfig.sortBy].text}}</span>
+        <svg class="icon" :class="{disabled: page === 0}">
+          <use xlink:href="#icon_caret-down"></use>
+        </svg>
+      </button>
+      <dao-dropdown-menu slot="list">
+        <dao-dropdown-item v-for="c in columns" @click="changeSortBy(c.name)">
+          <svg class="icon" :class="{invisible: sortingConfig.sortBy !== c.name}">
+            <use xlink:href="#icon_checkmark"></use>
+          </svg>
+          <span>{{c.text}}</span>
+        </dao-dropdown-item>
+        <dao-dropdown-item :is-divided="true"></dao-dropdown-item>
+        <dao-dropdown-item @click="sortingConfig.order='asc'">
+          <svg class="icon" :class="{invisible: sortingConfig.order !== 'asc'}">
+            <use xlink:href="#icon_checkmark"></use>
+          </svg>
+          <span>升序</span>
+        </dao-dropdown-item>
+        <dao-dropdown-item @click="sortingConfig.order='desc'">
+          <svg class="icon" :class="{invisible: sortingConfig.order !== 'desc'}">
+            <use xlink:href="#icon_checkmark"></use>
+          </svg>
+          <span>降序</span>
+        </dao-dropdown-item>
+      </dao-dropdown-menu>
+    </dao-dropdown>
+
   </div>
   <div class="dao-list-main">
     <div class="dao-list-topbar">
