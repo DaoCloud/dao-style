@@ -154,7 +154,15 @@ th, td {
 }
 
 th {
+  position: relative;
   border-right: 1px solid $inner-border;
+  cursor: pointer;
+  .sort-arrow {
+    position: absolute;
+    right: 10px;
+    top: 7px;
+    fill: $grey-dark;
+  }
   &:last-child {
     border-right: none;
   }

@@ -48,7 +48,13 @@
               </check-all>
             </th>
             <th v-for="c in columnsOrder" @click="changeSortBy(c)">
-              {{columns[c].text}}
+              <span>{{columns[c].text}}</span>
+              <svg class="sort-arrow" v-if="sortingConfig.sortBy === c" v-show="sortingConfig.order === 'desc'">
+                <use xlink:href="#icon_down-arrow"></use>
+              </svg>
+              <svg class="sort-arrow" v-if="sortingConfig.sortBy === c" v-show="sortingConfig.order === 'asc'">
+                <use xlink:href="#icon_up-arrow"></use>
+              </svg>
             </th>
             <th></th>
           </tr>
