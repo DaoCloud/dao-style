@@ -14,6 +14,7 @@ import card from './routers/card.vue';
 import checkbox from './routers/checkbox.vue';
 import clipboard from './routers/clipboard.vue';
 import dialog from './routers/dialog.vue';
+import dragAndDrop from './routers/drag-and-drop.vue';
 import dropdown from './routers/dropdown.vue';
 import editableTable from './routers/editable-table.vue';
 import input from './routers/input.vue';
@@ -60,6 +61,9 @@ const router = new VueRouter({
   }, {
     path: '/dialog',
     component: dialog,
+  }, {
+    path: '/drag-drop',
+    component: dragAndDrop,
   }, {
     path: '/dropdown',
     component: dropdown,

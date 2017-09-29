@@ -49,6 +49,9 @@ li + li {
           <router-link to="/dialog">Dialog</router-link>
         </li>
         <li>
+          <router-link to="/drag-drop">Draggable</router-link>
+        </li>
+        <li>
           <router-link to="/dropdown">Dropdown</router-link>
         </li>
         <li>
