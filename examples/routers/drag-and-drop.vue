@@ -1,18 +1,23 @@
 <template>
   <div>
-    <div>
-      <div class="drag-item" v-dao-draggable>Dragger 1</div>
-      <div class="drag-item" v-dao-draggable>Dragger 2</div>
+    <div v-dao-droppable="{
+      onChange: onChange2
+    }">
+      <div class="drag-item" data-key="1" v-dao-draggable>Dragger 1</div>
+      <div class="drag-item" data-key="2" v-dao-draggable>Dragger 2</div>
       111
-      <div class="drag-item" v-dao-draggable>
+      <div class="drag-item" data-key="trash" v-dao-draggable>
         <svg class="icon">
           <use xlink:href="#icon_trash"></use>
         </svg>
       </div>
     </div>
-    <div>
-      <div class="drag-item" v-dao-draggable>Dragger 3</div>
-      <div class="drag-item" id="item4" v-dao-draggable v-show="show">Dragger 4</div>
+    <div v-dao-droppable="{
+      onChange,
+      disabled: show,
+    }">
+      <div class="drag-item" data-key="3" v-dao-draggable>Dragger 3</div>
+      <div class="drag-item" id="item4" data-key="4" v-dao-draggable v-show="show">Dragger 4</div>
     </div>
     <button class="dao-btn blue" @click="show = !show">Toggle Dragger 4</button>
   </div>
@@ -24,6 +29,14 @@ export default {
     return {
       show: false,
     };
+  },
+  methods: {
+    onChange(list) {
+      console.log('onChange1', list);
+    },
+    onChange2(list) {
+      console.log('onChange2', list);
+    },
   },
 }
 </script>
