@@ -1,8 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
   <title>icon_trash</title>
   <g>
-    <polygon points="7 4 6 4 6 13 7 13 7 4 7 4"/>
-    <polygon points="10 4 9 4 9 13 10 13 10 4 10 4"/>
-    <path d="M11.333,2,11.139.836A1,1,0,0,0,10.153,0H5.847a1,1,0,0,0-.986.836L4.667,2H2V3H3V14a1,1,0,0,0,1,1h8a1,1,0,0,0,1-1V3h1V2ZM5.847,1h4.306l.167,1H5.68ZM12,14H4V3h8Z"/>
+    <rect x="6" y="5" width="1" height="8"/>
+    <rect x="9" y="5" width="1" height="8"/>
+    <path d="M13,2H11V1a1,1,0,0,0-1-1H6A1,1,0,0,0,5,1V2H3A1,1,0,0,0,2,3V4H3V14a1,1,0,0,0,1,1h8a1,1,0,0,0,1-1V4h1V3A1,1,0,0,0,13,2ZM6,1h4V2H6Zm6,13H4V4h8Z"/>
   </g>
 </svg>
