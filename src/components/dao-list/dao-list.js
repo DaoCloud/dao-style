@@ -237,5 +237,8 @@ export default {
         this.$emit(operation.event);
       }
     },
+    refresh() {
+      this.$emit('refresh');
+    },
   },
 };
