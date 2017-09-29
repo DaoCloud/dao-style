@@ -3,7 +3,7 @@
     <div v-dao-droppable="{
       onChange: onChange2
     }">
-      <div class="drag-item" data-key="1" v-dao-draggable>Dragger 1</div>
+      <div class="drag-item" data-key="1" v-dao-draggable="{style: 'color: red;'}">Dragger 1</div>
       <div class="drag-item" data-key="2" v-dao-draggable="{disabled: show}">Dragger 2</div>
       111
       <div class="drag-item" data-key="trash" v-dao-draggable>
@@ -19,7 +19,7 @@
       <div class="drag-item" data-key="3" v-dao-draggable>Dragger 3</div>
       <div class="drag-item" id="item4" data-key="4" v-dao-draggable v-show="show">Dragger 4</div>
     </div>
-    <button class="dao-btn blue" @click="show = !show">Toggle Dragger 4</button>
+    <button class="dao-btn blue" style="position: relative;" @click="show = !show">Toggle Dragger 4</button>
   </div>
 </template>
 <script>

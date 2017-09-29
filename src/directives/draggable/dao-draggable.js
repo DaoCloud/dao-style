@@ -1,10 +1,43 @@
 import dragging from './dragging';
 
+// 初始化数据
+function init(binding) {
+  // 如果有传入额外的样式
+  const draggingStyle = (binding.value && binding.value.style)
+    ? binding.value.style
+    : 'opacity: 0.5';
+  return {
+    draggingStyle,
+  };
+}
+
+// 添加额外的样式
+function setExtraStyle(elm) {
+  // 先获取原有的样式
+  const originStyle = elm.getAttribute('style');
+  if (elm.dataDraggable.draggingStyle) {
+    elm.setAttribute(
+      'style',
+      originStyle
+        ? `${originStyle}${elm.dataDraggable.draggingStyle}`
+        : elm.dataDraggable.draggingStyle,
+    );
+  }
+}
+
+// 去除额外的样式
+function remveExtraStyle(elm) {
+  const originStyle = elm.getAttribute('style').replace(elm.dataDraggable.draggingStyle, '');
+  elm.setAttribute('style', originStyle);
+}
+
 // 拖动开始时
 function onDragStart(e) {
   const el = e.target;
   e.dataTransfer.effectAllowed = 'move';
   dragging.setData(el, el.getAttribute('data-key'));
+  // 添加额外的样式
+  setExtraStyle(el);
 }
 
 // 当其他拖动元素拖动进入时
@@ -38,7 +71,8 @@ function onDragOver(e) {
 
 // 拖动结束时
 function onDragEnd(e) {
-  console.log('End');
+  // 去除额外的样式
+  remveExtraStyle(e.target);
 }
 
 function onDrop(e) {
@@ -70,6 +104,8 @@ function removeListeners(elm) {
 function bind($el, binding) {
   // 如果绑定值设置了 disabled 为 true，则不绑定事件，也不让元素可拖
   if (binding.value && binding.value.disabled) return;
+  // 初始化一些数据
+  $el.dataDraggable = init(binding);
   // 让元素可拖
   $el.setAttribute('draggable', true);
   // 为元素绑定一堆的 drag 事件
