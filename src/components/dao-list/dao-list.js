@@ -34,6 +34,9 @@ export default {
     columnsOrder() {
       return this.config.columnsOrder;
     },
+    mainOperation() {
+      return this.config.mainOperation;
+    },
     operations() {
       return this.config.operations;
     },
@@ -227,6 +230,11 @@ export default {
       } else {
         this.sortingConfig.sortBy = sortBy;
         this.sortingConfig.order = 'asc';
+      }
+    },
+    emit(operation) {
+      if (!operation.disabled) {
+        this.$emit(operation.event);
       }
     },
   },

@@ -6,7 +6,7 @@
       :config="config"
       @create-service="onCreateService"
       @remove-service="onRemoveService"
-      @pulse-service="onPulseService"></dao-list>
+      @pause-service="onPauseService"></dao-list>
   </div>
 </template>
 <script>
@@ -124,19 +124,38 @@
           },
           operations: [
             {
-              name: '暂停',
-              svg: 'pulse',
-              event: 'pulse-service',
-              disabled: false,
-              disabledSvg: 'crown',
-              disabledTooltip: '许可证到期',
-            }, {
-              name: '删除',
-              svg: 'trash',
-              event: 'remove-service',
-              disabled: true,
-              disabledSvg: 'crown',
-              disabledTooltip: '许可证到期',
+              groupName: '状态',
+              operations: [
+                {
+                  name: '暂停',
+                  svg: 'pause',
+                  event: 'pause-service',
+                  disabled: false,
+                  disabledSvg: 'crown',
+                  disabledTooltip: '许可证到期',
+                }, {
+                  name: '删除',
+                  svg: 'trash',
+                  event: 'remove-service',
+                  disabled: true,
+                  disabledSvg: 'crown',
+                  disabledTooltip: '许可证到期',
+                },
+              ],
+            },
+            {
+              groupName: '资源',
+              operations: [
+                {
+                  name: '网络',
+                  svg: 'pause',
+                  event: 'network',
+                }, {
+                  name: '存储',
+                  svg: 'trash',
+                  event: 'storage',
+                },
+              ],
             },
           ],
         },
@@ -147,7 +166,7 @@
       },
       onRemoveService(rows) {
       },
-      onPulseService(rows) {
+      onPauseService(rows) {
         console.log('暂停容器', rows);
       },
     },

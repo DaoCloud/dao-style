@@ -1,4 +1,30 @@
 <div class="dao-list-container">
+  <div class="dao-list-toolbar">
+    <button class="dao-btn ghost has-icon"
+      :class="{'pseudo-disabled': mainOperation.disabled}"
+      @click="emit(mainOperation)">
+      <svg class="icon" v-if="mainOperation.svg">
+        <use xlink:href :href="`#icon_${mainOperation.svg}`"></use>
+      </svg>
+      <span class="text">{{mainOperation.name}}</span>
+      <svg class="icon" v-if="mainOperation.disabled" v-dao-tooltip="mainOperation.disabledTooltip">
+        <use xlink:href :href="`#icon_${mainOperation.disabledSvg}`"></use>
+      </svg>
+    </button>
+    <div class="dao-btn-group" v-for="operationGroup in operations">
+      <button class="dao-btn ghost dao-icon"
+        v-for="o in operationGroup.operations"
+        :class="{'pseudo-disabled': o.disabled}"
+        @click="emit(o)">
+        <svg class="icon" v-if="o.svg">
+          <use xlink:href :href="`#icon_${o.svg}`"></use>
+        </svg>
+        <svg class="icon" v-if="o.disabled" v-dao-tooltip="o.disabledTooltip">
+          <use xlink:href :href="`#icon_${o.disabledSvg}`"></use>
+        </svg>
+      </button>
+    </div>
+  </div>
   <div class="dao-list-main">
     <div class="dao-list-topbar">
       <dao-input-with-label 
@@ -7,8 +33,7 @@
         @keydown.enter="filterText = filterTextRaw"
         size="sm"
         :placeholder="`搜索${tableName}`"
-        :options="filterOptions"
-        >
+        :options="filterOptions">
       </dao-input-with-label>
       <div class="dao-list-pagination">
         <span class="counts">共 {{allRowsNumber}} 个 {{tableName}}</span>

@@ -18,9 +18,22 @@ $outer-border: $grey-light;
 $inner-border: $white-dark;
 .dao-list-container {
   display: flex;
+  flex-direction: column;
   height: 100%;
   width: 100%;
   overflow: hidden;
+}
+
+.dao-list-toolbar {
+  margin-bottom: 10px;
+  .dao-btn.pseudo-disabled {
+    color: #ccd1d9;
+    border-color: #ccd1d9 !important;
+    background: none !important;
+    cursor: not-allowed;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), 0 1px 0 rgba(255, 255, 255, 0.9) !important;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.9);
+  }
 }
 
 .dao-list-main {
