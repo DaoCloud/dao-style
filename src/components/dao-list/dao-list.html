@@ -1,5 +1,7 @@
 <div class="dao-list-container">
+  <!-- 列表工具栏 -->
   <div class="dao-list-toolbar">
+    <!-- 工具栏主要按钮 -->
     <button class="dao-btn ghost has-icon"
       :class="{'pseudo-disabled': mainOperation.disabled}"
       @click="emit(mainOperation)">
@@ -11,6 +13,7 @@
         <use xlink:href :href="`#icon_${mainOperation.disabledSvg}`"></use>
       </svg>
     </button>
+    <!-- 工具栏按钮 -->
     <div class="dao-btn-group" v-for="operationGroup in operations">
       <button class="dao-btn ghost dao-icon"
         v-for="o in operationGroup.operations"
@@ -24,6 +27,7 @@
         </svg>
       </button>
     </div>
+    <!-- 排序下拉菜单 -->
     <dao-dropdown class="sort-dropdown"
       trigger="click"
       :append-to-body="true"
@@ -59,9 +63,10 @@
         </dao-dropdown-item>
       </dao-dropdown-menu>
     </dao-dropdown>
-
   </div>
+  <!-- 列表主要部分 -->
   <div class="dao-list-main">
+    <!-- 列表的顶栏 -->
     <div class="dao-list-topbar">
       <dao-input-with-label 
         class="dao-list-filter"
@@ -90,10 +95,13 @@
         </div>
       </div>
     </div>
+    <!-- 列表主体 -->
     <div class="dao-list-scrolldiv">
       <table class="dao-list flexrow">
+        <!-- 表头 -->
         <thead>
           <tr>
+            <!-- 全选 -->
             <th class="checkbox">
               <input type="checkbox" class="round"
                 :class="{'half-check': isAllChecked === 'partial'}"
@@ -108,6 +116,7 @@
                 @uncheck-all="checkAll(false)">
               </check-all>
             </th>
+            <!-- th -->
             <th v-for="c in columnsOrder" @click="changeSortBy(c)">
               <span>{{columns[c].text}}</span>
               <svg class="sort-arrow" v-if="sortingConfig.sortBy === c" v-show="sortingConfig.order === 'desc'">
@@ -117,9 +126,11 @@
                 <use xlink:href="#icon_up-arrow"></use>
               </svg>
             </th>
+            <!-- 预留给操作的 th -->
             <th></th>
           </tr>
         </thead>
+        <!-- 表身 -->
         <tbody>
           <tr :class="{checked: r.$checked}" v-for="r in currentRows" @click="click(r, $event)">
             <td class="checkbox"><input type="checkbox" class="round" :checked="r.$checked"></td>
