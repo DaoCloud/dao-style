@@ -15,6 +15,8 @@ input-with-label。代码请参照目录：[src/components/dao-input-with-label]
   [disabled]
   [placeholder]
   [config]
+  [autofocus]
+  [block]
 </dao-input-with-label>
 ```
 
@@ -27,6 +29,7 @@ input-with-label。代码请参照目录：[src/components/dao-input-with-label]
 | v-model | String | 绑定值 | '' | 是 |
 | disabled | Boolean | 禁用 | false | 否 |
 | autofocus | Boolean | 自动聚焦 | false | 否 |
+| block | Boolean | 不限制 input 宽度 | false | 否 |
 | config | Obejct | 配置项 | ``` {shutDown: false} ``` | 否 |
 | options | Array | 选项 | ``` [] ``` | 否 |
 
