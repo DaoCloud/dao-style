@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-dao-droppable="{
+    <div v-dao-droppable.clone.remove="{
       onChange: onChange2
     }">
       <div class="drag-item" data-key="1" v-dao-draggable="{style: 'color: red;'}">Dragger 1</div>
@@ -14,7 +14,6 @@
     </div>
     <div v-dao-droppable="{
       onChange,
-      disabled: show,
     }">
       <div class="drag-item" data-key="3" v-dao-draggable>Dragger 3</div>
       <div class="drag-item" id="item4" data-key="4" v-dao-draggable v-show="show">Dragger 4</div>

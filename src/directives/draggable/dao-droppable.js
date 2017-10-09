@@ -4,9 +4,13 @@ class Droppable {
   constructor($el, $binding) {
     this.$el = $el;
     this.$binding = $binding;
+    this.$value = $binding.value || {};
+    this.$modifiers = $binding.modifiers || {};
     // 对外的事件接口
     this.events = {
-      onChange: () => {},
+      onChange: this.$value && this.$value.onChange
+        ? this.$value.onChange
+        : () => {},
     };
     this.order = [];
     this.hasListener = false;
@@ -31,13 +35,34 @@ class Droppable {
     e.preventDefault();
     // 如果当前元素是拖动元素的父元素，则返回
     if (this.$el === dragging.el.parentNode) return;
-    // 将拖动元素添加到当前元素的子节点中
-    this.$el.appendChild(dragging.el);
+    // 将拖动元素或其克隆添加到当前元素的子节点中，真正需要操作的元素是
+    let draggerEl = dragging.el;
+    if (this.$modifiers.clone) {
+      draggerEl = dragging.el.dataDraggable.$cloneEl;
+    }
+    const order = this.getOrder();
+    if (order.includes(dragging.key)) return;
+    this.$el.appendChild(draggerEl);
   }
 
   // 在当前元素上面拖动时
   onDragOver(e) {
     e.preventDefault();
+  }
+
+  // 判断拖动是否真正离开元素
+  truelyLeave(e) {
+    // 获取目标元素的 rect
+    const rect = e.target.getBoundingClientRect();
+    if (
+      e.clientX > rect.left &&
+      e.clientX < rect.right &&
+      e.clientY > rect.top &&
+      e.clientY < rect.bottom
+    ) {
+      return false;
+    }
+    return true;
   }
 
   // 当拖动元素离开当前元素
@@ -52,6 +77,17 @@ class Droppable {
     };
     if (e.target === this.$el) {
       dragging.el.addEventListener('dragend', refreshOrder);
+    }
+    // 当真正离开元素时
+    if (e.target !== this.$el || !this.truelyLeave(e)) return;
+    // 当有需要删除时，拖出来就删除拖动中的元素
+    if (this.$modifiers.remove && dragging.el.parentNode === this.$el) {
+      this.$el.removeChild(dragging.el);
+    }
+    // 如果是需要克隆拖动元素，拖离当前元素时应该把 clone 版从当前元素子元素中删除
+    const cloneEl = dragging.el.dataDraggable ? dragging.el.dataDraggable.$cloneEl : undefined;
+    if (this.$modifiers.clone && cloneEl && cloneEl.parentNode === this.$el) {
+      this.$el.removeChild(cloneEl);
     }
   }
 
@@ -86,13 +122,6 @@ class Droppable {
       this.hasListener = false;
     };
   }
-
-  // 处理一些暴露的回调接口
-  handleCallbacks() {
-    if (this.$binding.value && this.$binding.value.onChange) {
-      this.events.onChange = this.$binding.value.onChange;
-    }
-  }
 }
 
 // 指令绑定到元素上时
@@ -107,8 +136,6 @@ function bind(el, binding) {
   droppable.order = droppable.getOrder();
   // 添加事件
   droppable.addListeners();
-  // 处理回调函数
-  droppable.handleCallbacks();
 }
 
 // 指令更新时
@@ -130,3 +157,4 @@ export default {
     $el.dataDroppable.removeListeners();
   },
 };
+``
