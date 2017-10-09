@@ -2,7 +2,7 @@
   <th ref="th" :class="{'resize-cursor': resizeCursor}"
     :style="`width: ${width}px`"
     @click="onClick"
-    @mousemove="onMousemove"
+    @mousemove="toggleCursor"
     @mousedown="onMousedown"
     @mouseup="onMouseup">
     <slot>
@@ -22,6 +22,12 @@ export default {
   },
   mounted() {
     this.width = this.$refs.th.clientWidth;
+    document.addEventListener('mousemove', this.onMousemove);
+    document.addEventListener('mouseup', this.onMouseup);
+  },
+  destroyed() {
+    document.removeEventListener('mousemove', this.onMousemove);
+    document.removeEventListener('mouseup', this.onMouseup);
   },
   methods: {
     isThisEventInResizeArea(event) {
@@ -31,12 +37,14 @@ export default {
       }
       return false;
     },
-    onMousemove(event) {
+    toggleCursor(event) {
       if (this.isThisEventInResizeArea(event)) {
         this.resizeCursor = true;
       } else {
         this.resizeCursor = false;
       }
+    },
+    onMousemove(event) {
       if (this.resizing) {
         this.width = this.width + event.movementX;
         this.$emit('resize', this.width);
