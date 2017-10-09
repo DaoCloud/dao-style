@@ -1,6 +1,7 @@
 import _ from 'lodash';
 import DaoListTh from './th.vue';
 import StatusTd from './td/status-td.vue';
+import CustomTd from './td/custom-td';
 import OperationTd from './td/operation-td.vue';
 import CheckAll from './check-all.vue';
 import DaoListSettingsDialog from './dialogs/settings-dialog.vue';
@@ -9,6 +10,7 @@ export default {
   name: 'DaoList',
   components: {
     StatusTd,
+    CustomTd,
     OperationTd,
     CheckAll,
     DaoListTh,

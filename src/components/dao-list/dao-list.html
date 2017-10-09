@@ -168,6 +168,7 @@
                 :color="r[c].other.color"
                 :text="r[c].text">
               </status-td>
+              <custom-td v-if="r[c].type === 'custom'" :renderFunc="r[c].render" :td="r[c]"></custom-td>
             </template>
             <operation-td :row="r" :operations="operations"></operation-td>
           </tr>

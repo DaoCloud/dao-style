@@ -89,8 +89,15 @@
               value: 5000000,
             },
             cpu: {
-              text: '0.5 核/3 核',
-              type: 'text',
+              render: (h, td) => {
+                const progress = td.value / 3;
+                return h('dao-progress', {
+                  props: {
+                    progress,
+                  },
+                });
+              },
+              type: 'custom',
               value: 0.5,
             },
             creationTime: {
