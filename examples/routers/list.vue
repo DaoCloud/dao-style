@@ -106,7 +106,7 @@
         )),
         config: {
           tableName: '服务',
-          columnsOrder: ['service', 'status', 'mode', 'containers', 'memory', 'creationTime', 'cpu'],
+          columnsOrder: ['service', 'status', 'containers', 'memory', 'creationTime', 'cpu'],
           sorting: {
             defaultSortBy: 'service',
             order: 'asc',

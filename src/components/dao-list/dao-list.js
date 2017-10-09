@@ -32,6 +32,11 @@ export default {
         order: this.config.sorting.order,
       },
       columnsWidth,
+      // settings 代表组件内部的设置，config 代表外面传进来的配置
+      // 有设置就读取设置，没有设置才去读取配置
+      settings: {
+        columnsOrder: null,
+      },
       isSettingsDialogVisible: false,
     };
   },
@@ -43,7 +48,7 @@ export default {
       return this.config.pagination.limit;
     },
     columnsOrder() {
-      return this.config.columnsOrder;
+      return this.settings.columnsOrder || this.config.columnsOrder;
     },
     mainOperation() {
       return this.config.mainOperation;
@@ -260,8 +265,8 @@ export default {
     closeSettingsDialog() {
       this.isSettingsDialogVisible = false;
     },
-    onSettingsDialogConfirm() {
-      console.log('确认');
+    onSettingsDialogConfirm(settings) {
+      this.settings.columnsOrder = _.map(_.filter(settings.columnsOrder, 'visible'), 'name');
     },
   },
 };

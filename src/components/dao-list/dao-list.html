@@ -83,7 +83,9 @@
     <!-- 显示设置弹窗 -->
     <dao-list-settings-dialog
       :visible.sync="isSettingsDialogVisible"
-      @confirm="onSettingsDialogConfirm">
+      @confirm="onSettingsDialogConfirm"
+      :columnsOrder="columnsOrder"
+      :columns="columns">
     </dao-list-settings-dialog>
   </div>
   <!-- 列表主要部分 -->
