@@ -2,6 +2,7 @@
   <div 
     ref="container"
     class="dao-input-with-label" 
+    :class="{ block: block }"
     v-clickoutside="handleClickoutside" >
     <input type="text" 
       class="dao-control search" 
@@ -15,7 +16,7 @@
       @blur="emit('blur')">
     <span  
       class="icon close-icon"
-      :class="{ disabled: !currentConfig.canReset || disabled}"
+      :class="{ disabled: disabled }"
       @click="resetCurrentVal()">
       <svg>
         <use xlink:href="#icon_close-circled"></use>
@@ -89,10 +90,10 @@
   </div>
 </template>
 <script>
-import { 
-  getSelectPosition as GetSelectPosition, 
-  simpleMerge as SimpleMerge, 
-  getTextSize as GetTextSize 
+import {
+  getSelectPosition as GetSelectPosition,
+  simpleMerge as SimpleMerge,
+  getTextSize as GetTextSize,
 } from '../../utils/assist';
 import clickoutside from '../../directives/clickoutside';
 import Popper from '../base/popper';
@@ -117,12 +118,28 @@ export default {
   },
   mixins: [Popper],
   name: 'DaoInputWithLabel',
-  props: ['value', 'disabled', 'placeholder', 'autofocus', 'options', 'config'],
+  props: {
+    value: String,
+    disabled: {
+      type: Boolean,
+      default: false,
+    },
+    autofocus: {
+      type: Boolean,
+      default: false,
+    },
+    block: {
+      type: Boolean,
+      default: false,
+    },
+    options: Array,
+    config: Object,
+    placeholder: String,
+  },
   data() {
     return {
       currentValue: '',
       currentConfig: {
-        canReset: true,
         shutDown: false,
       },
       currentOptions: [],
@@ -133,8 +150,8 @@ export default {
     };
   },
   created() {
-    this.currentValue = this._formatInput(this.value);
-    this.currentOptions = this._formatOptions(this.options);
+    this.currentValue = this.formatInput(this.value);
+    this.currentOptions = this.formatOptions(this.options);
     this.currentConfig = SimpleMerge(this.currentConfig, this.config);
   },
   computed: {
@@ -145,24 +162,22 @@ export default {
       return cpOptions.map(tab => {
         tab.keys = tab.keys.map(key => {
           key.operates = key.operates.map(operate => {
-            operate.vals = operate.vals.filter(val => {
-              return !currentValueArr.includes(`${key.val}${operate.val}${val.val}`);
-            });
+            operate.vals = operate.vals.filter(val => !currentValueArr.includes(`${key.val}${operate.val}${val.val}`));
             return operate;
           });
           return key;
         });
         return tab;
-      });;
+      });
     },
   },
   methods: {
     // 透传最新值
-    _updateModel(val) {
+    updateModel(val) {
       this.emit('input', val);
       this.emit('change', val);
     },
-    _shouldShowPopper() {
+    shouldShowPopper() {
       if (this.currentConfig.shutDown) return false;
       // 当前输入框没有值
       if (!this.currentValue) return false;
@@ -177,7 +192,7 @@ export default {
         this.currentOptions.forEach(option => {
           option.keys.forEach(key => {
             if (key.val.startsWith(frag) || key.name.startsWith(frag)) {
-              return catched = true;
+              catched = true;
             }
           });
         });
@@ -185,28 +200,28 @@ export default {
       }
       // TODO 支持在文本中间操作
       if (GetSelectPosition(this.$refs.input).position < this.currentValue.length) return false;
-      return true; 
+      return true;
     },
     // 更新 popper 位置
-    _updatePoperPosition() {
-      if (!this._shouldShowPopper()) {
-        return this.visible = false;
+    updatePoperPosition() {
+      if (!this.shouldShowPopper()) {
+        this.visible = false;
+        return;
       }
       const calipersWidth = GetTextSize(this.currentValue).width;
       const inputWidth = this.$refs.input.offsetWidth;
-      const maxWidth = inputWidth - INPUT_PADDING * 2;
+      const maxWidth = inputWidth - (INPUT_PADDING * 2);
       // 对 left 值做简单的碰撞检测
       const left = (calipersWidth > maxWidth ? maxWidth : calipersWidth) + INPUT_PADDING;
-      this.$refs.reference.style.left = left + 'px';
-      this.$refs.reference.style.top = DEFAULT_INPUT_HEIGHT +'px';
+      this.$refs.reference.style.left = `${left}px`;
+      this.$refs.reference.style.top = `${DEFAULT_INPUT_HEIGHT}px`;
       this.visible = true;
       this.updatePopper('right-start');
     },
     // 格式化数据
-    _formatInput(val) {
-      let cpVal = val;
+    formatInput(val) {
       // 1.多个空格全部改成一个空格
-      let result = val.replace(/\s+/g, " ");
+      let result = val.replace(/\s+/g, ' ');
       // 2.去掉开头空格
       if (result.startsWith(' ') && result.length > 1) {
         result = result.slice(1);
@@ -215,10 +230,10 @@ export default {
       // 4.keyword 只能在第一个位置，之后的位置都应该是key:value的形式，
       // 如果在其他位置，都可以认定为非法输入需要修正，直接丢弃是最安全的方案
       // fallback: 如果无法正确格式化的数据，则粗暴地将原始数据直接strim掉
-      return result
+      return result;
     },
     // 格式化选项
-    _formatOptions(options) {
+    formatOptions(options) {
       this.showAllOperations = false;
       const storeOperations = [];
       options = options || [];
@@ -242,35 +257,31 @@ export default {
             }
             return val;
           });
-          key.operates = key.operations.map(oper => {
-            return {
-              val: oper,
-              vals: key.vals,
-            };
-          });
+          key.operates = key.operations.map(oper => ({ val: oper, vals: key.vals }));
           // delete key.vals;
           return key;
         });
         return tab;
       });
       // 如果都是只有一个操作符，那么如果操作符不全同也需要全部显示操作符
-      if (!this.showAllOperations && new Set(storeOperations).size > 1)
-          this.showAllOperations = true;
+      if (!this.showAllOperations && new Set(storeOperations).size > 1) {
+        this.showAllOperations = true;
+      }
       return options;
     },
     // emit
-    emit(eventName, val){
+    emit(eventName, val) {
       this.$emit(eventName, val);
     },
     // keyup 事件
     handleKeyUp() {
       if (this.currentConfig.shutDown) {
-        this._updateModel(this.currentValue);
+        this.updateModel(this.currentValue);
         return;
       }
-      this.currentValue = this._formatInput(this.currentValue);
-      this._updatePoperPosition();
-      this._updateModel(this.currentValue);
+      this.currentValue = this.formatInput(this.currentValue);
+      this.updatePoperPosition();
+      this.updateModel(this.currentValue);
       this.emit('keyup');
     },
     // input 事件
@@ -280,10 +291,10 @@ export default {
     // clickoutside 事件
     handleClickoutside() {
       this.clickoutside = true;
-      this._updatePoperPosition();
+      this.updatePoperPosition();
     },
     // 选中值
-    handleSelect(tab, key, val, operate = { val: DEFAULT_OPERATE}) {
+    handleSelect(tab, key, val, operate = { val: DEFAULT_OPERATE }) {
       const selectValue = `${key.val}${operate.val}${val.val}`;
       const selectName = `${key.name}${operate.val}${val.val}`;
       // 输入补全
@@ -291,12 +302,12 @@ export default {
       const lastestFrag = currentValArr.pop();
       if (selectValue.startsWith(lastestFrag) || selectName.startsWith(lastestFrag)) {
         currentValArr.push(selectValue);
-        this.currentValue = this._formatInput(currentValArr.join(' '));
+        this.currentValue = this.formatInput(currentValArr.join(' '));
       } else {
-        this.currentValue = this._formatInput(`${this.currentValue} ${selectValue}`);
+        this.currentValue = this.formatInput(`${this.currentValue} ${selectValue}`);
       }
-      this._updatePoperPosition();
-      this._updateModel(this.currentValue);
+      this.updatePoperPosition();
+      this.updateModel(this.currentValue);
       this.$nextTick(() => {
         this.$refs.input.focus();
       });
@@ -304,24 +315,24 @@ export default {
     // 重置输入值
     resetCurrentVal() {
       this.currentValue = '';
-      this._updateModel(this.currentValue);
+      this.updateModel(this.currentValue);
       this.emit('reset');
       this.$nextTick(() => {
-        this._updatePoperPosition();
+        this.updatePoperPosition();
       });
     },
   },
   watch: {
     // 对异步数据的支持
     value(newVal) {
-      this.currentValue = this._formatInput(newVal);
+      this.currentValue = this.formatInput(newVal);
     },
     options(newVal) {
-      this.currentOptions = this._formatOptions(newVal);
+      this.currentOptions = this.formatOptions(newVal);
     },
     config(newVal) {
       this.currentConfig = SimpleMerge(this.currentConfig, newVal);
-    }
+    },
   },
   filters: {
     translate(key) {
@@ -334,6 +345,10 @@ export default {
 <style lang="scss">
 @import '../dao-color.scss';
   .dao-input-with-label{
+    width: 287px;
+    &.block{
+      width: 100%;
+    }
     position: relative;
     input{
       width: 100% !important;

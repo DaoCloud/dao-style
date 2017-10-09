@@ -1,16 +1,9 @@
 <template>
   <div>
-    <div class="demo-title">
-      <p>* 支持异步数据</p>
-      <p>* 支持输入补全</p>
-      <p>* 支持关闭，禁用</p>
-      <p>* 支持定制操作符(默认仅操作符 ' : ')</p>
-    </div>
     <div class="demo-container">
       <h2>1.基础</h2>
       <dao-input-with-label 
         v-model="testVal"
-        style="width: 500px"  
         placeholder="init placeholder"
         :config="config"
         :options="options"
@@ -22,59 +15,43 @@
       <h2>2.禁用输入</h2>
       <dao-input-with-label 
         v-model="testVal"
-        style="width: 500px"  
         placeholder="init placeholder"
         :config="config"
         :options="options"
-        :disabled="true"
+        disabled
         >
       </dao-input-with-label>
     </div>
     <div class="demo-container">
-      <h2>3.禁用重置</h2>
-      <dao-input-with-label 
-        v-model="testVal"
-        style="width: 500px"  
-        placeholder="init placeholder"
-        :config="{canReset: false}"
-        :options="options"
-        >
-      </dao-input-with-label>
-    </div>
-    <div class="demo-container">
-      <h2>4.不限制宽度</h2>
+      <h2>3.不限制宽度</h2>
       <dao-input-with-label 
         v-model="testVal"
         placeholder="init placeholder"
+        block
         :config="config"
         :options="options"
         >
       </dao-input-with-label>
     </div>
     <div class="demo-container">
-      <h2>5.多个操作符</h2>
+      <h2>4.多个操作符</h2>
       <dao-input-with-label 
         v-model="testVal"
-        style="width: 500px"
         placeholder="init placeholder"
         :options="options2"
         >
       </dao-input-with-label>
     </div>
     <div class="demo-container">
-      <h2>6.异步数据</h2>
+      <h2>5.异步数据</h2>
       <dao-input-with-label 
         v-model="testVal6"
-        style="width: 500px"
-        placeholder="test asyn"
+        placeholder="type 'change'"
         :config="config"
         @change="testchange6()"
         :options="options6"
         >
       </dao-input-with-label>
-    </div>
-     <div class="demo-title">
-      <p>* 输入 'change' 即可命中异步改变参数的流程</p>
     </div>
   </div>
 </template>
@@ -97,10 +74,10 @@
                 val: 'location',
                 vals: [
                   {
-                     val: 'location1',
+                    val: 'location1',
                   },
                   {
-                     val: 'location2',
+                    val: 'location2',
                   },
                 ],
               },
@@ -114,12 +91,12 @@
                 val: 'node_type',
                 vals: [
                   {
-                     name: '控制',
-                     val: 'ctrl',
+                    name: '控制',
+                    val: 'ctrl',
                   },
                   {
-                     name: '普通',
-                     val: 'normal',
+                    name: '普通',
+                    val: 'normal',
                   },
                 ],
               },
@@ -128,10 +105,10 @@
                 val: 'system',
                 vals: [
                   {
-                     val: 'window',
+                    val: 'window',
                   },
                   {
-                     val: 'linux',
+                    val: 'linux',
                   },
                 ],
               },
@@ -140,10 +117,10 @@
                 val: 'state',
                 vals: [
                   {
-                     val: 'fail',
+                    val: 'fail',
                   },
                   {
-                     val: 'success',
+                    val: 'success',
                   },
                 ],
               },
@@ -152,10 +129,10 @@
                 val: 'state2',
                 vals: [
                   {
-                     val: 'fail2',
+                    val: 'fail2',
                   },
                   {
-                     val: 'success2',
+                    val: 'success2',
                   },
                 ],
               },
@@ -164,10 +141,10 @@
                 val: 'state3',
                 vals: [
                   {
-                     val: 'fail',
+                    val: 'fail',
                   },
                   {
-                     val: 'success',
+                    val: 'success',
                   },
                 ],
               },
@@ -181,15 +158,15 @@
               {
                 name: '节点类型',
                 val: 'node_type',
-                operations: [':', '>', '>=', '<=' , '!='],
+                operations: [':', '>', '>=', '<=', '!='],
                 vals: [
                   {
-                     name: '控制节点',
-                     val: 'ctrl_node',
+                    name: '控制节点',
+                    val: 'ctrl_node',
                   },
                   {
-                     name: '普通节点',
-                     val: 'normal_node',
+                    name: '普通节点',
+                    val: 'normal_node',
                   },
                 ],
               },
@@ -203,12 +180,12 @@
                 val: 'node_type2',
                 vals: [
                   {
-                     name: '控制节点2',
-                     val: 'ctrl_node2',
+                    name: '控制节点2',
+                    val: 'ctrl_node2',
                   },
                   {
-                     name: '普通节点2',
-                     val: 'normal_node2',
+                    name: '普通节点2',
+                    val: 'normal_node2',
                   },
                 ],
               },
@@ -224,8 +201,8 @@
                 val: 'changed',
                 vals: [
                   {
-                     name: '控制节点',
-                     val: 'ctrl_node',
+                    name: '控制节点',
+                    val: 'ctrl_node',
                   },
                 ],
               },
@@ -242,17 +219,11 @@
             this.options6 = JSON.parse(JSON.stringify(this.options));
           }, 100);
         }
-      }
+      },
     },
   };
 </script>
 <style lang="scss" scoped>
-.demo-title{
-    margin-bottom: 20px;
-    p{
-      margin: 4px 0;
-    }
-  }
 .demo-container {
   margin-bottom: 40px;
 }
