@@ -36,10 +36,10 @@ class Droppable {
     // 如果当前元素是拖动元素的父元素，则返回
     if (this.$el === dragging.el.parentNode) return;
     // 将拖动元素或其克隆添加到当前元素的子节点中，真正需要操作的元素是
-    let draggerEl = dragging.el;
-    if (this.$modifiers.clone) {
-      draggerEl = dragging.el.dataDraggable.$cloneEl;
-    }
+    const draggerEl = dragging.el;
+    // if (this.$modifiers.clone) {
+    //   draggerEl = dragging.el.dataDraggable.$cloneEl;
+    // }
     const order = this.getOrder();
     if (order.includes(dragging.key)) return;
     this.$el.appendChild(draggerEl);
@@ -85,10 +85,10 @@ class Droppable {
       this.$el.removeChild(dragging.el);
     }
     // 如果是需要克隆拖动元素，拖离当前元素时应该把 clone 版从当前元素子元素中删除
-    const cloneEl = dragging.el.dataDraggable ? dragging.el.dataDraggable.$cloneEl : undefined;
-    if (this.$modifiers.clone && cloneEl && cloneEl.parentNode === this.$el) {
-      this.$el.removeChild(cloneEl);
-    }
+    // const cloneEl = dragging.el.dataDraggable ? dragging.el.dataDraggable.$cloneEl : undefined;
+    // if (this.$modifiers.clone && cloneEl && cloneEl.parentNode === this.$el) {
+    //   this.$el.removeChild(cloneEl);
+    // }
   }
 
   // 在当前元素中拖动结束时

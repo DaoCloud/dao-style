@@ -53,7 +53,11 @@ class Draggable {
   onDragStart(e) {
     const el = e.target;
     e.dataTransfer.effectAllowed = 'move';
-    dragging.setData(el, el.getAttribute('data-key'));
+    // 如果需要克隆的话，则把拖动中的元素写成当前元素的克隆
+    dragging.setData(
+      this.$modifiers.clone ? this.$cloneEl : el,
+      el.getAttribute('data-key'),
+    );
     // 添加额外的样式
     this.setExtraStyle(el);
   }
