@@ -1,7 +1,7 @@
 <template>
   <div 
     ref="container"
-    class="dao-input-with-label" 
+    class="dao-input-with-label-container" 
     :class="{ block: block }"
     v-clickoutside="handleClickoutside" >
     <input type="text" 
@@ -35,17 +35,18 @@
             v-for="(key, index) in tab.keys" 
             :key="index" 
             placement="right-start" 
-            style="width:100%">
+            class="dao-input-with-label-popper-dropdown">
             <dao-dropdown-item>
               <span>{{key.name}}</span>
-              <svg class="icon" style="transform: rotate(-90deg);float:right;">
+              <svg class="icon dao-input-with-label-popper-arrow-icon">
                 <use xlink:href="#icon_down-arrow"></use>
               </svg>
             </dao-dropdown-item>
-            <dao-dropdown-menu slot="list" style="margin-top:-5px;">
+            <dao-dropdown-menu 
+              slot="list"
+              class="dao-input-with-label-popper-dropdown-menu">
               <template v-if="key && key.operates.length && showAllOperations">
                 <dao-dropdown  
-                  
                   v-for="(operate, index) in key.operates" 
                   :key="index" 
                   placement="right-start">
@@ -325,6 +326,7 @@ export default {
   watch: {
     // 对异步数据的支持
     value(newVal) {
+      if (newVal === this.currentValue) return;
       this.currentValue = this.formatInput(newVal);
     },
     options(newVal) {
@@ -343,47 +345,6 @@ export default {
 </script>
 
 <style lang="scss">
-@import '../dao-color.scss';
-  .dao-input-with-label{
-    width: 287px;
-    &.block{
-      width: 100%;
-    }
-    position: relative;
-    input{
-      width: 100% !important;
-      border-radius: 0 !important;
-      padding-right: 30px !important;
-      padding-left: 30px !important;
-    }
-    .icon{
-      z-index: 2;
-      position: absolute;
-      margin-right: 0;
-      width: 16px;
-      height: 16px;
-      top: 8px;
-      fill: $grey-dark;
-      svg{
-        width: 100%;
-        height: 100%;
-      }
-      &.close-icon{
-        right: 8px;
-        cursor: pointer;
-        &.disabled{
-          cursor: not-allowed;
-        }
-      }
-    }
-    .reference{
-      position: absolute;
-    }
-  }
-  .dao-input-with-label-popper{
-    width: 140px;
-    .dao-dropdown-menu{
-      min-width: 140px;
-    }
-  }
+  @import './dao-input-with-label.scss';
 </style>
+

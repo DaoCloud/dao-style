@@ -27,15 +27,9 @@ input-with-label。代码请参照目录：[src/components/dao-input-with-label]
 | v-model | String | 绑定值 | '' | 是 |
 | disabled | Boolean | 禁用 | false | 否 |
 | autofocus | Boolean | 自动聚焦 | false | 否 |
-| config | Obejct | 配置项 | ``` { canReset: false, shutDown: false} ``` | 否 |
+| config | Obejct | 配置项 | ``` {shutDown: false} ``` | 否 |
 | options | Array | 选项 | ``` [] ``` | 否 |
-- 其中 config 结构如下所示
-```javascript
-{ 
-    canReset: false,  // 是否可以重置, 默认 fasle
-    shutDown: false // 是否关闭提示功能，关闭后将会是普通的 input 默认false
-}
-```
+
 - 其中 options 结构如下所示
 
 ```javascript
