@@ -70,7 +70,7 @@
               value: 'running',
               type: 'status',
               other: {
-                status: 'running',
+                color: 'green',
               },
             },
             mode: {

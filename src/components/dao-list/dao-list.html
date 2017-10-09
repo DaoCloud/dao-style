@@ -161,7 +161,14 @@
         <tbody>
           <tr :class="{checked: r.$checked}" v-for="r in currentRows" :key="r" @click="click(r, $event)">
             <td class="checkbox"><input type="checkbox" class="round" :checked="r.$checked"></td>
-            <td v-for="c in columnsOrder" :key="c" :style="`width: ${columnsWidth[c]}`">{{r[c].text}}</td>
+            <template v-for="c in columnsOrder" :style="`width: ${columnsWidth[c]}`">
+              <td :key="c" v-if="r[c].type === 'text'">{{r[c].text}}</td>
+              <status-td :key="c"
+                v-if="r[c].type === 'status'"
+                :color="r[c].other.color"
+                :text="r[c].text">
+              </status-td>
+            </template>
             <operation-td :row="r" :operations="operations"></operation-td>
           </tr>
         </tbody>
