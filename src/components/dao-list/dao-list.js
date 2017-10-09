@@ -3,6 +3,7 @@ import DaoListTh from './th.vue';
 import StatusTd from './td/status-td.vue';
 import OperationTd from './td/operation-td.vue';
 import CheckAll from './check-all.vue';
+import DaoListSettingsDialog from './dialogs/settings-dialog.vue';
 
 export default {
   name: 'DaoList',
@@ -11,6 +12,7 @@ export default {
     OperationTd,
     CheckAll,
     DaoListTh,
+    DaoListSettingsDialog,
   },
   props: ['columns', 'rows', 'config'],
   data() {
@@ -30,6 +32,7 @@ export default {
         order: this.config.sorting.order,
       },
       columnsWidth,
+      isSettingsDialogVisible: false,
     };
   },
   computed: {
@@ -250,6 +253,15 @@ export default {
     },
     onColumnResize(columnName, newWidth) {
       this.columnsWidth[columnName] = `${newWidth}px`;
+    },
+    openSettingsDialog() {
+      this.isSettingsDialogVisible = true;
+    },
+    closeSettingsDialog() {
+      this.isSettingsDialogVisible = false;
+    },
+    onSettingsDialogConfirm() {
+      console.log('确认');
     },
   },
 };

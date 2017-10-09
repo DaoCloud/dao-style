@@ -43,7 +43,7 @@
           </svg>
         </button>
         <dao-dropdown-menu slot="list">
-          <dao-dropdown-item v-for="c in columns" @click="changeSortBy(c.name)">
+          <dao-dropdown-item v-for="c in columns" :key="c.name" @click="changeSortBy(c.name)">
             <svg class="icon" :class="{invisible: sortingConfig.sortBy !== c.name}">
               <use xlink:href="#icon_checkmark"></use>
             </svg>
@@ -75,11 +75,16 @@
         </button>
         <dao-dropdown-menu slot="list">
           <dao-dropdown-item @click="refresh">刷新</dao-dropdown-item>
-          <dao-dropdown-item>查看显示选项</dao-dropdown-item>
+          <dao-dropdown-item @click="openSettingsDialog">查看显示选项</dao-dropdown-item>
           <dao-dropdown-item>自定义工具栏...</dao-dropdown-item>
         </dao-dropdown-menu>
       </dao-dropdown>
     </div>
+    <!-- 显示设置弹窗 -->
+    <dao-list-settings-dialog
+      :visible.sync="isSettingsDialogVisible"
+      @confirm="onSettingsDialogConfirm">
+    </dao-list-settings-dialog>
   </div>
   <!-- 列表主要部分 -->
   <div class="dao-list-main">
@@ -104,7 +109,7 @@
           </svg>
           <span class="page" v-show="page > 2" @click="goToPage(0)">1</span><!--
        --><span class="page disabled" v-show="page > 2">...</span><!--
-       --><span class="page" :class="{active: page == p}" v-for="p in pages" @click="goToPage(p)">{{p + 1}}</span><!--
+       --><span class="page" :class="{active: page == p}" v-for="p in pages" :key="p" @click="goToPage(p)">{{p + 1}}</span><!--
        --><span class="page disabled" v-show="page < pagesNumber - 3">...</span>
           <svg :class="{disabled: page === pagesNumber - 1}" @click="nextPage">
             <use xlink:href="#icon_caret-right"></use>
@@ -135,6 +140,7 @@
             </th>
             <!-- th -->
             <dao-list-th v-for="c in columnsOrder"
+              :key="c"
               @resize="onColumnResize(c, $event)"
               @click="changeSortBy(c)">
               <span>{{columns[c].text}}</span>
@@ -151,9 +157,9 @@
         </thead>
         <!-- 表身 -->
         <tbody>
-          <tr :class="{checked: r.$checked}" v-for="r in currentRows" @click="click(r, $event)">
+          <tr :class="{checked: r.$checked}" v-for="r in currentRows" :key="r" @click="click(r, $event)">
             <td class="checkbox"><input type="checkbox" class="round" :checked="r.$checked"></td>
-            <td v-for="c in columnsOrder" :style="`width: ${columnsWidth[c]}`">{{r[c].text}}</td>
+            <td v-for="c in columnsOrder" :key="c" :style="`width: ${columnsWidth[c]}`">{{r[c].text}}</td>
             <operation-td :row="r" :operations="operations"></operation-td>
           </tr>
         </tbody>
