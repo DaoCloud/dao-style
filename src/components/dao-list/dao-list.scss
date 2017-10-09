@@ -181,6 +181,9 @@ th {
   &:last-child {
     border-right: none;
   }
+  &:active {
+    background: $white-dark;
+  }
 }
 
 .service {
