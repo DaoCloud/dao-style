@@ -74,7 +74,7 @@ export default {
       }
       this.$emit('visible-change', val);
     },
-    popperCls(val) {
+    popperCls() {
       this.$popper.className = `${this.initClass} append-to-body ${this.popperCls ? this.popperCls.join(' ') : ''}`;
       if (this.popperCls && this.popperCls.includes('hide')) {
         this.doDestroy();
@@ -98,18 +98,18 @@ export default {
 
       if (!popper || !reference) return;
 
-      if (this.popperJS && this.popperJS.hasOwnProperty('destroy')) {
+      if (this.popperJS && this.popperJS.destroy) {
         this.popperJS.destroy();
       }
 
       options.placement = placement || this.placement;
       options.offset = this.offset;
-      options.onCreate = (data) => {
+      options.onCreate = data => {
         this.resetTransformOrigin(data.instance);
         this.$nextTick(this.updatePopper);
         this.$emit('created', this);
       };
-      options.onUpdate = (data) => {
+      options.onUpdate = data => {
         if (['DaoSelect', 'DaoAutocomplete'].includes(this.$options.name)) { // 这些组件需要单独设置宽度
           data.instance.popper.style.width = getStyle(reference, 'width');
         }
@@ -149,11 +149,16 @@ export default {
     },
     updatePopper(placement) {
       if (this.popperCls && this.popperCls.includes('hide')) return;
-      this.popperJS ? this.popperJS.update() : this.createPopper(placement);
+      if (this.popperJS) {
+        this.popperJS.update();
+      } else {
+        this.createPopper(placement);
+      }
     },
     doDestroy() {
       if (this.visible) return;
-      if (this.appendToBody && !this.forceNotAppendToBody && this.$popper && this.$popper.parentNode === document.body) {
+      if (this.appendToBody && !this.forceNotAppendToBody && this.$popper
+        && this.$popper.parentNode === document.body) {
         document.body.removeChild(this.$popper);
       }
       if (this.popperJS) {
