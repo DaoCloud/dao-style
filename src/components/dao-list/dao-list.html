@@ -27,7 +27,7 @@
         </svg>
       </button>
     </div>
-    <div class="sort-dropdown">
+    <div class="pull-right">
       <!-- 排序下拉菜单 -->
       <dao-dropdown
         trigger="click"
@@ -76,7 +76,7 @@
         <dao-dropdown-menu slot="list">
           <dao-dropdown-item @click="refresh">刷新</dao-dropdown-item>
           <dao-dropdown-item @click="openSettingsDialog">查看显示选项</dao-dropdown-item>
-          <dao-dropdown-item>自定义工具栏...</dao-dropdown-item>
+          <dao-dropdown-item @click="openCustomToolbarDialog">自定义工具栏</dao-dropdown-item>
         </dao-dropdown-menu>
       </dao-dropdown>
     </div>
@@ -87,6 +87,11 @@
       :columnsOrder="columnsOrder"
       :columns="columns">
     </dao-list-settings-dialog>
+    <!-- 自定义工具栏弹窗 -->
+    <dao-list-custom-toolbar-dialog
+      :visible.sync="isCustomToolbarDialogVisible"
+      @confirm="onCustomToolbarDialogConfirm">
+    </dao-list-custom-toolbar-dialog>
   </div>
   <!-- 列表主要部分 -->
   <div class="dao-list-main">

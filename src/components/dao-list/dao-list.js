@@ -6,6 +6,7 @@ import CustomTd from './td/custom-td';
 import OperationTd from './td/operation-td.vue';
 import CheckAll from './check-all.vue';
 import DaoListSettingsDialog from './dialogs/settings-dialog.vue';
+import DaoListCustomToolbarDialog from './dialogs/custom-toolbar-dialog.vue';
 
 export default {
   name: 'DaoList',
@@ -17,6 +18,7 @@ export default {
     CheckAll,
     DaoListTh,
     DaoListSettingsDialog,
+    DaoListCustomToolbarDialog,
   },
   props: ['columns', 'rows', 'config'],
   data() {
@@ -43,6 +45,7 @@ export default {
         columnsOrder: null,
       },
       isSettingsDialogVisible: false,
+      isCustomToolbarDialogVisible: false,
       checkedAnchorIndex: null,
     };
   },
@@ -282,6 +285,14 @@ export default {
     },
     onSettingsDialogConfirm(settings) {
       this.settings.columnsOrder = _.map(_.filter(settings.columnsOrder, 'visible'), 'name');
+    },
+    openCustomToolbarDialog() {
+      this.isCustomToolbarDialogVisible = true;
+    },
+    closeCustomToolbarDialog() {
+      this.isCustomToolbarDialogVisible = false;
+    },
+    onCustomToolbarDialogConfirm() {
     },
   },
 };
