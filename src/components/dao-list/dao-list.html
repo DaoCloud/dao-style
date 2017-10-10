@@ -92,14 +92,12 @@
   <div class="dao-list-main">
     <!-- 列表的顶栏 -->
     <div class="dao-list-topbar">
-      <dao-input-with-label 
-        class="dao-list-filter"
-        v-model="filterTextRaw"
-        @keydown.enter="filterText = filterTextRaw"
-        size="sm"
-        :placeholder="`搜索${tableName}`"
-        :options="filterOptions">
-      </dao-input-with-label>
+      <filter-input class="dao-list-filter"
+        :tableName="tableName"
+        :rows="rows"
+        :columns="columns"
+        @change="onFilterInputChange"
+        ></filter-input>
       <div class="dao-list-pagination">
         <span class="counts">共 {{allRowsNumber}} 个 {{tableName}}</span>
         <span class="counts" v-show="checkedRowsNumber > 0">

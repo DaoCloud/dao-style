@@ -56,8 +56,9 @@
     </div>
 
     <dao-dropdown
-      trigger="click"
+      trigger="custom"
       :append-to-body="false"
+      :visible="true"
       :placement="placement">
       <button class="dao-btn blue">
         下拉菜单

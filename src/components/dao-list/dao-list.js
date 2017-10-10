@@ -1,5 +1,6 @@
 import _ from 'lodash';
 import DaoListTh from './th.vue';
+import FilterInput from './filter-input.vue';
 import StatusTd from './td/status-td.vue';
 import CustomTd from './td/custom-td';
 import OperationTd from './td/operation-td.vue';
@@ -9,6 +10,7 @@ import DaoListSettingsDialog from './dialogs/settings-dialog.vue';
 export default {
   name: 'DaoList',
   components: {
+    FilterInput,
     StatusTd,
     CustomTd,
     OperationTd,
@@ -29,6 +31,7 @@ export default {
       filterTextRaw: '',
       filterText: '',
       isAllChecked: false,
+      filterQuery: {},
       sortingConfig: {
         sortBy: this.config.sorting.defaultSortBy,
         order: this.config.sorting.order,
@@ -57,59 +60,6 @@ export default {
     },
     operations() {
       return this.config.operations;
-    },
-    filters() {
-      const filters = {};
-      _.forEach(this.rows, (r) => {
-        _.forEach(r, (td, key) => {
-          if (!filters[key]) {
-            filters[key] = {
-              // 一个问题就是，rows 里的有的属性可能 column 里没有，所以找不到 text
-              text: this.columns[key] ? this.columns[key].text : key,
-              options: [],
-            };
-          }
-          // 如果在这个 filter 的 options 里没找到这个 value，那就添加到 options 里
-          if (!_.find(filters[key].options, o => o.value === td.value)) {
-            filters[key].options.push({
-              text: td.text || '',
-              value: td.value,
-            });
-          }
-        });
-      });
-
-      return filters;
-    },
-    filterOptions() {
-      const filterGroup = {
-        tabName: '测试',
-        keys: [],
-      };
-
-      // 把 filters 转换成 input-with-label 要求的格式
-      filterGroup.keys = _.map(this.filters, (filter, name) => ({
-        name: filter.text,
-        val: name,
-        vals: _.map(filter.options, o => ({
-          name: o.text,
-          val: o.value,
-        })),
-      }));
-
-      return [filterGroup];
-    },
-    // 根据筛选的查询语句转换成的筛选条件
-    filterQuery() {
-      // TODO: 这里先简单地判断查询语句是否合法，以后可能要改成正则
-      if (!this.filterText || !_.includes(this.filterText, ':')) return {};
-      const filterTextFragments = this.filterText.trim().split(' ');
-      const query = {};
-      _.forEach(filterTextFragments, (t) => {
-        const [name, value] = t.split(':');
-        query[name] = value;
-      });
-      return query;
     },
     filteredRows() {
       return _.filter(this.rows, (r) => {
@@ -257,6 +207,9 @@ export default {
     },
     refresh() {
       this.$emit('refresh');
+    },
+    onFilterInputChange(queries) {
+      this.filterQuery = queries;
     },
     onColumnResize(columnName, newWidth) {
       this.columnsWidth[columnName] = `${newWidth}px`;
