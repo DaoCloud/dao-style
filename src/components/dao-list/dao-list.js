@@ -43,6 +43,7 @@ export default {
         columnsOrder: null,
       },
       isSettingsDialogVisible: false,
+      checkedAnchorIndex: null,
     };
   },
   computed: {
@@ -138,6 +139,8 @@ export default {
     },
     // 指的是当前页的行
     currentRows() {
+      // 每当 currentRows 改变，就要把点击的锚点重置
+      this.checkedAnchorIndex = null;
       return this.chunks[this.page] || [];
     },
     currentRowsNumber() {
@@ -168,18 +171,47 @@ export default {
       }
     },
     // 点击某一行的事件
-    click(row, event) {
-      if (event.target.nodeName === 'use' ||
+    onRowClick(row, event) {
+      // event.preventDefault();
+      event.stopPropagation();
+      // 点击一共分三种情况、ctrl 点击、shift 点击、普通点击、点击 checkbox
+      if (event.ctrlKey || event.target.nodeName === 'INPUT') {
+        // 如果是按住 ctrl 点的或者点击的是 checkbox，那就选中当前行
+        this.checkRow(row, !row.$checked);
+        this.checkedAnchorIndex = this.currentRows.indexOf(row);
+      } else if (event.shiftKey) {
+        // 如果是按住 shift 点的，那就把这次点的行和上次点的行之间的行全都 check
+        if (_.isNumber(this.checkedAnchorIndex)) {
+          // 如果上一次已经点过一行了，就按 shift 点击处理
+          const currentClickedRowIndex = this.currentRows.indexOf(row);
+          const deltaRowsNumber = Math.abs(currentClickedRowIndex - this.checkedAnchorIndex) + 1;
+          let startRowIndex;
+          if (currentClickedRowIndex > this.checkedAnchorIndex) {
+            startRowIndex = this.checkedAnchorIndex;
+          } else {
+            startRowIndex = currentClickedRowIndex;
+          }
+          this.checkAll(false);
+          for (let i = 0; i < deltaRowsNumber; i += 1) {
+            this.checkRow(this.currentRows[startRowIndex + i], true);
+          }
+        } else {
+          // 如果之前一行都没有点过，那么按照普通点击处理
+          this.checkRow(row, !row.$checked);
+          this.checkedAnchorIndex = this.currentRows.indexOf(row);
+        }
+      } else if (!(event.target.nodeName === 'use' ||
         event.target.nodeName === 'svg' ||
         event.target.nodeName === 'SPAN' ||
         event.target.nodeName === 'A' ||
         event.target.nodeName === 'BUTTON' ||
         // 当其点在 popover 绑定元素上面也不能选中列表
-        event.path.some(node => node.classList && node.classList.contains('dao-popover'))
-      ) {
-        return;
+        event.path.some(node => node.classList && node.classList.contains('dao-popover')))) {
+        // 如果是普通点击，那就先清空所有点击的行，然后再选中这一行
+        this.checkAll(false);
+        this.checkRow(row, true);
+        this.checkedAnchorIndex = this.currentRows.indexOf(row);
       }
-      this.checkRow(row, !row.$checked);
     },
     // 选中所有行
     checkAll(wantToChecked) {

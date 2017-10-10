@@ -157,8 +157,14 @@
         </thead>
         <!-- 表身 -->
         <tbody>
-          <tr :class="{checked: r.$checked}" v-for="r in currentRows" :key="r" @click="click(r, $event)">
-            <td class="checkbox"><input type="checkbox" class="round" :checked="r.$checked"></td>
+          <tr :class="{checked: r.$checked}" v-for="r in currentRows" :key="r"
+            @click="onRowClick(r, $event)"
+            @contextmenu.prevent="onRowClick(r, $event)">
+            <td class="checkbox">
+              <input type="checkbox"
+              class="round"
+              :checked="r.$checked">
+            </td>
             <template v-for="c in columnsOrder" :style="`width: ${columnsWidth[c]}`">
               <td :key="c" v-if="r[c].type === 'text'">{{r[c].text}}</td>
               <status-td :key="c"
