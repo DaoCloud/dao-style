@@ -6,14 +6,18 @@
       placement="bottom-start">
       <svg class="dropdown-trigger"><use xlink:href="#icon_more"></use></svg>
       <dao-dropdown-menu slot="list">
-        <dao-dropdown-item v-for="o in operations"
-          :is-disabled="o.disabled"
-          @click="operate(o.event)">
-          <span>{{o.name}}</span>
-          <svg v-if="o.disabled" v-dao-tooltip="o.disabledTooltip">
-            <use xlink:href :href="`#icon_${o.disabledSvg}`"></use>
-          </svg>
-        </dao-dropdown-item>
+        <template v-for="group in operations">
+          <dao-dropdown-item :is-title="true">{{group.groupName}}</dao-dropdown-item>
+          <dao-dropdown-item v-for="o in group.operations"
+            :key="o.name"
+            :is-disabled="o.disabled"
+            @click="operate(o.event)">
+            <span>{{o.name}}</span>
+            <svg v-if="o.disabled" v-dao-tooltip="o.disabledTooltip">
+              <use xlink:href :href="`#icon_${o.disabledSvg}`"></use>
+            </svg>
+          </dao-dropdown-item>
+        </template>
       </dao-dropdown-menu>
     </dao-dropdown>
   </td>
