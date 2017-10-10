@@ -2,6 +2,7 @@
   <div @dragleave="handleItemDragOut"
     @dragenter.self="handleItemDragIn"
     @dragover="handleDragOver">
+    <transition-group name="drag-list">    
     <span class="drag-item" 
       v-for="item in items"
       :key="item.context"
@@ -14,10 +15,11 @@
       @dragenter.self="handleDragEnter(item, $event)"
       @dragend="handleDragEnd(item, $event)">
     </span>
+    </transition-group>
   </div>
 </template>
 <script>
-import { isEqual, cloneDeep } from 'lodash';
+import { isEqual, cloneDeep, find } from 'lodash';
 
 // 存储需要拖动中的元素
 let draggingEl = null;
@@ -52,6 +54,7 @@ export default {
     clone: Boolean,
     noSort: Boolean,
     removeWhenDragOut: Boolean,
+    noRepeat: Boolean,
   },
   computed: {
     items: {
@@ -82,7 +85,7 @@ export default {
       // 保存拖动中元素的数据
       draggingEl.currParent = this;
       this.addExtraStyle(item);
-      draggingEl.draggingData = item;
+      draggingEl.draggingData = this.clone ? cloneDeep(item) : item;
     },
     // 为拖动元素添加额外的样式
     addExtraStyle(data) {
@@ -118,6 +121,7 @@ export default {
     handleDragEnd(item, e) {
       // 先把额外的样式去除
       this.removeExtraStyle(item);
+      this.removeExtraStyle(dragging.el.draggingData);
       // 需要在改变了值的地方发射 end 事件
       if (dragging.el.prevParent) {
         dragging.el.prevParent.$emit('end', dragging.el.prevParent.value);
@@ -148,9 +152,16 @@ export default {
     },
     // 当有元素拖入当前组件时，添加到当前组件内
     handleItemDragIn(e) {
-      if (this.items.includes(dragging.el.draggingData) || e.target !== this.$el) return;
+      if (!!find(this.items, dragging.el.draggingData) || e.target !== this.$el) return;
+      // 不允许重复添加时，也直接返回
+      if (
+        this.noRepeat &&
+        !!find(this.items, { context: dragging.el.draggingData.context })
+      ) return;
       const from = dragging.el.currParent;
-      from.items = from.clone ? from.items : from.items.filter(v => v !== dragging.el.draggingData);
+      if (!from.clone) {
+        from.items = from.items.filter(v => v !== dragging.el.draggingData);
+      }
       this.items = this.items.concat(dragging.el.draggingData);
       dragging.el.prevParent = from;
       dragging.el.currParent = this;
@@ -175,7 +186,9 @@ export default {
     // 当元素拖出当前组件时
     handleItemDragOut(e) {
       if (e.target !== this.$el || !this.truelyLeave(e)) return;
-      this.items = this.items.filter(v => v !== dragging.el.draggingData);
+      if (this.removeWhenDragOut) {
+        this.items = this.items.filter(v => v !== dragging.el.draggingData);
+      }
     },
   },
 };
@@ -183,6 +196,17 @@ export default {
 <style lang="scss">
 .dao-draggable-item {
   user-select: none;
+}
+.drag-list-item {
+  display: inline-block;
+  margin-right: 10px;
+}
+.drag-list-enter-active, .drag-list-leave-active {
+  transition: all .5s;
+}
+.drag-list-enter, .drag-list-leave-to
+/* .list-leave-active for below version 2.1.8 */ {
+  opacity: 0;
 }
 </style>
 

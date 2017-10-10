@@ -22,7 +22,7 @@
     <button class="dao-btn blue" style="position: relative;" @click="show = !show">Toggle Dragger 4</button>
     <br><br>
     <h1>components</h1>
-    <dao-draggable v-model="drags" :remove-when-drag-out="true" draggingClass="green" @change="handleChange"></dao-draggable>
+    <dao-draggable v-model="drags" :no-repeat="true" :remove-when-drag-out="true" draggingClass="green" @change="handleChange"></dao-draggable>
     <dao-draggable v-model="drags2" :no-sort="true" :clone="true" draggingStyle="color: red;" @change="handleChange2"></dao-draggable>
   </div>
 </template>
