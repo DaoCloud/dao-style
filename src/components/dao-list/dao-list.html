@@ -124,7 +124,7 @@
     </div>
     <!-- 列表主体 -->
     <div class="dao-list-scrolldiv">
-      <table class="dao-list flexrow">
+      <table class="dao-list">
         <!-- 表头 -->
         <thead>
           <tr>
@@ -170,14 +170,19 @@
               class="round"
               :checked="r.$checked">
             </td>
-            <template v-for="c in columnsOrder" :style="`width: ${columnsWidth[c]}`">
-              <td :key="c" v-if="r[c].type === 'text'">{{r[c].text}}</td>
+            <template v-for="c in columnsOrder">
+              <td :key="c" v-if="r[c].type === 'text'" :style="`width: ${columnsWidth[c]}`">{{r[c].text}}</td>
               <status-td :key="c"
                 v-if="r[c].type === 'status'"
+                :style="`width: ${columnsWidth[c]}`"
                 :color="r[c].other.color"
                 :text="r[c].text">
               </status-td>
-              <custom-td v-if="r[c].type === 'custom'" :renderFunc="r[c].render" :td="r[c]"></custom-td>
+              <custom-td v-if="r[c].type === 'custom'"
+                :style="`width: ${columnsWidth[c]}`"
+                :renderFunc="r[c].render"
+                :td="r[c]">
+              </custom-td>
             </template>
             <operation-td :row="r" :operations="operations"></operation-td>
           </tr>

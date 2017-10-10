@@ -1,5 +1,5 @@
 <template>
-  <td>
+  <td class="operation">
     <dao-dropdown
       trigger="click"
       :append-to-body="true"

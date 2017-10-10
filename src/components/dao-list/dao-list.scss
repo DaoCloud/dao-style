@@ -166,6 +166,9 @@ th, td {
       fill: $black-dark;
     }
   }
+  &.operation {
+    width: 36px;
+  }
 }
 
 th {
