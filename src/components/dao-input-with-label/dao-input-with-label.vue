@@ -297,16 +297,11 @@ export default {
     // 选中值
     handleSelect(tab, key, val, operate = { val: DEFAULT_OPERATE }) {
       const selectValue = `${key.val}${operate.val}${val.val}`;
-      const selectName = `${key.name}${operate.val}${val.val}`;
       // 输入补全
       const currentValArr = this.currentValue.split(' ');
-      const lastestFrag = currentValArr.pop();
-      if (selectValue.startsWith(lastestFrag) || selectName.startsWith(lastestFrag)) {
-        currentValArr.push(selectValue);
-        this.currentValue = this.formatInput(currentValArr.join(' '));
-      } else {
-        this.currentValue = this.formatInput(`${this.currentValue} ${selectValue}`);
-      }
+      currentValArr.pop();
+      currentValArr.push(selectValue);
+      this.currentValue = this.formatInput(currentValArr.join(' '));
       this.updatePoperPosition();
       this.updateModel(this.currentValue);
       this.$nextTick(() => {
