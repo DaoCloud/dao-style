@@ -16,6 +16,7 @@ import daoAutocomplete from './components/dao-autocomplete';
 import daoCallout from './components/dao-callout';
 import daoClipboard from './components/dao-clipboard';
 import daoDialog from './components/dao-dialog';
+import daoDraggableComponent from './components/dao-draggable';
 import daoDropdown from './components/dao-dropdown';
 import { daoEditableInput, daoInput } from './components/dao-input';
 import daoEditableTable from './components/dao-editable-table';
@@ -44,6 +45,7 @@ const daoStyleComponents = {
   daoCopyBlock: daoClipboard.CopyBlock,
   daoDialog,
   daoDialogStep: daoDialog.Step,
+  daoDraggable: daoDraggableComponent,
   daoDropdown,
   daoDropdownItem: daoDropdown.Item,
   daoDropdownMenu: daoDropdown.Menu,

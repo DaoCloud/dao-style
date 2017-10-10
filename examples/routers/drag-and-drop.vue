@@ -1,24 +1,29 @@
 <template>
   <div>
-    <div v-dao-droppable.remove="{
+    <h1>directive</h1>
+    <div v-dao-droppable="{
       onChange: onChange2
     }">
       <div class="drag-item" data-key="1" v-dao-draggable="{style: 'color: red;'}">Dragger 1</div>
-      <div class="drag-item" data-key="2" v-dao-draggable.clone="{disabled: show}">Dragger 2</div>
+      <div class="drag-item" data-key="2" v-dao-draggable="{disabled: show}">Dragger 2</div>
       111
-      <div class="drag-item" data-key="trash" v-dao-draggable.clone="{class: 'green'}">
+      <div class="drag-item" data-key="trash" v-dao-draggable="{class: 'green'}">
         <svg class="icon">
           <use xlink:href="#icon_trash"></use>
         </svg>
       </div>
     </div>
-    <div v-dao-droppable.remove="{
+    <div v-dao-droppable="{
       onChange,
     }">
-      <div class="drag-item" data-key="3" v-dao-draggable.clone>Dragger 3</div>
+      <div class="drag-item" data-key="3" v-dao-draggable>Dragger 3</div>
       <div class="drag-item" id="item4" data-key="4" v-dao-draggable v-show="show">Dragger 4</div>
     </div>
     <button class="dao-btn blue" style="position: relative;" @click="show = !show">Toggle Dragger 4</button>
+    <br><br>
+    <h1>components</h1>
+    <dao-draggable v-model="drags" draggingClass="green" @change="handleChange"></dao-draggable>
+    <dao-draggable v-model="drags2" :disabled="true" draggingStyle="color: red;" @change="handleChange2"></dao-draggable>
   </div>
 </template>
 <script>
@@ -27,7 +32,42 @@ export default {
   data() {
     return {
       show: false,
+      drags: [{
+        context: 'component 1',
+        draggingStyle: 'opacity: 0.5;',
+      }, {
+        context: 'component 2',
+      }, {
+        context: 'component 3',
+        disabled: true,
+      }, {
+        context: 'component 4',
+      }, {
+        context: 'component 5',
+      }, {
+        context: 'component 6',
+      }],
+      drags2: [{
+        context: 'component 7',
+      }, {
+        context: 'component 8',
+      }, {
+        context: 'component 9',
+        draggingClass: 'green',
+      }, {
+        context: 'component 10',
+      }, {
+        context: 'component 11',
+      }],
     };
+  },
+  watch: {
+    drags() {
+      console.log('drags change');
+    },
+    drags2() {
+      console.log('drags2 change');
+    },
   },
   methods: {
     onChange(list) {
@@ -36,8 +76,14 @@ export default {
     onChange2(list) {
       console.log('onChange2', list);
     },
+    handleChange(list) {
+      console.log('components change', list);
+    },
+    handleChange2(list) {
+      console.log('components change', list);
+    },
   },
-}
+};
 </script>
 <style lang="scss">
 .drag-item {
