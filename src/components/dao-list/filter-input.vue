@@ -70,14 +70,18 @@ export default {
     // 根据 input 中输入查询语句转换成的筛选条件，然后对外把筛选条件暴露出去
     filterText() {
       const query = {};
+      query.$keywords = [];
       // TODO: 这里先简单地判断查询语句是否合法，以后可能要改成正则
-      if (_.includes(this.filterText, ':')) {
-        const filterTextFragments = this.filterText.trim().split(' ');
-        _.forEach(filterTextFragments, (t) => {
-          const [name, value] = t.split(':');
+      const filterTextFragments = this.filterText.trim().split(' ');
+      _.forEach(filterTextFragments, (text) => {
+        if (_.includes(text, ':')) {
+          const [name, value] = text.split(':');
           query[name] = value;
-        });
-      }
+        } else {
+          // 如果没有冒号，表示它就是一个搜索关键词
+          query.$keywords.push(text);
+        }
+      });
       this.$emit('change', query);
     },
   },

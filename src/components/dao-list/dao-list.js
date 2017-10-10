@@ -62,16 +62,44 @@ export default {
       return this.config.operations;
     },
     filteredRows() {
-      return _.filter(this.rows, (r) => {
+      const filteredRows = _.filter(this.rows, (r) => {
         let valid = true;
         _.forEach(this.filterQuery, (value, name) => {
-          // TODO: 这里的判断条件可能要改成弱等于
-          if (!r[name] || r[name].value !== value) {
-            valid = false;
+          if (name !== '$keywords') {
+            // 如果是一般的 filter，才要判断
+            // TODO: 这里的判断条件可能要改成弱等于
+            if (!r[name] || r[name].value !== value) {
+              valid = false;
+            }
           }
         });
         return valid;
       });
+
+      let searchedRows = filteredRows;
+      if (_.get(this.filterQuery, '$keywords', []).length > 0) {
+        // 如果还有搜索关键词，就继续搜索
+        searchedRows = _.filter(filteredRows, (r) => {
+          let valid = true;
+          // 如果有多个搜索关键词，那么结果是取交集，也就是说一行数据要包含所有关键词才算是匹配到。
+          _.forEach(this.filterQuery.$keywords, (keyword) => {
+            let matchCurrentKeyword = false;
+            _.forEach(r, (td) => {
+              // 注意，搜索和筛选不同。筛选是根据 value 筛选，搜索是根据 text 搜索。
+              if (_.includes(td.text, keyword)) {
+                matchCurrentKeyword = true;
+                return false;
+              }
+              return true;
+            });
+            valid = matchCurrentKeyword;
+            return valid;
+          });
+          return valid;
+        });
+      }
+
+      return searchedRows;
     },
     sortedRows() {
       if (!this.sortingConfig.sortBy) return _.clone(this.filteredRows);
