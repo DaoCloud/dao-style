@@ -1,5 +1,7 @@
 <template>
-  <div @dragenter.self="handleItemDragIn">
+  <div @dragleave="handleItemDragOut"
+    @dragenter.self="handleItemDragIn"
+    @dragover="handleDragOver">
     <span class="drag-item" 
       v-for="item in items"
       :key="item.context"
@@ -47,6 +49,9 @@ export default {
     },
     draggingClass: String,
     disabled: Boolean,
+    clone: Boolean,
+    noSort: Boolean,
+    removeWhenDragOut: Boolean,
   },
   computed: {
     items: {
@@ -124,6 +129,7 @@ export default {
       draggingEl = null;
     },
     changePlace(draggingItem, targetItem) {
+      if (this.noSort) return;
       // 获取拖动元素和目标元素的序号
       const draggingIndex = this.items.indexOf(draggingItem);
       const targetIndex = this.items.indexOf(targetItem);
@@ -142,13 +148,34 @@ export default {
     },
     // 当有元素拖入当前组件时，添加到当前组件内
     handleItemDragIn(e) {
-      if (dragging.el.currParent === this || e.target !== this.$el) return;
+      if (this.items.includes(dragging.el.draggingData) || e.target !== this.$el) return;
       const from = dragging.el.currParent;
-      if (this.items.includes(dragging.el.draggingData)) return;
-      from.items = from.items.filter(v => v !== dragging.el.draggingData);
+      from.items = from.clone ? from.items : from.items.filter(v => v !== dragging.el.draggingData);
       this.items = this.items.concat(dragging.el.draggingData);
       dragging.el.prevParent = from;
       dragging.el.currParent = this;
+    },
+    handleDragOver(e) {
+      e.preventDefault();
+    },
+    // 判断拖动是否真正离开元素
+    truelyLeave(e) {
+      // 获取目标元素的 rect
+      const rect = e.target.getBoundingClientRect();
+      if (
+        e.clientX > rect.left &&
+        e.clientX < rect.right &&
+        e.clientY > rect.top &&
+        e.clientY < rect.bottom
+      ) {
+        return false;
+      }
+      return true;
+    },
+    // 当元素拖出当前组件时
+    handleItemDragOut(e) {
+      if (e.target !== this.$el || !this.truelyLeave(e)) return;
+      this.items = this.items.filter(v => v !== dragging.el.draggingData);
     },
   },
 };

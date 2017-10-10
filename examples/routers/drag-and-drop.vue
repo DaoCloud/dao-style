@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>directive</h1>
-    <div v-dao-droppable="{
+    <div v-dao-droppable.remove="{
       onChange: onChange2
     }">
       <div class="drag-item" data-key="1" v-dao-draggable="{style: 'color: red;'}">Dragger 1</div>
@@ -22,8 +22,8 @@
     <button class="dao-btn blue" style="position: relative;" @click="show = !show">Toggle Dragger 4</button>
     <br><br>
     <h1>components</h1>
-    <dao-draggable v-model="drags" draggingClass="green" @change="handleChange"></dao-draggable>
-    <dao-draggable v-model="drags2" :disabled="true" draggingStyle="color: red;" @change="handleChange2"></dao-draggable>
+    <dao-draggable v-model="drags" :remove-when-drag-out="true" draggingClass="green" @change="handleChange"></dao-draggable>
+    <dao-draggable v-model="drags2" :no-sort="true" :clone="true" draggingStyle="color: red;" @change="handleChange2"></dao-draggable>
   </div>
 </template>
 <script>
