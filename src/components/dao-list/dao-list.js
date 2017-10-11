@@ -22,10 +22,16 @@ export default {
   },
   props: ['columns', 'rows', 'config'],
   data() {
-    const columnsWidth = {};
-    _.forEach(this.columns, (c) => {
-      columnsWidth[c.name] = 'auto';
-    });
+    // 从 localStorage 中读取配置
+    const localStorageSettings = this.getLocalStorageSettings();
+    let columnsWidth = {};
+    if (localStorageSettings) {
+      columnsWidth = localStorageSettings.columnsWidth;
+    } else {
+      _.forEach(this.columns, (c) => {
+        columnsWidth[c.name] = 'auto';
+      });
+    }
 
     return {
       page: 0,
@@ -50,6 +56,9 @@ export default {
     };
   },
   computed: {
+    tableId() {
+      return this.config.tableId;
+    },
     tableName() {
       return this.config.tableName;
     },
@@ -276,6 +285,7 @@ export default {
     },
     onColumnResize(columnName, newWidth) {
       this.columnsWidth[columnName] = `${newWidth}px`;
+      this.saveLocalStorageSettings();
     },
     openSettingsDialog() {
       this.isSettingsDialogVisible = true;
@@ -293,6 +303,16 @@ export default {
       this.isCustomToolbarDialogVisible = false;
     },
     onCustomToolbarDialogConfirm() {
+    },
+    getLocalStorageSettings() {
+      return JSON.parse(localStorage.getItem(`${this.config.tableId}Settings`));
+    },
+    saveLocalStorageSettings() {
+      const settings = {
+        columnsWidth: this.columnsWidth,
+      };
+      const json = JSON.stringify(settings);
+      localStorage.setItem(`${this.tableId}Settings`, json);
     },
   },
 };

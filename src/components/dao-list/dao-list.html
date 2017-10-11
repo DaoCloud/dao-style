@@ -146,6 +146,7 @@
             <!-- th -->
             <dao-list-th v-for="c in columnsOrder"
               :key="c"
+              :width="columnsWidth[c]"
               @resize="onColumnResize(c, $event)"
               @click="changeSortBy(c)">
               <span>{{columns[c].text}}</span>

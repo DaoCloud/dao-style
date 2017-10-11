@@ -1,6 +1,6 @@
 <template>
   <th ref="th" :class="{'resize-cursor': resizeCursor}"
-    :style="`width: ${width}px`"
+    :style="`width: ${thWidth}px`"
     @click="onClick"
     @mousemove="toggleCursor"
     @mousedown="onMousedown"
@@ -10,18 +10,27 @@
   </th>
 </template>
 <script>
+import _ from 'lodash';
+
 export default {
+  props: ['width'],
   name: 'DaoListTh',
   data() {
     return {
       resizeAreaWidth: 5,
       resizeCursor: false,
-      width: null,
+      // thWidth 是 th 组件内部表示宽度的属性，width 是外面传进来的宽度
+      thWidth: null,
       resizing: false,
     };
   },
   mounted() {
-    this.width = this.$refs.th.clientWidth;
+    if (!this.width || this.width === 'auto') {
+      this.thWidth = this.$refs.th.clientWidth;
+    } else {
+      this.thWidth = _.toNumber(this.width.replace('px', ''));
+    }
+
     document.addEventListener('mousemove', this.onMousemove);
     document.addEventListener('mouseup', this.onMouseup);
   },
@@ -46,8 +55,8 @@ export default {
     },
     onMousemove(event) {
       if (this.resizing) {
-        this.width = this.width + event.movementX;
-        this.$emit('resize', this.width);
+        this.thWidth = this.thWidth + event.movementX;
+        this.$emit('resize', this.thWidth);
       }
     },
     onMousedown(event) {

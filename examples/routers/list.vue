@@ -112,6 +112,7 @@
           }
         )),
         config: {
+          tableId: 'serviceList',
           tableName: '服务',
           columnsOrder: ['service', 'status', 'containers', 'memory', 'creationTime', 'cpu'],
           sorting: {
