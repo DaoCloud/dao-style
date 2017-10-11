@@ -109,7 +109,7 @@ class Droppable {
     this.$el.addEventListener('dragenter', onDragEnter);
     this.$el.addEventListener('dragover', onDragOver);
     this.$el.addEventListener('dragleave', onDragLeave);
-    this.$el.addEventListener('drop', onDragEnd, true);
+    this.$el.addEventListener('dragend', onDragEnd, true);
     // 绑定事件的状态改成 true
     this.hasListener = true;
     // 生成解绑事件的函数
@@ -117,7 +117,7 @@ class Droppable {
       this.$el.removeEventListener('dragenter', onDragEnter);
       this.$el.removeEventListener('dragover', onDragOver);
       this.$el.removeEventListener('dragleave', onDragLeave);
-      this.$el.removeEventListener('drop', onDragEnd);
+      this.$el.removeEventListener('dragend', onDragEnd);
       // 绑定事件的改成 false
       this.hasListener = false;
     };
@@ -157,4 +157,3 @@ export default {
     $el.dataDroppable.removeListeners();
   },
 };
-``
