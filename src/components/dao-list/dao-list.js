@@ -25,12 +25,15 @@ export default {
     // 从 localStorage 中读取配置
     const localStorageSettings = this.getLocalStorageSettings();
     let columnsWidth = {};
+    let columnsOrder = [];
     if (localStorageSettings) {
       columnsWidth = localStorageSettings.columnsWidth;
+      columnsOrder = localStorageSettings.columnsOrder;
     } else {
       _.forEach(this.columns, (c) => {
         columnsWidth[c.name] = 'auto';
       });
+      columnsOrder = null;
     }
 
     return {
@@ -48,7 +51,7 @@ export default {
       // settings 代表组件内部的设置，config 代表外面传进来的配置
       // 有设置就读取设置，没有设置才去读取配置
       settings: {
-        columnsOrder: null,
+        columnsOrder,
       },
       isSettingsDialogVisible: false,
       isCustomToolbarDialogVisible: false,
@@ -296,6 +299,7 @@ export default {
     },
     onSettingsDialogConfirm(settings) {
       this.settings.columnsOrder = _.map(_.filter(settings.columnsOrder, 'visible'), 'name');
+      this.saveLocalStorageSettings();
     },
     openCustomToolbarDialog() {
       this.isCustomToolbarDialogVisible = true;
@@ -311,6 +315,7 @@ export default {
     saveLocalStorageSettings() {
       const settings = {
         columnsWidth: this.columnsWidth,
+        columnsOrder: this.settings.columnsOrder,
       };
       const json = JSON.stringify(settings);
       localStorage.setItem(`${this.tableId}Settings`, json);
