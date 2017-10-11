@@ -23,7 +23,7 @@
     <br><br>
     <h1>components</h1>
     <dao-draggable v-model="drags" :no-repeat="true" :remove-when-drag-out="true" draggingClass="green" @change="handleChange"></dao-draggable>
-    <dao-draggable v-model="drags2" :no-sort="true" :clone="true" draggingStyle="color: red;" @change="handleChange2"></dao-draggable>
+    <dao-draggable v-model="drags2" :no-repeat="true" :no-sort="true" :clone="true" draggingStyle="color: red;" @change="handleChange2"></dao-draggable>
   </div>
 </template>
 <script>

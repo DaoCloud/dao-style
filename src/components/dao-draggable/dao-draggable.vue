@@ -139,6 +139,7 @@ export default {
       const targetIndex = this.items.indexOf(targetItem);
       // 获取除拖动元素之外的其他序列
       const items = this.items.filter(item => item !== draggingItem);
+      if (draggingIndex === -1) return;
       // 如果拖动元素序号大于目标元素，则把拖动元素插到目标元素前面
       if (draggingIndex > targetIndex) {
         items.splice(targetIndex, 1, draggingItem, targetItem);
