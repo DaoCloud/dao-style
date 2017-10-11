@@ -173,19 +173,19 @@ export default {
     checkRow(row, target) {
       // 修改行的选中状态
       this.$set(row, '$checked', target);
-      this.changeIsAllChecked();
-      if (row.$checked && !this.checkedRows.includes(row)) {
+      if (target && !this.checkedRows.includes(row)) {
         // 如果这行被选中的话，就添加到选中的行数组里
         this.checkedRows.push(row);
-      } else if (!row.$checked) {
-        // 如果取消选中就移除掉
-        this.checkedRows = _.remove(this.checkedRows, row);
       }
+
+      if (!target) {
+        // 如果取消选中就移除掉
+        this.checkedRows = _.filter(this.checkedRows, r => r !== row);
+      }
+      this.changeIsAllChecked();
     },
     // 点击某一行的事件
     onRowClick(row, event) {
-      // event.preventDefault();
-      event.stopPropagation();
       // 点击一共分三种情况、ctrl 点击、shift 点击、普通点击、点击 checkbox
       if (event.ctrlKey || event.target.nodeName === 'INPUT') {
         // 如果是按住 ctrl 点的或者点击的是 checkbox，那就选中当前行
@@ -203,7 +203,7 @@ export default {
           } else {
             startRowIndex = currentClickedRowIndex;
           }
-          this.checkAll(false);
+          this.unCheckAll();
           for (let i = 0; i < deltaRowsNumber; i += 1) {
             this.checkRow(this.currentRows[startRowIndex + i], true);
           }
@@ -220,27 +220,28 @@ export default {
         // 当其点在 popover 绑定元素上面也不能选中列表
         event.path.some(node => node.classList && node.classList.contains('dao-popover')))) {
         // 如果是普通点击，那就先清空所有点击的行，然后再选中这一行
-        this.checkAll(false);
+        this.unCheckAll();
         this.checkRow(row, true);
         this.checkedAnchorIndex = this.currentRows.indexOf(row);
       }
     },
     // 选中所有行
-    checkAll(wantToChecked) {
-      let target;
-      if (_.isBoolean(wantToChecked)) {
-        target = wantToChecked;
-      } else {
-        // 如果当前状态是 no 或者 partial，就要全部选中
-        target = this.isAllChecked === 'no' || this.isAllChecked === 'partial';
-      }
+    checkAll() {
       _.forEach(this.allRows, (row) => {
-        this.checkRow(row, target);
+        this.$set(row, '$checked', true);
       });
+      this.checkedRows = this.allRows;
+    },
+    // 全不选所有行，这个方法速度比 checkAll 快
+    unCheckAll() {
+      _.forEach(this.allRows, (row) => {
+        this.$set(row, '$checked', false);
+      });
+      this.checkedRows = [];
     },
     // 选中当前页所有行
-    checkPage() {
-      const target = !_.every(this.currentRows, r => r.$checked);
+    checkPage(wantToCheck) {
+      const target = wantToCheck || !_.every(this.currentRows, r => r.$checked);
       _.forEach(this.currentRows, (row) => {
         this.checkRow(row, target);
       });
