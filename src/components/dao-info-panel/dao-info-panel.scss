@@ -1,0 +1,57 @@
+@import "../dao-color.scss";
+
+$header-height: 26px;
+$header-line-height: 16px;
+$header-tab-width: 72px;
+$header-bg-color: #e6e9ef;
+$header-tab-border-color: #CCD1D9;
+
+.dao-info-panel {
+    width: 100%;
+    border: 1px solid $header-tab-border-color;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    resize: vertical;
+}
+
+.dao-info-panel-header {
+    width: 100%;
+    height: $header-height;
+    background-color: $header-bg-color;
+    border-bottom: 1px solid $header-tab-border-color;
+
+    .header-tabs li {
+        display: block;
+        float: left;
+        height: $header-height;
+        padding: 5px 10px;
+        line-height: $header-line-height;
+        background-color: $header-bg-color;
+        font-size: 13px;
+        color: #595F69;
+        text-align: center;
+        border-right: 1px solid $header-tab-border-color;
+        border-bottom: 1px solid $header-tab-border-color;
+        cursor: pointer;
+    }
+
+    .header-tabs li.active {
+        background-color: $white;
+        border-bottom: 0;
+    }
+
+    .header-tabs li:focus {
+        background-color: $header-tab-border-color;
+        color: #3D444F;
+    }
+
+    .header-tabs li:hover {
+        background-color: #F5F7FA;
+        color: #595F69;
+    }
+}
+
+.dao-info-panel-body {
+    padding: 16px 22px;
+}
