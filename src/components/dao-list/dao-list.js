@@ -49,8 +49,6 @@ export default {
       },
       contextMenu: {
         visible: false,
-        clickedRow: {},
-        clickedIndex: '',
         position: {
           top: '',
           left: '',
@@ -71,7 +69,6 @@ export default {
     // 有全局的点击事件时将右键菜单隐藏
     document.body.addEventListener('click', () => {
       this.contextMenu.visible = false;
-      this.contextMenu.clickedIndex = null;
     });
   },
   computed: {
@@ -236,12 +233,12 @@ export default {
           this.checkedAnchorIndex = this.currentRows.indexOf(row);
         }
       } else if (!(event.target.nodeName === 'use' ||
-        event.target.nodeName === 'svg' ||
-        event.target.nodeName === 'SPAN' ||
-        event.target.nodeName === 'A' ||
-        event.target.nodeName === 'BUTTON' ||
-        // 当其点在 popover 绑定元素上面也不能选中列表
-        event.path.some(node => node.classList && node.classList.contains('dao-popover')))) {
+          event.target.nodeName === 'svg' ||
+          event.target.nodeName === 'SPAN' ||
+          event.target.nodeName === 'A' ||
+          event.target.nodeName === 'BUTTON' ||
+          // 当其点在 popover 绑定元素上面也不能选中列表
+          event.path.some(node => node.classList && node.classList.contains('dao-popover')))) {
         // 如果是普通点击，那就先清空所有点击的行，然后再选中这一行
         this.unCheckAll();
         this.checkRow(row, true);
@@ -249,6 +246,12 @@ export default {
       }
     },
     onContextMenu(row, index, event) {
+      // 当已经选中的行数小于等于1时，则使当前行成为被选中行
+      if(this.checkedRows.length <= 1) {
+        this.checkAll(false);
+        this.checkRow(row, true);
+        this.checkedAnchorIndex = this.currentRows.indexOf(row);
+      }
       const position = {
         top: `${event.clientY}px`,
         left: `${event.clientX}px`,
@@ -256,8 +259,6 @@ export default {
       Object.assign(this.contextMenu, {
         position,
         visible: true,
-        clickedRow: row,
-        clickedIndex: index,
       });
     },
     // 选中所有行

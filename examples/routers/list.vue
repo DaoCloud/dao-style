@@ -11,9 +11,13 @@
         <div class="dao-dropdown-popper">
           <div class="dao-dropdown-inner">
             <ul class="dao-dropdown-menu">
-              <li class="dao-dropdown-item dao-dropdown-item-subtitle">扩展</li>
+              <li class="dao-dropdown-item dao-dropdown-item-subtitle">操作</li>
               <li class="dao-dropdown-item dao-dropdown-item-base">查看</li>
               <li class="dao-dropdown-item dao-dropdown-item-base" @click="removeService(data)">删除</li>
+              <li class="dao-dropdown-item dao-dropdown-item-subtitle">数据</li>
+              <li class="dao-dropdown-item dao-dropdown-item-base" v-for="row in data.rows">
+                {{row.service.text}}
+              </li>
             </ul>
           </div>
         </div>
