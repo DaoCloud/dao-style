@@ -47,6 +47,15 @@ export default {
         sortBy: this.config.sorting.defaultSortBy,
         order: this.config.sorting.order,
       },
+      contextMenu: {
+        visible: false,
+        clickedRow: {},
+        clickedIndex: '',
+        position: {
+          top: '',
+          left: '',
+        },
+      },
       columnsWidth,
       // settings 代表组件内部的设置，config 代表外面传进来的配置
       // 有设置就读取设置，没有设置才去读取配置
@@ -57,6 +66,13 @@ export default {
       isCustomToolbarDialogVisible: false,
       checkedAnchorIndex: null,
     };
+  },
+  created() {
+    // 有全局的点击事件时将右键菜单隐藏
+    document.body.addEventListener('click', () => {
+      this.contextMenu.visible = false;
+      this.contextMenu.clickedIndex = null;
+    });
   },
   computed: {
     tableId() {
@@ -189,6 +205,10 @@ export default {
     },
     // 点击某一行的事件
     onRowClick(row, event) {
+<<<<<<< HEAD
+=======
+      // event.preventDefault();
+>>>>>>> feat(dao-list-menu): 添加基础右键菜单
       // 点击一共分三种情况、ctrl 点击、shift 点击、普通点击、点击 checkbox
       if (event.ctrlKey || event.target.nodeName === 'INPUT') {
         // 如果是按住 ctrl 点的或者点击的是 checkbox，那就选中当前行
@@ -227,6 +247,18 @@ export default {
         this.checkRow(row, true);
         this.checkedAnchorIndex = this.currentRows.indexOf(row);
       }
+    },
+    onContextMenu(row, index, event) {
+      const position = {
+        top: `${event.clientY}px`,
+        left: `${event.clientX}px`,
+      };
+      Object.assign(this.contextMenu, {
+        position,
+        visible: true,
+        clickedRow: row,
+        clickedIndex: index,
+      });
     },
     // 选中所有行
     checkAll() {

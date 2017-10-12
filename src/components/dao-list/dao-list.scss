@@ -28,7 +28,10 @@ $inner-border: $white-dark;
   width: 100%;
   overflow: hidden;
 }
-
+.dao-list-context-menu {
+  position: absolute;
+  user-select: none;
+}
 .dao-list-toolbar {
   margin-bottom: 10px;
   .dao-btn.pseudo-disabled {
@@ -142,6 +145,11 @@ tr {
     background: $zebra-bg;
   }
   &.checked {
+    color: white;
+    background-color: $selected-bg;
+  }
+
+  &.highlight {
     color: white;
     background-color: $selected-bg;
   }

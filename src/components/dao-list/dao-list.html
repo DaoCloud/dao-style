@@ -163,9 +163,11 @@
         </thead>
         <!-- 表身 -->
         <tbody>
-          <tr :class="{checked: r.$checked}" v-for="r in currentRows" :key="r"
+          <tr
+            v-for="(r, key) in currentRows" :key="key"
+            :class="{checked: r.$checked || key === contextMenu.clickedIndex}"
             @click="onRowClick(r, $event)"
-            @contextmenu.prevent="onRowClick(r, $event)">
+            @contextmenu.prevent="onContextMenu(r, key, $event)">
             <td class="checkbox">
               <input type="checkbox"
               class="round"
@@ -190,5 +192,15 @@
         </tbody>
       </table>
     </div>
+  </div>
+  <!-- 右键菜单 -->
+  <div class="dao-list-context-menu"
+    :style="contextMenu.position"
+    v-show="contextMenu.visible"
+    @contextmenu.prevent="">
+    <slot name="context-menu"
+      :row="contextMenu.clickedRow"
+      :index="contextMenu.clickedIndex">
+    </slot>
   </div>
 </div>
