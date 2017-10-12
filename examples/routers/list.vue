@@ -6,7 +6,19 @@
       :config="config"
       @create-service="onCreateService"
       @remove-service="onRemoveService"
-      @pause-service="onPauseService"></dao-list>
+      @pause-service="onPauseService">
+      <template slot="context-menu" scope="data">
+        <div class="dao-dropdown-popper">
+          <div class="dao-dropdown-inner">
+            <ul class="dao-dropdown-menu">
+              <li class="dao-dropdown-item dao-dropdown-item-subtitle">扩展</li>
+              <li class="dao-dropdown-item dao-dropdown-item-base">查看</li>
+              <li class="dao-dropdown-item dao-dropdown-item-base" @click="removeService(data)">删除</li>
+            </ul>
+          </div>
+        </div>
+     </template>
+    </dao-list>
   </div>
 </template>
 <script>
@@ -177,6 +189,10 @@
       onPauseService(rows) {
         console.log('暂停容器', rows);
       },
+      removeService({row, index}) {
+        console.log(row, index);
+        this.rows.splice(index, 1)
+      }
     },
   };
 </script>
@@ -185,4 +201,5 @@
   height: 350px;
   // width: 300px;
 }
+
 </style>
