@@ -51,7 +51,7 @@ class Draggable {
 
   // 拖动开始时
   onDragStart(e) {
-    const el = e.target;
+    const el = this.$el;
     e.dataTransfer.effectAllowed = 'move';
     // 如果需要克隆的话，则把拖动中的元素写成当前元素的克隆
     dragging.setData(
@@ -63,25 +63,24 @@ class Draggable {
   }
   // 当其他拖动元素拖动进入时
   onDragEnter(e) {
-    const el = e.target;
     e.dataTransfer.effectAllowed = 'move';
     e.preventDefault();
     e.stopPropagation();
     // 获取父节点
-    const parent = el.parentNode;
+    const parent = this.$el.parentNode;
     // 获取父节点所有的子节点
     const children = Array.from(parent.children);
     // 获取拖动元素在父节点中的位置
     const draggingIndex = children.indexOf(dragging.el);
     // 如果当前元素是拖动中的元素或拖动元素不是当前元素的兄弟元素，则直接 return
-    if (el === dragging.el || draggingIndex === -1) return;
+    if (this.$el === dragging.el || draggingIndex === -1) return;
     // 获取当前元素在父节点中的位置
-    const curIndex = children.indexOf(el);
+    const curIndex = children.indexOf(this.$el);
     // 如果当前元素在拖动元素之前，则在当前元素前插入拖动元素
     if (curIndex < draggingIndex) {
-      parent.insertBefore(dragging.el, el);
+      parent.insertBefore(dragging.el, this.$el);
     } else { // 当前元素在拖动元素之后
-      el.after(dragging.el);
+      this.$el.after(dragging.el);
     }
   }
 
