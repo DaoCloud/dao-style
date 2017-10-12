@@ -146,7 +146,7 @@ function bind(el, binding) {
 // 更新时
 function update($el, binding) {
   // 如果指令值 disabled 为 true 且元素上面绑定了事件，移除事件，元素不可拖动
-  if (binding.value && binding.value.disabled && $el.hasListener) {
+  if (binding.value && binding.value.disabled && $el.dataDraggable.hasListener) {
     $el.removeAttribute('draggable');
     return $el.dataDraggable.removeListeners();
   }
