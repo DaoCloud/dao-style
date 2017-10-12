@@ -22,6 +22,7 @@ import { daoEditableInput, daoInput } from './components/dao-input';
 import daoEditableTable from './components/dao-editable-table';
 import daoInputWithLabel from './components/dao-input-with-label';
 
+import daoList from './components/dao-list';
 import daoNumericBadge from './components/dao-numeric-badge';
 import daoPopover from './components/dao-popover';
 import { daoProgress, daoProgressPulsing, daoProgressStacked } from './components/dao-progress';
@@ -55,6 +56,7 @@ const daoStyleComponents = {
   daoEditableTable,
   daoInput,
   daoInputWithLabel,
+  daoList,
   daoNumericBadge,
   daoOption: daoSelect.Option,
   daoOptionGroup: daoSelect.Group,
