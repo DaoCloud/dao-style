@@ -67,7 +67,7 @@ export default {
   },
   created() {
     // 有全局的点击事件时将右键菜单隐藏
-    document.body.addEventListener('click', () => {
+    document.addEventListener('click', () => {
       this.contextMenu.visible = false;
     });
   },
@@ -245,9 +245,9 @@ export default {
         this.checkedAnchorIndex = this.currentRows.indexOf(row);
       }
     },
-    onContextMenu(row, index, event) {
+    onContextMenu(row, event) {
       // 当已经选中的行数小于等于1时，则使当前行成为被选中行
-      if(this.checkedRows.length <= 1) {
+      if (this.checkedRows.length <= 1) {
         this.checkAll(false);
         this.checkRow(row, true);
         this.checkedAnchorIndex = this.currentRows.indexOf(row);

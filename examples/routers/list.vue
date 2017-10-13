@@ -15,7 +15,7 @@
               <li class="dao-dropdown-item dao-dropdown-item-base">查看</li>
               <li class="dao-dropdown-item dao-dropdown-item-base" @click="removeService(data)">删除</li>
               <li class="dao-dropdown-item dao-dropdown-item-subtitle">数据</li>
-              <li class="dao-dropdown-item dao-dropdown-item-base" v-for="row in data.rows">
+              <li class="dao-dropdown-item dao-dropdown-item-base" v-for="(row, key) in data.checkedRows" :key="key">
                 {{row.service.text}}
               </li>
             </ul>

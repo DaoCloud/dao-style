@@ -167,7 +167,7 @@
             v-for="(r, key) in currentRows" :key="key"
             :class="{checked: r.$checked}"
             @click="onRowClick(r, $event)"
-            @contextmenu.prevent="onContextMenu(r, key, $event)">
+            @contextmenu.prevent="onContextMenu(r, $event)">
             <td class="checkbox">
               <input type="checkbox"
               class="round"
@@ -199,7 +199,7 @@
     v-show="contextMenu.visible"
     @contextmenu.prevent="">
     <slot name="context-menu"
-      :rows="checkedRows">
+      :checkedRows="checkedRows">
     </slot>
   </div>
 </div>
