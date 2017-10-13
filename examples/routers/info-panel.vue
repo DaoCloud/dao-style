@@ -1,15 +1,19 @@
 <template>
   <div>
       <div class="example1">
-          <dao-info-panel>
-            <template slot="header-tabs-item">
-                <li v-for="v in listTypes" :key="v" 
-                    :class="{'active': activeListType===v}"
-                    @click="changeTab(v)">{{ v }}</li>
-            </template>
-            <template slot="info-panel-body">
-                hehe
-            </template>
+        <dao-info-panel @changeTab="changeTab">
+            <dao-info-panel-item heading="f1">
+              <p>@p1</p>
+            </dao-info-panel-item>
+            <dao-info-panel-item heading="f2">
+              <p>@p2</p>
+            </dao-info-panel-item>
+            <dao-info-panel-item heading="f3">
+              <p>@p3</p>
+            </dao-info-panel-item>
+            <dao-info-panel-item heading="f444444444444444">
+              <img src="https://img.moegirl.org/common/thumb/4/41/Nicky.jpg/250px-Nicky.jpg" alt="???">
+            </dao-info-panel-item>
         </dao-info-panel>
       </div>
   </div>
@@ -19,22 +23,13 @@
 export default {
   data() {
     return {
-      listTypes: [
-        'stupid',
-        'stupid1',
-        'stupid2',
-        'stupid3',
-        'stupid44444444444444444',
-      ],
-      activeListType: '',
     };
   },
   created() {
-    this.activeListType = this.listTypes[0];
   },
   methods: {
     changeTab(v) {
-      this.activeListType = v;
+      console.log(`change tab to: ${v}`);
     },
   },
 };
@@ -43,7 +38,7 @@ export default {
 <style lang="scss" scoped>
     .example1 {
         width: 100%;
-        height: 200px;
+        height: 500px;
         position: relative;
         border: 1px solid #eee;
     }

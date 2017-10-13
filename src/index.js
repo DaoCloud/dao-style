@@ -55,6 +55,7 @@ const daoStyleComponents = {
   daoEditableInput,
   daoEditableTable,
   daoInfoPanel,
+  daoInfoPanelItem: daoInfoPanel.daoInfoPanelItem,
   daoInput,
   daoInputWithLabel,
   daoList,
