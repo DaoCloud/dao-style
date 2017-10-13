@@ -202,10 +202,6 @@ export default {
     },
     // 点击某一行的事件
     onRowClick(row, event) {
-<<<<<<< HEAD
-=======
-      // event.preventDefault();
->>>>>>> feat(dao-list-menu): 添加基础右键菜单
       // 点击一共分三种情况、ctrl 点击、shift 点击、普通点击、点击 checkbox
       if (event.ctrlKey || event.target.nodeName === 'INPUT') {
         // 如果是按住 ctrl 点的或者点击的是 checkbox，那就选中当前行
@@ -248,7 +244,7 @@ export default {
     onContextMenu(row, event) {
       // 当已经选中的行数小于等于1时，则使当前行成为被选中行
       if (this.checkedRows.length <= 1) {
-        this.checkAll(false);
+        this.unCheckAll();
         this.checkRow(row, true);
         this.checkedAnchorIndex = this.currentRows.indexOf(row);
       }
