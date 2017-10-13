@@ -10,10 +10,10 @@
       ref='input' 
       v-model="currentValue"
       @keyup="handleKeyUp()"
-      @keydown="emit('keydown')"
+      @keydown="emit('keydown', $event)"
       @input="handleInput()"
-      @focus="emit('focus')"
-      @blur="emit('blur')">
+      @focus="emit('focus', $event)"
+      @blur="emit('blur', $event)">
     <span  
       class="icon close-icon"
       :class="{ disabled: disabled }"
@@ -30,7 +30,7 @@
       v-show="visible">
       <dao-dropdown-menu> 
         <div v-for="(tab, index) in filterCurrentOptions" :key="index">
-          <dao-dropdown-item :is-title="true">{{tab.tab_name}}</dao-dropdown-item>
+          <dao-dropdown-item :is-title="true">{{tab.tabName}}</dao-dropdown-item>
           <dao-dropdown v-if="key.operates.length" 
             v-for="(key, index) in tab.keys" 
             :key="index" 

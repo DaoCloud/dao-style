@@ -89,7 +89,7 @@
         },
         options: [
           {
-            tab_name: '标签',
+            tabName: '标签',
             keys: [
               {
                 val: 'location',
@@ -105,7 +105,7 @@
             ],
           },
           {
-            tab_name: '属性',
+            tabName: '属性',
             keys: [
               {
                 name: '节点类型',
@@ -174,7 +174,7 @@
         ],
         options6: [
           {
-            tab_name: '标签',
+            tabName: '标签',
             keys: [
               {
                 name: '节点类型',
@@ -194,7 +194,7 @@
             ],
           },
           {
-            tab_name: '标签2',
+            tabName: '标签2',
             keys: [
               {
                 name: '节点类型2',
@@ -215,7 +215,7 @@
         ],
         options7: [
           {
-            tab_name: '标签KKKK',
+            tabName: '标签KKKK',
             keys: [
               {
                 name: 'changed',
