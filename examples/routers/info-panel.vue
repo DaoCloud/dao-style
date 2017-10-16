@@ -10,7 +10,7 @@
               <p>@p2</p>
             </dao-info-panel-item>
             <dao-info-panel-item heading="f3">
-              <p>@p3</p>
+              <iframe src="https://www.baidu.com/" frameborder="0" width="100%" height="500px"></iframe>
             </dao-info-panel-item>
             <dao-info-panel-item heading="f444444444444444">
               <img src="https://img.moegirl.org/common/thumb/4/41/Nicky.jpg/250px-Nicky.jpg" alt="???">
@@ -27,7 +27,7 @@
               <p>@p2</p>
             </dao-info-panel-item>
             <dao-info-panel-item heading="f3">
-              <p>@p3</p>
+              <iframe src="https://www.baidu.com/" frameborder="0" width="100%" height="500px"></iframe>
             </dao-info-panel-item>
             <dao-info-panel-item heading="f444444444444444">
               <img src="https://img.moegirl.org/common/thumb/4/41/Nicky.jpg/250px-Nicky.jpg" alt="???">
@@ -44,7 +44,7 @@
               <p>@p2</p>
             </dao-info-panel-item>
             <dao-info-panel-item heading="f3">
-              <p>@p3</p>
+              <iframe src="https://www.baidu.com/" frameborder="0" width="100%" height="500px"></iframe>
             </dao-info-panel-item>
             <dao-info-panel-item heading="f444444444444444">
               <img src="https://img.moegirl.org/common/thumb/4/41/Nicky.jpg/250px-Nicky.jpg" alt="???">

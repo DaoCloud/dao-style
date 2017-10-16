@@ -31,6 +31,7 @@ export default {
       touchMoving: false,
       touchY: 0,
       touchHeight: 0,
+      parentHeight: 0,
     };
   },
   created() {
@@ -51,13 +52,16 @@ export default {
       this.touchMoving = true;
       this.touchY = e.pageY;
       this.touchHeight = this.height;
+      this.parentHeight = parseInt(window.getComputedStyle(this.$el.parentNode).height, 10);
     },
     mousemove(e) {
       if (!this.touchMoving) return;
 
       const currentY = e.pageY;
       const fixY = this.touchY - currentY;
-      this.specSize = this.touchHeight + fixY;
+      if (this.touchHeight + fixY <= this.parentHeight) {
+        this.specSize = this.touchHeight + fixY;
+      }
     },
     mouseup(e) {
       if (!this.touchMoving) return;
@@ -65,7 +69,9 @@ export default {
       this.touchMoving = false;
       const currentY = e.pageY;
       const fixY = this.touchY - currentY;
-      this.specSize = this.touchHeight + fixY;
+      if (this.touchHeight + fixY <= this.parentHeight) {
+        this.specSize = this.touchHeight + fixY;
+      }
     },
   },
   mounted() {
@@ -75,6 +81,9 @@ export default {
   computed: {
     height() {
       return this.specSize === 0 ? this.sizes[this.userSize] : this.specSize;
+    },
+    bodyHeight() {
+      return this.height - 26;
     },
     activeSize() {
       if (this.height === this.sizes[this.userSize]) {
