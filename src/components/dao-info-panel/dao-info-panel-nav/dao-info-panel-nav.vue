@@ -42,7 +42,7 @@ export default {
       return this.$parent.activeName;
     },
     activeSize() {
-      return this.$parent.userSize;
+      return this.$parent.activeSize;
     },
   },
   methods: {

@@ -76,6 +76,13 @@ export default {
     height() {
       return this.specSize === 0 ? this.sizes[this.userSize] : this.specSize;
     },
+    activeSize() {
+      if (this.height === this.sizes[this.userSize]) {
+        return this.userSize;
+      }
+
+      return '';
+    },
   },
   watch: {
     tabList(value) {
