@@ -194,12 +194,9 @@
     </div>
   </div>
   <!-- 右键菜单 -->
-  <div class="dao-list-context-menu"
+  <dao-list-context-menu class="dao-list-context-menu"
     :style="contextMenu.position"
     v-show="contextMenu.visible"
-    @contextmenu.prevent="">
-    <slot name="context-menu"
-      :checkedRows="checkedRows">
-    </slot>
-  </div>
+    :checkedRows="checkedRows"
+    :operations="operations"/>
 </div>

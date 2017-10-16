@@ -4,6 +4,7 @@ import FilterInput from './filter-input.vue';
 import StatusTd from './td/status-td.vue';
 import CustomTd from './td/custom-td';
 import OperationTd from './td/operation-td.vue';
+import DaoListContextMenu from './contextMenu/index.vue';
 import CheckAll from './check-all.vue';
 import DaoListSettingsDialog from './dialogs/settings-dialog.vue';
 import DaoListCustomToolbarDialog from './dialogs/custom-toolbar-dialog.vue';
@@ -17,6 +18,7 @@ export default {
     OperationTd,
     CheckAll,
     DaoListTh,
+    DaoListContextMenu,
     DaoListSettingsDialog,
     DaoListCustomToolbarDialog,
   },
