@@ -142,8 +142,8 @@ table.dao-list {
     &.checked {
       color: white;
       background-color: $selected-bg;
-      .dropdown-trigger {
-        fill: white !important;
+      svg {
+        fill: white;
       }
     }
     &:hover {
