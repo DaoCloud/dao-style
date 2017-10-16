@@ -34,6 +34,7 @@ $header-tab-border-color: #ccd1d9;
         border-right: 1px solid $header-tab-border-color;
         border-bottom: 1px solid $header-tab-border-color;
         cursor: pointer;
+        user-select: none;
     }
 
     .dao-info-panel-nav-item.active {

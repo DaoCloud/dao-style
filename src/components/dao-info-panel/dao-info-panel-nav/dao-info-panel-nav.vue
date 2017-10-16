@@ -57,6 +57,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '../../dao-color.scss';
 $header-height: 26px;
 
 .dao-info-panel-nav-icon {
@@ -65,6 +66,7 @@ $header-height: 26px;
   height: $header-height;
   padding: 5px 2px;
   cursor: pointer;
+  user-select: none;
 
   svg {
     width: 16px;
@@ -72,13 +74,13 @@ $header-height: 26px;
   }
 
   :hover svg {
-    fill: blue;
+    fill: $blue;
   }
 }
 
 .dao-info-panel-nav-icon.active {
   svg {
-    fill: blue;
+    fill: $blue;
   }
 }
 </style>
