@@ -1,29 +1,26 @@
 <template>
   <div>
     <h1>directive</h1>
-    <div v-dao-droppable.remove="{
-      onChange: onChange2
-    }">
-      <div class="drag-item" data-key="1" v-dao-draggable="{style: 'color: red;'}">Dragger 1</div>
-      <div class="drag-item" data-key="2" v-dao-draggable="{disabled: show}">Dragger 2</div>
+    <div v-dao-droppable>
+      <div class="drag-item" data-key="1" v-dao-draggable="{disabled: show}">Dragger 1</div>
+      <div class="drag-item" data-key="2" v-dao-draggable>Dragger 2</div>
       111
-      <div class="drag-item" data-key="trash" v-dao-draggable="{class: 'green'}">
+      <div class="drag-item" data-key="trash" v-dao-draggable>
         <svg class="icon">
           <use xlink:href="#icon_trash"></use>
         </svg>
       </div>
     </div>
-    <div v-dao-droppable="{
-      onChange,
-    }">
+    <div v-dao-droppable>
       <div class="drag-item" data-key="3" v-dao-draggable>Dragger 3</div>
       <div class="drag-item" id="item4" data-key="4" v-dao-draggable v-show="show">Dragger 4</div>
+      <div class="drag-item" data-key="5" v-dao-draggable>Dragger 5</div>
     </div>
     <button class="dao-btn blue" style="position: relative;" @click="show = !show">Toggle Dragger 4</button>
     <br><br>
-    <h1>components</h1>
+    <!-- <h1>components</h1>
     <dao-draggable v-model="drags" :no-repeat="true" :remove-when-drag-out="true" draggingClass="green" @change="handleChange"></dao-draggable>
-    <dao-draggable v-model="drags2" :no-repeat="true" :no-sort="true" :clone="true" draggingStyle="color: red;" @change="handleChange2"></dao-draggable>
+    <dao-draggable v-model="drags2" :no-repeat="true" :no-sort="true" :clone="true" draggingStyle="color: red;" @change="handleChange2"></dao-draggable> -->
   </div>
 </template>
 <script>

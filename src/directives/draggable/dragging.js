@@ -1,17 +1,12 @@
-let el = null;
-let key = null;
-
-function setData(elm, i) {
-  el = elm;
-  key = i;
+class Dragging {
+  constructor() {
+    this.el = null;
+    this.key = null;
+  }
+  setData(el, key) {
+    this.el = el;
+    this.key = key;
+  }
 }
 
-export default {
-  get el() {
-    return el;
-  },
-  get key() {
-    return key;
-  },
-  setData,
-};
+export default new Dragging();
