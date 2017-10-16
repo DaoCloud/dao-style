@@ -2,7 +2,7 @@
   <div class="dao-infocard-container" :class="containerType">
       <div class="dao-card-header" @click="isShow=!isShow">
           <svg class="icon">
-            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon_down-arrow">
+            <use xmlns:xlink="http://www.w3.org/1999/xlink" v-bind:xlink:href="arrowDirect">
             </use>
           </svg>
           <div class="title">
@@ -62,7 +62,7 @@
     name: 'DaoInfoCard',
     data() {
       return {
-        isShow: true
+        isShow: true,
       };
     },
     props: {
@@ -80,8 +80,15 @@
       }
     },
     computed: {
-      containerType(){
+      containerType() {
          return 'size-'+this.size;
+      },
+      arrowDirect() {
+        if(this.isShow){
+          return '#icon_down-arrow';
+        }else{
+          return '#icon_triangle-right';
+        }
       }
     }
   }

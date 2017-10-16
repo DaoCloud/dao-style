@@ -3,6 +3,7 @@
     border-radius: 3px;
     background-color: $white;
     border: solid 1px #d6dbe3;
+    overflow: hidden;
     &.size-small {
         width: 300px;
         .dao-infocard-main {
@@ -66,9 +67,12 @@
     .dao-card-header {
         height: 30px;
         background-color: #edf0f5;
+        cursor: pointer;
+        border-bottom: solid 1px #d5dbe3;
         .icon {
             vertical-align: top;
             margin: 7px 2px 7px 8px;
+            fill:#9ba3af;
         }
         .title {
             display: inline-block;
@@ -88,6 +92,7 @@
                 width: 100%;
                 thead {
                     width: 100%;
+                    border-bottom: solid 1px #d5dbe3;
                     tr {
                         width: 100%;
                         display: flex;
