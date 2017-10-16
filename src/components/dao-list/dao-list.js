@@ -3,6 +3,7 @@ import DaoListTh from './th.vue';
 import FilterInput from './filter-input.vue';
 import GoToTd from './td/goto-td.vue';
 import StatusTd from './td/status-td.vue';
+import TimeTd from './td/time-td.vue';
 import CustomTd from './td/custom-td';
 import OperationTd from './td/operation-td.vue';
 import CheckAll from './check-all.vue';
@@ -15,6 +16,7 @@ export default {
     FilterInput,
     GoToTd,
     StatusTd,
+    TimeTd,
     CustomTd,
     OperationTd,
     CheckAll,

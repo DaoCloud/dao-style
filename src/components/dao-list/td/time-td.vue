@@ -1,0 +1,72 @@
+<template>
+  <td>
+    <span>{{text}}</span>  
+  </td>
+</template>
+<script>
+import _ from 'lodash';
+
+export default {
+  name: 'TimeTd',
+  props: ['format', 'timeStamp'],
+  computed: {
+    text() {
+      switch (this.format) {
+        case 'relative': {
+          const now = new Date();
+          const deltaTime = now.getTime() - this.timeStamp;
+
+          const timeTable = [
+            {
+              threshold: 1,
+              unit: '毫秒',
+            },
+            {
+              threshold: 1000,
+              unit: '秒',
+            },
+            {
+              threshold: 1000 * 60,
+              unit: '分钟',
+            },
+            {
+              threshold: 1000 * 60 * 60,
+              unit: '小时',
+            },
+            {
+              threshold: 1000 * 60 * 60 * 24,
+              unit: '天',
+            },
+            {
+              threshold: 1000 * 60 * 60 * 24 * 7,
+              unit: '周',
+            },
+            {
+              threshold: 1000 * 60 * 60 * 24 * 30,
+              unit: '月',
+            },
+            {
+              threshold: 1000 * 60 * 60 * 24 * 365,
+              unit: '年',
+            },
+          ];
+
+          let text = '';
+          _.forEach(timeTable, (t) => {
+            if (t.threshold > deltaTime) {
+              return false;
+            }
+            text = `${Math.floor(deltaTime / t.threshold)} ${t.unit}前`;
+            return true;
+          });
+          return text;
+        }
+        default: {
+          const date = new Date(this.timeStamp);
+          return `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`;
+        }
+      }
+    },
+  },
+};
+</script>

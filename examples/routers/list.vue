@@ -106,9 +106,8 @@
               value: 0.5,
             },
             creationTime: {
-              text: '2017-09-23',
-              type: 'text',
-              value: 115454154878,
+              type: 'time',
+              value: 1508148275301 - (Math.random() * 1000 * 60 * 60 * 24),
             },
             sin: {
               type: 'filter',

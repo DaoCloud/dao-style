@@ -190,6 +190,11 @@
                 :color="r[c].other.color"
                 :text="r[c].text">
               </status-td>
+              <time-td :key="c"
+                v-if="r[c].type === 'time'"
+                format="relative"
+                :timeStamp="r[c].value">
+              </time-td>
               <custom-td v-if="r[c].type === 'custom'"
                 :style="`width: ${columnsWidth[c]}`"
                 :renderFunc="r[c].render"
@@ -205,5 +210,4 @@
       列表为空
     </div>
   </div>
-
 </div>
