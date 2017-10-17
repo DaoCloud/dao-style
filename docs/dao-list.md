@@ -216,7 +216,7 @@ dao-list 是一个全新的列表。
 | ------ | -------- | ---------------------------------------- | ----------- | ---- |
 | text   | String   | 单元格所展示文本。                                | -           | 是    |
 | value  | 不限       | 单元格所代表的值。一般用来排序。                         | -           | 是    |
-| type   | String   | 单元格的类型。具体有哪几种需要总监决定。如果需要自定义模板，需要把该值设为 `'custom'`。 | `'text'`    | 否    |
+| type   | String   | 单元格的类型。具体支持的类型，见后文。如果需要自定义模板，需要把该值设为 `'custom'`。 | `'text'`    | 否    |
 | other  | Object   | 一些特殊类型单元格可能需要一些其他属性，都放在这个对象里面。           | `undefined` | 否    |
 | render | Function | 用于自定义模板的函数。`render` 函数接受两个参数，第一个参数是 Vue 的 `createElement` 函数，第二个参数是当前的 Cell 对象。`render` 函数所需要返回的是一个 VNode。详情请见 [createElement](https://cn.vuejs.org/v2/guide/render-function.html#createElement-参数)。 | `undefined` | 否    |
 
@@ -270,3 +270,16 @@ dao-list 是一个全新的列表。
 | refresh |     在列表中点击刷新所触发的事件。     |      无      |
 | checked-rows-change |   列表中选中的行变化时所触发的事件。   |  rows: Array |
 | 自定义操作事件 | 在触发自定义操作时触发。参数是所有所操作的行。 | rows: Array |
+
+##支持的 td 类型
+#### goto
+goto 类型的 td 用作带有跳转链接的 td
+| 参数名             | 类型      | 说明                          | 默认值         | 是否必填 |
+| --------------- | ------- | --------------------------- | ----------- | ---- |
+| other.url            | String  | 链接地址。这个地址会被用作 a 元素的 href 属性。  | -           | 是    |
+
+#### time 类型
+time 类型的 td 专门用来表示时间。 time 类型的 td 不需要 text 属性，但是必须传入 value 属性，且 value 必须是一个时间戳。
+
+#### filter 类型
+filter 类型的 td 永远不会展示在列表中，它存在的意义仅仅是用来筛选。需要在 columns 中添加对应的分栏配合使用。
