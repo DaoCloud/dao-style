@@ -1,7 +1,7 @@
 <template>
   <div>
+      <h2>size=small 的 example</h2>
       <div class="example example1">
-        <h1>size small</h1>
         <dao-info-panel @changeTab="changeTab" size="small">
             <dao-info-panel-item heading="f1">
               <p>@p1</p>
@@ -17,8 +17,9 @@
             </dao-info-panel-item>
         </dao-info-panel>
       </div>
+      <hr>
+      <h2>size=medium 的 example</h2>
       <div class="example example2">
-        <h1>size medium</h1>
         <dao-info-panel @changeTab="changeTab" size="medium">
             <dao-info-panel-item heading="f1">
               <p>@p1</p>
@@ -34,8 +35,9 @@
             </dao-info-panel-item>
         </dao-info-panel>
       </div>
+      <hr>
+      <h2>size=large 的 example</h2>
       <div class="example example3">
-        <h1>size large</h1>
         <dao-info-panel @changeTab="changeTab" size="large">
             <dao-info-panel-item heading="f1">
               <p>@p1</p>
@@ -73,9 +75,20 @@ export default {
 <style lang="scss" scoped>
     .example {
         width: 100%;
-        height: 500px;
         position: relative;
         border: 1px solid #eee;
         margin: 20px 0;
+    }
+
+    .example1 {
+      height: 200px;
+    }
+
+    .example2 {
+      height: 300px;
+    }
+
+    .example3 {
+      height: 400px;
     }
 </style>

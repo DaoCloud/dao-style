@@ -28,10 +28,7 @@ export default {
       },
       specSize: 0,
       userSize: '',
-      touchMoving: false,
-      touchY: 0,
-      touchHeight: 0,
-      parentHeight: 0,
+      bodyHeight: 0,
     };
   },
   created() {
@@ -46,52 +43,12 @@ export default {
     },
     changeSize(size) {
       this.userSize = size;
-      this.specSize = 0;
-    },
-    mousedown(e) {
-      this.touchMoving = true;
-      this.touchY = e.pageY;
-      this.touchHeight = this.height;
-      this.parentHeight = parseInt(window.getComputedStyle(this.$el.parentNode).height, 10);
-    },
-    mousemove(e) {
-      if (!this.touchMoving) return;
-
-      const currentY = e.pageY;
-      const fixY = this.touchY - currentY;
-      if (this.touchHeight + fixY <= this.parentHeight) {
-        this.specSize = this.touchHeight + fixY;
-      }
-    },
-    mouseup(e) {
-      if (!this.touchMoving) return;
-
-      this.touchMoving = false;
-      const currentY = e.pageY;
-      const fixY = this.touchY - currentY;
-      if (this.touchHeight + fixY <= this.parentHeight) {
-        this.specSize = this.touchHeight + fixY;
-      }
+      this.$emit('changeSize', size);
     },
   },
   mounted() {
-    document.body.addEventListener('mousemove', this.mousemove);
-    document.body.addEventListener('mouseup', this.mouseup);
-  },
-  computed: {
-    height() {
-      return this.specSize === 0 ? this.sizes[this.userSize] : this.specSize;
-    },
-    bodyHeight() {
-      return this.height - 26;
-    },
-    activeSize() {
-      if (this.height === this.sizes[this.userSize]) {
-        return this.userSize;
-      }
-
-      return '';
-    },
+    const infoPanelHeight = parseInt(window.getComputedStyle(this.$el).height, 10);
+    this.bodyHeight = infoPanelHeight - 26;
   },
   watch: {
     tabList(value) {
@@ -103,7 +60,7 @@ export default {
     },
     size(newV) {
       if (newV) {
-        this.userSize = newV;
+        this.changeSize(newV);
       }
     },
   },
