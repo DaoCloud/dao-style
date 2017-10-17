@@ -1,5 +1,5 @@
 <template>
-  <td>
+  <td class="goto-td">
     <span>{{text}}</span>  
     <a :href="url">
       <svg class="goto-icon">
@@ -16,7 +16,7 @@ export default {
 </script>
 <style lang="scss">
   @import '../../dao-color.scss';
-  .goto-icon {
-    fill: $grey-light !important;
+  .goto-td .goto-icon {
+    fill: $grey-light;
   }
 </style>
