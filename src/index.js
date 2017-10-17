@@ -30,6 +30,7 @@ import daoRadio from './components/dao-radio';
 import daoSelect from './components/dao-select';
 import daoSettingLayout from './components/dao-setting-layout';
 import daoSlider from './components/dao-slider';
+import daoSplitter from './components/dao-splitter';
 import daoSteps from './components/dao-steps';
 import daoSwitch from './components/dao-switch';
 import daoTab from './components/dao-tab';
@@ -71,6 +72,9 @@ const daoStyleComponents = {
   daoSettingLayout,
   daoSettingSection: daoSettingLayout.Section,
   daoSlider,
+  daoSplitter,
+  daoSplitterTop: daoSplitter.daoSplitterTop,
+  daoSplitterBottom: daoSplitter.daoSplitterBottom,
   daoStep: daoSteps.step,
   daoStepContent: daoSteps.content,
   daoSteps,

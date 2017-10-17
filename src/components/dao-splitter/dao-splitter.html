@@ -1,0 +1,9 @@
+<div class="dao-splitter" :style="{ height: config.height }" :class="{ userSelectNone: moving }">
+    <div class="dao-splitter-top" :style="{ height: topHeight + 'px' }">
+        <slot name="dao-splitter-top" class="top-body"></slot>
+    </div>
+    <div class="dao-splitter-divider" :style="{ top: topHeight + 'px', height: config.dividerHeight }" @mousedown="mousedown"></div>
+    <div class="dao-splitter-bottom" :style="{ height: bottomHeight + 'px', marginTop: config.dividerHeight }">
+        <slot name="dao-splitter-bottom" class="bottom-body"></slot>
+    </div>
+</div>

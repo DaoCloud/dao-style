@@ -1,0 +1,40 @@
+.dao-splitter {
+    width: 100%;
+    position: relative;
+}
+
+.dao-splitter-top {
+    width: 100%;
+    overflow: hidden;
+
+    .top-body {
+        height: 100%;
+        width: 100%;
+        overflow-y: scroll;
+    }
+}
+
+.dao-splitter-bottom {
+    width: 100%;
+    overflow: hidden;
+
+    .bottom-body {
+        height: 100%;
+        width: 100%;
+        overflow-y: scroll;
+    }
+}
+
+.dao-splitter-divider {
+    width: 100%;
+    height: 7px;
+    background-color: grey;
+    cursor: row-resize;
+    position: absolute;
+}
+
+.userSelectNone {
+    > div {
+        user-select: none;
+    }
+}
