@@ -361,5 +361,11 @@ export default {
     checkedRows() {
       this.$emit('checked-rows-change', this.checkedRows);
     },
+    sortingConfig: {
+      handler() {
+        this.clear();
+      },
+      deep: true,
+    },
   },
 };
