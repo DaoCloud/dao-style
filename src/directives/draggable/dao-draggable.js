@@ -14,6 +14,8 @@ function getList(el) {
 
 // 元素位置交换
 function changePlace(targetEl, draggingEl) {
+  // 如果父元素设定了固定，则不能换位置
+  if (targetEl.parentNode.dropConfig && targetEl.parentNode.dropConfig.fixed) return;
   // 获取父元素的拖动序列
   const $list = getList(targetEl);
   const targetKey = targetEl.getAttribute('data-key');

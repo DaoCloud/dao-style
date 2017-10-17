@@ -82,6 +82,7 @@ function dealWithBindingValue(binding) {
     style: $value.style || '',
     class: $value.class,
     remove: $modifiers.remove,
+    fixed: $modifiers.fixed,
     events: {
       onChange: $value.onChange || (() => {}),
     },

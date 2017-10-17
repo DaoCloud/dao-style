@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>directive</h1>
-    <div v-dao-droppable.remove="{onChange: onChange}">
+    <div v-dao-droppable.remove="{onChange: onChange, disabled: show}">
       <div class="drag-item" data-key="1" v-dao-draggable="{disabled: show}">Dragger 1</div>
       <div class="drag-item" data-key="2" v-dao-draggable>Dragger 2</div>
       <span>111</span>
@@ -13,7 +13,7 @@
         </div>
       </div>
     </div>
-    <div v-dao-droppable="{onChange: onChange2}">
+    <div v-dao-droppable.fixed="{onChange: onChange2}">
       <div class="drag-item" data-key="3" v-dao-draggable>Dragger 3</div>
       <div class="drag-item" id="item4" data-key="4" v-dao-draggable v-show="show">Dragger 4</div>
       <div class="drag-item" data-key="5" v-dao-draggable>Dragger 5</div>
