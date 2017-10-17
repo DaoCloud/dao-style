@@ -14,10 +14,13 @@ import card from './routers/card.vue';
 import checkbox from './routers/checkbox.vue';
 import clipboard from './routers/clipboard.vue';
 import dialog from './routers/dialog.vue';
+import dragAndDrop from './routers/drag-and-drop.vue';
 import dropdown from './routers/dropdown.vue';
 import editableTable from './routers/editable-table.vue';
 import input from './routers/input.vue';
 import infoCard from './routers/info-card.vue'
+import inputWithLabel from './routers/input-with-label.vue';
+import list from './routers/list.vue';
 import listGroup from './routers/list-group.vue';
 import numericBadge from './routers/numeric-badge.vue';
 import popover from './routers/popover.vue';
@@ -62,6 +65,9 @@ const router = new VueRouter({
     path: '/dialog',
     component: dialog,
   }, {
+    path: '/drag-drop',
+    component: dragAndDrop,
+  }, {
     path: '/dropdown',
     component: dropdown,
   }, {
@@ -74,6 +80,12 @@ const router = new VueRouter({
     path:'/info-card',
     component:infoCard,
     },{
+    path: '/input-with-label',
+    component: inputWithLabel,
+  }, {
+    path: '/list',
+    component: list,
+  }, {
     path: '/list-group',
     component: listGroup,
   }, {

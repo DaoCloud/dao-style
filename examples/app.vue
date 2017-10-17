@@ -49,6 +49,9 @@ li + li {
           <router-link to="/dialog">Dialog</router-link>
         </li>
         <li>
+          <router-link to="/drag-drop">Draggable</router-link>
+        </li>
+        <li>
           <router-link to="/dropdown">Dropdown</router-link>
         </li>
         <li>
@@ -59,6 +62,9 @@ li + li {
         </li>
         <li>
           <router-link to="/input">Input</router-link>
+        </li>
+        <li>
+          <router-link to="/list">List</router-link>
         </li>
         <li>
           <router-link to="/list-group">List Group</router-link>
@@ -107,6 +113,9 @@ li + li {
         </li>
         <li>
           <router-link to="/tooltip-directive">Tooltip Directive</router-link>
+        </li>
+         <li>
+          <router-link to="/input-with-label">InputWithLabel</router-link>
         </li>
       </ul>
     </nav>

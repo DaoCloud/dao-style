@@ -20,6 +20,18 @@
       <span>AutoComplete 的选项列表不会撑开其他元素</span>
       <dao-autocomplete :options="options3" v-model="model3" placeholder="请输入文本"></dao-autocomplete>
     </section>
+
+    <section>
+      <h1>基础版、选项数据为空，model 被赋值</h1>
+      <span>value: {{model4}}</span>
+      <dao-autocomplete :options="options4" v-model="model4" placeholder="请输入文本"></dao-autocomplete>
+    </section>
+
+    <section>
+      <h1>基础版、带错误验证</h1>
+      <span>value: {{model5}}</span>
+      <dao-autocomplete :options="options5" v-model="model5" :validate="validate" placeholder="请输入文本"></dao-autocomplete>
+    </section>
   </div>
 </template>
 <script>
@@ -47,10 +59,13 @@ export default {
       options1,
       options2: [],
       options3: [],
+      options4: [],
+      options5: ['cherry'],
       model1: '',
       model2: 'banana',
       model3: '',
-      isValid1: false,
+      model4: '',
+      model5: '',
     };
   },
   created() {
@@ -60,12 +75,19 @@ export default {
       this.options3 = options2;
       setTimeout(() => {
         this.model3 = 'cherry';
+        this.model4 = 'cherry';
       }, 0);
     }, 0);
   },
   methods: {
     onChange(val) {
       console.log('数据变了', val);
+    },
+    validate(val) {
+      if (val !== 'cherry') {
+        return '必须是 cherry！';
+      }
+      return true;
     },
   },
 };

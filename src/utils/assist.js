@@ -233,3 +233,71 @@ function findComponentsDownward(content, componentName, components = []) {
   return components;
 }
 export { findComponentsDownward };
+
+// 通过获取选中元素参数以获取光标位置
+export function getSelectPosition(element) {
+  const nullvalue = -1;
+  let selectStart;
+  let selectEnd;
+  let position;
+  let selectText;
+  if (element.setSelectionRange) {
+    selectStart = element.selectionStart;
+    selectEnd = element.selectionEnd;
+    if (selectStart === selectEnd) {
+      position = element.selectionStart;
+      selectStart = nullvalue;
+      selectEnd = nullvalue;
+    } else {
+      position = nullvalue;
+    }
+    selectText = element.value.substring(selectStart, selectEnd);
+  } else {
+    const range = document.selection.createRange();
+    selectText = range.text;
+    range.moveStart('character', -element.value.length);
+    position = range.text.length;
+    selectStart = position - (selectText.length);
+    selectEnd = selectStart + (selectText.length);
+    if (selectStart !== selectEnd) {
+      position = nullvalue;
+    } else {
+      selectStart = nullvalue;
+      selectEnd = nullvalue;
+    }
+  }
+  return {
+    position,
+    selectStart,
+    selectEnd,
+  };
+}
+
+// 无递归简单 merge
+export function simpleMerge(target, source) {
+  const result = target || {};
+  const tmpB = source || {};
+  Object.keys(tmpB).forEach((key) => {
+    result[key] = tmpB[key];
+  });
+  return result;
+}
+
+// 获取一段字符串的显示宽度,长度
+export function getTextSize(text, fontSize = '14px') {
+  const span = document.createElement('span');
+  span.style.visibility = 'hidden';
+  span.style.fontSize = fontSize;
+  if (typeof span.textContent !== 'undefined') {
+    span.textContent = text;
+  } else {
+    span.innerText = text;
+  }
+  document.body.appendChild(span);
+  const result = {
+    width: span.offsetWidth,
+    height: span.offsetHeight,
+  };
+  document.body.removeChild(span);
+  return result;
+}

@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+  <title>icon_server</title>
+  <g>
+    <path d="M11.586,1H4.414a1,1,0,0,0-.707.293L2,3H14L12.293,1.293A1,1,0,0,0,11.586,1Z"/>
+    <g>
+      <rect x="3.5" y="4.5" width="2" height="2" opacity="0.5"/>
+      <rect x="5.5" y="4.5" width="2" height="2" opacity="0.75"/>
+      <path d="M14,4H2A1,1,0,0,0,1,5V6A1,1,0,0,0,2,7H14a1,1,0,0,0,1-1V5A1,1,0,0,0,14,4ZM3,6H2V5H3ZM5,6H4V5H5ZM7,6H6V5H7Z"/>
+    </g>
+    <g>
+      <rect x="3.5" y="8.5" width="2" height="2" opacity="0.5"/>
+      <rect x="5.5" y="8.5" width="2" height="2" opacity="0.75"/>
+      <path d="M14,8H2A1,1,0,0,0,1,9v1a1,1,0,0,0,1,1H14a1,1,0,0,0,1-1V9A1,1,0,0,0,14,8ZM3,10H2V9H3Zm2,0H4V9H5Zm2,0H6V9H7Z"/>
+    </g>
+    <g>
+      <rect x="3.5" y="12.5" width="2" height="2" opacity="0.5"/>
+      <rect x="5.5" y="12.5" width="2" height="2" opacity="0.75"/>
+      <path d="M14,12H2a1,1,0,0,0-1,1v1a1,1,0,0,0,1,1H14a1,1,0,0,0,1-1V13A1,1,0,0,0,14,12ZM3,14H2V13H3Zm2,0H4V13H5Zm2,0H6V13H7Z"/>
+    </g>
+  </g>
+</svg>

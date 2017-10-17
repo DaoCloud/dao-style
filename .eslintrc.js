@@ -32,6 +32,8 @@ module.exports = {
       'optionalDependencies': ['test/unit/index.js']
     }],
     // allow debugger during development
-    'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0
+    'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0,
+    // rule: http://eslint.org/docs/rules/no-param-reassign.html
+    "no-param-reassign": ["off", { "props": true }]
   }
 }
