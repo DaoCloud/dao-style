@@ -38,6 +38,37 @@ function changePlace(targetEl, draggingEl) {
   }
 }
 
+// 额外样式和类
+function setExtraStyle(el) {
+  const $el = el;
+  const $currStyle = el.getAttribute('style') || '';
+  const extraStyle = $el.dragConfig.style;
+  const extraClass = $el.dragConfig.class;
+  // 如果指定了额外的样式
+  if (extraStyle) {
+    $el.setAttribute('style', `${$currStyle}${extraStyle}`);
+  }
+  // 如果指定了额外的 css 类
+  if (extraClass) {
+    $el.classList.add(extraClass);
+  }
+}
+
+function removeExtraStyle(el) {
+  const $el = el;
+  const $currStyle = el.getAttribute('style') || '';
+  const extraStyle = $el.dragConfig.style;
+  const extraClass = $el.dragConfig.class;
+  // 如果指定了额外的样式
+  if (extraStyle) {
+    $el.setAttribute('style', $currStyle.replace(extraStyle, ''));
+  }
+  // 如果指定了额外的 css 类
+  if (extraClass) {
+    $el.classList.remove(extraClass);
+  }
+}
+
 // 拖动开始
 function onDragStart(e) {
   const el = e.target;
@@ -50,6 +81,7 @@ function onDragStart(e) {
   }
   // 把当前元素和 key 值存储到 dragging 中
   Dragging.setData(el, key);
+  setExtraStyle(el);
 }
 
 function onDragEnter(e) {
@@ -60,6 +92,11 @@ function onDragEnter(e) {
     .filter(elm => elm.getAttribute && elm.getAttribute('data-key'))[0];
   // 交换元素位置
   changePlace($el, Dragging.el);
+}
+
+function onDragEnd(e) {
+  const el = e.target;
+  removeExtraStyle(el);
 }
 
 // 绑定事件
@@ -77,6 +114,7 @@ function addEvents(el, binding) {
   // 拖动开始事件
   $el.addEventListener('dragstart', onDragStart);
   $el.addEventListener('dragenter', onDragEnter);
+  $el.addEventListener('dragend', onDragEnd);
 }
 
 // 将绑定值转换成新的对象
@@ -87,7 +125,7 @@ function dealWithBindingValue(binding) {
 
   return {
     disabled: $value.disabled || false,
-    style: $value.style,
+    style: $value.style || 'opacity: 0.5;',
     class: $value.class,
     events: {
       onChange: $value.onChange || (() => {}),
@@ -117,7 +155,6 @@ function bind($el, $binding) {
 function update(el, $binding) {
   const $el = el;
   $el.dragConfig = dealWithBindingValue($binding);
-  console.log($el.dragConfig)
 }
 
 export default {
