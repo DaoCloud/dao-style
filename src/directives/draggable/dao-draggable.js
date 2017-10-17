@@ -100,9 +100,8 @@ function onDragEnd(e) {
 }
 
 // 绑定事件
-function addEvents(el, binding) {
+function addEvents(el) {
   const $el = el;
-  const $binding = binding;
 
   // 绑定一个触发拖动的 mousedown 事件
   $el.addEventListener('mousedown', () => {
@@ -113,7 +112,8 @@ function addEvents(el, binding) {
 
   // 拖动开始事件
   $el.addEventListener('dragstart', onDragStart);
-  $el.addEventListener('dragenter', onDragEnter);
+  // 这里使用事件捕获，响应需要比 droppable 慢一拍
+  $el.addEventListener('dragenter', onDragEnter, true);
   $el.addEventListener('dragend', onDragEnd);
 }
 
@@ -127,9 +127,6 @@ function dealWithBindingValue(binding) {
     disabled: $value.disabled || false,
     style: $value.style || 'opacity: 0.5;',
     class: $value.class,
-    events: {
-      onChange: $value.onChange || (() => {}),
-    },
     clone: $modifies.clone,
   };
 }
