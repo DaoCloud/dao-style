@@ -122,13 +122,13 @@ function addEvents(el) {
 function dealWithBindingValue(binding) {
   const $binding = binding;
   const $value = $binding.value || {};
-  const $modifies = $binding.modifies || {};
+  const $modifiers = $binding.modifiers || {};
 
   return {
     disabled: $value.disabled || false,
     style: $value.style || 'opacity: 0.5;',
     class: $value.class,
-    clone: $modifies.clone,
+    clone: $modifiers.clone,
   };
 }
 

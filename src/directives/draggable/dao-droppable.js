@@ -4,9 +4,12 @@ import Dragging from './dragging';
 // 获取当前元素拖动序列
 function getList(el) {
   const $el = el;
-  // 获取子元素
+  // 获取子元素，过滤掉非拖拽元素及 display none 的元素
   const $children = Array.from($el.children)
-    .filter(elm => elm.getAttribute && elm.getAttribute('data-key'));
+    .filter(elm =>
+      elm.getAttribute &&
+      elm.getAttribute('data-key') &&
+      elm.style.display !== 'none');
   // 得到序列
   const list = $children.map(elm => elm.getAttribute('data-key'));
   return list;
@@ -39,12 +42,12 @@ function isTruelyLeave(el, e) {
   const rect = $el.getBoundingClientRect();
   // 当 x,y 坐标在元素内部时，返回 false
   if (
-    x !== 0 &&
-    y !== 0 &&
-    x > rect.left &&
+    x === 0 ||
+    y === 0 ||
+    (x > rect.left &&
     x < rect.right &&
     y > rect.top &&
-    y < rect.bottom
+    y < rect.bottom)
   ) return false;
   // 在外部则表示真正离开，返回 true
   return true;
@@ -56,6 +59,9 @@ function listenerDragLeave(el) {
   $el.addEventListener('dragleave', (e) => {
     if (e.target !== $el || !isTruelyLeave($el, e)) return;
     Dragging.setCallback($el.dragEndCallback);
+    if ($el.dropConfig.remove && Dragging.el.parentNode === $el) {
+      $el.removeChild(Dragging.el);
+    }
   });
 }
 
@@ -69,13 +75,13 @@ function addEvents(el) {
 function dealWithBindingValue(binding) {
   const $binding = binding;
   const $value = $binding.value || {};
-  const $modifies = $binding.modifies || {};
+  const $modifiers = $binding.modifiers || {};
 
   return {
     disabled: $value.disabled || false,
     style: $value.style || '',
     class: $value.class,
-    remove: $modifies.remove,
+    remove: $modifiers.remove,
     events: {
       onChange: $value.onChange || (() => {}),
     },
@@ -114,6 +120,14 @@ function bind($el, $binding) {
   init($el, $binding);
 }
 
+// 更新时
+function update(el, $binding) {
+  const $el = el;
+  $el.dropConfig = dealWithBindingValue($binding);
+  $el.dragList = getList($el);
+}
+
 export default {
   bind,
+  update,
 };
