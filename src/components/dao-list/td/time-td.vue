@@ -8,10 +8,10 @@ import _ from 'lodash';
 
 export default {
   name: 'TimeTd',
-  props: ['format', 'timeStamp'],
+  props: ['timeFormat', 'timeStamp'],
   computed: {
     text() {
-      switch (this.format) {
+      switch (this.timeFormat) {
         case 'relative': {
           const now = new Date();
           const deltaTime = now.getTime() - this.timeStamp;
@@ -61,6 +61,7 @@ export default {
           });
           return text;
         }
+        case 'absolute':
         default: {
           const date = new Date(this.timeStamp);
           return `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`;

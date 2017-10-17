@@ -27,7 +27,15 @@
           </div>
         </div>
         <div v-show="tab === 'time'">
-          time
+          <input type="radio" id="dstf-relative" value="relative" v-model="settings.timeFormat">
+          <label for="dstf-relative">
+            使用相对日期
+          </label>
+          <br/>
+          <input type="radio" id="dstf-absolute" value="absolute" v-model="settings.timeFormat">
+          <label for="dstf-absolute">
+            使用绝对日期
+          </label> 
         </div>
       </div>
     </div>
@@ -45,12 +53,13 @@
   export default {
     name: 'DaoListSettingsDialog',
     extends: Dialog,
-    props: ['visible', 'columns', 'columnsOrder'],
+    props: ['visible', 'columns', 'columnsOrder', 'timeFormat'],
     data() {
       return {
         tab: 'columns',
         settings: {
           columnsOrder: [],
+          timeFormat: this.timeFormat || 'relative',
         },
         config: {
           type: 'normal',

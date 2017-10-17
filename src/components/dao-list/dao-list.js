@@ -31,18 +31,20 @@ export default {
     let columnsWidth = {};
     let columnsOrder = [];
     let toolbarOperations = [];
+    let timeFormat = '';
     if (localStorageSettings) {
       columnsWidth = localStorageSettings.columnsWidth;
       columnsOrder = localStorageSettings.columnsOrder;
       toolbarOperations = localStorageSettings.toolbarOperations;
+      timeFormat = localStorageSettings.timeFormat;
     } else {
       _.forEach(this.columns, (c) => {
         columnsWidth[c.name] = 'auto';
       });
       columnsOrder = null;
       toolbarOperations = null;
+      timeFormat = null;
     }
-
     return {
       page: 0,
       checkedRows: [],
@@ -60,6 +62,7 @@ export default {
       settings: {
         columnsOrder,
         toolbarOperations,
+        timeFormat,
       },
       isSettingsDialogVisible: false,
       isCustomToolbarDialogVisible: false,
@@ -87,6 +90,9 @@ export default {
     },
     toolbarOperations() {
       return this.settings.operations || this.config.operations;
+    },
+    timeFormat() {
+      return this.settings.timeFormat || this.config.timeFormat;
     },
     filteredRows() {
       const filteredRows = _.filter(this.rows, (r) => {
@@ -318,6 +324,7 @@ export default {
     },
     onSettingsDialogConfirm(settings) {
       this.settings.columnsOrder = _.map(_.filter(settings.columnsOrder, 'visible'), 'name');
+      this.settings.timeFormat = settings.timeFormat;
       this.saveLocalStorageSettings();
     },
     openCustomToolbarDialog() {
@@ -335,6 +342,7 @@ export default {
       const settings = {
         columnsWidth: this.columnsWidth,
         columnsOrder: this.settings.columnsOrder,
+        timeFormat: this.settings.timeFormat,
       };
       const json = JSON.stringify(settings);
       localStorage.setItem(`${this.tableId}Settings`, json);
