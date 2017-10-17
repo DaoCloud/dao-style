@@ -31,7 +31,22 @@
                         line-height: 1.71;
                         text-align: left;
                         color: #3d444f;
-                        word-wrap: break-word
+                        word-wrap: break-word;
+                        .dot {
+                            display: inline-block;
+                            margin-bottom: 2px;
+                            width: 6px;
+                            height: 6px;
+                            border-radius: 50%; 
+                            &.dot{
+                               background-color: #25d473;
+                               border: solid 1px #22c36a; 
+                            }  
+                            &.close{
+                               background-color: #ccd1d9;
+                               border: solid 1px #ccd1d9; 
+                            }
+                        }
                     }
                 }
             }

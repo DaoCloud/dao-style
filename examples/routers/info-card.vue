@@ -4,19 +4,30 @@
   <br>
   <dao-info-card size="small" title="TEXT" type="a" :datavalue="keyvalue1"></dao-info-card>
   <br>
+  <dao-info-card size="small" title="TEXT" type="a" :datavalue="keyvalue2" :config="config[0]"></dao-info-card>
+  <br>
   <dao-info-card size="small" title="TEXT" type="b" :datavalue="tablevalue"></dao-info-card>
   <br>
   <dao-info-card size="small" title="TEXT" type="b" :datavalue="tablevalue1"></dao-info-card>
   <br>
   <dao-info-card size="big" title="TEXT" type="b" :datavalue="tablevalue2"></dao-info-card>
   <br>
-  <dao-info-card size="small" title="TEXT" type="c" :datavalue="tablevalue3"></dao-info-card>
+  <dao-info-card size="small" title="TEXT" type="c" :datavalue="tablevalue3" :config="config[1]"></dao-info-card>
 </div>
 </template>
 <script>
 export default {
   data() {
     return {
+      config:[{
+        opendot: true,
+        opendotindex: 0,
+        closedot: true,
+        closedotindex: 1
+      }, {
+        opendot: true,
+        opendotindex:0,
+      }],
       keyvalue: [{
         'DNS服务器': '8.8.8.8',
         'DNS选项': 'timeout:3',
@@ -28,6 +39,13 @@ export default {
         }, {
         'cpu预留': '1核',
         '内存预留': '不预留'
+      }],
+      keyvalue2:[{
+        '高可用': '启用',
+        '仅在错误时重启': '关闭',
+        '最大尝试次数': '0次',
+        '重启间隔': '0秒',
+        '重试时间窗口': '0秒'
       }],
       tablevalue: {
         header: [
