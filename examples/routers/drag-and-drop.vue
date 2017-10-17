@@ -13,16 +13,16 @@
         </div>
       </div>
     </div>
-    <div v-dao-droppable.fixed="{onChange: onChange2}">
-      <div class="drag-item" data-key="3" v-dao-draggable>Dragger 3</div>
+    <div v-dao-droppable="{onChange: onChange2}">
+      <div class="drag-item" data-key="3" v-dao-draggable.clone>Dragger 3</div>
       <div class="drag-item" id="item4" data-key="4" v-dao-draggable v-show="show">Dragger 4</div>
       <div class="drag-item" data-key="5" v-dao-draggable>Dragger 5</div>
     </div>
     <button class="dao-btn blue" style="position: relative;" @click="show = !show">Toggle Dragger 4</button>
     <br><br>
-    <!-- <h1>components</h1>
+    <h1>components</h1>
     <dao-draggable v-model="drags" :no-repeat="true" :remove-when-drag-out="true" draggingClass="green" @change="handleChange"></dao-draggable>
-    <dao-draggable v-model="drags2" :no-repeat="true" :no-sort="true" :clone="true" draggingStyle="color: red;" @change="handleChange2"></dao-draggable> -->
+    <dao-draggable v-model="drags2" :no-repeat="true" :no-sort="true" :clone="true" draggingStyle="color: red;" @change="handleChange2"></dao-draggable>
   </div>
 </template>
 <script>

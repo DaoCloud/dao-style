@@ -1,3 +1,4 @@
+import * as _ from 'lodash';
 import Dragging from './dragging';
 
 // 获取当前元素的父元素序列
@@ -71,6 +72,18 @@ function removeExtraStyle(el) {
   }
 }
 
+// 使用 clone 的元素来替换原来的元素
+function replaceByClone(el) {
+  const cloneEl = el.cloneNode(true);
+  cloneEl.dragConfig = _.cloneDeep(el.dragConfig);
+  el.dragConfig.clone = false;
+  // 去除 clone 元素上面的额外样式
+  removeExtraStyle(cloneEl);
+  addEvents(cloneEl);
+  el.parentNode.insertBefore(cloneEl, el);
+  el.parentNode.removeChild(el);
+}
+
 // 拖动开始
 function onDragStart(e) {
   const el = e.target;
@@ -81,9 +94,23 @@ function onDragStart(e) {
     key = Symbol('key');
     el.setAttribute('data-key', key);
   }
+  setExtraStyle(el);
   // 把当前元素和 key 值存储到 dragging 中
   Dragging.setData(el, key);
-  setExtraStyle(el);
+}
+
+// 在自身上面拖动时
+function onDragOver(e) {
+  const chain = Array.from(e.path);
+  // 获取目标可拖动元素
+  const el = chain
+    .filter(elm => elm.getAttribute && elm.getAttribute('data-key'))[0];
+  // 如果该目标元素与拖动中元素 data-key 不一致则直接返回
+  if (Dragging.key !== el.getAttribute('data-key')) return;
+  // 如果有设置 clone
+  if (el.dragConfig.clone) {
+    replaceByClone(el);
+  }
 }
 
 function onDragEnter(e) {
@@ -93,7 +120,8 @@ function onDragEnter(e) {
   const $el = chain
     .filter(elm => elm.getAttribute && elm.getAttribute('data-key'))[0];
   // 交换元素位置
-  changePlace($el, Dragging.el);
+  const draggingEl = $el.parentNode.querySelector(`*[data-key="${Dragging.key}"]`);
+  changePlace($el, draggingEl);
 }
 
 function onDragEnd(e) {
@@ -115,6 +143,8 @@ function addEvents(el) {
 
   // 拖动开始事件
   $el.addEventListener('dragstart', onDragStart);
+  // 监听拖动在当前元素上时
+  $el.addEventListener('dragover', onDragOver);
   // 这里使用事件捕获，响应需要比 droppable 慢一拍
   $el.addEventListener('dragenter', onDragEnter, true);
   $el.addEventListener('dragend', onDragEnd);

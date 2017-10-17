@@ -26,7 +26,8 @@ function listenerDragEnter(el) {
     // 2. 如果拖动元素本身就是当前元素的子元素，也不需要执行下列逻辑
     if (
       $el.dropConfig.disabled ||
-      ($el === Dragging.el.parentNode)
+      Array.from($el.children)
+        .filter(elm => elm.getAttribute('data-key') === Dragging.key).length
     ) return;
     // 把拖动元素加入到当前元素子节点
     $el.appendChild(Dragging.el);
