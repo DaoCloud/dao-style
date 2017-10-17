@@ -83,7 +83,6 @@
         height: 30px;
         background-color: #edf0f5;
         cursor: pointer;
-        border-bottom: solid 1px #d5dbe3;
         .icon {
             vertical-align: top;
             margin: 7px 2px 7px 8px;
@@ -99,6 +98,7 @@
         }
     }
     .dao-infocard-main {
+        border-top: solid 1px #d5dbe3;
         .dao-table-wrapper {
             padding: 15px 0px;
             table {
@@ -121,13 +121,15 @@
                             color: $black-light;
                             padding: 8px 0 8px 10px;
                             text-align: left;
+                            border-right: none;
                         }
                         th:nth-child(3){
-                            flex:0 0 62px;  
+                            flex:0 0 64px;  
                         }
                         th:nth-child(4){
                             flex:0 0 52px;  
                         }
+                        
                     }
                 }
                 tbody {
@@ -140,14 +142,17 @@
                             flex: 1;
                             font-size: 13px;
                             line-height: 1.08;
-                            padding: 8px 0 8px 11px;
+                            padding: 8px 0 8px 10px;
                             text-align: left;
                         }
                         td:nth-child(3){
-                            flex:0 0 62px;  
+                            flex:0 0 64px;  
                         }
                         td:nth-child(4){
                             flex:0 0 52px;  
+                        }
+                        &:nth-child(even) {
+                            background-color: #fff;
                         }
                     }
                 }
