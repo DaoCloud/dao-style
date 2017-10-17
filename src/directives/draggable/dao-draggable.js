@@ -31,7 +31,7 @@ function changePlace(targetEl, draggingEl) {
   if (draggingIndex < targetIndex) {
     // 当前元素是最后一个元素时，直接在父元素上面 append
     if (!targetEl.nextSibling) {
-      targetEl.parentNode.append(draggingEl);
+      targetEl.parentNode.appendChild(draggingEl);
     } else {
       targetEl.parentNode.insertBefore(draggingEl, targetEl.nextSibling);
     }
@@ -97,6 +97,7 @@ function onDragEnter(e) {
 function onDragEnd(e) {
   const el = e.target;
   removeExtraStyle(el);
+  Dragging.callbacks.forEach(func => func());
 }
 
 // 绑定事件
