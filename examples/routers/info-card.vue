@@ -8,6 +8,8 @@
   <br>
   <dao-info-card size="small" title="TEXT" type="b" :datavalue="tablevalue"></dao-info-card>
   <br>
+  <dao-info-card size="small" title="TEXT" type="b" :datavalue="tablevalue4"></dao-info-card>
+  <br>
   <dao-info-card size="small" title="TEXT" type="b" :datavalue="tablevalue1"></dao-info-card>
   <br>
   <dao-info-card size="big" title="TEXT" type="b" :datavalue="tablevalue2"></dao-info-card>
@@ -19,7 +21,7 @@
 export default {
   data() {
     return {
-      config:[{
+      config: [{
         opendot: true,
         opendotindex: 0,
         closedot: true,
@@ -47,6 +49,20 @@ export default {
         '重启间隔': '0秒',
         '重试时间窗口': '0秒'
       }],
+      tablevalue4: {
+        header: [
+          '监控指标',
+          '监控对象',
+          '当前用量',
+          '阈值'
+        ],
+        body: [{
+          goal: '每秒请求数',
+          watchobj: 'test',
+          number: 500,
+          tnumber: 2000
+        }]
+      },
       tablevalue: {
         header: [
           '容器端口号',
