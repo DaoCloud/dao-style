@@ -60,6 +60,7 @@
             padding: 0 15px;
             .dao-table-wrapper {
                 table {
+                    padding: 0 10px;
                     thead {
                         tr {
                             th:nth-child(3) {
@@ -114,22 +115,19 @@
                     display: flex;
                     height: 30px;
                     background-color: #edf0f5;
+                    padding-left: 8px;
                     th {
                         flex: 1;
                         font-size: 13px;
                         line-height: 1.08;
                         color: $black-light;
-                        padding: 8px 0 8px 10px;
+                        padding: 8px 0 8px 0px;
                         text-align: left;
                         border-right: none;
                     }
-                    th:nth-child(3){
-                        flex:0 0 64px;  
+                    th:nth-child(4) {
+                        flex:0 0 50px;
                     }
-                    th:nth-child(4){
-                        flex:0 0 52px;  
-                    }
-                    
                 }
             }
             tbody {
@@ -138,21 +136,19 @@
                     width: 100%;
                     display: flex;
                     height: 30px;
+                    padding-left:8px;
                     td {
                         flex: 1;
                         font-size: 13px;
                         line-height: 1.08;
-                        padding: 8px 0 8px 10px;
+                        padding: 8px 0 8px 0px;
                         text-align: left;
-                    }
-                    td:nth-child(3){
-                        flex:0 0 64px;  
-                    }
-                    td:nth-child(4){
-                        flex:0 0 52px;  
                     }
                     &:nth-child(even) {
                         background-color: #fff;
+                    }
+                    td:nth-child(4) {
+                        flex:0 0 50px;
                     }
                 }
             }
