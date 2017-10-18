@@ -44,6 +44,7 @@ export default {
 
       document.addEventListener('mousemove', this.mousemove);
       document.addEventListener('mouseup', this.mouseup);
+      document.body.style.cursor = 'row-resize';
     },
     mousemove(e) {
       const offsetY = e.clientY - this.mousedownY;
@@ -63,6 +64,8 @@ export default {
 
       document.removeEventListener('mousemove', this.mousemove);
       document.removeEventListener('mouseup', this.mouseup);
+
+      document.body.style.cursor = '';
     },
   },
   computed: {
