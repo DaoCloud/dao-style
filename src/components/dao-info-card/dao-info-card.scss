@@ -26,7 +26,6 @@
                     .value {
                         width: 170px;
                         padding: 2px 0px 5px 0;
-                        font-family: Consolas;
                         font-size: 14px;
                         line-height: 1.71;
                         text-align: left;
@@ -79,87 +78,87 @@
             }
         }
     }
-    .dao-card-header {
-        height: 30px;
-        background-color: #edf0f5;
-        cursor: pointer;
-        .icon {
-            vertical-align: top;
-            margin: 7px 2px 7px 8px;
-            fill:#9ba3af;
-        }
-        .title {
-            display: inline-block;
-            font-family: PingFangSC;
-            font-size: 13px;
-            line-height: 1.08;
-            color: $black-light;
-            padding: 8px 0;
-        }
+}
+
+.dao-card-header {
+    height: 30px;
+    background-color: #edf0f5;
+    cursor: pointer;
+    .icon {
+        vertical-align: top;
+        margin: 7px 2px 7px 8px;
+        fill:#9ba3af;
     }
-    .dao-infocard-main {
-        border-top: solid 1px #d5dbe3;
-        .dao-table-wrapper {
-            padding: 15px 0px;
-            table {
-                border-collapse: collapse;
-                border: solid 1px #d6dbe3;
+    .title {
+        display: inline-block;
+        font-size: 13px;
+        line-height: 1.08;
+        color: $black-light;
+        padding: 8px 0;
+    }
+}
+   
+.dao-infocard-main {
+    border-top: solid 1px #d5dbe3;
+    .dao-table-wrapper {
+        padding: 15px 0px;
+        table {
+            border-collapse: collapse;
+            border: solid 1px #d6dbe3;
+            width: 100%;
+            thead {
                 width: 100%;
-                thead {
+                border-bottom: solid 1px #d5dbe3;
+                tr {
                     width: 100%;
-                    border-bottom: solid 1px #d5dbe3;
-                    tr {
-                        width: 100%;
-                        display: flex;
-                        height: 30px;
-                        background-color: #edf0f5;
-                        th {
-                            flex: 1;
-                            font-family: PingFangSC;
-                            font-size: 13px;
-                            line-height: 1.08;
-                            color: $black-light;
-                            padding: 8px 0 8px 10px;
-                            text-align: left;
-                            border-right: none;
-                        }
-                        th:nth-child(3){
-                            flex:0 0 64px;  
-                        }
-                        th:nth-child(4){
-                            flex:0 0 52px;  
-                        }
-                        
+                    display: flex;
+                    height: 30px;
+                    background-color: #edf0f5;
+                    th {
+                        flex: 1;
+                        font-size: 13px;
+                        line-height: 1.08;
+                        color: $black-light;
+                        padding: 8px 0 8px 10px;
+                        text-align: left;
+                        border-right: none;
                     }
+                    th:nth-child(3){
+                        flex:0 0 64px;  
+                    }
+                    th:nth-child(4){
+                        flex:0 0 52px;  
+                    }
+                    
                 }
-                tbody {
+            }
+            tbody {
+                width: 100%;
+                tr {
                     width: 100%;
-                    tr {
-                        width: 100%;
-                        display: flex;
-                        height: 30px;
-                        td {
-                            flex: 1;
-                            font-size: 13px;
-                            line-height: 1.08;
-                            padding: 8px 0 8px 10px;
-                            text-align: left;
-                        }
-                        td:nth-child(3){
-                            flex:0 0 64px;  
-                        }
-                        td:nth-child(4){
-                            flex:0 0 52px;  
-                        }
-                        &:nth-child(even) {
-                            background-color: #fff;
-                        }
+                    display: flex;
+                    height: 30px;
+                    td {
+                        flex: 1;
+                        font-size: 13px;
+                        line-height: 1.08;
+                        padding: 8px 0 8px 10px;
+                        text-align: left;
+                    }
+                    td:nth-child(3){
+                        flex:0 0 64px;  
+                    }
+                    td:nth-child(4){
+                        flex:0 0 52px;  
+                    }
+                    &:nth-child(even) {
+                        background-color: #fff;
                     }
                 }
             }
         }
-        ul+.dao-table-wrapper {
-            padding-top: 0px;
-        }
+    }
+    ul+.dao-table-wrapper {
+        padding-top: 0px;
     }
 }

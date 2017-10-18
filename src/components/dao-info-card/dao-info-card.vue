@@ -15,9 +15,9 @@
             <li class="dao-key-value" v-for="(value,key,index) in values">
               <div class="key">{{key}}:</div>
               <div class="value">
-                <span v-show="config.opendot && config.opendotindex==index" class="dot open"></span>
-                <span v-show="config.closedot && config.closedotindex==index" class="dot close"></span>
-                {{value}}
+                <span v-show="config.openDot && config.openDotIndex==index" class="dot open"></span>
+                <span v-show="config.closeDot && config.closeDotIndex==index" class="dot close"></span>
+                <span>{{value}}</span> 
               </div>
             </li>    
           </ul>
@@ -32,7 +32,7 @@
               </thead>
               <tbody>
                 <tr v-for="item in datavalue.body">
-                <td v-for="value in item">{{value}}</td>
+                  <td v-for="value in item">{{value}}</td>
                 </tr>
               </tbody>  
             </table>
@@ -43,9 +43,9 @@
             <li class="dao-key-value" v-for="(value,key,index) in values">
               <div class="key">{{key}}:</div>
               <div class="value">
-                <span v-show="config.opendot && config.opendotindex==index" class="dot open"></span>
-                <span v-show="config.closedot && config.closedotindex==index" class="dot close"></span>
-                {{value}}
+                <span v-show="config.openDot && config.openDotIndex==index" class="dot open"></span>
+                <span v-show="config.closeDot && config.closeDotIndex==index" class="dot close"></span>
+                <span>{{value}}</span>
               </div>
             </li>    
           </ul>
@@ -59,7 +59,7 @@
               <tbody>
                 <tr v-for="item in datavalue.body">
                   <td v-for="(value,index) in item">
-                    {{value}}
+                    <span>{{value}}</span>
                   </td>
                 </tr>
               </tbody>  
@@ -80,40 +80,39 @@
     props: {
       size: {
         type: String,
-        default: 'small'
+        default: 'small',
       },
       type: {
-        type: String
+        type: String,
       },
       title: {
-        type: String
+        type: String,
       },
-      datavalue: {   
+      datavalue: {
       },
-      config:{
+      config: {
         type: Object,
-        default: function() {
+        default() {
           return {
-            opendot: false,
-            opendotindex: 0,
-            closedot: false,
-            closedotindex: 1
-          }
-        }
-      }
+            openDot: false,
+            openDotIndex: 0,
+            closeDot: false,
+            closeDotIndex: 1,
+          };
+        },
+      },
     },
     computed: {
       containerType() {
-         return 'size-'+this.size;
+        return `size-${this.size}`;
       },
       arrowDirect() {
-        if(this.isShow){
+        if (this.isShow) {
           return '#icon_down-arrow';
-        }else{
-          return '#icon_triangle-right';
         }
-      }
-    }
-  }
+        return '#icon_triangle-right';
+      },
+    },
+  };
 </script>
 <style scoped lang="scss" src="./dao-info-card.scss"></style>

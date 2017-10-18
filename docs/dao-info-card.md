@@ -38,8 +38,8 @@ info-card 将以键值对和表格的混合形式展示
 
 ### size
 
-只有2种选项small和big,small将以300px的大小展示，big将以610px的大小展示
+只有2种选项 small 和 big, small 将以300px的大小展示，big 将以610px的大小展示
 
 ### title
 
-title选项是用来配置你info-card的标题，可以随意填值 ,例如TEXT,文本 
+title 选项是用来配置你 info-card 的标题，可以随意填值 ,例如 TEXT,文本 
