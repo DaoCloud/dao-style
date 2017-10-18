@@ -1,0 +1,78 @@
+@import "../dao-color.scss";
+
+$header-height: 26px;
+$header-line-height: 16px;
+$header-tab-width: 72px;
+$header-bg-color: #e6e9ef;
+$header-tab-border-color: #ccd1d9;
+
+.dao-info-panel {
+    width: 100%;
+    height: 100%;
+    border: 1px solid $header-tab-border-color;
+    overflow: hidden;
+}
+
+.dao-info-panel-header {
+    width: 100%;
+    height: $header-height;
+    background-color: $header-bg-color;
+    border-bottom: 1px solid $header-tab-border-color;
+    position: relative;
+    z-index: 2;
+
+    .dao-info-panel-nav-item {
+        min-height: 100%;
+        display: block;
+        float: left;
+        height: $header-height;
+        padding: 5px 10px;
+        line-height: $header-line-height;
+        background-color: $header-bg-color;
+        font-size: 13px;
+        color: #595f69;;
+        text-align: center;
+        border-right: 1px solid $header-tab-border-color;
+        border-bottom: 1px solid $header-tab-border-color;
+        cursor: pointer;
+        user-select: none;
+    }
+
+    .dao-info-panel-nav-item.active {
+        background-color: $white;
+        border-bottom: 0;
+        color: #3d444f;
+    }
+
+    .dao-info-panel-nav-item:focus {
+        background-color: $header-tab-border-color;
+        color: #3D444F;
+    }
+
+    .dao-info-panel-nav-item:hover {
+        background-color: #F5F7FA;
+        color: #595F69;
+    }
+}
+
+.dao-info-panel-body {
+    padding: 42px 22px 16px;
+    overflow-y: scroll;
+    background-color: $white;
+    height: 100%;
+    position: relative;
+    top: -26px;
+
+    > div {
+    }
+}
+
+.dao-info-panel-topper {
+    height: 7px;
+    width: 100%;
+    position: absolute;
+    top: -5px;
+    cursor: row-resize;
+    touch-action: none;
+    -ms-touch-action: none;
+}

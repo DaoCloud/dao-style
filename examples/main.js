@@ -20,6 +20,7 @@ import editableTable from './routers/editable-table.vue';
 import input from './routers/input.vue';
 import inputWithLabel from './routers/input-with-label.vue';
 import list from './routers/list.vue';
+import infoPanel from './routers/info-panel.vue';
 import listGroup from './routers/list-group.vue';
 import numericBadge from './routers/numeric-badge.vue';
 import popover from './routers/popover.vue';
@@ -72,6 +73,9 @@ const router = new VueRouter({
   }, {
     path: '/editable-table',
     component: editableTable,
+  }, {
+    path: '/info-panel',
+    component: infoPanel,
   }, {
     path: '/input',
     component: input,
