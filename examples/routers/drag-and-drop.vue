@@ -21,7 +21,9 @@
     <button class="dao-btn blue" style="position: relative;" @click="show = !show">Toggle Dragger 4</button>
     <br><br>
     <h1>components</h1>
-    <dao-draggable v-model="drags" :no-repeat="true" :remove-when-drag-out="true" draggingClass="green" @change="handleChange"></dao-draggable>
+    <dao-draggable v-model="drags" :no-repeat="true" :remove-when-drag-out="true" draggingClass="green" @change="handleChange">
+      <template v-for="item in drags" :slot="item.key">{{ item.context }}</template>
+    </dao-draggable>
     <dao-draggable v-model="drags2" :no-repeat="true" :no-sort="true" :clone="true" draggingStyle="color: red;" @change="handleChange2"></dao-draggable>
   </div>
 </template>
@@ -34,29 +36,40 @@ export default {
       drags: [{
         context: 'component 1',
         draggingStyle: 'opacity: 0.5;',
+        key: '1',
       }, {
         context: 'component 2',
+        key: '2',
       }, {
         context: 'component 3',
+        key: '3',
         disabled: true,
       }, {
         context: 'component 4',
+        key: '4',
       }, {
         context: 'component 5',
+        key: '5',
       }, {
         context: 'component 6',
+        key: '6',
       }],
       drags2: [{
         context: 'component 7',
+        key: '7',
       }, {
         context: 'component 8',
+        key: '8',
       }, {
         context: 'component 9',
         draggingClass: 'green',
+        key: '9',
       }, {
         context: 'component 10',
+        key: '10',
       }, {
         context: 'component 11',
+        key: '11',
       }],
     };
   },
