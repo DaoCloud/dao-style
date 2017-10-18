@@ -49,7 +49,7 @@ Radio 是一个单选框组件。代码请参照目录：[src/components/dao-rad
 3. dao-radio grid
 
 ```html
-<dao-radio-group type="grid" [name="sex"] [:grid-num="2"]>
+<dao-radio-group type="grid" [name="sex"] [:grid-col="2"]>
 
   <dao-radio
     v-model="vm.sex"
@@ -162,7 +162,7 @@ Radio 是一个单选框组件。代码请参照目录：[src/components/dao-rad
 
 | 参数 | 类型 | 说明 | 默认值 | 是否必填 |
 |-----|------|-----|-------|---------|
-| grid-num | number | 启用 grid 布局，并指定列数 | - | 否 |
+| grid-col | number | 启用 grid 布局，并指定列数 | - | 否 |
 | name | string | radio 组的名称 | - | 否 |
 | type | string | radio 组的类型，可选值为`simple`/`block`/`grid`/`card`/`plus` | simple | 否 |
 
