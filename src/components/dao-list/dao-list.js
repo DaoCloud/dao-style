@@ -348,5 +348,8 @@ export default {
     config() {
       this.clear();
     },
+    checkedRows() {
+      this.$emit('checked-rows-change', this.checkedRows);
+    },
   },
 };
