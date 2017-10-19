@@ -21,13 +21,16 @@ Draggable-directive 是可拖拽组件的指令版本。代码请参照目录：
 [:remove-when-drag-out="true"]
 [:no-repeat="false"]
 @change="handleChange">
+  <template v-for="item in items" :slot="item.key">
+    <!-- 你的自定义模板 -->
+  </template>
 </dao-draggable>
 ```
 
 #### directive 版本用法
 
 ```html
-<div v-dao-droppable[.remove]="{
+<div v-dao-droppable[.remove][.fixed]="{
   [onChange: handleChange],
   [disabled: isDisabled],
 }">
@@ -65,7 +68,8 @@ Draggable-directive 是可拖拽组件的指令版本。代码请参照目录：
 ```javascript
 [
   {
-    context: '<div>Drag item 1</div>', // 指定了组件内拖动元素的内容，会将字符串以 html 的形式渲染到组件子元素内
+    key: '1', // 拖动元素的唯一标识符
+    [context]: '<div>Drag item 1</div>', // 指定了组件内拖动元素的内容，会将字符串以 html 的形式渲染到组件子元素内
     [draggingStyle]: 'opacity: 0.5', // 指定了单个元素拖动时的样式，比组件指定的优先级高
     [draggingClass]: 'green', // 指定了单个元素拖动时的 css 样式类，比组件指定的优先级高
     [style]: 'color: red;', // 指定了单个元素的额外样式
@@ -87,7 +91,7 @@ Draggable-directive 是可拖拽组件的指令版本。代码请参照目录：
 ### Droppable (directive) 参数
 | 参数 | 类型 | 说明 | 默认值 | 是否必填 |
 | value (指令的绑定值) | object | 指令的详细配置，[value](#指令绑定值格式) | - | 否 |
-| modifiers (指令的修饰符) | - | 指令的额外配置，可取值：[.remove] 指定 draggable 元素拖动到 droppable 元素外时是否需要立即删除 | - | 否 |
+| modifiers (指令的修饰符) | - | 指令的额外配置，可取值：[.remove] 指定 draggable 元素拖动到 droppable 元素外时是否需要立即删除, [.fixed] 指定当前 droppable 内部的元素是否禁止拖动排序 | - | 否 |
 
 #### 指令绑定值格式
 
