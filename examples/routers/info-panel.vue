@@ -54,7 +54,7 @@
         <div class="top-body">
           <h1>size large</h1>
         </div>
-        <dao-info-panel @changeTab="changeTab" size="large" class="bottom-body">
+        <dao-info-panel @changeTab="changeTab" size="large" minHeight="20%" class="bottom-body">
             <dao-info-panel-item heading="f1">
               <p>@p1</p>
             </dao-info-panel-item>
@@ -96,20 +96,6 @@ export default {
         margin: 20px 0;
         display: flex;
         flex-direction: column;
-
-      .top-body {
-        flex: 1 1 auto;
-        overflow: auto;
-      }
-
-      .bottom-body {
-        flex: 0 0 auto;
-      }
-    }
-
-    .example1 {
-      display: flex;
-      flex-direction: column;
 
       .top-body {
         flex: 1 1 auto;

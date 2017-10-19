@@ -16,6 +16,13 @@ export default {
         return ['large', 'medium', 'small'].includes(value);
       },
     },
+    minHeight: {
+      type: String,
+      default: '0px',
+      validator(value) {
+        return value.includes('%') || value.includes('px');
+      },
+    },
   },
   data() {
     return {
