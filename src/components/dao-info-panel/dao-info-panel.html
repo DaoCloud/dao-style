@@ -1,5 +1,5 @@
 <div class="dao-info-panel" :style="{ height: height + 'px' }">
-    <div class="dao-info-panel-header">
+    <div class="dao-info-panel-header" @mousedown="mousedown">
         <dao-info-panel-nav :tabList="tabList"></dao-info-panel-nav>
     </div>
     <div class="dao-info-panel-body" :style="{ height: bodyHeight + 'px' }">
@@ -7,5 +7,4 @@
             加载中…
         </slot>
     </div>
-    <div class="dao-info-panel-topper" @mousedown="mousedown"></div>
 </div>

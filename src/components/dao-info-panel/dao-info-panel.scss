@@ -9,9 +9,6 @@ $header-tab-border-color: #ccd1d9;
 .dao-info-panel {
     width: 100%;
     border: 1px solid $header-tab-border-color;
-    position: absolute;
-    bottom: 0;
-    left: 0;
     overflow: hidden;
 }
 
@@ -20,6 +17,7 @@ $header-tab-border-color: #ccd1d9;
     height: $header-height;
     background-color: $header-bg-color;
     border-bottom: 1px solid $header-tab-border-color;
+    cursor: row-resize;
 
     .dao-info-panel-nav-item {
         display: block;

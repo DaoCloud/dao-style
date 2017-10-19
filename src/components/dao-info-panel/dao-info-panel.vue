@@ -53,15 +53,17 @@ export default {
       this.touchY = e.pageY;
       this.touchHeight = this.height;
       this.parentHeight = parseInt(window.getComputedStyle(this.$el.parentNode).height, 10);
+
+      document.body.addEventListener('mousemove', this.mousemove);
+      document.body.addEventListener('mouseup', this.mouseup);
+      document.body.style.cursor = 'row-resize';
     },
     mousemove(e) {
       if (!this.touchMoving) return;
 
       const currentY = e.pageY;
       const fixY = this.touchY - currentY;
-      if (this.touchHeight + fixY <= this.parentHeight) {
-        this.specSize = this.touchHeight + fixY;
-      }
+      this.specSize = this.touchHeight + fixY;
     },
     mouseup(e) {
       if (!this.touchMoving) return;
@@ -69,14 +71,14 @@ export default {
       this.touchMoving = false;
       const currentY = e.pageY;
       const fixY = this.touchY - currentY;
-      if (this.touchHeight + fixY <= this.parentHeight) {
-        this.specSize = this.touchHeight + fixY;
-      }
+      this.specSize = this.touchHeight + fixY;
+
+      document.body.removeEventListener('mousemove', this.mousemove);
+      document.body.removeEventListener('mouseup', this.mouseup);
+      document.body.style.cursor = '';
     },
   },
   mounted() {
-    document.body.addEventListener('mousemove', this.mousemove);
-    document.body.addEventListener('mouseup', this.mouseup);
   },
   computed: {
     height() {
