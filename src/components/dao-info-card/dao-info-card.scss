@@ -1,168 +1,168 @@
 @import '../dao-color.scss';
 .dao-infocard-container {
-    border-radius: 3px;
-    background-color: $white;
-    border: solid 1px #d6dbe3;
-    overflow: hidden;
-    &.size-small {
-        width: 300px;
-        .dao-infocard-main {
-            padding-bottom: 8px;
-            padding: 0 15px;
-            ul {
-                padding-top: 10px;
-                width: 270px;
-                .dao-key-value {
-                    list-style: none;
-                    display: flex;
-                    width: 270px;
-                    .key {
-                        width: 115px;
-                        padding: 6px 10px 6px 0;
-                        font-family: PingFangSC;
-                        font-size: 14px;
-                        line-height: 1;
-                        text-align: right;
-                        color: $grey-dark;
-                    }
-                    .value {
-                        width: 155px;
-                        padding: 2px 0px 5px 0;
-                        font-size: 14px;
-                        line-height: 1.71;
-                        text-align: left;
-                        color: #3d444f;
-                        word-wrap: break-word;
-                        .dot {
-                            display: inline-block;
-                            margin-bottom: 2px;
-                            width: 6px;
-                            height: 6px;
-                            border-radius: 50%; 
-                            &.dot{
-                               background-color: #25d473;
-                               border: solid 1px #22c36a; 
-                            }  
-                            &.close{
-                               background-color: #ccd1d9;
-                               border: solid 1px #ccd1d9; 
-                            }
-                        }
-                    }
-                }
+  border-radius: 3px;
+  background-color: $white;
+  border: solid 1px #d6dbe3;
+  overflow: hidden;
+  &.size-small {
+    width: 300px;
+    .dao-infocard-main {
+      padding-bottom: 8px;
+      padding: 0 15px;
+      ul {
+        padding-top: 10px;
+        width: 270px;
+        .dao-key-value {
+          list-style: none;
+          display: flex;
+          width: 270px;
+          .key {
+            width: 115px;
+            padding: 6px 10px 6px 0;
+            font-family: PingFangSC;
+            font-size: 14px;
+            line-height: 1;
+            text-align: right;
+            color: $grey-dark;
+          }
+          .value {
+            width: 155px;
+            padding: 2px 0px 5px 0;
+            font-size: 14px;
+            line-height: 1.71;
+            text-align: left;
+            color: #3d444f;
+            word-wrap: break-word;
+            .dot {
+              display: inline-block;
+              margin-bottom: 2px;
+              width: 6px;
+              height: 6px;
+              border-radius: 50%;
+              &.dot {
+                background-color: #25d473;
+                border: solid 1px #22c36a;
+              }
+              &.close {
+                background-color: #ccd1d9;
+                border: solid 1px #ccd1d9;
+              }
             }
-            &>ul+ul {
-                border-top: 1px solid $grey-light;
-            }
+          }
         }
+      }
+      &>ul+ul {
+        border-top: 1px solid $grey-light;
+      }
     }
-    &.size-big {
-        width: 610px;
-        .dao-infocard-main {
-            padding: 0 15px;
-            .dao-table-wrapper {
-                table {
-                    padding: 0 10px;
-                    thead {
-                        tr {
-                            th:nth-child(3) {
-                                flex: 0 0 80px;
-                            }
-                        }
-                    }
-                    tbody {
-                        tr {
-                            td:nth-child(3) {
-                                flex: 0 0 80px;
-                            }
-                        }
-                    }
-                }
+  }
+  &.size-big {
+    width: 610px;
+    .dao-infocard-main {
+      padding: 0 15px;
+      .dao-table-wrapper {
+        table {
+          padding: 0 10px;
+          thead {
+            tr {
+              th:nth-child(3) {
+                flex: 0 0 80px;
+              }
             }
+          }
+          tbody {
+            tr {
+              td:nth-child(3) {
+                flex: 0 0 80px;
+              }
+            }
+          }
         }
+      }
     }
+  }
 }
 
 .dao-card-header {
-    height: 30px;
-    background-color: #edf0f5;
-    cursor: pointer;
-    .icon {
-        vertical-align: top;
-        margin: 7px 2px 7px 8px;
-        fill:#9ba3af;
-    }
-    .title {
-        display: inline-block;
-        font-size: 13px;
-        line-height: 1.08;
-        color: $black-light;
-        padding: 8px 0;
-    }
+  height: 30px;
+  background-color: #edf0f5;
+  cursor: pointer;
+  .icon {
+    vertical-align: top;
+    margin: 7px 2px 7px 8px;
+    fill: #9ba3af;
+  }
+  .title {
+    display: inline-block;
+    font-size: 13px;
+    line-height: 1.08;
+    color: $black-light;
+    padding: 8px 0;
+  }
 }
-   
+
 .dao-infocard-main {
-    border-top: solid 1px #d5dbe3;
-    .dao-table-wrapper {
-        padding: 15px 0px;
-        table {
-            border-collapse: collapse;
-            border: solid 1px #d6dbe3;
-            width: 100%;
-            thead {
-                width: 100%;
-                border-bottom: solid 1px #d5dbe3;
-                tr {
-                    width: 100%;
-                    display: flex;
-                    height: 30px;
-                    background-color: #edf0f5;
-                    padding-left: 8px;
-                    th {
-                        flex: 1;
-                        font-size: 13px;
-                        line-height: 1.08;
-                        color: $black-light;
-                        padding: 8px 0 8px 0px;
-                        text-align: left;
-                        border-right: none;
-                    }
-                    th:nth-child(3) {
-                        flex:0 0 60px;
-                    }
-                    th:nth-child(4) {
-                        flex:0 0 50px;
-                    }
-                }
-            }
-            tbody {
-                width: 100%;
-                tr {
-                    width: 100%;
-                    display: flex;
-                    height: 30px;
-                    padding-left:8px;
-                    td {
-                        flex: 1;
-                        font-size: 13px;
-                        line-height: 1.08;
-                        padding: 8px 0 8px 0px;
-                        text-align: left;
-                    }
-                    &:nth-child(even) {
-                        background-color: #fff;
-                    }
-                    td:nth-child(3) {
-                        flex:0 0 60px;
-                    }
-                    td:nth-child(4) {
-                        flex:0 0 50px;
-                    }
-                }
-            }
+  border-top: solid 1px #d5dbe3;
+  .dao-table-wrapper {
+    padding: 15px 0px;
+    table {
+      border-collapse: collapse;
+      border: solid 1px #d6dbe3;
+      width: 100%;
+      thead {
+        width: 100%;
+        border-bottom: solid 1px #d5dbe3;
+        tr {
+          width: 100%;
+          display: flex;
+          height: 30px;
+          background-color: #edf0f5;
+          padding-left: 8px;
+          th {
+            flex: 1;
+            font-size: 13px;
+            line-height: 1.08;
+            color: $black-light;
+            padding: 8px 0 8px 0px;
+            text-align: left;
+            border-right: none;
+          }
+          th:nth-child(3) {
+            flex: 0 0 60px;
+          }
+          th:nth-child(4) {
+            flex: 0 0 50px;
+          }
         }
+      }
+      tbody {
+        width: 100%;
+        tr {
+          width: 100%;
+          display: flex;
+          height: 30px;
+          padding-left: 8px;
+          td {
+            flex: 1;
+            font-size: 13px;
+            line-height: 1.08;
+            padding: 8px 0 8px 0px;
+            text-align: left;
+          }
+          &:nth-child(even) {
+            background-color: #fff;
+          }
+          td:nth-child(3) {
+            flex: 0 0 60px;
+          }
+          td:nth-child(4) {
+            flex: 0 0 50px;
+          }
+        }
+      }
     }
-    ul+.dao-table-wrapper {
-        padding-top: 0px;
-    }
+  }
+  ul+.dao-table-wrapper {
+    padding-top: 0px;
+  }
 }
