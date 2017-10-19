@@ -7,17 +7,17 @@
         :key="index">
         {{ name }}
       </li>
-      <li class="dao-info-panel-nav-icon" @click="changeSize('large')" :class="{ active: activeSize === 'large' }">
+      <li class="dao-info-panel-nav-icon" @click="changeSize('l')" :class="{ active: activeSize === 'l' }">
         <span class="icon">
           <svg><use xlink:href="#icon_panel-size-large"></use></svg>
         </span> 
       </li>
-      <li class="dao-info-panel-nav-icon" @click="changeSize('medium')" :class="{ active: activeSize === 'medium' }">
+      <li class="dao-info-panel-nav-icon" @click="changeSize('m')" :class="{ active: activeSize === 'm' }">
         <span class="icon">
           <svg><use xlink:href="#icon_panel-size-medium"></use></svg>
         </span> 
       </li>
-      <li class="dao-info-panel-nav-icon" @click="changeSize('small')" :class="{ active: activeSize === 'small' }">
+      <li class="dao-info-panel-nav-icon" @click="changeSize('s')" :class="{ active: activeSize === 's' }">
         <span class="icon">
           <svg><use xlink:href="#icon_panel-size-small"></use></svg>
         </span> 

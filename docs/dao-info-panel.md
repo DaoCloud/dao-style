@@ -43,7 +43,7 @@
 
 参数名 | 类型 | 说明 | 默认值 | 是否必填
 -|-|-|-|-
-size | String | 设置 dao-info-panel 的默认高度，可选值['large', 'medium', 'small'] | medium | 否
+size | String | 设置 dao-info-panel 的默认高度，可选值['l', 'm', 's'] | m | 否
 minHeight | String | 设置 dao-info-panel 的最小高度，可填百分比或像素值，如 `30%` 及 `200px` | 0px | 否
 
 #### dao-info-panel 触发的事件

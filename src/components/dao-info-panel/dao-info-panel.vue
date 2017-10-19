@@ -11,9 +11,9 @@ export default {
   props: {
     size: {
       type: String,
-      default: 'medium',
+      default: 'm',
       validator(value) {
-        return ['large', 'medium', 'small'].includes(value);
+        return ['l', 'm', 's'].includes(value);
       },
     },
     minHeight: {
@@ -29,9 +29,9 @@ export default {
       tabList: [],
       activeName: '',
       sizes: {
-        large: 300,
-        medium: 200,
-        small: 100,
+        l: 300,
+        m: 200,
+        s: 100,
       },
       specSize: 0,
       userSize: '',

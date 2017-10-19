@@ -2,9 +2,9 @@
   <div>
       <div class="example example1">
         <div class="top-body">
-          <h1>size small</h1>
+          <h1>size s</h1>
         </div>
-        <dao-info-panel @changeTab="changeTab" size="small" class="bottom-body">
+        <dao-info-panel @changeTab="changeTab" size="s" class="bottom-body">
           <dao-info-panel-item heading="f1">
             <p>@p1</p>
           </dao-info-panel-item>
@@ -21,21 +21,21 @@
       </div>
       <div class="example example2">
         <div class="top-body">
-          <h1>size medium</h1>
-          <h1>size medium</h1>
-          <h1>size medium</h1>
-          <h1>size medium</h1>
-          <h1>size medium</h1>
-          <h1>size medium</h1>
-          <h1>size medium</h1>
-          <h1>size medium</h1>
-          <h1>size medium</h1>
-          <h1>size medium</h1>
-          <h1>size medium</h1>
-          <h1>size medium</h1>
-          <h1>size medium</h1>
+          <h1>size m</h1>
+          <h1>size m</h1>
+          <h1>size m</h1>
+          <h1>size m</h1>
+          <h1>size m</h1>
+          <h1>size m</h1>
+          <h1>size m</h1>
+          <h1>size m</h1>
+          <h1>size m</h1>
+          <h1>size m</h1>
+          <h1>size m</h1>
+          <h1>size m</h1>
+          <h1>size m</h1>
         </div>
-        <dao-info-panel @changeTab="changeTab" size="medium" class="bottom-body">
+        <dao-info-panel @changeTab="changeTab" size="m" class="bottom-body">
             <dao-info-panel-item heading="f1">
               <p>@p1</p>
             </dao-info-panel-item>
@@ -52,9 +52,9 @@
       </div>
       <div class="example example3">
         <div class="top-body">
-          <h1>size large</h1>
+          <h1>size l</h1>
         </div>
-        <dao-info-panel @changeTab="changeTab" size="large" minHeight="20%" class="bottom-body">
+        <dao-info-panel @changeTab="changeTab" size="l" minHeight="20%" class="bottom-body">
             <dao-info-panel-item heading="f1">
               <p>@p1</p>
             </dao-info-panel-item>
