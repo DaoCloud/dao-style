@@ -55,7 +55,7 @@ export default {
 
       this.touchMoving = true;
       this.touchY = e.pageY;
-      this.touchHeight = this.height;
+      this.touchHeight = this.$el.offsetHeight;
       this.parentHeight = parseInt(window.getComputedStyle(this.$el.parentNode).height, 10);
 
       document.body.addEventListener('mousemove', this.mousemove);

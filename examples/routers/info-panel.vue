@@ -4,26 +4,38 @@
         <div class="top-body">
           <h1>size small</h1>
         </div>
-        <div class="bottom-body">
-          <dao-info-panel @changeTab="changeTab" size="small">
-            <dao-info-panel-item heading="f1">
-              <p>@p1</p>
-            </dao-info-panel-item>
-            <dao-info-panel-item heading="f2">
-              <p>@p2</p>
-            </dao-info-panel-item>
-            <dao-info-panel-item heading="f3">
-              <iframe src="https://www.baidu.com/" frameborder="0" width="100%" height="500px"></iframe>
-            </dao-info-panel-item>
-            <dao-info-panel-item heading="f444444444444444">
-              <img src="https://img.moegirl.org/common/thumb/4/41/Nicky.jpg/250px-Nicky.jpg" alt="???">
-            </dao-info-panel-item>
-          </dao-info-panel>
-        </div>
+        <dao-info-panel @changeTab="changeTab" size="small" class="bottom-body">
+          <dao-info-panel-item heading="f1">
+            <p>@p1</p>
+          </dao-info-panel-item>
+          <dao-info-panel-item heading="f2">
+            <p>@p2</p>
+          </dao-info-panel-item>
+          <dao-info-panel-item heading="f3">
+            <iframe src="https://www.baidu.com/" frameborder="0" width="100%" height="500px"></iframe>
+          </dao-info-panel-item>
+          <dao-info-panel-item heading="f444444444444444">
+            <img src="https://img.moegirl.org/common/thumb/4/41/Nicky.jpg/250px-Nicky.jpg" alt="???">
+          </dao-info-panel-item>
+        </dao-info-panel>
       </div>
       <div class="example example2">
-        <h1>size medium</h1>
-        <dao-info-panel @changeTab="changeTab" size="medium">
+        <div class="top-body">
+          <h1>size medium</h1>
+          <h1>size medium</h1>
+          <h1>size medium</h1>
+          <h1>size medium</h1>
+          <h1>size medium</h1>
+          <h1>size medium</h1>
+          <h1>size medium</h1>
+          <h1>size medium</h1>
+          <h1>size medium</h1>
+          <h1>size medium</h1>
+          <h1>size medium</h1>
+          <h1>size medium</h1>
+          <h1>size medium</h1>
+        </div>
+        <dao-info-panel @changeTab="changeTab" size="medium" class="bottom-body">
             <dao-info-panel-item heading="f1">
               <p>@p1</p>
             </dao-info-panel-item>
@@ -39,8 +51,10 @@
         </dao-info-panel>
       </div>
       <div class="example example3">
-        <h1>size large</h1>
-        <dao-info-panel @changeTab="changeTab" size="large">
+        <div class="top-body">
+          <h1>size large</h1>
+        </div>
+        <dao-info-panel @changeTab="changeTab" size="large" class="bottom-body">
             <dao-info-panel-item heading="f1">
               <p>@p1</p>
             </dao-info-panel-item>
@@ -78,9 +92,19 @@ export default {
     .example {
         width: 100%;
         height: 500px;
-        position: relative;
         border: 1px solid #eee;
         margin: 20px 0;
+        display: flex;
+        flex-direction: column;
+
+      .top-body {
+        flex: 1 1 auto;
+        overflow: auto;
+      }
+
+      .bottom-body {
+        flex: 0 0 auto;
+      }
     }
 
     .example1 {
@@ -88,7 +112,8 @@ export default {
       flex-direction: column;
 
       .top-body {
-        flex: 1 auto;
+        flex: 1 1 auto;
+        overflow: auto;
       }
 
       .bottom-body {
