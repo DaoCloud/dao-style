@@ -49,6 +49,10 @@ export default {
       this.specSize = 0;
     },
     mousedown(e) {
+      if (e.target.nodeName.toUpperCase() === 'SVG' ||
+        e.target.nodeName.toUpperCase() === 'USE' ||
+        e.target.className.indexOf('info-panel-header') === -1) return;
+
       this.touchMoving = true;
       this.touchY = e.pageY;
       this.touchHeight = this.height;
