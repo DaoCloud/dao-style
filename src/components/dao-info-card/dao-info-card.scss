@@ -125,6 +125,9 @@
                         text-align: left;
                         border-right: none;
                     }
+                    th:nth-child(3) {
+                        flex:0 0 60px;
+                    }
                     th:nth-child(4) {
                         flex:0 0 50px;
                     }
@@ -146,6 +149,9 @@
                     }
                     &:nth-child(even) {
                         background-color: #fff;
+                    }
+                    td:nth-child(3) {
+                        flex:0 0 60px;
                     }
                     td:nth-child(4) {
                         flex:0 0 50px;
