@@ -6,7 +6,6 @@
     <span class="drag-item" 
       v-for="item in items"
       :key="item.context"
-      v-html="item.context"
       :value="item"
       :draggable="!item.disabled && !disabled"
       :class="[item.class, item.extraClass, 'dao-draggable-item']"
@@ -14,6 +13,9 @@
       @dragstart="handleDragStart(item, $event)"
       @dragenter.self="handleDragEnter(item, $event)"
       @dragend="handleDragEnd(item, $event)">
+      <slot :name="item.key">
+        <span v-html="item.context"></span>
+      </slot>
     </span>
     </transition-group>
   </div>

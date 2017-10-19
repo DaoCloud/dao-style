@@ -121,151 +121,78 @@ table.dao-list {
   border-collapse: collapse;
 
   overflow: auto;
-}
-thead {
-  // 注意 thead 的 tr 下面有一个 border，这 1px 的 border 不在 30px 中
-  height: $tr-height + 1;
+  thead {
+    // 注意 thead 的 tr 下面有一个 border，这 1px 的 border 不在 30px 中
+    height: $tr-height + 1;
+    
+    border-bottom: 1px solid $inner-border;
+    background: $white-light;
+  }
   
-  border-bottom: 1px solid $inner-border;
-  background: $white-light;
-}
-
-tr {
-  height: 30px;
-  color: $black-dark;
-  .dropdown-trigger {
-    cursor: pointer;
-    fill: transparent;
-  }
-  &:nth-child(even) {
-    background: $zebra-bg;
-  }
-  &.checked {
-    color: white;
-    background-color: $selected-bg;
+  tr {
+    height: 30px;
+    color: $black-dark;
     .dropdown-trigger {
-      fill: white !important;
+      cursor: pointer;
+      fill: transparent;
+    }
+    &:nth-child(even) {
+      background: $zebra-bg;
+    }
+    &.checked {
+      color: white;
+      background-color: $selected-bg;
+      svg {
+        fill: white;
+      }
+    }
+    &:hover {
+      .dropdown-trigger {
+        fill: $grey-dark;
+      }
     }
   }
-  &:hover {
-    .dropdown-trigger {
+  
+  th, td {
+    padding: 0 10px;
+  
+    font-size: $font-size;
+    font-weight: normal;
+    line-height: $tr-height;
+    white-space: nowrap;
+    text-align: left;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    &.checkbox {
+      width: $td-checkbox-width;
+      input {
+        vertical-align: text-bottom;
+      }
+      svg {
+        fill: $black-dark;
+      }
+    }
+    &.operation {
+      width: 36px;
+    }
+  }
+  
+  th {
+    position: relative;
+    border-right: 1px solid $inner-border;
+    cursor: pointer;
+    .sort-arrow {
+      position: absolute;
+      right: 10px;
+      top: 7px;
       fill: $grey-dark;
     }
-  }
-}
-
-th, td {
-  padding: 0 10px;
-
-  font-size: $font-size;
-  font-weight: normal;
-  line-height: $tr-height;
-  white-space: nowrap;
-  text-align: left;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  &.checkbox {
-    width: $td-checkbox-width;
-    input {
-      vertical-align: text-bottom;
+    &:last-child {
+      border-right: none;
     }
-    svg {
-      fill: $black-dark;
+    &:active {
+      background: $white-dark;
     }
-  }
-  &.operation {
-    width: 36px;
-  }
-}
-
-th {
-  position: relative;
-  border-right: 1px solid $inner-border;
-  cursor: pointer;
-  .sort-arrow {
-    position: absolute;
-    right: 10px;
-    top: 7px;
-    fill: $grey-dark;
-  }
-  &:last-child {
-    border-right: none;
-  }
-  &:active {
-    background: $white-dark;
-  }
-}
-table.dao-list {
-  position: relative;
-  height: 100%;
-  width: 100%;
-
-  border-collapse: collapse;
-
-  overflow: auto;
-}
-thead {
-  // 注意 thead 的 tr 下面有一个 border，这 1px 的 border 不在 30px 中
-  height: $tr-height + 1;
-  
-  border-bottom: 1px solid $inner-border;
-  background: $white-light;
-}
-
-tbody {
-}
-
-tr {
-  height: 30px;
-  color: $black-dark;
-  &:nth-child(even) {
-    background: $zebra-bg;
-  }
-  &.checked {
-    color: white;
-    background-color: $selected-bg;
-  }
-}
-
-th, td {
-  padding: 0 10px;
-
-  font-size: $font-size;
-  font-weight: normal;
-  line-height: $tr-height;
-  white-space: nowrap;
-  text-align: left;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  &.checkbox {
-    width: $td-checkbox-width;
-    input {
-      vertical-align: text-bottom;
-    }
-    svg {
-      fill: $black-dark;
-    }
-  }
-  &.operation {
-    width: 36px;
-  }
-}
-
-th {
-  position: relative;
-  border-right: 1px solid $inner-border;
-  cursor: pointer;
-  .sort-arrow {
-    position: absolute;
-    right: 10px;
-    top: 7px;
-    fill: $grey-dark;
-  }
-  &:last-child {
-    border-right: none;
-  }
-  &:active {
-    background: $white-dark;
   }
 }
 
