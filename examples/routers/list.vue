@@ -159,6 +159,7 @@
             },
             {
               groupName: '资源',
+              single: true,
               operations: [
                 {
                   name: '网络',
