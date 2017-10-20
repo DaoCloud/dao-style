@@ -50,7 +50,7 @@ minHeight | String | 设置 dao-info-panel 的最小高度，可填百分比或�
 
 参数名 | 类型 | 说明 | 默认值 | 是否必填
 -|-|-|-|-
-changeTab | Function | dao-info-panel 的标签切换时的触发的回调  | - | 否
+changeTab | Function | dao-info-panel 的标签切换时的触发的回调  | - | 否
 
 ### dao-info-panel-item
 
