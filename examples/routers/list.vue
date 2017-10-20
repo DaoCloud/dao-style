@@ -5,6 +5,7 @@
       :rows="rows"
       :config="config"
       @refresh="onRefresh"
+      @checked-rows-change="onCheckedRowsChange"
       @create-service="onCreateService"
       @remove-service="onRemoveService"
       @pause-service="onPauseService"></dao-list>
@@ -176,6 +177,9 @@
     methods: {
       onRefresh() {
         console.log('更新');
+      },
+      onCheckedRowsChange(rows) {
+        console.log('选中的行改变', rows);
       },
       onCreateService() {
         console.log('创建容器');
