@@ -86,7 +86,8 @@
       :visible.sync="isSettingsDialogVisible"
       @confirm="onSettingsDialogConfirm"
       :columnsOrder="columnsOrder"
-      :columns="columns">
+      :columns="columns"
+      :timeFormat="timeFormat">
     </dao-list-settings-dialog>
     <!-- 自定义工具栏弹窗 -->
     <dao-list-custom-toolbar-dialog
@@ -190,6 +191,11 @@
                 :color="r[c].other.color"
                 :text="r[c].text">
               </status-td>
+              <time-td :key="c"
+                v-if="r[c].type === 'time'"
+                :timeFormat="timeFormat"
+                :timeStamp="r[c].value">
+              </time-td>
               <custom-td v-if="r[c].type === 'custom'"
                 :style="`width: ${columnsWidth[c]}`"
                 :renderFunc="r[c].render"
@@ -205,5 +211,4 @@
       列表为空
     </div>
   </div>
-
 </div>

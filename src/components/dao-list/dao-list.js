@@ -3,6 +3,7 @@ import DaoListTh from './th.vue';
 import FilterInput from './filter-input.vue';
 import GoToTd from './td/goto-td.vue';
 import StatusTd from './td/status-td.vue';
+import TimeTd from './td/time-td.vue';
 import CustomTd from './td/custom-td';
 import OperationTd from './td/operation-td.vue';
 import CheckAll from './check-all.vue';
@@ -15,6 +16,7 @@ export default {
     FilterInput,
     GoToTd,
     StatusTd,
+    TimeTd,
     CustomTd,
     OperationTd,
     CheckAll,
@@ -29,18 +31,20 @@ export default {
     let columnsWidth = {};
     let columnsOrder = [];
     let toolbarOperations = [];
+    let timeFormat = '';
     if (localStorageSettings) {
       columnsWidth = localStorageSettings.columnsWidth;
       columnsOrder = localStorageSettings.columnsOrder;
       toolbarOperations = localStorageSettings.toolbarOperations;
+      timeFormat = localStorageSettings.timeFormat;
     } else {
       _.forEach(this.columns, (c) => {
         columnsWidth[c.name] = 'auto';
       });
       columnsOrder = null;
       toolbarOperations = null;
+      timeFormat = null;
     }
-
     return {
       page: 0,
       checkedRows: [],
@@ -58,6 +62,7 @@ export default {
       settings: {
         columnsOrder,
         toolbarOperations,
+        timeFormat,
       },
       isSettingsDialogVisible: false,
       isCustomToolbarDialogVisible: false,
@@ -85,6 +90,9 @@ export default {
     },
     toolbarOperations() {
       return this.settings.operations || this.config.operations;
+    },
+    timeFormat() {
+      return this.settings.timeFormat || this.config.timeFormat;
     },
     filteredRows() {
       const filteredRows = _.filter(this.rows, (r) => {
@@ -316,6 +324,7 @@ export default {
     },
     onSettingsDialogConfirm(settings) {
       this.settings.columnsOrder = _.map(_.filter(settings.columnsOrder, 'visible'), 'name');
+      this.settings.timeFormat = settings.timeFormat;
       this.saveLocalStorageSettings();
     },
     openCustomToolbarDialog() {
@@ -333,6 +342,7 @@ export default {
       const settings = {
         columnsWidth: this.columnsWidth,
         columnsOrder: this.settings.columnsOrder,
+        timeFormat: this.settings.timeFormat,
       };
       const json = JSON.stringify(settings);
       localStorage.setItem(`${this.tableId}Settings`, json);
@@ -350,6 +360,12 @@ export default {
     },
     checkedRows() {
       this.$emit('checked-rows-change', this.checkedRows);
+    },
+    sortingConfig: {
+      handler() {
+        this.clear();
+      },
+      deep: true,
     },
   },
 };

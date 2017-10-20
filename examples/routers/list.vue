@@ -14,6 +14,8 @@
 <script>
   import _ from 'lodash';
 
+  const nowTime = (new Date()).getTime();
+
   export default {
     data() {
       return {
@@ -106,9 +108,8 @@
               value: 0.5,
             },
             creationTime: {
-              text: '2017-09-23',
-              type: 'text',
-              value: 115454154878,
+              type: 'time',
+              value: nowTime - ((1.23 ** (Math.random() * 100)) * 1000),
             },
             sin: {
               type: 'filter',
