@@ -6,7 +6,7 @@
           </use>
         </svg>
         <div class="title">
-          <slot name="title"></slot>
+          <slot name="title" class="title"></slot>
         </div>
     </div>
     <template v-if="isShow">

@@ -10,29 +10,33 @@
       padding-bottom: 8px;
       padding: 0 15px;
       ul {
-        padding-top: 10px;
+        padding: 10px 0;
         width: 270px;
         .dao-key-value {
           list-style: none;
           display: flex;
           width: 270px;
           .key {
+            line-height: 26px;
             width: 115px;
-            padding: 6px 10px 6px 0;
-            font-family: PingFangSC;
+            padding-right: 10px;
             font-size: 14px;
-            line-height: 1;
             text-align: right;
             color: $grey-dark;
           }
           .value {
             width: 155px;
-            padding: 2px 0px 5px 0;
+            min-height: 26px;
+            line-height: 26px;
             font-size: 14px;
-            line-height: 1.71;
             text-align: left;
             color: #3d444f;
-            word-wrap: break-word;
+            span {
+              word-wrap: break-word;
+              word-break: normal;
+              display: inline-block;
+              width: 145px;
+            }
             .dot {
               display: inline-block;
               margin-bottom: 2px;
@@ -61,29 +65,34 @@
     .dao-infocard-main {
       padding: 0 15px;
       ul {
-        padding-top: 10px;
-        width: 270px;
+        padding: 10px 0;
         .dao-key-value {
           list-style: none;
           display: flex;
-          width: 570px;
+          width: 580px;
           .key {
             width: 260px;
-            padding: 6px 10px 6px 0;
-            font-family: PingFangSC;
+            height: 26px;
+            line-height: 26px;
+            padding-right: 10px;
             font-size: 14px;
-            line-height: 1;
             text-align: right;
             color: $grey-dark;
           }
           .value {
-            width: 310px;
-            padding: 2px 0px 5px 0;
+            width: 320px;
+            min-height: 26px;
+            line-height: 26px;
             font-size: 14px;
-            line-height: 1.71;
             text-align: left;
             color: #3d444f;
             word-wrap: break-word;
+            span {
+              word-wrap: break-word;
+              word-break: normal;
+              display: inline-block;
+              width: 310px;
+            }
             .dot {
               display: inline-block;
               margin-bottom: 2px;
@@ -126,21 +135,24 @@
 }
 
 .dao-card-header {
-  height: 30px;
+  box-sizing: border-box;
+  height: 28px;
   background-color: #edf0f5;
   cursor: pointer;
-  user-select:none;
+  user-select: none;
   .icon {
     vertical-align: top;
-    margin: 7px 2px 7px 8px;
+    margin: 7px 0px 5px 7px;
     fill: #9ba3af;
+    width:16px;
   }
   .title {
     display: inline-block;
-    font-size: 13px;
-    line-height: 1.08;
+    font-size: 14px;
+    line-height: 14px;
     color: $black-light;
-    padding: 8px 0;
+    height: 28px;
+    line-height: 28px;
   }
 }
 
@@ -162,13 +174,14 @@
           background-color: #edf0f5;
           padding-left: 8px;
           th {
+            height: 30px;
+            line-height: 30px;
             flex: 1;
-            font-size: 13px;
-            line-height: 1.08;
+            font-size: 14px;
             color: $black-light;
-            padding: 8px 0 8px 0px;
             text-align: left;
             border-right: none;
+            font-weight: normal;
           }
           th:nth-child(3) {
             flex: 0 0 60px;
@@ -187,10 +200,10 @@
           padding-left: 8px;
           td {
             flex: 1;
-            font-size: 13px;
-            line-height: 1.08;
+            font-size: 14px;
             padding: 8px 0 8px 0px;
             text-align: left;
+            color: $black-dark;
           }
           &:nth-child(even) {
             background-color: #fff;
@@ -207,5 +220,6 @@
   }
   ul+.dao-table-wrapper {
     padding-top: 0px;
+    margin-top: -5px;
   }
 }
