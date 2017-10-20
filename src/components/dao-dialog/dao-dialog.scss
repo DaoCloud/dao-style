@@ -83,21 +83,15 @@ $resizeSvg: "data:image/svg+xml;utf8,%3Csvg%20xmlns=%27http://www.w3.org/2000/sv
 }
 
 .dao-dialog-wrapper {
-  &[size='sm'] {
-    .dao-dialog-container {
-      height: 200px;
-    }
+  &[size='sm'] > .dao-dialog-container {
+    height: 200px;
   }
-  &[size='md'] {
-    .dao-dialog-container {
-      height: 400px;
-    }
+  &[size='md'] > .dao-dialog-container {
+    height: 400px;
   }
-  &[size='lg'] {
-    .dao-dialog-container {
-      width: 900px;
-      height: 600px;
-    }
+  &[size='lg'] > .dao-dialog-container {
+    width: 900px;
+    height: 600px;
   }
 
   &[size='resize'] {
