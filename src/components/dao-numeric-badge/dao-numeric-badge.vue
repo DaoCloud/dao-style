@@ -1,4 +1,4 @@
- <template>
+<template>
   <div class="dao-numeric-badge" :class="{ ghost: ghost }">
     <slot></slot>
   </div>
