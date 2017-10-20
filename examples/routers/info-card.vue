@@ -1,20 +1,58 @@
 <template>
 <div>
-  <dao-info-card size="small" title="TEXT" type="a" :datavalue="keyvalue"></dao-info-card>
+  <dao-info-card size="small" type="a" :datavalue="keyvalue">
+    <div slot="title">
+      TEXT
+    </div>
+  </dao-info-card>
   <br>
-  <dao-info-card size="small" title="TEXT" type="a" :datavalue="keyvalue1"></dao-info-card>
+  <dao-info-card size="small"  type="a" :datavalue="keyvalue1">
+    <div slot="title">
+      TEXT
+    </div>
+  </dao-info-card>
   <br>
-  <dao-info-card size="small" title="TEXT" type="a" :datavalue="keyvalue2" :config="config[0]"></dao-info-card>
+  <dao-info-card size="small"  type="a" :datavalue="keyvalue2" :config="config[0]">
+    <div slot="title">
+      TEXT
+    </div>
+  </dao-info-card>
   <br>
-  <dao-info-card size="small" title="TEXT" type="b" :datavalue="tablevalue"></dao-info-card>
+  <dao-info-card size="small"  type="b" :datavalue="tablevalue">
+    <div slot="title">
+      TEXT
+    </div>
+  </dao-info-card>
   <br>
-  <dao-info-card size="small" title="TEXT" type="b" :datavalue="tablevalue4"></dao-info-card>
+  <dao-info-card size="small"  type="b" :datavalue="tablevalue4">
+    <div slot="title">
+      TEXT
+    </div>
+  </dao-info-card>
   <br>
-  <dao-info-card size="small" title="TEXT" type="b" :datavalue="tablevalue1"></dao-info-card>
+  <dao-info-card size="small"  type="b" :datavalue="tablevalue1">
+    <div slot="title">
+      TEXT
+    </div>
+  </dao-info-card>
   <br>
-  <dao-info-card size="big" title="TEXT" type="b" :datavalue="tablevalue2"></dao-info-card>
+  <dao-info-card size="big"  type="b" :datavalue="tablevalue2">
+    <div slot="title">
+      TEXT
+    </div>
+  </dao-info-card>
   <br>
-  <dao-info-card size="small" title="TEXT" type="c" :datavalue="tablevalue3" :config="config[1]"></dao-info-card>
+  <dao-info-card size="small"  type="c" :datavalue="tablevalue3" :config="config[1]">
+    <div slot="title">
+      TEXT
+    </div>
+  </dao-info-card>
+  <br>
+  <dao-info-card size="big"  type="c" :datavalue="tablevalue3" :config="config[1]">
+    <div slot="title">
+      TEXT
+    </div>
+  </dao-info-card>
 </div>
 </template>
 <script>

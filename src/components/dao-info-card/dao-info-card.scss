@@ -60,6 +60,48 @@
     width: 610px;
     .dao-infocard-main {
       padding: 0 15px;
+      ul {
+        padding-top: 10px;
+        width: 270px;
+        .dao-key-value {
+          list-style: none;
+          display: flex;
+          width: 570px;
+          .key {
+            width: 260px;
+            padding: 6px 10px 6px 0;
+            font-family: PingFangSC;
+            font-size: 14px;
+            line-height: 1;
+            text-align: right;
+            color: $grey-dark;
+          }
+          .value {
+            width: 310px;
+            padding: 2px 0px 5px 0;
+            font-size: 14px;
+            line-height: 1.71;
+            text-align: left;
+            color: #3d444f;
+            word-wrap: break-word;
+            .dot {
+              display: inline-block;
+              margin-bottom: 2px;
+              width: 6px;
+              height: 6px;
+              border-radius: 50%;
+              &.dot {
+                background-color: #25d473;
+                border: solid 1px #22c36a;
+              }
+              &.close {
+                background-color: #ccd1d9;
+                border: solid 1px #ccd1d9;
+              }
+            }
+          }
+        }
+      }
       .dao-table-wrapper {
         table {
           padding: 0 10px;
@@ -87,6 +129,7 @@
   height: 30px;
   background-color: #edf0f5;
   cursor: pointer;
+  user-select:none;
   .icon {
     vertical-align: top;
     margin: 7px 2px 7px 8px;

@@ -20,17 +20,29 @@ info-card 将以表格形式展示
 
 代码：
 small 表格
-<dao-info-card size="small" title="TEXT" type="b" :datavalue="tablevalue"></dao-info-card>
+<dao-info-card size="small"  type="b" :datavalue="tablevalue">
+  <div slot="title">
+      TEXT
+  </div>
+</dao-info-card>
 
 代码：
 big 表格
-<dao-info-card size="big" title="TEXT" type="b" :datavalue="tablevalue"></dao-info-card>
+<dao-info-card size="big"  type="b" :datavalue="tablevalue">
+  <div slot="title">
+      TEXT
+  </div>
+</dao-info-card>
 
 ### 模式 c
 
 info-card 将以键值对和表格的混合形式展示
 
-<dao-info-card size="small" title="TEXT" type="c" :datavalue="tablevalue3"></dao-info-card>
+<dao-info-card size="small" title="TEXT" type="c" :datavalue="tablevalue3">
+  <div slot="title">
+      TEXT
+  </div>
+</dao-info-card>
 
 
 
@@ -40,6 +52,3 @@ info-card 将以键值对和表格的混合形式展示
 
 只有2种选项 small 和 big, small 将以300px的大小展示，big 将以610px的大小展示
 
-### title
-
-title 选项是用来配置你 info-card 的标题，可以随意填值 ,例如 TEXT,文本 

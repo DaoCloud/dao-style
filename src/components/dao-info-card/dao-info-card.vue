@@ -6,13 +6,13 @@
           </use>
         </svg>
         <div class="title">
-        {{title}}
+          <slot name="title"></slot>
         </div>
     </div>
     <template v-if="isShow">
       <div class="dao-infocard-main"  v-if="type==='a'">
         <ul v-for="values in datavalue">
-          <li class="dao-key-value" v-for="(value,key,index) in values">
+          <li class="dao-key-value" v-for="(value,key,index) in values" :key="index">
             <div class="key">{{key}}:</div>
             <div class="value">
               <span v-show="config.openDot && config.openDotIndex==index" class="dot open"></span>
@@ -40,7 +40,7 @@
       </div>
       <div class="dao-infocard-main" v-else-if="type==='c'">
         <ul v-for="values in datavalue.keyvalue">
-          <li class="dao-key-value" v-for="(value,key,index) in values">
+          <li class="dao-key-value" v-for="(value,key,index) in values" :key="index">
             <div class="key">{{key}}:</div>
             <div class="value">
               <span v-show="config.openDot && config.openDotIndex==index" class="dot open"></span>
@@ -58,7 +58,7 @@
             </thead>
             <tbody>
               <tr v-for="item in datavalue.body">
-                <td v-for="(value,index) in item">
+                <td v-for="(value,index) in item" :key="index">
                   <span>{{value}}</span>
                 </td>
               </tr>
