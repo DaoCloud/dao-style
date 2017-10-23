@@ -4,7 +4,7 @@
   background-color: $white;
   border: solid 1px #d6dbe3;
   overflow: hidden;
-  &.size-small {
+  &.size-sm {
     width: 300px;
     .dao-infocard-main {
       padding-bottom: 8px;
@@ -60,7 +60,7 @@
       }
     }
   }
-  &.size-big {
+  &.size-lg {
     width: 610px;
     .dao-infocard-main {
       padding: 0 15px;

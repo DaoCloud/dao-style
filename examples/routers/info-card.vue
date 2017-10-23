@@ -1,54 +1,54 @@
 <template>
 <div>
-  <dao-info-card size="small" :keyValue="keyvalue">
+  <dao-info-card size="sm" :keyValue="keyvalue">
     <div slot="title">
       TEXT
     </div>
   </dao-info-card>
   <br>
-  <dao-info-card size="small"  :keyValue="keyvalue1">
+  <dao-info-card size="sm"  :keyValue="keyvalue1">
     <div slot="title">
       TEXT
     </div>
   </dao-info-card>
   <br>
-  <dao-info-card size="small"  :keyValue="keyvalue2" :config="config[0]">
+  <dao-info-card size="sm"  :keyValue="keyvalue2" :config="config[0]">
     <div slot="title">
       TEXT
     </div>
   </dao-info-card>
   <br>
-  <dao-info-card size="small"  :tableValue="tablevalue">
+  <dao-info-card size="sm"  :tableValue="tablevalue">
     <div slot="title">
       TEXT
     </div>
   </dao-info-card>
   <br>
-  <dao-info-card size="small" :tableValue="tablevalue1">
+  <dao-info-card size="sm" :tableValue="tablevalue1">
     <div slot="title">
       TEXT
     </div>
   </dao-info-card>
   <br>
-  <dao-info-card size="big"  :tableValue="tablevalue2">
+  <dao-info-card size="lg"  :tableValue="tablevalue2">
     <div slot="title">
       TEXT
     </div>
   </dao-info-card>
   <br>
-  <dao-info-card size="small"  :tableValue="tablevalue3" :keyValue="keyvalue3" :config="config[1]">
+  <dao-info-card size="sm"  :tableValue="tablevalue3" :keyValue="keyvalue3" :config="config[1]">
     <div slot="title">
       TEXT
     </div>
   </dao-info-card>
   <br>
-  <dao-info-card size="small"   :tableValue="tablevalue4">
+  <dao-info-card size="sm"   :tableValue="tablevalue4">
     <div slot="title">
       TEXT
     </div>
   </dao-info-card>
   <br>
-  <dao-info-card size="big"   :tableValue="tablevalue3" >
+  <dao-info-card size="lg"   :tableValue="tablevalue3" :keyValue="keyvalue3" :config="config[1]">
     <div slot="title">
       TEXT
     </div>
@@ -67,8 +67,6 @@ export default {
       }, {
         openDot: true,
         openDotIndex: 0,
-        closeDot: false,
-        closeDotIndex: 0,
       }],
       keyvalue: [{
         DNS服务器: '8.8.8.8',
