@@ -31,19 +31,13 @@
             font-size: 14px;
             text-align: left;
             color: $black-dark;
-            span {
-              word-wrap: break-word;
-              word-break: normal;
-              display: inline-block;
-              width: 145px;
-            }
             .dot {
               display: inline-block;
               margin-bottom: 2px;
               width: 6px;
               height: 6px;
               border-radius: 50%;
-              &.dot {
+              &.open {
                 background-color: $green;
                 border: solid 1px $green;
               }
@@ -51,6 +45,12 @@
                 background-color: $grey-light;
                 border: solid 1px $grey-light;
               }
+            }
+            span {
+              word-wrap: break-word;
+              word-break: normal;
+              display: inline-block;
+              width:145px;
             }
           }
         }
@@ -99,12 +99,12 @@
               height: 6px;
               border-radius: 50%;
               &.dot {
-                background-color: #25d473;
-                border: solid 1px #22c36a;
+                background-color: $green;
+                border: solid 1px $green;
               }
               &.close {
-                background-color: #ccd1d9;
-                border: solid 1px #ccd1d9;
+                background-color: $grey-light;
+                border: solid 1px $grey-light;
               }
             }
           }
@@ -142,7 +142,7 @@
   .icon {
     vertical-align: top;
     margin: 7px 0px 5px 7px;
-    fill: #9ba3af;
+    fill: $grey-dark;
     width:16px;
   }
   .title {
