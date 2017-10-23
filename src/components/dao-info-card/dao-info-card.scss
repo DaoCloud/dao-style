@@ -50,7 +50,10 @@
               word-wrap: break-word;
               word-break: normal;
               display: inline-block;
-              width:145px;
+              width:155px;
+            }
+            .dot+span{
+              width: 145px;
             }
           }
         }
@@ -86,12 +89,6 @@
             font-size: 14px;
             text-align: left;
             color: $black-dark;
-            span {
-              word-wrap: break-word;
-              word-break: normal;
-              display: inline-block;
-              width: 310px;
-            }
             .dot {
               display: inline-block;
               margin-bottom: 2px;
@@ -106,6 +103,15 @@
                 background-color: $grey-light;
                 border: solid 1px $grey-light;
               }
+            }
+            span {
+              word-wrap: break-word;
+              word-break: normal;
+              display: inline-block;
+              width: 320px;
+            }
+            .dot+span{
+              width: 310px;
             }
           }
         }
