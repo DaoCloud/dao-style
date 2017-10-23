@@ -5,43 +5,39 @@ info-card 是一个将信息以键值对或者以表格形式呈现的组件。�
 
 ## 使用方法
 
-这个组件一共有三种模式 a,b,c
+这个组件一共有2种模式, keyValue和tableValue
 
-### 模式 a
+### 传参 keyValue
 
 info-card 将以键值对形式展示
 
 代码：
-<dao-info-card size="small" title="TEXT" type="a" :datavalue="keyvalue"></dao-info-card>
+<dao-info-card size="small" :keyValue="keyvalue">
+    <div slot="title">
+      TEXT
+    </div>
+</dao-info-card>
 
-### 模式 b
+### 传参tableValue
 
 info-card 将以表格形式展示
 
 代码：
-small 表格
-<dao-info-card size="small"  type="b" :datavalue="tablevalue">
-  <div slot="title">
+<dao-info-card size="small" :tableValue="tablevalue1">
+    <div slot="title">
       TEXT
-  </div>
+    </div>
 </dao-info-card>
 
-代码：
-big 表格
-<dao-info-card size="big"  type="b" :datavalue="tablevalue">
-  <div slot="title">
-      TEXT
-  </div>
-</dao-info-card>
-
-### 模式 c
+### 传参 keyValue 和 tableValue
 
 info-card 将以键值对和表格的混合形式展示
 
-<dao-info-card size="small" title="TEXT" type="c" :datavalue="tablevalue3">
-  <div slot="title">
+代码：
+<dao-info-card size="small"  :tableValue="tablevalue3" :keyValue="keyvalue3" :config="config[1]">
+    <div slot="title">
       TEXT
-  </div>
+    </div>
 </dao-info-card>
 
 
@@ -51,4 +47,8 @@ info-card 将以键值对和表格的混合形式展示
 ### size
 
 只有2种选项 small 和 big, small 将以300px的大小展示，big 将以610px的大小展示
+
+### config
+
+通过这个可以配置是否有小圆点
 

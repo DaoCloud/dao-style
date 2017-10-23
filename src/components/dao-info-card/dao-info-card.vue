@@ -10,8 +10,8 @@
         </div>
     </div>
     <template v-if="isShow">
-      <div class="dao-infocard-main"  v-if="type==='a'">
-        <ul v-for="values in datavalue">
+      <div class="dao-infocard-main" >
+        <ul v-for="values in keyValue" v-if="keyValue.length>0">
           <li class="dao-key-value" v-for="(value,key,index) in values" :key="index">
             <div class="key">{{key}}:</div>
             <div class="value">
@@ -21,46 +21,16 @@
             </div>
           </li>    
         </ul>
-      </div>
-      <div class="dao-infocard-main"  v-else-if="type==='b'">
-        <div class="dao-table-wrapper">
+        <div class="dao-table-wrapper" v-if="tableValue!=null">
           <table>
             <thead>
               <tr>
-                <th v-for=" attr in datavalue.header" >{{attr}}</th>
+                <th v-for=" attr in tableValue.header" >{{attr}}</th>
               </tr>
             </thead>
             <tbody>
-              <tr v-for="item in datavalue.body">
+              <tr v-for="item in tableValue.body">
                 <td v-for="value in item">{{value}}</td>
-              </tr>
-            </tbody>  
-          </table>
-        </div>
-      </div>
-      <div class="dao-infocard-main" v-else-if="type==='c'">
-        <ul v-for="values in datavalue.keyvalue">
-          <li class="dao-key-value" v-for="(value,key,index) in values" :key="index">
-            <div class="key">{{key}}:</div>
-            <div class="value">
-              <span v-show="config.openDot && config.openDotIndex==index" class="dot open"></span>
-              <span v-show="config.closeDot && config.closeDotIndex==index" class="dot close"></span>
-              <span>{{value}}</span>
-            </div>
-          </li>    
-        </ul>
-        <div class="dao-table-wrapper">
-          <table>
-            <thead>
-              <tr>
-                <th v-for=" attr in datavalue.header" >{{attr}}</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr v-for="item in datavalue.body">
-                <td v-for="(value,index) in item" :key="index">
-                  <span>{{value}}</span>
-                </td>
               </tr>
             </tbody>  
           </table>
@@ -85,10 +55,17 @@
       type: {
         type: String,
       },
-      title: {
-        type: String,
+      tableValue: {
+        type: Object,
+        default() {
+          return null;
+        },
       },
-      datavalue: {
+      keyValue: {
+        type: Array,
+        default() {
+          return [];
+        },
       },
       config: {
         type: Object,

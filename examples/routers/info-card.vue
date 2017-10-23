@@ -1,54 +1,54 @@
 <template>
 <div>
-  <dao-info-card size="small" type="a" :datavalue="keyvalue">
+  <dao-info-card size="small" :keyValue="keyvalue">
     <div slot="title">
       TEXT
     </div>
   </dao-info-card>
   <br>
-  <dao-info-card size="small"  type="a" :datavalue="keyvalue1">
+  <dao-info-card size="small"  :keyValue="keyvalue1">
     <div slot="title">
       TEXT
     </div>
   </dao-info-card>
   <br>
-  <dao-info-card size="small"  type="a" :datavalue="keyvalue2" :config="config[0]">
+  <dao-info-card size="small"  :keyValue="keyvalue2" :config="config[0]">
     <div slot="title">
       TEXT
     </div>
   </dao-info-card>
   <br>
-  <dao-info-card size="small"  type="b" :datavalue="tablevalue">
+  <dao-info-card size="small"  :tableValue="tablevalue">
     <div slot="title">
       TEXT
     </div>
   </dao-info-card>
   <br>
-  <dao-info-card size="small"  type="b" :datavalue="tablevalue4">
+  <dao-info-card size="small" :tableValue="tablevalue1">
     <div slot="title">
       TEXT
     </div>
   </dao-info-card>
   <br>
-  <dao-info-card size="small"  type="b" :datavalue="tablevalue1">
+  <dao-info-card size="big"  :tableValue="tablevalue2">
     <div slot="title">
       TEXT
     </div>
   </dao-info-card>
   <br>
-  <dao-info-card size="big"  type="b" :datavalue="tablevalue2">
+  <dao-info-card size="small"  :tableValue="tablevalue3" :keyValue="keyvalue3" :config="config[1]">
     <div slot="title">
       TEXT
     </div>
   </dao-info-card>
   <br>
-  <dao-info-card size="small"  type="c" :datavalue="tablevalue3" :config="config[1]">
+  <dao-info-card size="small"   :tableValue="tablevalue4">
     <div slot="title">
       TEXT
     </div>
   </dao-info-card>
   <br>
-  <dao-info-card size="big"  type="c" :datavalue="tablevalue3" :config="config[1]">
+  <dao-info-card size="big"   :tableValue="tablevalue3" >
     <div slot="title">
       TEXT
     </div>
@@ -88,6 +88,10 @@ export default {
         最大尝试次数: '0次',
         重启间隔: '0秒',
         重试时间窗口: '0秒',
+      }],
+      keyvalue3: [{
+        负载均衡: '启用前',
+        负载均衡模式: 'IPVS',
       }],
       tablevalue: {
         header: [
@@ -134,10 +138,6 @@ export default {
         }],
       },
       tablevalue3: {
-        keyvalue: [{
-          负载均衡: '启用',
-          负载均衡模式: 'IPVS',
-        }],
         header: [
           '容器端口',
           '负载均衡端口',
