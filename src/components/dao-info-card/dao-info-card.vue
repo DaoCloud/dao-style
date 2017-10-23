@@ -15,8 +15,8 @@
           <li class="dao-key-value" v-for="(value,key,index) in values" :key="index">
             <div class="key">{{key}}:</div>
             <div class="value">
-              <span v-show="config.openDot && config.openDotIndex==index" class="dot open"></span>
-              <span v-show="config.closeDot && config.closeDotIndex==index" class="dot close"></span>
+              <span v-show="config.openDot && config.openDotIndex===index" class="dot open"></span>
+              <span v-show="config.closeDot && config.closeDotIndex===index" class="dot close"></span>
               <span>{{value}}</span> 
             </div>
           </li>    
