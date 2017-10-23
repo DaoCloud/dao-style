@@ -162,7 +162,7 @@ export default {
           goal: '每秒请求数',
           watchobj: 'test',
           number: 500,
-          tnumber: 20000,
+          tnumber: 2000,
         }],
       },
     };
