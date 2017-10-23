@@ -21,7 +21,7 @@
             </div>
           </li>    
         </ul>
-        <div class="dao-table-wrapper" v-if="tableValue!=null">
+        <div class="dao-table-wrapper" v-if="tableValue!==null">
           <table>
             <thead>
               <tr>
