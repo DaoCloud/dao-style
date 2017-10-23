@@ -16,14 +16,8 @@
           }
           .value {
             width: 155px;
-            .dot {
-              display: inline-block;
-              margin-bottom: 2px;
-              width: 6px;
-              height: 6px;
-              border-radius: 50%;
-            }
-            span {
+         
+            span:not(.dot) {
               width: 155px;
             }
             .dot+span {
@@ -48,14 +42,7 @@
           }
           .value {
             width: 320px;
-            .dot {
-              display: inline-block;
-              margin-bottom: 2px;
-              width: 6px;
-              height: 6px;
-              border-radius: 50%;
-            }
-            span {
+            span:not(.dot) {
               width: 320px;
             }
             .dot+span {
@@ -131,6 +118,11 @@
         text-align: left;
         color: $black-dark;
         .dot {
+          display: inline-block;
+          margin-bottom: 2px;
+          width: 6px;
+          height: 6px;
+          border-radius: 50%;
           &.open {
             background-color: $green;
             border: solid 1px $green;
