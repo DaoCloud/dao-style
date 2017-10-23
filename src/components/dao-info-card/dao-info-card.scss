@@ -16,7 +16,6 @@
           }
           .value {
             width: 155px;
-         
             span:not(.dot) {
               width: 155px;
             }
@@ -54,20 +53,9 @@
       .dao-table-wrapper {
         table {
           padding: 0 10px;
-          thead {
-            tr {
-              th:nth-child(3) {
-                flex: 0 0 80px;
-              }
-            }
-          }
-          tbody {
-            tr {
-              td:nth-child(3) {
-                flex: 0 0 80px;
-              }
-            }
-          }
+          th:nth-child(3), td:nth-child(3) {
+            flex: 0 0 80px;
+          } 
         }
       }
     }
