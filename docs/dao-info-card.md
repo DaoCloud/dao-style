@@ -46,7 +46,7 @@ info-card 将以键值对和表格的混合形式展示
 
 ### size
 
-只有2种选项 sm 和 lg, sm 将以 300px 的大小展示，lg 将以 610px 的大小展示
+只有 2 种选项 sm 和 lg, sm 将以 300px 的大小展示，lg 将以 610px 的大小展示
 
 ### config
 
