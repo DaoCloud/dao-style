@@ -6,19 +6,19 @@
     </div>
   </dao-info-card>
   <br>
-  <dao-info-card size="sm"  :keyValue="keyvalue1">
+  <dao-info-card size="sm" :keyValue="keyvalue1">
     <div slot="title">
       TEXT
     </div>
   </dao-info-card>
   <br>
-  <dao-info-card size="sm"  :keyValue="keyvalue2" :config="config[0]">
+  <dao-info-card size="sm" :keyValue="keyvalue2" :config="config[0]">
     <div slot="title">
       TEXT
     </div>
   </dao-info-card>
   <br>
-  <dao-info-card size="sm"  :tableValue="tablevalue">
+  <dao-info-card size="sm" :tableValue="tablevalue">
     <div slot="title">
       TEXT
     </div>
@@ -30,25 +30,25 @@
     </div>
   </dao-info-card>
   <br>
-  <dao-info-card size="lg"  :tableValue="tablevalue2">
+  <dao-info-card size="lg" :tableValue="tablevalue2">
     <div slot="title">
       TEXT
     </div>
   </dao-info-card>
   <br>
-  <dao-info-card size="sm"  :tableValue="tablevalue3" :keyValue="keyvalue3" :config="config[1]">
+  <dao-info-card size="sm" :tableValue="tablevalue3" :keyValue="keyvalue3" :config="config[1]">
     <div slot="title">
       TEXT
     </div>
   </dao-info-card>
   <br>
-  <dao-info-card size="sm"   :tableValue="tablevalue4">
+  <dao-info-card size="sm" :tableValue="tablevalue4">
     <div slot="title">
       TEXT
     </div>
   </dao-info-card>
   <br>
-  <dao-info-card size="lg"   :tableValue="tablevalue3" :keyValue="keyvalue3" :config="config[1]">
+  <dao-info-card size="lg" :tableValue="tablevalue3" :keyValue="keyvalue3" :config="config[1]">
     <div slot="title">
       TEXT
     </div>

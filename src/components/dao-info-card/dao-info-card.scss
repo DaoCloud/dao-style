@@ -7,52 +7,26 @@
   &.size-sm {
     width: 300px;
     .dao-infocard-main {
-      padding-bottom: 8px;
-      padding: 0 15px;
       ul {
-        padding: 10px 0;
         width: 270px;
         .dao-key-value {
-          list-style: none;
-          display: flex;
           width: 270px;
           .key {
-            line-height: 26px;
             width: 115px;
-            padding-right: 10px;
-            font-size: 14px;
-            text-align: right;
-            color: $grey-dark;
           }
           .value {
             width: 155px;
-            min-height: 26px;
-            line-height: 26px;
-            font-size: 14px;
-            text-align: left;
-            color: $black-dark;
             .dot {
               display: inline-block;
               margin-bottom: 2px;
               width: 6px;
               height: 6px;
               border-radius: 50%;
-              &.open {
-                background-color: $green;
-                border: solid 1px $green;
-              }
-              &.close {
-                background-color: $grey-light;
-                border: solid 1px $grey-light;
-              }
             }
             span {
-              word-wrap: break-word;
-              word-break: normal;
-              display: inline-block;
-              width:155px;
+              width: 155px;
             }
-            .dot+span{
+            .dot+span {
               width: 145px;
             }
           }
@@ -66,51 +40,25 @@
   &.size-lg {
     width: 610px;
     .dao-infocard-main {
-      padding: 0 15px;
       ul {
-        padding: 10px 0;
         .dao-key-value {
-          list-style: none;
-          display: flex;
           width: 580px;
           .key {
             width: 260px;
-            height: 26px;
-            line-height: 26px;
-            padding-right: 10px;
-            font-size: 14px;
-            text-align: right;
-            color: $grey-dark;
           }
           .value {
             width: 320px;
-            min-height: 26px;
-            line-height: 26px;
-            font-size: 14px;
-            text-align: left;
-            color: $black-dark;
             .dot {
               display: inline-block;
               margin-bottom: 2px;
               width: 6px;
               height: 6px;
               border-radius: 50%;
-              &.dot {
-                background-color: $green;
-                border: solid 1px $green;
-              }
-              &.close {
-                background-color: $grey-light;
-                border: solid 1px $grey-light;
-              }
             }
             span {
-              word-wrap: break-word;
-              word-break: normal;
-              display: inline-block;
               width: 320px;
             }
-            .dot+span{
+            .dot+span {
               width: 310px;
             }
           }
@@ -149,7 +97,7 @@
     vertical-align: top;
     margin: 7px 0px 5px 7px;
     fill: $grey-dark;
-    width:16px;
+    width: 16px;
   }
   .title {
     display: inline-block;
@@ -163,6 +111,43 @@
 
 .dao-infocard-main {
   border-top: solid 1px #d5dbe3;
+  padding: 0 15px;
+  ul {
+    padding: 10px 0;
+    .dao-key-value {
+      list-style: none;
+      display: flex;
+      .key {
+        line-height: 26px;
+        padding-right: 10px;
+        font-size: 14px;
+        text-align: right;
+        color: $grey-dark;
+      }
+      .value {
+        min-height: 26px;
+        line-height: 26px;
+        font-size: 14px;
+        text-align: left;
+        color: $black-dark;
+        .dot {
+          &.open {
+            background-color: $green;
+            border: solid 1px $green;
+          }
+          &.close {
+            background-color: $grey-light;
+            border: solid 1px $grey-light;
+          }
+        }
+        span {
+          word-wrap: break-word;
+          word-break: normal;
+          display: inline-block;
+        }
+      }
+    }
+  }
   .dao-table-wrapper {
     padding: 15px 0px;
     table {
@@ -212,9 +197,9 @@
             text-align: left;
             color: $black-dark;
             overflow: hidden;
-            width:10px;
-            text-overflow:ellipsis;
-             white-space:nowrap;
+            width: 10px;
+            text-overflow: ellipsis;
+            white-space: nowrap;
           }
           &:nth-child(even) {
             background-color: #fff;
