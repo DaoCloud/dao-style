@@ -1,12 +1,15 @@
 <template>
   <div class="dao-infocard-container" :class="containerType">
-    <div class="dao-card-header" @click="isShow=!isShow">
+    <div class="dao-card-header" @click="isExpand($event)">
         <svg class="icon">
           <use xmlns:xlink="http://www.w3.org/1999/xlink" v-bind:xlink:href="arrowDirect">
           </use>
         </svg>
         <div class="title">
-          <slot name="title" class="title"></slot>
+          <slot name="title"></slot>
+        </div>
+        <div class="dropdown">
+          <slot name="dropdown"></slot>
         </div>
     </div>
     <template v-if="isShow">
@@ -88,6 +91,13 @@
           return '#icon_down-arrow';
         }
         return '#icon_triangle-right';
+      },
+    },
+    methods: {
+      isExpand(e) {
+        if (e.target === e.currentTarget) {
+          this.isShow = !this.isShow;
+        }
       },
     },
   };

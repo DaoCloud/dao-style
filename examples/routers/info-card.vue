@@ -52,6 +52,25 @@
     <div slot="title">
       TEXT
     </div>
+    <div slot="dropdown">
+      <dao-dropdown
+        trigger="click"
+        :append-to-body="true"
+        placement="bottom-start">
+        <svg class="icon-more">
+          <use xlink:href="#icon_more"></use>
+        </svg>
+        <dao-dropdown-menu slot="list">
+          <dao-dropdown-item :is-title="true">扩展</dao-dropdown-item>
+          <dao-dropdown-item>
+            <svg class="icon"><use xlink:href="#icon"></use></svg>
+            <span class="text">扩展</span>
+          </dao-dropdown-item>
+          <dao-dropdown-item :is-divided="true"></dao-dropdown-item>
+          <dao-dropdown-item>扩展</dao-dropdown-item>
+        </dao-dropdown-menu>
+      </dao-dropdown>
+    </div>
   </dao-info-card>
 </div>
 </template>
@@ -169,3 +188,11 @@ export default {
   },
 };
 </script>
+ 
+<style>
+.icon-more {
+  width: 18px;
+  height: 18px;
+  fill: #9ba3af; 
+}
+</style>
