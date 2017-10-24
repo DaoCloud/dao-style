@@ -95,9 +95,11 @@
     },
     methods: {
       isExpand(e) {
-        if (e.target === e.currentTarget) {
-          this.isShow = !this.isShow;
+        const targetNode = e.target.nodeName === 'svg' ? e.target : e.target.parentNode;
+        if (targetNode.classList.contains('icon-more')) {
+          return;
         }
+        this.isShow = !this.isShow;
       },
     },
   };
