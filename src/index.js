@@ -20,6 +20,7 @@ import daoDraggableComponent from './components/dao-draggable';
 import daoDropdown from './components/dao-dropdown';
 import { daoEditableInput, daoInput } from './components/dao-input';
 import daoEditableTable from './components/dao-editable-table';
+import daoInfoCard from './components/dao-info-card';
 import daoInputWithLabel from './components/dao-input-with-label';
 import daoList from './components/dao-list';
 import daoInfoPanel from './components/dao-info-panel';
@@ -54,6 +55,7 @@ const daoStyleComponents = {
   daoDropdownMenu: daoDropdown.Menu,
   daoEditableInput,
   daoEditableTable,
+  daoInfoCard,
   daoInfoPanel,
   daoInfoPanelItem: daoInfoPanel.daoInfoPanelItem,
   daoInput,

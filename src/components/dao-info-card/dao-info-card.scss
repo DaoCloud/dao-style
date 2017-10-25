@@ -1,0 +1,206 @@
+@import '../dao-color.scss';
+.dao-infocard-container {
+  border-radius: 3px;
+  background-color: $white;
+  border: solid 1px #d5dbe3;
+  overflow: hidden;
+  &.size-sm {
+    width: 300px;
+    .dao-infocard-main {
+      ul {
+        width: 270px;
+        .dao-key-value {
+          width: 270px;
+          .key {
+            width: 115px;
+          }
+          .value {
+            width: 155px;
+            span:not(.dot) {
+              width: 155px;
+            }
+            .dot+span {
+              width: 145px;
+            }
+          }
+        }
+      }
+      &>ul+ul {
+        border-top: 1px solid $grey-light;
+      }
+    }
+  }
+  &.size-lg {
+    width: 610px;
+    .dao-infocard-main {
+      ul {
+        .dao-key-value {
+          width: 580px;
+          .key {
+            width: 260px;
+          }
+          .value {
+            width: 320px;
+            span:not(.dot) {
+              width: 320px;
+            }
+            .dot+span {
+              width: 310px;
+            }
+          }
+        }
+      }
+      .dao-table-wrapper {
+        table {
+          padding: 0 10px;
+          th:nth-child(3), td:nth-child(3) {
+            flex: 0 0 80px;
+          } 
+        }
+      }
+    }
+  }
+}
+
+.dao-card-header {
+  box-sizing: border-box;
+  height: 28px;
+  background-color: $white-dark-lighter;
+  cursor: pointer;
+  user-select: none;
+  .icon {
+    vertical-align: top;
+    margin: 7px 0px 5px 7px;
+    fill: $grey-dark;
+    width: 16px;
+  }
+  .title {
+    display: inline-block;
+    font-size: 14px;
+    line-height: 14px;
+    color: $black-light;
+    height: 28px;
+    line-height: 28px;
+  }
+  .dropdown {
+    float: right;
+    margin-top: 5px;
+    margin-right: 15px;
+  }
+}
+
+.dao-infocard-main {
+  border-top: solid 1px #d5dbe3;
+  padding: 0 15px;
+  ul {
+    padding: 10px 0;
+    .dao-key-value {
+      list-style: none;
+      display: flex;
+      .key {
+        line-height: 26px;
+        padding-right: 10px;
+        font-size: 14px;
+        text-align: right;
+        color: $grey-dark;
+      }
+      .value {
+        min-height: 26px;
+        line-height: 26px;
+        font-size: 14px;
+        text-align: left;
+        color: $black-dark;
+        .dot {
+          display: inline-block;
+          margin-bottom: 2px;
+          width: 6px;
+          height: 6px;
+          border-radius: 50%;
+          &.open {
+            background-color: $green;
+            border: solid 1px $green;
+          }
+          &.close {
+            background-color: $grey-light;
+            border: solid 1px $grey-light;
+          }
+        }
+        span {
+          word-wrap: break-word;
+          word-break: normal;
+          display: inline-block;
+        }
+      }
+    }
+  }
+  .dao-table-wrapper {
+    padding: 15px 0px;
+    table {
+      border-collapse: collapse;
+      border: solid 1px #d5dbe3;
+      width: 100%;
+      thead {
+        width: 100%;
+        border-bottom: solid 1px #d5dbe3;
+        tr {
+          width: 100%;
+          display: flex;
+          height: 30px;
+          background-color: $white-dark-lighter;
+          padding-left: 10px;
+          padding-right: 10px;
+          th {
+            height: 30px;
+            line-height: 30px;
+            flex: 1;
+            font-size: 14px;
+            color: $black-light;
+            text-align: left;
+            border-right: none;
+            font-weight: normal;
+          }
+          th:nth-child(3) {
+            flex: 0 0 60px;
+          }
+          th:nth-child(4) {
+            flex: 0 0 45px;
+          }
+        }
+      }
+      tbody {
+        width: 100%;
+        tr {
+          width: 100%;
+          display: flex;
+          height: 30px;
+          padding-left: 10px;
+          padding-right: 10px;
+          td {
+            flex: 1;
+            font-size: 14px;
+            padding: 8px 0 8px 0px;
+            text-align: left;
+            color: $black-dark;
+            overflow: hidden;
+            width: 10px;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+          }
+          &:nth-child(even) {
+            background-color: #fff;
+          }
+          td:nth-child(3) {
+            flex: 0 0 60px;
+          }
+          td:nth-child(4) {
+            flex: 0 0 45px;
+          }
+        }
+      }
+    }
+  }
+  ul+.dao-table-wrapper {
+    padding-top: 0px;
+    margin-top: -5px;
+  }
+}
