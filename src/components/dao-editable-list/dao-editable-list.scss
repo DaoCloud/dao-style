@@ -1,0 +1,66 @@
+@import '../dao-color.scss';
+
+.dao-editable-list {
+  display: flex;
+  border: 1px solid $white-dark;
+  .left-pane {
+    flex: none;
+    height: 390px;
+    width: 25%;
+    border-right: 1px solid $white-dark;
+    .item-list {
+      width: 100%;
+      height: 360px;
+      border-radius: 0;
+      background: linear-gradient(generate-color($blue, -3) 50%, $white 50%);
+      background-size: 100% 60px;
+      border-bottom: 1px solid $white-dark;
+      overflow-y: auto;
+      li {
+        cursor: pointer;
+        height: 30px;
+        line-height: 30px;
+        text-indent: 10px;
+        &.active {
+          background: $blue;
+          color: white;
+        }
+      }
+    }
+    .operator-container {
+      height: 30px;
+      display: flex;
+      background-color: $white;
+      .opt {
+        flex: none;
+        width: 30px;
+        border-right: 1px solid $white-dark;
+        position: relative;
+        cursor: pointer;
+        &:before, &:after {
+          content: '';
+          position: absolute;
+          width: 16px;
+          border-top: 2px solid $black-light;
+          left: 50%;
+          top: 50%;
+          transform: translate(-50%, -50%);
+        }
+        &.add:after {
+          transform: translate(-50%, -50%) rotate(90deg);
+        }
+        &.disabled, &[disabled] {
+          cursor: not-allowed;
+          &:before, &:after {
+            border-top: 2px solid $grey-light;
+          }
+        }
+      }
+    }
+  }
+  .right-pane {
+    flex: auto;
+    height: 390px;
+    padding: 0 20px 15px;
+  }
+}

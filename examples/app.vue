@@ -55,6 +55,9 @@ li + li {
           <router-link to="/dropdown">Dropdown</router-link>
         </li>
         <li>
+          <router-link to="/editable-list">Editable List</router-link>
+        </li>
+        <li>
           <router-link to="/editable-table">EditableTable</router-link>
         </li>
          <li>
