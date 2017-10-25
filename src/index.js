@@ -19,6 +19,7 @@ import daoDialog from './components/dao-dialog';
 import daoDraggableComponent from './components/dao-draggable';
 import daoDropdown from './components/dao-dropdown';
 import { daoEditableInput, daoInput } from './components/dao-input';
+import daoEditableList from './components/dao-editable-list';
 import daoEditableTable from './components/dao-editable-table';
 import daoInputWithLabel from './components/dao-input-with-label';
 import daoList from './components/dao-list';
@@ -73,6 +74,7 @@ const daoStyleComponents = {
   daoSettingLayout,
   daoSettingSection: daoSettingLayout.Section,
   daoSlider,
+  daoEditableList,
   daoStep: daoSteps.step,
   daoStepContent: daoSteps.content,
   daoSteps,

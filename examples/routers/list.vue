@@ -102,6 +102,12 @@
                   props: {
                     progress,
                   },
+                  domProps: {
+                    innerHTML: 'baz',
+                  },
+                  on: {
+                    click: this.clickHandler,
+                  },
                 });
               },
               type: 'custom',
@@ -190,6 +196,9 @@
       },
       onPauseService(rows) {
         console.log('暂停容器', rows);
+      },
+      clickHandler() {
+        console.log('hhhh');
       },
     },
   };
