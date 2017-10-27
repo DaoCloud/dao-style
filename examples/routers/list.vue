@@ -121,6 +121,8 @@
           tableId: 'serviceList',
           tableName: '服务',
           columnsOrder: ['service', 'status', 'containers', 'memory', 'creationTime', 'cpu'],
+          hideCheckbox: false,
+          hideOperation: false,
           sorting: {
             defaultSortBy: 'service',
             order: 'asc',

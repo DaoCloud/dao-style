@@ -88,6 +88,12 @@ export default {
     operations() {
       return this.config.operations;
     },
+    hideOperation() {
+      return this.config.hideOperation;
+    },
+    hideCheckbox() {
+      return this.config.hideCheckbox;
+    },
     toolbarOperations() {
       return this.settings.operations || this.config.operations;
     },
