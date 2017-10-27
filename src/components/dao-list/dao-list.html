@@ -170,7 +170,7 @@
         </thead>
         <!-- 表身 -->
         <tbody>
-          <tr :class="{checked: r.$checked}" v-for="r in currentRows" :key="r"
+          <tr :class="{checked: r.$checked}" v-for="(r, i) in currentRows" :key="i"
             @click="onRowClick(r, $event)"
             @contextmenu.prevent="onRowClick(r, $event)">
             <td class="checkbox" v-if="!hideCheckbox">
