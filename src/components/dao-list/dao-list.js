@@ -297,6 +297,8 @@ export default {
       this.page = this.page - 1;
     },
     changeSortBy(sortBy) {
+      // 如果不能搜索的话，那就直接返回 false
+      if (this.columns[sortBy].unsortable) return false;
       if (this.sortingConfig.sortBy === sortBy) {
         this.sortingConfig.order = this.sortingConfig.order === 'asc' ? 'desc' : 'asc';
       } else {

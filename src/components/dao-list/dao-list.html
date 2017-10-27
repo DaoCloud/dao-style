@@ -45,7 +45,10 @@
           </svg>
         </button>
         <dao-dropdown-menu slot="list">
-          <dao-dropdown-item v-for="c in columns" :key="c.name" @click="changeSortBy(c.name)">
+          <dao-dropdown-item v-for="c in columns"
+            v-if="!c.unsortable"
+            :key="c.name"
+            @click="changeSortBy(c.name)">
             <svg class="icon" :class="{invisible: sortingConfig.sortBy !== c.name}">
               <use xlink:href="#icon_checkmark-menu-item"></use>
             </svg>
@@ -157,12 +160,14 @@
               @resize="onColumnResize(c, $event)"
               @click="changeSortBy(c)">
               <span>{{columns[c].text}}</span>
-              <svg class="sort-arrow" v-if="sortingConfig.sortBy === c" v-show="sortingConfig.order === 'desc'">
-                <use xlink:href="#icon_down-arrow"></use>
-              </svg>
-              <svg class="sort-arrow" v-if="sortingConfig.sortBy === c" v-show="sortingConfig.order === 'asc'">
-                <use xlink:href="#icon_up-arrow"></use>
-              </svg>
+              <template v-if="!columns[c].unsortable">
+                <svg class="sort-arrow" v-if="sortingConfig.sortBy === c" v-show="sortingConfig.order === 'desc'">
+                  <use xlink:href="#icon_down-arrow"></use>
+                </svg>
+                <svg class="sort-arrow" v-if="sortingConfig.sortBy === c" v-show="sortingConfig.order === 'asc'">
+                  <use xlink:href="#icon_up-arrow"></use>
+                </svg>
+              </template>
             </dao-list-th>
             <!-- 预留给操作的 th -->
             <th v-if="!hideOperation"></th>

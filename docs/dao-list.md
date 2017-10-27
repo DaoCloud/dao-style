@@ -26,42 +26,34 @@ dao-list 是一个全新的列表。
           service: {
             text: '服务',
             name: 'service',
-            sortable: true,
           },
           status: {
             text: '状态',
             name: 'status',
-            sortable: true,
           },
           mode: {
             text: '模式',
             name: 'mode',
-            sortable: true,
           },
           containers: {
             text: '容器数',
             name: 'containers',
-            sortable: true,
           },
           memory: {
             text: '内存限制',
             name: 'memory',
-            sortable: true,
           },
           cpu: {
             text: 'CPU 限制',
             name: 'cpu',
-            sortable: true,
           },
           creationTime: {
             text: '创建时间',
             name: 'creationTime',
-            sortable: true,
           },
           sin: {
             text: '正弦',
             name: 'sin',
-            sortable: true,
             isFilter: true,
           },
         },
@@ -207,7 +199,7 @@ dao-list 是一个全新的列表。
 | -------- | ------- | ---------------------------------------- | ----------- | ---- |
 | name     | String  | 分栏的名称。                                   | -           | 是    |
 | text     | String  | 分栏表头所显示的文本。                              | -           | 是    |
-| sortable | Boolean | 该分栏是否可以用于排序。                             | ` true`     | 否    |
+| unsortable | Boolean | 该分栏是否不能用于排序。                             | `false`     | 否    |
 | isFilter | Boolean | 该分栏数据是否仅用作筛选用途。如果是的话，那么该分栏将不会展示在表格中，但是可以用于筛选。 | `undefined` | 否    |
 
 #### Cell
