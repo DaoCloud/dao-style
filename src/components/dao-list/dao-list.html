@@ -4,6 +4,7 @@
     <!-- 工具栏主要按钮 -->
     <button class="dao-btn ghost has-icon"
       :class="{'pseudo-disabled': mainOperation.disabled}"
+      v-if="!hideOperation"
       @click="emit(mainOperation)">
       <svg class="icon" v-if="mainOperation.svg">
         <use xlink:href :href="`#icon_${mainOperation.svg}`"></use>
@@ -14,7 +15,7 @@
       </svg>
     </button>
     <!-- 工具栏按钮 -->
-    <div class="dao-btn-group" v-for="operationGroup in toolbarOperations">
+    <div class="dao-btn-group" v-for="operationGroup in toolbarOperations" v-if="!operationGroup.single && !hideOperation">
       <button class="dao-btn ghost dao-icon"
         v-for="o in operationGroup.operations"
         :class="{'pseudo-disabled': o.disabled}"
@@ -135,7 +136,7 @@
         <thead>
           <tr>
             <!-- 全选 -->
-            <th class="checkbox">
+            <th class="checkbox" v-if="!hideCheckbox">
               <input type="checkbox" class="round"
                 :class="{'half-check': isAllChecked === 'partial'}"
                 :checked="isAllChecked === 'yes'"
@@ -164,15 +165,15 @@
               </svg>
             </dao-list-th>
             <!-- 预留给操作的 th -->
-            <th></th>
+            <th v-if="!hideOperation"></th>
           </tr>
         </thead>
         <!-- 表身 -->
         <tbody>
-          <tr :class="{checked: r.$checked}" v-for="r in currentRows" :key="r"
+          <tr :class="{checked: r.$checked}" v-for="(r, i) in currentRows" :key="i"
             @click="onRowClick(r, $event)"
             @contextmenu.prevent="onRowClick(r, $event)">
-            <td class="checkbox">
+            <td class="checkbox" v-if="!hideCheckbox">
               <input type="checkbox"
               class="round"
               :checked="r.$checked">
@@ -202,7 +203,7 @@
                 :td="r[c]">
               </custom-td>
             </template>
-            <operation-td :row="r" :operations="operations"></operation-td>
+            <operation-td v-if="!hideOperation" :row="r" :operations="operations"></operation-td>
           </tr>
         </tbody>
       </table>

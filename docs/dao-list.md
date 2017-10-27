@@ -231,6 +231,8 @@ dao-list 是一个全新的列表。
 | pagination    | Object | 分页相关的设置。不传则不分页。具体属性见下表。                  | -           | 否    |
 | mainOperation | Object | 表示左上角那个大按钮的属性。它是一个 Operation。Operation 的具体属性见下表。 | `undefined` | 否    |
 | operations    | Array  | 所有操作的列表。它的每一个元素都是 OperationGroup。       | []          | 否    |
+| hideCheckbox    | Boolean  | 是否隐藏 checkbox    | false |  否  |
+| hideOperation    | Boolean  |  是否隐藏操作   | false |   否   |
 
 #### Sorting
 
@@ -251,6 +253,7 @@ dao-list 是一个全新的列表。
 | ---------- | ------ | ---------------------------- | ---- | ---- |
 | groupName  | String | 操作组的名称。                      | -    | 是    |
 | operations | Array  | 操作组中的操作。每一个元素都是一个 Operation。 | -    | 是    |
+| single | false | 这个操作是单行操作。在每一行右边的操作菜单中执行，不会在工具栏和右键菜单中显示。 | `undefined` | 否    |
 
 #### Operation
 
