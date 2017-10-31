@@ -4,7 +4,7 @@
     <!-- 工具栏主要按钮 -->
     <button class="dao-btn ghost has-icon"
       :class="{'pseudo-disabled': mainOperation.disabled}"
-      v-if="!hideOperation"
+      v-if="mainOperation && !hideOperation"
       @click="emit(mainOperation)">
       <svg class="icon" v-if="mainOperation.svg">
         <use xlink:href :href="`#icon_${mainOperation.svg}`"></use>
