@@ -23,42 +23,35 @@
           service: {
             text: '服务',
             name: 'service',
-            sortable: true,
           },
           status: {
             text: '状态',
             name: 'status',
-            sortable: true,
+            unsortable: true,
           },
           mode: {
             text: '模式',
             name: 'mode',
-            sortable: true,
           },
           containers: {
             text: '容器数',
             name: 'containers',
-            sortable: true,
           },
           memory: {
             text: '内存限制',
             name: 'memory',
-            sortable: true,
           },
           cpu: {
             text: 'CPU 限制',
             name: 'cpu',
-            sortable: true,
           },
           creationTime: {
             text: '创建时间',
             name: 'creationTime',
-            sortable: true,
           },
           sin: {
             text: '正弦',
             name: 'sin',
-            sortable: true,
             isFilter: true,
           },
         },
@@ -130,7 +123,7 @@
           hideCheckbox: false,
           hideOperation: false,
           sorting: {
-            defaultSortBy: 'service',
+            defaultSortBy: 'creationTime',
             order: 'asc',
           },
           pagination: {

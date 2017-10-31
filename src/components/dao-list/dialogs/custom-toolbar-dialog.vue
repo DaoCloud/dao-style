@@ -7,7 +7,7 @@
     <div class="custom-toolbar-dialog-body">
       <p>将喜爱的操作拖入工具栏...</p>
       <div class="toolbar">
-        <button class="dao-btn ghost has-icon">
+        <button class="dao-btn ghost has-icon" v-if="mainOperation">
           <svg class="icon" v-if="mainOperation.svg">
             <use xlink:href :href="`#icon_${mainOperation.svg}`"></use>
           </svg>
