@@ -41,7 +41,7 @@ export default {
   methods: {
     isThisEventInResizeArea(event) {
       // 事件有可能触发在 th 里的 svg 上，所以要先排除这种情况
-      if (event.target.nodeName !== 'TH') return false;
+      if (event.target.nodeName === 'svg' || event.target.nodeName === 'use') return false;
       const th = event.target;
       if (th.clientWidth - event.offsetX < this.resizeAreaWidth) {
         return true;
