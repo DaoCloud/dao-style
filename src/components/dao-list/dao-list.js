@@ -243,9 +243,7 @@ export default {
           this.checkRow(row, !row.$checked);
           this.checkedAnchorIndex = this.currentRows.indexOf(row);
         }
-      } else if (!(event.target.nodeName === 'use' ||
-        event.target.nodeName === 'svg' ||
-        event.target.nodeName === 'SPAN' ||
+      } else if (!(event.target.nodeName === 'SPAN' ||
         event.target.nodeName === 'A' ||
         event.target.nodeName === 'BUTTON' ||
         // 当其点在 popover 绑定元素上面也不能选中列表
