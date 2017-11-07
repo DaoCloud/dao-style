@@ -133,6 +133,7 @@
           operations: [
             {
               groupName: '状态',
+              single: true,
               operations: [
                 {
                   name: '暂停',

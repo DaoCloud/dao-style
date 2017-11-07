@@ -3,7 +3,7 @@
     <div class="dao-dropdown-popper">
       <div class="dao-dropdown-inner">
         <ul class="dao-dropdown-menu">
-          <template v-for="group in operations" >
+          <template v-for="group in operations" v-if="isGroupShouldShow(group)">
             <li class="dao-dropdown-item dao-dropdown-item-subtitle" :key="group.groupName">{{group.groupName}}</li>
             <li class="dao-dropdown-item"
               v-for="o in group.operations"
@@ -26,12 +26,24 @@
 export default {
   name: 'dao-list-context-menu',
   props: ['checkedRows', 'operations'],
+  computed: {
+    isMultiChecked() {
+      return this.checkedRows.length > 1;
+    },
+  },
   methods: {
     itemClass(disabled) {
       const baseClass = 'dao-dropdown-item-';
       const itemClass = baseClass.concat(disabled ? 'disabled' : 'base');
       return {
         [itemClass]: true,
+      }
+    },
+    isGroupShouldShow(group) {
+      if (this.isMultiChecked && (group.single === true)) {
+        return false;
+      } else {
+        return true;
       }
     },
     operate(event) {
