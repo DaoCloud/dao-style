@@ -27,7 +27,7 @@
 
 <script>
 export default {
-  name: 'DaoInfoPanelNav',
+  name: 'DaoPanelNav',
   props: {
     tabList: {
       type: Array,
@@ -67,6 +67,7 @@ $header-height: 26px;
   padding: 5px 2px;
   cursor: pointer;
   user-select: none;
+  fill: #9ba3af;
 
   svg {
     width: 16px;
@@ -74,13 +75,13 @@ $header-height: 26px;
   }
 
   :hover svg {
-    fill: $blue;
+    fill: #368bff;
   }
 }
 
 .dao-info-panel-nav-icon.active {
   svg {
-    fill: $blue;
+    fill: #368bff;
   }
 }
 </style>

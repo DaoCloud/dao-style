@@ -1,7 +1,7 @@
-<template src="./dao-info-panel.html"></template>
+<template src="./dao-panel.html"></template>
 
 <script>
-import DaoInfoPanelNav from './dao-info-panel-nav/dao-info-panel-nav.vue';
+import DaoInfoPanelNav from './dao-panel-nav/dao-panel-nav.vue';
 
 export default {
   name: 'DaoInfoPanel',
@@ -123,5 +123,5 @@ export default {
 };
 </script>
 
-<style lang="scss" src="./dao-info-panel.scss"></style>
+<style lang="scss" src="./dao-panel.scss"></style>
 

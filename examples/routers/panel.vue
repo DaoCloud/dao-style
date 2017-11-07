@@ -4,20 +4,20 @@
         <div class="top-body">
           <h1>size s</h1>
         </div>
-        <dao-info-panel @changeTab="changeTab" size="s" class="bottom-body">
-          <dao-info-panel-item heading="f1">
+        <dao-panel @changeTab="changeTab" size="s" class="bottom-body">
+          <dao-panel-item heading="f1">
             <p>@p1</p>
-          </dao-info-panel-item>
-          <dao-info-panel-item heading="f2">
+          </dao-panel-item>
+          <dao-panel-item heading="f2">
             <p>@p2</p>
-          </dao-info-panel-item>
-          <dao-info-panel-item heading="f3">
+          </dao-panel-item>
+          <dao-panel-item heading="f3">
             <iframe src="https://www.baidu.com/" frameborder="0" width="100%" height="500px"></iframe>
-          </dao-info-panel-item>
-          <dao-info-panel-item heading="f444444444444444">
+          </dao-panel-item>
+          <dao-panel-item heading="f444444444444444">
             <img src="https://img.moegirl.org/common/thumb/4/41/Nicky.jpg/250px-Nicky.jpg" alt="???">
-          </dao-info-panel-item>
-        </dao-info-panel>
+          </dao-panel-item>
+        </dao-panel>
       </div>
       <div class="example example2">
         <div class="top-body">
@@ -35,39 +35,39 @@
           <h1>size m</h1>
           <h1>size m</h1>
         </div>
-        <dao-info-panel @changeTab="changeTab" size="m" class="bottom-body">
-            <dao-info-panel-item heading="f1">
+        <dao-panel @changeTab="changeTab" size="m" class="bottom-body">
+            <dao-panel-item heading="f1">
               <p>@p1</p>
-            </dao-info-panel-item>
-            <dao-info-panel-item heading="f2">
+            </dao-panel-item>
+            <dao-panel-item heading="f2">
               <p>@p2</p>
-            </dao-info-panel-item>
-            <dao-info-panel-item heading="f3">
+            </dao-panel-item>
+            <dao-panel-item heading="f3">
               <iframe src="https://www.baidu.com/" frameborder="0" width="100%" height="500px"></iframe>
-            </dao-info-panel-item>
-            <dao-info-panel-item heading="f444444444444444">
+            </dao-panel-item>
+            <dao-panel-item heading="f444444444444444">
               <img src="https://img.moegirl.org/common/thumb/4/41/Nicky.jpg/250px-Nicky.jpg" alt="???">
-            </dao-info-panel-item>
-        </dao-info-panel>
+            </dao-panel-item>
+        </dao-panel>
       </div>
       <div class="example example3">
         <div class="top-body">
           <h1>size l</h1>
         </div>
-        <dao-info-panel @changeTab="changeTab" size="l" minHeight="20%" class="bottom-body">
-            <dao-info-panel-item heading="f1">
+        <dao-panel @changeTab="changeTab" size="l" minHeight="20%" class="bottom-body">
+            <dao-panel-item heading="f1">
               <p>@p1</p>
-            </dao-info-panel-item>
-            <dao-info-panel-item heading="f2">
+            </dao-panel-item>
+            <dao-panel-item heading="f2">
               <p>@p2</p>
-            </dao-info-panel-item>
-            <dao-info-panel-item heading="f3">
+            </dao-panel-item>
+            <dao-panel-item heading="f3">
               <iframe src="https://www.baidu.com/" frameborder="0" width="100%" height="500px"></iframe>
-            </dao-info-panel-item>
-            <dao-info-panel-item heading="f444444444444444">
+            </dao-panel-item>
+            <dao-panel-item heading="f444444444444444">
               <img src="https://img.moegirl.org/common/thumb/4/41/Nicky.jpg/250px-Nicky.jpg" alt="???">
-            </dao-info-panel-item>
-        </dao-info-panel>
+            </dao-panel-item>
+        </dao-panel>
       </div>
   </div>
 </template>
