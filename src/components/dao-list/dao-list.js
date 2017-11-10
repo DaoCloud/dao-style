@@ -39,7 +39,16 @@ export default {
       timeFormat = localStorageSettings.timeFormat;
     } else {
       _.forEach(this.columns, (c) => {
-        columnsWidth[c.name] = 'auto';
+        let columnsNumber;
+        if (this.config.columnsOrder) {
+          // 如果传入了分栏顺序，那就根据分栏顺序来判断要展示几个分栏
+          columnsNumber = this.config.columnsOrder.length;
+        } else {
+          // 否则，根据总分栏对象的大小来判断
+          columnsNumber = Object.keys(this.columns).length;
+        }
+        // 所有的分栏的平分整个列表的宽度
+        columnsWidth[c.name] = `${100 / columnsNumber}%`;
       });
       columnsOrder = null;
       toolbarOperations = null;
