@@ -133,7 +133,6 @@
           operations: [
             {
               groupName: '状态',
-              single: true,
               operations: [
                 {
                   name: '暂停',
@@ -154,6 +153,7 @@
             },
             {
               groupName: '资源',
+              single: true,
               operations: [
                 {
                   name: '网络',
