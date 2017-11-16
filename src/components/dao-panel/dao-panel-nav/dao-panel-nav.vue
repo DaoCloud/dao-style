@@ -1,23 +1,23 @@
 <template>
-  <ul class="dao-info-panel-nav">
-      <li class="dao-info-panel-nav-item"
+  <ul class="dao-panel-nav">
+      <li class="dao-panel-nav-item"
         @click="handleClick(name)"
         :class="{ active: name === active }"
         v-for="(name, index) in names"
         :key="index">
         {{ name }}
       </li>
-      <li class="dao-info-panel-nav-icon" @click="changeSize('l')" :class="{ active: activeSize === 'l' }">
+      <li class="dao-panel-nav-icon" @click="changeSize('l')" :class="{ active: activeSize === 'l' }">
         <span class="icon">
           <svg><use xlink:href="#icon_panel-size-large"></use></svg>
         </span> 
       </li>
-      <li class="dao-info-panel-nav-icon" @click="changeSize('m')" :class="{ active: activeSize === 'm' }">
+      <li class="dao-panel-nav-icon" @click="changeSize('m')" :class="{ active: activeSize === 'm' }">
         <span class="icon">
           <svg><use xlink:href="#icon_panel-size-medium"></use></svg>
         </span> 
       </li>
-      <li class="dao-info-panel-nav-icon" @click="changeSize('s')" :class="{ active: activeSize === 's' }">
+      <li class="dao-panel-nav-icon" @click="changeSize('s')" :class="{ active: activeSize === 's' }">
         <span class="icon">
           <svg><use xlink:href="#icon_panel-size-small"></use></svg>
         </span> 
@@ -60,7 +60,7 @@ export default {
 @import '../../dao-color.scss';
 $header-height: 26px;
 
-.dao-info-panel-nav-icon {
+.dao-panel-nav-icon {
   display: block;
   float: right;
   height: $header-height;
@@ -79,7 +79,7 @@ $header-height: 26px;
   }
 }
 
-.dao-info-panel-nav-icon.active {
+.dao-panel-nav-icon.active {
   svg {
     fill: #368bff;
   }
