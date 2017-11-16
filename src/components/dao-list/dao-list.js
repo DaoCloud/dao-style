@@ -161,7 +161,13 @@ export default {
     allRows() {
       const rowsClone = _.cloneDeep(this.sortedRows);
       _.forEach(rowsClone, (r) => {
-        this.$set(r, '$checked', false);
+        // 如果外面没有传 $checked 那就手动设置为 false，否则就以外面传的为准
+        if (!Object.hasOwnProperty.call(r, '$checked')) {
+          this.$set(r, '$checked', false);
+        }
+        if (r.$checked) {
+          this.checkedRows.push(r);
+        }
       });
       return rowsClone;
     },
