@@ -1,27 +1,27 @@
 <template>
   <ul class="dao-panel-nav">
-      <li class="dao-panel-nav-item"
-        @click="handleClick(name)"
-        :class="{ active: name === active }"
-        v-for="(name, index) in names"
-        :key="index">
-        {{ name }}
-      </li>
-      <li class="dao-panel-nav-icon" @click="changeSize('l')" :class="{ active: activeSize === 'l' }">
-        <span class="icon">
-          <svg><use xlink:href="#icon_panel-size-large"></use></svg>
-        </span> 
-      </li>
-      <li class="dao-panel-nav-icon" @click="changeSize('m')" :class="{ active: activeSize === 'm' }">
-        <span class="icon">
-          <svg><use xlink:href="#icon_panel-size-medium"></use></svg>
-        </span> 
-      </li>
-      <li class="dao-panel-nav-icon" @click="changeSize('s')" :class="{ active: activeSize === 's' }">
-        <span class="icon">
-          <svg><use xlink:href="#icon_panel-size-small"></use></svg>
-        </span> 
-      </li>
+    <li class="dao-panel-nav-item"
+      @click="handleClick(name)"
+      :class="{ active: name === active }"
+      v-for="(name, index) in names"
+      :key="index">
+      {{ name }}
+    </li>
+    <li class="dao-panel-nav-icon first" @click="changeSize('l')" :class="{ active: activeSize === 'l' }">
+      <span class="icon">
+        <svg><use xlink:href="#icon_panel-size-large"></use></svg>
+      </span> 
+    </li>
+    <li class="dao-panel-nav-icon" @click="changeSize('m')" :class="{ active: activeSize === 'm' }">
+      <span class="icon">
+        <svg><use xlink:href="#icon_panel-size-medium"></use></svg>
+      </span> 
+    </li>
+    <li class="dao-panel-nav-icon" @click="changeSize('s')" :class="{ active: activeSize === 's' }">
+      <span class="icon">
+        <svg><use xlink:href="#icon_panel-size-small"></use></svg>
+      </span> 
+    </li>
   </ul>
 </template>
 
@@ -64,7 +64,7 @@ $header-height: 26px;
   display: block;
   float: right;
   height: $header-height;
-  padding: 5px 2px;
+  padding: 5px 2px 5px 1px;
   cursor: pointer;
   user-select: none;
   fill: #9ba3af;
@@ -83,6 +83,10 @@ $header-height: 26px;
   svg {
     fill: #368bff;
   }
+}
+
+.dao-panel-nav-icon.first {
+  margin-right: 8px;
 }
 </style>
 

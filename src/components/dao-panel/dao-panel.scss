@@ -51,6 +51,11 @@ $header-tab-border-color: #ccd1d9;
         background-color: #F5F7FA;
         color: #595F69;
     }
+
+    .dao-panel-nav-item.active:hover {
+        background-color: $white;
+        color: #3d444f;
+    }
 }
 
 .dao-panel-body {
