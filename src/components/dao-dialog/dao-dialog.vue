@@ -53,6 +53,8 @@
 import daoDialogHeader from './dao-dialog-header/dao-dialog-header.vue';
 import { getStyle } from '../../utils/assist';
 
+const daoDialogCountAttr = 'data-dao-dialog-count';
+
 export default {
   name: 'DaoDialog',
   props: {
@@ -87,7 +89,6 @@ export default {
       activeStep: 0,
       isNeedScroll: false,
       poppers: [],
-      throttleScrollHandler: () => {},
     };
   },
   computed: {
@@ -136,6 +137,8 @@ export default {
         this.scrollHandler();
       });
       // 禁止 body 滚动
+      const count = document.body.getAttribute(daoDialogCountAttr);
+      document.body.setAttribute(daoDialogCountAttr, count ? parseInt(count, 10) + 1 : 1);
       document.body.style.overflowY = 'hidden';
       document.addEventListener('keydown', this.handleKeyDown);
       this.$emit('dao-dialog-open');
@@ -237,7 +240,12 @@ export default {
     },
     $onDestory() {
       this.steps = [];
-      document.body.style.overflowY = '';
+      // 当关闭最后一个对话框时候，需要让滚动条恢复
+      const count = parseInt(document.body.getAttribute(daoDialogCountAttr), 10);
+      document.body.setAttribute(daoDialogCountAttr, count - 1);
+      if (count === 1) {
+        document.body.style.overflowY = '';
+      }
       document.removeEventListener('keydown', this.handleKeyDown);
       this.$emit('dao-dialog-close');
     },
