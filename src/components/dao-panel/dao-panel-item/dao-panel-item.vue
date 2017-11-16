@@ -1,5 +1,5 @@
 <template>
-  <div class="dao-info-panel-item" v-show="active">
+  <div class="dao-panel-item" v-show="active">
     <slot />
   </div>
 </template>
@@ -7,7 +7,7 @@
 <script>
 
 export default {
-  name: 'DaoInfoPanelItem',
+  name: 'DaoPanelItem',
   props: {
     heading: {
       type: String,

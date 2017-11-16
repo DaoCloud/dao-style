@@ -1,12 +1,12 @@
 <template src="./dao-panel.html"></template>
 
 <script>
-import DaoInfoPanelNav from './dao-panel-nav/dao-panel-nav.vue';
+import DaoPanelNav from './dao-panel-nav/dao-panel-nav.vue';
 
 export default {
-  name: 'DaoInfoPanel',
+  name: 'DaoPanel',
   components: {
-    DaoInfoPanelNav,
+    DaoPanelNav,
   },
   props: {
     size: {
@@ -58,7 +58,7 @@ export default {
     mousedown(e) {
       if (e.target.nodeName.toUpperCase() === 'SVG' ||
         e.target.nodeName.toUpperCase() === 'USE' ||
-        e.target.className.indexOf('info-panel-header') === -1) return;
+        e.target.className.indexOf('dao-panel-divider') === -1) return;
 
       this.touchMoving = true;
       this.touchY = e.pageY;
