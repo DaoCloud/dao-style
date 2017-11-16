@@ -1,27 +1,26 @@
 <template>
-  <transition name="dao-dialog" @before-enter="beforeEnter"
-    @after-enter="getScroll" @before-leave="scrollBodyTop" @after-leave="doDestroy">
+  <transition 
+    name="dao-dialog" 
+    @before-enter="$onInit"
+    @after-leave="$onDestory">
     <div
       class="dao-dialog-backdrop"
       :class="{backdrop__scroll: isNeedScroll}"
-      v-show="visible"
-    >
+      v-if="visible">
       <div
         class="dao-dialog-wrapper"
         :class="{
           [typeClass]: true,
         }"
         :size="config.type !== 'feature' ? (config.size) : ''"
-        @click.self="handleWrapperClick"
-      >
+        @click.self="handleWrapperClick">
         <div
           class="dao-dialog-container"
-          ref="container"
-        >
+          ref="container">
           <daoDialogHeader
             :title="config.title || ''"
             v-if="config.showHeader !== false && config.type !== 'feature'"
-          />
+            @close="doClose"/>
           <div
             ref="body"
             class="dao-dialog-body"
@@ -29,15 +28,14 @@
             <slot></slot>
           </div>
           <div class="dao-dialog-footer" v-if="config.showFooter !== false">
-            <slot name="footer" v-if="config.type==='multiStep'">
+            <slot name="footer" v-if="config.type === 'multiStep'">
               <button class="dao-btn blue"
                 :disabled="activeStep <= 0"
                 @click="preStep">
                 上一步</button>
               <button class="dao-btn blue"
                 @click="nextStep"
-                :disabled="activeStep >= (steps.length - 1)"
-              >
+                :disabled="activeStep >= (steps.length - 1)">
                 下一步</button>
             </slot>
             <slot name="footer" v-else>
@@ -51,8 +49,8 @@
   </transition>
 </template>
 <script>
-import _ from 'lodash';
-import daoDialogHeader from './dao-dialog-header/dao-dialog-header';
+
+import daoDialogHeader from './dao-dialog-header/dao-dialog-header.vue';
 import { getStyle } from '../../utils/assist';
 
 export default {
@@ -65,7 +63,7 @@ export default {
     config: {
       type: Object,
       required: true,
-      default: function () {
+      default() {
         return {
           title: '',
           type: 'normal',
@@ -74,16 +72,19 @@ export default {
           showFooter: true,
           closeOnClickOutside: true,
           closeOnPressEscape: true,
+          // changePageOnDirectionKey: true,
         };
       },
     },
-    step: Number,
+    step: {
+      type: Number,
+      default: 0,
+    },
   },
   data() {
     return {
       steps: [],
-      activeStep: -1,
-      stepItemWidth: -1,
+      activeStep: 0,
       isNeedScroll: false,
       poppers: [],
       throttleScrollHandler: () => {},
@@ -100,7 +101,7 @@ export default {
       if (this.config.type === 'multiStep') {
         this.$nextTick(() => {
           this.poppers = Array.from(document.querySelectorAll('.append-to-body'));
-          this.poppers.forEach(popper => {
+          this.poppers.forEach((popper) => {
             if (this.$refs.body.contains(popper.reference)) {
               popper.style.visibility = 'hidden';
             }
@@ -119,51 +120,39 @@ export default {
         });
         return {
           width: `${this.steps.length * 100}%`,
-          transform: `translateX(-${(this.activeStep) / this.steps.length * 100}%)`,
+          transform: `translateX(-${(this.activeStep / this.steps.length) * 100}%)`,
         };
       }
       return '';
     },
   },
   methods: {
-    // 还原 scrollTop = 0
-    scrollBodyTop() {
-      if (this.$refs.body.scrollTop !== 0) {
-        this.$refs.body.scrollTop = 0;
+    $onInit() {
+      if (this.config.type === 'multiStep') {
+        this.initStep();
       }
-
-      if (this.config.type === 'multiStep' && this.steps.length > 0) {
-        this.steps.forEach((item) => {
-          if (item.$el.scrollTop !== 0) {
-            item.$el.scrollTop = 0;
-          }
-        });
-      }
-    },
-    beforeEnter() {
+      this.$nextTick(() => {
+        this.checkIfWrapperScrollIsNeeded();
+        this.scrollHandler();
+      });
       // 禁止 body 滚动
       document.body.style.overflowY = 'hidden';
-      document.addEventListener('keydown', this.EscClose);
+      document.addEventListener('keydown', this.handleKeyDown);
+      this.$emit('dao-dialog-open');
     },
-    getScroll() {
+    // 初始化 MultiStep 的初始位置
+    initStep() {
+      this.activeStep = (this.step && this.step >= 0 && this.step <= this.steps.length - 1)
+        ? this.step : 0;
+    },
+    checkIfWrapperScrollIsNeeded() {
       // 判断是否需要 scroll
       const container = this.$refs.container;
       const height = parseInt(getStyle(container, 'height'), 10);
       const windowHeight = window.innerHeight
         || document.documentElement.clientHeight
         || document.body.clientHeight;
-      if (height > windowHeight) {
-        this.isNeedScroll = true;
-      }
-    },
-    // destroy
-    doDestroy() {
-      document.body.style.overflowY = '';
-      document.removeEventListener('keydown', this.EscClose);
-
-      if (this.config.type === 'multiStep') {
-        this.activeStep = (this.step >= 0 && this.step <= this.steps.length - 1) ? this.step : 0;
-      }
+      this.isNeedScroll = height > windowHeight;
     },
     // close dialog
     doClose() {
@@ -185,13 +174,39 @@ export default {
         this.doClose();
       }
     },
-    // 按 ESC 键时
-    EscClose(e) {
-      if (this.visible && (this.config.closeOnPressEscape !== false) && e.keyCode === 27) {
-        this.doClose();
+    // 键盘事件
+    handleKeyDown(e) {
+      switch (e.keyCode) {
+        // ESC
+        case 27: {
+          if (this.config.closeOnPressEscape !== false) {
+            this.doClose();
+          }
+          break;
+        }
+        // 向右
+        // case 40:
+        // case 39: {
+        //   if (this.config.changePageOnDirectionKey !== false
+        //     && this.config.type === 'multiStep') {
+        //     this.nextStep();
+        //   }
+        //   break;
+        // }
+        // // 向左
+        // case 38:
+        // case 37: {
+        //   if (this.config.changePageOnDirectionKey !== false
+        //     && this.config.type === 'multiStep') {
+        //     this.preStep();
+        //   }
+        //   break;
+        // }
+        default: {
+          break;
+        }
       }
     },
-    // type: multiStep
     preStep() {
       if (this.activeStep <= 0) {
         return;
@@ -199,7 +214,7 @@ export default {
       this.activeStep -= 1;
     },
     nextStep() {
-      if (this.activeStep >= this.steps.length -1) {
+      if (this.activeStep >= this.steps.length - 1) {
         return;
       }
       this.activeStep += 1;
@@ -220,29 +235,21 @@ export default {
         }
       });
     },
-  },
-  mounted() {
-    this.activeStep = (this.step !== this.activeStep && this.step >= 0 &&
-      this.steps.length >= this.step + 1) ? this.step : 0;
-    this.throttleScrollHandler = _.throttle(this.scrollHandler, 200);
-    this.$refs.body.addEventListener('scroll', this.throttleScrollHandler);
-  },
-  beforeDestroy() {
-    document.removeEventListener('keydown', this.EscClose);
-    document.body.style.overflowY = '';
-    this.$refs.body.removeEventListener('scroll', this.throttleScrollHandler);
+    $onDestory() {
+      this.steps = [];
+      document.body.style.overflowY = '';
+      document.removeEventListener('keydown', this.handleKeyDown);
+      this.$emit('dao-dialog-close');
+    },
   },
   watch: {
-    visible(newVal, oldVal) {
+    visible(newVal) {
       this.poppers = Array.from(document.querySelectorAll('.append-to-body'));
       if (newVal) {
-        this.$emit('dao-dialog-open');
         this.poppers.forEach((popper) => {
           popper.style.visibility = '';
         });
-        this.scrollHandler();
       } else {
-        this.$emit('dao-dialog-close');
         this.poppers.forEach((popper) => {
           if (this.$refs.body.contains(popper.reference)) {
             popper.style.visibility = 'hidden';
@@ -250,16 +257,15 @@ export default {
         });
       }
     },
-    // multiStep
-    steps(val) {
-      if (val && val.length > 0) {
-        val.forEach((step, idx) => step.index = idx);
-        this.activeStep = (this.step >= 0 && val.length >= this.step + 1) ? this.step : 0;
-      }
-    },
-    activeStep(val) {
-      if (val === this.step) return;
-      this.$emit('update:step', val);
+    activeStep(newVal) {
+      if (newVal === this.step) return;
+      this.$nextTick(() => {
+        if (this.steps[newVal]) {
+          // 在切换页面时候，需要滚动到页面顶部
+          this.steps[newVal].$el.scrollTop = 0;
+        }
+      });
+      this.$emit('update:step', newVal);
     },
     step(newVal) {
       if (newVal !== this.activeStep) {
