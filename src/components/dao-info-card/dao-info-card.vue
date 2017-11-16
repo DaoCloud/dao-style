@@ -14,6 +14,7 @@
     </div>
     <template v-if="isShow">
       <div class="dao-infocard-main" >
+        <slot name="content"></slot>
         <ul v-for="values in keyValue" v-if="keyValue.length>0">
           <li class="dao-key-value" v-for="(value,key,index) in values" :key="index">
             <div class="key">{{key}}:</div>
