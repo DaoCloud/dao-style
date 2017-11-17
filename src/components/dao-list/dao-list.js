@@ -208,6 +208,15 @@ export default {
     allRowsNumber() {
       return this.allRows.length;
     },
+    isShowPagination() {
+      return this.pagesNumber > 1;
+    },
+    nextPageDisabled() {
+      return this.pagesNumber === 0 || this.page === this.pagesNumber - 1;
+    },
+    prevPageDisabled() {
+      return this.page === 0;
+    },
   },
   methods: {
     clear() {

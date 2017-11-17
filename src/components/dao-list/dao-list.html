@@ -117,15 +117,15 @@
         <span class="counts" v-show="checkedRowsNumber > 0">
           ，已选中 {{checkedRowsNumber}} 个 {{tableName}}
         </span>
-        <div class="pagination">
-          <svg :class="{disabled: page === 0}" @click="prevPage">
+        <div class="pagination" v-show="isShowPagination">
+          <svg :class="{disabled: prevPageDisabled}" @click="prevPage">
             <use xlink:href="#icon_caret-left"></use>
           </svg>
           <span class="page" v-show="page > 2" @click="goToPage(0)">1</span><!--
        --><span class="page disabled" v-show="page > 2">...</span><!--
        --><span class="page" :class="{active: page == p}" v-for="p in pages" :key="p" @click="goToPage(p)">{{p + 1}}</span><!--
        --><span class="page disabled" v-show="page < pagesNumber - 3">...</span>
-          <svg :class="{disabled: page === pagesNumber - 1}" @click="nextPage">
+          <svg :class="{disabled: nextPageDisabled}" @click="nextPage">
 
             <use xlink:href="#icon_caret-right"></use>
           </svg>
