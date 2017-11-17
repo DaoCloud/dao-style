@@ -393,7 +393,7 @@ export default {
     },
     rows() {
       this.clear();
-      this.hasUpdatedChecked = true;
+      this.hasUpdatedChecked = false;
     },
     config() {
       this.clear();
