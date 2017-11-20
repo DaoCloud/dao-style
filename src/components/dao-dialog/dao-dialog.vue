@@ -86,6 +86,7 @@ export default {
   data() {
     return {
       steps: [],
+      originStep: 0,
       activeStep: 0,
       isNeedScroll: false,
       poppers: [],
@@ -145,6 +146,8 @@ export default {
     },
     // 初始化 MultiStep 的初始位置
     initStep() {
+      // 保存住 step
+      this.originStep = this.step || 0;
       this.activeStep = (this.step && this.step >= 0 && this.step <= this.steps.length - 1)
         ? this.step : 0;
     },
@@ -258,6 +261,8 @@ export default {
           popper.style.visibility = '';
         });
       } else {
+        // reset step
+        this.activeStep = this.originStep;
         this.poppers.forEach((popper) => {
           if (this.$refs.body.contains(popper.reference)) {
             popper.style.visibility = 'hidden';
@@ -267,12 +272,9 @@ export default {
     },
     activeStep(newVal) {
       if (newVal === this.step) return;
-      this.$nextTick(() => {
-        if (this.steps[newVal]) {
-          // 在切换页面时候，需要滚动到页面顶部
-          this.steps[newVal].$el.scrollTop = 0;
-        }
-      });
+      if (this.steps[newVal]) {
+        this.steps[newVal].$el.scrollTop = 0;
+      }
       this.$emit('update:step', newVal);
     },
     step(newVal) {
