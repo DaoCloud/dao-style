@@ -49,3 +49,5 @@ slot | - | String | list | - | 是
 is-title | 设置菜单标题 | String | - | - | 否
 is-divided | 分隔选项 | Boolean | - | - | 否
 is-disabled | 禁用选项 | Boolean | - | - | 否
+text-color | 默认文字颜色 | String | red, green, yellow, orange, blue, purple, black | black | 否
+hover-color | hover 时背景颜色 | String | red, green, yellow, orange, blue, purple, black | blue | 否
