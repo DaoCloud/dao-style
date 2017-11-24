@@ -76,8 +76,6 @@ export default {
       isSettingsDialogVisible: false,
       isCustomToolbarDialogVisible: false,
       checkedAnchorIndex: null,
-      hasUpdatedChecked: false,
-      $allRows: [],
     };
   },
   computed: {
@@ -161,23 +159,19 @@ export default {
     },
     // 基本和sortedRows是一样的，只是加了 checked
     allRows() {
-      // 只有在外面传进来的 rows 更新的时候，才需要更新 checked 状态，如果 rows 不更新，就不需要更新 checked
-      if (!this.hasUpdatedChecked) {
-        const rowsClone = _.cloneDeep(this.sortedRows);
-        _.forEach(rowsClone, (r) => {
-          this.$set(r, '$checked', r.$checked || false);
-          if (r.$checked) {
-            this.checkedRows.push(r);
+      const rowsClone = _.cloneDeep(this.sortedRows);
+      _.forEach(rowsClone, (r, i) => {
+        if (!Object.hasOwnProperty.call(r, '$checked')) {
+          if (this.config.defaultCheck && i === 0) {
+            // 如果设置了默认选中第一个，就选中第一个
+            this.$set(r, '$checked', true);
+            this.checkedRows = [r];
+          } else {
+            this.$set(r, '$checked', false);
           }
-        });
-        this.hasUpdatedChecked = true;
-        // 之所以这里弄了一个多余的 $allRows。是因为，当第一次触发 onRowClick，并且代码执行到 unCheckAll 的时候，
-        // unCheckAll 里面会计算一次 allRows，然后就会 cloneDeep this.sortedRows。但是这里实际上是不应该触发的
-        // 所以要用一个 $allRows 来缓存上一次的 allRows
-        this.$allRows = rowsClone;
-        return rowsClone;
-      }
-      return this.$allRows;
+        }
+      });
+      return rowsClone;
     },
     chunks() {
       return _.chunk(this.allRows, this.rowsLimitPerPage);
@@ -393,7 +387,6 @@ export default {
     },
     rows() {
       this.clear();
-      this.hasUpdatedChecked = false;
     },
     config() {
       this.clear();

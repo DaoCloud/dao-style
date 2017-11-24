@@ -190,7 +190,7 @@ dao-list 是一个全新的列表。
 | 参数名     | 类型     | 说明                                       | 默认值  | 是否必填 |
 | ------- | ------ | ---------------------------------------- | ---- | ---- |
 | columns | Object | 分栏列表。它的每一个键值对代表一个分栏（Column），键代表一个分栏的名称。每个 Column  详细属性见下表。 | -    | 是    |
-| rows    | Array  | 包含每一行的数据。它的每一个元素都是一个对象代表一行。其中，每一行有一个特殊属性 `$checked` 用来从外部控制是否要选中某一行。每一行的属性代表一个单元格（Cell），每个 Cell 的键代表这个单元格的名称。每个 Cell 的详细属性见下表。 | -    | 是    |
+| rows    | Array  | 包含每一行的数据。它的每一个元素都是一个对象代表一行。每一行的属性代表一个单元格（Cell），每个 Cell 的键代表这个单元格的名称。每个 Cell 的详细属性见下表。 | -    | 是    |
 | config  | Object | 其他表格配置。详细属性见下表。                          | -    | 是    |
 
 #### Column
@@ -225,6 +225,7 @@ dao-list 是一个全新的列表。
 | operations    | Array  | 所有操作的列表。它的每一个元素都是 OperationGroup。       | []          | 否    |
 | hideCheckbox    | Boolean  | 是否隐藏 checkbox    | false |  否  |
 | hideOperation    | Boolean  |  是否隐藏操作   | false |   否   |
+| defaultCheck    | Boolean  |  是否一开始默认选中第一行   | false |   否   |
 
 #### Sorting
 
