@@ -103,6 +103,9 @@ export default {
     hideCheckbox() {
       return this.config.hideCheckbox;
     },
+    defaultCheck() {
+      return _.isBoolean(this.config.defaultCheck) ? this.config.defaultCheck : true;
+    },
     toolbarOperations() {
       return this.settings.operations || this.config.operations;
     },
@@ -162,7 +165,7 @@ export default {
       const rowsClone = _.cloneDeep(this.sortedRows);
       _.forEach(rowsClone, (r, i) => {
         if (!Object.hasOwnProperty.call(r, '$checked')) {
-          if (this.config.defaultCheck && i === 0) {
+          if (this.defaultCheck && i === 0) {
             // 如果设置了默认选中第一个，就选中第一个
             this.$set(r, '$checked', true);
             this.checkedRows = [r];

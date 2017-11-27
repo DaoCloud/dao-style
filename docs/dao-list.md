@@ -225,7 +225,7 @@ dao-list 是一个全新的列表。
 | operations    | Array  | 所有操作的列表。它的每一个元素都是 OperationGroup。       | []          | 否    |
 | hideCheckbox    | Boolean  | 是否隐藏 checkbox    | false |  否  |
 | hideOperation    | Boolean  |  是否隐藏操作   | false |   否   |
-| defaultCheck    | Boolean  |  是否一开始默认选中第一行   | false |   否   |
+| defaultCheck    | Boolean  |  是否一开始默认选中第一行   | true |   否   |
 
 #### Sorting
 
