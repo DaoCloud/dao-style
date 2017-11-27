@@ -196,6 +196,11 @@ table.dao-list {
   }
 }
 
+.dao-list-context-menu {
+  position: absolute;
+  user-select: none;
+}
+
 .dao-list-empty{
   padding: 40px;
   text-align: center;
