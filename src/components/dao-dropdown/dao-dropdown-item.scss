@@ -12,9 +12,6 @@
   color: $color;
 }
 
-.dao-dropdown.dao-dropdown-is-open > .dao-dropdown-rel > .dao-dropdown-item {
-  @include hoverColor($white);
-}
 .dao-dropdown-item {
   &.dao-dropdown-item-base {
     font-size: 14px;
