@@ -1,5 +1,5 @@
 <template>
-  <td>
+  <td class="time-td">
     <span>{{text}}</span>  
   </td>
 </template>
@@ -64,10 +64,21 @@ export default {
         case 'absolute':
         default: {
           const date = new Date(this.timeStamp);
-          return `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`;
+          return `${date.getFullYear()}-${this.doubleDigitFromat(date.getMonth() + 1)}-${this.doubleDigitFromat(date.getDate())} ${this.doubleDigitFromat(date.getHours())}:${this.doubleDigitFromat(date.getMinutes())}:${this.doubleDigitFromat(date.getSeconds())}`;
         }
       }
     },
   },
+  methods: {
+    doubleDigitFromat(val) {
+      return val < 10 ? `0${val}` : val;
+    },
+  },
 };
 </script>
+<style lang='scss'>
+.time-td {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+}
+</style>
