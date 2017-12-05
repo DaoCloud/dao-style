@@ -24,7 +24,7 @@ import daoEditableTable from './components/dao-editable-table';
 import daoInfoCard from './components/dao-info-card';
 import daoInputWithLabel from './components/dao-input-with-label';
 import daoList from './components/dao-list';
-import daoInfoPanel from './components/dao-info-panel';
+import { daoPanel, daoPanelItem } from './components/dao-panel';
 import daoNumericBadge from './components/dao-numeric-badge';
 import daoPopover from './components/dao-popover';
 import { daoProgress, daoProgressPulsing, daoProgressStacked } from './components/dao-progress';
@@ -57,8 +57,8 @@ const daoStyleComponents = {
   daoEditableInput,
   daoEditableTable,
   daoInfoCard,
-  daoInfoPanel,
-  daoInfoPanelItem: daoInfoPanel.daoInfoPanelItem,
+  daoPanel,
+  daoPanelItem,
   daoInput,
   daoInputWithLabel,
   daoList,

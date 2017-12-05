@@ -1,0 +1,9 @@
+<div class="dao-panel" :style="{ height: height + 'px', minHeight: minHeight }">
+    <div class="dao-panel-header">
+        <dao-panel-nav :tabList="tabList"></dao-panel-nav>
+    </div>
+    <div class="dao-panel-body" :style="{ height: bodyHeight + 'px' }">
+        <slot></slot>
+    </div>
+    <div class="dao-panel-divider" @mousedown="mousedown"></div>
+</div>

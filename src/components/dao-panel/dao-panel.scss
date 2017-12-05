@@ -6,21 +6,21 @@ $header-tab-width: 72px;
 $header-bg-color: #e6e9ef;
 $header-tab-border-color: #ccd1d9;
 
-.dao-info-panel {
+.dao-panel {
     width: 100%;
     border: 1px solid $header-tab-border-color;
     overflow: hidden;
     max-height: 100%;
+    position: relative;
 }
 
-.dao-info-panel-header {
+.dao-panel-header {
     width: 100%;
     height: $header-height;
     background-color: $header-bg-color;
     border-bottom: 1px solid $header-tab-border-color;
-    cursor: row-resize;
 
-    .dao-info-panel-nav-item {
+    .dao-panel-nav-item {
         display: block;
         float: left;
         height: $header-height;
@@ -36,29 +36,34 @@ $header-tab-border-color: #ccd1d9;
         user-select: none;
     }
 
-    .dao-info-panel-nav-item.active {
+    .dao-panel-nav-item.active {
         background-color: $white;
         border-bottom: 0;
         color: #3d444f;
     }
 
-    .dao-info-panel-nav-item:focus {
+    .dao-panel-nav-item:focus {
         background-color: $header-tab-border-color;
         color: #3D444F;
     }
 
-    .dao-info-panel-nav-item:hover {
+    .dao-panel-nav-item:hover {
         background-color: #F5F7FA;
         color: #595F69;
     }
+
+    .dao-panel-nav-item.active:hover {
+        background-color: $white;
+        color: #3d444f;
+    }
 }
 
-.dao-info-panel-body {
+.dao-panel-body {
     padding: 16px 22px;
     overflow-y: scroll;
 }
 
-.dao-info-panel-topper {
+.dao-panel-topper {
     height: 7px;
     width: 100%;
     position: absolute;
@@ -66,4 +71,13 @@ $header-tab-border-color: #ccd1d9;
     cursor: row-resize;
     touch-action: none;
     -ms-touch-action: none;
+}
+
+.dao-panel-divider {
+    position: absolute;
+    height: 7px;
+    width: 100%;
+    top: 0;
+    margin-top: -3px;
+    cursor: row-resize;
 }
