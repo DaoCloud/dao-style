@@ -116,7 +116,7 @@ Editable Input 是一个可以编辑的 Disabled Input。当我们不希望用�
 | search | Boolean | 搜索输入框 | false | 否 |
 | block | Boolean | 不限制 input 宽度 | false | 否 |
 | required | Boolean | 必填 | false | 否 |
-| show-tooltip-only-hover | Boolean | 只有在鼠标 hover 到 icon 上时才会出现 tooltip | false | 否 |
+| show-tooltip-only-hover | Boolean | 只有在鼠标 hover 到 icon 上时才会出现 tooltip | true | 否 |
 | placeholder | String | 	输入框占位文本 | - | 否 |
 | readonly | Boolean | 	原生属性，是否只读 | false | 否 |
 | autofocus | Boolean | 原生属性，自动获得焦点 | false | 否 |
