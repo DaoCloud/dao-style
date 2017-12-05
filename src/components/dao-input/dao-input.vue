@@ -131,7 +131,10 @@
         type: Boolean,
         default: true,
       },
-      showTooltipOnlyHover: Boolean,
+      showTooltipOnlyHover: {
+        type: Boolean,
+        default: true,
+      },
     },
     computed: {
       isRequired() {
