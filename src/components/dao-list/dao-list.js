@@ -52,7 +52,7 @@ export default {
       });
       columnsOrder = null;
       toolbarOperations = null;
-      timeFormat = null;
+      timeFormat = 'relative';
     }
     return {
       page: 0,

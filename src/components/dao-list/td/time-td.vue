@@ -12,7 +12,12 @@ export default {
   computed: {
     text() {
       switch (this.timeFormat) {
-        case 'relative': {
+        case 'absolute': {
+          const date = new Date(this.timeStamp);
+          return `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`;
+        }
+        case 'relative':
+        default: {
           const now = new Date();
           const deltaTime = now.getTime() - this.timeStamp;
 
@@ -60,11 +65,6 @@ export default {
             return true;
           });
           return text;
-        }
-        case 'absolute':
-        default: {
-          const date = new Date(this.timeStamp);
-          return `${date.getFullYear()}-${this.doubleDigitFromat(date.getMonth() + 1)}-${this.doubleDigitFromat(date.getDate())} ${this.doubleDigitFromat(date.getHours())}:${this.doubleDigitFromat(date.getMinutes())}:${this.doubleDigitFromat(date.getSeconds())}`;
         }
       }
     },
