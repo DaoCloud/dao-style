@@ -28,7 +28,12 @@ export default {
     if (!this.width || this.width === 'auto') {
       this.thWidth = this.$refs.th.clientWidth;
     } else {
-      this.thWidth = _.toNumber(this.width.replace('px', ''));
+      // 如果有百分比，那就要根据父元素的宽度计算，得出绝对宽度
+      if (this.width.includes('%')) {
+        this.thWidth = (this.width.replace('%', '') / 100) * this.$parent.$el.clientWidth;
+      } else {
+        this.thWidth = _.toNumber(this.width.replace('px', ''));
+      }
     }
 
     document.addEventListener('mousemove', this.onMousemove);

@@ -122,6 +122,7 @@
           columnsOrder: ['service', 'status', 'containers', 'memory', 'creationTime', 'cpu'],
           hideCheckbox: false,
           hideOperation: false,
+          defaultCheck: true,
           sorting: {
             defaultSortBy: 'creationTime',
             order: 'asc',

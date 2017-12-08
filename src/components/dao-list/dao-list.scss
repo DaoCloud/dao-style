@@ -95,6 +95,10 @@ $inner-border: $white-dark;
       line-height: 26px;
       border-radius: 3px;
       text-align: center; 
+      background: none;
+      border: 0;
+      color: unset;
+      font-size: 14px;
       cursor: pointer;
     }
     .disabled {

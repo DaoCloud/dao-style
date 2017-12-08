@@ -110,6 +110,15 @@
         this.onClose();
       },
     },
+    watch: {
+      visible(newVal) {
+        // 每次显示弹框时，都要初始化一下数据
+        if (newVal) {
+          this.settings.columnsOrder = this.getAllColumnsOrder();
+          this.settings.timeFormat = this.timeFormat || 'relative';
+        }
+      },
+    },
   };
 </script>
 
