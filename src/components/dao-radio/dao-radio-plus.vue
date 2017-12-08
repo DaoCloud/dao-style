@@ -88,7 +88,8 @@
     methods: {
       // 处理点击事件
       handleClick() {
-        if (this.disabled) return;
+        // 如果是选中状态或 disabled 状态，则不需要重复 emit value
+        if (this.disabled || this.checked) return;
         // 首先把自身的 radioValue 值赋给 v-model 使其选中
         this.$emit('input', {
           value: this.radioValue,
