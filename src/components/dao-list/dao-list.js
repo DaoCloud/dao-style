@@ -7,6 +7,7 @@ import TimeTd from './td/time-td.vue';
 import CustomTd from './td/custom-td';
 import OperationTd from './td/operation-td.vue';
 import CheckAll from './check-all.vue';
+import DaoListContextMenu from './contextMenu/index.vue';
 import DaoListSettingsDialog from './dialogs/settings-dialog.vue';
 import DaoListCustomToolbarDialog from './dialogs/custom-toolbar-dialog.vue';
 
@@ -21,6 +22,8 @@ export default {
     OperationTd,
     CheckAll,
     DaoListTh,
+    DaoListContextMenu,
+
     DaoListSettingsDialog,
     DaoListCustomToolbarDialog,
   },
@@ -73,12 +76,25 @@ export default {
         toolbarOperations,
         timeFormat,
       },
+      contextMenu: {
+        visible: false,
+        position: {
+          top: '',
+          left: '',
+        },
+      },
       isSettingsDialogVisible: false,
       isCustomToolbarDialogVisible: false,
       checkedAnchorIndex: null,
       hasUpdatedChecked: false,
       $allRows: [],
     };
+  },
+  created() {
+    // 有全局的点击事件时将右键菜单隐藏
+    document.addEventListener('click', () => {
+      this.contextMenu.visible = false;
+    });
   },
   computed: {
     tableId() {
@@ -285,6 +301,22 @@ export default {
         this.checkRow(row, true);
         this.checkedAnchorIndex = this.currentRows.indexOf(row);
       }
+    },
+    onContextMenu(row, event) {
+      // 当已经选中的行数小于等于1时，则使当前行成为被选中行
+      if (this.checkedRows.length <= 1) {
+        this.unCheckAll();
+        this.checkRow(row, true);
+        this.checkedAnchorIndex = this.currentRows.indexOf(row);
+      }
+      const position = {
+        top: `${event.clientY}px`,
+        left: `${event.clientX}px`,
+      };
+      Object.assign(this.contextMenu, {
+        position,
+        visible: true,
+      });
     },
     // 选中所有行
     checkAll() {

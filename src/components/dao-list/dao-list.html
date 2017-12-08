@@ -177,7 +177,7 @@
         <tbody>
           <tr :class="{checked: r.$checked}" v-for="(r, i) in currentRows" :key="i"
             @click="onRowClick(r, $event)"
-            @contextmenu.prevent="onRowClick(r, $event)">
+            @contextmenu.prevent="onContextMenu(r, $event)">
             <td class="checkbox" v-if="!hideCheckbox">
               <input type="checkbox"
               class="round"
@@ -217,4 +217,12 @@
       列表为空
     </div>
   </div>
+  <!-- 右键菜单 -->
+  <dao-list-context-menu
+    class="dao-list-context-menu"
+    :style="contextMenu.position"
+    v-show="contextMenu.visible"
+    :checkedRows="checkedRows"
+    :operations="operations"
+  />
 </div>
