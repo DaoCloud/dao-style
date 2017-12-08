@@ -135,7 +135,8 @@
           this.chooseOption();
         } else {
           this.broadcast('Select', 'deal-async', () => {
-            this.chooseOption();
+            // 此处，只有当前是选中状态时，才需要选择一个默认选项出来
+            if (this.checked) this.chooseOption();
           });
         }
       },
