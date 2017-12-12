@@ -59,7 +59,6 @@ export default {
     }
     return {
       page: 0,
-      checkedRows: [],
       filterTextRaw: '',
       filterText: '',
       isAllChecked: false,
@@ -184,7 +183,6 @@ export default {
           if (this.defaultCheck && i === 0) {
             // 如果设置了默认选中第一个，就选中第一个
             this.$set(r, '$checked', true);
-            this.checkedRows = [r];
           } else {
             this.$set(r, '$checked', false);
           }
@@ -217,6 +215,9 @@ export default {
       this.checkedAnchorIndex = null;
       return this.chunks[this.page] || [];
     },
+    checkedRows() {
+      return _.filter(this.allRows, r => r.$checked);
+    },
     currentRowsNumber() {
       return this.currentRows.length;
     },
@@ -242,22 +243,13 @@ export default {
   methods: {
     clear() {
       this.page = 0;
-      this.checkedRows = [];
       this.changeIsAllChecked();
     },
     // 选中一行
     checkRow(row, target) {
       // 修改行的选中状态
       this.$set(row, '$checked', target);
-      if (target && !this.checkedRows.includes(row)) {
-        // 如果这行被选中的话，就添加到选中的行数组里
-        this.checkedRows.push(row);
-      }
 
-      if (!target) {
-        // 如果取消选中就移除掉
-        this.checkedRows = _.filter(this.checkedRows, r => r !== row);
-      }
       this.changeIsAllChecked();
     },
     // 点击某一行的事件
@@ -320,14 +312,12 @@ export default {
       _.forEach(this.allRows, (row) => {
         this.$set(row, '$checked', true);
       });
-      this.checkedRows = this.allRows;
     },
     // 全不选所有行，这个方法速度比 checkAll 快
     unCheckAll() {
       _.forEach(this.allRows, (row) => {
         this.$set(row, '$checked', false);
       });
-      this.checkedRows = [];
     },
     // 选中当前页所有行
     checkPage(wantToCheck) {
@@ -337,10 +327,9 @@ export default {
       });
     },
     changeIsAllChecked() {
-      const checkedRowsNumber = _.filter(this.allRows, row => row.$checked).length;
-      if (checkedRowsNumber === 0) {
+      if (this.checkedRowsNumber === 0) {
         this.isAllChecked = 'no';
-      } else if (checkedRowsNumber < this.allRows.length) {
+      } else if (this.checkedRowsNumber < this.allRows.length) {
         this.isAllChecked = 'partial';
       } else {
         this.isAllChecked = 'yes';
