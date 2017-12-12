@@ -23,6 +23,7 @@
           service: {
             text: '服务',
             name: 'service',
+            mainKey: true,
           },
           status: {
             text: '状态',

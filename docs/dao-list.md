@@ -201,6 +201,7 @@ dao-list 是一个全新的列表。
 | text     | String  | 分栏表头所显示的文本。                              | -           | 是    |
 | unsortable | Boolean | 该分栏是否不能用于排序。                             | `false`     | 否    |
 | isFilter | Boolean | 该分栏数据是否仅用作筛选用途。如果是的话，那么该分栏将不会展示在表格中，但是可以用于筛选。 | `undefined` | 否    |
+| mainKey | Boolean | 该分栏数据是主键。如果列表中有主键，那么当 rows 更新时，原本的每一行的选中状态会保留。如果不设置主键，则没有这个功能。建议设置。 | `false` | 否    |
 
 #### Cell
 

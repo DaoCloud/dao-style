@@ -85,6 +85,7 @@ export default {
       isSettingsDialogVisible: false,
       isCustomToolbarDialogVisible: false,
       checkedAnchorIndex: null,
+      oldAllRows: [],
     };
   },
   created() {
@@ -99,6 +100,13 @@ export default {
     },
     tableName() {
       return this.config.tableName;
+    },
+    mainKey() {
+      const mainColumn = _.find(this.columns, c => c.mainKey);
+      if (mainColumn) {
+        return mainColumn.name;
+      }
+      return null;
     },
     rowsLimitPerPage() {
       return this.config.pagination.limit;
@@ -179,15 +187,24 @@ export default {
     allRows() {
       const rowsClone = _.cloneDeep(this.sortedRows);
       _.forEach(rowsClone, (r, i) => {
-        if (!Object.hasOwnProperty.call(r, '$checked')) {
-          if (this.defaultCheck && i === 0) {
-            // 如果设置了默认选中第一个，就选中第一个
+        if (this.defaultCheck && i === 0 && (this.oldAllRows.length === 0 || !this.mainKey)) {
+          // 如果设置了默认选中第一个，就选中第一个。而且前提是 oldAllRows 长度为 0。
+          // 但是如果没有mainKey，就无法保留选中状态。这种情况下，还是要选中第一个。
+          this.$set(r, '$checked', true);
+        } else if (this.mainKey) {
+          // 如果这行数据之前已经被选中了，那就保留它的选中状态。这个功能的前提是设置了主键。
+          const oldRow =
+            _.find(this.oldAllRows, old => old[this.mainKey].value === r[this.mainKey].value);
+          if (oldRow && oldRow.$checked) {
             this.$set(r, '$checked', true);
           } else {
             this.$set(r, '$checked', false);
           }
+        } else {
+          this.$set(r, '$checked', false);
         }
       });
+      this.oldAllRows = rowsClone;
       return rowsClone;
     },
     chunks() {
