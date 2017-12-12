@@ -262,6 +262,8 @@ export default {
     },
     // 点击某一行的事件
     onRowClick(row, event) {
+      // 这是为了适配 firefox，firefox 下没有 event.path
+      const path = event.path || (event.composedPath && event.composedPath());
       // 点击一共分三种情况、ctrl 点击、shift 点击、普通点击、点击 checkbox
       if (event.ctrlKey || event.target.nodeName === 'INPUT') {
         // 如果是按住 ctrl 点的或者点击的是 checkbox，那就选中当前行
@@ -292,7 +294,7 @@ export default {
         event.target.nodeName === 'A' ||
         event.target.nodeName === 'BUTTON' ||
         // 当其点在 popover 绑定元素上面也不能选中列表
-        event.path.some(node => node.classList && node.classList.contains('dao-popover')))) {
+        (path && path.some(node => node.classList && node.classList.contains('dao-popover'))))) {
         // 如果是普通点击，那就先清空所有点击的行，然后再选中这一行
         this.unCheckAll();
         this.checkRow(row, true);
