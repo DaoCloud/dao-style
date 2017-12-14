@@ -14,7 +14,7 @@ export default {
       switch (this.timeFormat) {
         case 'absolute': {
           const date = new Date(this.timeStamp);
-          return `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`;
+          return `${date.getFullYear()}-${this.doubleDigitFromat(date.getMonth() + 1)}-${this.doubleDigitFromat(date.getDate())} ${this.doubleDigitFromat(date.getHours())}:${this.doubleDigitFromat(date.getMinutes())}:${this.doubleDigitFromat(date.getSeconds())}`;
         }
         case 'relative':
         default: {
