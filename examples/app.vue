@@ -73,6 +73,9 @@ li + li {
           <router-link to="/list-group">List Group</router-link>
         </li>
         <li>
+          <router-link to="/message">Message</router-link>
+        </li>
+        <li>
           <router-link to="/numeric-badge">Numeric Badge</router-link>
         </li>
         <li>

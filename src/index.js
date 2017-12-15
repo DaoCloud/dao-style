@@ -25,6 +25,7 @@ import daoInfoCard from './components/dao-info-card';
 import daoInputWithLabel from './components/dao-input-with-label';
 import daoList from './components/dao-list';
 import { daoPanel, daoPanelItem } from './components/dao-panel';
+import daoMessage from './components/dao-message';
 import daoNumericBadge from './components/dao-numeric-badge';
 import daoPopover from './components/dao-popover';
 import { daoProgress, daoProgressPulsing, daoProgressStacked } from './components/dao-progress';
@@ -101,6 +102,9 @@ function install(Vue) {
   Object.keys(daoStyleDirectives).forEach((key) => {
     Vue.directive(key, daoStyleDirectives[key]);
   });
+  Vue.prototype.$message = daoMessage;
+  Vue.prototype.$alert = daoMessage.alert;
+  Vue.prototype.$confirm = daoMessage.confirm;
 }
 
 // auto install
