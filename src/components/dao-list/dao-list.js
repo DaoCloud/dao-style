@@ -191,6 +191,8 @@ export default {
           // 如果设置了默认选中第一个，就选中第一个。而且前提是 oldAllRows 长度为 0。
           // 但是如果没有mainKey，就无法保留选中状态。这种情况下，还是要选中第一个。
           this.$set(r, '$checked', true);
+          // 而且这种情况下全选状态一定是 partial
+          this.isAllChecked = 'partial';
         } else if (this.mainKey) {
           // 如果这行数据之前已经被选中了，那就保留它的选中状态。这个功能的前提是设置了主键。
           const oldRow =
