@@ -59,7 +59,6 @@ export default {
     }
     return {
       page: 0,
-      checkedRows: [],
       filterTextRaw: '',
       filterText: '',
       isAllChecked: false,
@@ -86,6 +85,7 @@ export default {
       isSettingsDialogVisible: false,
       isCustomToolbarDialogVisible: false,
       checkedAnchorIndex: null,
+      oldAllRows: [],
     };
   },
   created() {
@@ -100,6 +100,13 @@ export default {
     },
     tableName() {
       return this.config.tableName;
+    },
+    mainKey() {
+      const mainColumn = _.find(this.columns, c => c.mainKey);
+      if (mainColumn) {
+        return mainColumn.name;
+      }
+      return null;
     },
     rowsLimitPerPage() {
       return this.config.pagination.limit;
@@ -180,16 +187,26 @@ export default {
     allRows() {
       const rowsClone = _.cloneDeep(this.sortedRows);
       _.forEach(rowsClone, (r, i) => {
-        if (!Object.hasOwnProperty.call(r, '$checked')) {
-          if (this.defaultCheck && i === 0) {
-            // 如果设置了默认选中第一个，就选中第一个
+        if (this.defaultCheck && i === 0 && (this.oldAllRows.length === 0 || !this.mainKey)) {
+          // 如果设置了默认选中第一个，就选中第一个。而且前提是 oldAllRows 长度为 0。
+          // 但是如果没有mainKey，就无法保留选中状态。这种情况下，还是要选中第一个。
+          this.$set(r, '$checked', true);
+          // 而且这种情况下全选状态一定是 partial
+          this.isAllChecked = 'partial';
+        } else if (this.mainKey) {
+          // 如果这行数据之前已经被选中了，那就保留它的选中状态。这个功能的前提是设置了主键。
+          const oldRow =
+            _.find(this.oldAllRows, old => old[this.mainKey].value === r[this.mainKey].value);
+          if (oldRow && oldRow.$checked) {
             this.$set(r, '$checked', true);
-            this.checkedRows = [r];
           } else {
             this.$set(r, '$checked', false);
           }
+        } else {
+          this.$set(r, '$checked', false);
         }
       });
+      this.oldAllRows = rowsClone;
       return rowsClone;
     },
     chunks() {
@@ -217,6 +234,9 @@ export default {
       this.checkedAnchorIndex = null;
       return this.chunks[this.page] || [];
     },
+    checkedRows() {
+      return _.filter(this.allRows, r => r.$checked);
+    },
     currentRowsNumber() {
       return this.currentRows.length;
     },
@@ -242,22 +262,13 @@ export default {
   methods: {
     clear() {
       this.page = 0;
-      this.checkedRows = [];
       this.changeIsAllChecked();
     },
     // 选中一行
     checkRow(row, target) {
       // 修改行的选中状态
       this.$set(row, '$checked', target);
-      if (target && !this.checkedRows.includes(row)) {
-        // 如果这行被选中的话，就添加到选中的行数组里
-        this.checkedRows.push(row);
-      }
 
-      if (!target) {
-        // 如果取消选中就移除掉
-        this.checkedRows = _.filter(this.checkedRows, r => r !== row);
-      }
       this.changeIsAllChecked();
     },
     // 点击某一行的事件
@@ -322,14 +333,12 @@ export default {
       _.forEach(this.allRows, (row) => {
         this.$set(row, '$checked', true);
       });
-      this.checkedRows = this.allRows;
     },
     // 全不选所有行，这个方法速度比 checkAll 快
     unCheckAll() {
       _.forEach(this.allRows, (row) => {
         this.$set(row, '$checked', false);
       });
-      this.checkedRows = [];
     },
     // 选中当前页所有行
     checkPage(wantToCheck) {
@@ -339,10 +348,9 @@ export default {
       });
     },
     changeIsAllChecked() {
-      const checkedRowsNumber = _.filter(this.allRows, row => row.$checked).length;
-      if (checkedRowsNumber === 0) {
+      if (this.checkedRowsNumber === 0) {
         this.isAllChecked = 'no';
-      } else if (checkedRowsNumber < this.allRows.length) {
+      } else if (this.checkedRowsNumber < this.allRows.length) {
         this.isAllChecked = 'partial';
       } else {
         this.isAllChecked = 'yes';
