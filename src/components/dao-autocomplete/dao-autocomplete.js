@@ -138,6 +138,7 @@ export default {
       if (this.validate) {
         this.isValid = this.validate(val);
       }
+      this.$emit('text-change', val);
     },
   },
 };
