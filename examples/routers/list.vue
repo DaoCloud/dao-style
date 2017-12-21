@@ -159,6 +159,7 @@
                   disabledTooltip: '许可证到期',
                 },
               ],
+              // alwaysShow: true,
             },
             {
               groupName: '资源',

@@ -15,7 +15,9 @@
       </svg>
     </button>
     <!-- 工具栏按钮 -->
-    <div class="dao-btn-group" v-for="operationGroup in toolbarOperations" v-if="!operationGroup.single && !hideOperation">
+    <div class="dao-btn-group"
+    v-for="operationGroup in toolbarOperations"
+    v-if="operationGroup.alwaysShow || (!operationGroup.single && !hideOperation && checkedRowsNumber > 0)">
       <button class="dao-btn ghost dao-icon"
         v-for="o in operationGroup.operations"
         :class="{'pseudo-disabled': o.disabled}"
