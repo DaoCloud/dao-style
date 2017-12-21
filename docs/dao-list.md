@@ -247,7 +247,8 @@ dao-list 是一个全新的列表。
 | ---------- | ------ | ---------------------------- | ---- | ---- |
 | groupName  | String | 操作组的名称。                      | -    | 是    |
 | operations | Array  | 操作组中的操作。每一个元素都是一个 Operation。 | -    | 是    |
-| single | false | 这个操作是单行操作。在每一行右边的操作菜单中执行，不会在工具栏和右键菜单中显示。 | `undefined` | 否    |
+| single | Boolean | 这个操作是单行操作。在每一行右边的操作菜单中执行，永远不会在工具栏和右键菜单中显示。 | `undefined` | 否    |
+| alwaysShow | Boolean | 这个操作永远都会显示在工具栏上。默认情况下，一定要至少选中一行，工具栏上才会出现操作按钮。这个设置对 mainOperation 无效。 | `undefined` | 否    |
 
 #### Operation
 
