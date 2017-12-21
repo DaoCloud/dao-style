@@ -31,13 +31,14 @@ export default {
       if (this.width.includes('%')) {
         // 如果有百分比，那就要根据父元素的宽度计算，得出绝对宽度
         this.thWidth = (this.width.replace('%', '') / 100) * this.$parent.$el.clientWidth;
-        // 给一个最小宽度50px，以避免 th 过小
-        if (this.thWidth < 10) {
-          this.thWidth = '50px';
-        }
       } else {
         this.thWidth = _.toNumber(this.width.replace('px', ''));
       }
+    }
+
+    // 给一个最小宽度50px，以避免 th 过小
+    if (this.thWidth < 10) {
+      this.thWidth = 100;
     }
 
     document.addEventListener('mousemove', this.onMousemove);
