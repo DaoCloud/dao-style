@@ -51,7 +51,7 @@ export default {
           columnsNumber = Object.keys(this.columns).length;
         }
         // 还要加上操作一栏
-        columnsNumber = columnsNumber + this.config.hideOperation ? 0 : 1;
+        columnsNumber += (this.config.hideOperation ? 0 : 1);
         // 所有的分栏的平分整个列表的宽度
         columnsWidth[c.name] = `${100 / columnsNumber}%`;
       });
