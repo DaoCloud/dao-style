@@ -100,6 +100,9 @@ li + li {
           <router-link to="/slider">Slider</router-link>
         </li>
         <li>
+          <router-link to="/spin">Spin</router-link>
+        </li>
+        <li>
           <router-link to="/svg">Svg</router-link>
         </li>
         <li>
