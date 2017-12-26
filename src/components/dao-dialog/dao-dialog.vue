@@ -143,6 +143,7 @@ export default {
       document.body.style.overflowY = 'hidden';
       document.addEventListener('keydown', this.handleKeyDown);
       this.$emit('dao-dialog-open');
+      window.addEventListener('resize', this.checkIfWrapperScrollIsNeeded);
     },
     // 初始化 MultiStep 的初始位置
     initStep() {
@@ -250,6 +251,7 @@ export default {
         document.body.style.overflowY = '';
       }
       document.removeEventListener('keydown', this.handleKeyDown);
+      window.addEventListener('resize', this.checkIfWrapperScrollIsNeeded);
       this.$emit('dao-dialog-close');
     },
   },
