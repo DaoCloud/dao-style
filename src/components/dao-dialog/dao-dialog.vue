@@ -251,7 +251,7 @@ export default {
         document.body.style.overflowY = '';
       }
       document.removeEventListener('keydown', this.handleKeyDown);
-      window.addEventListener('resize', this.checkIfWrapperScrollIsNeeded);
+      window.removeEventListener('resize', this.checkIfWrapperScrollIsNeeded);
       this.$emit('dao-dialog-close');
     },
   },
