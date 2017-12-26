@@ -22,7 +22,7 @@
       <dao-option :value="4">option4</dao-option>
     </dao-select>
     <br>
-    <h1>select with search</h1>
+    <h1>select with search{{search}}</h1>
     <br><hr><br>
 
     <dao-select v-model="search" placeholder="带搜索下拉框" :with-search="true" search-placeholder="搜索条件在这里" no-data-text="无选项" no-match-text="无匹配选项">
@@ -94,6 +94,27 @@
       <dao-option v-for="option in options" :key="option.value" :value="option.value" :label="option.text">{{ option.text }}</dao-option>    
     </dao-select>
 
+    <h1>select with async search{{asyncSearch}}</h1>
+    <br><hr><br>
+    <dao-select 
+      v-model="asyncSearch" 
+      placeholder="带异步搜索下拉框" 
+      :with-search="true" 
+      :async-search="true"
+      :async="asyncFun"
+      search-placeholder="搜索条件在这里" 
+      no-match-text="无匹配选项">
+      <dao-option-group>
+        <dao-option 
+          v-for="item in asyncSearchItems" 
+          :value="item"
+          :key="item.value"
+          :label="item.text">
+        </dao-option>
+      </dao-option-group>
+    </dao-select>
+    <div style="margin-bottom: 350px;"></div>
+
   </div>
 </template>
 <script>
@@ -103,6 +124,7 @@
         simple: 1,
         small: 1,
         search: undefined,
+        asyncSearch: undefined,
         button: 2,
         disabled: undefined,
         tab: undefined,
@@ -113,6 +135,16 @@
         items: [{
           value: 1,
           text: 'abcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabc',
+        }, {
+          value: 2,
+          text: '选项二',
+        }, {
+          value: 3,
+          text: '选项三',
+        }],
+        asyncSearchItems: [{
+          value: 1,
+          text: '选项一',
         }, {
           value: 2,
           text: '选项二',
@@ -162,6 +194,26 @@
         } else {
           this.simple -= 1;
         }
+      },
+      asyncFun(val) {
+        console.log('asyncFun: ', val);
+        return new Promise((resolve) => {
+          setTimeout(() => {
+            const num = parseInt((Math.random() * 100).toFixed(0), 10);
+            const result = [];
+            /* eslint-disable */
+            for (let i = 0; i < num; i++) {
+              const ran = (Math.random() * 10).toFixed(0);
+              const item = {
+                value: `value-${i + 1}-${ran}`,
+                text: `text-${i + 1}-${ran}`,
+              };
+              result.push(item);
+            }
+            this.asyncSearchItems = result;
+            resolve();
+          }, 2000);
+        });
       },
     },
   };

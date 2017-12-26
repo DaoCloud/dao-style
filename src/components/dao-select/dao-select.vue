@@ -58,6 +58,10 @@
         type: Boolean,
         default: false,
       },
+      asyncSearch: {
+        type: Boolean,
+        default: false,
+      },
       searchPlaceholder: String,
       searchMethod: [String, Function],
       withTab: {
@@ -96,7 +100,12 @@
       // 控制下拉的显示和隐藏
       // 搜索
       filter(val) {
-        this.broadcast('Option', 'search', val, this.searchMethod);
+        this.$emit('search-change', val);
+        if (this.asyncSearch) {
+          this.decorateAsync();
+          return;
+        }
+        this.broadcastSearch();
       },
       value(val) {
         // 当 v-model 绑定的 value 值变化时更新一下 option 的状态
@@ -182,12 +191,19 @@
       handleClick() {
         if (this.isDisabled) return;
         if (this.async && !this.asyncComplete && !this.visible) {
-          this.handleAsync(() => {
-            this.toggleMenu();
-          });
+          this.decorateAsync();
         } else {
           this.toggleMenu();
         }
+      },
+      // 给 async 方法塞一层回调
+      decorateAsync() {
+        this.handleAsync(() => {
+          // 在打开的状态下进行异步搜索，不需要去 toggleMenu
+          if (!this.asyncSearch || (this.asyncSearch && !this.visible)) {
+            this.toggleMenu();
+          }
+        });
       },
       // 处理按钮点击事件
       handleBtnClick() {
@@ -197,26 +213,22 @@
       // 处理 async
       handleAsync(callback) {
         this.isLoading = true;
-        this.async()
-          .then(() => {
-            this.asyncSuccess();
-            return true;
-          })
-          .catch(() => {
-            this.asyncFail();
-            return false;
-          })
-          .then(res => callback(res));
+        this.async(this.filter)
+          .catch(() => {})
+          .then((res) => {
+            this.handleAsyncComplete();
+            callback(res);
+          });
       },
-      // async 方法成功
-      asyncSuccess() {
+      // async 完成
+      handleAsyncComplete() {
+        // 搜索完成时候清空一下 v-model
+        this.selectedValue = null;
         this.isLoading = false;
         this.asyncComplete = true;
       },
-      // async 方法失败
-      asyncFail() {
-        this.isLoading = false;
-        this.asyncComplete = false;
+      broadcastSearch() {
+        this.broadcast('Option', 'search', this.filter, this.searchMethod);
       },
       // 关闭下拉框
       closeMenu() {
@@ -230,6 +242,17 @@
       updateOptionStatus(val) {
         this.broadcast('Option', 'status', val);
       },
+    },
+    created() {
+      // validate
+      if (this.asyncSearch) {
+        if (!this.async) {
+          throw new Error('method "async" was required');
+        }
+        if (this.searchMethod) {
+          console.warn("method 'searchMethod' and 'async' may conflict");
+        }
+      }
     },
   };
 </script>

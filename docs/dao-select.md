@@ -83,6 +83,7 @@ Select 是由 Select 和 Option-Group 以及 Option 三个组件组合而成。
 | with-btn | boolean | 控制 select 是否带 button | false | 否 |
 | btn-content | string | 控制 select 带的 button 内的文字 | - | 否 |
 | with-search | boolean | 是否有搜索框 | false | 否 |
+| async-search | boolean | 是否开启异步搜索(1.开启异步搜索时 option 必须指定 :key 2.必须指定返回promise 的 async 方法 3.不推荐与search-method 方法共用) | false | 否 |
 | search-placeholder | string | 搜索框默认文本 | - | 否 |
 | search-method | string / function | 搜索方法：若传入的是一个 string，则这个 string 需要是 option 中 value 的一个 key；若传入的是一个 function，则 function 接受的参数为 option 的 value 值，需返回 true 或 false | - | 否 |
 | with-tab | boolean | 是否有 tab | false | 否 |
