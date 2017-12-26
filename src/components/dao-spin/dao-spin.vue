@@ -6,7 +6,7 @@
   import { Spinner } from 'spin.js';
 
   const defaultOpts = {
-    lines: 13, // The number of lines to draw
+    lines: 8, // The number of lines to draw
     length: 38, // The length of each line
     width: 17, // The line thickness
     radius: 45, // The radius of the inner circle
@@ -33,29 +33,44 @@
     props: {
       size: {
         required: false,
-        default: 'small',
+        default: 'normal',
+      },
+      color: {
+        required: false,
+        default: 'grey',
       },
     },
     data() {
       return {
         opt: {},
         opts: {
-          small: {
-            length: 8,
-            width: 1,
+          normal: {
+            length: 4,
+            width: 2,
             radius: 4,
+            scale: 0.5,
           },
         },
         sizes: {
-          small: {
-            width: 50,
-            height: 50,
+          normal: {
+            width: 10,
+            height: 10,
           },
+        },
+        colors: {
+          white: '#ffffff',
+          grey: '#3d444f',
         },
       };
     },
     created() {
-      this.opt = Object.assign({}, defaultOpts, this.opts[this.size]);
+      this.opt = Object.assign(
+        {},
+        defaultOpts,
+        this.opts[this.size],
+        {
+          color: this.colors[this.color],
+        });
     },
     mounted() {
       const spinner = new Spinner(this.opt).spin();
