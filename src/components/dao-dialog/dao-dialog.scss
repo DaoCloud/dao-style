@@ -100,6 +100,11 @@ $resizeSvg: "data:image/svg+xml;utf8,%3Csvg%20xmlns=%27http://www.w3.org/2000/sv
     &>.dao-dialog-container {
       position: relative;
       resize: both;
+      /* 限制 resize 范围, 保证不溢出，不变形 */
+      max-width:100%;   
+      max-height:100%;
+      min-width: 200px;
+      min-height: 120px;
       &::after {
         content: '';
         position: absolute;

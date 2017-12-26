@@ -27,6 +27,15 @@
             body<br/>
             body<br/>
             body<br/>
+            <div v-for="item in items">
+              hdhdhdhhdhdhhd1
+              hdhdhdhhdhdhhd2
+              hdhdhdhhdhdhhd3
+              hdhdhdhhdhdhhd4
+              hdhdhdhhdhdhhd5
+              hdhdhdhhdhdhhd6
+            </div>
+            <button class="dao-btn blue" @click="items.push(1)">push data</button>
           </div>
         </dao-dialog>
       </div>
@@ -478,7 +487,7 @@
 </style>
 <script>
   export default {
-    data () {
+    data() {
       return {
         dialogInner: [
           {
@@ -640,6 +649,7 @@
             hasFooter: true,
           },
         ],
+        items: [],
       };
     },
     methods: {
