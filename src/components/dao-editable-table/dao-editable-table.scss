@@ -3,6 +3,9 @@
   width: 50px;
   flex: 0 0 auto;
 }
+.dao-table + .det-add {
+  margin-top: 12px;
+}
 .det-tr {
   &.activate {
     background: #FFFCED;
@@ -14,7 +17,6 @@
 .det-add {
   display: inline-block;
   color: $blue;
-  margin-top: 15px;
   cursor: pointer;
 }
 .det-add-btn {
