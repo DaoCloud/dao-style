@@ -55,40 +55,40 @@ $checkbox-height: 24px;
   }
 }
 
-// 这里有一个圆形的 checkbox
-input[type='checkbox'].round {
-  visibility: hidden;
-  &::before {
-    content: '';
-    transform: translateX(-2px) translateY(-5px);
-    display: inline-block;
-    vertical-align: middle;
-    text-align: center;
-    width: 16px;
-    height: 16px;
-    visibility: visible;
-    border-radius: 4px;
-    box-shadow: 0 0 0 1px #cdd2da inset;
-    background: white;
-  }
-}
+// // 这里有一个圆形的 checkbox
+// input[type='checkbox'].round {
+//   visibility: hidden;
+//   &::before {
+//     content: '';
+//     transform: translateX(-2px) translateY(-5px);
+//     display: inline-block;
+//     vertical-align: middle;
+//     text-align: center;
+//     width: 16px;
+//     height: 16px;
+//     visibility: visible;
+//     border-radius: 4px;
+//     box-shadow: 0 0 0 1px #cdd2da inset;
+//     background: white;
+//   }
+// }
 
-input[type='checkbox'].round.half-check {
-  &::before {
-    content: '—';
-    font-weight: bold;
-    background: $blue;
-    box-shadow: none;
-    color: white;
-    font-size: 12px;
-  }
-}
+// input[type='checkbox'].round.half-check {
+//   &::before {
+//     content: '—';
+//     font-weight: bold;
+//     background: $blue;
+//     box-shadow: none;
+//     color: white;
+//     font-size: 12px;
+//   }
+// }
 
-input[type='checkbox'].round:checked {
-  &::before {
-    content: '\2713';
-    background: $blue;
-    box-shadow: none;
-    color: white;
-  }
-}
+// input[type='checkbox'].round:checked {
+//   &::before {
+//     content: '\2713';
+//     background: $blue;
+//     box-shadow: none;
+//     color: white;
+//   }
+// }
