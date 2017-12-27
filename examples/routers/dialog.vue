@@ -478,6 +478,110 @@
       </div>
     </dao-setting-section>
   </dao-setting-layout>
+  <dao-setting-layout>
+    <div slot="layout-title"> 其他测试 </div>
+    <dao-setting-section>
+      <div slot="section-title">
+        dialog 大小: {{dialogConfig[11].config.size || '无'}}，
+        {{dialogConfig[11].hasFooter? '有' : '没有'}}
+        Slot Footer； 内部 dialog 大小: {{dialogInner[2].size}}
+      </div>
+      <div slot="content">
+        <button class="dao-btn blue" @click="dialogConfig[11].visible = true">显示对话框(测试 dialog 里的 popover)</button>
+        <dao-dialog
+          :config="dialogConfig[11].config"
+          :visible.sync="dialogConfig[11].visible">
+          <div class="pure-text">
+            <br>
+            <dao-input
+              v-model="input1"
+              message="错误"
+              status="error"
+              placeholder="normal">
+            </dao-input>
+            <br>
+            <br>
+             <dao-input
+              v-model="input1"
+              message="错误"
+              status="error"
+              icon-inside
+              :show-tooltip-only-hover="false"
+              placeholder="show-tooltip-only-hover=false">
+            </dao-input>
+            <br>
+            <br>
+            <dao-input
+              v-model="input1"
+              message="错误"
+              status="error"
+              message-no-icon
+              placeholder="message-no-icon">
+            </dao-input>
+            <br>
+            <br>
+            <dao-input
+              v-model="input1"
+              message="错误"
+              status="error"
+              icon-inside
+              placeholder="icon-inside">
+            </dao-input>
+            <br>
+            <br>
+           
+          </div>
+        </dao-dialog>
+      </div>
+    </dao-setting-section>
+    <dao-setting-section>
+      <div slot="section-title">
+        dialog 大小: {{dialogConfig[12].config.size || '无'}}，
+        {{dialogConfig[12].hasFooter? '有' : '没有'}}
+      </div>
+      <div slot="content">
+        <button class="dao-btn blue" @click="dialogConfig[12].visible = true">显示对话框(测试 MultiStep dialog 里的 popover)</button>
+        <dao-dialog
+          :config="dialogConfig[12].config"
+          :visible.sync="dialogConfig[12].visible">
+          <dao-dialog-step>
+            <div class="pure-text">
+              <br>
+              <br>
+              <br>
+              <br>
+              <dao-input
+                v-model="input1"
+                message="错误"
+                status="error"
+                icon-inside
+                :show-tooltip-only-hover="false"
+                placeholder="show-tooltip-only-hover=false">
+              </dao-input>
+            
+            </div>
+          </dao-dialog-step>
+          <dao-dialog-step>
+            看起来一切都很正常
+          </dao-dialog-step>
+          <dao-dialog-step>
+            <div class="pure-text">
+              <br>
+              <dao-input
+                v-model="input1"
+                message="这是另一个错误"
+                status="error"
+                icon-inside
+                :show-tooltip-only-hover="false"
+                placeholder="show-tooltip-only-hover=false">
+              </dao-input>
+              <br>
+            </div>
+          </dao-dialog-step>
+        </dao-dialog>
+      </div>
+    </dao-setting-section>
+  </dao-setting-layout>
 </div>
 </template>
 <style lang='scss' scoped>
@@ -648,8 +752,34 @@
             visible: false,
             hasFooter: true,
           },
+          {
+            config: {
+              title: '测试 popover',
+              size: 'md',
+              showHeader: true,
+              showFooter: true,
+              closeOnClickOutside: true,
+              closeOnPressEscape: true,
+            },
+            visible: false,
+            hasFooter: true,
+          },
+          {
+            config: {
+              title: '测试 MultiStep dialog 里的 popover',
+              size: 'md',
+              type: 'multiStep',
+              showHeader: true,
+              showFooter: true,
+              closeOnClickOutside: true,
+              closeOnPressEscape: true,
+            },
+            visible: false,
+            hasFooter: true,
+          },
         ],
         items: [],
+        input1: '',
       };
     },
     methods: {
