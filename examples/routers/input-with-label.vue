@@ -70,6 +70,16 @@
         >
       </dao-input-with-label>
     </div>
+    <div class="demo-container">
+      <h2>8.超长的数据,并且没有tabName</h2>
+      <dao-input-with-label 
+        v-model="testVal8"
+        :config="config"
+        :options="options8"
+        >
+      </dao-input-with-label>
+    </div>
+    <div style="margin-top: 300px;"></div>
   </div>
 </template>
 
@@ -84,6 +94,7 @@
         testVal5: '',
         testVal6: '',
         testVal7: '',
+        testVal8: '',
         config: {
           shutDown: false,
         },
@@ -224,6 +235,33 @@
                   {
                     name: '控制节点',
                     val: 'ctrl_node',
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+        options8: [
+          {
+            keys: [
+              {
+                name: '1超长的数据超长的数据超长的数据超长的数据超长的数据超长的数据超长的数据超长的数据超长的数据',
+                val: '1changed',
+                operations: [':', '>', '>=', '<=', '!='],
+                vals: [
+                  {
+                    name: '1超长的数据超长的数据超长的数据超长的数据超长的数据超长的数据超长的数据超长的数据超长的数据',
+                    val: '1ctrl_node',
+                  },
+                ],
+              },
+              {
+                name: '2超长的数据超长的数据超长的数据超长的数据超长的数据超长的数据超长的数据超长的数据超长的数据',
+                val: '2changed',
+                vals: [
+                  {
+                    name: '2超长的数据超长的数据超长的数据超长的数据超长的数据超长的数据超长的数据超长的数据超长的数据',
+                    val: '2ctrl_node',
                   },
                 ],
               },

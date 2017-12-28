@@ -1,4 +1,14 @@
 @import '../dao-color.scss';
+
+@mixin ellipsisStyle {
+  display: inline-block;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+}
+
 .dao-input-with-label-container{
   width: 287px;
   &.block{
@@ -50,4 +60,17 @@
   &-dropdown-menu{
     margin-top: -5px;
   }
+  .dao-dropdown-item-base{
+    max-width: 140px;
+    overflow: hidden;
+    span{
+      @include ellipsisStyle
+    }
+  }
+}
+
+.dao-input-with-label-dropdown-item-base{
+  max-width: 140px;
+  overflow: hidden;
+  @include ellipsisStyle
 }
