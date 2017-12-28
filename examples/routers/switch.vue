@@ -159,6 +159,34 @@
     </div>
 
 
+    <div class="demo-block">
+      <h2 class="demo-block__title">Small Switch</h2>
+      <dao-tab direction="right" >
+        <dao-tab-item heading="模板">
+          <div class="demo-tab-wrap first">
+            <dao-switch :option="{ on: '是', off: '否' }"
+                        :with-notice="true"
+                        :coreWidth="43"
+                        size="sm"
+                        v-model="smExample.isChecked">
+            </dao-switch>
+
+            <br />
+
+            <span>isChecked: {{ smExample.isChecked }}</span>
+          </div>
+        </dao-tab-item>
+        <dao-tab-item heading="代码">
+          <div class="demo-tab-wrap">
+            <pre class="codeblock">
+              {{ smExample.jsCode }}
+            </pre>
+          </div>
+        </dao-tab-item>
+      </dao-tab>
+    </div>
+
+
 
   </div>
 
@@ -233,6 +261,20 @@ const eventExample = {
   `,
 };
 
+const smExample = {
+  isChecked: false,
+  jsCode: `
+    <dao-switch :option="{ on: '是', off: '否' }"
+                :with-notice="true"
+                size="sm"
+                :coreWidth="43"
+                v-model="isChecked">
+    </dao-switch>
+
+    const isChecked = true;
+  `,
+};
+
 export default {
   data() {
     return {
@@ -241,6 +283,7 @@ export default {
       withoutNoticeExample,
       superWideExample,
       eventExample,
+      smExample,
     };
   },
 

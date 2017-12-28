@@ -1,5 +1,5 @@
 <template>
-  <label class="dao-switch" :class="{ 'disabled': disabled }">
+  <label class="dao-switch" :class="{ 'disabled': disabled, 'sm': size === 'sm' }">
     <input
       class="dao-switch-input"
       type="checkbox"
@@ -69,6 +69,10 @@ export default {
     coreWidth: {
       type: Number,
       default: 54
+    },
+    size: {
+      type: String,
+      default: '',
     }
   },
   data () {
@@ -98,7 +102,11 @@ export default {
       this.$emit('change', event.currentTarget.checked);
     },
     handleButtonTransform () {
-      this.buttonStyle.transform = this.value ? `translate(${this.coreWidth - 32}px, 0px)` : '';
+      if (this.size !== 'sm') {
+        this.buttonStyle.transform = this.value ? `translate(${this.coreWidth - 32}px, 0px)` : '';
+      } else {
+        this.buttonStyle.transform = this.value ? `translate(${this.coreWidth - 26}px, 0px)` : '';
+      }
     }
   },
   mounted () {

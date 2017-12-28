@@ -2,6 +2,13 @@
   display: inline-flex;
   align-items: center;
   position: relative;
+  &.sm &-core {
+    height: 26px;
+  }
+  &.sm &-button {
+    height: 24px;
+    width: 24px;
+  }
   &-input {
     display: none;
   }
