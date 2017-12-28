@@ -2,6 +2,11 @@
   display: inline-flex;
   align-items: center;
   position: relative;
+  &.disabled {
+    opacity: 0.50;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
   &.sm &-core {
     height: 26px;
   }
@@ -70,9 +75,4 @@
   &-notice {
     margin-left: 10px;
   }
-}
-.disabled {
-  opacity: 0.50;
-  cursor: not-allowed;
-  pointer-events: none;
 }
