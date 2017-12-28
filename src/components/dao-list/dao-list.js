@@ -335,12 +335,14 @@ export default {
       _.forEach(this.allRows, (row) => {
         this.$set(row, '$checked', true);
       });
+      this.changeIsAllChecked();
     },
     // 全不选所有行，这个方法速度比 checkAll 快
     unCheckAll() {
       _.forEach(this.allRows, (row) => {
         this.$set(row, '$checked', false);
       });
+      this.changeIsAllChecked();
     },
     // 选中当前页所有行
     checkPage(wantToCheck) {
