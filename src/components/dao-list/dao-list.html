@@ -145,7 +145,7 @@
               <input type="checkbox" class="round"
                 :class="{'half-check': isAllChecked === 'partial'}"
                 :checked="isAllChecked === 'yes'"
-                @click.prevent="checkPage()">
+                @click="checkPage()">
               <check-all
                 :currentRowsNumber="currentRowsNumber"
                 :allRowsNumber="allRowsNumber"
