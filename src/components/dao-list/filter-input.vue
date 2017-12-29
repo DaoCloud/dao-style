@@ -49,7 +49,7 @@ export default {
     // 把 filter 转换成 dao-input-with-label 所要求的格式
     filtersOption() {
       const filterGroup = {
-        tabName: '测试',
+        // tabName: '测试',
         keys: [],
       };
 
