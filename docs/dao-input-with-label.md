@@ -38,7 +38,7 @@ input-with-label。代码请参照目录：[src/components/dao-input-with-label]
 ```javascript
 options: [
   {
-    tabName: '标签',
+    tabName: '标签', // 可选
     keys: [
       {
         name: '节点类型',

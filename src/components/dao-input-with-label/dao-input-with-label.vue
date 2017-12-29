@@ -30,7 +30,7 @@
       v-show="visible">
       <dao-dropdown-menu> 
         <div v-for="(tab, index) in filterCurrentOptions" :key="index">
-          <dao-dropdown-item :is-title="true">{{tab.tabName}}</dao-dropdown-item>
+          <dao-dropdown-item :is-title="true" v-if="tab.tabName">{{tab.tabName}}</dao-dropdown-item>
           <dao-dropdown v-if="key.operates.length" 
             v-for="(key, index) in tab.keys" 
             :key="index" 
@@ -38,7 +38,7 @@
             class="dao-input-with-label-popper-dropdown">
             <dao-dropdown-item>
               <span>{{key.name}}</span>
-              <svg class="icon dao-input-with-label-popper-arrow-icon">
+              <svg class="dao-input-with-label-popper-arrow-icon">
                 <use xlink:href="#icon_down-arrow"></use>
               </svg>
             </dao-dropdown-item>
@@ -54,6 +54,7 @@
                   <dao-dropdown-menu slot="list">
                     <template v-if="operate.vals.length">
                        <dao-dropdown-item 
+                        class="dao-input-with-label-dropdown-item-base"
                         v-for="(val, index) in operate.vals" 
                         :key="index" 
                         @click="handleSelect(tab, key, val, operate)">
@@ -71,6 +72,7 @@
               <template v-else>
                 <template v-if="key.operates[0].vals.length">
                   <dao-dropdown-item 
+                    class="dao-input-with-label-dropdown-item-base"
                     v-for="(val, index) in key.operates[0].vals" 
                     :key="index" 
                     @click="handleSelect(tab, key, val)">
@@ -160,9 +162,9 @@ export default {
     filterCurrentOptions() {
       const currentValueArr = this.currentValue.split(' ');
       const cpOptions = JSON.parse(JSON.stringify(this.currentOptions));
-      return cpOptions.map(tab => {
-        tab.keys = tab.keys.map(key => {
-          key.operates = key.operates.map(operate => {
+      return cpOptions.map((tab) => {
+        tab.keys = tab.keys.map((key) => {
+          key.operates = key.operates.map((operate) => {
             operate.vals = operate.vals.filter(val => !currentValueArr.includes(`${key.val}${operate.val}${val.val}`));
             return operate;
           });
@@ -190,8 +192,8 @@ export default {
       if (!this.currentValue.endsWith(' ')) {
         const frag = this.currentValue.split(' ').pop();
         let catched = false;
-        this.currentOptions.forEach(option => {
-          option.keys.forEach(key => {
+        this.currentOptions.forEach((option) => {
+          option.keys.forEach((key) => {
             if (key.val.startsWith(frag) || key.name.startsWith(frag)) {
               catched = true;
             }
@@ -238,8 +240,8 @@ export default {
       this.showAllOperations = false;
       const storeOperations = [];
       options = options || [];
-      options = options.map(tab => {
-        tab.keys = tab.keys.map(key => {
+      options = options.map((tab) => {
+        tab.keys = tab.keys.map((key) => {
           if (!key.name) {
             key.name = key.val;
           }
@@ -252,7 +254,7 @@ export default {
           if (key.operations.length > 1) {
             this.showAllOperations = true;
           }
-          key.vals = key.vals.map(val => {
+          key.vals = key.vals.map((val) => {
             if (!val.name) {
               val.name = val.val;
             }
