@@ -364,10 +364,14 @@ export default {
       this.page = p;
     },
     nextPage() {
+      if (this.nextPageDisabled) return false;
       this.page = this.page + 1;
+      return false;
     },
     prevPage() {
+      if (this.prevPageDisabled) return false;
       this.page = this.page - 1;
+      return false;
     },
     changeSortBy(sortBy) {
       // 如果不能搜索的话，那就直接返回 false
