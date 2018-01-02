@@ -20,10 +20,7 @@ $select-disabled-color: $grey-light;
   width: 287px;
   position: relative;
   height: 32px;
-  &.sm-select {
-    height: 26px;
-    width: 200px;
-  }
+  background: $white;
   .dao-select-main {
     color: $select-color;
     position: relative;
@@ -118,6 +115,16 @@ $select-disabled-color: $grey-light;
             margin-left: 6px;
           }
         }
+      }
+    }
+  }
+  &.sm-select {
+    height: 26px;
+    width: 200px;
+    .dao-select-switch {
+      border-radius: 3px;
+      &-text {
+        padding: 0 5px;
       }
     }
   }
