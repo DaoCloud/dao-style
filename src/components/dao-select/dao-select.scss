@@ -1,6 +1,7 @@
 @import '../dao-color.scss';
 $select-color: $black-dark;
 $select-default-color: $grey-dark;
+$select-focus-color: $black-light;
 $select-border-radius: 4px;
 $select-border-color: $grey-light;
 $select-bg-img: linear-gradient(to top, rgba(61, 68, 79, .05) 0%, rgba(61, 68, 79, 0) 100%);
@@ -20,10 +21,7 @@ $select-disabled-color: $grey-light;
   width: 287px;
   position: relative;
   height: 32px;
-  &.sm-select {
-    height: 26px;
-    width: 200px;
-  }
+  background: $white;
   .dao-select-main {
     color: $select-color;
     position: relative;
@@ -106,7 +104,7 @@ $select-disabled-color: $grey-light;
           color: $select-disabled-color;
         }
         svg {
-          fill: $select-disabled-color;
+          fill: $select-disabled-color!important;
         }
         .switch-loading {
           display: flex;
@@ -118,6 +116,27 @@ $select-disabled-color: $grey-light;
             margin-left: 6px;
           }
         }
+      }
+    }
+  }
+  &.sm-select {
+    height: 26px;
+    width: 200px;
+    .dao-select-switch {
+      border-radius: 3px;
+      &-text {
+        padding: 0 5px;
+      }
+      &:hover, &.open {
+        .icon-box .icon {
+          fill: $select-focus-color;
+        }
+      }
+    }
+    .icon-box {
+      width: 26px;
+      .icon {
+        fill: $select-default-color;
       }
     }
   }
