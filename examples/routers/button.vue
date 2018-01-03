@@ -46,7 +46,6 @@
 
       <span class="dao-btn-group">
         <button class="dao-btn blue">blue</button>
-        <div class="space">11</div>
         <button class="dao-btn blue">blue</button>
         <button class="dao-btn blue">blue</button>
       </span>
