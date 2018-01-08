@@ -88,7 +88,8 @@
     methods: {
       // 处理点击事件
       handleClick() {
-        if (this.disabled) return;
+        // 如果是选中状态或 disabled 状态，则不需要重复 emit value
+        if (this.disabled || this.checked) return;
         // 首先把自身的 radioValue 值赋给 v-model 使其选中
         this.$emit('input', {
           value: this.radioValue,
@@ -135,7 +136,8 @@
           this.chooseOption();
         } else {
           this.broadcast('Select', 'deal-async', () => {
-            this.chooseOption();
+            // 此处，只有当前是选中状态时，才需要选择一个默认选项出来
+            if (this.checked) this.chooseOption();
           });
         }
       },
