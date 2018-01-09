@@ -156,6 +156,7 @@
   margin-left: 0;
   margin-right: 0;
   thead {
+    display: flex;
     tr {
       height: $row-th-height;
     }
@@ -169,7 +170,13 @@
       margin-right: $svg-margin-right;
     }
   }
+  tbody {
+    display: flex;
+    flex-direction: column;
+  }
   tr {
+    display: flex;
+    flex: 1;
     border-color: $border-outer-color;
   }
   td {
@@ -208,7 +215,11 @@
 
 .dao-table.slat, .dao-table-slat {
   thead {
+    display: flex;
     tr {
+
+      display: flex;
+      flex: 1;
       height: $row-th-height;
     }
   }
