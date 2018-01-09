@@ -1,4 +1,5 @@
 import Popper from 'popper.js';
+import { includes as _includes } from 'lodash';
 import { getStyle } from '../../utils/assist';
 
 const dropdownMargin = 8;
@@ -64,7 +65,7 @@ export default {
   // TODO 几所所有组件都是使用自己的变量来控制popper的显示，并没有复用这个visible
   watch: {
     visible(val) {
-      if (['Popover', 'Tooltip'].includes(this.$options.name)) return;
+      if (_includes(['Popover', 'Tooltip'], (this.$options.name))) return;
       this.updatePopper();
       if (val) {
         this.$nextTick(() => this.updatePopper());
@@ -76,7 +77,7 @@ export default {
     },
     popperCls() {
       this.$popper.className = `${this.initClass} append-to-body ${this.popperCls ? this.popperCls.join(' ') : ''}`;
-      if (this.popperCls && this.popperCls.includes('hide')) {
+      if (this.popperCls && _includes(this.popperCls, 'hide')) {
         this.doDestroy();
         this.$emit('popper-hide');
       } else {
@@ -104,18 +105,18 @@ export default {
 
       options.placement = placement || this.placement;
       options.offset = this.offset;
-      options.onCreate = data => {
+      options.onCreate = (data) => {
         this.resetTransformOrigin(data.instance);
         this.$nextTick(this.updatePopper);
         this.$emit('created', this);
       };
-      options.onUpdate = data => {
-        if (['DaoSelect', 'DaoAutocomplete'].includes(this.$options.name)) { // 这些组件需要单独设置宽度
+      options.onUpdate = (data) => {
+        if (_includes(['DaoSelect', 'DaoAutocomplete'], this.$options.name)) { // 这些组件需要单独设置宽度
           data.instance.popper.style.width = getStyle(reference, 'width');
         }
       };
 
-      if (['DaoSelect', 'DaoAutocomplete'].includes(this.$options.name)) { // 这些组件需要单独设置宽度
+      if (_includes(['DaoSelect', 'DaoAutocomplete'], this.$options.name)) { // 这些组件需要单独设置宽度
         if (options.placement === 'bottom') {
           options.placement = 'bottom-start';
         } else if (options.placement === 'top') {
@@ -148,7 +149,7 @@ export default {
       }
     },
     updatePopper(placement) {
-      if (this.popperCls && this.popperCls.includes('hide')) return;
+      if (this.popperCls && _includes(this.popperCls, 'hide')) return;
       if (this.popperJS) {
         this.popperJS.update();
       } else {

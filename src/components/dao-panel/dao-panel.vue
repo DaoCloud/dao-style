@@ -1,6 +1,7 @@
 <template src="./dao-panel.html"></template>
 
 <script>
+import { includes as _includes } from 'lodash';
 import DaoPanelNav from './dao-panel-nav/dao-panel-nav.vue';
 
 export default {
@@ -13,14 +14,14 @@ export default {
       type: String,
       default: 'm',
       validator(value) {
-        return ['l', 'm', 's'].includes(value);
+        return _includes(['l', 'm', 's'], (value));
       },
     },
     minHeight: {
       type: String,
       default: '0px',
       validator(value) {
-        return value.includes('%') || value.includes('px');
+        return _includes(value, '%') || _includes(value, 'px');
       },
     },
   },

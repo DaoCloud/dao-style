@@ -1,3 +1,5 @@
+import { includes as _includes } from 'lodash';
+
 class Dragging {
   constructor() {
     this.el = null;
@@ -9,7 +11,7 @@ class Dragging {
     this.key = key;
   }
   setCallback(callback) {
-    if (this.callbacks.includes(callback)) return;
+    if (_includes(this.callbacks, callback)) return;
     this.callbacks.push(callback);
   }
 }

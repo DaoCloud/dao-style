@@ -10,7 +10,7 @@
   </th>
 </template>
 <script>
-import _ from 'lodash';
+import { toNumber as _toNumber, includes as _includes } from 'lodash';
 
 export default {
   props: ['width'],
@@ -27,13 +27,11 @@ export default {
   mounted() {
     if (!this.width || this.width === 'auto') {
       this.thWidth = this.$refs.th.clientWidth;
+    } else if (_includes(this.width, '%')) {
+      // 如果有百分比，那就要根据父元素的宽度计算，得出绝对宽度
+      this.thWidth = (this.width.replace('%', '') / 100) * this.$parent.$el.clientWidth;
     } else {
-      if (this.width.includes('%')) {
-        // 如果有百分比，那就要根据父元素的宽度计算，得出绝对宽度
-        this.thWidth = (this.width.replace('%', '') / 100) * this.$parent.$el.clientWidth;
-      } else {
-        this.thWidth = _.toNumber(this.width.replace('px', ''));
-      }
+      this.thWidth = _toNumber(this.width.replace('px', ''));
     }
 
     // 给一个最小宽度50px，以避免 th 过小
