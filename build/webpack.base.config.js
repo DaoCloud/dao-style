@@ -54,7 +54,36 @@ module.exports = {
         ]
       }, {
         test: /\.svg$/,
-        loader: 'svg-sprite-loader',
+        use: [
+          {
+            loader: 'svg-sprite-loader'
+          },
+          {
+            loader: 'svgo-loader',
+            options: {
+              plugins: [
+                // 去除title
+                { removeTitle: true },
+                // 去除 换行，空格等
+                { cleanupAttrs: true },
+                // 去除注释
+                { removeComments: true },
+                // 去除 <desc>
+                { removeDesc: true },
+                // 去除没有 id 的 defs
+                { removeUselessDefs: true },
+                // 去除空属性
+                { removeEmptyAttrs: true },
+                // 去处隐藏的属性
+                { removeHiddenElems: true },
+                // 去除空文本节点
+                { removeEmptyText: true },
+                // 简化色值 #FFFFFF -> #FFF
+                { convertColors: { shorthex: true } }
+              ]
+            }
+          }
+        ]
       },
       { test: /\.(gif|jpg|png|woff|eot|ttf)\??.*$/, loader: 'url-loader?limit=8192' },
       { test: /\.(html|tpl)$/, loader: 'html-loader' }
