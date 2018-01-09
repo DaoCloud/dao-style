@@ -5,13 +5,11 @@
     @after-leave="$onDestory">
     <div
       class="dao-dialog-backdrop"
-      :class="{backdrop__scroll: isNeedScroll}"
+      :class="backdropClass"
       v-if="visible">
       <div
         class="dao-dialog-wrapper"
-        :class="{
-          [typeClass]: true,
-        }"
+        :class="typeClass"
         :size="config.type !== 'feature' ? (config.size) : ''"
         @click.self="handleWrapperClick">
         <div
@@ -49,11 +47,13 @@
   </transition>
 </template>
 <script>
-
 import daoDialogHeader from './dao-dialog-header/dao-dialog-header.vue';
 import { getStyle } from '../../utils/assist';
 
 const daoDialogCountAttr = 'data-dao-dialog-count';
+
+// 对于 popper 的检测需要在动画结束之后再检测，否则会出现定位偏差
+const AnimationTime = 300;
 
 export default {
   name: 'DaoDialog',
@@ -88,44 +88,36 @@ export default {
       steps: [],
       originStep: 0,
       activeStep: 0,
-      isNeedScroll: false,
-      poppers: [],
+      overflow: {
+        x: false,
+        y: false,
+      },
     };
   },
   computed: {
     typeClass() {
       if (this.config.type) {
-        return `dao-dialog__${this.config.type}`;
+        return {
+          [`dao-dialog__${this.config.type}`]: true,
+        };
       }
-      return '';
+      return {};
     },
     styleBody() {
       if (this.config.type === 'multiStep') {
-        this.$nextTick(() => {
-          this.poppers = Array.from(document.querySelectorAll('.append-to-body'));
-          this.poppers.forEach((popper) => {
-            if (this.$refs.body.contains(popper.reference)) {
-              popper.style.visibility = 'hidden';
-            }
-          });
-        });
-        this.$nextTick(() => {
-          const that = this;
-          setTimeout(() => {
-            that.poppers.forEach((popper) => {
-              if ('popper' in popper) {
-                popper.popper.update();
-              }
-              popper.style.visibility = '';
-            });
-          }, 350);
-        });
+        this.hideOverflowPoppers();
         return {
           width: `${this.steps.length * 100}%`,
           transform: `translateX(-${(this.activeStep / this.steps.length) * 100}%)`,
         };
       }
       return '';
+    },
+    backdropClass() {
+      return {
+        backdrop__scrollY: this.overflow.y,
+        backdrop__scrollX: this.overflow.x,
+      };
     },
   },
   methods: {
@@ -134,8 +126,8 @@ export default {
         this.initStep();
       }
       this.$nextTick(() => {
-        this.checkIfWrapperScrollIsNeeded();
-        this.scrollHandler();
+        this.adjustOverflow();
+        this.adjustPoppers();
       });
       // 禁止 body 滚动
       const count = document.body.getAttribute(daoDialogCountAttr);
@@ -143,7 +135,7 @@ export default {
       document.body.style.overflowY = 'hidden';
       document.addEventListener('keydown', this.handleKeyDown);
       this.$emit('dao-dialog-open');
-      window.addEventListener('resize', this.checkIfWrapperScrollIsNeeded);
+      window.addEventListener('resize', this.adjustOverflow);
     },
     // 初始化 MultiStep 的初始位置
     initStep() {
@@ -152,14 +144,22 @@ export default {
       this.activeStep = (this.step && this.step >= 0 && this.step <= this.steps.length - 1)
         ? this.step : 0;
     },
-    checkIfWrapperScrollIsNeeded() {
+    // 检查是否需要滚动条
+    adjustOverflow() {
       // 判断是否需要 scroll
       const container = this.$refs.container;
       const height = parseInt(getStyle(container, 'height'), 10);
+      const width = parseInt(getStyle(container, 'width'), 10);
       const windowHeight = window.innerHeight
         || document.documentElement.clientHeight
         || document.body.clientHeight;
-      this.isNeedScroll = height > windowHeight;
+      const windowWidth = window.innerWidth
+        || document.documentElement.clientWidth
+        || document.body.clientWidth;
+      this.overflow = {
+        x: height > windowHeight,
+        y: width > windowWidth,
+      };
     },
     // close dialog
     doClose() {
@@ -226,52 +226,71 @@ export default {
       }
       this.activeStep += 1;
     },
-    scrollHandler() {
-      const references = Array.from(this.$refs.body.querySelectorAll('[class$=-rel]'));
-      const dialogRect = this.$refs.body.getBoundingClientRect();
-      references.forEach((r) => {
-        if (!r.popper) return;
-        const rect = r.getBoundingClientRect();
-        if (
-          rect.bottom < dialogRect.top ||
-          rect.top > dialogRect.bottom
-        ) {
-          r.popper.style.visibility = 'hidden';
-        } else {
-          r.popper.style.visibility = '';
-        }
+    // 调整一下 poppers 的位置，append-to-body 的 popper 可能会出现错位
+    adjustPoppers() {
+      const poppers = Array.from(document.querySelectorAll('.append-to-body'));
+      this.$nextTick(() => {
+        poppers.forEach((popper) => {
+          if (this.$refs.body.contains(popper.reference)) {
+            popper.style.visibility = 'hidden';
+          }
+        });
+      });
+      this.$nextTick(() => {
+        setTimeout(() => {
+          poppers.forEach((popper) => {
+            if ('popper' in popper) {
+              popper.popper.update();
+            }
+            popper.style.visibility = '';
+          });
+        }, AnimationTime);
+      });
+    },
+    // MultiStep 左右滑动的过程中，会导致 popper 溢出
+    hideOverflowPoppers() {
+      this.$nextTick(() => {
+        const poppers = Array.from(document.querySelectorAll('.append-to-body'));
+        setTimeout(() => {
+          poppers.forEach((popper) => {
+            const reference = popper.reference;
+            // 在当前 dialog 里
+            if (this.$refs.body.contains(reference) && reference.getBoundingClientRect) {
+              const bodyParams = this.$refs.body.getBoundingClientRect();
+              const referenceParams = reference.getBoundingClientRect();
+              const perStepWidth = bodyParams.width / this.steps.length;
+              const leftBoundary = bodyParams.left + (perStepWidth * this.activeStep);
+              const rightBoundary = bodyParams.left + (perStepWidth * (this.activeStep + 1));
+              if ('popper' in popper) {
+                popper.popper.update();
+              }
+              if (referenceParams.left >= leftBoundary && referenceParams.right <= rightBoundary) {
+                popper.style.visibility = '';
+              } else {
+                popper.style.visibility = 'hidden';
+              }
+            }
+          });
+        }, AnimationTime);
       });
     },
     $onDestory() {
+      // 恢复到原始状态
       this.steps = [];
+      this.activeStep = this.originStep;
       // 当关闭最后一个对话框时候，需要让滚动条恢复
       const count = parseInt(document.body.getAttribute(daoDialogCountAttr), 10);
       document.body.setAttribute(daoDialogCountAttr, count - 1);
       if (count === 1) {
         document.body.style.overflowY = '';
+        document.body.style.overflowX = '';
       }
       document.removeEventListener('keydown', this.handleKeyDown);
-      window.removeEventListener('resize', this.checkIfWrapperScrollIsNeeded);
+      window.removeEventListener('resize', this.adjustOverflow);
       this.$emit('dao-dialog-close');
     },
   },
   watch: {
-    visible(newVal) {
-      this.poppers = Array.from(document.querySelectorAll('.append-to-body'));
-      if (newVal) {
-        this.poppers.forEach((popper) => {
-          popper.style.visibility = '';
-        });
-      } else {
-        // reset step
-        this.activeStep = this.originStep;
-        this.poppers.forEach((popper) => {
-          if (this.$refs.body.contains(popper.reference)) {
-            popper.style.visibility = 'hidden';
-          }
-        });
-      }
-    },
     activeStep(newVal) {
       if (newVal === this.step) return;
       if (this.steps[newVal]) {
