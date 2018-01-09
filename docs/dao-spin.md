@@ -9,8 +9,8 @@ dao-spin 是一个表示 loading 的旋转的菊花图
 ```vue
 <template>
   <dao-spin
-    size="size"
-    color="color">
+    :size="size"
+    :color="color">
   </dao-spin>
 </template>
 <script>
