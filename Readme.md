@@ -29,10 +29,10 @@ dao-style-vue 是一个基于 Vue 2.0 框架的 web UI 组件库。
 
 |浏览器类型|浏览器版本支持|
 |--------|---------|
-| Chrome| |
-| Safari| |
-| firefox||
-| IE     ||
+| Chrome| 30 |
+| Safari| 10 |
+| Firefox| 28 |
+| IE     | 11 |
 
 ## 贡献指南
 
