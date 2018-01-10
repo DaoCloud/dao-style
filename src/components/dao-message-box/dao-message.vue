@@ -1,8 +1,7 @@
 <template>
   <dao-dialog
     :config="dialogConfig"
-    :visible.sync="visible"
-    @dao-dialog-cancel="cancel">
+    :visible.sync="visible">
 
     <div v-html="text" class="dialog-body"></div>
 
@@ -23,9 +22,9 @@
         text: '',
         theme: 'blue',
         confirmText: '确认',
-        confirm: () => 0,
+        confirm: null,
         cancelText: '取消',
-        cancel: () => 0,
+        cancel: null,
       };
     },
     computed: {
@@ -52,11 +51,15 @@
     },
     methods: {
       onConfirm() {
-        this.confirm();
+        if (typeof this.confirm === 'function') {
+          this.confirm('confirm');
+        }
         this.visible = false;
       },
       onCancel() {
-        this.cancel();
+        if (typeof this.cancel === 'function') {
+          this.cancel('cancel');
+        }
         this.visible = false;
       },
     },

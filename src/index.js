@@ -104,7 +104,7 @@ function install(Vue) {
   Object.keys(daoStyleDirectives).forEach((key) => {
     Vue.directive(key, daoStyleDirectives[key]);
   });
-  Vue.prototype.$alert = daoMessageBox.alert;
+  Vue.prototype.$daoAlert = daoMessageBox.alert;
 }
 
 // auto install
