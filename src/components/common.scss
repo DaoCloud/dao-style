@@ -65,3 +65,8 @@ svg.icon {
     vertical-align: middle;
   }
 }
+
+// 修复 ff 28 下 input 的 padding 会撑大固定宽度的父元素的 BUG
+input:-moz-read-write{
+  -moz-box-sizing:border-box;
+}
