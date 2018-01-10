@@ -16,6 +16,7 @@
           class="dao-dialog-container"
           ref="container">
           <daoDialogHeader
+            :show-header-close="config.showHeaderClose"
             :title="config.title || ''"
             v-if="config.showHeader !== false && config.type !== 'feature'"
             @close="doClose"/>
@@ -71,6 +72,7 @@ export default {
           type: 'normal',
           size: 'md',
           showHeader: true,
+          showHeaderClose: true,
           showFooter: true,
           closeOnClickOutside: true,
           closeOnPressEscape: true,

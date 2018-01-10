@@ -2,13 +2,12 @@
   <dao-dialog
     :config="dialogConfig"
     :visible.sync="visible"
-    @dao-dialog-close="close"
     @dao-dialog-cancel="cancel">
 
     <div v-html="text" class="dialog-body"></div>
 
     <div slot="footer">
-      <button class="dao-btn ghost" v-if="type === 'confirm'" @click="onCancel">{{ cancelText }}</button>
+      <button class="dao-btn ghost" @click="onCancel">{{ cancelText }}</button>
       <button :class="confirmClass" @click="onConfirm">{{ confirmText }}</button>
     </div>
   </dao-dialog>
@@ -22,12 +21,10 @@
         visible: false,
         title: '',
         text: '',
-        type: 'confirm',
         theme: 'blue',
         confirmText: '确认',
         confirm: () => 0,
         cancelText: '取消',
-        close: () => 0,
         cancel: () => 0,
       };
     },
@@ -37,7 +34,10 @@
           type: 'normal',
           title: this.title,
           showHeader: true,
+          showHeaderClose: false,
           showFooter: true,
+          closeOnClickOutside: false,
+          closeOnPressEscape: false,
         };
       },
       confirmClass() {
@@ -53,10 +53,6 @@
     methods: {
       onConfirm() {
         this.confirm();
-        this.visible = false;
-      },
-      onClose() {
-        this.close();
         this.visible = false;
       },
       onCancel() {
