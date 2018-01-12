@@ -1,4 +1,11 @@
-import _ from 'lodash';
+import {
+  _map,
+  _isString,
+  _filter,
+  _find,
+  _isBoolean,
+} from '../../utils/assist';
+
 import daoDrop from '../dao-select/dropdown.vue';
 import Popper from '../base/popper';
 
@@ -17,8 +24,8 @@ export default {
   computed: {
     // 放这里是为了兼容异步进来的数据
     vmOptions() {
-      return _.map(this.options, (o) => {
-        if (_.isString(o)) {
+      return _map(this.options, (o) => {
+        if (_isString(o)) {
           return {
             text: o,
             value: o,
@@ -28,14 +35,14 @@ export default {
       });
     },
     filteredOption() {
-      return _.filter(this.vmOptions, o => o.text.indexOf(this.inputText) > -1);
+      return _filter(this.vmOptions, o => o.text.indexOf(this.inputText) > -1);
     },
     inputStatus() {
-      if (_.isString(this.isValid)) return 'error';
+      if (_isString(this.isValid)) return 'error';
       return '';
     },
     errorMsg() {
-      if (_.isString(this.isValid)) return this.isValid;
+      if (_isString(this.isValid)) return this.isValid;
       return '';
     },
   },
@@ -48,7 +55,7 @@ export default {
     },
     blur() {
       // 要检测一下 inputText 是否在 options 中
-      const option = _.find(this.filteredOption, { text: this.inputText });
+      const option = _find(this.filteredOption, { text: this.inputText });
       if (option && option.value) {
         // 如果不在的话，才需要 update
         this.updateValue(option.value);
@@ -68,13 +75,13 @@ export default {
     // 从下拉菜单选择一个选项
     chooseOption() {
       this.inputText = this.filteredOption[this.optionIndex].text;
-      const newValue = _.find(this.filteredOption, { text: this.inputText }).value;
+      const newValue = _find(this.filteredOption, { text: this.inputText }).value;
       this.updateValue(newValue);
       this.optionIndex = 0;
     },
     // 更新外部 v-model 所绑定的值
     updateValue(value) {
-      if (this.isValid && _.isBoolean(this.isValid)) {
+      if (this.isValid && _isBoolean(this.isValid)) {
         this.$emit('input', value);
         this.$emit('change', value);
       }
@@ -86,7 +93,7 @@ export default {
       // 如果有选项的话，那就要根据 value 来找到选项中对应的 text
       let initText = this.value;
       if (this.value && this.options.length > 0) {
-        const initOption = _.find(this.options, o => (o === this.value || o.value === this.value));
+        const initOption = _find(this.options, o => (o === this.value || o.value === this.value));
         if (initOption) {
           initText = initOption.text ? initOption.text : initOption;
         } else {

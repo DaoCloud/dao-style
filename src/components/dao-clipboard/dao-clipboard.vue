@@ -4,7 +4,7 @@
 
 <script>
 import Clipboard from 'clipboard';
-import { isFunction } from 'lodash';
+import { _isFunction } from '../../utils/assist';
 
 export default {
   name: 'DaoClipboard',
@@ -16,25 +16,25 @@ export default {
     onError: Function,
   },
 
-  data: function() {
+  data() {
     return {
-      __clipboard: null,
-    }
+      clipboard: null,
+    };
   },
 
-  mounted: function() {
-    this.__clipboard = new Clipboard(this.$el);
-    this.__clipboard.on('success', (e) => {
+  mounted() {
+    this.clipboard = new Clipboard(this.$el);
+    this.clipboard.on('success', (e) => {
       this.$nextTick(() => {
-        if (isFunction(this.onSuccess)) {
+        if (_isFunction(this.onSuccess)) {
           this.onSuccess(e);
         }
       });
     });
 
-    this.__clipboard.on('error', (e) => {
+    this.clipboard.on('error', (e) => {
       this.$nextTick(() => {
-        if (isFunction(this.onError)) {
+        if (_isFunction(this.onError)) {
           this.onError(e);
         }
       });

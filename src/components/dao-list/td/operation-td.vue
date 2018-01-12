@@ -20,14 +20,17 @@
   </td>
 </template>
 <script>
-import _ from 'lodash';
+import {
+  _map,
+  _flatten,
+  } from '../../../utils/assist';
 
 export default {
   name: 'OperationTd',
   props: ['operations', 'row'],
   computed: {
     flattenedOperations() {
-      return _.flatten(_.map(this.operations, 'operations'));
+      return _flatten(_map(this.operations, 'operations'));
     },
   },
   methods: {
