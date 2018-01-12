@@ -24,7 +24,6 @@ import daoEditableTable from './components/dao-editable-table';
 import daoInfoCard from './components/dao-info-card';
 import daoInputWithLabel from './components/dao-input-with-label';
 import daoList from './components/dao-list';
-import { daoPanel, daoPanelItem } from './components/dao-panel';
 import daoMessage from './components/dao-message';
 import daoNumericBadge from './components/dao-numeric-badge';
 import daoPopover from './components/dao-popover';
@@ -59,8 +58,6 @@ const daoStyleComponents = {
   daoEditableInput,
   daoEditableTable,
   daoInfoCard,
-  daoPanel,
-  daoPanelItem,
   daoInput,
   daoInputWithLabel,
   daoList,
