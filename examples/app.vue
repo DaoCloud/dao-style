@@ -91,9 +91,6 @@ li + li {
           <router-link to="/select">Select</router-link>
         </li>
         <li>
-          <router-link to="/select-all">Select All</router-link>
-        </li>
-        <li>
           <router-link to="/setting-layout">Setting Layout</router-link>
         </li>
         <li>

@@ -41,7 +41,6 @@ import daoTooltip from './components/dao-tooltip';
 
 // 请按照名称的字典顺序添加以下 directives
 import { daoDraggable, daoDroppable } from './directives/draggable/';
-import daoSelectAll from './directives/dao-select-all';
 import daoTooltipDirective from './directives/dao-tooltip';
 
 const daoStyleComponents = {
@@ -91,7 +90,6 @@ const daoStyleComponents = {
 };
 
 const daoStyleDirectives = {
-  'dao-select-all': daoSelectAll,
   'dao-tooltip': daoTooltipDirective,
   'dao-draggable': daoDraggable,
   'dao-droppable': daoDroppable,
