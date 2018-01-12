@@ -66,7 +66,6 @@
 </template>
 
 <script>
-  // import _ from 'lodash';
   import Dialog from './dialog';
 
   export default {

@@ -17,12 +17,12 @@
     "src"
   ],
   "scripts": {
-    "start": "webpack-dev-server --content-base test/ --open --inline --hot --compress --history-api-fallback --port 8081 --host 0.0.0.0 --config build/webpack.dev.config.js",
+    "start": "webpack-dev-server --hot --inline --config build/webpack.dev.config.js",
     "dev": "webpack --config build/webpack.dev.config.js",
     "dist:style": "gulp --gulpfile build/build-style.js",
-    "dist:dev": "webpack --config build/webpack.dist.dev.config.js",
-    "dist:prod": "webpack --config build/webpack.dist.prod.config.js",
-    "dist": "npm run dist:style && npm run dist:prod",
+    "dist:js": "webpack --config build/webpack.dist.config.js",
+    "dist": "npm run dist:style && npm run dist:js",
+    "dist:analyz": "cross-env BUNDLE_ANALYZ=true npm run dist",
     "lint": "eslint --fix --ext .js,.vue src",
     "unit": "karma start test/unit/karma.conf.js --single-run",
     "test": "npm run unit",
@@ -60,7 +60,7 @@
     "babel-preset-es2015": "^6.9.0",
     "babel-runtime": "^6.11.6",
     "chai": "^3.5.0",
-    "cross-env": "^3.1.4",
+    "cross-env": "^3.2.4",
     "css-loader": "^0.23.1",
     "eslint": "^3.19.0",
     "eslint-config-airbnb-base": "^11.1.3",
@@ -107,6 +107,7 @@
     "vue-style-loader": "^1.0.0",
     "vue-template-compiler": "^2.2.1",
     "webpack": "^2.2.1",
+    "webpack-bundle-analyzer": "^2.9.2",
     "webpack-dev-server": "^2.4.1",
     "webpack-merge": "^3.0.0"
   },

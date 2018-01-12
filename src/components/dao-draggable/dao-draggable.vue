@@ -21,7 +21,11 @@
   </div>
 </template>
 <script>
-import { isEqual, cloneDeep, find } from 'lodash';
+import {
+  _isEqual,
+  _cloneDeep,
+  _find,
+} from '../../utils/assist';
 
 // 存储需要拖动中的元素
 let draggingEl = null;
@@ -72,12 +76,12 @@ export default {
     // 监听拖动结束事件
     this.$on('end', (value) => {
       // 如果新的值与旧的值相等
-      if (isEqual(value, this.$items)) return;
+      if (_isEqual(value, this.$items)) return;
       this.$emit('change', value);
-      this.$items = cloneDeep(value);
+      this.$items = _cloneDeep(value);
     });
     // 初始化复制的数据
-    this.$items = cloneDeep(this.value);
+    this.$items = _cloneDeep(this.value);
   },
   methods: {
     // 拖动开始时
@@ -87,7 +91,7 @@ export default {
       // 保存拖动中元素的数据
       draggingEl.currParent = this;
       this.addExtraStyle(item);
-      draggingEl.draggingData = this.clone ? cloneDeep(item) : item;
+      draggingEl.draggingData = this.clone ? _cloneDeep(item) : item;
     },
     // 为拖动元素添加额外的样式
     addExtraStyle(data) {
@@ -120,7 +124,7 @@ export default {
       }
     },
     // 拖动结束时
-    handleDragEnd(item, e) {
+    handleDragEnd(item) {
       // 先把额外的样式去除
       this.removeExtraStyle(item);
       this.removeExtraStyle(dragging.el.draggingData);
@@ -155,11 +159,11 @@ export default {
     },
     // 当有元素拖入当前组件时，添加到当前组件内
     handleItemDragIn(e) {
-      if (!!find(this.items, dragging.el.draggingData) || e.target !== this.$el) return;
+      if (!!_find(this.items, dragging.el.draggingData) || e.target !== this.$el) return;
       // 不允许重复添加时，也直接返回
       if (
         this.noRepeat &&
-        !!find(this.items, { context: dragging.el.draggingData.context })
+        !!_find(this.items, { context: dragging.el.draggingData.context })
       ) return;
       const from = dragging.el.currParent;
       if (!from.clone) {

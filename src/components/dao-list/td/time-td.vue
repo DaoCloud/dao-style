@@ -4,7 +4,7 @@
   </td>
 </template>
 <script>
-import _ from 'lodash';
+import { _forEach } from '../../../utils/assist';
 
 export default {
   name: 'TimeTd',
@@ -60,7 +60,7 @@ export default {
           ];
 
           let text = '';
-          _.forEach(timeTable, (t) => {
+          _forEach(timeTable, (t) => {
             if (t.threshold > absDeltaTime) {
               return false;
             }

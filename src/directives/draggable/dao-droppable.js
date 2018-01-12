@@ -1,4 +1,4 @@
-import * as _ from 'lodash';
+import { _isEqual } from '../../utils/assist';
 import Dragging from './dragging';
 
 // 获取当前元素拖动序列
@@ -96,7 +96,7 @@ function dragEndCallback($el) {
     const newList = getList($el);
     const oldList = $el.dragList;
     // 如果没有序列没变，则直接返回
-    if (_.isEqual(newList, oldList)) return;
+    if (_isEqual(newList, oldList)) return;
     $el.dropConfig.events.onChange(newList);
     // 把原来的 list 修改成新的
     $el.dragList = newList;

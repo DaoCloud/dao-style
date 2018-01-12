@@ -1,4 +1,6 @@
-import _ from 'lodash';
+import {
+  _some,
+} from '../../utils/assist';
 
 export default {
   name: 'DaoEditableList',
@@ -18,6 +20,6 @@ export default {
   },
   updated() {
     this.disabled = !this.$slots.list
-     || !_.some(this.$slots.list, vNode => vNode.data.class.active);
+     || !_some(this.$slots.list, vNode => vNode.data.class.active);
   },
 };

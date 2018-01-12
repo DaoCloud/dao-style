@@ -2,14 +2,14 @@
  * 本地预览
  */
 
-var path = require('path');
-var webpack = require('webpack');
-// var ExtractTextPlugin = require('extract-text-webpack-plugin');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
-var merge = require('webpack-merge')
-var webpackBaseConfig = require('./webpack.base.config.js');
-var FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
-
+const path = require('path');
+const webpack = require('webpack');
+// const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const merge = require('webpack-merge')
+const webpackBaseConfig = require('./webpack.base.config.js');
+const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
+const examplesPath = 'examples/dist';
 
 module.exports = merge(webpackBaseConfig, {
     // 入口
@@ -19,7 +19,7 @@ module.exports = merge(webpackBaseConfig, {
     },
     // 输出
     output: {
-        path: path.join(__dirname, '../examples/dist'),
+        path: path.join(__dirname, `../${examplesPath}`),
         publicPath: '',
         filename: '[name].js',
         chunkFilename: '[name].chunk.js'
@@ -34,9 +34,18 @@ module.exports = merge(webpackBaseConfig, {
         new webpack.optimize.CommonsChunkPlugin({ name: 'vendors', filename: 'vendor.bundle.js' }),
         new HtmlWebpackPlugin({
             inject: true,
-            filename: path.join(__dirname, '../examples/dist/index.html'),
+            filename: path.join(__dirname, `../${examplesPath}/index.html`),
             template: path.join(__dirname, '../examples/index.html')
         }),
         new FriendlyErrorsPlugin()
-    ]
+    ],
+    devServer: {
+        // clientLogLevel: 'warning',
+        historyApiFallback: true,
+        compress: true,
+        host: '0.0.0.0',
+        port: '8080',
+        contentBase: examplesPath,
+        open: true,
+    },
 });
