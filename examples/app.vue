@@ -79,9 +79,6 @@ li + li {
           <router-link to="/numeric-badge">Numeric Badge</router-link>
         </li>
         <li>
-          <router-link to="/panel">Panel</router-link>
-        </li>
-        <li>
           <router-link to="/popover">Popover</router-link>
         </li>
         <li>

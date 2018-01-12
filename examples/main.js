@@ -21,7 +21,6 @@ import input from './routers/input.vue';
 import infoCard from './routers/info-card.vue';
 import inputWithLabel from './routers/input-with-label.vue';
 import list from './routers/list.vue';
-import panel from './routers/panel.vue';
 import listGroup from './routers/list-group.vue';
 import message from './routers/message.vue';
 import numericBadge from './routers/numeric-badge.vue';
@@ -98,9 +97,6 @@ const router = new VueRouter({
   }, {
     path: '/numeric-badge',
     component: numericBadge,
-  }, {
-    path: '/panel',
-    component: panel,
   }, {
     path: '/popover',
     component: popover,
