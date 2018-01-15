@@ -1,24 +1,17 @@
 <template>
-  <div :class="['dao-radio-group', {'dao-card-layout': type === 'card'}]">
+  <div class="dao-radio-group">
     <slot></slot>
   </div>
 </template>
-<style lang="scss">
-  @import './dao-radio-group.scss';
-</style>
+
 <script>
   export default {
-    componnetName: 'Radio-group',
+    name: 'daoRadioGroup',
     props: {
       name: String,
-      gridCol: {
-        type: Number,
-        default: 4,
-      },
-      type: {
-        type: String,
-        default: 'simple',
-      },
     },
   };
 </script>
+
+<style lang="scss" src="./styles/dao-radio-group.scss">
+</style>
