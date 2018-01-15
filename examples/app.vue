@@ -88,6 +88,9 @@ li + li {
           <router-link to="/radio">Radio</router-link>
         </li>
         <li>
+          <router-link to="/radio-extend">Radio Extend</router-link>
+        </li>
+        <li>
           <router-link to="/select">Select</router-link>
         </li>
         <li>

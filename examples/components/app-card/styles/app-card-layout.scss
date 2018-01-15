@@ -1,0 +1,16 @@
+@import "./variables.scss";
+
+.app-card-layout {
+  // 为什么用 flex，因为它不会像 inline-block 那样有多余的留白
+  // 也不会像是 float 那样高度不一致时会影响布局
+  // 只是兼容性方面 flex-wrap 支持 IE11 及以上
+  display: flex;
+  flex-wrap: wrap;
+  a {
+    text-decoration: none;
+  }
+}
+.app-card-col {
+  padding: $card-side-blank;
+  flex: none;
+}

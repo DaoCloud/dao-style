@@ -1,17 +1,17 @@
 <template>
-  <div class="dao-radio-group">
+  <div class="app-radio-group">
     <slot></slot>
   </div>
 </template>
 
 <script>
   export default {
-    name: 'daoRadioGroup',
+    name: 'appRadioGroup',
     props: {
       name: String,
     },
   };
 </script>
 
-<style lang="scss" src="./styles/dao-radio-group.scss">
+<style lang="scss" src="./styles/app-radio-group.scss">
 </style>

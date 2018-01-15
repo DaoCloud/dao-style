@@ -1,7 +1,7 @@
 <template>
-  <div :class="['dao-radio-plus', {'active': checked, 'disabled': disabled}]" v-model="value">
-    <div class="dao-radio-plus-wrap">
-      <div class="dao-radio-plus-content" @click="handleClick">
+  <div :class="['app-radio-plus', {'active': checked, 'disabled': disabled}]" v-model="value">
+    <div class="app-radio-plus-wrap">
+      <div class="app-radio-plus-content" @click="handleClick">
         <div class="radio-plus-img">
           <slot name="icon"></slot>
         </div>
@@ -17,24 +17,17 @@
     </div>
   </div>
 </template>
-<style lang="scss">
-  @import './dao-radio-plus.scss';
-</style>
+
 <script>
-  import { find } from 'lodash';
-  import daoSelect from '../dao-select';
-  import Emitter from '../../mixins/emitter';
+  import _find from 'lodash/find';
+  import Emitter from '../../../src/mixins/emitter';
 
   export default {
     name: 'Radio-plus',
     componentName: 'Radio-plus',
-    components: {
-      daoSelect,
-      daoOptionGroup: daoSelect.Group,
-      daoOption: daoSelect.Option,
-    },
     mixins: [Emitter],
     props: {
+      value: {},
       headline: String,
       selectTitle: String,
       /*
@@ -44,13 +37,18 @@
           text: '1111',
         }]
       */
-      options: Array,
+      options: {
+        type: Array,
+        default() {
+          return [];
+        },
+      },
       async: Function,
       disabled: {
         type: Boolean,
         default: false,
       },
-      radioValue: {},
+      label: {},
     },
     mounted() {
       // 挂载时，如果被选中，则执行
@@ -70,11 +68,8 @@
       };
     },
     computed: {
-      value() {
-        return this.$parent.value;
-      },
       checked() {
-        return this.value.value === this.radioValue;
+        return this.value.value === this.label;
       },
       asyncComplete() {
         return this.$refs.select.asyncComplete;
@@ -90,9 +85,9 @@
       handleClick() {
         // 如果是选中状态或 disabled 状态，则不需要重复 emit value
         if (this.disabled || this.checked) return;
-        // 首先把自身的 radioValue 值赋给 v-model 使其选中
+        // 首先把自身的 label 值赋给 v-model 使其选中
         this.$emit('input', {
-          value: this.radioValue,
+          value: this.label,
           select: this.select,
         });
         // 点击时，处理 check
@@ -111,7 +106,7 @@
       handleSelectChange() {
         // 当 select 的值被改变，即选中了一个选项时，仅仅需要把这个值给 emit 出去赋给 v-model
         const value = {
-          value: this.radioValue,
+          value: this.label,
           select: this.select,
         };
         this.$emit('input', value);
@@ -123,7 +118,7 @@
         // v-model 中选中值在 options 中，select 更新为 v-model 的选中值
         // 不在，则默认选中第一项
         this.select = this.options.length ? this.options[0].value : undefined;
-        if (find(this.options, { value: this.value.select })) {
+        if (_find(this.options, { value: this.value.select })) {
           this.select = this.value.select;
         }
         // 选择完 option 之后，还需要把 option 值给 emit 出去
@@ -144,3 +139,6 @@
     },
   };
 </script>
+
+<style lang="scss" src="./styles/app-radio-plus.scss">
+</style>

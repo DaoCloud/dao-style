@@ -6,6 +6,7 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import App from './app.vue';
 import daoStyle from '../src/index';
+import './components';
 
 // 请按照组件名称的字典顺序添加以下模块
 import autocomplete from './routers/autocomplete.vue';
@@ -28,6 +29,7 @@ import numericBadge from './routers/numeric-badge.vue';
 import popover from './routers/popover.vue';
 import progress from './routers/progress.vue';
 import radio from './routers/radio.vue';
+import radioExtend from './routers/radio-extend.vue';
 import select from './routers/select.vue';
 import selectAll from './routers/select-all.vue';
 import settingLayout from './routers/setting-layout.vue';
@@ -110,6 +112,9 @@ const router = new VueRouter({
   }, {
     path: '/radio',
     component: radio,
+  }, {
+    path: '/radio-extend',
+    component: radioExtend,
   }, {
     path: '/select',
     component: select,
