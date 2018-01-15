@@ -93,6 +93,7 @@
   </div>
 </template>
 <script>
+import { includes as _includes } from 'lodash';
 import {
   getSelectPosition as GetSelectPosition,
   simpleMerge as SimpleMerge,
@@ -165,7 +166,7 @@ export default {
       return cpOptions.map((tab) => {
         tab.keys = tab.keys.map((key) => {
           key.operates = key.operates.map((operate) => {
-            operate.vals = operate.vals.filter(val => !currentValueArr.includes(`${key.val}${operate.val}${val.val}`));
+            operate.vals = operate.vals.filter(val => !_includes(currentValueArr, `${key.val}${operate.val}${val.val}`));
             return operate;
           });
           return key;
@@ -312,6 +313,7 @@ export default {
     },
     // 重置输入值
     resetCurrentVal() {
+      if (this.disabled) return;
       this.currentValue = '';
       this.updateModel(this.currentValue);
       this.emit('reset');
