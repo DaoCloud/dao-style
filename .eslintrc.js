@@ -34,6 +34,9 @@ module.exports = {
     // allow debugger during development
     'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0,
     // rule: http://eslint.org/docs/rules/no-param-reassign.html
-    "no-param-reassign": ["off", { "props": true }]
+    "no-param-reassign": ["off", { "props": true }],
+    "no-underscore-dangle": ['error', { 
+      "allowAfterThis": true
+    }]
   }
 }

@@ -1,6 +1,6 @@
-@import './variables.scss';
+@import "./variables.scss";
 
-.dao-radio-block {
+.app-radio-block {
   cursor: pointer;
   border-bottom: 1px solid $border-color;
   &.disabled {
@@ -23,11 +23,11 @@
     input {
       margin-right: 30px;
     }
-    .dao-radio-block-headline {
+    .app-radio-block-headline {
       color: $radio-block-headline-color;
       font-weight: 500;
     }
-    .dao-radio-block-description {
+    .app-radio-block-description {
       color: $radio-block-description-color;
       font-weight: 400;
     }

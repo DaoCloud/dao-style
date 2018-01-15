@@ -1,6 +1,6 @@
 @import './variables.scss';
 
-.dao-radio-plus {
+.app-radio-plus {
   padding: 0 10px 10px 0;
   width: 100%;
   &-wrap {
@@ -8,10 +8,10 @@
     cursor: pointer;
     border-radius: $border-radius;
   }
-  &.disabled .dao-radio-plus-content {
+  &.disabled .app-radio-plus-content {
     cursor: not-allowed;
   }
-  .dao-radio-plus-content {
+  .app-radio-plus-content {
     border: 1px solid $grey-light;
     border-bottom: none;
     border-radius: $border-radius $border-radius 0 0;
@@ -49,23 +49,23 @@
     }
   }
   &.active {
-    .dao-radio-plus-wrap {
+    .app-radio-plus-wrap {
       opacity: 1;
       background-image: linear-gradient(0deg, #f0f7ff, #fbfdff);
       background-color: #f7fbff;
       box-shadow: 0 0 0 2px rgba(56, 144, 255, 0.15);
     }
-    .dao-radio-plus-content, .dao-select-switch {
+    .app-radio-plus-content, .dao-select-switch {
       border-color: $blue!important;
     }
-    // .dao-radio-plus-content,
+    // .app-radio-plus-content,
     .dao-select-switch-text *{
       color: $link-color!important;
     }
     .dao-select-switch svg {
       fill: $blue!important;
     }
-    .dao-radio-plus-content {
+    .app-radio-plus-content {
       &:hover,
       &:active {
         opacity: 1;

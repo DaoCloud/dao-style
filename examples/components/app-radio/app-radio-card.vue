@@ -1,28 +1,28 @@
 <template>
-  <div :class="['dao-radio-grid', {'active': checked, 'disabled': disabled, 'card': type === 'card'}]" v-model="value">
-    <svg class="checked-icon" v-if="type !== 'card'" v-show="checked">
+  <div :class="['app-radio-card', {'active': checked, 'disabled': disabled, 'card': type === 'img-left'}]" v-model="value">
+    <svg class="checked-icon" v-if="type === 'img-top'" v-show="checked">
       <use xlink:href="#icon_success"></use>
     </svg>
-    <div class="dao-radio-grid-wrap" @click="handleClick" v-if="type !== 'card'">
+    <div class="app-radio-card-wrap" @click="handleClick" v-if="type === 'img-top'">
       <slot>
-        <div class="dao-radio-grid-img">
+        <div class="app-radio-card-img">
           <slot name="icon"></slot>
         </div>
-        <div class="dao-radio-grid-headline">
+        <div class="app-radio-card-headline">
           {{headline}}
           <slot name="headlineSupplement"></slot>
         </div>
-        <div class="dao-radio-grid-description">
+        <div class="app-radio-card-description">
           {{description}}
         </div>
       </slot>
     </div>
-    <div class="dao-radio-grid-wrap dao-card" @click="handleClick" v-if="type === 'card'">
+    <div class="app-radio-card-wrap app-card" @click="handleClick" v-if="type === 'img-left'">
       <svg class="checked-icon" v-show="checked">
         <use xlink:href="#icon_success"></use>
       </svg>
       <slot>
-        <div class="dao-card-main" v-if="defaultTemplate">
+        <div class="app-card-main" v-if="defaultTemplate">
           <div class="icon">
             <slot name="icon"></slot>
           </div>
@@ -41,18 +41,14 @@
     </div>
   </div>
 </template>
-<style lang="scss">
-  @import './dao-radio-grid.scss';
-</style>
+
 <script>
+  import RadioBase from './mixins/radio-base';
+
   export default {
-    name: 'Radio-grid',
-    component: 'Radio-grid',
+    name: 'appRadioCard',
+    mixins: [RadioBase],
     props: {
-      disabled: {
-        type: Boolean,
-        default: false,
-      },
       headline: String,
       subheadline: String,
       description: String,
@@ -63,28 +59,23 @@
       },
       type: {
         type: String,
-        default: 'grid',
+        default: 'img-top',
       },
       name: String,
     },
     computed: {
-      value: {
-        get() {
-          return this.$parent.value;
-        },
-        set(v) {
-          this.$emit('input', v);
-        },
-      },
       checked() {
-        return this.value === this.radioValue;
+        return this._value === this.label;
       },
     },
     methods: {
       handleClick() {
         if (this.disabled) return;
-        this.value = this.radioValue;
+        this._value = this.label;
       },
     },
   };
 </script>
+
+<style lang="scss" src="./styles/app-radio-card.scss">
+</style>

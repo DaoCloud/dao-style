@@ -29,6 +29,7 @@ import numericBadge from './routers/numeric-badge.vue';
 import popover from './routers/popover.vue';
 import progress from './routers/progress.vue';
 import radio from './routers/radio.vue';
+import radioExtend from './routers/radio-extend.vue';
 import select from './routers/select.vue';
 import selectAll from './routers/select-all.vue';
 import settingLayout from './routers/setting-layout.vue';
@@ -111,6 +112,9 @@ const router = new VueRouter({
   }, {
     path: '/radio',
     component: radio,
+  }, {
+    path: '/radio-extend',
+    component: radioExtend,
   }, {
     path: '/select',
     component: select,

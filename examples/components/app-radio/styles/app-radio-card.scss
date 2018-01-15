@@ -1,6 +1,6 @@
 @import './variables.scss';
 
-.dao-radio-grid {
+.app-radio-card {
   padding: 0 5px;
   position: relative;
   white-space: nowrap;
@@ -17,9 +17,6 @@
     fill: #3890ff;
     background-color: #fff;
   }
-  &.dao-card-col {
-    white-space: normal;
-  }
   &-wrap {
     padding: 22px 40px 16px;
     background-color: white;
@@ -30,7 +27,7 @@
     line-height: 21px;
     overflow: hidden;
     cursor: pointer;
-    &.dao-card {
+    &.app-card {
       padding: 0;
       text-align: left;
       position: relative;
@@ -75,15 +72,15 @@
     text-shadow: 0 1px 0 rgba(255, 255, 255, 0.9);
   }
   &.active {
-    .dao-radio-grid-wrap {
+    .app-radio-card-wrap {
       opacity: 1;
       background-image: linear-gradient(0deg, #f0f7ff, #fbfdff);
       background-color: #f7fbff;
       border: 1px solid #3890ff;
       box-shadow: 0 0 0 2px rgba(56, 144, 255, 0.15);
     }
-    .dao-radio-grid-img svg,
-    .dao-radio-grid-img img {
+    .app-radio-card-img svg,
+    .app-radio-card-img img {
       fill: #3890ff;
     }
   }
