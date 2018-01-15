@@ -1,7 +1,6 @@
 @import "./variables.scss";
-@import "./mixins.scss";
 
-.dao-card {
+.app-card {
   color: $font-color-dark;
   font-size: $font-size-md;
   font-weight: 400;
@@ -16,25 +15,7 @@
   &:hover {
     text-decoration: none;
   }
-  &-layout {
-    // 为什么用 flex，因为它不会像 inline-block 那样有多余的留白
-    // 也不会像是 float 那样高度不一致时会影响布局
-    // 只是兼容性方面 flex-wrap 支持 IE11 及以上
-    display: flex;
-    flex-wrap: wrap;
-    a {
-      text-decoration: none;
-    }
-  }
-  &-col {
-    padding: $card-side-blank;
-    min-width: calc(100% / 3);
-    max-width: calc(100% / 3);
-    width: calc(100% / 3);
-    // flex: 1 1 0; 在 safari 上会产生兼容问题
-    // flex: 1 1 0; // 相当于 flex: 1;
-    flex: none;
-  }
+  
   &-main {
     padding: 15px;
     display: flex;
@@ -128,22 +109,10 @@
     }
     .footer-opt {
       flex: none;
-      .dao-btn {
+      .app-btn {
         // font-size: 13px;
         // padding: 5px 10px;
       }
     }
   }
-}
-// 不 not 样式会互相影响 主要是在 no-side-blank 的时候
-@function getNotIncludeSelectorInBlankSizes($array) {
-  $not-include-selector: '';
-  @each $name, $size in $array {
-    $not-include-selector: ':not(#{$name})#{$not-include-selector}';
-  }
-  @return $not-include-selector;
-}
-@include dao-card-media(0, getNotIncludeSelectorInBlankSizes($offset-sizes));
-@each $name, $size in $offset-sizes {
-  @include dao-card-media($size, $name);
 }

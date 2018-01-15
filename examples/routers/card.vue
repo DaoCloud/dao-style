@@ -2,111 +2,42 @@
   <div>
     <template v-for="demo in demos">
       <h2>{{demo.name}}</h2>
-      <div :class="['dao-card-layout', demo.class]">
-        <div class="dao-card-col">
-          <div class="dao-card">
-            <div class="dao-card-main">
-              <div class="icon">
-                <svg><use xlink:href="#image-icon_redis"></use></svg>
-              </div>
-              <div class="content">
-                <div class="title">
-                  <span>最普通版</span>
-                  <svg class="icon-verified"><use xlink:href="#icon_badge-verified"></use></svg>
-                  <svg class="icon-cloud"><use xlink:href="#icon_cloud-line"></use></svg>
-                </div>
-                <div class="sub-title">数据库</div>
-                <div class="desc">Redis 是一个开源的使用 ANSI C 语言编写、支持网络、可基于内存亦可持久化的日志型、Key-Value 数据库，并提供多种语言的 API</div>
-              </div>
-            </div>
-            <div class="dao-card-footer" v-if="demo.footer">
-              <div class="footer-main">编程语言</div>
-              <div class="footer-opt">
+      <app-card-layout 
+        :breakpoint="demo.breakpoint" 
+        :no-side-blank="demo.noSideBlank">
+        <app-card-col v-for="card in cards" :key="card.id">
+          <app-card>
+            <app-card-icon slot="icon">
+              <svg><use xlink:href="#image-icon_redis"></use></svg>
+            </app-card-icon>
+            <app-card-content slot="content">
+              <template slot="title">
+                <a href="#">{{card.title}}</a>
+                <svg class="icon-verified"><use xlink:href="#icon_badge-verified"></use></svg>
+                <svg class="icon-cloud"><use xlink:href="#icon_cloud-line"></use></svg>
+              </template>
+              <template slot="sub-title">
+                {{card.subtitle}}
+              </template>
+              <template slot="desc">
+                {{card.desc}}
+              </template>
+            </app-card-content>
+            <app-card-footer slot="footer" v-if="demo.footer">
+              <template slot="main">编程语言</template>
+              <template slot="opt">
                 <a href="#" class="dao-btn btn-sm blue">购买</a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="dao-card-col">
-          <div class="dao-card">
-            <a href="#" class="dao-card-main">
-              <div class="icon">
-                <svg><use xlink:href="#image-icon_redis"></use></svg>
-              </div>
-              <div class="content">
-                <div class="title">
-                  <span>整体链接版</span>
-                  <svg class="icon-verified"><use xlink:href="#icon_badge-verified"></use></svg>
-                  <svg class="icon-cloud"><use xlink:href="#icon_cloud-line"></use></svg>
-                </div>
-                <div class="sub-title">数据库</div>
-                <div class="desc">Redis 是一个开源的使用 ANSI C 语言编写、支持网络、可基于内存亦可持久化的日志型、Key-Value 数据库，并提供多种语言的 API</div>
-              </div>
-            </a>
-            <div class="dao-card-footer" v-if="demo.footer">
-              <div class="footer-main">编程语言</div>
-              <div class="footer-opt">
-                <!-- a 标签中套 a 标签是不行的 -->
-                <a href="#" class="dao-btn btn-sm ghost">购买</a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="dao-card-col">
-          <div class="dao-card">
-            <div class="dao-card-main">
-              <a href="#" class="icon">
-                <svg><use xlink:href="#image-icon_redis"></use></svg>
-              </a>
-              <div class="content">
-                <div class="title">
-                  <a href="#">各项链接版</a>
-                  <svg class="icon-verified"><use xlink:href="#icon_badge-verified"></use></svg>
-                  <svg class="icon-cloud"><use xlink:href="#icon_cloud-line"></use></svg>
-                </div>
-                <a href="#" class="sub-title">数据库</a>
-                <div class="desc">描述不允许改成链接形式</div>
-              </div>
-            </div>
-            <div class="dao-card-footer" v-if="demo.footer">
-              <div class="footer-main">编程语言</div>
-              <div class="footer-opt">
-                <a href="#" class="dao-btn btn-sm blue">购买</a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="dao-card-col" v-for="item in list">
-          <div class="dao-card">
-            <div class="dao-card-main">
-              <div class="icon">
-                <svg><use xlink:href="#image-icon_redis"></use></svg>
-              </div>
-              <div class="content">
-                <div class="title">
-                  <span>{{item.title}}</span>
-                  <svg class="icon-verified"><use xlink:href="#icon_badge-verified"></use></svg>
-                  <svg class="icon-cloud"><use xlink:href="#icon_cloud-line"></use></svg>
-                </div>
-                <div class="sub-title">{{item.subtitle}}</div>
-                <div class="desc">{{item.desc}}</div>
-              </div>
-            </div>
-            <div class="dao-card-footer" v-if="demo.footer">
-              <div class="footer-main">编程语言</div>
-              <div class="footer-opt">
-                <a href="#" class="dao-btn btn-sm blue">购买</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+              </template>
+            </app-card-footer>
+          </app-card>
+        </app-card-col>
+      </app-card-layout>
     </template>
   </div>
 </template>
 
 <script>
-  const repeatData = {
+  const card = {
     title: 'Redis',
     subtitle: '数据库',
     desc: 'Redis 是一个开源的使用 ANSI C 语言编写、支持网络、可基于内存亦可持久化的日志型、Key-Value 数据库，并提供多种语言的 API',
@@ -114,44 +45,55 @@
   export default {
     data() {
       return {
-        list: [
-          repeatData,
-          repeatData,
-          repeatData,
-          repeatData,
-          repeatData,
-          repeatData,
-          repeatData,
-          repeatData,
-          repeatData,
-        ],
+        cards: [],
         demos: [{
           name: 'Normal',
-          desc: '',
-          class: '',
+          noSideBlank: false,
           footer: false,
+          breakpoint: {
+            480: 1,
+            768: 2,
+            992: 4,
+            1200: 5,
+          },
         }, {
           name: 'No Side Blank',
-          desc: '',
-          class: 'no-side-blank',
+          noSideBlank: true,
           footer: false,
+          breakpoint: {
+            480: 1,
+            768: 2,
+            992: 4,
+            1200: 5,
+          },
         }, {
           name: 'Size Limit',
-          desc: '可以限制一行最少／最多显示几个，默认一行最少显示一个，最多显示六个。',
-          class: 'no-side-blank min-3 max-4',
+          noSideBlank: false,
           footer: false,
-        }, {
-          name: 'Offset',
-          desc: '可以设定多余的留白，主要是为了适应窗口大小不等于 dao-card-layout 大小的情况，可以添加 class。有以下候选项： offset-xs, offset-sm, offset-md, offset-lg。',
-          class: 'no-side-blank offset-md min-3',
-          footer: false,
+          breakpoint: {
+            480: 1,
+            768: 2,
+            992: 4,
+            1200: 4,
+          },
         }, {
           name: 'Has Footer',
-          desc: '',
-          class: 'no-side-blank offset-md min-3',
+          noSideBlank: false,
           footer: true,
+          breakpoint: {
+            480: 1,
+            768: 2,
+            992: 4,
+            1200: 5,
+          },
         }],
       };
+    },
+    created() {
+      Array.from((new Array(10))).forEach((item, index) => {
+        card.id = index;
+        this.cards.push(card);
+      });
     },
   };
 </script>

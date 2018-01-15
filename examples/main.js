@@ -6,6 +6,7 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import App from './app.vue';
 import daoStyle from '../src/index';
+import './components';
 
 // 请按照组件名称的字典顺序添加以下模块
 import autocomplete from './routers/autocomplete.vue';
