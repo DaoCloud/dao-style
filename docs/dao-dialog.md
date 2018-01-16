@@ -188,6 +188,7 @@ step | Number | `config.type = multiStep` 时，可以用来同步 (控制) dial
 type | String | 设置 dialog 的类型。 可选 `normal`, `feature`, `multiStep` | normal | 否
 title | String | 设置 dialog 的 title | '' | 否
 showHeader | Boolean | 设置 dialog 的 header 是否显示, 若此参数为 false,  __title 的设置无效__ | true | 否
+showHeaderClose | Boolean | 设置 dialog 的 header 的 close 按钮是否显示 | true | 否
 showFooter | Boolean | 设置 dialog 的 footer 是否显示, 若此参数为 false, __dao-dialog-confirm, dao-dialog-cancel 事件的设置无效__ | true | 否
 size | String | 设置 dialog 的大小。 可选 `sm`, `md`, `lg`, `resize` | 无高度限制  | 否
 closeOnClickOutside | Boolean | 设置点击 dialog 外面( 遮罩层 ) 是否隐藏 dialog | true | 否

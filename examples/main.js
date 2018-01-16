@@ -23,7 +23,7 @@ import inputWithLabel from './routers/input-with-label.vue';
 import list from './routers/list.vue';
 import panel from './routers/panel.vue';
 import listGroup from './routers/list-group.vue';
-import message from './routers/message.vue';
+import alert from './routers/alert.vue';
 import numericBadge from './routers/numeric-badge.vue';
 import popover from './routers/popover.vue';
 import progress from './routers/progress.vue';
@@ -93,8 +93,8 @@ const router = new VueRouter({
     path: '/list-group',
     component: listGroup,
   }, {
-    path: '/message',
-    component: message,
+    path: '/alert',
+    component: alert,
   }, {
     path: '/numeric-badge',
     component: numericBadge,
