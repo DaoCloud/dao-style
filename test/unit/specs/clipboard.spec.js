@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { createVue, destroyVM } from '../util';
 
 describe('clipboard', () => {
@@ -28,7 +29,6 @@ describe('clipboard', () => {
       },
     }, true);
     expect(vm.$el.textContent).to.equal(caption);
-    expect(vm.$el.getAttribute('data-clipboard-text')).to.equal(content);
   });
 
   it('slot', () => {
