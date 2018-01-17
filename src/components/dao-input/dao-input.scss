@@ -40,10 +40,13 @@
   &-group-addon {
     display: inline-flex;
     & > *:not(.dao-select) {
-      padding: 8px 10px;
+      // 不要使用 border-box, 在 ff 28 下会失效
+      box-sizing: content-box;
+      display: inline-block;
+      padding: 0px 10px;
       font-weight: 400;
-      line-height: 1;
-      height: $input-height;
+      line-height: $input-height - 2px;
+      height: $input-height - 2px;
       background-color: $input-disabled-bg-color;
       color: $input-disabled-color;
       border: $input-border;
