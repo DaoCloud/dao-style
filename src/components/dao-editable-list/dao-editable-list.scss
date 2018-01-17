@@ -61,8 +61,12 @@ $item-list-height: 360px;
     }
   }
   .right-pane {
-    $panel-height: 390px; 
+    height: $panel-height; 
+    overflow: auto;
     flex: auto;
-    padding: 0 20px 15px;
+    // 为了能够在 ff28 下实现 border-box, 这里嵌套一层 div
+    & > div {
+     padding: 0 20px 15px;
+    }
   }
 }
