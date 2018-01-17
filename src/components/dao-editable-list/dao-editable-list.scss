@@ -1,16 +1,18 @@
 @import '../dao-color.scss';
 
+$panel-height: 390px; 
+$item-list-height: 360px;
+
 .dao-editable-list {
   display: flex;
   border: 1px solid $white-dark;
   .left-pane {
     flex: none;
-    height: 390px;
     width: 25%;
     border-right: 1px solid $white-dark;
     .item-list {
       width: 100%;
-      height: 360px;
+      height: $item-list-height;
       border-radius: 0;
       background: linear-gradient(generate-color($blue, -3) 50%, $white 50%);
       background-size: 100% 60px;
@@ -18,7 +20,7 @@
       overflow-y: auto;
       li {
         cursor: pointer;
-        height: 30px;
+        height: $panel-height - $item-list-height;
         line-height: 30px;
         text-indent: 10px;
         &.active {
@@ -59,8 +61,12 @@
     }
   }
   .right-pane {
+    height: $panel-height; 
+    overflow: auto;
     flex: auto;
-    height: 390px;
-    padding: 0 20px 15px;
+    // 为了能够在 ff28 下实现 border-box, 这里嵌套一层 div
+    & > div {
+     padding: 0 20px 15px;
+    }
   }
 }
