@@ -4,24 +4,25 @@
   background-color: $white;
   border: solid 1px #d5dbe3;
   overflow: hidden;
+
+  $sm-width: 300px;
+  $lg-width: 610px;
+  $sm-key-value-width: 270px;
+  $sm-key-value-key-width: 115px;
+  $lg-key-value-width: 580px;
+  $lg-key-value-key-width: 265px;
+
   &.size-sm {
-    width: 300px;
+    width: $sm-width;
     .dao-infocard-main {
       ul {
-        width: 270px;
+        width: $sm-key-value-width;
         .dao-key-value {
-          width: 270px;
           .key {
-            width: 115px;
+            width: $sm-key-value-key-width;
           }
           .value {
-            width: 155px;
-            span:not(.dot) {
-              width: 155px;
-            }
-            .dot+span {
-              width: 145px;
-            }
+            width: $sm-key-value-width - $sm-key-value-key-width;
           }
         }
       }
@@ -31,31 +32,17 @@
     }
   }
   &.size-lg {
-    width: 610px;
+    width: $lg-width;
     .dao-infocard-main {
       ul {
         .dao-key-value {
-          width: 580px;
+          width: $lg-key-value-width;
           .key {
-            width: 260px;
+            width: $lg-key-value-key-width;
           }
           .value {
-            width: 320px;
-            span:not(.dot) {
-              width: 320px;
-            }
-            .dot+span {
-              width: 310px;
-            }
+            width: $lg-key-value-width - $lg-key-value-key-width;
           }
-        }
-      }
-      .dao-table-wrapper {
-        table {
-          padding: 0 10px;
-          th:nth-child(3), td:nth-child(3) {
-            flex: 0 0 80px;
-          } 
         }
       }
     }
@@ -89,6 +76,8 @@
   }
 }
 
+$row-height: 30px;
+$key-value-height: 26px;
 .dao-infocard-main {
   border-top: solid 1px #d5dbe3;
   padding: 0 15px;
@@ -98,15 +87,15 @@
       list-style: none;
       display: flex;
       .key {
-        line-height: 26px;
+        line-height: $key-value-height;
         padding-right: 10px;
         font-size: 14px;
         text-align: right;
         color: $grey-dark;
       }
       .value {
-        min-height: 26px;
-        line-height: 26px;
+        min-height: $key-value-height;
+        line-height: $key-value-height;
         font-size: 14px;
         text-align: left;
         color: $black-dark;
@@ -136,64 +125,25 @@
   .dao-table-wrapper {
     padding: 15px 0px;
     table {
-      border-collapse: collapse;
       border: solid 1px #d5dbe3;
-      width: 100%;
       thead {
-        width: 100%;
-        border-bottom: solid 1px #d5dbe3;
         tr {
-          width: 100%;
+          height: $row-height;
           display: flex;
-          height: 30px;
           background-color: $white-dark-lighter;
-          padding-left: 10px;
-          padding-right: 10px;
           th {
-            height: 30px;
-            line-height: 30px;
-            flex: 1;
-            font-size: 14px;
-            color: $black-light;
-            text-align: left;
-            border-right: none;
-            font-weight: normal;
-          }
-          th:nth-child(3) {
-            flex: 0 0 60px;
-          }
-          th:nth-child(4) {
-            flex: 0 0 45px;
+            height: $row-height;
+            line-height: $row-height;
           }
         }
       }
       tbody {
-        width: 100%;
         tr {
-          width: 100%;
-          display: flex;
-          height: 30px;
-          padding-left: 10px;
-          padding-right: 10px;
-          td {
-            flex: 1;
-            font-size: 14px;
-            padding: 8px 0 8px 0px;
-            text-align: left;
-            color: $black-dark;
-            overflow: hidden;
-            width: 10px;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-          }
-          &:nth-child(even) {
-            background-color: #fff;
-          }
-          td:nth-child(3) {
-            flex: 0 0 60px;
-          }
-          td:nth-child(4) {
-            flex: 0 0 45px;
+          border-bottom: none;
+          td{
+            border-left: none;
+            height: $row-height;
+            line-height: $row-height;
           }
         }
       }

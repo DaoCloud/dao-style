@@ -26,7 +26,7 @@
           </li>    
         </ul>
         <div class="dao-table-wrapper" v-if="tableValue!==null">
-          <table>
+          <table class="dao-table flexrow">
             <thead>
               <tr>
                 <th v-for=" attr in tableValue.header" >{{attr}}</th>

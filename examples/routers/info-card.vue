@@ -93,7 +93,7 @@ export default {
         DNS搜索: 'tdc1.company.com',
       }],
       keyvalue1: [{
-        cpu限制: '5核',
+        cpu限制: '5核5核5核5核5核5核5核5核5核5核5核',
         内存限制: '1000MB',
       }, {
         cpu预留: '1核',
