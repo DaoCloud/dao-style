@@ -37,7 +37,7 @@
   @import './dropdown.scss';
 </style>
 <script>
-  import { find, findIndex } from 'lodash';
+  import { _find, _findIndex } from '../../utils/assist';
   import daoDrop from './dropdown.vue';
   import clickoutside from '../../directives/clickoutside';
   import Emitter from '../../mixins/emitter';
@@ -120,7 +120,7 @@
       // select 初始化，获取所有的 options 的 value 和 节点
       this.$on('init', (value, nodesString, callback) => {
         // 首先查看是否有这个 value 在 options 中
-        const opt = find(this.options, { value });
+        const opt = _find(this.options, { value });
         if (!opt) {
           this.options.push({ value, nodesString });
         } else {
@@ -134,7 +134,7 @@
       });
       // select 选项池更新，删除已被销毁的 option
       this.$on('option-destroy', (value) => {
-        const index = findIndex(this.options, { value });
+        const index = _findIndex(this.options, { value });
         if (index > -1) {
           this.options.splice(index, 1);
         }
@@ -182,7 +182,7 @@
         // 如果传入的 option 值为对象格式，而且传入的 v-model 为 {} 空对象，
         // lodash 的 find 会找到 options 里面的第一项，而 lodash 的 some 会返回 true
         // 所以这里使用原生的 find 筛出值之后选择第一项
-        const option = this.options.find(v => v.value === this.selectedValue);
+        const option = _find(this.options, v => v.value === this.selectedValue);
         return option ? option.nodesString : '';
       },
     },

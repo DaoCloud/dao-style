@@ -1,5 +1,27 @@
+import _map from 'lodash/map';
+import _isString from 'lodash/isString';
+import _filter from 'lodash/filter';
+import _find from 'lodash/find';
+import _isBoolean from 'lodash/isBoolean';
+import _isFunction from 'lodash/isFunction';
+import _isEqual from 'lodash/isEqual';
+import _cloneDeep from 'lodash/cloneDeep';
+import _some from 'lodash/some';
+import _forEach from 'lodash/forEach';
+import _orderBy from 'lodash/orderBy';
+import _clone from 'lodash/clone';
+import _includes from 'lodash/includes';
+import _every from 'lodash/every';
+import _isNumber from 'lodash/isNumber';
+import _chunk from 'lodash/chunk';
+import _get from 'lodash/get';
+import _flatten from 'lodash/flatten';
+import _toNumber from 'lodash/toNumber';
+import _findIndex from 'lodash/findIndex';
+/* eslint-disable */
+
 // 判断参数是否是其中之一
-export function oneOf(value, validList) {
+function oneOf(value, validList) {
   for (let i = 0; i < validList.length; i++) {
     if (value === validList[i]) {
       return true;
@@ -8,13 +30,13 @@ export function oneOf(value, validList) {
   return false;
 }
 
-export function camelcaseToHyphen(str) {
+function camelcaseToHyphen(str) {
   return str.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
 }
 
 // For Modal scrollBar hidden
 let cached;
-export function getScrollBarSize(fresh) {
+function getScrollBarSize(fresh) {
   if (fresh || cached === undefined) {
     const inner = document.createElement('div');
     inner.style.width = '100%';
@@ -52,7 +74,8 @@ export function getScrollBarSize(fresh) {
 }
 
 // watch DOM change
-export const MutationObserver = window.MutationObserver || window.WebKitMutationObserver || window.MozMutationObserver || false;
+const MutationObserver = window.MutationObserver ||
+  window.WebKitMutationObserver || window.MozMutationObserver || false;
 
 const SPECIAL_CHARS_REGEXP = /([\:\-\_]+(.))/g;
 const MOZ_HACK_REGEXP = /^moz([A-Z])/;
@@ -63,7 +86,7 @@ function camelCase(name) {
   }).replace(MOZ_HACK_REGEXP, 'Moz$1');
 }
 // getStyle
-export function getStyle(element, styleName) {
+function getStyle(element, styleName) {
   if (!element || !styleName) return null;
   styleName = camelCase(styleName);
   if (styleName === 'float') {
@@ -81,10 +104,9 @@ export function getStyle(element, styleName) {
 function firstUpperCase(str) {
   return str.toString()[0].toUpperCase() + str.toString().slice(1);
 }
-export { firstUpperCase };
 
 // Warn
-export function warnProp(component, prop, correctType, wrongType) {
+function warnProp(component, prop, correctType, wrongType) {
   correctType = firstUpperCase(correctType);
   wrongType = firstUpperCase(wrongType);
   console.error(`[iView warn]: Invalid prop: type check failed for prop ${prop}. Expected ${correctType}, got ${wrongType}. (found in component: ${component})`); // eslint-disable-line
@@ -132,10 +154,8 @@ function deepCopy(data) {
   return o;
 }
 
-export { deepCopy };
-
 // scrollTop animation
-export function scrollTop(el, from = 0, to, duration = 500) {
+function scrollTop(el, from = 0, to, duration = 500) {
   if (!window.requestAnimationFrame) {
     window.requestAnimationFrame = (
       window.webkitRequestAnimationFrame ||
@@ -183,7 +203,6 @@ function findComponentUpward(content, componentName, componentNames) {
   }
   return parent;
 }
-export { findComponentUpward };
 
 // Find component downward
 function findComponentDownward(content, componentName) {
@@ -212,7 +231,6 @@ function findComponentDownward(content, componentName) {
   }
   return children;
 }
-export { findComponentDownward };
 
 // Find components downward
 function findComponentsDownward(content, componentName, components = []) {
@@ -232,10 +250,9 @@ function findComponentsDownward(content, componentName, components = []) {
   }
   return components;
 }
-export { findComponentsDownward };
 
 // 通过获取选中元素参数以获取光标位置
-export function getSelectPosition(element) {
+function getSelectPosition(element) {
   const nullvalue = -1;
   let selectStart;
   let selectEnd;
@@ -274,7 +291,7 @@ export function getSelectPosition(element) {
 }
 
 // 无递归简单 merge
-export function simpleMerge(target, source) {
+function simpleMerge(target, source) {
   const result = target || {};
   const tmpB = source || {};
   Object.keys(tmpB).forEach((key) => {
@@ -284,7 +301,7 @@ export function simpleMerge(target, source) {
 }
 
 // 获取一段字符串的显示宽度,长度
-export function getTextSize(text, fontSize = '14px') {
+function getTextSize(text, fontSize = '14px') {
   const span = document.createElement('span');
   span.style.visibility = 'hidden';
   span.style.fontSize = fontSize;
@@ -301,3 +318,41 @@ export function getTextSize(text, fontSize = '14px') {
   document.body.removeChild(span);
   return result;
 }
+
+export {
+  oneOf,
+  camelcaseToHyphen,
+  getScrollBarSize,
+  MutationObserver,
+  getStyle,
+  firstUpperCase,
+  warnProp,
+  deepCopy,
+  scrollTop,
+  findComponentUpward,
+  findComponentDownward,
+  findComponentsDownward,
+  getSelectPosition,
+  simpleMerge,
+  getTextSize,
+  _map,
+  _isString,
+  _filter,
+  _find,
+  _isBoolean,
+  _isFunction,
+  _cloneDeep,
+  _isEqual,
+  _some,
+  _forEach,
+  _orderBy,
+  _clone,
+  _includes,
+  _every,
+  _isNumber,
+  _chunk,
+  _get,
+  _flatten,
+  _toNumber,
+  _findIndex,
+};
