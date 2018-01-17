@@ -3,16 +3,22 @@
     <pre><slot></slot></pre>
     <div is="clipboard" 
       class="copy-button"
-      @mouseleave.native="copied = false"
+      @mouseleave.native="handleMouseleave"
       :on-success="copySuccess"
+      :on-error="copyError"
       :content="content"
       v-if="withBtn">
-      <tooltip content="复制成功" v-show="copied">
+      <tooltip content="复制成功" v-if="success">
         <svg>
           <use xlink:href="#icon_clipboard-success"></use>
         </svg>
       </tooltip>
-      <tooltip content="点击复制" v-show="!copied">
+       <tooltip content="复制失败" v-if="fail">
+        <svg>
+          <use xlink:href="#icon_clipboard"></use>
+        </svg>
+      </tooltip>
+      <tooltip content="点击复制" v-if="!success && !fail">
         <svg>
           <use xlink:href="#icon_clipboard"></use>
         </svg>
@@ -44,13 +50,21 @@
     },
     data() {
       return {
-        copied: false,
         content: '',
+        success: false,
+        fail: false,
       };
     },
     methods: {
       copySuccess() {
-        this.copied = true;
+        this.success = true;
+      },
+      copyError() {
+        this.fail = true;
+      },
+      handleMouseleave() {
+        this.success = false;
+        this.fail = false;
       },
     },
   };

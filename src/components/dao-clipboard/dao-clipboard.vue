@@ -1,10 +1,11 @@
 <template>
-  <div :data-clipboard-text="content"><slot>{{ caption }}</slot></div>
+  <div @click="handleClick" ><slot>{{ caption }}</slot></div>
 </template>
 
 <script>
-import Clipboard from 'clipboard';
-import { isFunction } from 'lodash';
+
+import select from '../../utils/select';
+import assert from '../../utils/assert';
 
 export default {
   name: 'DaoClipboard',
@@ -12,33 +13,51 @@ export default {
   props: {
     caption: String,
     content: String,
-    onSuccess: Function,
-    onError: Function,
+    onSuccess: {
+      type: Function,
+      default() {
+        return () => 0;
+      },
+    },
+    onError: {
+      type: Function,
+      default() {
+        return () => 0;
+      },
+    },
   },
 
-  data: function() {
+  data() {
     return {
-      __clipboard: null,
-    }
+    };
   },
+  methods: {
+    handleClick() {
+      let succeed = true;
+      try {
+        const fakeEle = document.createElement('textarea');
+        fakeEle.value = this.content;
+        fakeEle.style.position = 'absolute';
+        fakeEle.style.left = '-9999px';
+        fakeEle.style.opacity = '0';
+        this.$el.appendChild(fakeEle);
+        select(fakeEle);
+        succeed = document.execCommand('copy');
+        this.$el.removeChild(fakeEle);
+      } catch (err) {
+        succeed = false;
+      }
 
-  mounted: function() {
-    this.__clipboard = new Clipboard(this.$el);
-    this.__clipboard.on('success', (e) => {
-      this.$nextTick(() => {
-        if (isFunction(this.onSuccess)) {
-          this.onSuccess(e);
-        }
-      });
-    });
-
-    this.__clipboard.on('error', (e) => {
-      this.$nextTick(() => {
-        if (isFunction(this.onError)) {
-          this.onError(e);
-        }
-      });
-    });
+      assert.expect(succeed).component('DaoClipboard').warn("your browser doesn't allow access to the clipboard via scripts");
+      this.callback(succeed);
+    },
+    callback(succeed) {
+      if (succeed) {
+        this.onSuccess();
+      } else {
+        this.onError();
+      }
+    },
   },
 };
 </script>
