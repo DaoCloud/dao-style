@@ -18,6 +18,8 @@
   text-align: center;
   white-space: nowrap;
 
+  height: 32px; // fixed button height for firefox28
+
   @include box-sizing('border-box');
   @include button-size($btn-padding-y, $btn-padding-x, $font-size-base, $line-height-base, $btn-border-radius-base);
   @include transition(all 0.2s ease-in-out);
@@ -167,5 +169,6 @@ a.dao-btn {
     font-size: 13px;
     line-height: 24px;
     padding: 0 10px;
+    height: 26px;
   }
 }
