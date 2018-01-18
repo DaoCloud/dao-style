@@ -1,40 +1,19 @@
 <template>
-  <transition 
-    name="dao-dialog" 
-    @before-enter="$onInit"
-    @after-leave="$onDestory">
-    <div
-      class="dao-dialog-backdrop"
-      :class="backdropClass"
-      v-if="visible">
-      <div
-        class="dao-dialog-wrapper"
-        :class="typeClass"
-        :size="config.type !== 'feature' ? (config.size) : ''"
-        @click.self="handleWrapperClick">
-        <div
-          class="dao-dialog-container"
-          ref="container">
-          <daoDialogHeader
-            :show-header-close="config.showHeaderClose"
-            :title="config.title || ''"
-            v-if="config.showHeader !== false && config.type !== 'feature'"
-            @close="doClose"/>
-          <div
-            ref="body"
-            class="dao-dialog-body"
-            :style="styleBody">
+  <transition name="dao-dialog" @before-enter="$onInit" @after-leave="$onDestory">
+    <div v-if="visible" :class="backdropClass" ref="backdrop">
+      <div :class="wrapperClass" :size="size" ref="dialogWrapper" @click.self="handleWrapperClick">
+        <div class="dao-dialog-container" ref="container">
+          <dao-dialog-header v-if="showHeader"  :title="config.title" @close="doClose"
+            :show-header-close="config.showHeaderClose">
+          </dao-dialog-header>
+          <div ref="body"  class="dao-dialog-body" :style="bodyStyle">
             <slot></slot>
           </div>
-          <div class="dao-dialog-footer" v-if="config.showFooter !== false">
+          <div class="dao-dialog-footer" v-if="showFooter">
             <slot name="footer" v-if="config.type === 'multiStep'">
-              <button class="dao-btn blue"
-                :disabled="activeStep <= 0"
-                @click="preStep">
+              <button class="dao-btn blue" :disabled="activeStep <= 0" @click="preStep">
                 上一步</button>
-              <button class="dao-btn blue"
-                @click="nextStep"
-                :disabled="activeStep >= (steps.length - 1)">
+              <button class="dao-btn blue"  @click="nextStep" :disabled="activeStep >= (steps.length - 1)">
                 下一步</button>
             </slot>
             <slot name="footer" v-else>
@@ -42,6 +21,14 @@
               <button class="dao-btn blue" @click="clickConfirm">确认</button>
             </slot>
           </div>
+          <dao-dialog-resizer 
+            class="resize-handle" 
+            v-if="size === 'resize'"
+            :container="$refs.container"
+            :padding="20"
+            @resizeWidth="handleResizeWidth"
+            @resizeHeight="handleResizeHeight">
+          </dao-dialog-resizer>
         </div>
       </div>
     </div>
@@ -49,9 +36,25 @@
 </template>
 <script>
 import daoDialogHeader from './dao-dialog-header/dao-dialog-header.vue';
-import { getStyle } from '../../utils/assist';
+import daoDialogResizer from './dao-dialog-resizer/dao-dialog-resizer.vue';
+
+import {
+  getStyle,
+  getWindowWidthAndHeight,
+} from '../../utils/assist';
 
 const daoDialogCountAttr = 'data-dao-dialog-count';
+
+const defaultDialogConfig = {
+  title: '',
+  type: 'normal',
+  size: 'md',
+  showHeader: true,
+  showHeaderClose: true,
+  showFooter: true,
+  closeOnClickOutside: true,
+  closeOnPressEscape: true,
+};
 
 // 对于 popper 的检测需要在动画结束之后再检测，否则会出现定位偏差
 const AnimationTime = 300;
@@ -67,17 +70,7 @@ export default {
       type: Object,
       required: true,
       default() {
-        return {
-          title: '',
-          type: 'normal',
-          size: 'md',
-          showHeader: true,
-          showHeaderClose: true,
-          showFooter: true,
-          closeOnClickOutside: true,
-          closeOnPressEscape: true,
-          // changePageOnDirectionKey: true,
-        };
+        return defaultDialogConfig;
       },
     },
     step: {
@@ -97,15 +90,13 @@ export default {
     };
   },
   computed: {
-    typeClass() {
-      if (this.config.type) {
-        return {
-          [`dao-dialog__${this.config.type}`]: true,
-        };
-      }
-      return {};
+    wrapperClass() {
+      return {
+        [`dao-dialog__${this.config.type || defaultDialogConfig.type}`]: true,
+        'dao-dialog-wrapper': true,
+      };
     },
-    styleBody() {
+    bodyStyle() {
       if (this.config.type === 'multiStep') {
         this.hideOverflowPoppers();
         return {
@@ -115,8 +106,18 @@ export default {
       }
       return '';
     },
+    size() {
+      return this.config.type !== 'feature' ? (this.config.size) : '';
+    },
+    showHeader() {
+      return this.config.showHeader !== false && this.config.type !== 'feature';
+    },
+    showFooter() {
+      return this.config.showFooter !== false;
+    },
     backdropClass() {
       return {
+        'dao-dialog-backdrop': true,
         backdrop__scrollY: this.overflow.y,
         backdrop__scrollX: this.overflow.x,
       };
@@ -136,8 +137,8 @@ export default {
       document.body.setAttribute(daoDialogCountAttr, count ? parseInt(count, 10) + 1 : 1);
       document.body.style.overflowY = 'hidden';
       document.addEventListener('keydown', this.handleKeyDown);
-      this.$emit('dao-dialog-open');
       window.addEventListener('resize', this.adjustOverflow);
+      this.$emit('dao-dialog-open');
     },
     // 初始化 MultiStep 的初始位置
     initStep() {
@@ -152,15 +153,10 @@ export default {
       const container = this.$refs.container;
       const height = parseInt(getStyle(container, 'height'), 10);
       const width = parseInt(getStyle(container, 'width'), 10);
-      const windowHeight = window.innerHeight
-        || document.documentElement.clientHeight
-        || document.body.clientHeight;
-      const windowWidth = window.innerWidth
-        || document.documentElement.clientWidth
-        || document.body.clientWidth;
+      const windowParams = getWindowWidthAndHeight();
       this.overflow = {
-        x: height > windowHeight,
-        y: width > windowWidth,
+        x: height > windowParams.height,
+        y: width > windowParams.width,
       };
     },
     // close dialog
@@ -177,9 +173,17 @@ export default {
       this.$emit('dao-dialog-cancel');
       this.doClose();
     },
+    handleResizeWidth(width) {
+      this.$refs.container.style.width = `${width}px`;
+    },
+    handleResizeHeight(height) {
+      this.$refs.container.style.height = `${height}px`;
+       // 每次高度调整都需要去检测一下是否溢出
+      this.adjustOverflow();
+    },
     // 点击 wrapper 时
     handleWrapperClick() {
-      if (this.config.closeOnClickOutside !== false) {
+      if (this.config.closeOnClickOutside !== false && this.size !== 'resize') {
         this.doClose();
       }
     },
@@ -312,6 +316,7 @@ export default {
   },
   components: {
     daoDialogHeader,
+    daoDialogResizer,
   },
 };
 </script>
