@@ -1,6 +1,7 @@
 <template>
-  <div :class="['dao-clipboard', {'select-all': !withBtn}]">
-    <pre><slot></slot></pre>
+  <div class="dao-clipboard">
+    <pre v-if="withBtn"><slot></slot></pre>
+    <pre v-else @click="handleClick" ref="selectAllEL"><slot></slot></pre>
     <div is="clipboard" 
       class="copy-button"
       @mouseleave.native="handleMouseleave"
@@ -29,6 +30,8 @@
 <script>
   import clipboard from './dao-clipboard.vue';
   import tooltip from '../dao-tooltip';
+  import select from '../../utils/select';
+  import copySelect from '../../utils/copy-select';
 
   export default {
     name: 'dao-copy-block',
@@ -65,6 +68,11 @@
       handleMouseleave() {
         this.success = false;
         this.fail = false;
+      },
+      handleClick() {
+        const target = this.$refs.selectAllEL;
+        copySelect(target, this.content);
+        select(target);
       },
     },
   };

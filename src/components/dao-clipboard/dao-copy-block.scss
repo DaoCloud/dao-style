@@ -18,9 +18,6 @@ $clipboard-svg-size: 14px;
   border: 1px solid $clipboard-border-color;
   border-radius: 4px;
   padding: $clipboard-margin 0;
-  &.select-all {
-    user-select: all;
-  }
   pre {
     padding: 0 1em;
     word-break: break-all;
