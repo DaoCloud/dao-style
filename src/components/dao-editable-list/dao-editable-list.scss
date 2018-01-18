@@ -15,6 +15,7 @@ $item-list-height: 360px;
       height: $item-list-height;
       border-radius: 0;
       background: linear-gradient(generate-color($blue, -3) 50%, $white 50%);
+      background-attachment: local;
       background-size: 100% 60px;
       border-bottom: 1px solid $white-dark;
       overflow-y: auto;
