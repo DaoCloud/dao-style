@@ -4,8 +4,7 @@
 
 <script>
 
-import select from '../../utils/select';
-import assert from '../../utils/assert';
+import copySelect from '../../utils/copy-select';
 
 export default {
   name: 'DaoClipboard',
@@ -33,23 +32,9 @@ export default {
   },
   methods: {
     handleClick() {
-      let succeed = true;
-      try {
-        const fakeEle = document.createElement('textarea');
-        fakeEle.value = this.content;
-        fakeEle.style.position = 'absolute';
-        fakeEle.style.left = '-9999px';
-        fakeEle.style.opacity = '0';
-        this.$el.appendChild(fakeEle);
-        select(fakeEle);
-        succeed = document.execCommand('copy');
-        this.$el.removeChild(fakeEle);
-      } catch (err) {
-        succeed = false;
-      }
-
-      assert.expect(succeed).component('DaoClipboard').warn("your browser doesn't allow access to the clipboard via scripts");
-      this.callback(succeed);
+      copySelect(this.$el, this.content, (succeed) => {
+        this.callback(succeed);
+      });
     },
     callback(succeed) {
       if (succeed) {
