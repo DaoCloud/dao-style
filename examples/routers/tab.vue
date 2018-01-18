@@ -27,7 +27,7 @@
     <div class="demo-block">
       <h2 class="demo-block__title"> Demo 2 </h2>
       <dao-tab direction="left" >
-        <dao-tab-item :heading="tab.heading" key="index" v-for="(tab, index) in tabs" >
+        <dao-tab-item :heading="tab.heading" :key="index" v-for="(tab, index) in tabs" >
           <p class="demo-tab-wrap">
             {{tab.body}}
           </p>
@@ -73,14 +73,14 @@
         tabs: [
           {
             heading: 'HEAD1',
-            body: "Some Tab Content",
+            body: 'Some Tab Content',
           },
           {
             heading: 'HEAD2',
-            body: "More Tab Content",
+            body: 'More Tab Content',
           },
         ],
-      }
+      };
     },
     methods: {
       onHandleChangeTab(active) {
