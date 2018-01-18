@@ -1,8 +1,10 @@
 /**
  * 公共配置
  */
-var webpack = require('webpack');
-var path = require('path');
+const webpack = require('webpack');
+const path = require('path');
+
+const vueLoaderConfig = require('./vue-loader.conf')
 
 function resolve(dir) {
   return path.join(__dirname, '..', dir)
@@ -13,20 +15,9 @@ module.exports = {
   module: {
     // https://doc.webpack-china.org/guides/migrating/#module-loaders-module-rules
     rules: [{
-        // https://vue-loader.vuejs.org/en/configurations/extract-css.html
         test: /\.vue$/,
         loader: 'vue-loader',
-        options: {
-          loaders: {
-            css: 'vue-style-loader!css-loader',
-            less: 'vue-style-loader!css-loader!less-loader',
-            scss: 'vue-style-loader!css-loader!sass-loader',
-            sass: 'vue-style-loader!css-loader!sass-loader?indentedSyntax'
-          },
-          postLoaders: {
-            html: 'babel-loader'
-          }
-        }
+        options: vueLoaderConfig,
       }, {
         test: /\.js$/,
         loader: 'babel-loader',
