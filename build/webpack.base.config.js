@@ -27,13 +27,14 @@ module.exports = {
         use: [
           'style-loader',
           'css-loader',
-          'autoprefixer-loader'
+          'postcss-loader'
         ]
       }, {
         test: /\.less$/,
         use: [
           'style-loader',
           'css-loader',
+          'postcss-loader',
           'less-loader'
         ]
       }, {
@@ -41,8 +42,9 @@ module.exports = {
         use: [
           'style-loader',
           'css-loader',
-          'sass-loader?sourceMap'
-        ]
+          'postcss-loader',
+          'sass-loader'
+        ],
       }, {
         test: /\.svg$/,
         loader: 'svg-sprite-loader',
