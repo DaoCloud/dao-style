@@ -3,7 +3,7 @@
   </div>
 </template>
 <script>
-import { getWindowWidthAndHeight } from '../../../utils/assist';
+import getWindowSize from '../../../utils/window-size';
 
 export default {
   name: 'DaoDialogResizer',
@@ -24,7 +24,7 @@ export default {
   },
   methods: {
     handleMousemove(event) {
-      const windowParams = getWindowWidthAndHeight();
+      const windowParams = getWindowSize();
       const containerParams = this.container.getBoundingClientRect();
       //  在低版本浏览器下不要使用 x | width | height，
       const targetWidth = event.clientX - containerParams.left;

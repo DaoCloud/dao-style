@@ -47,7 +47,11 @@
 </template>
 
 <script>
-  import _ from 'lodash';
+  import {
+    _forEach,
+    _map,
+    _find,
+  } from '../../../utils/assist';
   import Dialog from './dialog';
 
   export default {
@@ -78,7 +82,7 @@
         const numberOfVisibleColumns = this.columnsOrder.length;
         let i = 0;
 
-        _.forEach(this.columns, (c, columnName) => {
+        _forEach(this.columns, (c, columnName) => {
           // 如果这个分栏仅仅只是用来筛选的话，那就不用显示
           if (c.isFilter) return false;
           const index = this.columnsOrder.indexOf(columnName);
@@ -103,7 +107,7 @@
       },
       onColumnsOrderChange(newOrder) {
         this.settings.columnsOrder =
-          _.map(newOrder, c => _.find(this.settings.columnsOrder, { name: c }));
+          _map(newOrder, c => _find(this.settings.columnsOrder, { name: c }));
       },
       onConfirm() {
         this.$emit('confirm', this.settings);

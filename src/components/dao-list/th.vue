@@ -10,7 +10,10 @@
   </th>
 </template>
 <script>
-import { toNumber as _toNumber, includes as _includes } from 'lodash';
+import {
+  _toNumber,
+  _includes,
+} from '../../utils/assist';
 
 export default {
   props: ['width'],

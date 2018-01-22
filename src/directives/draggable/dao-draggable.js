@@ -1,4 +1,4 @@
-import * as _ from 'lodash';
+import { _cloneDeep } from '../../utils/assist';
 import Dragging from './dragging';
 
 // 获取当前元素的父元素序列
@@ -75,10 +75,11 @@ function removeExtraStyle(el) {
 // 使用 clone 的元素来替换原来的元素
 function replaceByClone(el) {
   const cloneEl = el.cloneNode(true);
-  cloneEl.dragConfig = _.cloneDeep(el.dragConfig);
+  cloneEl.dragConfig = _cloneDeep(el.dragConfig);
   el.dragConfig.clone = false;
   // 去除 clone 元素上面的额外样式
   removeExtraStyle(cloneEl);
+  /* eslint-disable */
   addEvents(cloneEl);
   el.parentNode.insertBefore(cloneEl, el);
   el.parentNode.removeChild(el);

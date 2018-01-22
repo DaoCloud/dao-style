@@ -79,7 +79,7 @@
   </div>
 </template>
 <script>
-  import { oneOf } from '../../utils/assist';
+  import { _includes } from '../../utils/assist';
 
   export default {
     name: 'DaoInput',
@@ -102,7 +102,7 @@
       message: String,
       messagePlacement: {
         validator(value) {
-          return oneOf(value, ['top', 'top-start', 'top-end', 'bottom', 'bottom-start', 'bottom-end', 'left', 'left-start', 'left-end', 'right', 'right-start', 'right-end']);
+          return _includes(['top', 'top-start', 'top-end', 'bottom', 'bottom-start', 'bottom-end', 'left', 'left-start', 'left-end', 'right', 'right-start', 'right-end'], value);
         },
         default: 'top-end',
       },
@@ -110,7 +110,7 @@
       search: Boolean,
       status: {
         validator(value) {
-          return oneOf(value, ['', 'loading', 'info', 'error', 'success']);
+          return _includes(['', 'loading', 'info', 'error', 'success'], value);
         },
         default: '',
       },
@@ -141,10 +141,10 @@
         return this.required || this.search;
       },
       messageEnabled() {
-        return oneOf(this.status, ['info', 'error', 'success']) && !!this.message;
+        return _includes(['info', 'error', 'success'], this.status) && !!this.message;
       },
       iconInsideMessagePlacement() {
-        if (oneOf(this.messagePlacement, ['top-end', 'right-start', 'right'])) {
+        if (_includes(['top-end', 'right-start', 'right'], this.messagePlacement)) {
           return this.messagePlacement;
         }
         return 'top-end';

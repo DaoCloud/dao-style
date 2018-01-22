@@ -1,6 +1,11 @@
-import _ from 'lodash';
 import daoDrop from '../dao-select/dropdown.vue';
 import clickoutside from '../../directives/clickoutside';
+import {
+  _map,
+  _forEach,
+  _some,
+  _isString,
+} from '../../utils/assist';
 
 export default {
   name: 'DaoEditableTable',
@@ -19,7 +24,7 @@ export default {
   },
   computed: {
     model() {
-      return _.map(this.rows, this.rowToModel);
+      return _map(this.rows, this.rowToModel);
     },
     header() {
       return this.config.header.map(h => ({
@@ -34,7 +39,7 @@ export default {
       this.modelToRow(newModel);
     },
     config: {
-      handler: function() {
+      handler() {
         // 当 config 改变时，使用 input 事件，触发父组件 v-model 更新
         // 使整个 rows 根据新的 config 和 model 重新生成
         this.$emit('input', this.model);
@@ -73,7 +78,7 @@ export default {
       });
       // 如果有预先设置的值的话，就要把默认值塞进去
       if (model) {
-        resultRow = _.map(resultRow, (row) => {
+        resultRow = _map(resultRow, (row) => {
           const r = row;
           r.value = model[row.name];
           return r;
@@ -84,13 +89,13 @@ export default {
     // 把 model 的数据塞到当前的表格中
     modelToRow(model) {
       if (model === this.rows) return;
-      this.rows = _.map(model, this.generateRow);
+      this.rows = _map(model, this.generateRow);
       this.inactivateRow();
     },
     // 根据一行的数据生成一行的 model
     rowToModel(row) {
       const obj = {};
-      _.forEach(row, (td) => {
+      _forEach(row, (td) => {
         obj[td.name] = td.value;
       });
       return obj;
@@ -120,8 +125,8 @@ export default {
     },
     // 验证数据
     validate() {
-      _.forEach(this.rows, (row) => {
-        _.forEach(row, (td) => {
+      _forEach(this.rows, (row) => {
+        _forEach(row, (td) => {
           if (td.type === 'input' && td.validate) {
             td.valid = td.validate(this.rowToModel(row), this.model);
           }
@@ -131,8 +136,8 @@ export default {
     // 更新 model
     updateModel() {
       let valid = true;
-      _.forEach(this.rows, (row) => {
-        if (_.some(row, td => _.isString(td.valid))) {
+      _forEach(this.rows, (row) => {
+        if (_some(row, td => _isString(td.valid))) {
           valid = false;
           return false;
         }

@@ -19,7 +19,7 @@
 <script>
   import Popper from '../base/popper';
   import clickoutside from '../../directives/clickoutside';
-  import { oneOf } from '../../utils/assist';
+  import { _includes } from '../../utils/assist';
 
   const prefixCls = 'dao-popover';
   export default {
@@ -29,13 +29,13 @@
     props: {
       trigger: {
         validator(value) {
-          return oneOf(value, ['click', 'focus', 'hover']);
+          return _includes(['click', 'focus', 'hover'], value);
         },
         default: 'click',
       },
       placement: {
         validator(value) {
-          return oneOf(value, ['top', 'top-start', 'top-end', 'bottom', 'bottom-start', 'bottom-end', 'left', 'left-start', 'left-end', 'right', 'right-start', 'right-end']);
+          return _includes(['top', 'top-start', 'top-end', 'bottom', 'bottom-start', 'bottom-end', 'left', 'left-start', 'left-end', 'right', 'right-start', 'right-end'], value);
         },
         default: 'bottom',
       },
@@ -78,7 +78,8 @@
     },
     computed: {
       realVisible() {
-        return !this.disabled && (this.visible || this.always) && (this.$slots.content || this.content);
+        return !this.disabled && (this.visible || this.always) &&
+        (this.$slots.content || this.content);
       },
     },
     created() {

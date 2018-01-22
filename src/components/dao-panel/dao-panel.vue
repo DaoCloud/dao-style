@@ -1,7 +1,7 @@
 <template src="./dao-panel.html"></template>
 
 <script>
-import { includes as _includes } from 'lodash';
+import { _includes } from '../../utils/assist';
 import DaoPanelNav from './dao-panel-nav/dao-panel-nav.vue';
 
 export default {

@@ -1,4 +1,4 @@
-import { includes as _includes } from 'lodash';
+import { _includes } from '../../utils/assist';
 
 class Dragging {
   constructor() {
