@@ -195,7 +195,7 @@ export default {
         let catched = false;
         this.currentOptions.forEach((option) => {
           option.keys.forEach((key) => {
-            if (key.val.startsWith(frag) || key.name.startsWith(frag)) {
+            if (key.val.indexOf(frag) === 0 || key.name.indexOf(frag) === 0) {
               catched = true;
             }
           });
@@ -227,7 +227,7 @@ export default {
       // 1.多个空格全部改成一个空格
       let result = val.replace(/\s+/g, ' ');
       // 2.去掉开头空格
-      if (result.startsWith(' ') && result.length > 1) {
+      if (result.indexOf(' ') === 0 && result.length > 1) {
         result = result.slice(1);
       }
       // 3.如果用户在key-value中插入并输入空格也认定是错误的输入
