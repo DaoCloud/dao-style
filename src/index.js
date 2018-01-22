@@ -1,5 +1,3 @@
-// es6 polyfill
-import 'core-js/fn/array/find-index';
 import './components/dao-svg/svg';
 
 // 纯样式组件
