@@ -16,7 +16,7 @@
         </div>
         <div class="icon-box">
           <svg class="icon">
-            <use xlink:href="" :href="`#icon_${size === 'sm' ? 'caret-select' : 'caret-down'}`"></use>
+            <use xlink:href="#icon_caret-select"></use>
           </svg>
         </div>
       </div>
