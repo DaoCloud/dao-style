@@ -11,7 +11,7 @@
           @click="operate(o.event)">
           <span>{{o.name}}</span>
           <svg v-if="o.disabled" v-dao-tooltip="o.disabledTooltip">
-            <use xlink:href :href="`#icon_${o.disabledSvg}`"></use>
+            <use v-bind="{'xlink:href': `#icon_${o.disabledSvg}`}"></use>
           </svg>
         </dao-dropdown-item>
       </template>
@@ -40,5 +40,5 @@ export default {
     },
     noop() {},
   },
-}
+};
 </script>
