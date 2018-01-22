@@ -9,7 +9,7 @@
       <div class="toolbar">
         <button class="dao-btn ghost has-icon" v-if="mainOperation">
           <svg class="icon" v-if="mainOperation.svg">
-            <use xlink:href :href="`#icon_${mainOperation.svg}`"></use>
+            <use v-bind="{'xlink:href': `#icon_${mainOperation.svg}`}"></use>
           </svg>
           <span class="text">{{mainOperation.name}}</span>
         </button>
@@ -21,7 +21,7 @@
             <button class="dao-btn ghost dao-icon"
               v-for="o in operationGroup.operations">
               <svg class="icon" v-if="o.svg">
-                <use xlink:href :href="`#icon_${o.svg}`"></use>
+                <use v-bind="{'xlink:href': `#icon_${o.svg}`}"></use>
               </svg>
             </button>
           </div>
@@ -29,7 +29,7 @@
         <div class="pull-right">
           <button class="dao-btn ghost has-icon">
             <svg class="icon">
-              <use xlink:href :href="`#icon_sort-desc`"></use>
+              <use xlink:href="#icon_sort-desc"></use>
             </svg>
             <span class="text">排序依据</span>
             <svg class="icon">
@@ -50,7 +50,7 @@
           <div class="dao-btn-group operation-btn-group draggable">
             <button class="dao-btn ghost dao-icon" v-for="o in operationGroup.operations">
               <svg class="icon" v-if="o.svg">
-                <use xlink:href :href="`#icon_${o.svg}`"></use>
+                <use v-bind="{'xlink:href': `#icon_${o.svg}`}"></use>
               </svg>
             </button>
           </div>
