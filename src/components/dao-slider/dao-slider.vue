@@ -1,41 +1,30 @@
 <template>
   <div class="dao-slider">
-    <div
-      class="dao-slider-track"
-      @click.prevent="onHandleClick"
-      ref="track">
+    <div class="dao-slider-track" @click.prevent="onHandleClick" ref="track">
       <!-- stops -->
-      <DaoSliderStops
-        v-if="showStops && step"
-        :stops="stops"
-        :disabled="disabled"
-      />
+      <dao-slider-stops v-if="showStops && step" :stops="stops" :disabled="disabled">
+      </dao-slider-stops>
       <!-- fill track -->
-      <div
-        class="dao-slider-track__fill"
-        :class="{'disabled-fill': disabled}"
-        :style="{width: curtPos * 100 + '%'}"
-        >
-        <div
-          class="dao-slider-track__flag"
-          @mousedown.prevent="onHandleMouseDown"
-          >
+      <div :class="['dao-slider-track__fill', {'disabled-fill': disabled}]"
+        :style="{width: curtPos * 100 + '%'}">
+        <div class="dao-slider-track__flag" @mousedown.prevent="onHandleMouseDown">
         </div>
       </div>
       <!-- tips -->
-      <DaoSliderTips
-        v-if="step && showTips"
-        :stops="stops"
-        :max="max"
-        :min="min"
-      />
+      <dao-slider-tips v-if="step && showTips" :stops="stops" :max="max" :min="min">
+      </dao-slider-tips>
     </div>
   </div>
 </template>
 <script>
-  import { getStyle } from '../../utils/assist';
-  import DaoSliderTips from './dao-slider-tips/';
-  import DaoSliderStops from './dao-slider-stops/';
+  import {
+    getStyle,
+    _find,
+    _isEqual,
+  } from '../../utils/assist';
+  import DaoSliderTips from './dao-slider-tips/index.vue';
+  import DaoSliderStops from './dao-slider-stops/index.vue';
+
   export default {
     name: 'DaoSlider',
     props: {
@@ -93,12 +82,12 @@
         const stepWidth = 1 / stopCount;
         const result = [0];
 
-        for (let i = 1; i < stopCount; i++) {
+        for (let i = 1; i < stopCount; i += 1) {
           result.push(i * stepWidth);
         }
 
         result.push(1);
-        if (!_.isEqual(result, this.watchStops)) {
+        if (!_isEqual(result, this.watchStops)) {
           this.watchStops = result;
         }
         return result;
@@ -181,9 +170,11 @@
         const stopsLen = stops.length;
         // 倒数第一个 stop 与倒数第二个 stop 之间的距离不一定是 this.halfStepWidth
         if (newPos > stops[stopsLen - 2]) {
-          this.curtPos = (newPos <= stops[stopsLen - 2] + this.lastHalf) ? stops[stopsLen - 2] : stops[stopsLen - 1];
+          this.curtPos = (newPos <= stops[stopsLen - 2] + this.lastHalf) ?
+          stops[stopsLen - 2] : stops[stopsLen - 1];
         } else {
-          const tempNewPos = stops.find(stop => ((stop - this.halfStepWidth) <= newPos) && (newPos < (stop + this.halfStepWidth)));
+          const tempNewPos = _find(stops, stop => ((stop - this.halfStepWidth) <= newPos) &&
+            (newPos < (stop + this.halfStepWidth)));
           this.curtPos = tempNewPos || this.curtPos;
         }
         this.startX = this.baseStart + (this.curtPos * this.sliderWidth);
