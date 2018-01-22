@@ -7,11 +7,11 @@
       v-if="mainOperation && !hideOperation"
       @click="emit(mainOperation)">
       <svg class="icon" v-if="mainOperation.svg">
-        <use xlink:href :href="`#icon_${mainOperation.svg}`"></use>
+        <use v-bind="{'xlink:href': `#icon_${mainOperation.svg}`}"></use>
       </svg>
       <span class="text">{{mainOperation.name}}</span>
       <svg class="icon" v-if="mainOperation.disabled" v-dao-tooltip="mainOperation.disabledTooltip">
-        <use xlink:href :href="`#icon_${mainOperation.disabledSvg}`"></use>
+        <use v-bind="{'xlink:href': `#icon_${mainOperation.disabledSvg}`}"></use>
       </svg>
     </button>
     <!-- 工具栏按钮 -->
@@ -23,10 +23,10 @@
         :class="{'pseudo-disabled': o.disabled}"
         @click="emit(o)">
         <svg class="icon" v-if="o.svg">
-          <use xlink:href :href="`#icon_${o.svg}`"></use>
+          <use v-bind="{'xlink:href': `#icon_${o.svg}`}"></use>
         </svg>
         <svg class="icon" v-if="o.disabled" v-dao-tooltip="o.disabledTooltip">
-          <use xlink:href :href="`#icon_${o.disabledSvg}`"></use>
+          <use v-bind="{'xlink:href': `#icon_${o.disabledSvg}`}"></use>
         </svg>
       </button>
     </div>
@@ -38,7 +38,7 @@
         placement="bottom-end">
         <button class="dao-btn ghost has-icon">
           <svg class="icon">
-            <use xlink:href :href="`#icon_sort-${sortingConfig.order}`"></use>
+            <use v-bind="{'xlink:href': `#icon_sort-${sortingConfig.order}`}"></use>
           </svg>
           <span class="text">{{columns[sortingConfig.sortBy].text}}</span>
           <svg class="icon">
