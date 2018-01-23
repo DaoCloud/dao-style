@@ -10,7 +10,6 @@ import daoStyle from '../src/index';
 // 请按照组件名称的字典顺序添加以下模块
 import autocomplete from './routers/autocomplete.vue';
 import button from './routers/button.vue';
-import card from './routers/card.vue';
 import checkbox from './routers/checkbox.vue';
 import clipboard from './routers/clipboard.vue';
 import dialog from './routers/dialog.vue';
@@ -56,9 +55,6 @@ const router = new VueRouter({
   }, {
     path: '/button',
     component: button,
-  }, {
-    path: '/card',
-    component: card,
   }, {
     path: '/checkbox',
     component: checkbox,

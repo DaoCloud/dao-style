@@ -4,7 +4,6 @@ import './components/dao-svg/svg';
 import './components/common.scss';
 import './components/dao-button/dao-button.scss';
 import './components/dao-button/dao-button-group.scss';
-import './components/dao-card/dao-card.scss';
 import './components/dao-checkbox/dao-checkbox.scss';
 import './components/dao-list-group/dao-list-group.scss';
 import './components/dao-table/dao-table.scss';

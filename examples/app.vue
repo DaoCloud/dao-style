@@ -36,9 +36,6 @@ li + li {
           <router-link to="/button">Button</router-link>
         </li>
         <li>
-          <router-link to="/card">Card</router-link>
-        </li>
-        <li>
           <router-link to="/checkbox">Checkbox</router-link>
         </li>
         <li>
