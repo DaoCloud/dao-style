@@ -49,6 +49,19 @@ $select-disabled-color: $grey-light;
         align-items: center;
         user-select: none;
       }
+      .icon-box {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        padding-right: 8px;
+        .icon {
+          width: 16px;
+          height: 16px;
+          vertical-align: baseline;
+          fill: $select-default-color;
+        }
+      }
       &:hover {
         background-color: rgba(204, 209, 217, 0.1);
       }
@@ -56,6 +69,11 @@ $select-disabled-color: $grey-light;
         background-color: rgba(204, 209, 217, 0.15);
         box-shadow: inset 0px 1px 3px 0px rgba(0, 0, 0, 0.06), inset 0px 0px 4px 0px rgba(0, 0, 0, 0.08);
         background-image: none;
+      }
+      &:hover,&.open {
+        .icon-box .icon{
+          fill: $select-focus-color;
+        }
       }
     }
     .placeholder {
@@ -65,18 +83,6 @@ $select-disabled-color: $grey-light;
       line-height: 1;
       overflow: hidden;
       text-overflow: ellipsis;
-    }
-    .icon-box {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100%;
-      width: 30px;
-      .icon {
-        width: 16px;
-        height: 16px;
-        vertical-align: baseline;
-      }
     }
     &.with-btn {
       display: flex;
@@ -127,16 +133,9 @@ $select-disabled-color: $grey-light;
       &-text {
         padding: 0 5px;
       }
-      &:hover, &.open {
-        .icon-box .icon {
-          fill: $select-focus-color;
-        }
-      }
-    }
-    .icon-box {
-      width: 26px;
-      .icon {
-        fill: $select-default-color;
+      .icon-box {
+        padding-right: 5px;
+        padding-left: 5px;
       }
     }
   }
