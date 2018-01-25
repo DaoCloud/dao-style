@@ -10,6 +10,15 @@ function resolve(dir) {
   return path.join(__dirname, '..', dir)
 }
 
+function getStyleLoaders(type) {
+  const uses = ['style-loader'];
+  const styleLoaders = vueLoaderConfig.loaders[type].filter(l => l !== 'vue-style-loader');
+  styleLoaders.forEach(loader => {
+    uses.push(loader);
+  });
+  return uses;
+}
+
 module.exports = {
   // 加载器
   module: {
@@ -24,27 +33,13 @@ module.exports = {
         exclude: /node_modules/
       }, {
         test: /\.css$/,
-        use: [
-          'style-loader',
-          'css-loader',
-          'postcss-loader'
-        ]
+        use: getStyleLoaders('css'),
       }, {
         test: /\.less$/,
-        use: [
-          'style-loader',
-          'css-loader',
-          'postcss-loader',
-          'less-loader'
-        ]
+        use: getStyleLoaders('less'),
       }, {
         test: /\.scss$/,
-        use: [
-          'style-loader',
-          'css-loader',
-          'postcss-loader',
-          'sass-loader'
-        ],
+        use: getStyleLoaders('scss'),
       }, {
         test: /\.svg$/,
         loader: 'svg-sprite-loader',
