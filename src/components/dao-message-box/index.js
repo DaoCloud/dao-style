@@ -4,12 +4,12 @@ import DaoMessage from './dao-message.vue';
 
 const DaoMessageConstructor = Vue.extend(DaoMessage);
 
-let instance = null;
-let currentOptions = null;
+let currentProps = null;
 let timeoutTimer = null;
 let delayTimer = null;
 
-const defaultOptions = {
+const defaultProps = {
+  visible: false,
   title: '提示',
   text: '',
   confirmText: '确认',
@@ -17,68 +17,78 @@ const defaultOptions = {
   theme: 'blue',
 };
 
-const initInstance = () => {
-  instance = new DaoMessageConstructor({
+function createInstance(props) {
+  const instance = new DaoMessageConstructor({
     el: document.createElement('div'),
+    propsData: props,
   });
-};
+  document.body.appendChild(instance.$el);
+  return instance;
+}
 
-function showMessage(options, fallback, delayOpen, timeoutClose) {
-  if (!instance) {
-    initInstance();
-    document.body.appendChild(instance.$el);
-  }
-  instance.title = options.title;
-  instance.text = options.text;
-  instance.confirmText = options.confirmText;
-  instance.cancelText = options.cancelText;
-  instance.theme = options.theme;
+function showMessage(props, fallback, delayOpen, timeoutClose) {
+  const alert = createInstance(props);
+  alert.$on('close', () => {
+    // 下一跳再销毁，因为 confirm 和 cancel 需要回调
+    alert.$nextTick(() => {
+      alert.$off();
+      alert.$destroy();
+    });
+  });
   delayOpen(() => {
-    instance.visible = true;
+    alert.$emit('visible', true);
     if (timeoutClose) {
       timeoutClose(() => {
-        instance.visible = false;
+        alert.$emit('visible', false);
       });
     }
   });
   if (window.Promise) {
     return new Promise((confirm, cancel) => {
-      instance.confirm = confirm;
-      instance.cancel = cancel;
+      alert.$on('confirm', () => {
+        confirm();
+      });
+      alert.$on('cancel', () => {
+        cancel();
+      });
     });
   }
-  instance.confirm = fallback;
-  instance.cancel = fallback;
+  alert.$on('confirm', () => {
+    fallback('confirm');
+  });
+  alert.$on('cancel', () => {
+    fallback('cancel');
+  });
   return null;
 }
 
 const MessageBox = {
   alert(_text, _title) {
-    currentOptions = _cloneDeep(defaultOptions);
-    currentOptions.text = _text;
+    currentProps = _cloneDeep(defaultProps);
+    currentProps.text = _text;
     if (_title) {
-      currentOptions.title = _title;
+      currentProps.title = _title;
     }
     return MessageBox;
   },
   theme(_theme) {
-    currentOptions.theme = _theme;
+    currentProps.theme = _theme;
     return MessageBox;
   },
   confirmText(_confirmText) {
-    currentOptions.confirmText = _confirmText;
+    currentProps.confirmText = _confirmText;
     return MessageBox;
   },
   cancelText(_cancelText) {
-    currentOptions.cancelText = _cancelText;
+    currentProps.cancelText = _cancelText;
     return MessageBox;
   },
   timeout(_timeout) {
-    currentOptions.timeout = _timeout;
+    currentProps.timeout = _timeout;
     return MessageBox;
   },
   delay(_delay) {
-    currentOptions.delay = _delay;
+    currentProps.delay = _delay;
     return MessageBox;
   },
   show(fallback) {
@@ -87,15 +97,15 @@ const MessageBox = {
     clearTimeout(timeoutTimer);
 
     const delayOpen = (cb) => {
-      delayTimer = setTimeout(cb, currentOptions.delay || 0);
+      delayTimer = setTimeout(cb, currentProps.delay || 0);
     };
     let timeoutClose = null;
-    if (currentOptions.timeout) {
+    if (currentProps.timeout) {
       timeoutClose = (cb) => {
-        timeoutTimer = setTimeout(cb, currentOptions.timeout);
+        timeoutTimer = setTimeout(cb, currentProps.timeout);
       };
     }
-    return showMessage(currentOptions, fallback, delayOpen, timeoutClose);
+    return showMessage(currentProps, fallback, delayOpen, timeoutClose);
   },
 };
 
