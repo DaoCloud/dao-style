@@ -116,6 +116,7 @@ Select 是由 Select 和 Option-Group 以及 Option 三个组件组合而成。
 | value | string / number / object ... | 选项的值，选中时会传递给 select 的 v-model | - | 是 |
 | label | string / number | 选项的标签，当选项没有传入 slot 模板时，此 label 为选项显示的默认文本 | - | 是 |
 | disabled | boolean | 是否禁用该选项 | false | 否 |
+| prefix | string | 显示在已选择内容区的前缀 | - | 否 |
 
 ### Option slot
 | 参数 | 类型 | 说明 | 默认值 | 是否必填 |
