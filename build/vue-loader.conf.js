@@ -5,9 +5,10 @@ const isProduction = process.env.NODE_ENV === 'production'
 module.exports = {
   loaders: utils.cssLoaders({
     // 暂时没有把CSS单独打包，设置成 false
-    sourceMap: false,
+    sourceMap: !isProduction,
     extract: false,
     usePostCSS: true,
+    forVue: true,
   }),
   cssSourceMap: isProduction,
   cacheBusting: isProduction,

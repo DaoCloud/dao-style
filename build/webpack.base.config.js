@@ -3,12 +3,19 @@
  */
 const webpack = require('webpack');
 const path = require('path');
-
+const utils = require('./utils');
 const vueLoaderConfig = require('./vue-loader.conf')
 
 function resolve(dir) {
   return path.join(__dirname, '..', dir)
 }
+
+const styleLoadersConfig = utils.cssLoaders({
+  sourceMap: process.env.NODE_ENV !== 'production',
+  extract: false,
+  usePostCSS: true,
+  forVue: false,
+});
 
 module.exports = {
   // 加载器
@@ -24,25 +31,13 @@ module.exports = {
         exclude: /node_modules/
       }, {
         test: /\.css$/,
-        use: [
-          'style-loader',
-          'css-loader',
-          'autoprefixer-loader'
-        ]
+        use: styleLoadersConfig.css,
       }, {
         test: /\.less$/,
-        use: [
-          'style-loader',
-          'css-loader',
-          'less-loader'
-        ]
+        use: styleLoadersConfig.less,
       }, {
         test: /\.scss$/,
-        use: [
-          'style-loader',
-          'css-loader',
-          'sass-loader?sourceMap'
-        ]
+        use: styleLoadersConfig.scss,
       }, {
         test: /\.svg$/,
         loader: 'svg-sprite-loader',
