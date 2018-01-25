@@ -29,14 +29,14 @@ exports.cssLoaders = function (options) {
         })
       })
     }
-
+    const styleLoader = options.forVue ? 'vue-style-loader': 'style-loader';
     if (options.extract) {
       return ExtractTextPlugin.extract({
         use: loaders,
-        fallback: 'vue-style-loader'
+        fallback: styleLoader 
       })
     } else {
-      return ['vue-style-loader'].concat(loaders)
+      return [styleLoader].concat(loaders);
     }
   }
 

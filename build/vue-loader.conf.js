@@ -8,6 +8,7 @@ module.exports = {
     sourceMap: !isProduction,
     extract: false,
     usePostCSS: true,
+    forVue: true,
   }),
   cssSourceMap: isProduction,
   cacheBusting: isProduction,
