@@ -7,12 +7,14 @@
       'error': status === 'error',
       'success': status === 'success',
       'search': search && !iconInside,
+      'can-empty': canEmpty,
       'icon-inside': iconInside,
       'message-bottom': messagePlacement === 'bottom' && !iconInside,
       'no-message-icon': messageNoIcon,
       'dao-input-group': $slots.prepend || $slots.append,
       'input-sm': size === 'sm',
-      'block': block
+      'block': block,
+      'no-border': noBorder
     }">
     <div class="dao-input-group-addon prepend" v-if="$slots.prepend">
       <slot name="prepend"></slot>
@@ -44,9 +46,7 @@
         >
       </dao-popover>
       <span class="icon loading-icon" v-if="status === 'loading' && iconInside" @mouseover="hoverIcon" @mouseleave="leaveIcon">
-        <svg>
-          <use xlink:href="#icon_status-progress-circle"></use>
-        </svg>
+        <dao-spin></dao-spin>
       </span>
       <span class="icon info-icon" v-if="status === 'info' && iconInside" @mouseover="hoverIcon" @mouseleave="leaveIcon">
         <svg>
@@ -62,6 +62,19 @@
         <svg>
           <use xlink:href="#icon_success"></use>
         </svg>
+      </span>
+      <span  
+        :class="['icon', 'close-icon', { active: isFocus, disabled: disabled }]"
+        v-if="canEmpty"
+        @click="resetCurrentVal()">
+        <svg>
+          <use xlink:href="#icon_close-circled"></use>
+        </svg>
+      </span>
+      <span  
+        class="input-helper-text"
+        v-if="canShowHelperText">
+        {{ helperText }}
       </span>
     </div>
     <div class="dao-input-group-addon append" v-if="$slots.append">
@@ -88,6 +101,7 @@
         currentValue: this.value,
         currentMessage: this.message,
         hovered: false,
+        isFocus: false,
       };
     },
     props: {
@@ -116,6 +130,20 @@
       },
       block: Boolean,
       required: Boolean,
+      noBorder: Boolean,
+      appendToBody: {
+        type: Boolean,
+        default: true,
+      },
+      showTooltipOnlyHover: {
+        type: Boolean,
+        default: true,
+      },
+      helperText: {
+        type: String,
+        default: '按回车键搜索',
+      },
+      showHelperText: Boolean,
       // 以下使用 input 原生属性，不做特殊处理
       placeholder: String,
       readonly: Boolean,
@@ -127,14 +155,6 @@
       max: Number,
       min: Number,
       step: Number,
-      appendToBody: {
-        type: Boolean,
-        default: true,
-      },
-      showTooltipOnlyHover: {
-        type: Boolean,
-        default: true,
-      },
     },
     computed: {
       isRequired() {
@@ -142,6 +162,13 @@
       },
       messageEnabled() {
         return oneOf(this.status, ['info', 'error', 'success']) && !!this.message;
+      },
+      canEmpty() {
+        return this.search && !this.iconInside && this.currentValue && !this.disabled;
+      },
+      canShowHelperText() {
+        return this.search && !this.iconInside && !this.currentValue
+          && this.showHelperText && !this.disabled;
       },
       iconInsideMessagePlacement() {
         if (oneOf(this.messagePlacement, ['top-end', 'right-start', 'right'])) {
@@ -173,9 +200,15 @@
         this.hovered = false;
       },
       handleBlur(event) {
+        if (this.search) {
+          this.isFocus = false;
+        }
         this.$emit('blur', event);
       },
       handleFocus(event) {
+        if (this.search) {
+          this.isFocus = true;
+        }
         this.$emit('focus', event);
       },
       handleKeyUp(event) {
@@ -184,11 +217,14 @@
       handleKeyDown(event) {
         this.$emit('keydown', event);
       },
-      handleInput(event) {
-        const value = event.target.value;
+      updateModel(value) {
         this.$emit('input', value);
         this.setCurrentValue(value);
         this.$emit('change', value);
+      },
+      handleInput(event) {
+        const value = event.target.value;
+        this.updateModel(value);
       },
       setCurrentValue(value) {
         if (value === this.currentValue) return;
@@ -197,6 +233,12 @@
       setCurrentMessage(message) {
         if (message === this.currentMessage) return;
         this.currentMessage = message;
+      },
+      // 重置输入值
+      resetCurrentVal() {
+        if (this.disabled) return;
+        this.currentValue = '';
+        this.updateModel(this.currentValue);
       },
     },
   };
