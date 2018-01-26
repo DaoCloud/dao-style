@@ -4,9 +4,7 @@ import DaoMessage from './dao-message.vue';
 
 const DaoMessageConstructor = Vue.extend(DaoMessage);
 
-let currentProps = null;
-let timeoutTimer = null;
-let delayTimer = null;
+let alertQueue = [];
 
 const defaultProps = {
   visible: false,
@@ -15,97 +13,133 @@ const defaultProps = {
   confirmText: '确认',
   cancelText: '取消',
   theme: 'blue',
+  timeout: null,
+  delay: 0,
+  callback: {
+    resolves: [],
+    rejects: [],
+  },
 };
 
-function createInstance(props) {
-  const instance = new DaoMessageConstructor({
-    el: document.createElement('div'),
-    propsData: props,
-  });
-  document.body.appendChild(instance.$el);
-  return instance;
-}
-
-function showMessage(props, fallback, delayOpen, timeoutClose) {
-  const alert = createInstance(props);
-  alert.$on('close', () => {
-    // 下一跳再销毁，因为 confirm 和 cancel 需要回调
-    alert.$nextTick(() => {
-      alert.$off();
-      alert.$destroy();
-    });
-  });
-  delayOpen(() => {
-    alert.$emit('visible', true);
-    if (timeoutClose) {
-      timeoutClose(() => {
-        alert.$emit('visible', false);
-      });
+class Alert {
+  constructor(text, title) {
+    this.props = _cloneDeep(defaultProps);
+    this.props.text = text;
+    if (title) {
+      this.props.title = title;
     }
-  });
-  if (window.Promise) {
-    return new Promise((confirm, cancel) => {
-      alert.$on('confirm', () => {
-        confirm();
-      });
-      alert.$on('cancel', () => {
-        cancel();
+    this.delayTimer = null;
+    this.timeoutTimer = null;
+  }
+
+  theme(theme) {
+    this.props.theme = theme;
+    return this;
+  }
+
+  confirmText(confirmText) {
+    this.props.confirmText = confirmText;
+    return this;
+  }
+
+  cancelText(cancelText) {
+    this.props.cancelText = cancelText;
+    return this;
+  }
+
+  timeout(timeout) {
+    this.props.timeout = timeout;
+    return this;
+  }
+
+  delay(delay) {
+    this.props.delay = delay;
+    return this;
+  }
+
+  callback(resolve, reject) {
+    if (resolve) {
+      this.props.callback.resolves.push(resolve);
+    }
+    if (reject) {
+      this.props.callback.rejects.push(reject);
+    }
+    return this;
+  }
+
+  show(resolve, reject) {
+    this.callback(resolve, reject);
+    alertQueue.push(this);
+    if (alertQueue.length === 1) {
+      this.execute();
+    }
+    return this;
+  }
+
+  hide() {
+    this.remove();
+  }
+
+  open() {
+    this.setVisible(true);
+  }
+
+  remove() {
+    clearTimeout(this.delayTimer);
+    clearTimeout(this.timeoutTimer);
+    this.setVisible(false);
+    alertQueue = alertQueue.filter(alert => alert !== this);
+  }
+
+  setVisible(newVal) {
+    if (!this.alert) return;
+    this.alert.$emit('visible', newVal);
+  }
+
+  createInstance() {
+    const instance = new DaoMessageConstructor({
+      el: document.createElement('div'),
+      propsData: this.props,
+    });
+    document.body.appendChild(instance.$el);
+    return instance;
+  }
+
+  execute() {
+    this.alert = this.createInstance(this.props);
+    this.alert.$on('close', () => {
+      // 下一跳再销毁，需要在 confirm 和 cancel 回调完成后再销毁
+      this.alert.$nextTick(() => {
+        this.alert.$destroy();
+        // 推出当前 alert，执行队列中的下一个 alert
+        alertQueue.shift();
+        if (alertQueue.length) {
+          alertQueue[0].execute();
+        }
       });
     });
+    this.delayTimer = setTimeout(() => {
+      this.open();
+      if (this.props.timeout) {
+        this.timeoutTimer = setTimeout(() => {
+          this.close();
+        }, this.props.timeout);
+      }
+    }, this.props.delay);
+
+    this.alert.$on('confirm', () => {
+      this.props.callback.resolves.map(cb => cb());
+    });
+    this.alert.$on('cancel', () => {
+      this.props.callback.rejects.map(cb => cb());
+    });
+    return null;
   }
-  alert.$on('confirm', () => {
-    fallback('confirm');
-  });
-  alert.$on('cancel', () => {
-    fallback('cancel');
-  });
-  return null;
 }
 
 const MessageBox = {
-  alert(_text, _title) {
-    currentProps = _cloneDeep(defaultProps);
-    currentProps.text = _text;
-    if (_title) {
-      currentProps.title = _title;
-    }
-    return MessageBox;
-  },
-  theme(_theme) {
-    currentProps.theme = _theme;
-    return MessageBox;
-  },
-  confirmText(_confirmText) {
-    currentProps.confirmText = _confirmText;
-    return MessageBox;
-  },
-  cancelText(_cancelText) {
-    currentProps.cancelText = _cancelText;
-    return MessageBox;
-  },
-  timeout(_timeout) {
-    currentProps.timeout = _timeout;
-    return MessageBox;
-  },
-  delay(_delay) {
-    currentProps.delay = _delay;
-    return MessageBox;
-  },
-  show(fallback) {
-    // 清空计时，避免 alert 之间污染
-    clearTimeout(delayTimer);
-    clearTimeout(timeoutTimer);
-
-    const delayOpen = (cb) => {
-      delayTimer = setTimeout(cb, currentProps.delay || 0);
-    };
-    let timeoutClose = null;
-    if (currentProps.timeout) {
-      timeoutClose = (cb) => {
-        timeoutTimer = setTimeout(cb, currentProps.timeout);
-      };
-    }
-    return showMessage(currentProps, fallback, delayOpen, timeoutClose);
+  alert(text, title) {
+    return new Alert(text, title);
   },
 };
 
