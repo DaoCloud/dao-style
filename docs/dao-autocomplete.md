@@ -74,5 +74,5 @@ export defualt {
 
 | 事件名称 | 说明 | 回调参数 |
 |:-------:|:---:|:-------:|
-| change | 在 AutoComplete 值改变时触发 | (value: String) |
+| change | 在 AutoComplete 值改变时触发，也就是在 blur 和按回车的的时候 | (value: String) |
 | text-change | 在 AutoComplete 中的 input 的值改变时触发 | (value: String) |
