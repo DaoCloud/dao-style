@@ -77,7 +77,7 @@ class Alert {
   }
 
   hide() {
-    this.remove();
+    this.setVisible(false);
   }
 
   open() {
@@ -122,7 +122,7 @@ class Alert {
       this.open();
       if (this.props.timeout) {
         this.timeoutTimer = setTimeout(() => {
-          this.close();
+          this.hide();
         }, this.props.timeout);
       }
     }, this.props.delay);
