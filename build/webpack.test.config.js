@@ -1,15 +1,25 @@
-/**
- * 用于单元测试
- */
+const webpack = require('webpack');
+const merge = require('webpack-merge');
 
-var webpack = require('webpack')
-var merge = require('webpack-merge')
-var webpackBaseConfig = require('./webpack.base.config.js');
+const webpackBaseConfig = require('./webpack.base.config.js');
+const utils = require('./utils');
 
-
-var webpackConfig = merge(webpackBaseConfig, {
+const webpackConfig = merge(webpackBaseConfig, {
   // use inline sourcemap for karma-sourcemap-loader
   devtool: '#inline-source-map',
+  module: {
+    rules: [{
+      test: /\.scss$/,
+      use: utils.styleLoaders({
+        // 暂时没有把CSS单独打包，设置成 false
+        sourceMap: false,
+        extract: false,
+        usePostCSS: true,
+        minimize: false,
+        fallback: 'style-loader',
+      }),
+    }],
+  },
   plugins: [
     new webpack.DefinePlugin({
       'process.env': {
