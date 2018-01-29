@@ -37,7 +37,7 @@
   @import './dropdown.scss';
 </style>
 <script>
-  import { _find, _findIndex } from '../../utils/assist';
+  import { _find, _findIndex, _isEqual } from '../../utils/assist';
   import daoDrop from './dropdown.vue';
   import clickoutside from '../../directives/clickoutside';
   import Emitter from '../../mixins/emitter';
@@ -175,6 +175,7 @@
           // 触发 input 事件实现双向绑定
           this.$emit('input', val);
           // 触发 change 事件
+          if (_isEqual(val, this.value)) return;
           this.$emit('change', val);
         },
       },
