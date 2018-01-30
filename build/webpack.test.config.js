@@ -11,7 +11,6 @@ const webpackConfig = merge(webpackBaseConfig, {
     rules: [{
       test: /\.scss$/,
       use: utils.styleLoaders({
-        // 暂时没有把CSS单独打包，设置成 false
         sourceMap: false,
         extract: false,
         usePostCSS: true,

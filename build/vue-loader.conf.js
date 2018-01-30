@@ -4,7 +4,6 @@ const isProduction = process.env.NODE_ENV === 'production';
 module.exports = {
   loaders: {
     scss: utils.styleLoaders({
-      // 暂时没有把CSS单独打包，设置成 false
       sourceMap: !isProduction,
       extract: isProduction,
       usePostCSS: true,
