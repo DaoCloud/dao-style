@@ -274,7 +274,7 @@
     <br><br><br>
 
     <h1>File Input</h1>
-    <br><hr><br>
+    <hr><br><br>
     <dao-file-input
       v-model="demoFileInput"
       accept="image/*"
@@ -283,6 +283,15 @@
       placeholder="请选择文件...">
       <span slot="append">GB</span>
     </dao-file-input>
+    <br><br>
+    <dao-file-input
+      v-model="demoFileInput"
+      accept="image/*"
+      @change="onFileChange"
+      placeholder="请选择文件...">
+      <span slot="append">GB</span>
+    </dao-file-input>
+    
     <br><br><br>
   </div>
 </template>
