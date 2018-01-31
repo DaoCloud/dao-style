@@ -272,6 +272,18 @@
     <br><br><br>
     <textarea class="dao-control error" type="text" rows="3" placeholder="请填写内容" v-model="demoTextarea"></textarea>
     <br><br><br>
+
+    <h1>File Input</h1>
+    <br><hr><br>
+    <dao-file-input
+      v-model="demoFileInput"
+      accept="image/*"
+      style="width: 287px;"
+      @change="onFileChange"
+      placeholder="请选择文件...">
+      <span slot="append">GB</span>
+    </dao-file-input>
+    <br><br><br>
   </div>
 </template>
 
@@ -309,6 +321,7 @@
         statusError: 'error',
         statusSuccess: 'success',
         statusInfo: 'info',
+        demoFileInput: null,
       };
     },
     methods: {
@@ -324,6 +337,10 @@
       },
       demoEditableSuccess() {
         console.log('保存成功');
+      },
+      onFileChange(file) {
+        console.log('select file:', file);
+        console.log('model', this.demoFileInput);
       },
     },
   };
