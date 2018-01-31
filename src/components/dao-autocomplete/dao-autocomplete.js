@@ -59,7 +59,8 @@ export default {
     },
     // 点击下拉菜单选项的事件
     clickOption() {
-      this.chooseOption();
+      this.inputText = this.filteredOption[this.optionIndex].text;
+      this.optionIndex = 0;
     },
     // 鼠标 hover 在下拉菜单的选项上
     hoverOption(optionIndex) {
