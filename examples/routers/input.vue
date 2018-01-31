@@ -281,7 +281,6 @@
       style="width: 287px;"
       @change="onFileChange"
       placeholder="请选择文件...">
-      <span slot="append">GB</span>
     </dao-file-input>
     <br><br>
     <dao-file-input
@@ -289,7 +288,6 @@
       accept="image/*"
       @change="onFileChange"
       placeholder="请选择文件...">
-      <span slot="append">GB</span>
     </dao-file-input>
     
     <br><br><br>
