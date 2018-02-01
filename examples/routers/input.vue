@@ -291,6 +291,33 @@
     </dao-file-input>
     
     <br><br><br>
+    <h1>Numberic Input</h1>
+    <hr><br>{{demoNumbericInput1}}<br>
+    <dao-numberic-input
+      v-model="demoNumbericInput1"
+      :min='-5'
+      :max='80'
+      style="width: 287px;"
+      placeholder="min: -5 max:50 float">
+    </dao-numberic-input>
+    <br>{{demoNumbericInput2}}<br>
+     <dao-numberic-input
+      v-model="demoNumbericInput2"
+      style="width: 287px;"
+      type='int'
+      :min='-5'
+      :max='10'
+      unit="KG"
+      placeholder="min: -5 max: 20 int">
+    </dao-numberic-input>
+    <br>{{demoNumbericInput3}}<br>
+    <dao-numberic-input
+      :disabled="true"
+      v-model="demoNumbericInput3"
+      style="width: 287px;"
+      placeholder="disabled">
+    </dao-numberic-input>
+    <br><br><br><br><br>
   </div>
 </template>
 
@@ -329,6 +356,9 @@
         statusSuccess: 'success',
         statusInfo: 'info',
         demoFileInput: null,
+        demoNumbericInput1: 1,
+        demoNumbericInput2: 2,
+        demoNumbericInput3: 3,
       };
     },
     methods: {
