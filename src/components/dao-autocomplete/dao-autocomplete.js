@@ -12,6 +12,7 @@ export default {
       inputText: '',
       optionIndex: 0,
       isValid: true,
+      selectedText: '',
     };
   },
   computed: {
@@ -59,7 +60,8 @@ export default {
     },
     // 点击下拉菜单选项的事件
     clickOption() {
-      this.chooseOption();
+      this.inputText = this.filteredOption[this.optionIndex].text;
+      this.optionIndex = 0;
     },
     // 鼠标 hover 在下拉菜单的选项上
     hoverOption(optionIndex) {
@@ -76,7 +78,10 @@ export default {
     updateValue(value) {
       if (this.isValid && _.isBoolean(this.isValid)) {
         this.$emit('input', value);
-        this.$emit('change', value);
+        if (this.selectedText !== this.inputText) {
+          this.$emit('change', value);
+          this.selectedText = this.inputText;
+        }
       }
     },
     // 当从组件外部改变 v-model 时，同步组件内部的 inputText
