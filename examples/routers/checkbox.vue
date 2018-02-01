@@ -1,42 +1,60 @@
 <template>
   <div>
     <h1>普通版</h1>
-    <div class="dao-checkbox">
-      <label>
-        <input type="checkbox" checked>
-        option 1
-      </label>
+    <div class="dao-checkbox-group">
+      <div class="dao-checkbox">
+        <label>
+          <input type="checkbox" checked>
+          option 1
+        </label>
+      </div>
+      <div class="dao-checkbox">
+        <label>
+          <input type="checkbox">
+          option 2
+        </label>
+      </div>
+      <div class="dao-checkbox disabled">
+        <label>
+          <input type="checkbox" checked disabled>
+          disable option
+        </label>
+      </div>
+      <div class="dao-checkbox disabled">
+        <label>
+          <input type="checkbox" disabled>
+          disable option
+        </label>
+      </div>
     </div>
-    <div class="dao-checkbox">
-      <label>
-        <input type="checkbox">
-        option 2
-      </label>
+    <br />
+    <h1> inline 版 </h1>
+    <div class="dao-checkbox-group checkbox-inline">
+      <div class="dao-checkbox">
+        <label>
+          <input type="checkbox" checked>
+          option 1
+        </label>
+      </div>
+      <div class="dao-checkbox">
+        <label>
+          <input type="checkbox">
+          option 2
+        </label>
+      </div>
+      <div class="dao-checkbox disabled">
+        <label>
+          <input type="checkbox" checked disabled>
+          disable option
+        </label>
+      </div>
+      <div class="dao-checkbox disabled">
+        <label>
+          <input type="checkbox" disabled>
+          disable option
+        </label>
+      </div>
     </div>
-    <div class="dao-checkbox disabled">
-      <label>
-        <input type="checkbox" disabled>
-        disable option
-      </label>
-    </div>
-
-    <h1>圆角版</h1>
-    <label>
-      <input type="checkbox" class="round half-check">
-      半选
-    </label>
-    <label>
-      <input type="checkbox" class="round">
-      圆角
-    </label>
-    <label>
-      <input type="checkbox" class="round" checked>
-      圆角
-    </label>
-    <label>
-      <input type="checkbox" class="round" disabled>
-      圆角
-    </label>
   </div>
 </template>
 <script>
