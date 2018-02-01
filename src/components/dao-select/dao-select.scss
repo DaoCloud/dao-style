@@ -80,7 +80,7 @@ $select-disabled-color: $grey-light;
       color: $select-default-color;
     }
     .selected-text {
-      line-height: 1;
+      line-height: 24px;
       overflow: hidden;
       text-overflow: ellipsis;
     }

@@ -38,7 +38,6 @@
 </style>
 <script>
   import { _find, _findIndex, _isEqual } from '../../utils/assist';
-  import daoDrop from './dropdown.vue';
   import clickoutside from '../../directives/clickoutside';
   import Emitter from '../../mixins/emitter';
   import Popper from '../base/popper';
@@ -48,7 +47,6 @@
     componentName: 'Select',
     mixins: [Emitter, Popper],
     directives: { clickoutside },
-    components: { daoDrop },
     props: {
       disabled: {
         type: Boolean,

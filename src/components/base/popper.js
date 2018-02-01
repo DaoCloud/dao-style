@@ -124,13 +124,13 @@ export default {
         }
         popper.style.width = getStyle(reference, 'width');
         if (this.placement.indexOf('bottom') > -1) {
-          popper.style['margin-top'] = `${dropdownMargin}px`;
+          popper.style.marginTop = `${dropdownMargin}px`;
         } else if (this.placement.indexOf('top') > -1) {
-          popper.style['margin-bottom'] = `${dropdownMargin}px`;
+          popper.style.marginBottom = `${dropdownMargin}px`;
         } else if (this.placement.indexOf('left') > -1) {
-          popper.style['margin-right'] = `${dropdownMargin}px`;
+          popper.style.marginRight = `${dropdownMargin}px`;
         } else if (this.placement.indexOf('right') > -1) {
-          popper.style['margin-left'] = `${dropdownMargin}px`;
+          popper.style.marginLeft = `${dropdownMargin}px`;
         }
       }
 
