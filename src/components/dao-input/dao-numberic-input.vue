@@ -122,7 +122,10 @@
           this.updateModel();
           return;
         }
-        if (isNaN(parseFloat(num, 10))) return;
+        if (isNaN(parseFloat(num, 10))) {
+          this.reset();
+          return;
+        }
         // check  int
         if (this.type === 'int' && isInt(num)) {
           if (isInt(this.min) && this.min > num) {
