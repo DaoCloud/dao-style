@@ -19,6 +19,7 @@ export default {
         orange: '#f56e25',
         red: '#f1483f',
         purple: '#7354e2',
+        grey: '#ccd1d9',
       },
     };
   },
