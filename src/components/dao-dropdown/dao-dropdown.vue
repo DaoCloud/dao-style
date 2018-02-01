@@ -13,7 +13,7 @@
 
 <script>
   import clickoutside from '../../directives/clickoutside';
-  import { oneOf } from '../../utils/assist';
+  import { _includes } from '../../utils/assist';
   import Popper from '../base/popper';
 
   const prefixCls = 'dao-dropdown';
@@ -25,9 +25,9 @@
     props: {
       trigger: {
         validator(value) {
-          return oneOf(value, ['click', 'hover', 'custom']);
+          return _includes(['click', 'hover', 'custom'], value);
         },
-        default: 'hover'
+        default: 'hover',
       },
     },
     data() {
@@ -37,47 +37,34 @@
     },
     methods: {
       handleClick() {
-        if (this.trigger === 'custom') return false;
-        if (this.trigger !== 'click') {
-          return false;
-        }
+        if (this.trigger !== 'click') return;
         this.visible = !this.visible;
       },
       handleMouseenter() {
-        if (this.trigger === 'custom') return false;
-        if (this.trigger !== 'hover') {
-          return false;
-        }
+        if (this.trigger !== 'hover') return;
         clearTimeout(this.timeout);
         this.timeout = setTimeout(() => {
           this.visible = true;
         }, 250);
       },
       handleMouseleave() {
-        if (this.trigger === 'custom') return false;
-        if (this.trigger !== 'hover') {
-          return false;
-        }
+        if (this.trigger !== 'hover') return;
         clearTimeout(this.timeout);
         this.timeout = setTimeout(() => {
           this.visible = false;
         }, 150);
       },
       handleClose() {
-        if (this.trigger === 'custom') return false;
-        if (this.trigger !== 'click') {
-          return false;
-        }
+        if (this.trigger !== 'click') return;
         this.visible = false;
       },
       hasParent() {
         const $parent = this.$parent.$parent;
         if ($parent && $parent.$options.name === 'Dropdown') {
           return $parent;
-        } else {
-          return false;
         }
-      }
+        return false;
+      },
     },
     mounted() {
       // this.$on('on-click', (key) => {
@@ -91,20 +78,20 @@
         const $parent = this.hasParent();
         if ($parent) {
           this.$nextTick(() => {
-            if (this.trigger === 'custom') return false;
+            if (this.trigger === 'custom') return;
             this.visible = false;
           });
           $parent.$emit('on-hover-click');
         } else {
           this.$nextTick(() => {
-            if (this.trigger === 'custom') return false;
+            if (this.trigger === 'custom') return;
             this.visible = false;
           });
         }
       });
       this.$on('on-haschild-click', () => {
         this.$nextTick(() => {
-          if (this.trigger === 'custom') return false;
+          if (this.trigger === 'custom') return;
           this.visible = true;
         });
         const $parent = this.hasParent();
@@ -114,7 +101,7 @@
       if (this.appendToBody) {
         Array.from(
           this.$refs.popper.querySelectorAll('ul.dao-dropdown-menu > li.dao-dropdown-item-base'),
-        ).forEach(li => {
+        ).forEach((li) => {
           li.addEventListener('click', this.handleClose);
         });
       }
@@ -123,7 +110,7 @@
       if (this.appendToBody) {
         Array.from(
           this.$refs.popper.querySelectorAll('ul.dao-dropdown-menu > li.dao-dropdown-item-base'),
-        ).forEach(li => {
+        ).forEach((li) => {
           li.removeEventListener('click', this.handleClose);
         });
       }

@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import { cloneDeep as _cloneDeep } from 'lodash';
+import { _cloneDeep } from '../../utils/assist';
 import DaoMessage from './dao-message.vue';
 
 const DaoMessageConstructor = Vue.extend(DaoMessage);

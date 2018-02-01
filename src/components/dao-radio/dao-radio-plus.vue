@@ -21,7 +21,7 @@
   @import './dao-radio-plus.scss';
 </style>
 <script>
-  import { find } from 'lodash';
+  import { _find } from '../../utils/assist';
   import daoSelect from '../dao-select';
   import Emitter from '../../mixins/emitter';
 
@@ -123,7 +123,7 @@
         // v-model 中选中值在 options 中，select 更新为 v-model 的选中值
         // 不在，则默认选中第一项
         this.select = this.options.length ? this.options[0].value : undefined;
-        if (find(this.options, { value: this.value.select })) {
+        if (_find(this.options, { value: this.value.select })) {
           this.select = this.value.select;
         }
         // 选择完 option 之后，还需要把 option 值给 emit 出去

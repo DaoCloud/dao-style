@@ -18,10 +18,10 @@
 </template>
 <script>
   import {
-    getStyle,
     _find,
     _isEqual,
   } from '../../utils/assist';
+  import getStyle from '../../utils/get-style';
   import DaoSliderTips from './dao-slider-tips/index.vue';
   import DaoSliderStops from './dao-slider-stops/index.vue';
 

@@ -6,7 +6,7 @@
 </style>
 <script>
   import Popper from 'popper.js';
-  import { getStyle } from '../../utils/assist';
+  import getStyle from '../../utils/get-style';
 
   const dropdownMargin = 8;
 

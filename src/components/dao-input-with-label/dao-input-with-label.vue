@@ -93,14 +93,70 @@
   </div>
 </template>
 <script>
-import { includes as _includes } from 'lodash';
 import {
-  getSelectPosition as GetSelectPosition,
-  simpleMerge as SimpleMerge,
-  getTextSize as GetTextSize,
+  _includes,
+  _merge,
 } from '../../utils/assist';
 import clickoutside from '../../directives/clickoutside';
 import Popper from '../base/popper';
+
+// 通过获取选中元素参数以获取光标位置
+function getSelectPosition(element) {
+  const nullvalue = -1;
+  let selectStart;
+  let selectEnd;
+  let position;
+  let selectText;
+  if (element.setSelectionRange) {
+    selectStart = element.selectionStart;
+    selectEnd = element.selectionEnd;
+    if (selectStart === selectEnd) {
+      position = element.selectionStart;
+      selectStart = nullvalue;
+      selectEnd = nullvalue;
+    } else {
+      position = nullvalue;
+    }
+    selectText = element.value.substring(selectStart, selectEnd);
+  } else {
+    const range = document.selection.createRange();
+    selectText = range.text;
+    range.moveStart('character', -element.value.length);
+    position = range.text.length;
+    selectStart = position - (selectText.length);
+    selectEnd = selectStart + (selectText.length);
+    if (selectStart !== selectEnd) {
+      position = nullvalue;
+    } else {
+      selectStart = nullvalue;
+      selectEnd = nullvalue;
+    }
+  }
+  return {
+    position,
+    selectStart,
+    selectEnd,
+  };
+}
+
+// 获取一段字符串的显示宽度,长度
+function getTextSize(text, fontSize = '14px') {
+  const span = document.createElement('span');
+  span.style.visibility = 'hidden';
+  span.style.fontSize = fontSize;
+  if (typeof span.textContent !== 'undefined') {
+    span.textContent = text;
+  } else {
+    span.innerText = text;
+  }
+  document.body.appendChild(span);
+  const result = {
+    width: span.offsetWidth,
+    height: span.offsetHeight,
+  };
+  document.body.removeChild(span);
+  return result;
+}
 
 const INPUT_PADDING = 32;
 const DEFAULT_INPUT_HEIGHT = 32;
@@ -156,7 +212,7 @@ export default {
   created() {
     this.currentValue = this.formatInput(this.value);
     this.currentOptions = this.formatOptions(this.options);
-    this.currentConfig = SimpleMerge(this.currentConfig, this.config);
+    this.currentConfig = _merge(this.currentConfig, this.config);
   },
   computed: {
     // 过滤掉已经被选择的
@@ -203,7 +259,7 @@ export default {
         if (!catched) return false;
       }
       // TODO 支持在文本中间操作
-      if (GetSelectPosition(this.$refs.input).position < this.currentValue.length) return false;
+      if (getSelectPosition(this.$refs.input).position < this.currentValue.length) return false;
       return true;
     },
     // 更新 popper 位置
@@ -212,7 +268,7 @@ export default {
         this.visible = false;
         return;
       }
-      const calipersWidth = GetTextSize(this.currentValue).width;
+      const calipersWidth = getTextSize(this.currentValue).width;
       const inputWidth = this.$refs.input.offsetWidth;
       const maxWidth = inputWidth - (INPUT_PADDING * 2);
       // 对 left 值做简单的碰撞检测
@@ -332,7 +388,7 @@ export default {
       this.currentOptions = this.formatOptions(newVal);
     },
     config(newVal) {
-      this.currentConfig = SimpleMerge(this.currentConfig, newVal);
+      this.currentConfig = _merge(this.currentConfig, newVal);
     },
   },
   filters: {

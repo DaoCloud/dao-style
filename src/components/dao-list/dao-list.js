@@ -1,4 +1,18 @@
-import _ from 'lodash';
+import {
+  _map,
+  _find,
+  _isBoolean,
+  _filter,
+  _get,
+  _forEach,
+  _orderBy,
+  _clone,
+  _every,
+  _includes,
+  _isNumber,
+  _cloneDeep,
+  _chunk,
+} from '../../utils/assist';
 import DaoListTh from './th.vue';
 import FilterInput from './filter-input.vue';
 import GoToTd from './td/goto-td.vue';
@@ -41,7 +55,7 @@ export default {
       toolbarOperations = localStorageSettings.toolbarOperations;
       timeFormat = localStorageSettings.timeFormat;
     } else {
-      _.forEach(this.columns, (c) => {
+      _forEach(this.columns, (c) => {
         let columnsNumber;
         if (this.config.columnsOrder) {
           // 如果传入了分栏顺序，那就根据分栏顺序来判断要展示几个分栏
@@ -104,7 +118,7 @@ export default {
       return this.config.tableName;
     },
     mainKey() {
-      const mainColumn = _.find(this.columns, c => c.mainKey);
+      const mainColumn = _find(this.columns, c => c.mainKey);
       if (mainColumn) {
         return mainColumn.name;
       }
@@ -129,7 +143,7 @@ export default {
       return this.config.hideCheckbox;
     },
     defaultCheck() {
-      return _.isBoolean(this.config.defaultCheck) ? this.config.defaultCheck : true;
+      return _isBoolean(this.config.defaultCheck) ? this.config.defaultCheck : true;
     },
     toolbarOperations() {
       return this.settings.operations || this.config.operations;
@@ -138,9 +152,9 @@ export default {
       return this.settings.timeFormat || this.config.timeFormat;
     },
     filteredRows() {
-      const filteredRows = _.filter(this.rows, (r) => {
+      const filteredRows = _filter(this.rows, (r) => {
         let valid = true;
-        _.forEach(this.filterQuery, (value, name) => {
+        _forEach(this.filterQuery, (value, name) => {
           if (name !== '$keywords') {
             // 如果是一般的 filter，才要判断
             // TODO: 这里的判断条件可能要改成弱等于
@@ -153,16 +167,16 @@ export default {
       });
 
       let searchedRows = filteredRows;
-      if (_.get(this.filterQuery, '$keywords', []).length > 0) {
+      if (_get(this.filterQuery, '$keywords', []).length > 0) {
         // 如果还有搜索关键词，就继续搜索
-        searchedRows = _.filter(filteredRows, (r) => {
+        searchedRows = _filter(filteredRows, (r) => {
           let valid = true;
           // 如果有多个搜索关键词，那么结果是取交集，也就是说一行数据要包含所有关键词才算是匹配到。
-          _.forEach(this.filterQuery.$keywords, (keyword) => {
+          _forEach(this.filterQuery.$keywords, (keyword) => {
             let matchCurrentKeyword = false;
-            _.forEach(r, (td) => {
+            _forEach(r, (td) => {
               // 注意，搜索和筛选不同。筛选是根据 value 筛选，搜索是根据 text 搜索。
-              if (_.includes(td.text, keyword)) {
+              if (_includes(td.text, keyword)) {
                 matchCurrentKeyword = true;
                 return false;
               }
@@ -178,8 +192,8 @@ export default {
       return searchedRows;
     },
     sortedRows() {
-      if (!this.sortingConfig.sortBy) return _.clone(this.filteredRows);
-      return _.orderBy(
+      if (!this.sortingConfig.sortBy) return _clone(this.filteredRows);
+      return _orderBy(
         this.filteredRows,
         r => r[this.sortingConfig.sortBy].value,
         this.sortingConfig.order,
@@ -187,8 +201,8 @@ export default {
     },
     // 基本和sortedRows是一样的，只是加了 checked
     allRows() {
-      const rowsClone = _.cloneDeep(this.sortedRows);
-      _.forEach(rowsClone, (r, i) => {
+      const rowsClone = _cloneDeep(this.sortedRows);
+      _forEach(rowsClone, (r, i) => {
         if (this.defaultCheck && i === 0 && (this.oldAllRows.length === 0 || !this.mainKey)) {
           // 如果设置了默认选中第一个，就选中第一个。而且前提是 oldAllRows 长度为 0。
           // 但是如果没有mainKey，就无法保留选中状态。这种情况下，还是要选中第一个。
@@ -198,7 +212,7 @@ export default {
         } else if (this.mainKey) {
           // 如果这行数据之前已经被选中了，那就保留它的选中状态。这个功能的前提是设置了主键。
           const oldRow =
-            _.find(this.oldAllRows, old => old[this.mainKey].value === r[this.mainKey].value);
+            _find(this.oldAllRows, old => old[this.mainKey].value === r[this.mainKey].value);
           if (oldRow && oldRow.$checked) {
             this.$set(r, '$checked', true);
           } else {
@@ -212,20 +226,20 @@ export default {
       return rowsClone;
     },
     chunks() {
-      return _.chunk(this.allRows, this.rowsLimitPerPage);
+      return _chunk(this.allRows, this.rowsLimitPerPage);
     },
     // 这个 pages 始终只包括当前页前后共五页的页码
     pages() {
       const pagesNumber = this.chunks.length;
       if (pagesNumber <= 5) {
         // 如果总页数小于5，那就全显示
-        return _.map(this.chunks, (c, i) => i);
+        return _map(this.chunks, (c, i) => i);
       } else if (pagesNumber > 5 && this.page <= 2) {
         // 如果总页数大于5，且当前页是第一或第二页，那就显示前五页
-        return _.map(this.chunks, (c, i) => i).slice(0, 5);
+        return _map(this.chunks, (c, i) => i).slice(0, 5);
       } else if (pagesNumber > 5 && this.page >= pagesNumber - 1 - 2) {
         // 如果总页数大于5，且当前页是倒数第一或第二页，那就显示后五页
-        return _.map(this.chunks, (c, i) => i).slice(-5);
+        return _map(this.chunks, (c, i) => i).slice(-5);
       }
       // 最后是一般情况，显示当前页和前后两页
       return [this.page - 2, this.page - 1, this.page, this.page + 1, this.page + 2];
@@ -237,7 +251,7 @@ export default {
       return this.chunks[this.page] || [];
     },
     checkedRows() {
-      return _.filter(this.allRows, r => r.$checked);
+      return _filter(this.allRows, r => r.$checked);
     },
     currentRowsNumber() {
       return this.currentRows.length;
@@ -284,7 +298,7 @@ export default {
         this.checkedAnchorIndex = this.currentRows.indexOf(row);
       } else if (event.shiftKey) {
         // 如果是按住 shift 点的，那就把这次点的行和上次点的行之间的行全都 check
-        if (_.isNumber(this.checkedAnchorIndex)) {
+        if (_isNumber(this.checkedAnchorIndex)) {
           // 如果上一次已经点过一行了，就按 shift 点击处理
           const currentClickedRowIndex = this.currentRows.indexOf(row);
           const deltaRowsNumber = Math.abs(currentClickedRowIndex - this.checkedAnchorIndex) + 1;
@@ -332,22 +346,22 @@ export default {
     },
     // 选中所有行
     checkAll() {
-      _.forEach(this.allRows, (row) => {
+      _forEach(this.allRows, (row) => {
         this.$set(row, '$checked', true);
       });
       this.changeIsAllChecked();
     },
     // 全不选所有行，这个方法速度比 checkAll 快
     unCheckAll() {
-      _.forEach(this.allRows, (row) => {
+      _forEach(this.allRows, (row) => {
         this.$set(row, '$checked', false);
       });
       this.changeIsAllChecked();
     },
     // 选中当前页所有行
     checkPage(wantToCheck) {
-      const target = wantToCheck || !_.every(this.currentRows, r => r.$checked);
-      _.forEach(this.currentRows, (row) => {
+      const target = wantToCheck || !_every(this.currentRows, r => r.$checked);
+      _forEach(this.currentRows, (row) => {
         this.checkRow(row, target);
       });
     },
@@ -409,7 +423,7 @@ export default {
       this.isSettingsDialogVisible = false;
     },
     onSettingsDialogConfirm(settings) {
-      this.settings.columnsOrder = _.map(_.filter(settings.columnsOrder, 'visible'), 'name');
+      this.settings.columnsOrder = _map(_filter(settings.columnsOrder, 'visible'), 'name');
       this.settings.timeFormat = settings.timeFormat;
       this.saveLocalStorageSettings();
     },

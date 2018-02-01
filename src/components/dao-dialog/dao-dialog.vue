@@ -38,10 +38,8 @@
 import daoDialogHeader from './dao-dialog-header/dao-dialog-header.vue';
 import daoDialogResizer from './dao-dialog-resizer/dao-dialog-resizer.vue';
 
-import {
-  getStyle,
-  getWindowWidthAndHeight,
-} from '../../utils/assist';
+import getStyle from '../../utils/get-style';
+import getWindowSize from '../../utils/window-size';
 
 const daoDialogCountAttr = 'data-dao-dialog-count';
 
@@ -153,7 +151,7 @@ export default {
       const container = this.$refs.container;
       const height = parseInt(getStyle(container, 'height'), 10);
       const width = parseInt(getStyle(container, 'width'), 10);
-      const windowParams = getWindowWidthAndHeight();
+      const windowParams = getWindowSize();
       this.overflow = {
         x: height > windowParams.height,
         y: width > windowParams.width,
