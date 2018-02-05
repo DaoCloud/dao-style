@@ -3,8 +3,6 @@ $font-color: #3d444f;
 $dialog-overlay: rgba(31, 33, 38, .3);
 $dialog-header-bg-color: #f5f7fa;
 $dialog-header-bg-img: linear-gradient(0deg, rgb(242,244,247) 0%, rgb(245,247,250) 100%);
-$resizeSvg: "data:image/svg+xml;utf8,%3Csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20fill=%27%23ccd1d9%27%20viewBox=%270%200%2032%2032%27%3E%3Cg%3E%3Cpolygon%20points=%2721.414%2028%2028%2021.414%2028%2018.586%2018.586%2028%2021.414%2028%27/%3E%3Cpolygon%20points=%275.414%2028%2028%205.414%2028%202.586%202.586%2028%205.414%2028%27/%3E%3Cpolygon%20points=%2713.414%2028%2028%2013.414%2028%2010.586%2010.586%2028%2013.414%2028%27/%3E%3C/g%3E%3C/svg%3E";
-
 
 .dao-dialog-backdrop {
   position: fixed;
@@ -24,12 +22,6 @@ $resizeSvg: "data:image/svg+xml;utf8,%3Csvg%20xmlns=%27http://www.w3.org/2000/sv
       display: block;
     }
   }
-  &.backdrop__scrollY{
-    overflow-y: auto;
-  }
-  &.backdrop__scrollX{
-    overflow-x: auto;
-  }
 }
 
 .dao-dialog-wrapper %dialogBody {
@@ -46,33 +38,9 @@ $resizeSvg: "data:image/svg+xml;utf8,%3Csvg%20xmlns=%27http://www.w3.org/2000/sv
   @extend %dialogBody;
 }
 
-.dao-dialog__multiStep {
-  .dao-dialog-body {
-    display: flex;
-    padding: 0;
-    transition: transform .3s;
-  }
-  .dao-dialog-step {
-    flex: 1;
-    position: relative;
-    overflow-x: hidden;
-    overflow-y: auto;
-  }
-}
-
-.dao-dialog-feature__text {
-  @extend %dialogBody;
-  padding: 20px;
-}
-
 .dao-dialog-wrapper {
   display: table-cell;
   vertical-align: middle;
-  padding: 20px 0;
-
-  &.dao-dialog__feature .dao-dialog-body {
-    padding: 0;
-  }
 }
 
 .dao-dialog-container {
@@ -85,48 +53,56 @@ $resizeSvg: "data:image/svg+xml;utf8,%3Csvg%20xmlns=%27http://www.w3.org/2000/sv
   box-shadow: 0 3px 30px 0 rgba(0, 0, 0, .2);
   overflow-y: auto;
   overflow-x: hidden;
-}
-
-.dao-dialog-wrapper {
-  &[size='sm'] > .dao-dialog-container {
-    height: 200px;
+  position: relative;
+  .resizer {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    $resizeSvg: "data:image/svg+xml;utf8,%3Csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20fill=%27%23ccd1d9%27%20viewBox=%270%200%2032%2032%27%3E%3Cg%3E%3Cpolygon%20points=%2721.414%2028%2028%2021.414%2028%2018.586%2018.586%2028%2021.414%2028%27/%3E%3Cpolygon%20points=%275.414%2028%2028%205.414%2028%202.586%202.586%2028%205.414%2028%27/%3E%3Cpolygon%20points=%2713.414%2028%2028%2013.414%2028%2010.586%2010.586%2028%2013.414%2028%27/%3E%3C/g%3E%3C/svg%3E";
+    height: 16px;
+    width: 16px;
+    cursor: nwse-resize;
+    background: url($resizeSvg);
   }
-  &[size='md'] > .dao-dialog-container {
-    height: 400px;
-  }
-  &[size='lg'] > .dao-dialog-container {
-    width: 900px;
-    height: 600px;
-  }
-
-  &[size='resize'] {
-    height: 100%;
-
-    &>.dao-dialog-container {
-      position: relative;
-      .resize-handle {
-        position: absolute;
-        right: 0;
-        bottom: 0;
-        height: 16px;
+  .dao-dialog-header {
+    display: flex;
+    flex: 0 0 auto;
+    justify-content: space-between;
+    padding: 15px 20px;
+    background-color: $dialog-header-bg-color;
+    background-image: $dialog-header-bg-img;
+    border-radius: 4px 4px 0 0;
+    box-shadow: inset 0 -1px 0  #e4e7ed;
+    color: $font-color;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 20px;
+  
+    .dao-close {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      svg {
         width: 16px;
-        cursor: nwse-resize;
-        background: url($resizeSvg);
+        height: 16px;
+        fill: #aab2bd;
+        &:hover {
+          fill: #656d78;
+        }
       }
     }
   }
-}
-
-.dao-dialog-footer {
-  flex: 0 0 auto;
-  padding: 9px 20px;
-  text-align: right;
-  border-top: 1px solid $white-dark;
-  background-color: $dialog-header-bg-color;
-  background-image: $dialog-header-bg-img;
-  border-radius: 0 0 4px 4px;
-  box-shadow: inset 0 -1px 0  #e4e7ed;
-  user-select: none;
+  .dao-dialog-footer {
+    flex: 0 0 auto;
+    padding: 9px 20px;
+    text-align: right;
+    border-top: 1px solid $white-dark;
+    background-color: $dialog-header-bg-color;
+    background-image: $dialog-header-bg-img;
+    border-radius: 0 0 4px 4px;
+    box-shadow: inset 0 -1px 0  #e4e7ed;
+    user-select: none;
+  }
 }
 
 /*

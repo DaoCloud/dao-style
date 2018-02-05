@@ -1,5 +1,5 @@
 <template>
-  <div @mousedown.prevent="handleMouseDown">
+  <div class="redizer" @mousedown.prevent="handleMouseDown">
   </div>
 </template>
 <script>
@@ -22,10 +22,15 @@ export default {
       default: 20,
     },
   },
+  data() {
+    return {
+      wrapper: null,
+    };
+  },
   methods: {
     handleMousemove(event) {
       const windowParams = getWindowSize();
-      const containerParams = this.container.getBoundingClientRect();
+      const containerParams = this.wrapper.getBoundingClientRect();
       //  在低版本浏览器下不要使用 x | width | height，
       const targetWidth = event.clientX - containerParams.left;
       const targetHeight = event.clientY - containerParams.top;
@@ -47,5 +52,19 @@ export default {
       window.addEventListener('mouseup', this.handleMouseup);
     },
   },
+  watch: {
+    container: {
+      handler(newV) {
+        console.log(newV);
+        this.wrapper = newV;
+      },
+      immediate: true,
+    },
+  },
 };
 </script>
+
+<style lang="scss">
+  
+</style>
+
