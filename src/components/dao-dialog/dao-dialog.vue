@@ -29,7 +29,6 @@
 
 import daoDialogHeader from './dao-dialog-header/dao-dialog-header.vue';
 import daoDialogFooter from './dao-dialog-footer/dao-dialog-footer.vue';
-import daoDialogResizer from './dao-dialog-resizer/dao-dialog-resizer.vue';
 import getWindowSize from '../../utils/window-size';
 
 
@@ -299,7 +298,6 @@ export default {
   components: {
     daoDialogHeader,
     daoDialogFooter,
-    daoDialogResizer,
   },
 };
 </script>
