@@ -1,0 +1,49 @@
+@import "../dao-color.scss";
+
+$unit-width: 32px;
+$triangle-width: 14px;
+$input-padding: 10px;
+
+.dao-numberic-input {
+  position: relative;
+  input{
+    padding-right: $input-padding;
+  }
+  .assist{
+    height: 32px;
+    line-height: 32px;
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    display: flex;
+    .triangle{
+      display: none;
+    }
+    .unit{
+      margin-left: 2px;
+      margin-right: 10px;
+      color: $grey-dark;
+      user-select: none;
+    }
+  }
+  &.with-unit{
+    input{
+      padding-right: $unit-width + $input-padding;
+    }
+  }
+  &:hover{
+    input{
+      padding-right: $triangle-width + $input-padding;
+    }
+    &.with-unit{
+      input{
+        padding-right: $unit-width + $triangle-width + $input-padding;
+      }
+    }
+    .assist > .triangle{
+      display: flex;
+      align-items: center;
+      height: 32px;
+    }
+  }
+}

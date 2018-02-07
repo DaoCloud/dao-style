@@ -75,15 +75,15 @@
         font-size: $font-base;
         @include box-shadow(none);
         background-color: white;
-        // 为了防止在 disabled 和 default 之间切换的时候，背景图icon也发生 transition 动画
+        // 为了防止在 disabled 和 default 之间切换的时候，背景图 icon 也发生 transition 动画
         // 所以需要用到 @include input-icon-background;
         @include input-icon-background;
         border: $input-border;
+        border-color: $input-border-color;
         border-radius: $input-border-radius;
-        line-height: 1;
+        line-height: 24px;
         // 将 vertical-align: bottom 改成了 vertical-align: middle 了，不知道会不会有其他影响
         vertical-align: middle;
-        // margin-right: 5px;
         & + .dao-btn {
           margin-left: $input-btn-blank;
         }
@@ -94,6 +94,18 @@
     }
     & + .dao-btn {
       margin-left: $input-btn-blank;
+    }
+    &.no-border {
+      input {
+        @include e('&', 'input.no-border') {
+          border: 1px solid transparent;
+        }
+      }
+      input:hover {
+        @include e('&', 'input.no-border', ':hover') {
+          border-color: $input-no-border-hover-border-color;
+        }
+      }
     }
     &.message-bottom {
       flex-direction: column;
@@ -108,33 +120,34 @@
     }
     &.success {
       input {
-        border: 1px solid $input-success-color;
         border-radius: 2px;
-        @include box-shadow(0 0 0 2px $input-success-shadow-color);
       }
     }
     &.error {
       input,
       input:focus,
-      input:active {
-        border: 1px solid $input-error-color;
-        border-radius: 2px;
-        @include box-shadow(0 0 0 2px $input-error-shadow-color);
+      input:active,
+      input:hover {
+        @include e('&', ('input.error', 'textarea.error'), ('', ':focus', ':active', ':hover')) {
+          border: 1px solid $input-error-color;
+          border-radius: 2px;
+          background-color: $input-error-bg-color;
+        }
       }
     }
     // 一定要在 input:focus, input:active 前面才能使用默认样式 :focus, :active
     &.search input {
       @include e('&', 'input.search') {
-        height: 32px;
-        line-height: 30px;
-        width: 200px;
-        border-radius: 17px;
         padding: 0 10px 0 30px;
         background-size: $input-icon-width $input-icon-height;
         background-repeat: no-repeat;
-        background-position: left 8px center;
+        background-position: left 10px center;
         background-image: url($searchIconActiveSvg);
-        box-shadow: 0 1px 0 0 rgba($white, .8), inset 0 1px 3px 0 rgba($grey-light, .3);
+        &.input-sm, &[size='sm'] {
+          padding: 0 10px 0 22px;
+          background-position: left 5px center;
+        }
+        $not-disabled: ':not(.disabled):not([disabled])';
         @each $var in ('.required', '[required]') {
           &#{$var} {
             background-image: url($searchIconSvg);
@@ -146,19 +159,74 @@
             @include box-shadow(0 0 0 2px $input-info-shadow-color);
           }
           @each $behavior in (':valid', ':focus', ':active') {
-            &#{$var}#{$behavior} {
+            &#{$var}#{$behavior}#{$not-disabled} {
               background-image: url($searchIconActiveSvg);
             }
           }
         }
       }
     }
-    &.info input,
+    &.search {
+      .input-helper-text {
+        font-size: 12px;
+        color: $input-search-helper-text-color;
+        right: $input-icon-align-blank;
+        top: 7px;
+        z-index: 2;
+        position: absolute;
+        margin-right: 0;
+        user-select: none;
+        pointer-events: none;
+      }
+      &.can-empty {
+        position: relative;
+        input {
+          padding: $input-icon-padding;
+          padding-left: 30px;
+        }
+        .close-icon {
+          z-index: 2;
+          position: absolute;
+          margin-right: 0;
+          width: $input-icon-width;
+          height: $input-icon-height;
+          right: $input-icon-align-blank;
+          top: 8px;
+          cursor: pointer;
+          svg {
+            width: 100%;
+            height: 100%;
+            fill: $input-close-icon-color;
+            &:hover {
+              fill: $input-close-icon-active-color;
+            }
+          }
+          &.active svg {
+            fill: $input-close-icon-active-color;
+          }
+        }
+      }
+      &.input-sm, &[size='sm'] {
+        .input-helper-text {
+          top: 4px;
+        }
+        &.can-empty {
+          input {
+            padding-left: 22px;
+            padding-right: 22px;
+          }
+          .close-icon {
+            top: 5px;
+            right: 5px;
+          }
+        }
+      }
+    }
     input:focus,
     input:active {
       @include e('&', ('input', 'textarea'), (':focus', ':active')) {
-        border: 1px solid $input-info-color;
-        @include box-shadow(0 0 0 2px $input-info-shadow-color);
+        border: 1px solid $input-info-color!important;
+        @include box-shadow(0 0 0 2px $input-info-shadow-color!important);
       }
     }
     &.disabled input,
@@ -174,12 +242,9 @@
         // 修正在 disabled 中 focus 以及 active 状态下仍有 box-shadow
         &:focus,
         &:active {
-          @include box-shadow(none);
+          border: $input-border!important;
+          @include box-shadow(none!important);
         }
-      }
-      @include e('&', 'input', ('.disabled', '[disabled]', '.readonly', '[readonly]')) {
-        padding: $input-icon-padding;
-        background-image: url($disabledIconSvg);
       }
     }
     &.dao-input-group {
@@ -261,7 +326,8 @@
           top: 5px;
         }
       }
-      .dao-popover-popper[x-placement='top-end'] {
+      .dao-popover-popper[x-placement='top-end'],
+      .dao-popover-popper[x-placement='bottom-end'] {
         transform: translateY(10px);
         .dao-popover-arrow {
           right: 1px!important;
@@ -307,11 +373,6 @@
           height: 100%;
         }
       }
-      .loading-icon svg {
-        fill: $input-info-color;
-        -webkit-animation: spin 1.5s infinite linear;
-        animation: spin 1.5s infinite linear;
-      }
       .info-icon svg {
         fill: $input-info-color;
       }
@@ -320,6 +381,9 @@
       }
       .success-icon svg {
         fill: $input-success-color;
+      }
+      .loading-icon .dao-spin {
+        margin-left: 3px;
       }
     }
   }
@@ -345,7 +409,8 @@
   }
 }
 textarea#{$dao-control-name} {
-  min-height: $input-height;
+  min-height: $textarea-min-height;
+  max-height: $textarea-max-height;
   height: auto;
   padding-top: 5px;
   padding-bottom: 5px;
@@ -435,6 +500,13 @@ textarea#{$dao-control-name} {
 .dao-input-container .dao-popover-popper[x-placement='top-end'],
 .dao-popover-popper[x-placement='top-end'].append-to-body.dao-input-popover {
   top: 12px!important;
+  .dao-popover-arrow {
+    right: 1px!important;
+  }
+}
+.dao-input-container .dao-popover-popper[x-placement='bottom-end'],
+.dao-popover-popper[x-placement='bottom-end'].append-to-body.dao-input-popover {
+  top: -12px!important;
   .dao-popover-arrow {
     right: 1px!important;
   }

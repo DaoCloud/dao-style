@@ -1,5 +1,7 @@
 <template>
   <div>
+    <h1>Input Normal</h1>
+    <br><hr><br>
     <dao-input
       v-model="demoNormal"
       placeholder="请输入内容">
@@ -7,6 +9,10 @@
     <br><br><br>
     <input class="dao-control" type="text" placeholder="使用纯样式" v-model="demoNormalByClass">
     <br><br><br>
+
+
+    <h1>Input Block</h1>
+    <br><hr><br>
     <dao-input
       v-model="demoNormal"
       :class="{'demo-width': isWidthLimit}"
@@ -20,6 +26,10 @@
       v-model="isWidthLimit">
     </dao-switch>
     <br><br><br>
+
+
+    <h1>Input Disabled</h1>
+    <br><hr><br>
     <dao-input
       v-model="demoDisabled"
       disabled
@@ -28,6 +38,8 @@
     <br><br><br>
     <input class="dao-control" type="text" disabled="disabled" placeholder="使用纯样式" v-model="demoDisabledByClass">
     <br><br><br>
+    <h1>Small Input</h1>
+    <br><hr><br>
     <dao-input
       v-model="demoSizeSM"
       size="sm"
@@ -36,10 +48,40 @@
     <br><br><br>
     <input class="dao-control" size="sm" type="text" placeholder="使用纯样式，小号 Input" v-model="demoSizeSMByClass">
     <br><br><br>
+
+    <dao-input
+      v-model="demoSizeSM"
+      size="sm"
+      placeholder="请输入内容，小号 Input"
+      disabled>
+    </dao-input>
+    <br><br><br>
+    <input class="dao-control" disabled size="sm" type="text" placeholder="使用纯样式，小号 Input" v-model="demoSizeSMByClass">
+    <br><br><br>
+
+    <dao-input
+      v-model="demoSizeSM"
+      size="sm"
+      :status="statusError"
+      placeholder="请输入内容，小号 Input">
+    </dao-input>
+    <br><br><br>
+    <input class="dao-control error" size="sm" type="text" placeholder="使用纯样式，小号 Input" v-model="demoSizeSMByClass">
+    <br><br><br>
+
+
+    <h1>Input with Message</h1>
+    <br><hr><br>
     <dao-input
       v-model="demoSuccess"
-      :message="message"
+      :message="messageSuccess"
       :status="statusSuccess"
+      placeholder="请输入内容">
+    </dao-input>
+    <br><br><br>
+    <dao-input
+      v-model="demoErrorNoMessage"
+      :status="statusError"
       placeholder="请输入内容">
     </dao-input>
     <br><br><br>
@@ -52,6 +94,10 @@
       placeholder="请输入内容">
     </dao-input>
     <br><br><br>
+
+
+    <h1>Input with inside icon</h1>
+    <br><hr><br>
     <dao-input
       v-model="demoLoading"
       icon-inside
@@ -62,7 +108,7 @@
     <dao-input
       v-model="demoIconInsideSuccess"
       icon-inside
-      :message="message"
+      :message="messageSuccess"
       :status="statusSuccess"
       placeholder="请输入内容">
     </dao-input>
@@ -89,10 +135,38 @@
       icon-inside
       :message="message"
       :status="statusError"
-      :show-tooltip-only-hover="true"
-      placeholder="hover icon 会出现 tooltip">
+      :show-tooltip-only-hover="false"
+      placeholder="请输入内容">
     </dao-input>
     <br><br><br>
+
+
+    <h1>Input with no border</h1>
+    <br><hr><br>
+    <dao-input
+      v-model="demoNoborder"
+      no-border
+      placeholder="请输入内容">
+    </dao-input>
+    <br><br><br>
+    <dao-input
+      v-model="demoNoborder"
+      no-border
+      :status="statusError"
+      placeholder="请输入内容">
+    </dao-input>
+    <br><br><br>
+    <dao-input
+      v-model="demoNoborder"
+      no-border
+      size="sm"
+      placeholder="请输入内容">
+    </dao-input>
+    <br><br><br>
+
+
+    <h1>Input group</h1>
+    <br><hr><br>
     <dao-input
       v-model="demoInputGroup"
       icon-inside
@@ -117,14 +191,64 @@
       </dao-select>
     </dao-input>
     <br><br><br>
+
+
+    <h1>Search</h1>
+    <br><hr><br>
     <dao-input
       v-model="demoSearch"
       search
       placeholder="搜索">
     </dao-input>
     <br><br><br>
+    <dao-input
+      v-model="demoSearch"
+      search
+      show-helper-text
+      placeholder="搜索">
+    </dao-input>
+    <br><br><br>
+    <dao-input
+      v-model="demoSearch"
+      search
+      show-helper-text
+      disabled
+      placeholder="搜索">
+    </dao-input>
+    <br><br><br>
     <input class="dao-control search" type="text" placeholder="搜索(使用纯样式)" v-model="demoSearchByClass" required>
     <br><br><br>
+
+    <dao-input
+      v-model="demoSearch"
+      search
+      size="sm"
+      placeholder="小号搜索">
+    </dao-input>
+    <br><br><br>
+    <dao-input
+      v-model="demoSearch"
+      search
+      size="sm"
+      show-helper-text
+      placeholder="小号搜索">
+    </dao-input>
+    <br><br><br>
+    <dao-input
+      v-model="demoSearch"
+      search
+      size="sm"
+      show-helper-text
+      disabled
+      placeholder="小号搜索">
+    </dao-input>
+    <br><br><br>
+    <input class="dao-control search" type="text" placeholder="搜索(使用纯样式)" v-model="demoSearchByClass" required size="sm">
+    <br><br><br>
+
+
+    <h1>Editable Input</h1>
+    <br><hr><br>
     <dao-editable-input
       v-model="demoEditable"
       placeholder="不能输入 4 或 6"
@@ -138,7 +262,62 @@
       <span slot="append">GB</span>
     </dao-editable-input>
     <br><br><br>
+
+
+    <h1>Textarea</h1>
+    <br><hr><br>
     <textarea class="dao-control" type="text" rows="3" placeholder="请填写内容" v-model="demoTextarea"></textarea>
+    <br><br><br>
+    <textarea class="dao-control" disabled="disabled" type="text" rows="3" placeholder="请填写内容" v-model="demoTextarea"></textarea>
+    <br><br><br>
+    <textarea class="dao-control error" type="text" rows="3" placeholder="请填写内容" v-model="demoTextarea"></textarea>
+    <br><br><br>
+
+    <h1>File Input</h1>
+    <hr><br><br>
+    <dao-file-input
+      v-model="demoFileInput"
+      accept="image/*"
+      style="width: 287px;"
+      @change="onFileChange"
+      placeholder="请选择文件...">
+    </dao-file-input>
+    <br><br>
+    <dao-file-input
+      v-model="demoFileInput"
+      accept="image/*"
+      @change="onFileChange"
+      placeholder="请选择文件...">
+    </dao-file-input>
+    
+    <br><br><br>
+    <h1>Numberic Input</h1>
+    <hr><br>{{demoNumbericInput1}}<br>
+    <dao-numberic-input
+      v-model="demoNumbericInput1"
+      :min='-5'
+      :max='80'
+      style="width: 287px;"
+      placeholder="min: -5 max:50 float">
+    </dao-numberic-input>
+    <br>{{demoNumbericInput2}}<br>
+     <dao-numberic-input
+      v-model="demoNumbericInput2"
+      style="width: 287px;"
+      type='int'
+      :min='-5'
+      :max='10'
+      unit="KG"
+      placeholder="min: -5 max: 20 int">
+    </dao-numberic-input>
+    <br>{{demoNumbericInput3}}<br>
+    <dao-numberic-input
+      :disabled="true"
+      v-model="demoNumbericInput3"
+      style="width: 287px;"
+      placeholder="disabled">
+    </dao-numberic-input>
+    <br><br><br><br><br>
   </div>
 </template>
 
@@ -147,6 +326,7 @@
     data() {
       return {
         message: '输入错误',
+        messageSuccess: '输入正确',
         demoNormal: '',
         demoNormalByClass: '',
         isWidthLimit: false,
@@ -155,13 +335,15 @@
         demoSizeSM: '',
         demoSizeSMByClass: '',
         demoSuccess: '',
-        demoErrorBottomNoIcon: '',
+        demoErrorNoMessage: 'error',
+        demoErrorBottomNoIcon: 'error',
         demoLoading: '',
         demoIconInsideSuccess: '',
-        demoIconInsideError: '',
+        demoIconInsideError: 'error',
         demoIconInsideInfo: '',
-        demoInputGroup: '',
-        demoInputGroupSelect: '',
+        demoNoborder: 'no border',
+        demoInputGroup: 'error',
+        demoInputGroupSelect: 'error',
         selectPrepend: 'https://',
         demoSearch: '',
         demoSearchByClass: '',
@@ -173,6 +355,10 @@
         statusError: 'error',
         statusSuccess: 'success',
         statusInfo: 'info',
+        demoFileInput: null,
+        demoNumbericInput1: 1,
+        demoNumbericInput2: 2,
+        demoNumbericInput3: 3,
       };
     },
     methods: {
@@ -188,6 +374,10 @@
       },
       demoEditableSuccess() {
         console.log('保存成功');
+      },
+      onFileChange(file) {
+        console.log('select file:', file);
+        console.log('model', this.demoFileInput);
       },
     },
   };
