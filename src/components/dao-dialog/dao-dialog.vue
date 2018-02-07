@@ -31,7 +31,6 @@ import daoDialogHeader from './dao-dialog-header/dao-dialog-header.vue';
 import daoDialogFooter from './dao-dialog-footer/dao-dialog-footer.vue';
 import getWindowSize from '../../utils/window-size';
 
-
 const dialogBoundary = {
   height: {
     max: 600,
