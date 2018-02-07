@@ -5,18 +5,20 @@
     @before-leave="onBeforeLeave"
     @after-leave="onAfterLeave">
     <div v-if="visible" class="dao-dialog-backdrop" ref="backdrop">
-      <div class="dao-dialog-wrapper" :size="size" ref="dialogWrapper" @click.self="handleWrapperClick">
-        <div class="dao-dialog-container" :class="containerClass" ref="container">
-          <dao-dialog-header v-if="header" :config="header" @close="doClose">
+      <div class="dao-dialog-wrapper" :size="size" ref="dialogWrapper" @click.self="onWrapperClick">
+        <div class="dao-dialog-container" :class="formatedContainerClass" ref="container">
+          <dao-dialog-header v-if="header" :config="header" @close="onClose">
             <slot name="header"/>
           </dao-dialog-header>
           <div ref="body"  class="dao-dialog-body">
-            <slot></slot>
+            <div>
+              <slot></slot>
+            </div>
           </div>
           <dao-dialog-footer v-if="footer" :config="footer" @confirm="onConfirm" @cancel="onCancel">
             <slot name="footer"/>
           </dao-dialog-footer>
-          <div class="resizer" v-if="allowResize" @mousedown.prevent="handleMouseDown">
+          <div class="resizer" v-if="allowResize" @mousedown.prevent="onMouseDown">
           </div>
         </div>
       </div>
@@ -24,10 +26,46 @@
   </transition>
 </template>
 <script>
+
 import daoDialogHeader from './dao-dialog-header/dao-dialog-header.vue';
 import daoDialogFooter from './dao-dialog-footer/dao-dialog-footer.vue';
 import daoDialogResizer from './dao-dialog-resizer/dao-dialog-resizer.vue';
 import getWindowSize from '../../utils/window-size';
+
+
+const dialogBoundary = {
+  height: {
+    max: 600,
+    min: 120,
+  },
+  width: {
+    max: 900,
+    min: 200,
+  },
+  padding: {
+    top: 20,
+    left: 20,
+    right: 20,
+    bottom: 20,
+  },
+};
+
+const dialogSizeMap = {
+  sm: {
+    width: '450px',
+    height: '400px',
+  },
+  md: {
+    width: '600px',
+    height: '500px',
+  },
+  lg: {
+    width: '800px',
+    height: '600px',
+  },
+};
+
+const daoDialogNumAttr = 'dao-dialog-num';
 
 export default {
   name: 'DaoDialog',
@@ -36,16 +74,21 @@ export default {
       type: Boolean,
       default: false,
     },
-    header: [Object, Boolean],
-    footer: [Object, Boolean],
+    header: {
+      type: [Object, Boolean],
+      default() {
+        return {};
+      },
+    },
+    footer: {
+      type: [Object, Boolean],
+      default() {
+        return {};
+      },
+    },
     size: {
       type: [Object, String],
-      default() {
-        return {
-          height: 'auto',
-          width: 'auto',
-        };
-      },
+      default: 'md',
     },
     containerClass: {
       type: String,
@@ -63,96 +106,193 @@ export default {
       type: Boolean,
       default: false,
     },
+    lockScroll: {
+      type: Boolean,
+      default: true,
+    },
+  },
+  data() {
+    return {
+      lastWindowSize: null,
+      dragging: false,
+    };
   },
   computed: {
+    formatedContainerClass() {
+      return {
+        [this.containerClass]: true,
+        dragging: this.dragging,
+      };
+    },
   },
   methods: {
     onBeforeEnter() {
-      document.addEventListener('keydown', this.handleKeyDown);
+      this.initSize();
+      this.lockWindowScroll();
+      document.addEventListener('keydown', this.onKeyDown);
+      window.addEventListener('resize', this.onResize);
       this.$emit('before-open');
     },
+
     onAfterEnter() {
       this.$emit('opened');
     },
-    doClose() {
+
+    onClose() {
       this.$emit('update:visible', false);
     },
+
     onConfirm() {
       this.$emit('confirm');
-      this.doClose();
+      this.onClose();
     },
+
     onCancel() {
       this.$emit('cancel');
-      this.doClose();
+      this.onClose();
     },
-    // 点击 wrapper 时
-    handleWrapperClick() {
+
+    onWrapperClick() {
       if (this.closeOnClickOutside) {
-        this.doClose();
+        this.onClose();
       }
     },
-    // keyboard event
-    handleKeyDown(e) {
-      switch (e.keyCode) {
-        // ESC
-        case 27: {
-          if (this.closeOnPressEscape) {
-            this.doClose();
-          }
-          break;
-        }
-        default: {
-          break;
-        }
+
+    onKeyDown({ keyCode }) {
+      if (keyCode === 27) {
+        this.onClose();
       }
     },
-    // resizer
-    handleMousemove(event) {
-      const windowParams = getWindowSize();
+
+    onMousemove(event) {
       //  在低版本浏览器下不要使用 x | width | height，
-      const containerParams = this.$refs.container.getBoundingClientRect();
-      const targetWidth = event.clientX - containerParams.left;
-      const targetHeight = event.clientY - containerParams.top;
-      if (targetWidth > this.minWidth && (targetWidth + (2 * this.padding)) < windowParams.width) {
-        this.$refs.container.style.width = `${targetWidth}px`;
+      const windowSize = getWindowSize();
+      const containerSize = this.$refs.container.getBoundingClientRect();
+      const targetWidth = event.clientX - containerSize.left;
+      const targetHeight = event.clientY - containerSize.top;
+      if ((targetWidth + dialogBoundary.padding.left + dialogBoundary.padding.right)
+        <= windowSize.width &&
+        (targetWidth <= dialogBoundary.width.max) &&
+        (targetWidth >= dialogBoundary.width.min)) {
+        this.setConatienrSize({
+          width: `${targetWidth}px`,
+        });
       }
-      if (targetHeight > this.minHeight) {
-        this.$refs.container.style.height = `${targetHeight}px`;
+      if ((targetHeight + dialogBoundary.padding.top + dialogBoundary.padding.bottom
+        <= windowSize.height) &&
+        (targetHeight <= dialogBoundary.height.max) &&
+        (targetHeight >= dialogBoundary.height.min)) {
+        this.setConatienrSize({
+          height: `${targetHeight}px`,
+        });
       }
     },
 
-    handleMouseup() {
-      window.removeEventListener('mousemove', this.handleMousemove);
-      window.removeEventListener('mouseup', this.handleMouseup);
+    onResize() {
+      const windowSize = getWindowSize();
+      const containerSize = this.$refs.container.getBoundingClientRect();
+      // 缩小
+      // 宽度越界
+      const widthPadding = dialogBoundary.padding.left + dialogBoundary.padding.right;
+      if ((windowSize.width <= (containerSize.width + widthPadding)) &&
+        (containerSize.width >= dialogBoundary.width.min)) {
+        this.setConatienrSize({
+          width: `${windowSize.width - widthPadding}px`,
+        });
+      }
+      // 高度越界
+      const heightPadding = dialogBoundary.padding.top + dialogBoundary.padding.bottom;
+      if ((windowSize.height <= (containerSize.height + heightPadding)) &&
+        (containerSize.height >= dialogBoundary.height.min)) {
+        this.setConatienrSize({
+          height: `${windowSize.height - heightPadding}px`,
+        });
+      }
+      // 扩大
+      if (this.lastWindowSize) {
+        // 变宽了
+        const bodySize = this.$refs.body.querySelector('div').getBoundingClientRect();
+        if (this.lastWindowSize.width < windowSize.width &&
+          containerSize.width <= dialogBoundary.width.max) {
+          // 内容越界
+          if (bodySize.width > containerSize.width) {
+            this.setConatienrSize({
+              width: `${windowSize.width - heightPadding}px`,
+            });
+          }
+        }
+        // 变高了
+        if (this.lastWindowSize.height < windowSize.height) {
+          // 内容越界
+          if (bodySize.height > containerSize.height &&
+            containerSize.height <= dialogBoundary.height.max) {
+            this.setConatienrSize({
+              height: `${windowSize.height - heightPadding}px`,
+            });
+          }
+        }
+      }
+      this.lastWindowSize = windowSize;
     },
 
-    handleMouseDown() {
-      window.addEventListener('mousemove', this.handleMousemove);
-      window.addEventListener('mouseup', this.handleMouseup);
+    onMouseup() {
+      this.dragging = false;
+      window.removeEventListener('mousemove', this.onMousemove);
+      window.removeEventListener('mouseup', this.onMouseup);
     },
+
+    onMouseDown() {
+      this.dragging = true;
+      window.addEventListener('mousemove', this.onMousemove);
+      window.addEventListener('mouseup', this.onMouseup);
+    },
+
     onBeforeLeave() {
       this.$emit('before-close');
     },
+
     onAfterLeave() {
-      document.removeEventListener('keydown', this.handleKeyDown);
+      document.removeEventListener('keydown', this.onKeyDown);
+      window.removeEventListener('resize', this.onResize);
+      this.lastWindowSize = null;
+      this.unLockWindowScroll();
       this.$emit('closed');
     },
-  },
-  watch: {
-    activeStep(newVal) {
-      if (newVal === this.step) return;
-      if (this.steps[newVal]) {
-        this.steps[newVal].$el.scrollTop = 0;
-      }
-      this.$emit('update:step', newVal);
+
+    initSize() {
+      this.setConatienrSize(dialogSizeMap[this.size] || this.size);
+      // 需要在动画完成之后再手动触发一次自动调整
+      setTimeout(() => {
+        this.onResize();
+      }, 300);
     },
-    step(newVal) {
-      if (newVal !== this.activeStep) {
-        if (newVal >= 0 && newVal <= this.steps.length - 1) {
-          this.activeStep = newVal;
+
+    lockWindowScroll() {
+      if (this.lockScroll) {
+        const currentDialogNum = parseInt(document.body.getAttribute(daoDialogNumAttr) || 0, 10);
+        document.body.setAttribute(daoDialogNumAttr, currentDialogNum + 1);
+        document.body.style.overflow = 'hidden';
+      }
+    },
+
+    unLockWindowScroll() {
+      if (this.lockScroll) {
+        const specDialogNum = document.body.getAttribute(daoDialogNumAttr) - 1;
+        if (specDialogNum === 0) {
+          document.body.removeAttribute(daoDialogNumAttr);
+          document.body.style.overflow = '';
         } else {
-          this.$emit('update:step', this.activeStep);
+          document.body.setAttribute(daoDialogNumAttr, specDialogNum);
         }
+      }
+    },
+
+    setConatienrSize({ height, width }) {
+      if (height) {
+        this.$refs.container.style.height = height;
+      }
+      if (width) {
+        this.$refs.container.style.width = width;
       }
     },
   },

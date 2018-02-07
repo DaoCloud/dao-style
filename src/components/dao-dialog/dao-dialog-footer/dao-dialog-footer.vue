@@ -1,6 +1,6 @@
 <template>
   <div class="dao-dialog-footer">
-    <slot name="footer">
+    <slot>
       <button class="dao-btn ghost" @click="onCancel">{{configure.cancelText}}</button>
       <button class="dao-btn blue" @click="onConfirm"
         :disabled="configure.confirmDisabled">{{configure.confirmText}}</button>
@@ -8,7 +8,7 @@
   </div>
 </template>
 <script>
-import { _merge } from '../../../utils/assist';
+import { _merge, _clone } from '../../../utils/assist';
 
 const defaultConfig = {
   confirmText: '确认',
@@ -23,7 +23,7 @@ export default {
   },
   computed: {
     configure() {
-      return _merge(defaultConfig, this.config);
+      return _merge(_clone(defaultConfig), this.config);
     },
   },
   methods: {

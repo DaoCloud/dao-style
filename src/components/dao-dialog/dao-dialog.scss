@@ -14,7 +14,7 @@ $dialog-header-bg-img: linear-gradient(0deg, rgb(242,244,247) 0%, rgb(245,247,25
   background-color: $dialog-overlay;
   z-index: 9998;
   transition: opacity .3s ease;
-
+  overflow: auto;
   &.backdrop__scrollY, &.backdrop__scrollX {
     display: block;
 
@@ -54,6 +54,10 @@ $dialog-header-bg-img: linear-gradient(0deg, rgb(242,244,247) 0%, rgb(245,247,25
   overflow-y: auto;
   overflow-x: hidden;
   position: relative;
+  transition: height .3s;
+  &.dragging{
+    transition: height 0s;
+  }
   .resizer {
     position: absolute;
     right: 0;
@@ -77,7 +81,10 @@ $dialog-header-bg-img: linear-gradient(0deg, rgb(242,244,247) 0%, rgb(245,247,25
     font-size: 18px;
     font-weight: 400;
     line-height: 20px;
-  
+    .center{
+      flex: 1;
+      text-align: center;
+    }
     .dao-close {
       display: flex;
       align-items: center;
