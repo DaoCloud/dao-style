@@ -83,8 +83,8 @@
       };
     },
     methods: {
-      onConfirm(hideNextTime) {
-        console.info('点击了确定, 将删除以下数据:', hideNextTime);
+      onConfirm(checkdRows) {
+        console.info('点击了确定, 将删除以下数据:', checkdRows);
       },
       onCancel() {
         console.info('点击了取消');

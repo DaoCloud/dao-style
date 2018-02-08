@@ -95,6 +95,9 @@
     methods: {
       onClosed() {
         this.confirmInput = '';
+        this.rows.forEach((row) => {
+          row.checked = false;
+        });
         this.$emit('before-open');
       },
       onConfirm() {
