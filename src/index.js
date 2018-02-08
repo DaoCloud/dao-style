@@ -49,7 +49,6 @@ const daoStyleComponents = {
   daoClipboard,
   daoCopyBlock: daoClipboard.CopyBlock,
   daoDialog,
-  daoDialogStep: daoDialog.Step,
   daoDraggable: daoDraggableComponent,
   daoDropdown,
   daoDropdownItem: daoDropdown.Item,
