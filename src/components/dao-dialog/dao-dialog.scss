@@ -72,18 +72,19 @@ $dialog-header-bg-img: linear-gradient(0deg, rgb(242,244,247) 0%, rgb(245,247,25
     display: flex;
     flex: 0 0 auto;
     justify-content: space-between;
-    padding: 15px 20px;
+    padding: 10px 20px;
     background-color: $dialog-header-bg-color;
     background-image: $dialog-header-bg-img;
     border-radius: 4px 4px 0 0;
     box-shadow: inset 0 -1px 0  #e4e7ed;
     color: $font-color;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 400;
     line-height: 20px;
     .center{
       flex: 1;
       text-align: center;
+      padding: 0 30px;
     }
     .dao-close {
       display: flex;
@@ -101,7 +102,7 @@ $dialog-header-bg-img: linear-gradient(0deg, rgb(242,244,247) 0%, rgb(245,247,25
   }
   .dao-dialog-footer {
     flex: 0 0 auto;
-    padding: 9px 20px;
+    padding: 10px 20px;
     text-align: right;
     border-top: 1px solid $white-dark;
     background-color: $dialog-header-bg-color;

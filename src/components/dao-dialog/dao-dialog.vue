@@ -4,8 +4,8 @@
     @after-enter="onAfterEnter"
     @before-leave="onBeforeLeave"
     @after-leave="onAfterLeave">
-    <div v-if="visible" class="dao-dialog-backdrop" ref="backdrop">
-      <div class="dao-dialog-wrapper" :size="size" ref="dialogWrapper" @click.self="onWrapperClick">
+    <div v-if="visible" class="dao-dialog-backdrop">
+      <div class="dao-dialog-wrapper" @click.self="onWrapperClick">
         <div class="dao-dialog-container" :class="formatedContainerClass" ref="container">
           <dao-dialog-header v-if="header" :config="header" @close="onClose">
             <slot name="header"/>
@@ -157,7 +157,7 @@ export default {
     },
 
     onKeyDown({ keyCode }) {
-      if (keyCode === 27) {
+      if (keyCode === 27 && this.closeOnPressEscape) {
         this.onClose();
       }
     },
