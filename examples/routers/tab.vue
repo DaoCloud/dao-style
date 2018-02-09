@@ -1,91 +1,94 @@
 <template>
   <div>
-    <div class="demo-block">
-      <h2 class="demo-block__title"> Demo 1 </h2>
-      <dao-tab direction="right" @changeTab="onHandleChangeTab">
-        <dao-tab-item heading="标题1">
-          <p class="demo-tab-wrap first">
-            Some Tab Content
-          </p>
-        </dao-tab-item>
-        <dao-tab-item heading="Heading2">
-          <div class="demo-tab-wrap">
-            <h3>Item 2</h3>
-            <div class="demo-tab-input__wrap">
-              <label for="example1"> Example 1 : </label>
-              <input type="text" name="e1" value="" id="example1">
-            </div>
-            <div class="demo-tab-input__wrap">
-              <label for="example2"> Example 2 : </label>
-              <input type="text" name="e2" value="" id="example2">
-            </div>
-            <button type="submit" name="button" class="dao-btn blue"> 提交 </button>
+    <dao-setting-layout v-for="(demo, index) in demos" :key="index">
+      <div slot="layout-title">{{demo.desc}}</div>
+      <dao-setting-section>
+        <template  v-if="demo.showbtn">
+          <div slot="section-title">
+            允许通过编程的方式切换 tab 
+            <br>
+            currentTab: {{demo.currentTab}}
           </div>
-        </dao-tab-item>
-      </dao-tab>
-    </div>
-    <div class="demo-block">
-      <h2 class="demo-block__title"> Demo 2 </h2>
-      <dao-tab direction="left" >
-        <dao-tab-item :heading="tab.heading" :key="index" v-for="(tab, index) in tabs" >
-          <p class="demo-tab-wrap">
-            {{tab.body}}
-          </p>
-        </dao-tab-item>
-      </dao-tab>
-    </div>
+          <br><br>
+            <button class="dao-btn blue" @click="demo.currentTab = 'heading3'"> go to heading3</button>
+          <br><br>
+        </template>
+        <dao-tab 
+          :currentTab.sync="demo.currentTab"
+          :direction="demo.direction" @changeTab="onChangeTab">
+          <dao-tab-item  
+            v-for="(tab, index) in demo.tabs" :key="index"
+            :heading="tab.heading">
+            <h2>{{tab.content}}</h2>
+          </dao-tab-item>
+        </dao-tab>
+      </dao-setting-section>
+    </dao-setting-layout>
   </div>
 </template>
-<style lang="scss" scoped>
-  .demo-block {
-    margin-top: 50px;
 
-    .demo-block__title {
-      margin-bottom: 20px;
-    }
-  }
-
-  .demo-tab-wrap {
-    height: 300px;
-    text-align: center;
-
-    button {
-      margin-top: 50px;
-    }
-
-    &.first {
-      padding: 10px;
-    }
-
-    .demo-tab-input__wrap {
-      margin-top: 20px;
-      input {
-        width: 30%;
-        padding: 5px 8px;
-      }
-    }
-  }
-</style>
 <script>
   export default {
     data() {
       return {
-        tabs: [
+        demos: [
           {
-            heading: 'HEAD1',
-            body: 'Some Tab Content',
+            desc: 'direction: left',
+            tabs: [{
+              heading: 'heading1',
+              content: 'content1',
+            }, {
+              heading: 'heading2',
+              content: 'content2',
+            }, {
+              heading: 'heading3',
+              content: 'content3',
+            }],
+            direction: 'left',
           },
           {
-            heading: 'HEAD2',
-            body: 'More Tab Content',
+            desc: 'direction: right',
+            tabs: [{
+              heading: 'heading1',
+              content: 'content1',
+            }, {
+              heading: 'heading2',
+              content: 'content2',
+            }, {
+              heading: 'heading3',
+              content: 'content3',
+            }],
+            direction: 'right',
+          },
+          {
+            desc: 'currentTab: heading2',
+            currentTab: 'heading2',
+            showbtn: true,
+            tabs: [{
+              heading: 'heading1',
+              content: 'content1',
+            }, {
+              heading: 'heading2',
+              content: 'content2',
+            }, {
+              heading: 'heading3',
+              content: 'content3',
+            }],
+            direction: 'left',
           },
         ],
       };
     },
     methods: {
-      onHandleChangeTab(active) {
-        console.log(`changeTab to ${active}`);
+      onChangeTab(tab) {
+        console.log(`changeTab to ${tab}`);
       },
     },
   };
 </script>
+
+<style lang="scss" scoped>
+.helper{
+  padding: 10px;
+}
+</style>
