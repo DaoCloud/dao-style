@@ -40,7 +40,7 @@
       </div>
       <div slot="content">
         <button class="dao-btn blue" @click="propertyDialog.visible = true">打开对话框</button>
-        <property-dailog
+        <property-dialog
           title="Property Dialog"
           :state="propertyDialog.state"
           :message="propertyDialog.message"
@@ -53,7 +53,49 @@
               <h2>内容2</h2>
             </dao-tab-item>
           </dao-tab>
-        </property-dailog>
+        </property-dialog>
+      </div>
+    </dao-setting-section>
+  </dao-setting-layout>
+
+   <!-- step dialog -->
+  <dao-setting-layout>
+    <div slot="layout-title"> Multistep Dialog</div>
+    <dao-setting-section>
+       <div slot="section-title">
+        <div class="config-section">
+          {{multistepDialog.currentStep}}
+        </div>
+      </div>
+      <div slot="content">
+        <button class="dao-btn blue" @click="multistepDialog.visible = true">打开对话框</button>
+        <multistep-dialog
+          title="Step Dialog"
+          :visible.sync="multistepDialog.visible">
+          <multistep :step.sync="multistepDialog.currentStep">
+            <step>
+              <img src="https://www.daocloud.io/assets/images/screen3_image1.png" alt="">
+              <h1>第0张图</h1>
+              <br>
+              <button class="dao-btn blue" @click="multistepDialog.currentStep = 2">去最后一张图</button>
+              <br>
+              <br>
+              <br>
+            </step>
+            <step>
+              <img src="https://www.daocloud.io/assets/images/screen3_image4.png" alt="">
+              <h1>第1张图</h1>
+            </step>
+             <step>
+              <img src="https://www.daocloud.io/assets/images/screen3_image5.png" alt="">
+              <h1>第2张图</h1>
+            </step>
+          </multistep>
+          <div slot="footer">
+            <button class="dao-btn blue" @click="preStep" :disabled="multistepDialog.currentStep === 0">上一步</button>
+            <button class="dao-btn blue" @click="nextStep" :disabled="multistepDialog.currentStep === 2">下一步</button>
+          </div>
+        </multistep-dialog>
       </div>
     </dao-setting-section>
   </dao-setting-layout>
@@ -61,8 +103,12 @@
 </template>
 
 <script>
+
   import confirmExtend from './confirm-extend/confirm-extend.vue';
-  import propertyDailog from './property-dailog/property-dailog.vue';
+  import propertyDialog from './property-dialog/property-dialog.vue';
+  import multistepDialog from './multistep-dialog/multistep-dialog.vue';
+  import multistep from './multistep-dialog/multistep/multistep.vue';
+  import step from './multistep-dialog/multistep/step.vue';
 
   export default {
     data() {
@@ -118,6 +164,22 @@
           state: 'error',
           message: '请重新检查 “常规” 和 “DNS” 设置',
         },
+        // step dialog
+        multistepDialog: {
+          visible: false,
+          currentStep: 1,
+          steps: [
+            {
+              content: 'step1',
+            },
+            {
+              content: 'step2',
+            },
+            {
+              content: 'step3',
+            },
+          ],
+        },
       };
     },
     methods: {
@@ -139,15 +201,25 @@
       onOpened() {
         console.info('打开之后');
       },
+      preStep() {
+        this.multistepDialog.currentStep -= 1;
+      },
+      nextStep() {
+        this.multistepDialog.currentStep += 1;
+      },
     },
     components: {
       confirmExtend,
-      propertyDailog,
+      propertyDialog,
+      multistepDialog,
+      multistep,
+      step,
     },
   };
 </script>
 
 <style lang='scss' scoped>
+
 .config-section{
   margin: 6px 0;
   font-size: 13px;
@@ -156,4 +228,8 @@
   padding: 20px;
   line-height: 40px;
 }
+img{
+  width: 500px;
+}
+
 </style>
