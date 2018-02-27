@@ -4,7 +4,19 @@
       <button class="dao-btn blue" @click="alertSimple()">简单用法</button>
       <br>
       <br>
-      <button class="dao-btn red" @click="alertComplete()">完整用法(延迟打开关闭)</button>
+      <button class="dao-btn blue" @click="alertCustom()">支持自定义模板</button>
+      <br>
+      <br>
+      <button class="dao-btn blue" @click="alertDelay()">支持延迟打开</button>
+      <br>
+      <br>
+      <button class="dao-btn blue" @click="alertTimeout()">支持自动关闭</button>
+      <br>
+      <br>
+      <button class="dao-btn blue" @click="alertQueue()">支持队列</button>
+      <br>
+      <br>
+      <button class="dao-btn blue" @click="alertDelete()">支持取消某个 alert</button>
       <br>
     </div>
   </div>
@@ -12,39 +24,51 @@
 <script>
   export default {
     methods: {
-      doSometing() {
-        console.log('doSometing');
-      },
       alertSimple() {
-        // 最简单的用法
         this.$daoAlert('这是一个 alert').show();
       },
-      // 完整的用法
-      alertComplete() {
-        this.$daoAlert('<h4 style="color: red;">延迟2秒打开，打开后3秒自动关闭</h4>', '这是 title')
+      alertCustom() {
+        this.$daoAlert('<h3 style="color: red;">可以是 html</h3>', '自定义 title')
           .theme('red')
           .confirmText('自定义确认')
           .cancelText('自定义取消')
-          .timeout(3000)
+          .show();
+      },
+      alertDelay() {
+        this.$daoAlert('延迟 2 秒打开')
           .delay(2000)
-          .show((action) => {
-            // 如果当前环境不支持 promise 会回退到这里
-            if (action === 'confirm') {
-              console.log('fallback confirm');
-              this.doSometing();
-            }
-            if (action === 'cancel') {
-              console.log('fallback cancel');
-              this.doSometing();
-            }
-          })
-          .then(() => {
-            console.log('promise confirm');
-            this.doSometing();
+          .show();
+      },
+      alertTimeout() {
+        this.$daoAlert('2 秒后自动关闭')
+          .timeout(2000)
+          .show();
+      },
+      alertQueue() {
+        this.$daoAlert('这是第一个 alert')
+          .show();
+        this.$daoAlert('这是第二个 alert')
+          .show();
+        this.$daoAlert('这是第三个 alert, <p style="color: red; margin: 0;">注意 3 秒后自动关闭, 并且自动打开第四个 alert</p>')
+          .timeout(3000)
+          .show();
+        this.$daoAlert('这是第四个 alert')
+        .show();
+      },
+      alertDelete() {
+        const confirmAlert = this.$daoAlert('您真的想好了要删除这个应用吗？').theme('red');
+        this.$daoAlert('您确定要删除这个应用？')
+          .theme('red')
+          .show(() => {
+            console.log('confirm');
           }, () => {
-            console.log('promise cacel');
-            this.doSometing();
+            console.log('cancel');
+            confirmAlert.remove();
           });
+        confirmAlert.show();
+      },
+      doSometing() {
+        console.log('doSometing');
       },
     },
   };

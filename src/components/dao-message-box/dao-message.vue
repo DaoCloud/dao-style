@@ -1,7 +1,9 @@
 <template>
   <dao-dialog
+    id="dao-alert"
     :config="dialogConfig"
-    :visible.sync="visible">
+    @dao-dialog-close="handleDialogClose"
+    :visible.sync="isShow">
 
     <div v-html="text" class="dialog-body"></div>
 
@@ -13,19 +15,52 @@
 </template>
 
 <script>
+  import DaoDialog from '../dao-dialog';
 
   export default {
     data() {
       return {
-        visible: false,
-        title: '',
-        text: '',
-        theme: 'blue',
-        confirmText: '确认',
-        confirm: null,
-        cancelText: '取消',
-        cancel: null,
+        isShow: this.visible,
       };
+    },
+    props: {
+      visible: {
+        type: Boolean,
+        default: false,
+      },
+      title: {
+        type: String,
+        default: '',
+      },
+      text: {
+        type: String,
+        default: '',
+      },
+      theme: {
+        type: String,
+        default: 'blue',
+      },
+      confirmText: {
+        type: String,
+        default: '确认',
+      },
+      confirm: {
+        type: Function,
+        default: () => {},
+      },
+      cancelText: {
+        type: String,
+        default: '取消',
+      },
+      cancel: {
+        type: Function,
+        default: () => {},
+      },
+    },
+    created() {
+      this.$on('visible', (newVal) => {
+        this.visible = newVal;
+      });
     },
     computed: {
       dialogConfig() {
@@ -51,24 +86,34 @@
     },
     methods: {
       onConfirm() {
-        if (typeof this.confirm === 'function') {
-          this.confirm('confirm');
-        }
+        this.$emit('confirm');
         this.visible = false;
       },
       onCancel() {
-        if (typeof this.cancel === 'function') {
-          this.cancel('cancel');
-        }
+        this.$emit('cancel');
         this.visible = false;
+      },
+      handleDialogClose() {
+        this.$emit('close');
+      },
+    },
+    component: {
+      DaoDialog,
+    },
+    watch: {
+      visible(newVal) {
+        this.isShow = newVal;
       },
     },
   };
 </script>
 
 <style scoped lang="scss">
-  .dialog-body {
-    padding: 20px;
+  #dao-alert{
+    .dialog-body {
+      padding: 20px;
+    }
   }
+  
 </style>
   

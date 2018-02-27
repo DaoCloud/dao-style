@@ -7,7 +7,7 @@ Alert 是 Dialog 组件的扩展
 Alert 的方法挂在 Vue 实例上，可在组件内直接调用 $daoAlert(), 具体使用方式如下
 
 ```javascript
-this
+const alert = this
   // 第一个参数是 body，第二个参数是 title
   .$daoAlert('text', 'title')
   // 主题颜色，参考 dao-button 的颜色
@@ -20,21 +20,21 @@ this
   .timeout(3000)
   // 延迟打开
   .delay(3000)
-  .show((action) => {
-    // 如果当前环境不支持 promise 会执行这个回调函数
-    if (action === 'confirm') {
-      console.log('fallback confirm');
-    }
-    if (action === 'cancel') {
-      console.log('fallback cancel');
-    }
-  })
-  // 环境支持 Promise 的 show 会返回一个 Promise
-  .then(() => {
-    console.log('promise confirm');
+  // 注册多个回调
+  .callback(() => {
+    console.log('confirm');
   }, () => {
-    console.log('promise cacel');
+    console.log('cancel');
+  })
+  // 显示 alert
+  .show(() => {
+    console.log('confirm');
+  }, () => {
+    console.log('cancel');
   });
+
+  // 取消该alert 的显示，并推出队列
+  alert.remove();
 
 ```
 
@@ -48,6 +48,8 @@ confirmText | Function | 传入参数用于设置 comfirm button 的文本 | '�
 cancelText | Function | 传入参数用于设置 cancel button 的文本 | '取消' | 否
 timeout | Function | 传入参数用于设置自动关闭 alert | 无 | 否
 delay | Function | 传入参数用于设置延迟打开 alert | 0 | 否
-show | Function | 该方法必须调用, 当环境不支持 Promise 时可以传入一个回调函数 | 无 | 是
+show | Function | 该方法接受两个回调函数作为参数, 调用该方法显示 alert (只有调用了该方法，alert 实例才会被推入队列) | 无 | 是
+callback | Function | 该方法接受两个回调函数作为参数，可以多次调用注册多个回调函数 | 无 | 是
+remove | Function | 取消显示，从队列中删除某个 alert （在 show 函数之前调用无效） | 无 | 是
 
 ```
