@@ -12,23 +12,10 @@ export default {
       required: true,
     },
   },
-  data() {
-    return {
-      active: this.updateActive(),
-      unwatch: null,
-    };
-  },
-  methods: {
-    updateActive: function updateActive() {
-      return this.$parent.activeName === this.heading;
+  computed: {
+    active() {
+      return this.$parent.currentTabHeading === this.heading;
     },
-  },
-  created() {
-    this.unwatch = this.$watch('$parent.activeName', (newV, oldV) => {
-      if (newV !== oldV) {
-        this.active = this.updateActive();
-      }
-    });
   },
   mounted() {
     this.$parent.addTab(this);
@@ -39,7 +26,6 @@ export default {
       this.$el.parentNode.removeChild(this.$el);
     }
     this.$parent.removeTab(this);
-    this.unwatch();
   },
 };
 </script>

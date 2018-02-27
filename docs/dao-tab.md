@@ -9,6 +9,7 @@ tab 是 标签组件。代码请参照目录 : [src/components/dao-tab](../src/c
 ```HTML
 <dao-tab
   [direction="right"]
+  [:currentTab.sync="currentTab"]
   [@changeTab="onHandleChangeTab"]>
   <dao-tab-item heading="标题1">
     <h3> [HTML 渲染] </h3>
@@ -25,6 +26,11 @@ tab 是 标签组件。代码请参照目录 : [src/components/dao-tab](../src/c
 
 ```JavaScript
 export default {
+  data() {
+    return {
+      currentTab: '标题2',
+    };
+  },
   methods: {
     onHandleChangeTab(active) {
       console.log(`changeTab to ${active}`);
@@ -42,6 +48,7 @@ export default {
 参数名 | 类型 | 说明 | 默认值 | 是否必填
 -|-|-|-|-
 direction | String | 控制 tab 的标签的方向。 有 2 个 选项, `left`, `right` | left | 否
+currentTab | String | 当前 tab 的 heading 值 | 第一个 tab 的 heading 值 | 否
 
 #### 组件触发的事件
 
