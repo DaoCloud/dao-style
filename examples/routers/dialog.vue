@@ -178,6 +178,16 @@
       </div>
     </dao-setting-section>
   </dao-setting-layout>
+
+  <!-- 更多示例-->
+  <dao-setting-layout>
+    <div slot="layout-title"> 更多示例 </div>
+    <dao-setting-section >
+      <div slot="content">
+        <router-link to="/dialog-extend">Dialog Extend</router-link>
+      </div>
+    </dao-setting-section>
+  </dao-setting-layout>
 </div>
 </template>
 

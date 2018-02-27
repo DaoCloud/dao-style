@@ -128,9 +128,6 @@ li + li {
         <li>
           <router-link to="/input-with-label">InputWithLabel</router-link>
         </li>
-        <li>
-          <router-link to="/dialog-extend">dialog extend</router-link>
-        </li>
       </ul>
     </nav>
     <router-view></router-view>
