@@ -11,7 +11,7 @@
             <slot name="header"/>
           </dao-dialog-header>
           <div ref="body"  class="dao-dialog-body">
-            <div>
+            <div class="body-wrap">
               <slot></slot>
             </div>
           </div>
@@ -62,6 +62,8 @@ const dialogSizeMap = {
     height: '600px',
   },
 };
+
+const dialogHeaderHeight = 40;
 
 const daoDialogNumAttr = 'dao-dialog-num';
 
@@ -209,7 +211,7 @@ export default {
       // 扩大
       if (this.lastWindowSize) {
         // 变宽了
-        const bodySize = this.$refs.body.querySelector('div').getBoundingClientRect();
+        const bodySize = this.$refs.body.querySelector('.body-wrap').getBoundingClientRect();
         if (this.lastWindowSize.width < windowSize.width &&
           containerSize.width <= dialogBoundary.width.max) {
           // 内容越界
@@ -221,9 +223,10 @@ export default {
         }
         // 变高了
         if (this.lastWindowSize.height < windowSize.height) {
+          const footerSize = this.$refs.container.querySelector('.dao-dialog-footer').getBoundingClientRect();
           // 内容越界
-          if (bodySize.height > containerSize.height &&
-            containerSize.height <= dialogBoundary.height.max) {
+          if ((bodySize.height + dialogHeaderHeight + footerSize.height)
+            > containerSize.height && containerSize.height <= dialogBoundary.height.max) {
             this.setConatienrSize({
               height: `${windowSize.height - heightPadding}px`,
             });

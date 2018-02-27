@@ -36,7 +36,7 @@
          <dao-input block v-model="confirmInput" ></dao-input>
         </div>
         <div class="action-btn-group">
-          <button class="dao-btn red" :class="{invalid: !valid}" @click="onConfirm">{{confirmText}}</button>
+          <button class="dao-btn red" :disabled="!valid" @click="onConfirm">{{confirmText}}</button>
           <button class="dao-btn ghost" @click="onCancel">取消</button>
         </div>
       </div>
@@ -212,11 +212,6 @@ $logo-height-md: 36px;
       justify-content: space-between;
       button{
         width: 50%;
-        transition: opacity .2s;
-        &.invalid{
-          opacity: 0.8;
-          cursor: not-allowed;
-        }
       }
     }
   }

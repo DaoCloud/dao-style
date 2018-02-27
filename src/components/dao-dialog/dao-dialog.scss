@@ -15,27 +15,6 @@ $dialog-header-bg-img: linear-gradient(0deg, rgb(242,244,247) 0%, rgb(245,247,25
   z-index: 9998;
   transition: opacity .3s ease;
   overflow: auto;
-  &.backdrop__scrollY, &.backdrop__scrollX {
-    display: block;
-
-    .dao-dialog-wrapper {
-      display: block;
-    }
-  }
-}
-
-.dao-dialog-wrapper %dialogBody {
-  flex: 1 1 auto;
-  background-color: white;
-  color: $font-color;
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 21px;
-  overflow-y: auto;
-}
-
-.dao-dialog-body {
-  @extend %dialogBody;
 }
 
 .dao-dialog-wrapper {
@@ -51,8 +30,7 @@ $dialog-header-bg-img: linear-gradient(0deg, rgb(242,244,247) 0%, rgb(245,247,25
   border-radius: 4px;
   background-color: $white;
   box-shadow: 0 3px 30px 0 rgba(0, 0, 0, .2);
-  overflow-y: auto;
-  overflow-x: hidden;
+  overflow: hidden;
   position: relative;
   transition: height .3s;
   &.dragging{
@@ -68,48 +46,59 @@ $dialog-header-bg-img: linear-gradient(0deg, rgb(242,244,247) 0%, rgb(245,247,25
     cursor: nwse-resize;
     background: url($resizeSvg);
   }
-  .dao-dialog-header {
-    display: flex;
-    flex: 0 0 auto;
-    justify-content: space-between;
-    padding: 10px 20px;
-    background-color: $dialog-header-bg-color;
-    background-image: $dialog-header-bg-img;
-    border-radius: 4px 4px 0 0;
-    box-shadow: inset 0 -1px 0  #e4e7ed;
-    color: $font-color;
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 20px;
-    .center{
-      flex: 1;
-      text-align: center;
-      padding: 0 30px;
-    }
-    .dao-close {
+  .dao-dialog {
+    &-header{
       display: flex;
-      align-items: center;
-      cursor: pointer;
-      svg {
-        width: 16px;
-        height: 16px;
-        fill: #aab2bd;
-        &:hover {
-          fill: #656d78;
+      flex: 0 0 auto;
+      justify-content: space-between;
+      padding: 10px 20px;
+      background-color: $dialog-header-bg-color;
+      background-image: $dialog-header-bg-img;
+      border-radius: 4px 4px 0 0;
+      box-shadow: inset 0 -1px 0  #e4e7ed;
+      color: $font-color;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 20px;
+      .center{
+        flex: 1;
+        text-align: center;
+        padding: 0 30px;
+      }
+      .dao-close {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        svg {
+          width: 16px;
+          height: 16px;
+          fill: #aab2bd;
+          &:hover {
+            fill: #656d78;
+          }
         }
       }
     }
-  }
-  .dao-dialog-footer {
-    flex: 0 0 auto;
-    padding: 10px 20px;
-    text-align: right;
-    border-top: 1px solid $white-dark;
-    background-color: $dialog-header-bg-color;
-    background-image: $dialog-header-bg-img;
-    border-radius: 0 0 4px 4px;
-    box-shadow: inset 0 -1px 0  #e4e7ed;
-    user-select: none;
+    &-body{
+      flex: 1 1 auto;
+      background-color: white;
+      color: $font-color;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 21px;
+      overflow-y: auto;
+    }
+    &-footer {
+      flex: 0 0 auto;
+      padding: 10px 20px;
+      text-align: right;
+      border-top: 1px solid $white-dark;
+      background-color: $dialog-header-bg-color;
+      background-image: $dialog-header-bg-img;
+      border-radius: 0 0 4px 4px;
+      box-shadow: inset 0 -1px 0  #e4e7ed;
+      user-select: none;
+    }
   }
 }
 

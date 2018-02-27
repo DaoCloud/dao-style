@@ -1,6 +1,6 @@
 <template>
 <div>
-  <!-- 高级用法 -->
+  <!-- Confirm Dialog -->
   <dao-setting-layout>
     <div slot="layout-title"> Confirm Dialog</div>
     <dao-setting-section v-for="config in confirmDialogs" :key="config.type">
@@ -30,7 +30,7 @@
     </dao-setting-section>
   </dao-setting-layout>
 
-  <!-- property dialog -->
+  <!-- Property dialog -->
   <dao-setting-layout>
     <div slot="layout-title"> Property Dialog</div>
     <dao-setting-section>
@@ -58,13 +58,13 @@
     </dao-setting-section>
   </dao-setting-layout>
 
-   <!-- step dialog -->
+   <!-- Multistep dialog -->
   <dao-setting-layout>
     <div slot="layout-title"> Multistep Dialog</div>
     <dao-setting-section>
        <div slot="section-title">
         <div class="config-section">
-          {{multistepDialog.currentStep}}
+          currentStep: {{multistepDialog.currentStep}}
         </div>
       </div>
       <div slot="content">
@@ -75,20 +75,19 @@
           <multistep :step.sync="multistepDialog.currentStep">
             <step>
               <img src="https://www.daocloud.io/assets/images/screen3_image1.png" alt="">
-              <h1>第0张图</h1>
               <br>
-              <button class="dao-btn blue" @click="multistepDialog.currentStep = 2">去最后一张图</button>
-              <br>
+              <button class="dao-btn blue" @click="multistepDialog.currentStep = 2">去最后一个 step</button>
               <br>
               <br>
+              <h1>第 0 个 step</h1>
             </step>
             <step>
               <img src="https://www.daocloud.io/assets/images/screen3_image4.png" alt="">
-              <h1>第1张图</h1>
+              <h1>第 1 个 step</h1>
             </step>
-             <step>
+            <step>
               <img src="https://www.daocloud.io/assets/images/screen3_image5.png" alt="">
-              <h1>第2张图</h1>
+              <h1>第 2 个 step</h1>
             </step>
           </multistep>
           <div slot="footer">
@@ -229,7 +228,7 @@
   line-height: 40px;
 }
 img{
-  width: 500px;
+  width: 600px;
 }
 
 </style>
