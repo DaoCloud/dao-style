@@ -11,8 +11,8 @@
       :header = "{ title: title }">
       <slot></slot>
       <div slot="footer" class="property-dailog-footer">
-        <div class="error-message">
-          {{message}}
+        <div class="error-message" @click="goToErrorTab">
+          {{status.message}}
         </div>
         <div class="action-btn-group">
           <button class="dao-btn ghost" @click="onCancel">取消</button>
@@ -31,20 +31,19 @@
     name: 'propertyDailog',
     extends: dialogBase,
     props: {
-      state: {
-        type: String,
-        default: '',
-      },
-      message: String,
+      status: Object,
     },
     computed: {
       containerClass() {
-        return `property-dailog ${this.state}`;
+        return `property-dailog ${this.status.type}`;
       },
     },
     methods: {
       onConfirm() {
         this.$emit('confirm');
+      },
+      goToErrorTab() {
+        this.$emit('update:currentTab', this.status.tab);
       },
     },
   };
@@ -82,6 +81,7 @@ $error-color: generate-color($red, -3);
       border-top: none;
       .error-message{
         display: block;
+        cursor: pointer;
       }
     }
   }

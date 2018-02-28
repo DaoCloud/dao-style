@@ -6,10 +6,10 @@
       @closed="onClosed"
       @before-open="onBeforeOpen"
       @opened="onOpened"
-      containerClass="dialog-alert"
+      containerClass="confirm-dialog"
       :size="size"
       :header = "{ title: title }">
-      <div class="dialog-alert-body">
+      <div class="confirm-dialog-body">
         <div>{{content}}</div>
         <div v-if="type !== 'inputConfirm'" class="rows-wrap" :class="type">
           <div class="row" v-for="(row, index) in rows" :key="index">
@@ -30,7 +30,7 @@
           </div>
         </div>
       </div>
-      <div slot="footer" class="dialog-alert-footer" :class="type">
+      <div slot="footer" class="confirm-dialog-footer" :class="type">
         <div class="confirm-input" v-if="type !== 'checkboxConfirm'">
           <div class="title">请输入 {{confirmMessage}}</div>
          <dao-input block v-model="confirmInput" ></dao-input>
@@ -126,7 +126,7 @@ $rows-bg-color: #fbfcfd;
 $row-height: 64px;
 $logo-height-md: 36px;
 
-.dialog-alert{
+.confirm-dialog{
   &-body{
     padding: 20px;
     .rows-wrap{

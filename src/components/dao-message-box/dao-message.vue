@@ -9,7 +9,7 @@
     </div>
     <div slot="footer">
       <div class="alert-dialog-footer">
-        <div>
+        <div class="checkbox-wrap">
           <div class="dao-checkbox" v-show="checkboxText">
             <label>
               <input type="checkbox" v-model="checkboxChecked">
@@ -142,6 +142,10 @@
     .alert-dialog-footer{
       display: flex;
       justify-content: space-between;
+      .checkbox-wrap{
+        display: flex;
+        align-items: center;
+      }
     }
   }
   

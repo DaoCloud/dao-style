@@ -11,7 +11,7 @@
       </div>
       <div slot="content">
         <button class="dao-btn blue" @click="config.visible = true">打开对话框</button>
-        <confirm-extend
+        <confirm-dialog
           :visible.sync="config.visible"
           :title="config.title"
           :content="config.content"
@@ -25,7 +25,7 @@
           @opened="onOpened"
           @confirm="onConfirm"
           @cancel="onCancel">
-        </confirm-extend>
+        </confirm-dialog>
       </div>
     </dao-setting-section>
   </dao-setting-layout>
@@ -42,15 +42,18 @@
         <button class="dao-btn blue" @click="propertyDialog.visible = true">打开对话框</button>
         <property-dialog
           title="Property Dialog"
-          :state="propertyDialog.state"
-          :message="propertyDialog.message"
+          :currentTab.sync="propertyDialog.currentTab"
+          :status="propertyDialog.status"
           :visible.sync="propertyDialog.visible">
-          <dao-tab>
+          <dao-tab :currentTab.sync="propertyDialog.currentTab">
             <dao-tab-item heading="标题1">
               <h2>内容1</h2>
             </dao-tab-item>
             <dao-tab-item heading="标题2">
               <h2>内容2</h2>
+            </dao-tab-item>
+            <dao-tab-item heading="标题3">
+              <h2>内容3</h2>
             </dao-tab-item>
           </dao-tab>
         </property-dialog>
@@ -103,7 +106,7 @@
 
 <script>
 
-  import confirmExtend from './confirm-extend/confirm-extend.vue';
+  import confirmDialog from './confirm-dialog/confirm-dialog.vue';
   import propertyDialog from './property-dialog/property-dialog.vue';
   import multistepDialog from './multistep-dialog/multistep-dialog.vue';
   import multistep from './multistep-dialog/multistep/multistep.vue';
@@ -159,9 +162,13 @@
         }],
         // property dailog
         propertyDialog: {
+          currentTab: '标题1',
           visible: false,
-          state: 'error',
-          message: '请重新检查 “常规” 和 “DNS” 设置',
+          status: {
+            type: 'error',
+            tab: '标题2',
+            message: '点击会跳转到第二个 tab',
+          },
         },
         // step dialog
         multistepDialog: {
@@ -208,7 +215,7 @@
       },
     },
     components: {
-      confirmExtend,
+      confirmDialog,
       propertyDialog,
       multistepDialog,
       multistep,
