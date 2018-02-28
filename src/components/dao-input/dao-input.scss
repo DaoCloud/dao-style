@@ -139,6 +139,7 @@
     &.search input {
       @include e('&', 'input.search') {
         padding: 0 10px 0 30px;
+        width: 200px;
         background-size: $input-icon-width $input-icon-height;
         background-repeat: no-repeat;
         background-position: left 10px center;
