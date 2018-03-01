@@ -40,22 +40,108 @@
       </div>
       <div slot="content">
         <button class="dao-btn blue" @click="propertyDialog.visible = true">打开对话框</button>
+        <!-- confrim 不会关闭对话框，可以在外部验证数据合法之后再手动关闭对话框 -->
         <property-dialog
           title="Property Dialog"
           :currentTab.sync="propertyDialog.currentTab"
           :status="propertyDialog.status"
+          :formatLayout="true"
+          @confirm="propertyDialog.confirm"
           :visible.sync="propertyDialog.visible">
           <dao-tab :currentTab.sync="propertyDialog.currentTab">
-            <dao-tab-item heading="标题1">
-              <h2>内容1</h2>
+            <!-- 需在这里加上 formatLayout 类 以修改默认样式 -->
+            <dao-tab-item heading="常规" class="formatLayout">
+              <dao-setting-layout>
+                <!-- 需要阴影的在这里加上 formatSection 类 -->
+                <dao-setting-section class="formatSection">
+                  <template slot="label">
+                    IP 地址池
+                    <dao-tooltip content="IP 地池" placement="bottom">
+                      <svg class="icon">
+                        <use xlink:href="#icon_info-line"></use>
+                      </svg>
+                    </dao-tooltip>
+                  </template>
+                  <template slot="content">
+                    <div class="label">开始地址</div>
+                    <div>
+                      <dao-input
+                        v-model="propertyDialog.input1"
+                        message="请输入有效的 IP 地址"
+                        message-placement="bottom"
+                        block
+                        message-no-icon
+                        status="error">
+                      </dao-input>
+                    </div>
+                    <div class="label">结束地址</div>
+                    <div>
+                      <dao-input
+                        v-model="propertyDialog.input2"
+                        block>
+                      </dao-input>
+                    </div>
+                  </template>
+                </dao-setting-section>
+                <dao-setting-section>
+                  <template slot="label">
+                     网关地址
+                    <dao-tooltip content="网关地址" placement="bottom">
+                      <svg class="icon">
+                        <use xlink:href="#icon_info-line"></use>
+                      </svg>
+                    </dao-tooltip>
+                  </template>
+                  <template slot="content">
+                    <div>
+                      <dao-input
+                        v-model="propertyDialog.input3"
+                        message="请输入有效的 IP 地址"
+                        message-placement="bottom"
+                        message-no-icon
+                        status="error"
+                        block>
+                      </dao-input>
+                    </div>
+                  </template>
+                </dao-setting-section>
+              </dao-setting-layout>
             </dao-tab-item>
-            <dao-tab-item heading="标题2">
-              <h2>内容2</h2>
+            <dao-tab-item heading="路由" class="formatLayout">
+              <dao-setting-layout>
+                <!-- 需要阴影的在这里加上 formatSection 类 -->
+                <dao-setting-section>
+                  <template slot="label">
+                    IP 地址池
+                    <dao-tooltip content="IP 地池" placement="bottom">
+                      <svg class="icon">
+                        <use xlink:href="#icon_info-line"></use>
+                      </svg>
+                    </dao-tooltip>
+                  </template>
+                  <template slot="content">
+                    <div>
+                      <dao-input
+                        v-model="propertyDialog.input1"
+                        message="请输入有效的 IP 地址"
+                        message-placement="bottom"
+                        block
+                        message-no-icon
+                        status="error">
+                      </dao-input>
+                    </div>
+                  </template>
+                </dao-setting-section>
+              </dao-setting-layout>
             </dao-tab-item>
-            <dao-tab-item heading="标题3">
-              <h2>内容3</h2>
+            <dao-tab-item heading="DNS">
+              <h2>DNS</h2>
             </dao-tab-item>
           </dao-tab>
+          <!-- <template slot="footer">
+            <button class="dao-btn ghost" @click="onCancel">取消</button>
+            <button class="dao-btn blue" @click="onConfirm">确定</button>
+          </template> -->
         </property-dialog>
       </div>
     </dao-setting-section>
@@ -162,12 +248,18 @@
         }],
         // property dailog
         propertyDialog: {
-          currentTab: '标题1',
+          currentTab: '常规',
           visible: false,
           status: {
             type: 'error',
-            tab: '标题2',
-            message: '点击会跳转到第二个 tab',
+            tab: '路由',
+            message: "请检查 '路由' 的输入",
+          },
+          input1: '',
+          input2: '192.168.100.182',
+          input3: '',
+          confirm() {
+            console.log('propertyDialog confirm');
           },
         },
         // step dialog
@@ -224,7 +316,7 @@
   };
 </script>
 
-<style lang='scss' scoped>
+<style lang='scss'>
 
 .config-section{
   margin: 6px 0;
@@ -236,6 +328,35 @@
 }
 img{
   width: 600px;
+}
+.dao-tab-item{
+  padding: 20px;
+}
+
+.formatLayout{
+  padding: 0px 0 0 20px;
+  .dao-setting-layout{
+    border: none;
+    border-radius: none;
+    box-shadow: none;
+    .dao-setting-section{
+      padding: 20px 20px 20px 0px; 
+      .dao-setting-label{
+        padding-top: 4px;
+      }
+    }
+    .formatSection .dao-setting-content{
+      padding: 20px;
+      border-radius: 4px;
+      background-color: #f5f7fa;
+      .label:not(:first-child){
+        padding-top: 10px;
+      }
+    }
+    .dao-setting-content > *:not(.dao-btn){
+      line-height: 1 !important;
+    }
+  }
 }
 
 </style>

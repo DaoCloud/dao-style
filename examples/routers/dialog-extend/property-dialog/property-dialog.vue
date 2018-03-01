@@ -15,8 +15,10 @@
           {{status.message}}
         </div>
         <div class="action-btn-group">
-          <button class="dao-btn ghost" @click="onCancel">取消</button>
-          <button class="dao-btn blue" @click="onConfirm">确定</button>
+          <slot name="footer">
+            <button class="dao-btn ghost" @click="onCancel">取消</button>
+            <button class="dao-btn blue" @click="onConfirm">确定</button>
+          </slot>
         </div>
       </div>
     </dao-dialog>

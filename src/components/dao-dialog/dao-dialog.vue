@@ -5,7 +5,7 @@
     @before-leave="onBeforeLeave"
     @after-leave="onAfterLeave">
     <div v-if="visible" class="dao-dialog-backdrop">
-      <div class="dao-dialog-wrapper" @click.self="onWrapperClick">
+      <div class="dao-dialog-wrapper" @mousedown="onWrapperMousedown">
         <div class="dao-dialog-container" :class="formatedContainerClass" ref="container">
           <dao-dialog-header v-if="header" :config="header" @close="onClose">
             <slot name="header"/>
@@ -18,7 +18,7 @@
           <dao-dialog-footer v-if="footer" :config="footer" @confirm="onConfirm" @cancel="onCancel">
             <slot name="footer"/>
           </dao-dialog-footer>
-          <div class="resizer" v-if="allowResize" @mousedown.prevent="onMouseDown">
+          <div class="resizer" v-if="allowResize" @mousedown.stop="onMouseDown">
           </div>
         </div>
       </div>
@@ -152,7 +152,8 @@ export default {
       this.onClose();
     },
 
-    onWrapperClick() {
+    // 不要用 clik 事件，难以处理拖拽导致的关闭
+    onWrapperMousedown() {
       if (this.closeOnClickOutside) {
         this.onClose();
       }
