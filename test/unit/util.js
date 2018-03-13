@@ -37,3 +37,30 @@ export function createVue(Compo, mounted = false) {
   }
   return new Vue(Component).$mount(mounted === false ? null : createElm());
 }
+
+/**
+ * 模拟事件
+ * @param {Element} elm 触发事件的对象
+ * @param {String} name 事件名
+ * @param {Array} opts initEvent方法的后两个参数（选填）
+ */
+export function fireEvent(elm, name, ...opts) {
+  let eventName;
+
+  if (/^mouse|click/.test(name)) {
+    eventName = 'MouseEvents';
+  } else if (/^key/.test(name)) {
+    eventName = 'KeyboardEvent';
+  } else {
+    eventName = 'HTMLEvents';
+  }
+
+  const evt = document.createEvent(eventName);
+  evt.initEvent(name, ...opts);
+
+  elm.dispatchEvent
+    ? elm.dispatchEvent(evt)
+    : elm.fireEvent('on' + name, evt);
+
+  return elm;
+}

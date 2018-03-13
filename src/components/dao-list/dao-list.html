@@ -1,0 +1,230 @@
+<div class="dao-list-container">
+  <!-- 列表工具栏 -->
+  <div class="dao-list-toolbar">
+    <!-- 工具栏主要按钮 -->
+    <button class="dao-btn ghost has-icon"
+      :class="{'pseudo-disabled': mainOperation.disabled}"
+      v-if="mainOperation && !hideOperation"
+      @click="emit(mainOperation)">
+      <svg class="icon" v-if="mainOperation.svg">
+        <use v-bind="{'xlink:href': `#icon_${mainOperation.svg}`}"></use>
+      </svg>
+      <span class="text">{{mainOperation.name}}</span>
+      <svg class="icon" v-if="mainOperation.disabled" v-dao-tooltip="mainOperation.disabledTooltip">
+        <use v-bind="{'xlink:href': `#icon_${mainOperation.disabledSvg}`}"></use>
+      </svg>
+    </button>
+    <!-- 工具栏按钮 -->
+    <div class="dao-btn-group"
+    v-for="operationGroup in toolbarOperations"
+    v-if="operationGroup.alwaysShow || (!operationGroup.single && !hideOperation && checkedRowsNumber > 0)">
+      <button class="dao-btn ghost dao-icon"
+        v-for="o in operationGroup.operations"
+        :class="{'pseudo-disabled': o.disabled}"
+        @click="emit(o)">
+        <svg class="icon" v-if="o.svg">
+          <use v-bind="{'xlink:href': `#icon_${o.svg}`}"></use>
+        </svg>
+        <svg class="icon" v-if="o.disabled" v-dao-tooltip="o.disabledTooltip">
+          <use v-bind="{'xlink:href': `#icon_${o.disabledSvg}`}"></use>
+        </svg>
+      </button>
+    </div>
+    <div class="pull-right">
+      <!-- 排序下拉菜单 -->
+      <dao-dropdown
+        trigger="click"
+        :append-to-body="true"
+        placement="bottom-end">
+        <button class="dao-btn ghost has-icon">
+          <svg class="icon">
+            <use v-bind="{'xlink:href': `#icon_sort-${sortingConfig.order}`}"></use>
+          </svg>
+          <span class="text">{{columns[sortingConfig.sortBy].text}}</span>
+          <svg class="icon">
+            <use xlink:href="#icon_caret-down"></use>
+
+          </svg>
+        </button>
+        <dao-dropdown-menu slot="list">
+          <dao-dropdown-item v-for="c in columns"
+            v-if="!c.unsortable"
+            :key="c.name"
+            @click="changeSortBy(c.name)">
+            <svg class="icon" :class="{invisible: sortingConfig.sortBy !== c.name}">
+              <use xlink:href="#icon_checkmark-menu-item"></use>
+            </svg>
+            <span>{{c.text}}</span>
+          </dao-dropdown-item>
+          <dao-dropdown-item :is-divided="true"></dao-dropdown-item>
+          <dao-dropdown-item @click="sortingConfig.order='asc'">
+            <svg class="icon" :class="{invisible: sortingConfig.order !== 'asc'}">
+              <use xlink:href="#icon_checkmark-menu-item"></use>
+            </svg>
+            <span>升序</span>
+          </dao-dropdown-item>
+          <dao-dropdown-item @click="sortingConfig.order='desc'">
+            <svg class="icon" :class="{invisible: sortingConfig.order !== 'desc'}">
+              <use xlink:href="#icon_checkmark-menu-item"></use>
+            </svg>
+            <span>降序</span>
+          </dao-dropdown-item>
+        </dao-dropdown-menu>
+      </dao-dropdown>
+      <!-- 显示设置菜单 -->
+      <dao-dropdown
+        trigger="click"
+        :append-to-body="true"
+        placement="bottom-end">
+        <button class="dao-btn ghost dao-icon">
+          <svg class="icon"><use xlink:href="#icon_setting"></use></svg>
+          <svg class="icon"><use xlink:href="#icon_caret-down"></use></svg>
+        </button>
+        <dao-dropdown-menu slot="list">
+          <dao-dropdown-item @click="refresh">刷新</dao-dropdown-item>
+          <dao-dropdown-item @click="openSettingsDialog">查看显示选项</dao-dropdown-item>
+          <!-- <dao-dropdown-item @click="openCustomToolbarDialog">自定义工具栏</dao-dropdown-item> -->
+        </dao-dropdown-menu>
+      </dao-dropdown>
+    </div>
+    <!-- 显示设置弹窗 -->
+    <dao-list-settings-dialog
+      :visible.sync="isSettingsDialogVisible"
+      @confirm="onSettingsDialogConfirm"
+      :columnsOrder="columnsOrder"
+      :columns="columns"
+      :timeFormat="timeFormat">
+    </dao-list-settings-dialog>
+    <!-- 自定义工具栏弹窗 -->
+    <dao-list-custom-toolbar-dialog
+      :visible.sync="isCustomToolbarDialogVisible"
+      :operations="operations"
+      :mainOperation="mainOperation"
+      :toolbarOperations="toolbarOperations"
+      @confirm="onCustomToolbarDialogConfirm">
+    </dao-list-custom-toolbar-dialog>
+  </div>
+  <!-- 列表主要部分 -->
+  <div class="dao-list-main">
+    <!-- 列表的顶栏 -->
+    <div class="dao-list-topbar">
+      <filter-input class="dao-list-filter"
+        :tableName="tableName"
+        :rows="rows"
+        :columns="columns"
+        @change="onFilterInputChange"
+        ></filter-input>
+      <div class="dao-list-pagination">
+        <span class="counts">共 {{allRowsNumber}} 个 {{tableName}}</span>
+        <span class="counts" v-show="checkedRowsNumber > 0">
+          ，已选中 {{checkedRowsNumber}} 个 {{tableName}}
+        </span>
+        <div class="pagination" v-show="isShowPagination">
+          <svg :class="{disabled: prevPageDisabled}" @click="prevPage">
+            <use xlink:href="#icon_caret-left"></use>
+          </svg>
+          <button class="page" v-show="page > 2" @click="goToPage(0)">1</button><!--
+       --><button class="page disabled" v-show="page > 2">...</button><!--
+       --><button class="page" :class="{active: page == p}" v-for="p in pages" :key="p" @click="goToPage(p)">{{p + 1}}</button><!--
+       --><button class="page disabled" v-show="page < pagesNumber - 3">...</button>
+          <svg :class="{disabled: nextPageDisabled}" @click="nextPage">
+
+            <use xlink:href="#icon_caret-right"></use>
+          </svg>
+        </div>
+      </div>
+    </div>
+    <!-- 列表主体 -->
+    <div class="dao-list-scrolldiv" v-if="currentRows.length > 0">
+      <table class="dao-list">
+        <!-- 表头 -->
+        <thead>
+          <tr>
+            <!-- 全选 -->
+            <th class="checkbox" v-if="!hideCheckbox">
+              <input type="checkbox" class="round"
+                :class="{'half-check': isAllChecked === 'partial'}"
+                :checked="isAllChecked === 'yes'"
+                @click="checkPage()">
+              <check-all
+                :currentRowsNumber="currentRowsNumber"
+                :allRowsNumber="allRowsNumber"
+                :checkedRowsNumber="checkedRowsNumber"
+                @check-page="checkPage(true)"
+                @check-all="checkAll()"
+                @uncheck-all="unCheckAll()">
+              </check-all>
+            </th>
+            <!-- th -->
+            <dao-list-th v-for="c in columnsOrder"
+              :key="c"
+              :width="columnsWidth[c]"
+              @resize="onColumnResize(c, $event)"
+              @click="changeSortBy(c)">
+              <span>{{columns[c].text}}</span>
+              <template v-if="!columns[c].unsortable">
+                <svg class="sort-arrow" v-if="sortingConfig.sortBy === c" v-show="sortingConfig.order === 'desc'">
+                  <use xlink:href="#icon_down-arrow"></use>
+                </svg>
+                <svg class="sort-arrow" v-if="sortingConfig.sortBy === c" v-show="sortingConfig.order === 'asc'">
+                  <use xlink:href="#icon_up-arrow"></use>
+                </svg>
+              </template>
+            </dao-list-th>
+            <!-- 预留给操作的 th -->
+            <th v-if="!hideOperation"></th>
+          </tr>
+        </thead>
+        <!-- 表身 -->
+        <tbody>
+          <tr :class="{checked: r.$checked}" v-for="(r, i) in currentRows" :key="i"
+            @click="onRowClick(r, $event)"
+            @contextmenu.prevent="onContextMenu(r, $event)">
+            <td class="checkbox" v-if="!hideCheckbox">
+              <input type="checkbox"
+              class="round"
+              :checked="r.$checked">
+            </td>
+            <template v-for="c in columnsOrder">
+              <td :key="c" v-if="r[c].type === 'text'" :style="`width: ${columnsWidth[c]}`">{{r[c].text}}</td>
+              <go-to-td :key="c"
+                v-if="r[c].type === 'goto'"
+                :style="`width: ${columnsWidth[c]}`"
+                :url="r[c].other.url"
+                :text="r[c].text">
+              </go-to-td>
+              <status-td :key="c"
+                v-if="r[c].type === 'status'"
+                :style="`width: ${columnsWidth[c]}`"
+                :color="r[c].other.color"
+                :text="r[c].text">
+              </status-td>
+              <time-td :key="c"
+                v-if="r[c].type === 'time'"
+                :timeFormat="timeFormat"
+                :timeStamp="r[c].value">
+              </time-td>
+              <custom-td v-if="r[c].type === 'custom'"
+                :style="`width: ${columnsWidth[c]}`"
+                :renderFunc="r[c].render"
+                :td="r[c]">
+              </custom-td>
+            </template>
+            <operation-td v-if="!hideOperation" :row="r" :operations="operations"></operation-td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="dao-list-empty" v-if="currentRows.length === 0">
+      列表为空
+    </div>
+  </div>
+  <!-- 右键菜单 -->
+  <dao-list-context-menu
+    class="dao-list-context-menu"
+    :style="contextMenu.position"
+    v-show="contextMenu.visible"
+    :checkedRows="checkedRows"
+    :operations="operations"
+  />
+</div>

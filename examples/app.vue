@@ -1,5 +1,4 @@
 <style lang="scss">
-  @import "../src/components/index.scss";
 </style>
 <style scoped>
 nav {
@@ -49,16 +48,37 @@ li + li {
           <router-link to="/dialog">Dialog</router-link>
         </li>
         <li>
+          <router-link to="/drag-drop">Draggable</router-link>
+        </li>
+        <li>
           <router-link to="/dropdown">Dropdown</router-link>
         </li>
         <li>
+          <router-link to="/editable-list">Editable List</router-link>
+        </li>
+        <li>
           <router-link to="/editable-table">EditableTable</router-link>
+        </li>
+         <li>
+          <router-link to="/info-card">InfoCard</router-link>
         </li>
         <li>
           <router-link to="/input">Input</router-link>
         </li>
         <li>
+          <router-link to="/list">List</router-link>
+        </li>
+        <li>
+          <router-link to="/list-group">List Group</router-link>
+        </li>
+        <li>
+          <router-link to="/alert">Alert</router-link>
+        </li>
+        <li>
           <router-link to="/numeric-badge">Numeric Badge</router-link>
+        </li>
+        <li>
+          <router-link to="/panel">Panel</router-link>
         </li>
         <li>
           <router-link to="/popover">Popover</router-link>
@@ -77,6 +97,12 @@ li + li {
         </li>
         <li>
           <router-link to="/steps">Steps</router-link>
+        </li>
+        <li>
+          <router-link to="/slider">Slider</router-link>
+        </li>
+        <li>
+          <router-link to="/spin">Spin</router-link>
         </li>
         <li>
           <router-link to="/svg">Svg</router-link>
@@ -98,6 +124,9 @@ li + li {
         </li>
         <li>
           <router-link to="/tooltip-directive">Tooltip Directive</router-link>
+        </li>
+        <li>
+          <router-link to="/input-with-label">InputWithLabel</router-link>
         </li>
       </ul>
     </nav>

@@ -14,9 +14,16 @@ import card from './routers/card.vue';
 import checkbox from './routers/checkbox.vue';
 import clipboard from './routers/clipboard.vue';
 import dialog from './routers/dialog.vue';
+import dragAndDrop from './routers/drag-and-drop.vue';
 import dropdown from './routers/dropdown.vue';
 import editableTable from './routers/editable-table.vue';
 import input from './routers/input.vue';
+import infoCard from './routers/info-card.vue';
+import inputWithLabel from './routers/input-with-label.vue';
+import list from './routers/list.vue';
+import panel from './routers/panel.vue';
+import listGroup from './routers/list-group.vue';
+import alert from './routers/alert.vue';
 import numericBadge from './routers/numeric-badge.vue';
 import popover from './routers/popover.vue';
 import progress from './routers/progress.vue';
@@ -24,6 +31,9 @@ import radio from './routers/radio.vue';
 import select from './routers/select.vue';
 import selectAll from './routers/select-all.vue';
 import settingLayout from './routers/setting-layout.vue';
+import slider from './routers/slider.vue';
+import spin from './routers/spin.vue';
+import editableList from './routers/editable-list.vue';
 import steps from './routers/steps.vue';
 import svg from './routers/svg.vue';
 import switchExample from './routers/switch.vue';
@@ -59,6 +69,9 @@ const router = new VueRouter({
     path: '/dialog',
     component: dialog,
   }, {
+    path: '/drag-drop',
+    component: dragAndDrop,
+  }, {
     path: '/dropdown',
     component: dropdown,
   }, {
@@ -68,8 +81,26 @@ const router = new VueRouter({
     path: '/input',
     component: input,
   }, {
+    path: '/info-card',
+    component: infoCard,
+  }, {
+    path: '/input-with-label',
+    component: inputWithLabel,
+  }, {
+    path: '/list',
+    component: list,
+  }, {
+    path: '/list-group',
+    component: listGroup,
+  }, {
+    path: '/alert',
+    component: alert,
+  }, {
     path: '/numeric-badge',
     component: numericBadge,
+  }, {
+    path: '/panel',
+    component: panel,
   }, {
     path: '/popover',
     component: popover,
@@ -89,11 +120,20 @@ const router = new VueRouter({
     path: '/setting-layout',
     component: settingLayout,
   }, {
+    path: '/slider',
+    component: slider,
+  }, {
+    path: '/spin',
+    component: spin,
+  }, {
     path: '/steps',
     component: steps,
   }, {
     path: '/svg',
     component: svg,
+  }, {
+    path: '/editable-list',
+    component: editableList,
   }, {
     path: '/switch',
     component: switchExample,

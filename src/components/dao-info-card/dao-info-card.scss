@@ -1,0 +1,156 @@
+@import '../dao-color.scss';
+.dao-infocard-container {
+  border-radius: 3px;
+  background-color: $white;
+  border: solid 1px #d5dbe3;
+  overflow: hidden;
+
+  $sm-width: 300px;
+  $lg-width: 610px;
+  $sm-key-value-width: 270px;
+  $sm-key-value-key-width: 115px;
+  $lg-key-value-width: 580px;
+  $lg-key-value-key-width: 265px;
+
+  &.size-sm {
+    width: $sm-width;
+    .dao-infocard-main {
+      ul {
+        width: $sm-key-value-width;
+        .dao-key-value {
+          .key {
+            width: $sm-key-value-key-width;
+          }
+          .value {
+            width: $sm-key-value-width - $sm-key-value-key-width;
+          }
+        }
+      }
+      &>ul+ul {
+        border-top: 1px solid $grey-light;
+      }
+    }
+  }
+  &.size-lg {
+    width: $lg-width;
+    .dao-infocard-main {
+      ul {
+        .dao-key-value {
+          width: $lg-key-value-width;
+          .key {
+            width: $lg-key-value-key-width;
+          }
+          .value {
+            width: $lg-key-value-width - $lg-key-value-key-width;
+          }
+        }
+      }
+    }
+  }
+}
+
+.dao-card-header {
+  box-sizing: border-box;
+  height: 28px;
+  background-color: $white-dark-lighter;
+  cursor: pointer;
+  user-select: none;
+  .icon {
+    vertical-align: top;
+    margin: 6px 0px 5px 7px;
+    fill: $grey-dark;
+    width: 16px;
+  }
+  .title {
+    display: inline-block;
+    font-size: 14px;
+    line-height: 14px;
+    color: $black-light;
+    height: 28px;
+    line-height: 28px;
+  }
+  .dropdown {
+    float: right;
+    margin-top: 5px;
+    margin-right: 15px;
+  }
+}
+
+$row-height: 30px;
+$key-value-height: 26px;
+.dao-infocard-main {
+  border-top: solid 1px #d5dbe3;
+  padding: 0 15px;
+  ul {
+    padding: 10px 0;
+    .dao-key-value {
+      list-style: none;
+      display: flex;
+      .key {
+        line-height: $key-value-height;
+        padding-right: 10px;
+        font-size: 14px;
+        text-align: right;
+        color: $grey-dark;
+      }
+      .value {
+        min-height: $key-value-height;
+        line-height: $key-value-height;
+        font-size: 14px;
+        text-align: left;
+        color: $black-dark;
+        .dot {
+          display: inline-block;
+          margin-bottom: 2px;
+          width: 6px;
+          height: 6px;
+          border-radius: 50%;
+          &.open {
+            background-color: $green;
+            border: solid 1px $green;
+          }
+          &.close {
+            background-color: $grey-light;
+            border: solid 1px $grey-light;
+          }
+        }
+        span {
+          word-wrap: break-word;
+          word-break: normal;
+          display: inline-block;
+        }
+      }
+    }
+  }
+  .dao-table-wrapper {
+    padding: 15px 0px;
+    table {
+      border: solid 1px #d5dbe3;
+      thead {
+        tr {
+          height: $row-height;
+          display: flex;
+          background-color: $white-dark-lighter;
+          th {
+            height: $row-height;
+            line-height: $row-height;
+          }
+        }
+      }
+      tbody {
+        tr {
+          border-bottom: none;
+          td{
+            border-left: none;
+            height: $row-height;
+            line-height: $row-height;
+          }
+        }
+      }
+    }
+  }
+  ul+.dao-table-wrapper {
+    padding-top: 0px;
+    margin-top: -5px;
+  }
+}

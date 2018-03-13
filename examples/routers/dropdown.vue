@@ -10,7 +10,7 @@
         </div>
         <dao-dropdown-menu slot="list">
           <dao-dropdown-item :is-title="true">扩展</dao-dropdown-item>
-          <dao-dropdown-item>
+          <dao-dropdown-item text-color="red" hover-color="green">
             <svg class="icon"><use xlink:href="#icon"></use></svg>
             <span class="text">扩展</span>
           </dao-dropdown-item>
@@ -56,8 +56,9 @@
     </div>
 
     <dao-dropdown
-      trigger="click"
+      trigger="custom"
       :append-to-body="false"
+      :visible="true"
       :placement="placement">
       <button class="dao-btn blue">
         下拉菜单

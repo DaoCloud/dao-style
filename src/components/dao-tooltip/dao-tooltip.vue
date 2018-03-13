@@ -13,7 +13,7 @@
 </template>
 <script>
   import Popper from '../base/popper';
-  import { oneOf } from '../../utils/assist';
+  import { _includes } from '../../utils/assist';
 
   const prefixCls = 'dao-tooltip';
   export default {
@@ -22,7 +22,7 @@
     props: {
       placement: {
         validator(value) {
-          return oneOf(value, ['top', 'top-start', 'top-end', 'bottom', 'bottom-start', 'bottom-end', 'left', 'left-start', 'left-end', 'right', 'right-start', 'right-end']);
+          return _includes(['top', 'top-start', 'top-end', 'bottom', 'bottom-start', 'bottom-end', 'left', 'left-start', 'left-end', 'right', 'right-start', 'right-end'], value);
         },
         default: 'bottom',
       },
@@ -51,6 +51,23 @@
       return {
         prefixCls,
       };
+    },
+    computed: {
+      realVisible() {
+        return !this.disabled && (this.visible || this.always);
+      },
+    },
+    watch: {
+      realVisible(val) {
+        this.updatePopper();
+        if (val) {
+          this.$nextTick(() => this.updatePopper());
+        } else {
+          this.doDestroy();
+          this.$emit('popper-hide');
+        }
+        this.$emit('visible-change', val);
+      },
     },
     methods: {
       handleShowPopper() {

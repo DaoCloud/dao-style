@@ -4,10 +4,13 @@ tab 是 标签组件。代码请参照目录 : [src/components/dao-tab](../src/c
 
 ## 使用方法
 
-### html 使用方法
+### HTML 使用方法
 
 ```HTML
-<dao-tab [direction="right"]>
+<dao-tab
+  [direction="right"]
+  [:currentTab.sync="currentTab"]
+  [@changeTab="onHandleChangeTab"]>
   <dao-tab-item heading="标题1">
     <h3> [HTML 渲染] </h3>
     <label>[Name]</label>
@@ -19,6 +22,23 @@ tab 是 标签组件。代码请参照目录 : [src/components/dao-tab](../src/c
 </dao-tab>
 ```
 
+### JavaScript 使用方法
+
+```JavaScript
+export default {
+  data() {
+    return {
+      currentTab: '标题2',
+    };
+  },
+  methods: {
+    onHandleChangeTab(active) {
+      console.log(`changeTab to ${active}`);
+    },
+  },
+};
+```
+
 ## 组件参数
 
 ### dao-tab
@@ -28,6 +48,13 @@ tab 是 标签组件。代码请参照目录 : [src/components/dao-tab](../src/c
 参数名 | 类型 | 说明 | 默认值 | 是否必填
 -|-|-|-|-
 direction | String | 控制 tab 的标签的方向。 有 2 个 选项, `left`, `right` | left | 否
+currentTab | String | 当前 tab 的 heading 值 | 第一个 tab 的 heading 值 | 否
+
+#### 组件触发的事件
+
+参数名 | 类型 | 说明 | 默认值 | 是否必填
+-|-|-|-|-
+changeTab | Function | 切换 tab-item 触发的触发的事件，参数为切换到的 tab-item 的 __heading__ | - | 否
 
 ### dao-tab-item
 

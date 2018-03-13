@@ -1,146 +1,120 @@
 <template>
-  <div :class="[prefixCls, {'dao-dropdown-is-open': currentVisible}]" v-clickoutside:dao-select-dropdown="handleClose" @mouseenter="handleMouseenter" @mouseleave="handleMouseleave">
+  <div :class="[prefixCls, {'dao-dropdown-is-open': visible}]" v-clickoutside:dao-select-dropdown="handleClose" @mouseenter="handleMouseenter" @mouseleave="handleMouseleave">
     <div :class="[prefixCls + '-rel']" ref="reference" @click="handleClick">
       <slot></slot>
     </div>
-    <!-- <transition :name="transition"> -->
-    <dao-drop v-show="currentVisible" :placement="placement" :append-to-body="appendToBody" ref="drop">
-      <slot name="list"></slot>
-    </dao-drop>
-    <!-- </transition> -->
+    <div :class="[prefixCls + '-popper', 'dao-select-dropdown']" v-show="visible" ref="popper">
+      <div :class="[prefixCls + '-inner']">
+        <slot name="list"></slot>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-  import daoDrop from '../dao-select/dropdown.vue';
   import clickoutside from '../../directives/clickoutside';
-  import { oneOf } from '../../utils/assist';
+  import { _includes } from '../../utils/assist';
+  import Popper from '../base/popper';
 
   const prefixCls = 'dao-dropdown';
 
   export default {
     name: 'Dropdown',
     directives: { clickoutside },
-    components: { daoDrop },
+    mixins: [Popper],
     props: {
       trigger: {
         validator(value) {
-          return oneOf(value, ['click', 'hover', 'custom']);
+          return _includes(['click', 'hover', 'custom'], value);
         },
-        default: 'hover'
-      },
-      placement: {
-        validator(value) {
-          return oneOf(value, ['top', 'top-start', 'top-end', 'bottom', 'bottom-start', 'bottom-end', 'left', 'left-start', 'left-end', 'right', 'right-start', 'right-end']);
-        },
-        default: 'bottom'
-      },
-      visible: {
-        type: Boolean,
-        default: false
-      },
-      appendToBody: {
-        type: Boolean,
-        default: false,
+        default: 'hover',
       },
     },
-    // computed: {
-    //   transition() {
-    //     return ['bottom-start', 'bottom', 'bottom-end'].indexOf(this.placement) > -1 ? 'slide-up' : 'fade';
-    //   }
-    // },
     data() {
       return {
         prefixCls,
-        currentVisible: this.visible,
       };
-    },
-    watch: {
-      visible(val) {
-        this.currentVisible = val;
-      },
-      currentVisible(val) {
-        if (val) {
-          this.$refs.drop.update();
-        } else {
-          this.$refs.drop.destroy();
-        }
-        this.$emit('on-visible-change', val);
-      }
     },
     methods: {
       handleClick() {
-        if (this.trigger === 'custom') return false;
-        if (this.trigger !== 'click') {
-          return false;
-        }
-        this.currentVisible = !this.currentVisible;
+        if (this.trigger !== 'click') return;
+        this.visible = !this.visible;
       },
       handleMouseenter() {
-        if (this.trigger === 'custom') return false;
-        if (this.trigger !== 'hover') {
-          return false;
-        }
+        if (this.trigger !== 'hover') return;
         clearTimeout(this.timeout);
         this.timeout = setTimeout(() => {
-          this.currentVisible = true;
+          this.visible = true;
         }, 250);
       },
       handleMouseleave() {
-        if (this.trigger === 'custom') return false;
-        if (this.trigger !== 'hover') {
-          return false;
-        }
+        if (this.trigger !== 'hover') return;
         clearTimeout(this.timeout);
         this.timeout = setTimeout(() => {
-          this.currentVisible = false;
+          this.visible = false;
         }, 150);
       },
       handleClose() {
-        if (this.trigger === 'custom') return false;
-        if (this.trigger !== 'click') {
-          return false;
-        }
-        this.currentVisible = false;
+        if (this.trigger !== 'click') return;
+        this.visible = false;
       },
       hasParent() {
-        const $parent = this.$parent.$parent.$parent;
+        const $parent = this.$parent.$parent;
         if ($parent && $parent.$options.name === 'Dropdown') {
           return $parent;
-        } else {
-          return false;
         }
-      }
+        return false;
+      },
     },
     mounted() {
       // this.$on('on-click', (key) => {
       //   const $parent = this.hasParent();
       //   if ($parent) $parent.$emit('on-click', key);
       // });
+      if (this.hasParent()) {
+        this.forceNotAppendToBody = true;
+      }
       this.$on('on-hover-click', () => {
         const $parent = this.hasParent();
         if ($parent) {
           this.$nextTick(() => {
-            if (this.trigger === 'custom') return false;
-            this.currentVisible = false;
+            if (this.trigger === 'custom') return;
+            this.visible = false;
           });
           $parent.$emit('on-hover-click');
         } else {
           this.$nextTick(() => {
-            if (this.trigger === 'custom') return false;
-            this.currentVisible = false;
+            if (this.trigger === 'custom') return;
+            this.visible = false;
           });
         }
       });
       this.$on('on-haschild-click', () => {
         this.$nextTick(() => {
-          if (this.trigger === 'custom') return false;
-          this.currentVisible = true;
+          if (this.trigger === 'custom') return;
+          this.visible = true;
         });
         const $parent = this.hasParent();
         if ($parent) $parent.$emit('on-haschild-click');
       });
-    }
+      // 选择popper元素下的ul的子代dao-dropdown-item-base的元素，添加click监听,点击的时候关闭popper
+      if (this.appendToBody) {
+        Array.from(
+          this.$refs.popper.querySelectorAll('ul.dao-dropdown-menu > li.dao-dropdown-item-base'),
+        ).forEach((li) => {
+          li.addEventListener('click', this.handleClose);
+        });
+      }
+    },
+    beforeDestroy() {
+      if (this.appendToBody) {
+        Array.from(
+          this.$refs.popper.querySelectorAll('ul.dao-dropdown-menu > li.dao-dropdown-item-base'),
+        ).forEach((li) => {
+          li.removeEventListener('click', this.handleClose);
+        });
+      }
+    },
   };
 </script>
 

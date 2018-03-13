@@ -6,7 +6,7 @@
 </style>
 <script>
   import Popper from 'popper.js';
-  import { getStyle } from '../../utils/assist';
+  import getStyle from '../../utils/get-style';
 
   const dropdownMargin = 8;
 
@@ -35,7 +35,6 @@
         if (this.width) {
           style.width = `${this.width}px`;
         }
-
         if (this.placement.indexOf('bottom') > -1) {
           style['margin-top'] = `${dropdownMargin}px`;
         } else if (this.placement.indexOf('top') > -1) {
@@ -45,7 +44,6 @@
         } else if (this.placement.indexOf('right') > -1) {
           style['margin-left'] = `${dropdownMargin}px`;
         }
-
         return style;
       },
     },
@@ -101,9 +99,12 @@
       this.$on('on-destroy-popper', this.destroy);
     },
     beforeDestroy() {
+      if (this.appendToBody) {
+        document.body.removeChild(this.$el);
+      }
       if (this.popper) {
         this.popper.destroy();
       }
-    }
+    },
   };
 </script>

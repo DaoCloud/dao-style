@@ -1,7 +1,7 @@
 <template>
   <div :class="['dao-select', {'sm-select': size === 'sm'}]" v-clickoutside:dao-select-dropdown="closeMenu">
-    <div :class="['dao-select-main', {'disabled': isDisabled, 'with-btn': withBtn}]" @click="handleClick">
-      <div :class="['dao-select-switch', {'open': menuVisible}]">
+    <div :class="['dao-select-main', 'dao-select-rel', {'disabled': isDisabled, 'with-btn': withBtn}]" @click="handleClick" ref="reference">
+      <div :class="['dao-select-switch', {'open': visible}]">
         <div class="dao-select-switch-text">
           <div v-show="!selectedText && !isLoading" class="placeholder">{{ placeholder }}</div>
           <div v-show="selectedText && !isLoading" class="selected-text">
@@ -16,43 +16,47 @@
         </div>
         <div class="icon-box">
           <svg class="icon">
-            <use xlink:href="#icon_caret-down"></use>
+            <use xlink:href="#icon_caret-select"></use>
           </svg>
         </div>
       </div>
       <button v-if="withBtn" type="button" :class="['dao-btn', 'blue', 'dao-select-btn', {'disabled': disabled}]" @click.stop="handleBtnClick">{{ btnContent }}</button>
     </div>
-    <dao-drop :drop-class="[menuClass, {'withSearch': withSearch, 'withTab': withTab}]" v-show="menuVisible" placement="bottom" :append-to-body="optionsAppendToBody" ref="drop">
+    <div :class="[menuClass, 'dao-select-popper', 'dao-select-dropdown', {'withSearch': withSearch, 'withTab': withTab}]" v-show="visible" ref="popper">
       <div class="search-container" v-if="withSearch">
         <input class="dao-control search" type="text" :placeholder="searchPlaceholder" v-model="filter" required>
       </div>
       <div class="option-list">
         <slot></slot>
       </div>
-    </dao-drop>
+    </div>
   </div>
 </template>
 <style lang="scss">
   @import './dao-select.scss';
+  @import './dropdown.scss';
 </style>
 <script>
-  import { find, findIndex } from 'lodash';
-  import daoDrop from './dropdown.vue';
+  import { _find, _findIndex, _isEqual } from '../../utils/assist';
   import clickoutside from '../../directives/clickoutside';
   import Emitter from '../../mixins/emitter';
+  import Popper from '../base/popper';
 
   export default {
-    name: 'Select',
+    name: 'DaoSelect',
     componentName: 'Select',
-    mixins: [Emitter],
+    mixins: [Emitter, Popper],
     directives: { clickoutside },
-    components: { daoDrop },
     props: {
       disabled: {
         type: Boolean,
         default: false,
       },
       withSearch: {
+        type: Boolean,
+        default: false,
+      },
+      asyncSearch: {
         type: Boolean,
         default: false,
       },
@@ -86,33 +90,35 @@
       },
       async: Function,
       menuClass: String,
-      optionsAppendToBody: {
-        type: Boolean,
-        default: false,
-      },
       value: {},
       // 指定 select 的大小
       size: String,
     },
     watch: {
       // 控制下拉的显示和隐藏
-      menuVisible(val) {
-        this.$emit('visible-change', Boolean(val));
-      },
       // 搜索
       filter(val) {
-        this.broadcast('Option', 'search', val, this.searchMethod);
+        this.$emit('search-change', val);
+        if (this.asyncSearch) {
+          this.decorateAsync();
+          return;
+        }
+        this.broadcastSearch();
       },
       value(val) {
         // 当 v-model 绑定的 value 值变化时更新一下 option 的状态
         this.updateOptionStatus(val);
+      },
+      // 控制组件加载状态
+      loading(val) {
+        this.isLoading = val;
       },
     },
     beforeCreate() {
       // select 初始化，获取所有的 options 的 value 和 节点
       this.$on('init', (value, nodesString, callback) => {
         // 首先查看是否有这个 value 在 options 中
-        const opt = find(this.options, { value });
+        const opt = _find(this.options, { value });
         if (!opt) {
           this.options.push({ value, nodesString });
         } else {
@@ -126,7 +132,7 @@
       });
       // select 选项池更新，删除已被销毁的 option
       this.$on('option-destroy', (value) => {
-        const index = findIndex(this.options, { value });
+        const index = _findIndex(this.options, { value });
         if (index > -1) {
           this.options.splice(index, 1);
         }
@@ -151,7 +157,6 @@
       return {
         options: [],
         isLoading: this.loading,
-        menuVisible: false,
         asyncComplete: false,
         filter: '',
       };
@@ -168,6 +173,7 @@
           // 触发 input 事件实现双向绑定
           this.$emit('input', val);
           // 触发 change 事件
+          if (_isEqual(val, this.value)) return;
           this.$emit('change', val);
         },
       },
@@ -175,7 +181,7 @@
         // 如果传入的 option 值为对象格式，而且传入的 v-model 为 {} 空对象，
         // lodash 的 find 会找到 options 里面的第一项，而 lodash 的 some 会返回 true
         // 所以这里使用原生的 find 筛出值之后选择第一项
-        const option = this.options.find(v => v.value === this.selectedValue);
+        const option = _find(this.options, { value: this.selectedValue });
         return option ? option.nodesString : '';
       },
     },
@@ -183,13 +189,20 @@
       // 处理点击事件
       handleClick() {
         if (this.isDisabled) return;
-        if (this.async && !this.asyncComplete && !this.menuVisible) {
-          this.handleAsync(() => {
-            this.toggleMenu();
-          });
+        if (this.async && !this.asyncComplete && !this.visible) {
+          this.decorateAsync();
         } else {
           this.toggleMenu();
         }
+      },
+      // 给 async 方法塞一层回调
+      decorateAsync() {
+        this.handleAsync(() => {
+          // 在打开的状态下进行异步搜索，不需要去 toggleMenu
+          if (!this.asyncSearch || (this.asyncSearch && !this.visible)) {
+            this.toggleMenu();
+          }
+        });
       },
       // 处理按钮点击事件
       handleBtnClick() {
@@ -199,39 +212,46 @@
       // 处理 async
       handleAsync(callback) {
         this.isLoading = true;
-        this.async()
-          .then(() => {
-            this.asyncSuccess();
-            return true;
-          })
-          .catch(() => {
-            this.asyncFail();
-            return false;
-          })
-          .then(res => callback(res));
+        this.async(this.filter)
+          .catch(() => {})
+          .then((res) => {
+            this.handleAsyncComplete();
+            callback(res);
+          });
       },
-      // async 方法成功
-      asyncSuccess() {
+      // async 完成
+      handleAsyncComplete() {
+        // 搜索完成时候清空一下 v-model
+        this.selectedValue = null;
         this.isLoading = false;
         this.asyncComplete = true;
       },
-      // async 方法失败
-      asyncFail() {
-        this.isLoading = false;
-        this.asyncComplete = false;
+      broadcastSearch() {
+        this.broadcast('Option', 'search', this.filter, this.searchMethod);
       },
       // 关闭下拉框
       closeMenu() {
-        this.menuVisible = false;
+        this.visible = false;
       },
       // 切换下拉框打开/关闭
       toggleMenu() {
-        this.menuVisible = !this.menuVisible;
+        this.visible = !this.visible;
       },
       // 更新 option 状态
       updateOptionStatus(val) {
         this.broadcast('Option', 'status', val);
       },
+    },
+    created() {
+      // validate
+      if (this.asyncSearch) {
+        if (!this.async) {
+          throw new Error('method "async" was required');
+        }
+        if (this.searchMethod) {
+          console.warn("method 'searchMethod' and 'async' may conflict");
+        }
+      }
     },
   };
 </script>

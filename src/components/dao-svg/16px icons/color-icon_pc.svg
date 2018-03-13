@@ -13,7 +13,6 @@
       <stop offset="1" stop-color="#7cb2f7"/>
     </linearGradient>
   </defs>
-  <title>pc</title>
   <path d="M20,21H12s.266,8-4,8H24C19.734,29,20,21,20,21Z" fill="url(#a)"/>
   <path d="M2,5V23a1,1,0,0,0,1,1H29a1,1,0,0,0,1-1V5a1,1,0,0,0-1-1H3A1,1,0,0,0,2,5Z" fill="url(#b)"/>
   <path d="M4,22H28V6H4Z" fill="url(#c)"/>

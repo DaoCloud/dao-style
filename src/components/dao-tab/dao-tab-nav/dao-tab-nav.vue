@@ -1,13 +1,13 @@
 <template>
   <ul class="dao-tab-nav dao-tab-nav-tab">
-    <li class="dao-tab-nav-item" @click="handleClick(name)" :class="{ active: name === active }" v-for="(name, index) in names">
+    <li  v-for="(name, index) in names" :key="index" 
+      class="dao-tab-nav-item" :class="{ active: name === currentTabHeading }" 
+      @click="handleClick(name)" >
       {{name}}
     </li>
   </ul>
 </template>
-<style lang="scss">
-@import './dao-tab-nav.scss';
-</style>
+
 <script>
 export default {
   name: 'DaoTabNav',
@@ -19,16 +19,19 @@ export default {
   },
   computed: {
     names() {
-      return this.tabList.map((item) => item.heading);
+      return this.tabList.map(item => item.heading);
     },
-    active() {
-      return this.$parent.activeName;
+    currentTabHeading() {
+      return this.$parent.currentTabHeading;
     },
   },
   methods: {
-    handleClick: function handleClick(name) {
-      this.$parent.activeName = name;
+    handleClick(name) {
+      this.$parent.currentTabHeading = name;
     },
   },
 };
 </script>
+
+<style lang="scss" src="./dao-tab-nav.scss">
+</style>

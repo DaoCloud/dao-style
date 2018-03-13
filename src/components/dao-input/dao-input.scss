@@ -40,10 +40,13 @@
   &-group-addon {
     display: inline-flex;
     & > *:not(.dao-select) {
-      padding: 8px 10px;
+      // 不要使用 border-box, 在 ff 28 下会失效
+      box-sizing: content-box;
+      display: inline-block;
+      padding: 0px 10px;
       font-weight: 400;
-      line-height: 1;
-      height: $input-height;
+      line-height: $input-height - 2px;
+      height: $input-height - 2px;
       background-color: $input-disabled-bg-color;
       color: $input-disabled-color;
       border: $input-border;
@@ -59,7 +62,6 @@
     display: inline-flex;
     align-items: center;
     flex-wrap: wrap;
-    vertical-align: middle;
     input {
       @include e('&', ('input', 'textarea')) {
         margin: 0;
@@ -73,15 +75,15 @@
         font-size: $font-base;
         @include box-shadow(none);
         background-color: white;
-        // 为了防止在 disabled 和 default 之间切换的时候，背景图icon也发生 transition 动画
+        // 为了防止在 disabled 和 default 之间切换的时候，背景图 icon 也发生 transition 动画
         // 所以需要用到 @include input-icon-background;
         @include input-icon-background;
         border: $input-border;
+        border-color: $input-border-color;
         border-radius: $input-border-radius;
-        line-height: 1;
+        line-height: 24px;
         // 将 vertical-align: bottom 改成了 vertical-align: middle 了，不知道会不会有其他影响
         vertical-align: middle;
-        // margin-right: 5px;
         & + .dao-btn {
           margin-left: $input-btn-blank;
         }
@@ -92,6 +94,18 @@
     }
     & + .dao-btn {
       margin-left: $input-btn-blank;
+    }
+    &.no-border {
+      input {
+        @include e('&', 'input.no-border') {
+          border: 1px solid transparent;
+        }
+      }
+      input:hover {
+        @include e('&', 'input.no-border', ':hover') {
+          border-color: $input-no-border-hover-border-color;
+        }
+      }
     }
     &.message-bottom {
       flex-direction: column;
@@ -106,33 +120,35 @@
     }
     &.success {
       input {
-        border: 1px solid $input-success-color;
         border-radius: 2px;
-        @include box-shadow(0 0 0 2px $input-success-shadow-color);
       }
     }
     &.error {
       input,
       input:focus,
-      input:active {
-        border: 1px solid $input-error-color;
-        border-radius: 2px;
-        @include box-shadow(0 0 0 2px $input-error-shadow-color);
+      input:active,
+      input:hover {
+        @include e('&', ('input.error', 'textarea.error'), ('', ':focus', ':active', ':hover')) {
+          border: 1px solid $input-error-color;
+          border-radius: 2px;
+          background-color: $input-error-bg-color;
+        }
       }
     }
     // 一定要在 input:focus, input:active 前面才能使用默认样式 :focus, :active
     &.search input {
       @include e('&', 'input.search') {
-        height: 32px;
-        line-height: 30px;
-        width: 200px;
-        border-radius: 17px;
         padding: 0 10px 0 30px;
+        width: 200px;
         background-size: $input-icon-width $input-icon-height;
         background-repeat: no-repeat;
-        background-position: left 8px center;
+        background-position: left 10px center;
         background-image: url($searchIconActiveSvg);
-        box-shadow: 0 1px 0 0 rgba($white, .8), inset 0 1px 3px 0 rgba($grey-light, .3);
+        &.input-sm, &[size='sm'] {
+          padding: 0 10px 0 22px;
+          background-position: left 5px center;
+        }
+        $not-disabled: ':not(.disabled):not([disabled])';
         @each $var in ('.required', '[required]') {
           &#{$var} {
             background-image: url($searchIconSvg);
@@ -144,19 +160,74 @@
             @include box-shadow(0 0 0 2px $input-info-shadow-color);
           }
           @each $behavior in (':valid', ':focus', ':active') {
-            &#{$var}#{$behavior} {
+            &#{$var}#{$behavior}#{$not-disabled} {
               background-image: url($searchIconActiveSvg);
             }
           }
         }
       }
     }
-    &.info input,
+    &.search {
+      .input-helper-text {
+        font-size: 12px;
+        color: $input-search-helper-text-color;
+        right: $input-icon-align-blank;
+        top: 7px;
+        z-index: 2;
+        position: absolute;
+        margin-right: 0;
+        user-select: none;
+        pointer-events: none;
+      }
+      &.can-empty {
+        position: relative;
+        input {
+          padding: $input-icon-padding;
+          padding-left: 30px;
+        }
+        .close-icon {
+          z-index: 2;
+          position: absolute;
+          margin-right: 0;
+          width: $input-icon-width;
+          height: $input-icon-height;
+          right: $input-icon-align-blank;
+          top: 8px;
+          cursor: pointer;
+          svg {
+            width: 100%;
+            height: 100%;
+            fill: $input-close-icon-color;
+            &:hover {
+              fill: $input-close-icon-active-color;
+            }
+          }
+          &.active svg {
+            fill: $input-close-icon-active-color;
+          }
+        }
+      }
+      &.input-sm, &[size='sm'] {
+        .input-helper-text {
+          top: 4px;
+        }
+        &.can-empty {
+          input {
+            padding-left: 22px;
+            padding-right: 22px;
+          }
+          .close-icon {
+            top: 5px;
+            right: 5px;
+          }
+        }
+      }
+    }
     input:focus,
     input:active {
       @include e('&', ('input', 'textarea'), (':focus', ':active')) {
-        border: 1px solid $input-info-color;
-        @include box-shadow(0 0 0 2px $input-info-shadow-color);
+        border: 1px solid $input-info-color!important;
+        @include box-shadow(0 0 0 2px $input-info-shadow-color!important);
       }
     }
     &.disabled input,
@@ -172,122 +243,9 @@
         // 修正在 disabled 中 focus 以及 active 状态下仍有 box-shadow
         &:focus,
         &:active {
-          @include box-shadow(none);
+          border: $input-border!important;
+          @include box-shadow(none!important);
         }
-      }
-      @include e('&', 'input', ('.disabled', '[disabled]', '.readonly', '[readonly]')) {
-        padding: $input-icon-padding;
-        background-image: url($disabledIconSvg);
-      }
-    }
-    &.icon-inside {
-      position: relative;
-      &.info,
-      &.error,
-      &.success,
-      &.loading {
-        input {
-          @include e('&', 'input', ('.info', '.error', '.success')) {
-            padding: $input-icon-padding;
-          }
-        }
-      }
-
-      .info-icon,
-      .error-icon,
-      .success-icon,
-      .loading-icon {
-        z-index: 2;
-        position: absolute;
-        margin-right: 0;
-        width: $input-icon-width;
-        height: $input-icon-height;
-        right: $input-icon-align-blank;
-        top: 8px;
-        svg {
-          width: 100%;
-          height: 100%;
-        }
-      }
-      .loading-icon svg {
-        fill: $input-info-color;
-        -webkit-animation: spin 1.5s infinite linear;
-        animation: spin 1.5s infinite linear;
-      }
-      .info-icon svg {
-        fill: $input-info-color;
-      }
-      .error-icon svg {
-        fill: $input-error-color;
-      }
-      .success-icon svg {
-        fill: $input-success-color;
-      }
-      .dao-popover:not(.hide) {
-        .dao-popover-popper {
-          // 将 display 设置为 table 可解决因为中英文空格、标点符号使得一句话换行问题。
-          // 是受到了外层样式是 flex 布局的影响
-          display: table!important;
-          // 为了解决在 editable-table 中 input with popover 时，popover 多了边框的问题
-          border-collapse: collapse;
-          .dao-popover-inner {
-            color: $white;
-          }
-        }
-      }
-      .dao-popover.info {
-        & .dao-popover-inner {
-          background-color: $input-info-color;
-        }
-        .dao-popover-arrow {
-          &:before {
-            background-color: $input-info-color;
-          }
-          & .pt-popover-arrow-border,
-          & .pt-popover-arrow-fill {
-            fill: $input-info-color;
-          }
-        }
-      }
-      .dao-popover.error {
-        & .dao-popover-inner {
-          background-color: $input-error-color;
-        }
-        .dao-popover-arrow {
-          &:before {
-            background-color: $input-error-color;
-          }
-          & .pt-popover-arrow-border,
-          & .pt-popover-arrow-fill {
-            fill: $input-error-color;
-          }
-        }
-      }
-      .dao-popover.success {
-        & .dao-popover-inner {
-          background-color: $input-success-color;
-        }
-        .dao-popover-arrow {
-          &:before {
-            background-color: $input-success-color;
-          }
-          & .pt-popover-arrow-border,
-          & .pt-popover-arrow-fill {
-            fill: $input-success-color;
-          }
-        }
-      }
-    }
-    .dao-popover-popper[x-placement='top-end'] {
-      transform: translateY(12px);
-      .dao-popover-arrow {
-        right: 1px!important;
-      }
-    }
-    .dao-popover-popper[x-placement='right-start'] {
-      transform: translateX(2px);
-      .dao-popover-arrow {
-        top: 1px!important;
       }
     }
     &.dao-input-group {
@@ -369,7 +327,8 @@
           top: 5px;
         }
       }
-      .dao-popover-popper[x-placement='top-end'] {
+      .dao-popover-popper[x-placement='top-end'],
+      .dao-popover-popper[x-placement='bottom-end'] {
         transform: translateY(10px);
         .dao-popover-arrow {
           right: 1px!important;
@@ -384,6 +343,48 @@
       .dao-input-group-addon  > *:not(.dao-select) {
         padding: 5px 6px;
         height: $input-height-sm;
+      }
+    }
+    &.icon-inside {
+      position: relative;
+      &.info,
+      &.error,
+      &.success,
+      &.loading {
+        input {
+          @include e('&', 'input', ('.info', '.error', '.success')) {
+            padding: $input-icon-padding;
+          }
+        }
+      }
+
+      .info-icon,
+      .error-icon,
+      .success-icon,
+      .loading-icon {
+        z-index: 2;
+        position: absolute;
+        margin-right: 0;
+        width: $input-icon-width;
+        height: $input-icon-height;
+        right: $input-icon-align-blank;
+        top: 8px;
+        svg {
+          width: 100%;
+          height: 100%;
+        }
+      }
+      .info-icon svg {
+        fill: $input-info-color;
+      }
+      .error-icon svg {
+        fill: $input-error-color;
+      }
+      .success-icon svg {
+        fill: $input-success-color;
+      }
+      .loading-icon .dao-spin {
+        margin-left: 3px;
       }
     }
   }
@@ -409,7 +410,8 @@
   }
 }
 textarea#{$dao-control-name} {
-  min-height: $input-height;
+  min-height: $textarea-min-height;
+  max-height: $textarea-max-height;
   height: auto;
   padding-top: 5px;
   padding-bottom: 5px;
@@ -434,5 +436,86 @@ textarea#{$dao-control-name} {
   100% {
     -webkit-transform: rotate(359deg);
     transform: rotate(359deg);
+  }
+}
+
+// TODO
+// 因为appendToBody，此处把样式单独抽离出来了，很不优雅，未来需要还原回去。
+
+.dao-input-container.icon-inside .dao-popover:not(.hide) .dao-popover-popper,
+.dao-popover-popper:not(.hide).append-to-body.dao-input-popover {
+  // 将 display 设置为 table 可解决因为中英文空格、标点符号使得一句话换行问题。
+  // 是受到了外层样式是 flex 布局的影响
+  display: table!important;
+  // 为了解决在 editable-table 中 input with popover 时，popover 多了边框的问题
+  border-collapse: collapse;
+  .dao-popover-inner {
+    color: $white;
+  }
+}
+.dao-input-container.icon-inside .dao-popover.info,
+.dao-popover-popper.info.append-to-body.dao-input-popover {
+  & .dao-popover-inner {
+    background-color: $input-info-color;
+  }
+  .dao-popover-arrow {
+    &:before {
+      background-color: $input-info-color;
+    }
+    & .pt-popover-arrow-border,
+    & .pt-popover-arrow-fill {
+      fill: $input-info-color;
+    }
+  }
+}
+.dao-input-container.icon-inside .dao-popover.error,
+.dao-popover-popper.error.append-to-body.dao-input-popover {
+  & .dao-popover-inner {
+    background-color: $input-error-color;
+  }
+  .dao-popover-arrow {
+    &:before {
+      background-color: $input-error-color;
+    }
+    & .pt-popover-arrow-border,
+    & .pt-popover-arrow-fill {
+      fill: $input-error-color;
+    }
+  }
+}
+.dao-input-container.icon-inside .dao-popover.success,
+.dao-popover-popper.success.append-to-body.dao-input-popover {
+  & .dao-popover-inner {
+    background-color: $input-success-color;
+  }
+  .dao-popover-arrow {
+    &:before {
+      background-color: $input-success-color;
+    }
+    & .pt-popover-arrow-border,
+    & .pt-popover-arrow-fill {
+      fill: $input-success-color;
+    }
+  }
+}
+.dao-input-container .dao-popover-popper[x-placement='top-end'],
+.dao-popover-popper[x-placement='top-end'].append-to-body.dao-input-popover {
+  top: 12px!important;
+  .dao-popover-arrow {
+    right: 1px!important;
+  }
+}
+.dao-input-container .dao-popover-popper[x-placement='bottom-end'],
+.dao-popover-popper[x-placement='bottom-end'].append-to-body.dao-input-popover {
+  top: -12px!important;
+  .dao-popover-arrow {
+    right: 1px!important;
+  }
+}
+.dao-input-container .dao-popover-popper[x-placement='right-start'],
+.dao-popover-popper[x-placement='right-start'].append-to-body.dao-input-popover {
+  left: 2px!important;
+  .dao-popover-arrow {
+    top: 1px!important;
   }
 }

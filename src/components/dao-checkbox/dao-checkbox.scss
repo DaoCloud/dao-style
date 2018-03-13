@@ -38,8 +38,11 @@ $checkbox-height: 24px;
   input[type='checkbox'] {
     position: absolute;
 
-    margin-top: 6px;
+    margin-top: 5px;
     margin-left: -20px;
+
+    width: $checkbox-font-size;
+    height: $checkbox-font-size;
 
     outline: none;
     &[disabled],
@@ -52,40 +55,52 @@ $checkbox-height: 24px;
   }
 }
 
-// 这里有一个圆形的 checkbox
-input[type='checkbox'].round {
-  visibility: hidden;
-  &::before {
-    content: '';
-    transform: translateX(-2px) translateY(-5px);
+.dao-checkbox-group.checkbox-inline {
+  .dao-checkbox {
     display: inline-block;
-    vertical-align: middle;
-    text-align: center;
-    width: 16px;
-    height: 16px;
-    visibility: visible;
-    border-radius: 4px;
-    box-shadow: 0 0 0 1px #cdd2da inset;
-    background: white;
+    padding-right: 5px;
+    margin-right: 30px;
+
+    &:last-child {
+      margin-right: 0;
+    }
   }
 }
 
-input[type='checkbox'].round.half-check {
-  &::before {
-    content: '—';
-    font-weight: bold;
-    background: $blue;
-    box-shadow: none;
-    color: white;
-    font-size: 12px;
-  }
-}
+// // 这里有一个圆形的 checkbox
+// input[type='checkbox'].round {
+//   visibility: hidden;
+//   &::before {
+//     content: '';
+//     transform: translateX(-2px) translateY(-5px);
+//     display: inline-block;
+//     vertical-align: middle;
+//     text-align: center;
+//     width: 16px;
+//     height: 16px;
+//     visibility: visible;
+//     border-radius: 4px;
+//     box-shadow: 0 0 0 1px #cdd2da inset;
+//     background: white;
+//   }
+// }
 
-input[type='checkbox'].round:checked {
-  &::before {
-    content: '\2713';
-    background: $blue;
-    box-shadow: none;
-    color: white;
-  }
-}
+// input[type='checkbox'].round.half-check {
+//   &::before {
+//     content: '—';
+//     font-weight: bold;
+//     background: $blue;
+//     box-shadow: none;
+//     color: white;
+//     font-size: 12px;
+//   }
+// }
+
+// input[type='checkbox'].round:checked {
+//   &::before {
+//     content: '\2713';
+//     background: $blue;
+//     box-shadow: none;
+//     color: white;
+//   }
+// }

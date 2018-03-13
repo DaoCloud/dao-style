@@ -1,11 +1,17 @@
 @import '../dao-color.scss';
-.dao-dropdown.dao-dropdown-is-open > .dao-dropdown-rel > .dao-dropdown-item {
+
+@mixin hoverColor($color) {
   color: $white;
-  background-color: $blue;
+  background-color: $color;
   svg {
     fill: $white;
   }
 }
+
+@mixin textColor($color) {
+  color: $color;
+}
+
 .dao-dropdown-item {
   &.dao-dropdown-item-base {
     font-size: 14px;
@@ -15,21 +21,28 @@
     padding: 7px 10px;
 
     cursor: pointer;
-
-    color: $black-dark;
     svg {
       width: 16px;
       height: 16px;
 
       vertical-align: middle;
-
-      fill: $black-dark;
     }
-    &:hover {
-      color: $white;
-      background-color: $blue;
-      svg {
-        fill: $white;
+    @each $key, $value in
+      ('blue', $blue),
+      ('green', $green),
+      ('yellow', $yellow),
+      ('orange', $orange),
+      ('red', $red),
+      ('purple', $purple),
+      ('black', $black-dark) {
+      &.dao-dropdown-item-#{$key} {
+        color: $value;
+        svg {
+          fill: $value;
+        }
+      }
+      &.dao-dropdown-item-hover-#{$key}:hover {
+        @include hoverColor($value)
       }
     }
   }

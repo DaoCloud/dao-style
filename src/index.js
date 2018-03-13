@@ -1,5 +1,3 @@
-// es6 polyfill
-import 'core-js/fn/array/find-index';
 import './components/dao-svg/svg';
 
 // 纯样式组件
@@ -16,21 +14,31 @@ import daoAutocomplete from './components/dao-autocomplete';
 import daoCallout from './components/dao-callout';
 import daoClipboard from './components/dao-clipboard';
 import daoDialog from './components/dao-dialog';
+import daoDraggableComponent from './components/dao-draggable';
 import daoDropdown from './components/dao-dropdown';
-import { daoEditableInput, daoInput } from './components/dao-input';
+import { daoEditableInput, daoFileInput, daoNumbericInput, daoInput } from './components/dao-input';
+import daoEditableList from './components/dao-editable-list';
 import daoEditableTable from './components/dao-editable-table';
+import daoInfoCard from './components/dao-info-card';
+import daoInputWithLabel from './components/dao-input-with-label';
+import daoList from './components/dao-list';
+import { daoPanel, daoPanelItem } from './components/dao-panel';
+import daoMessageBox from './components/dao-message-box';
 import daoNumericBadge from './components/dao-numeric-badge';
 import daoPopover from './components/dao-popover';
 import { daoProgress, daoProgressPulsing, daoProgressStacked } from './components/dao-progress';
 import daoRadio from './components/dao-radio';
 import daoSelect from './components/dao-select';
 import daoSettingLayout from './components/dao-setting-layout';
+import daoSlider from './components/dao-slider';
+import daoSpin from './components/dao-spin';
 import daoSteps from './components/dao-steps';
 import daoSwitch from './components/dao-switch';
 import daoTab from './components/dao-tab';
 import daoTooltip from './components/dao-tooltip';
 
 // 请按照名称的字典顺序添加以下 directives
+import { daoDraggable, daoDroppable } from './directives/draggable/';
 import daoSelectAll from './directives/dao-select-all';
 import daoTooltipDirective from './directives/dao-tooltip';
 
@@ -42,13 +50,21 @@ const daoStyleComponents = {
   daoCopyBlock: daoClipboard.CopyBlock,
   daoDialog,
   daoDialogStep: daoDialog.Step,
+  daoDraggable: daoDraggableComponent,
   daoDropdown,
   daoDropdownItem: daoDropdown.Item,
   daoDropdownMenu: daoDropdown.Menu,
   daoEditableInput,
   daoEditableTable,
+  daoInfoCard,
+  daoFileInput,
+  daoPanel,
+  daoPanelItem,
   daoInput,
+  daoInputWithLabel,
+  daoList,
   daoNumericBadge,
+  daoNumbericInput,
   daoOption: daoSelect.Option,
   daoOptionGroup: daoSelect.Group,
   daoPopover,
@@ -61,6 +77,9 @@ const daoStyleComponents = {
   daoSettingItem: daoSettingLayout.Item,
   daoSettingLayout,
   daoSettingSection: daoSettingLayout.Section,
+  daoSlider,
+  daoEditableList,
+  daoSpin,
   daoStep: daoSteps.step,
   daoStepContent: daoSteps.content,
   daoSteps,
@@ -74,6 +93,8 @@ const daoStyleComponents = {
 const daoStyleDirectives = {
   'dao-select-all': daoSelectAll,
   'dao-tooltip': daoTooltipDirective,
+  'dao-draggable': daoDraggable,
+  'dao-droppable': daoDroppable,
 };
 
 function install(Vue) {
@@ -83,6 +104,7 @@ function install(Vue) {
   Object.keys(daoStyleDirectives).forEach((key) => {
     Vue.directive(key, daoStyleDirectives[key]);
   });
+  Vue.prototype.$daoAlert = daoMessageBox.alert;
 }
 
 // auto install

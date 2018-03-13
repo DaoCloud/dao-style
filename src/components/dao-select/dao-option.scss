@@ -6,7 +6,7 @@
   position: relative;
 
   svg.checkmark {
-    visibility: hidden;
+    opacity: 0;
     position: absolute;
     left: 10px;
     top: 7.5px;
@@ -28,7 +28,7 @@
 }
 .dao-option-item.active {
   svg {
-    visibility: visible;
+    opacity: 1;
   }
   svg.icon + span.text {
     margin-left: 0px;

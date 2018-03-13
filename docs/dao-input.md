@@ -20,9 +20,45 @@ Input 是一个 32 像素高的（包括 border）表单组件（form component�
   [message=""]
   [message-placement=""]
   [:message-no-icon=""]
-  [search]
   [block]
   [required]
+  [no-border]
+  [:append-to-body="false"]
+  [:show-tooltip-only-hover="false"]
+  [placeholder=""]
+  [readonly]
+  [autofocus]
+  [name=""]
+  [form=""]
+  [maxlength=""]
+  [minlength =""]
+  [max=""]
+  [min=""]
+  [step=""]>
+</dao-input>
+```
+
+#### Search Input
+
+```html
+<dao-input
+  v-model=""
+  search
+  [type=""]
+  [disabled]
+  [value=""]
+  [size=""]
+  [helper-text=""]
+  [:show-helper-text="false"]
+  [icon-inside]
+  [status=""]
+  [message=""]
+  [message-placement=""]
+  [:message-no-icon=""]
+  [block]
+  [required]
+  [:append-to-body="false"]
+  [:show-tooltip-only-hover="false"]
   [placeholder=""]
   [readonly]
   [autofocus]
@@ -71,6 +107,8 @@ Editable Input 是一个可以编辑的 Disabled Input。当我们不希望用�
   [:message-no-icon=""]
   [search]
   [required]
+  [:append-to-body="false"]
+  [:show-tooltip-only-hover="false"]
   [placeholder=""]
   [readonly]
   [autofocus]
@@ -88,67 +126,73 @@ Editable Input 是一个可以编辑的 Disabled Input。当我们不希望用�
 
 ![](https://cloud.githubusercontent.com/assets/7001013/17135801/1a298650-5364-11e6-9a48-07c312b7532a.png)
 
-只需添加 `dao-control` 这个 class 就可以使用样式。Textarea 组件不限高度，只需要设置 `rows` 属性值就能为 Textarea 组件提供所需行数的高度。
+只需添加 `dao-control` 这个 class 就可以使用样式。Textarea 组件不限高度，只需要设置 `rows` 属性值就能为 Textarea 组件提供所需行数的高度。并且提供 error 状态，只需要添加 `error` 这个 class。
 
 ``` html
 <textarea class="dao-control" type="text" rows="3" placeholder="请填写内容">textarea default</textarea>
 <textarea class="dao-control" type="text" rows="3" disabled="disabled">textarea disabled</textarea>
+<textarea class="dao-control error" type="text" rows="3">error textarea</textarea>
 ```
 
 ## 组件参数
 
 ### 组件普通用法接受的参数
 
-| 参数名 | 类型 | 说明 | 默认值 | 是否必填 |
-|:-----:|:----:|:---:|:-----:|:------:|
-| type | String | 类型，可选值（原生值） | text | 否 |
-| value | String, Number | 绑定值 | - | 否 |
-| disabled | Boolean | 禁用 | false | 否 |
-| size | String | 尺寸，可选值（sm） | - | 否 |
-| icon-inside | Boolean | 当需要弹出 popover 提示 | false | 否 |
-| status | String | 状态，可选值（loading/info/success/error） | - | 否 |
-| message | String | 提示的内容，可为空字符串，必选组合参数 status，可选组合参数 icon-inside, message-placement | - | 否 |
-| message-placement | String | 提示内容的位置，必选组合参数 message，可选值 top-end，right-start | top-end | 否 |
-| message-no-icon | Boolean | 提示信息前不带图标，只在 icon-inside 值为 false 时生效 | false | 否 |
-| search | Boolean | 搜索输入框 | false | 否 |
-| block | Boolean | 不限制 input 宽度 | false | 否 |
-| required | Boolean | 必填 | false | 否 |
-| placeholder | String | 	输入框占位文本 | - | 否 |
-| readonly | Boolean | 	原生属性，是否只读 | false | 否 |
-| autofocus | Boolean | 原生属性，自动获得焦点 | false | 否 |
-| name | String | 原生属性 | false | 否 |
-| form | String | 原生属性 | - | 否 |
-| maxlength | Number | 最大输入长度 | - | 否 |
-| minlength | Number | 最小输入长度 | - | 否 |
-| max | Number | 原生属性，设置最大值 | - | 否 |
-| min | Number | 原生属性，设置最小值 | - | 否 |
-| step | Number | 原生属性，设置输入字段的合法数字间隔 | - | 否 |
+|           参数名           |       类型       |                    说明                    |   默认值   | 是否必填 |
+| :---------------------: | :------------: | :--------------------------------------: | :-----: | :--: |
+|          type           |     String     |               类型，可选值（原生值）                |  text   |  否   |
+|          value          | String, Number |                   绑定值                    |    -    |  否   |
+|        disabled         |    Boolean     |                    禁用                    |  false  |  否   |
+|          size           |     String     |                尺寸，可选值（sm）                |    -    |  否   |
+|       icon-inside       |    Boolean     |             当需要弹出 popover 提示             |  false  |  否   |
+|     append-to-body      |    Boolean     |           弹出的提示是否appendToBody            |  true   |  否   |
+|         status          |     String     |    状态，可选值（loading/info/success/error）    |    -    |  否   |
+|         message         |     String     | 提示的内容，可为空字符串，必选组合参数 status，可选组合参数 icon-inside, message-placement |    -    |  否   |
+|    message-placement    |     String     | 提示内容的位置，必选组合参数 message，可选值 top-end，right-start | top-end |  否   |
+|     message-no-icon     |    Boolean     |  提示信息前不带图标，只在 icon-inside 值为 false 时生效   |  false  |  否   |
+|         search          |    Boolean     |                  搜索输入框                   |  false  |  否   |
+|          block          |    Boolean     |               不限制 input 宽度               |  false  |  否   |
+|        required         |    Boolean     |                    必填                    |  false  |  否   |
+|        no-border        |    Boolean     |               input 是否没有边框               |  false  |  否   |
+| show-tooltip-only-hover |    Boolean     |    只有在鼠标 hover 到 icon 上时才会出现 tooltip     |  true   |  否   |
+|       helperText        |     String     |               input 中辅助提示                | 按回车键搜索  |  否   |
+|     showHelperText      |    Boolean     |               input 是否辅助提示               |  false  |  否   |
+|       placeholder       |     String     |                 输入框占位文本                  |    -    |  否   |
+|        readonly         |    Boolean     |                原生属性，是否只读                 |  false  |  否   |
+|        autofocus        |    Boolean     |               原生属性，自动获得焦点                |  false  |  否   |
+|          name           |     String     |                   原生属性                   |  false  |  否   |
+|          form           |     String     |                   原生属性                   |    -    |  否   |
+|        maxlength        |     Number     |                  最大输入长度                  |    -    |  否   |
+|        minlength        |     Number     |                  最小输入长度                  |    -    |  否   |
+|           max           |     Number     |                原生属性，设置最大值                |    -    |  否   |
+|           min           |     Number     |                原生属性，设置最小值                |    -    |  否   |
+|          step           |     Number     |            原生属性，设置输入字段的合法数字间隔            |    -    |  否   |
 
 ### 组件普通用法接受的事件
 
-| 事件名称 | 说明 | 回调参数 |
-|:-------:|:---:|:-------:|
-| keyup | 按键弹起时触发 | (event: Event) |
-| keydown | 按下按键时触发 | (event: Event) |
-| blur | 在 Input 失去焦点时触发 | (event: Event) |
-| focus | 在 Input 获得焦点时触发 | (event: Event) |
-| change | 在 Input 值改变时触发 | (value: String \| Number) |
+|  事件名称   |       说明        |           回调参数            |
+| :-----: | :-------------: | :-----------------------: |
+|  keyup  |     按键弹起时触发     |      (event: Event)       |
+| keydown |     按下按键时触发     |      (event: Event)       |
+|  blur   | 在 Input 失去焦点时触发 |      (event: Event)       |
+|  focus  | 在 Input 获得焦点时触发 |      (event: Event)       |
+| change  | 在 Input 值改变时触发  | (value: String \| Number) |
 
 ### 组件 Slot 接受的参数
 
-|参数名|类型|说明|默认值|是否必填|
-|-----|---|----|----|---|
-| prepend | HTML | Input Group 前置内容 |-|否|
-| append | HTML | Input Group 后置内容 |-|否|
-| button | HTML | Input 插入按钮，可更优雅的将按钮与提示信息组合呈现 |-|否|
+| 参数名     | 类型   | 说明                           | 默认值  | 是否必填 |
+| ------- | ---- | ---------------------------- | ---- | ---- |
+| prepend | HTML | Input Group 前置内容             | -    | 否    |
+| append  | HTML | Input Group 后置内容             | -    | 否    |
+| button  | HTML | Input 插入按钮，可更优雅的将按钮与提示信息组合呈现 | -    | 否    |
 
 ### Editable Input 接受的参数
 
 支持 Input 所有普通用法，除了 block 参数。
 
-| 参数名 | 类型 | 说明 | 默认值 | 是否必填 |
-|:-----:|:----:|:---:|:-----:|:------:|
-| save-btn-content | String | 保存按钮中显示的内容 | 保存 | 否 |
-| edit-state | Boolean | 初始编辑状态 | false | 否 |
-| on-check | Function | 检查输入的函数，符合要求返回 true，否则返回 false | - | 否 |
-| on-success | Function | 如果检查符合输入，进行的处理 | - | 否 |
+|       参数名        |    类型    |               说明               |  默认值  | 是否必填 |
+| :--------------: | :------: | :----------------------------: | :---: | :--: |
+| save-btn-content |  String  |           保存按钮中显示的内容           |  保存   |  否   |
+|    edit-state    | Boolean  |             初始编辑状态             | false |  否   |
+|     on-check     | Function | 检查输入的函数，符合要求返回 true，否则返回 false |   -   |  否   |
+|    on-success    | Function |         如果检查符合输入，进行的处理         |   -   |  否   |

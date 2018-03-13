@@ -1,0 +1,40 @@
+@import "../../dao-color.scss";
+
+$normal-bg-color: #f1f3f5;
+
+.dao-triangle {
+  margin-right: 4px;
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+  span{
+    background-color: $normal-bg-color;
+    display: inline-block;
+    height: 12px;
+    line-height: 12px;
+    cursor: pointer;
+    &:active{
+      background-color: $grey-light;
+    }
+    &:first-child{
+      border-radius: 2px 2px 0 0;
+    }
+    &:last-child{
+      border-radius: 0 0 2px 2px;
+    }
+    svg{
+      height: 10px;
+      width: 10px;
+      fill: #000;
+    }
+  }
+  &.disabled{
+    span{
+      background-color: $white-dark;
+      cursor: not-allowed;
+      svg{
+        fill: $grey-dark;
+      }
+    }
+  }
+}

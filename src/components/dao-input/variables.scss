@@ -3,18 +3,23 @@
 @import "../dao-mixins.scss";
 
 $input-color: $black-dark;
-$input-border: 1px solid $grey-light;
+$input-border: 1px solid $white-dark;
+$input-border-color: $grey-light $white-dark $white-dark;
 $input-border-radius: 2px;
+$input-no-border-hover-border-color: $white-dark;
 $input-placeholder-color: $grey-dark;
 $input-disabled-bg-color: $white-light;
 $input-disabled-color: $grey-dark;
 $input-success-color: $green;
 $input-error-color: $red;
+$input-error-bg-color: generate-color($red, -3);
 $input-info-color: $blue;
+$input-close-icon-color: $grey-light;
+$input-close-icon-active-color: $grey-dark;
 $input-shadow-color-opacity: 0.15;
 // sass 中也有 rgba，可以直接写16进制色彩代码，透明度，它会直接编译成 css 中的 rgba
-$input-success-shadow-color: rgba($green, $input-shadow-color-opacity);
-$input-error-shadow-color: rgba($red, $input-shadow-color-opacity);
+// $input-success-shadow-color: rgba($green, $input-shadow-color-opacity);
+// $input-error-shadow-color: rgba($red, $input-shadow-color-opacity);
 $input-info-shadow-color: rgba($blue, $input-shadow-color-opacity);
 $input-icon-align-blank: 8px;
 $input-icon-width: 16px;
@@ -25,14 +30,19 @@ $input-width: 574px/2;
 $input-height: 32px;
 $input-search-icon-color: $grey-light;
 $input-search-icon-active-color: $grey-dark;
+$input-search-helper-text-color: $grey-light;
 $input-btn-blank: 20px;
 $dao-control-name: '.dao-control';
-$input-normal-padding: 0 10px;
+$input-normal-padding: 4px 10px;
 // 因为还有可能是 0 10px 0 30px 这种情况，为了重置 padding，所以再都设置一遍
-$input-icon-padding: 0 30px 0 10px;
+$input-icon-padding: 4px 28px 4px 10px;
 
 // size sm input 配置
 $input-height-sm: 26px;
+
+// textarea 配置
+$textarea-min-height: 56px;
+$textarea-max-height: 152px;
 
 $errorIconSvg: svg-inline("<svg fill='" + $input-error-color + "' viewBox='0 0 32 32'><path d='M31.431,27.954L17.181,3.274a1.364,1.364,0,0,0-2.362,0L0.569,27.954A1.364,1.364,0,0,0,1.751,30h28.5A1.364,1.364,0,0,0,31.431,27.954ZM16,27.129a1.539,1.539,0,1,1,1.539-1.539A1.539,1.539,0,0,1,16,27.129Zm1.135-4.677H14.865l-0.4-11.6h3.078Z'/></svg>");
 $successIconSvg: svg-inline("<svg fill='" + $input-success-color + "' viewBox='0 0 32 32'><path d='M16,1.2A14.8,14.8,0,1,0,30.8,16,14.8,14.8,0,0,0,16,1.2ZM13.773,23.268L6.956,16.452l2.177-2.177,4.64,4.64L22.867,9.82,25.044,12Z'/></svg>");

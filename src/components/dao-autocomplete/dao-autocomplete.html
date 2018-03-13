@@ -1,15 +1,18 @@
 <div class="dao-autocomplete">
   <dao-input type="text"
-    ref="input"
+    ref="reference"
     :placeholder="placeholder"
     v-model="inputText"
+    icon-inside
+    :message="errorMsg"
+    :status="inputStatus"
     @keyup="keyup"
     @keyup.up="upArrow"
     @keyup.down="downArrow"
     @keyup.enter="enter"
     @focus="show"
     @blur="blur"></dao-input>
-  <dao-drop class="dao-autocomplete-dropdown" v-show="isShow && filteredOption.length > 0">
+  <div class="dao-autocomplete-dropdown dao-autocomplete-popper" ref="popper" v-show="visible && filteredOption.length > 0">
     <ul class="dao-autocomplete-ul">
       <li class="dao-autocomplete-li"
         v-for="(o, index) in filteredOption"
@@ -19,5 +22,5 @@
         {{ o.text }}
       </li>
     </ul>
-  </dao-drop>
+  </div>
 </div>

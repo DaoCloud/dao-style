@@ -29,10 +29,10 @@ dao-style-vue 是一个基于 Vue 2.0 框架的 web UI 组件库。
 
 |浏览器类型|浏览器版本支持|
 |--------|---------|
-| Chrome| |
-| Safari| |
-| firefox||
-| IE     ||
+| Chrome| 30 |
+| Safari| 10 |
+| Firefox| 28 |
+| IE     | 11 |
 
 ## 贡献指南
 
@@ -46,11 +46,12 @@ dao-style-vue 是一个基于 Vue 2.0 框架的 web UI 组件库。
 |--------|---------|
 | 欧阳宁|`clipboard`、`radio`、`select`|
 | 谈博文|`autocomplete `、`editable-table`、`progress `、`table`|
-| 张晓旭|`dialog`、`tab`|
-| 刘世奇|`list-group`、`popover`、`tooltip`、 |
+| 张晓旭|`dialog`、`slider`、`tab`|
+| 刘世奇|`list-group`、`popover`、`tooltip`|
 | 朱静思|`numeric-badge`、`select－all`、`setting-layout`、`steps`|
 | 胡心悦|`button`、`card`、`input`|
 | 乔安然|`dropdown`、`switch`|
+| 丛杨  | `checkbox`|
 
 ## LICENSE
 

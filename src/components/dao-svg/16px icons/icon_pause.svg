@@ -1,7 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-  <title>pause</title>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
   <g>
-    <rect x="20" y="4" width="6" height="24"/>
-    <rect x="6" y="4" width="6" height="24"/>
+    <rect x="10" y="2" width="3" height="12"/>
+    <rect x="3" y="2" width="3" height="12"/>
   </g>
 </svg>

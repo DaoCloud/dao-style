@@ -33,7 +33,7 @@
         <dao-tooltip content="Right Center 文字提示" placement="right">
           <button class="dao-btn ghost">右边</button>
         </dao-tooltip><br><br>
-        <dao-tooltip content="Right Bottom 文字提示" placement="right-end">
+        <dao-tooltip content="Right Bottom 文字提示" placement="right-end" :append-to-body="false">
           <button class="dao-btn ghost">右下</button>
         </dao-tooltip>
       </div>
@@ -66,6 +66,30 @@
           </td>
         </tr>
       </table>
+    </div>
+    <div>
+      <div class="dao-btn-group">
+        <dao-tooltip content="this is a test button group" placement="top">
+          <button class="dao-btn blue">with tooltip</button>
+        </dao-tooltip>
+        <button class="dao-btn green">without</button>
+        <dao-tooltip content="this is a test button group" placement="top">
+          <button class="dao-btn yellow">with</button>
+        </dao-tooltip>
+        <button class="dao-btn red">with</button>
+      </div>
+    </div>
+    <br>
+    <div class="dao-btn-group">
+        <dao-tooltip content="this is a test button group" placement="top">
+          <button class="dao-btn ghost">with tooltip</button>
+        </dao-tooltip>
+        <button class="dao-btn ghost">without</button>
+        <dao-tooltip content="this is a test button group" placement="top">
+          <button class="dao-btn ghost">with</button>
+        </dao-tooltip>
+        <button class="dao-btn ghost">with</button>
+      </div>
     </div>
   </div>
 </template>

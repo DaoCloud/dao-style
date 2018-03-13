@@ -1,3 +1,4 @@
+/* eslint-disable */
 import Vue from 'vue';
 
 import DaoClipboard from './dao-clipboard.vue';
@@ -24,17 +25,5 @@ describe('Test DaoClipboard component', () => {
     const vm = new Constructor().$mount();
     const _caption = vm.$el.textContent;
     expect(_caption).to.equal(caption);
-  });
-
-  it('content can be string', () => {
-    const content = 'content to copy';
-    const Constructor = Vue.extend({
-      template: `<div is="dao-clipboard" caption="content to show" content="${content}"></div>`,
-    });
-    const vm = new Constructor().$mount();
-
-    const _content = vm.$el.getAttribute('data-clipboard-text');
-
-    expect(_content).to.equal(content);
   });
 });

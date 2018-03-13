@@ -16,8 +16,9 @@
   cursor: pointer;
   user-select: none;
   text-align: center;
-  vertical-align: middle;
   white-space: nowrap;
+
+  height: 32px; // fixed button height for firefox28
 
   @include box-sizing('border-box');
   @include button-size($btn-padding-y, $btn-padding-x, $font-size-base, $line-height-base, $btn-border-radius-base);
@@ -136,12 +137,10 @@ a.dao-btn {
     padding-bottom: $btn-has-icon-padding-y;
     .text {
       display: inline-block;
-      vertical-align: middle;
       margin:0 0 0 0;
     }
     svg.icon {
       display: inline-block;
-      vertical-align: middle;
     }
     svg.icon + .text {
       margin:0 0 0 5px;
@@ -170,5 +169,6 @@ a.dao-btn {
     font-size: 13px;
     line-height: 24px;
     padding: 0 10px;
+    height: 26px;
   }
 }

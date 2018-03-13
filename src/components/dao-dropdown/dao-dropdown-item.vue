@@ -24,7 +24,15 @@
       isTitle: {
         type: Boolean,
         default: false
-      }
+      },
+      textColor: {
+        type: String,
+        default: 'black'
+      },
+      hoverColor: {
+        type: String,
+        default: 'blue'
+      },
     },
     computed: {
       base() {
@@ -39,17 +47,19 @@
             [`${prefixCls}-divided`]: this.isDivided,
             [`${prefixCls}-subtitle`]: this.isTitle,
             [`${prefixCls}-base`]: this.base,
+            [`${prefixCls}-${this.textColor}`]: !!this.textColor,
+            [`${prefixCls}-hover-${this.hoverColor}`]: !!this.hoverColor,
           }
         ];
       }
     },
     methods: {
       handleClick () {
-        const $parent = this.$parent.$parent.$parent;
+        const $parent = this.$parent.$parent;
         const hasChildren = this.$parent && this.$parent.$options.name === 'Dropdown';
         if (this.isDisabled) {
           this.$nextTick(() => {
-            $parent.currentVisible = true;
+            $parent.visible = true;
           });
           return;
         } else if (hasChildren) {

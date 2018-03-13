@@ -25,6 +25,7 @@
       },
       value: {},
       label: [String, Number],
+      prefix: String,
     },
     beforeCreate() {
       // 绑定选择事件
@@ -54,6 +55,7 @@
               this.matchedFilter = (this.label ? this.label.indexOf(filter) > -1 : true);
             }
         }
+        // 这里往上层传搜索结果，不是一个很好的操作，执行太频繁了
         this.dispatch('Option-group', 'search-result');
       });
     },
@@ -79,7 +81,7 @@
       nodesString() {
         // 获取 slot 中的 dom 节点
         const nodes = this.$slots.default;
-        let nodesString = '';
+        let nodesString =  this.prefix || '';
         if (nodes) {
           nodes.forEach((n) => {
             if (n.elm.nodeType === 3) {

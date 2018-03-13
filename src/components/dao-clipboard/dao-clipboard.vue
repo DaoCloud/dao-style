@@ -1,10 +1,10 @@
 <template>
-  <div :data-clipboard-text="content"><slot>{{ caption }}</slot></div>
+  <div @click="handleClick" ><slot>{{ caption }}</slot></div>
 </template>
 
 <script>
-import Clipboard from 'clipboard';
-import { isFunction } from 'lodash';
+
+import copySelect from '../../utils/copy-select';
 
 export default {
   name: 'DaoClipboard',
@@ -12,33 +12,37 @@ export default {
   props: {
     caption: String,
     content: String,
-    onSuccess: Function,
-    onError: Function,
+    onSuccess: {
+      type: Function,
+      default() {
+        return () => 0;
+      },
+    },
+    onError: {
+      type: Function,
+      default() {
+        return () => 0;
+      },
+    },
   },
 
-  data: function() {
+  data() {
     return {
-      __clipboard: null,
-    }
+    };
   },
-
-  mounted: function() {
-    this.__clipboard = new Clipboard(this.$el);
-    this.__clipboard.on('success', (e) => {
-      this.$nextTick(() => {
-        if (isFunction(this.onSuccess)) {
-          this.onSuccess(e);
-        }
+  methods: {
+    handleClick() {
+      copySelect(this.$el, this.content, (succeed) => {
+        this.callback(succeed);
       });
-    });
-
-    this.__clipboard.on('error', (e) => {
-      this.$nextTick(() => {
-        if (isFunction(this.onError)) {
-          this.onError(e);
-        }
-      });
-    });
+    },
+    callback(succeed) {
+      if (succeed) {
+        this.onSuccess();
+      } else {
+        this.onError();
+      }
+    },
   },
 };
 </script>

@@ -1,0 +1,216 @@
+@import '../dao-color.scss';
+$tr-height: 30px;
+// 这是算上上方1px边框的高度
+$topbar-height: 35px;
+$td-checkbox-width: 54px;
+
+$font-size: 14px;
+
+$zebra-bg: #f1f7fe;
+$th-bg: $white-light;
+
+$pagination-active-color: #217ef2;
+$selected-bg: #096dec;
+
+$outer-border: $grey-light;
+$inner-border: $white-dark;
+
+.invisible {
+  visibility: hidden;
+}
+
+.dao-list-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+.dao-list-toolbar {
+  margin-bottom: 10px;
+  .dao-btn.pseudo-disabled {
+    color: #ccd1d9;
+    border-color: #ccd1d9 !important;
+    background: none !important;
+    cursor: not-allowed;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), 0 1px 0 rgba(255, 255, 255, 0.9) !important;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.9);
+  }
+  .pull-right {
+    float: right;
+  }
+}
+
+.dao-list-main {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  border: 1px solid $outer-border;
+
+  svg {
+    width: 16px;
+    height: 16px;
+    vertical-align: text-bottom;
+    fill: currentColor;
+  }
+}
+
+.dao-list-topbar {
+  flex: 0 0 auto;
+  height: $topbar-height;
+
+  color: $grey-dark;
+  line-height: $topbar-height - 1;
+  border-bottom: 1px solid $outer-border;
+  .dao-list-filter {
+    width: 514px;
+    display: inline-block;
+    margin-left: 4px;
+    // TODO: 由于没办法给 input 加 class，所以只能覆盖了
+    input {
+      height: 26px;
+      vertical-align: inherit;
+    }
+    .close-icon {
+      top: 0 !important;
+    }
+  }
+  .dao-list-pagination {
+    float: right;
+    margin-right: 4px;
+    .pagination {
+      color: $pagination-active-color;
+      display: inline-block;
+    }
+    svg {
+      cursor: pointer;
+    }
+    .page {
+      display: inline-block;
+      height: 26px;
+      width: 28px;
+
+      line-height: 26px;
+      border-radius: 3px;
+      text-align: center; 
+      background: none;
+      border: 0;
+      color: unset;
+      font-size: 14px;
+      cursor: pointer;
+    }
+    .disabled {
+      color: $grey-dark;
+      cursor: auto;
+    }
+    .active {
+      background: rgba(56, 144, 255, 0.15);
+    }
+  }
+}
+
+.dao-list-scrolldiv {
+  width: 100%;
+  overflow: auto;
+}
+
+table.dao-list {
+  table-layout: fixed;
+  position: relative;
+  height: 100%;
+  width: 100%;
+
+  border-collapse: collapse;
+
+  overflow: auto;
+  thead {
+    // 注意 thead 的 tr 下面有一个 border，这 1px 的 border 不在 30px 中
+    height: $tr-height + 1;
+    
+    border-bottom: 1px solid $inner-border;
+    background: $white-light;
+  }
+  
+  tr {
+    height: 30px;
+    color: $black-dark;
+    .dropdown-trigger {
+      cursor: pointer;
+      fill: transparent;
+    }
+    &:nth-child(even) {
+      background: $zebra-bg;
+    }
+    &.checked {
+      color: white;
+      background-color: $selected-bg;
+      svg {
+        fill: white;
+      }
+    }
+    &:hover {
+      .dropdown-trigger {
+        fill: $grey-dark;
+      }
+    }
+  }
+  
+  th, td {
+    padding: 0 10px;
+  
+    font-size: $font-size;
+    font-weight: normal;
+    line-height: $tr-height;
+    white-space: nowrap;
+    text-align: left;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    &.checkbox {
+      width: $td-checkbox-width;
+      input {
+        vertical-align: text-bottom;
+      }
+      svg {
+        fill: $black-dark;
+      }
+    }
+    &.operation {
+      width: 36px;
+    }
+  }
+  
+  th {
+    position: relative;
+    border-right: 1px solid $inner-border;
+    cursor: pointer;
+    .sort-arrow {
+      position: absolute;
+      right: 10px;
+      top: 7px;
+      fill: $grey-dark;
+    }
+    &:last-child {
+      border-right: none;
+    }
+    &:active {
+      background: $white-dark;
+    }
+  }
+}
+
+.dao-list-context-menu {
+  position: absolute;
+  user-select: none;
+}
+
+.dao-list-empty{
+  padding: 40px;
+  text-align: center;
+  color: $grey-dark;
+  background-color: #fbfcfc;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 40px;
+}

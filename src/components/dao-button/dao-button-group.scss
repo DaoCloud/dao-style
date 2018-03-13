@@ -18,14 +18,9 @@
 .dao-btn-group,
 .dao-btn-group-vertical {
   position: relative;
-  // 之所以用inline-table是因为如果里面有两个 dao-button，
-  // 并且两个 dao-button 的 HTML 之间有空格或换行的话，
-  // 实际显示出来的两个 dao-button 之间会有一个空隙，
-  // 改成 inline-table 就不会有空隙了，但目前不知道会不会有副作用
+  display: inline-flex;
+  align-items: center;
 
-  display: inline-table;
-
-  vertical-align: middle; // match .dao-btn alignment given font-size hack above
   > .dao-btn {
     position: relative;
 
@@ -55,7 +50,12 @@
   .dao-btn-group + .dao-btn-group,
   .dao-btn + .dao-dropdown,
   .dao-dropdown + .dao-btn,
-  .dao-dropdown + .dao-dropdown {
+  .dao-dropdown + .dao-dropdown,
+  .dao-tooltip + .dao-btn,
+  .dao-btn + .dao-tooltip,
+  .dao-tooltip + .dao-tooltip,
+  .dao-dropdown + .dao-tooltip,
+  .dao-tooltip + .dao-dropdown {
     margin-left: -$input-btn-border-width;
   }
 }
@@ -115,6 +115,17 @@
     border-bottom-left-radius: 0;
   }
   &:not(:last-child) > .dao-dropdown-rel > .dao-btn {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+}
+
+.dao-btn-group > .dao-tooltip {
+  &:not(:first-child) > .dao-tooltip-rel > .dao-btn {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+  &:not(:last-child) > .dao-tooltip-rel > .dao-btn {
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
   }

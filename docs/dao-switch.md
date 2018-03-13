@@ -16,6 +16,7 @@ DaoSwitch 用于二元选择场景，比如是/否，开/关。 代码请参照�
             [:off-text="关"]
             [name="Switch Button"]
             [coreWidth="54"]
+            [size="sm"]
             [@input="onInput"]
             [@change="onChange"]>
 </dao-switch>
@@ -49,6 +50,7 @@ function onInput(val) {
 | name       | String  | 提交表单时使用的属性名称                                      | _空字符串_                        | 否       |
 | withNotice | Boolean | 是否显示状态提示文字                                          | `true`                            | 否       |
 | coreWidth  | Number  | 按钮的宽度                                                    | 54 像素                           | 否       |
+| size       | String  | 按钮大小                                                     | _空字符串_                         | 否
 
 ### 暴露的事件
 | 事件名 | 说明                                                  |

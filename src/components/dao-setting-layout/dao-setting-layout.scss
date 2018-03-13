@@ -78,9 +78,10 @@ $border-radius-size: 4px;
         width: 100%;
         margin: 10px 0 0;
         border: none;
-        background: linear-gradient(to right, transparent 0, $border-color 30px, $border-color calc(100% - 30px), transparent 100%);
+        background: linear-gradient(to right, $background-color-title 0, $border-color 30px, $border-color calc(100% - 30px), $background-color-title 100%);
         height: 1px;
-        transform: translateX(-30px);
+        // 不要使用 transform 去移动，在chrome30 下会失效
+        left: 0px;
       }
     }
 

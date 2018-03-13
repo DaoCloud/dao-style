@@ -16,8 +16,10 @@
             size="sm"
             :block="true"
             icon-inside
+            :placeholder="td.placeholder"
             :message="typeof(td.valid) === 'string' ? td.valid : ''"
             :status="typeof(td.valid) === 'string' ? 'error' : ''"
+            :show-tooltip-only-hover="true"
             @focus="focusRow(index)"
             @blur="onBlur">
           </dao-input>
@@ -35,7 +37,7 @@
             v-model="td.value"
             size="sm"
             @change="validteAndUpdate()">
-            <dao-option v-for="option in td.options" :value="option.value || option" :label="option.label || option"></dao-option>
+            <dao-option v-for="option in td.options" :value="option.value || option" :label="option.label || option" :key="option.value || option"></dao-option>
           </dao-select>
           <span v-if="td.type === 'text'">{{ td.value }}</span>
         </td>

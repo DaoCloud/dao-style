@@ -1,22 +1,20 @@
 <template>
-  <div class="dao-tab"
-    :class="{ right: direction === 'right' }"
-  >
+  <div class="dao-tab" :class="{ right: direction === 'right' }">
     <div class="dao-tab__header">
-      <DaoTabNav :tabList="tabList"/>
+      <dao-tab-nav :tabList="tabList">
+      </dao-tab-nav>
     </div>
     <div class="dao-tab__body">
-      <slot>
-        等待加载 Tab 数据
-      </slot>
+      <slot/>
     </div>
   </div>
 </template>
-<style lang="scss">
-  @import './dao-tab.scss';
-</style>
+
 <script>
-import DaoTabNav from './dao-tab-nav/dao-tab-nav';
+
+import daoTabNav from './dao-tab-nav/dao-tab-nav.vue';
+import { _includes } from '../../utils/assist';
+
 export default {
   name: 'DaoTab',
   props: {
@@ -24,15 +22,16 @@ export default {
       type: String,
       required: false,
       default: 'left',
-      validator: function(value) {
-        return value === 'left' || value === 'right';
+      validator(value) {
+        return _includes(['left', 'right'], value);
       },
     },
+    currentTab: String,
   },
   data() {
     return {
       tabList: [],
-      activeName: '0',
+      currentTabHeading: '0',
     };
   },
   methods: {
@@ -47,15 +46,33 @@ export default {
       }
       this.tabList = tabs;
     },
+    resetCurrentTab() {
+      if (this.currentTab) {
+        this.currentTabHeading = this.currentTab;
+      } else {
+        this.currentTabHeading = this.tabList[0].heading;
+      }
+    },
   },
   watch: {
-    tabList(value) {
+    tabList() {
       // 只在刚加载进数据的时候执行一次
-      this.activeName = value[0].heading;
+      this.resetCurrentTab();
+    },
+    currentTabHeading(newV, oldV) {
+      if (newV === oldV) return;
+      this.$emit('update:currentTab', this.currentTabHeading);
+      this.$emit('changeTab', newV);
+    },
+    currentTab() {
+      this.resetCurrentTab();
     },
   },
   components: {
-    DaoTabNav,
+    daoTabNav,
   },
 };
 </script>
+
+<style lang="scss" src="./dao-tab.scss">
+</style>

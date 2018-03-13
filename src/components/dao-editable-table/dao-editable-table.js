@@ -1,6 +1,11 @@
-import _ from 'lodash';
 import daoDrop from '../dao-select/dropdown.vue';
 import clickoutside from '../../directives/clickoutside';
+import {
+  _map,
+  _forEach,
+  _some,
+  _isString,
+} from '../../utils/assist';
 
 export default {
   name: 'DaoEditableTable',
@@ -12,20 +17,20 @@ export default {
   },
   props: ['config', 'value'],
   data() {
-    // 略微处理一下外面传进来的参数
-    const header = this.config.header.map(h => ({
-      text: h.text ? h.text : h,
-      tooltip: h.tooltip,
-    }));
     return {
-      header,
       activatedRow: null,
       rows: [],
     };
   },
   computed: {
     model() {
-      return _.map(this.rows, this.rowToModel);
+      return _map(this.rows, this.rowToModel);
+    },
+    header() {
+      return this.config.header.map(h => ({
+        text: h.text ? h.text : h,
+        tooltip: h.tooltip,
+      }));
     },
   },
   watch: {
@@ -33,11 +38,20 @@ export default {
     value(newModel) {
       this.modelToRow(newModel);
     },
+    config: {
+      handler() {
+        // 当 config 改变时，使用 input 事件，触发父组件 v-model 更新
+        // 使整个 rows 根据新的 config 和 model 重新生成
+        this.$emit('input', this.model);
+        this.validteAndUpdate();
+      },
+      deep: true,
+    },
   },
   methods: {
     // 根据 model 生成一行数据，不传 model 就直接生成一行默认的数据
     generateRow(model) {
-      const resultRow = this.config.body.map((td) => {
+      let resultRow = this.config.body.map((td) => {
         let value;
         switch (td.type) {
           case 'input':
@@ -59,27 +73,29 @@ export default {
           options: td.options || null,
           label: td.label || '',
           validate: td.validate || null,
+          placeholder: td.placeholder || '',
         };
       });
       // 如果有预先设置的值的话，就要把默认值塞进去
       if (model) {
-        _.forEach(model, (val, key) => {
-          _.find(resultRow, td => td.name === key).value = val;
+        resultRow = _map(resultRow, (row) => {
+          const r = row;
+          r.value = model[row.name];
+          return r;
         });
       }
-
       return resultRow;
     },
     // 把 model 的数据塞到当前的表格中
     modelToRow(model) {
       if (model === this.rows) return;
-      this.rows = _.map(model, this.generateRow);
+      this.rows = _map(model, this.generateRow);
       this.inactivateRow();
     },
     // 根据一行的数据生成一行的 model
     rowToModel(row) {
       const obj = {};
-      _.forEach(row, (td) => {
+      _forEach(row, (td) => {
         obj[td.name] = td.value;
       });
       return obj;
@@ -109,8 +125,8 @@ export default {
     },
     // 验证数据
     validate() {
-      _.forEach(this.rows, (row) => {
-        _.forEach(row, (td) => {
+      _forEach(this.rows, (row) => {
+        _forEach(row, (td) => {
           if (td.type === 'input' && td.validate) {
             td.valid = td.validate(this.rowToModel(row), this.model);
           }
@@ -120,8 +136,8 @@ export default {
     // 更新 model
     updateModel() {
       let valid = true;
-      _.forEach(this.rows, (row) => {
-        if (_.some(row, td => _.isString(td.valid))) {
+      _forEach(this.rows, (row) => {
+        if (_some(row, td => _isString(td.valid))) {
           valid = false;
           return false;
         }

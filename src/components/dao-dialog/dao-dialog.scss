@@ -17,13 +17,18 @@ $resizeSvg: "data:image/svg+xml;utf8,%3Csvg%20xmlns=%27http://www.w3.org/2000/sv
   z-index: 9998;
   transition: opacity .3s ease;
 
-  &.backdrop__scroll {
+  &.backdrop__scrollY, &.backdrop__scrollX {
     display: block;
-    overflow-y: auto;
 
     .dao-dialog-wrapper {
       display: block;
     }
+  }
+  &.backdrop__scrollY{
+    overflow-y: auto;
+  }
+  &.backdrop__scrollX{
+    overflow-x: auto;
   }
 }
 
@@ -49,6 +54,7 @@ $resizeSvg: "data:image/svg+xml;utf8,%3Csvg%20xmlns=%27http://www.w3.org/2000/sv
   }
   .dao-dialog-step {
     flex: 1;
+    position: relative;
     overflow-x: hidden;
     overflow-y: auto;
   }
@@ -82,36 +88,23 @@ $resizeSvg: "data:image/svg+xml;utf8,%3Csvg%20xmlns=%27http://www.w3.org/2000/sv
 }
 
 .dao-dialog-wrapper {
-  &[size='sm'] {
-    .dao-dialog-container {
-      height: 200px;
-    }
+  &[size='sm'] > .dao-dialog-container {
+    height: 200px;
   }
-  &[size='md'] {
-    .dao-dialog-container {
-      height: 400px;
-    }
+  &[size='md'] > .dao-dialog-container {
+    height: 400px;
   }
-  &[size='lg'] {
-    .dao-dialog-container {
-      width: 900px;
-      height: 600px;
-    }
+  &[size='lg'] > .dao-dialog-container {
+    width: 900px;
+    height: 600px;
   }
 
   &[size='resize'] {
     height: 100%;
 
-    .dao-dialog-container {
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      height: 400px;
-      transform: translateX(-50%) translateY(-50%);
-      resize: both;
-
-      &::after {
-        content: '';
+    &>.dao-dialog-container {
+      position: relative;
+      .resize-handle {
         position: absolute;
         right: 0;
         bottom: 0;
@@ -133,6 +126,7 @@ $resizeSvg: "data:image/svg+xml;utf8,%3Csvg%20xmlns=%27http://www.w3.org/2000/sv
   background-image: $dialog-header-bg-img;
   border-radius: 0 0 4px 4px;
   box-shadow: inset 0 -1px 0  #e4e7ed;
+  user-select: none;
 }
 
 /*

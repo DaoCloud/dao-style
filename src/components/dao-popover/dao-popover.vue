@@ -1,9 +1,9 @@
 <template>
-  <div :class="[prefixCls]" @mouseenter="handleMouseenter" @mouseleave="handleMouseleave" v-clickoutside="handleClose">
+  <div :class="[prefixCls]" @mouseenter="handleMouseenter" @mouseleave="handleMouseleave" v-clickoutside:dao-popover-popper="handleClose">
     <div :class="[prefixCls + '-rel']" ref="reference" @click="handleClick" @mousedown="handleFocus(false)" @mouseup="handleBlur(false)">
       <slot></slot>
     </div>
-    <div :class="[prefixCls + '-popper']" ref="popper" v-show="!disabled && (visible || always) && ($slots.content || content)">
+    <div :class="[prefixCls + '-popper']" ref="popper" v-show="realVisible">
       <div :class="[prefixCls + '-arrow']">
         <svg viewBox="0 0 30 30">
           <path class="pt-popover-arrow-border" d="M8.11 6.302c1.015-.936 1.887-2.922 1.887-4.297v26c0-1.378-.868-3.357-1.888-4.297L.925 17.09c-1.237-1.14-1.233-3.034 0-4.17L8.11 6.302z" fill-opacity="0.1"></path>
@@ -19,7 +19,7 @@
 <script>
   import Popper from '../base/popper';
   import clickoutside from '../../directives/clickoutside';
-  import { oneOf } from '../../utils/assist';
+  import { _includes } from '../../utils/assist';
 
   const prefixCls = 'dao-popover';
   export default {
@@ -29,13 +29,13 @@
     props: {
       trigger: {
         validator(value) {
-          return oneOf(value, ['click', 'focus', 'hover']);
+          return _includes(['click', 'focus', 'hover'], value);
         },
         default: 'click',
       },
       placement: {
         validator(value) {
-          return oneOf(value, ['top', 'top-start', 'top-end', 'bottom', 'bottom-start', 'bottom-end', 'left', 'left-start', 'left-end', 'right', 'right-start', 'right-end']);
+          return _includes(['top', 'top-start', 'top-end', 'bottom', 'bottom-start', 'bottom-end', 'left', 'left-start', 'left-end', 'right', 'right-start', 'right-end'], value);
         },
         default: 'bottom',
       },
@@ -56,6 +56,7 @@
       return {
         prefixCls,
         isInput: false,
+        visible: false,
       };
     },
     watch: {
@@ -63,6 +64,22 @@
         if (this.popperJS) {
           this.popperJS.update();
         }
+      },
+      realVisible(val) {
+        this.updatePopper();
+        if (val) {
+          this.$nextTick(() => this.updatePopper());
+        } else {
+          this.doDestroy();
+          this.$emit('popper-hide');
+        }
+        this.$emit('visible-change', val);
+      },
+    },
+    computed: {
+      realVisible() {
+        return !this.disabled && (this.visible || this.always) &&
+        (this.$slots.content || this.content);
       },
     },
     created() {
@@ -122,6 +139,7 @@
           this.isInput = true;
         }
       }
+      if (this.realVisible) this.updatePopper();
     },
     beforeDestroy() {
       const $children = this.getInputChildren();

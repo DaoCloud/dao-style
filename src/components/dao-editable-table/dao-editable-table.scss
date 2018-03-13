@@ -1,20 +1,44 @@
 @import '../dao-color.scss';
+.dao-editable-table {
+  .dao-table {
+    border-radius: 0;
+    th {
+      height: 40px;
+      + th {
+        border-left: 1px solid $white-dark;
+      }
+    }
+  }
+}
 .dao-table .det-edit-col {
-  width: 50px;
+  min-width: 56px;
   flex: 0 0 auto;
+  svg {
+    // 其实 icon 已经垂直居中了，但是由于 td 没有上边框，只有下边框，所以看起来上面会大1px
+    transform: translateY(-1px);
+  }
+}
+.dao-table + .det-add {
+  margin-top: 12px;
 }
 .det-tr {
   &.activate {
     background: #FFFCED;
+    .det-input input{
+      background: #FFFCED;
+    }
   }
 }
 .det-td {
   overflow: visible !important;
+  input[type="checkbox"] {
+    // 其实 checkbox 已经垂直居中了，但是由于 td 没有上边框，只有下边框，所以看起来上面会大1px
+    transform: translateY(-1px);
+  }
 }
 .det-add {
   display: inline-block;
   color: $blue;
-  margin-top: 15px;
   cursor: pointer;
 }
 .det-add-btn {
@@ -37,21 +61,25 @@ svg.det-remove-btn {
   }
   .icon {
     top: 0 !important;
+    right: 5px;
   }
   input {
     width: 100%;
     border: 1px solid transparent;
+    border-radius: 2px;
     background: white;
     text-indent: 5px;
-    padding: 0;
+    padding: 0 !important;
     transition: none;
     box-sizing: border-box;
+    vertical-align: baseline;
     &:hover {
       border: 1px solid rgba($grey-light, 0.5);
     }
     &:focus {
-      border: 1px solid $blue;
-      box-shadow: 0 0 0 2px rgba($blue, 0.15);
+      // border: 1px solid $blue;
+      background: white;
+      // box-shadow: 0 0 0 2px rgba($blue, 0.15);
     }
   }
 }
@@ -59,6 +87,8 @@ svg.det-remove-btn {
   width: 100% !important;
   display: inline-block;
   vertical-align: middle;
+  // 其实 select 已经垂直居中了，但是由于 td 没有上边框，只有下边框，所以看起来上面会大1px
+  transform: translateY(-1px);
   .dao-select-main {
     display: block !important;
   }

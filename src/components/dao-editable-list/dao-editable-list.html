@@ -1,0 +1,16 @@
+<div class="dao-editable-list">
+  <div class="left-pane">
+    <ul class="item-list">
+      <slot name="list"></slot>
+    </ul>
+    <div class="operator-container">
+      <div class="opt add" @click="add"></div>
+      <div class="opt delete" :class="{disabled}" @click="remove"></div>
+    </div>
+  </div>
+  <div class="right-pane">
+    <div>
+      <slot name="content"></slot>
+    </div>
+  </div>
+</div>
