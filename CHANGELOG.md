@@ -9,7 +9,7 @@ DaoStyle Vue 的变更日志（CHANGELOG）必须在规定的流程节点生成�
 
 1. 决定发布后从 develop checkout 出 release/[version tag] 分支
 2. 在该 release 分支上进行最后的上线测试和 bug 修复
-3. 代码修改完毕，修改 verison.js 文件中的版本号到本次上线的版本号
+3. 代码修改完毕，修改 version.js 文件中的版本号到本次上线的版本号
 4. 执行 `node changelog` 命令，检查 changelogs 目录下是否正确生成 changelogs 文件
 5. 将 release/[version tag] 提 PR 到 master 和 develop 分支
 6. master 更新后给最新的 commit 打上版本号 tag（一般为 [version]）
