@@ -1,0 +1,22 @@
+@import '~daoColor';
+
+html {
+  min-width: 1280px !important;
+  overflow-x: auto !important;
+  height: 100%;
+}
+
+body {
+  // 解决 tooltip、popover append to body 后小于 1280 时候错位问题
+  position: relative;
+  height: 100%;
+  font-family: -apple-system, BlinkMacSystemFont, "Neue Haas Grotesk Text Pro", "Arial Nova", "Segoe UI", "Helvetica Neue", ".PingFang SC", "PingFang SC", "Microsoft YaHei", "Microsoft JhengHei", "Source Han Sans SC", "Noto Sans CJK SC", "Source Han Sans CN", "Noto Sans SC", "Source Han Sans TC", "Noto Sans CJK TC", "Hiragino Sans GB", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  -webkit-font-smoothing: antialiased;
+  font-size: 14px;
+}
+
+a {
+  color: $blue;
+  text-decoration: none;
+  cursor: pointer !important;
+}
