@@ -1,0 +1,239 @@
+@import '~daoColor';
+
+$status-bar-height: 61px;
+$logo-bg: #25282d;
+$active-bg: #31343a;
+$side-bar-width: 200px;
+$side-bar-title-font-size: 12px;
+$side-bar-title-height: 24px;
+$li-height: 30px;
+$li-font-size: 14px;
+$li-line-height: 30px;
+$li-padding-vertival: ($li-height - $li-line-height) / 2;
+$svg-width: 16px;
+$svg-margin-right: 5px;
+$ul-title-padding-left: 6px;
+$transition-durantion: 0.2s;
+
+$scroll-bar-width: 8px;
+$scroll-margin-width: 2px;
+
+@mixin svg () {
+  svg {
+    fill: currentColor;
+    width: $svg-width;
+    height: 100%;
+    vertical-align: middle;
+    transition: $transition-durantion linear transform;
+    &.text-icon {
+      margin-right: $svg-margin-right;
+    }
+    &.green {
+      fill: $green;
+    }
+    &.grey {
+      fill: $grey-dark;
+    }
+    &.down-arrow {
+      position: absolute;
+      left: $ul-title-padding-left;
+      top: 0;
+      height: $li-height;
+      cursor: auto;
+    }
+    &.right-arrow {
+      transform: rotate(-90deg);
+    }
+    &:active {
+      fill:$grey-light;
+    }
+  }
+
+  img.text-icon {
+    width: 16px;
+    vertical-align: middle;
+    margin-right: $svg-margin-right;
+  }
+}
+
+@mixin numeric-badge () {
+  .dao-numeric-badge {
+    display: inline-block;
+    position: absolute;
+    right: 2px + $scroll-bar-width + $scroll-margin-width;
+    top: ($li-height - $svg-width) / 2;
+    &.red {
+      background-color: $red;
+      color: white;
+    }
+    &.blue {
+      background-color: $blue;
+      color: white;
+    }
+    &.grey {
+      background-color: $black-light;
+      color: $black-darker;
+    }
+    &.ghost {
+      background-color: transparent;
+      color: $black-light;
+      box-shadow: 0 0 0 1px $black-light inset;
+    }
+  }
+}
+
+@mixin name-text-style () {
+  position: relative;
+  height: $li-height;
+  margin: 0;
+  font-size: $li-font-size;
+  color: $grey-dark;
+  &.active {
+    background-color: $active-bg;
+    color: $grey-light;
+    .dao-numeric-badge {
+      right: 12px;
+    }
+  }
+}
+
+.dao-style-logo {
+  position: relative;
+  /* width: 200px; */
+  height: $status-bar-height;
+  .svg-container, img {
+    height: $status-bar-height;
+    display: block;
+    &:before {
+      content: '';
+      position: absolute;
+      height: 61px;
+      width: 100%;
+      background-color: $logo-bg;
+    }
+  }
+  .svg-container {
+    width: 200px;
+    .logo{
+      img{
+        transform: translateY(15px);
+        width: 150px;
+        height: 32px;
+      }
+    }
+    svg {
+      transform-origin: center;
+      transform: translateZ(0);
+      width: 200px;
+      height: $status-bar-height;
+    }
+  }
+  img {
+    transform: translateZ(0);
+    margin: 0 auto;
+    &:before {
+      background-color: transparent;
+    }
+  }
+}
+
+.dao-left-nav {
+  position: relative;
+  background-color: $black-darker;
+  width: $side-bar-width;
+  // 千万不要在这里加 height: 100%，否则在 safari 上 topbar 会显示不出来。我们都不知道为什么
+  // height: 100%;
+  user-select: none;
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  &::-webkit-scrollbar {
+    width: 0;
+  }
+
+  &:hover {
+    &::-webkit-scrollbar {
+      width: $scroll-bar-width;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: $black-darker;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      border-radius: ($scroll-bar-width + $scroll-margin-width) / 2;
+      width: $scroll-bar-width;
+      background-color: $black-light;
+      background-clip: padding-box;
+      border: $scroll-margin-width solid transparent;
+    }
+  }
+
+  @include svg();
+  @include numeric-badge();
+  .dao-left-nav-select {
+    width: 100%;
+  }
+  .dao-left-nav-section {
+    margin-bottom: 20px - ($side-bar-title-height - $side-bar-title-font-size) / 2 - ($li-height - $li-font-size) / 2;
+  }
+  .dao-left-nav-group {
+    overflow: hidden;
+  }
+  .dao-left-nav-title {
+    display: inline-block;
+    font-size: 12px;
+    line-height: 20px;
+    color: $black-light;
+    padding: 2px 0 2px 10px;
+    margin: 0;
+    height: 24px;
+    font-weight: 500;
+  }
+  .dao-left-nav-ul-title {
+    font-weight: normal;
+    height: $li-height;
+    width: 200px;
+    line-height: $li-line-height;
+    padding-left: $svg-width + $ul-title-padding-left;
+    cursor: pointer;
+    @include name-text-style();
+    .license-tenant-restriction-icon,
+    .dao-left-nav-ul-title-name {
+      height: $li-height;
+      vertical-align: middle;
+    }
+    .license-tenant-restriction-icon {
+      height: 16px;
+    }
+    &.no-children{
+    }
+  }
+  ul.dao-left-nav-ul {
+    width: 200px;
+    padding: 0;
+    margin: 0;
+    max-height: 0;
+    transition: $transition-durantion linear max-height;
+    overflow-x: visible;
+    overflow-y: hidden;
+    &.expanded {
+      // TODO：这里根据最大列数量定死了max-height
+      // 这有两点不好，第一，如果有一个ul有5个li就显示不全了
+      // 第二，如果一个ul的 li少于4个，那么它的收起来的动画会有延迟
+      // 最佳做法要根据li数量计算max-height
+      max-height: $li-height * 4;
+      overflow: visible;
+    }
+  }
+  li.dao-left-nav-item {
+    list-style: none;
+    padding-left: $svg-width * 2;
+    cursor: pointer;
+    @include name-text-style();
+    .item-span {
+      line-height: $li-line-height;
+      vertical-align: middle;
+    }
+  }
+}
