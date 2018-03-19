@@ -1,5 +1,8 @@
 @import '../dao-color.scss';
 
+$input-close-icon-color: $grey-light;
+$input-close-icon-active-color: $grey-dark;
+
 @mixin ellipsisStyle {
   display: inline-block;
   height: 100%;
@@ -27,10 +30,16 @@
     width: 16px;
     height: 16px;
     top: 8px;
-    fill: $grey-dark;
     svg{
       width: 100%;
       height: 100%;
+      fill: $input-close-icon-color;
+      &:hover {
+        fill: $input-close-icon-active-color;
+      }
+    }
+    &.active svg {
+      fill: $input-close-icon-active-color;
     }
     &.close-icon{
       right: 8px;
