@@ -298,7 +298,7 @@
       :min='-5'
       :max='80'
       style="width: 287px;"
-      placeholder="min: -5 max:50 float">
+      placeholder="min: -5 max: 80 float">
     </dao-numberic-input>
     <br>{{demoNumbericInput2}}<br>
      <dao-numberic-input
@@ -308,7 +308,7 @@
       :min='-5'
       :max='10'
       unit="KG"
-      placeholder="min: -5 max: 20 int">
+      placeholder="min: -5 max: 10 int">
     </dao-numberic-input>
     <br>{{demoNumbericInput3}}<br>
     <dao-numberic-input
