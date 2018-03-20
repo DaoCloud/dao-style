@@ -74,7 +74,7 @@
         transition: all .25s ease;
         font-size: $font-base;
         @include box-shadow(none);
-        background-color: white;
+        background-color: $input-bg;
         // 为了防止在 disabled 和 default 之间切换的时候，背景图 icon 也发生 transition 动画
         // 所以需要用到 @include input-icon-background;
         @include input-icon-background;
@@ -125,10 +125,8 @@
     }
     &.error {
       input,
-      input:focus,
-      input:active,
       input:hover {
-        @include e('&', ('input.error', 'textarea.error'), ('', ':focus', ':active', ':hover')) {
+        @include e('&', ('input.error', 'textarea.error'), ('', ':hover')) {
           border: 1px solid $input-error-color;
           border-radius: 2px;
           background-color: $input-error-bg-color;
@@ -227,6 +225,7 @@
     input:active {
       @include e('&', ('input', 'textarea'), (':focus', ':active')) {
         border: 1px solid $input-info-color!important;
+        background-color: $input-bg!important;
         @include box-shadow(0 0 0 2px $input-info-shadow-color!important);
       }
     }
