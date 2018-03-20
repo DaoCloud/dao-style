@@ -22,7 +22,7 @@
 
   function isInt(num) {
     if (num === undefined) return false;
-    return /^(0|[1-9][0-9]*)$/.test(num >= 0 ? num : num.toString().slice(1, 2));
+    return /^(0|[1-9][0-9]*)$/.test(num >= 0 ? num : num.toString().slice(1));
   }
 
   function isFloat(num) {
