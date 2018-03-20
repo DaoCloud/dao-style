@@ -55,34 +55,14 @@ svg.det-remove-btn {
   cursor: pointer;
 }
 .det-input.dao-input-container {
-  width: 100%;
-  .dao-input-inner {
-    width: 100%;
-  }
   .icon {
-    top: 0 !important;
+    top: -2px !important;
     right: 5px;
   }
   input {
-    width: 100%;
-    border: 1px solid transparent;
-    border-radius: 2px;
-    background: white;
-    text-indent: 5px;
-    padding: 0 !important;
-    transition: none;
-    box-sizing: border-box;
     vertical-align: baseline;
-    &:hover {
-      border: 1px solid rgba($grey-light, 0.5);
-    }
-    &:focus {
-      // border: 1px solid $blue;
-      background: white;
-      // box-shadow: 0 0 0 2px rgba($blue, 0.15);
-    }
   }
-}
+ }
 .det-select {
   width: 100% !important;
   display: inline-block;
