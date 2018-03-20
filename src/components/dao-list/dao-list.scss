@@ -149,6 +149,14 @@ table.dao-list {
       svg {
         fill: white;
       }
+      .dropdown-trigger {
+        fill: $selected-bg;
+        }
+      &:hover {
+        .dropdown-trigger {
+          fill: white !important;
+        }
+      }
     }
     &:hover {
       .dropdown-trigger {
@@ -193,6 +201,7 @@ table.dao-list {
     }
     &:last-child {
       border-right: none;
+      width: 56px;
     }
     &:active {
       background: $white-dark;

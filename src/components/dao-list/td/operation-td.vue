@@ -3,7 +3,7 @@
     <dao-dropdown
       trigger="click"
       :append-to-body="true"
-      placement="bottom-start">
+      placement="bottom-end">
       <svg class="dropdown-trigger"><use xlink:href="#icon_more"></use></svg>
       <dao-dropdown-menu slot="list">
         <dao-dropdown-item v-for="o in flattenedOperations"
