@@ -128,7 +128,7 @@ export default {
       _forEach(this.rows, (row) => {
         _forEach(row, (td) => {
           if (td.type === 'input' && td.validate) {
-            td.valid = td.validate(this.rowToModel(row), this.model);
+            this.$set(td, 'valid', td.validate(this.rowToModel(row), this.model));
           }
         });
       });
