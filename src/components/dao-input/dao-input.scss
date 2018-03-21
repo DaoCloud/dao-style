@@ -304,46 +304,7 @@
         width: 100%;
       }
     }
-    &.input-sm {
-      input {
-        @include e('&', ('input.input-sm', "input[size='sm']")) {
-          padding-top: 5px;
-          padding-bottom: 5px;
-          height: $input-height-sm;
-        }
-      }
-      &:not(.search) {
-        @include e('& input', ('input.input-sm', "input[size='sm']"), (':not(.search)')) {
-          padding-left: 5px;
-          padding-right: 5px;
-        }
-      }
-      &.icon-inside {
-        .info-icon,
-        .error-icon,
-        .success-icon,
-        .loading-icon {
-          top: 5px;
-        }
-      }
-      .dao-popover-popper[x-placement='top-end'],
-      .dao-popover-popper[x-placement='bottom-end'] {
-        transform: translateY(10px);
-        .dao-popover-arrow {
-          right: 1px!important;
-        }
-      }
-      .dao-popover-popper[x-placement='right-start'] {
-        transform: translateX(2px);
-        .dao-popover-arrow {
-          top: -1px!important;
-        }
-      }
-      .dao-input-group-addon  > *:not(.dao-select) {
-        padding: 5px 6px;
-        height: $input-height-sm;
-      }
-    }
+    
     &.icon-inside {
       position: relative;
       &.info,
@@ -384,6 +345,46 @@
       }
       .loading-icon .dao-spin {
         margin-left: 3px;
+      }
+    }
+    &.input-sm {
+      input {
+        @include e('&', ('input.input-sm', "input[size='sm']")) {
+          padding-top: 5px;
+          padding-bottom: 5px;
+          height: $input-height-sm;
+        }
+      }
+      &:not(.search) {
+        @include e('& input', ('input.input-sm', "input[size='sm']"), (':not(.search)')) {
+          padding-left: 5px;
+          padding-right: 5px;
+        }
+      }
+      &.icon-inside {
+        .info-icon,
+        .error-icon,
+        .success-icon,
+        .loading-icon {
+          top: 5px;
+        }
+      }
+      .dao-popover-popper[x-placement='top-end'],
+      .dao-popover-popper[x-placement='bottom-end'] {
+        transform: translateY(10px);
+        .dao-popover-arrow {
+          right: 1px !important;
+        }
+      }
+      .dao-popover-popper[x-placement='right-start'] {
+        transform: translateX(2px);
+        .dao-popover-arrow {
+          top: -1px !important;
+        }
+      }
+      .dao-input-group-addon>*:not(.dao-select) {
+        padding: 5px 6px;
+        height: $input-height-sm;
       }
     }
   }
