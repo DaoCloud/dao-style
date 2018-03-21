@@ -123,10 +123,10 @@
           <svg :class="{disabled: prevPageDisabled}" @click="prevPage">
             <use xlink:href="#icon_caret-left"></use>
           </svg>
-          <button class="page" v-show="page > 2" @click="goToPage(0)">1</button><!--
-       --><button class="page disabled" v-show="page > 2">...</button><!--
-       --><button class="page" :class="{active: page == p}" v-for="p in pages" :key="p" @click="goToPage(p)">{{p + 1}}</button><!--
-       --><button class="page disabled" v-show="page < pagesNumber - 3">...</button>
+          <button class="page" v-show="page > 2 && pagesNumber > 5" @click="goToPage(0)">1</button><!--
+       --><button class="page disabled" v-show="page > 2 && pagesNumber > 5">...</button><!--
+       --><button class="page" :class="{active: page == p}" v-for="p in pages" :key="p" @click="goToPage(p)">{{p+1}}</button><!--
+       --><button class="page disabled" v-show="page < pagesNumber - 3 && pagesNumber > 5">...</button>
           <svg :class="{disabled: nextPageDisabled}" @click="nextPage">
 
             <use xlink:href="#icon_caret-right"></use>
