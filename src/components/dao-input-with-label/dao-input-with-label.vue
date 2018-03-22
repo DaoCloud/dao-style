@@ -12,11 +12,12 @@
       @keyup="handleKeyUp()"
       @keydown="emit('keydown', $event)"
       @input="handleInput()"
-      @focus="emit('focus', $event)"
-      @blur="emit('blur', $event)">
+      @focus="handleFocus"
+      @blur="handleBlur">
     <span  
       class="icon close-icon"
-      :class="{ disabled: disabled }"
+      v-if="canEmpty"
+      :class="{ active: isFocus, disabled: disabled }"
       @click="resetCurrentVal()">
       <svg>
         <use xlink:href="#icon_close-circled"></use>
@@ -207,6 +208,7 @@ export default {
       clickoutside: false,
       showAllOperations: false,
       emptyItemText: EMPTY_ITEM_TEXT,
+      isFocus: false,
     };
   },
   created() {
@@ -229,6 +231,9 @@ export default {
         });
         return tab;
       });
+    },
+    canEmpty() {
+      return !this.iconInside && this.currentValue;
     },
   },
   methods: {
@@ -366,6 +371,14 @@ export default {
       this.$nextTick(() => {
         this.$refs.input.focus();
       });
+    },
+    handleFocus() {
+      this.isFocus = true;
+      this.emit('focus', event);
+    },
+    handleBlur() {
+      this.isFocus = false;
+      this.emit('blur', event);
     },
     // 重置输入值
     resetCurrentVal() {

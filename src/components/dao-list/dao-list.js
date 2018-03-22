@@ -266,7 +266,7 @@ export default {
       return this.allRows.length;
     },
     isShowPagination() {
-      return this.pagesNumber > 1;
+      return this.pagesNumber > 0;
     },
     nextPageDisabled() {
       return this.pagesNumber === 0 || this.page === this.pagesNumber - 1;

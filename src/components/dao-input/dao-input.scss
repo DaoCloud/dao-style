@@ -74,7 +74,7 @@
         transition: all .25s ease;
         font-size: $font-base;
         @include box-shadow(none);
-        background-color: white;
+        background-color: $input-bg;
         // 为了防止在 disabled 和 default 之间切换的时候，背景图 icon 也发生 transition 动画
         // 所以需要用到 @include input-icon-background;
         @include input-icon-background;
@@ -125,10 +125,8 @@
     }
     &.error {
       input,
-      input:focus,
-      input:active,
       input:hover {
-        @include e('&', ('input.error', 'textarea.error'), ('', ':focus', ':active', ':hover')) {
+        @include e('&', ('input.error', 'textarea.error'), ('', ':hover')) {
           border: 1px solid $input-error-color;
           border-radius: 2px;
           background-color: $input-error-bg-color;
@@ -227,6 +225,7 @@
     input:active {
       @include e('&', ('input', 'textarea'), (':focus', ':active')) {
         border: 1px solid $input-info-color!important;
+        background-color: $input-bg!important;
         @include box-shadow(0 0 0 2px $input-info-shadow-color!important);
       }
     }
@@ -305,46 +304,7 @@
         width: 100%;
       }
     }
-    &.input-sm {
-      input {
-        @include e('&', ('input.input-sm', "input[size='sm']")) {
-          padding-top: 5px;
-          padding-bottom: 5px;
-          height: $input-height-sm;
-        }
-      }
-      &:not(.search) {
-        @include e('& input', ('input.input-sm', "input[size='sm']"), (':not(.search)')) {
-          padding-left: 5px;
-          padding-right: 5px;
-        }
-      }
-      &.icon-inside {
-        .info-icon,
-        .error-icon,
-        .success-icon,
-        .loading-icon {
-          top: 5px;
-        }
-      }
-      .dao-popover-popper[x-placement='top-end'],
-      .dao-popover-popper[x-placement='bottom-end'] {
-        transform: translateY(10px);
-        .dao-popover-arrow {
-          right: 1px!important;
-        }
-      }
-      .dao-popover-popper[x-placement='right-start'] {
-        transform: translateX(2px);
-        .dao-popover-arrow {
-          top: -1px!important;
-        }
-      }
-      .dao-input-group-addon  > *:not(.dao-select) {
-        padding: 5px 6px;
-        height: $input-height-sm;
-      }
-    }
+    
     &.icon-inside {
       position: relative;
       &.info,
@@ -385,6 +345,46 @@
       }
       .loading-icon .dao-spin {
         margin-left: 3px;
+      }
+    }
+    &.input-sm {
+      input {
+        @include e('&', ('input.input-sm', "input[size='sm']")) {
+          padding-top: 5px;
+          padding-bottom: 5px;
+          height: $input-height-sm;
+        }
+      }
+      &:not(.search) {
+        @include e('& input', ('input.input-sm', "input[size='sm']"), (':not(.search)')) {
+          padding-left: 5px;
+          padding-right: 5px;
+        }
+      }
+      &.icon-inside {
+        .info-icon,
+        .error-icon,
+        .success-icon,
+        .loading-icon {
+          top: 5px;
+        }
+      }
+      .dao-popover-popper[x-placement='top-end'],
+      .dao-popover-popper[x-placement='bottom-end'] {
+        transform: translateY(10px);
+        .dao-popover-arrow {
+          right: 1px !important;
+        }
+      }
+      .dao-popover-popper[x-placement='right-start'] {
+        transform: translateX(2px);
+        .dao-popover-arrow {
+          top: -1px !important;
+        }
+      }
+      .dao-input-group-addon>*:not(.dao-select) {
+        padding: 5px 6px;
+        height: $input-height-sm;
       }
     }
   }

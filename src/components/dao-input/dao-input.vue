@@ -45,20 +45,20 @@
           @keydown="handleKeyDown"
         >
       </dao-popover>
-      <span class="icon loading-icon" v-if="status === 'loading' && iconInside" @mouseover="hoverIcon" @mouseleave="leaveIcon">
+      <span class="icon loading-icon" v-if="status === 'loading' && iconInside && !isFocus" @mouseover="hoverIcon" @mouseleave="leaveIcon">
         <dao-spin></dao-spin>
       </span>
-      <span class="icon info-icon" v-if="status === 'info' && iconInside" @mouseover="hoverIcon" @mouseleave="leaveIcon">
+      <span class="icon info-icon" v-if="status === 'info' && iconInside && !isFocus" @mouseover="hoverIcon" @mouseleave="leaveIcon">
         <svg>
           <use xlink:href="#icon_question"></use>
         </svg>
       </span>
-      <span class="icon error-icon" v-if="status === 'error' && iconInside" @mouseover="hoverIcon" @mouseleave="leaveIcon">
+      <span class="icon error-icon" v-if="status === 'error' && iconInside && !isFocus" @mouseover="hoverIcon" @mouseleave="leaveIcon">
         <svg>
           <use xlink:href="#icon_warning"></use>
         </svg>
       </span>
-      <span class="icon success-icon" v-if="status === 'success' && iconInside" @mouseover="hoverIcon" @mouseleave="leaveIcon">
+      <span class="icon success-icon" v-if="status === 'success' && iconInside && !isFocus" @mouseover="hoverIcon" @mouseleave="leaveIcon">
         <svg>
           <use xlink:href="#icon_success"></use>
         </svg>
@@ -200,15 +200,11 @@
         this.hovered = false;
       },
       handleBlur(event) {
-        if (this.search) {
-          this.isFocus = false;
-        }
+        this.isFocus = false;
         this.$emit('blur', event);
       },
       handleFocus(event) {
-        if (this.search) {
-          this.isFocus = true;
-        }
+        this.isFocus = true;
         this.$emit('focus', event);
       },
       handleKeyUp(event) {

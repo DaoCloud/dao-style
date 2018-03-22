@@ -5,7 +5,8 @@
     @keydown.enter="onKeydown"
     size="sm"
     :placeholder="`搜索${tableName}`"
-    :options="filtersOption">
+    :options="filtersOption"
+    @reset="resetVal">
   </dao-input-with-label>
 </template>
 
@@ -93,6 +94,9 @@ export default {
   methods: {
     onKeydown() {
       this.filterText = this.filterTextRaw;
+    },
+    resetVal() {
+      this.filterText = '';
     },
   },
 };

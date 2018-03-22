@@ -22,7 +22,7 @@
 
   function isInt(num) {
     if (num === undefined) return false;
-    return /^(0|[1-9][0-9]*)$/.test(num > 0 ? num : num.toString().slice(1, 2));
+    return /^(0|[1-9][0-9]*)$/.test(num >= 0 ? num : num.toString().slice(1));
   }
 
   function isFloat(num) {
@@ -38,7 +38,7 @@
   }
 
   export default {
-    name: 'DaoFileInput',
+    name: 'DaoNumbericInput',
     props: {
       min: Number,
       max: Number,
@@ -166,8 +166,10 @@
       },
       updateModel() {
         this.lastNum = this.num;
-        this.$emit('input', this.num);
-        this.$emit('change', this.num);
+        const parsedNum = parseFloat(this.num);
+        const result = isNaN(parsedNum) ? '' : parsedNum;
+        this.$emit('input', result);
+        this.$emit('change', result);
       },
     },
     watch: {
