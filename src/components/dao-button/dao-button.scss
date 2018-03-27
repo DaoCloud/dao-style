@@ -252,3 +252,25 @@ a.dao-btn {
     height: 26px;
   }
 }
+
+// .dao-btn default style
+.dao-btn.default {
+  color: $black-dark;
+  border-color: $grey-light;
+  background-color: $white;
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.08);
+  &:hover {
+    background-color: $white;
+    background-image: linear-gradient(rgba($grey-lighter, 0.1), rgba($grey-lighter, 0.1));
+  }
+  &:active,
+  &.active {
+    box-shadow: inset 0 0 4px 0 rgba(0, 0, 0, 0.08), inset 0 1px 3px 0 rgba(0, 0, 0, 0.06);
+    background-color: $white;
+  }
+  &.disabled,
+  &[disabled],
+  fieldset[disabled] & {
+    background-color: $white;
+  }
+}
