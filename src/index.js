@@ -36,6 +36,7 @@ import daoSteps from './components/dao-steps';
 import daoSwitch from './components/dao-switch';
 import daoTab from './components/dao-tab';
 import daoTooltip from './components/dao-tooltip';
+import { GNav, AppSwitcher, NavRight, NavCenter } from './components/dao-g-nav';
 
 // 请按照名称的字典顺序添加以下 directives
 import { daoDraggable, daoDroppable } from './directives/draggable/';
@@ -88,6 +89,10 @@ const daoStyleComponents = {
   daoTab,
   daoTabItem: daoTab.Item,
   daoTooltip,
+  GNav,
+  AppSwitcher,
+  NavRight,
+  NavCenter,
 };
 
 const daoStyleDirectives = {

@@ -17,6 +17,7 @@ import dialog from './routers/dialog.vue';
 import dragAndDrop from './routers/drag-and-drop.vue';
 import dropdown from './routers/dropdown.vue';
 import editableTable from './routers/editable-table.vue';
+import gNav from './routers/g-nav/g-nav.vue';
 import input from './routers/input.vue';
 import infoCard from './routers/info-card.vue';
 import inputWithLabel from './routers/input-with-label.vue';
@@ -77,6 +78,9 @@ const router = new VueRouter({
   }, {
     path: '/editable-table',
     component: editableTable,
+  }, {
+    path: '/g-nav',
+    component: gNav,
   }, {
     path: '/input',
     component: input,
