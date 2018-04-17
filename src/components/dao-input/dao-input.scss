@@ -1,3 +1,4 @@
+@import '../dao-variables.scss';
 @import "./variables.scss";
 
 // $old-seletor: 原来的选择器
@@ -43,10 +44,10 @@
       // 不要使用 border-box, 在 ff 28 下会失效
       box-sizing: content-box;
       display: inline-block;
-      padding: 0px 10px;
+      padding: 7px 10px;
       font-weight: 400;
-      line-height: $input-height - 2px;
-      height: $input-height - 2px;
+      line-height: $line-height-base;
+      height: $input-height - 2px - (7px * 2);
       background-color: $input-disabled-bg-color;
       color: $input-disabled-color;
       border: $input-border;
@@ -81,9 +82,7 @@
         border: $input-border;
         border-color: $input-border-color;
         border-radius: $input-border-radius;
-        line-height: 24px;
-        // 将 vertical-align: bottom 改成了 vertical-align: middle 了，不知道会不会有其他影响
-        vertical-align: middle;
+        line-height: $line-height-base;
         & + .dao-btn {
           margin-left: $input-btn-blank;
         }
@@ -110,6 +109,7 @@
     &.message-bottom {
       flex-direction: column;
       align-items: flex-start;
+      // 统一 vertical-align，解决没有垂直对齐的问题
       vertical-align: top;
       .dao-input-message {
         margin: 6px 0 0;
@@ -234,7 +234,8 @@
     &.readonly input,
     input[readonly] {
       @include e('&', ('input', 'textarea'), ('.disabled', '[disabled]', '.readonly', '[readonly]')) {
-        background-color: $input-disabled-bg-color;
+        // 修正 active 状态下 input 背景颜色会变的问题，所以加上 !important
+        background-color: $input-disabled-bg-color!important;
         color: $input-disabled-color;
         border: $input-border;
         border-radius: $input-border-radius;
@@ -396,7 +397,8 @@
     word-break: break-all;
     margin-left: 10px;
     > span {
-      vertical-align: middle;
+      // 统一 vertical-align，解决没有垂直对齐的问题
+      vertical-align: top;
     }
     @at-root .no-message-icon & > .icon {
       display: none;
@@ -437,6 +439,11 @@ textarea#{$dao-control-name} {
     -webkit-transform: rotate(359deg);
     transform: rotate(359deg);
   }
+}
+
+// 解决 input 之后存在 button 但是没有垂直对齐的问题
+input ~ .dao-btn ,.dao-input-container ~ .dao-btn{
+  vertical-align: top;
 }
 
 // TODO

@@ -34,9 +34,9 @@ $input-search-icon-active-color: $grey-dark;
 $input-search-helper-text-color: $grey-light;
 $input-btn-blank: 20px;
 $dao-control-name: '.dao-control';
-$input-normal-padding: 4px 10px;
+$input-normal-padding: 7px 10px;
 // 因为还有可能是 0 10px 0 30px 这种情况，为了重置 padding，所以再都设置一遍
-$input-icon-padding: 4px 28px 4px 10px;
+$input-icon-padding: 7px 28px 7px 10px;
 
 // size sm input 配置
 $input-height-sm: 26px;
