@@ -214,7 +214,6 @@
   </div>
 </template>
 <script>
-  import _ from 'lodash';
   import DaoTableViewPagination from './dao-table-view-pagination.vue';
   import DaoTableViewContextMenu from './dao-table-view-context-menu.vue';
   import DaoTableViewCheckAll from './dao-table-view-check-all.vue';
@@ -346,7 +345,7 @@
       },
       // 总共多少条数据
       total() {
-        if (this.fullControll) return _.get(this.filterRows, 'length', 0);
+        if (this.fullControll) return _get(this.filterRows, 'length', 0);
         return this.pagination.total;
       },
       // 当前选中的行
@@ -421,7 +420,7 @@
       // 同步设置，辅助函数
       syncSettings(columnsOrder, timeFormat) {
         const columnsWidth = {};
-        _.forEach(columnsOrder, (prop) => {
+        _forEach(columnsOrder, (prop) => {
           columnsWidth[prop] = `${((1 / columnsOrder.length) * 100).toFixed(2)}%`;
         });
         this.settings.columnsWidth = columnsWidth;
