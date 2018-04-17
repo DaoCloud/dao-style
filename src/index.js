@@ -35,12 +35,15 @@ import daoSpin from './components/dao-spin';
 import daoSteps from './components/dao-steps';
 import daoSwitch from './components/dao-switch';
 import daoTab from './components/dao-tab';
+import daoTableView from './components/dao-table-view';
+
 import daoTooltip from './components/dao-tooltip';
 
 // 请按照名称的字典顺序添加以下 directives
 import { daoDraggable, daoDroppable } from './directives/draggable/';
 import daoSelectAll from './directives/dao-select-all';
 import daoTooltipDirective from './directives/dao-tooltip';
+import daoClickoutside from './directives/clickoutside';
 
 const daoStyleComponents = {
   // 请按照名称的字典顺序添加以下内容
@@ -87,6 +90,7 @@ const daoStyleComponents = {
   daoSwitch,
   daoTab,
   daoTabItem: daoTab.Item,
+  daoTableView,
   daoTooltip,
 };
 
@@ -95,6 +99,7 @@ const daoStyleDirectives = {
   'dao-tooltip': daoTooltipDirective,
   'dao-draggable': daoDraggable,
   'dao-droppable': daoDroppable,
+  'dao-clickoutside': daoClickoutside,
 };
 
 function install(Vue) {
