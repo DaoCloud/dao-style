@@ -1,16 +1,21 @@
 <template>
   <div>
-    <!-- <h3>ddd</h3> -->
-    <dao-table-view :rows="rows" :config="config">
+    <dao-table-view
+      :rows="rows"
+      :config="config"
+      :loading="loading"
+      @search="onSearch"
+      @pageChange="onPageChange"
+      @refresh="onRefresh">
       <!-- 这里会透传两个值，checkType 表示选择类型，all 是全部选择(注意：当是后端分页时候，这个数据是不准的) -->
-      <!-- 这里会透传两个值，checkedRows 表示当前选择的行 -->
+      <!-- <checkedRow> 表示当前选择的行 -->
       
-      <!-- <div slot="tool" slot-scope="{ checkType, checkedRows}" style="display: flex;justify-content: space-between;">
-        <button class="dao-btn blue">创建应用</button>
+      <div slot="tool" slot-scope="{ checkType, checkedRows}" style="display: flex;justify-content: space-between;">
+        <button class="dao-btn blue" @click="createApp(checkType, checkedRows)">创建应用</button>
         <div>
           <dao-input placeholder="这是通过 slot 传入的 input"></dao-input>
         </div>
-      </div> -->
+      </div>
       <!-- <div slot="search"> -->
         <!-- 这里可以自定义搜索位置的搜索, 可以替掉 input-with-label -->
       <!-- </div> -->
@@ -21,26 +26,32 @@
 <script>
   import _ from 'lodash';
 
-  // mock data
-  const rows = _.map(Array(100), (v, i) => ({
-    create_at: (new Date()).getTime(),
-    cpu: 0.5,
-    memory: i * 2,
-    containers: 10,
-    mode: '弹性',
-    status: i % 3 === 0 ? '运行中' : '已停止',
-    service: `${i + 1}dce-plugin-applb`,
-  }));
-
-  export default {
+export default {
     name: 'TableView',
+    created() {
+      this.loading = true;
+      setTimeout(() => {
+        this.rows = _.map(Array(20), (v, i) => ({
+          create_at: (new Date()).getTime(),
+          cpu: 0.5,
+          memory: i * 2,
+          containers: 10,
+          mode: '弹性',
+          status: i % 3 === 0 ? '运行中' : '已停止',
+          service: `${i + 1}dce-plugin-applb`,
+        }));
+        this.loading = false;
+      }, 1000);
+    },
     data() {
       return {
+        loading: false,
         config: {
           // id 用于标示一个 list，便于 localstorage 对当前配置的存储
           id: '1q2w3e',
-          // 表格名称
-          tableName: '服务',
+          // hideSortHelper: true,
+          // loadingText: '加载中.....',
+          // emptyText: '没有数据呀呀呀呀呀呀',
           // 每一行是否可选
           // selectable: true,
           // 是否支持搜索功能 -> 如果不支持搜索功能，则将分页自动挪到 view 下面
@@ -48,11 +59,11 @@
           // input-with-label 的冒泡事件，会加上前缀 'search', 比如 @search-input
           search: {
             shutDown: false, // 是否回退为普通搜索 默认 false
-            autofocus: false, // 是否自动聚焦 默认 false,
-            block: false,  // 是否不限制宽度 默认 false
+            autofocus: true, // 是否自动聚焦 默认 false,
+            placeholder: '搜索哈哈哈哈哈',
             // 如果是后端分页，那么这个默认是 []
             // 如果是前端分页，那么这个默认是 rows 的所有 key
-            options: [],
+            // options: [],
           },
           // 分页配置
           // pagination: {
@@ -97,9 +108,10 @@
               type: 'text',
               unsortable: true,
             },
+            // 默认是 text,可以不用传 type
             containers: {
               name: '容器数量',
-              type: 'text',
+              // type: 'text',
             },
             memory: {
               name: '内存',
@@ -132,13 +144,13 @@
             },
           },
         },
-        rows,
+        rows: undefined,
       };
     },
     methods: {
       // 这个方法会把排序的规则暴露出来
-      onSearch(keyword, { props, order }) {
-        console.log('搜索了', keyword, props, order);
+      onSearch(query) {
+        console.log('搜索了', query);
       },
       // 如果是外部分页，可能会需要这个方法
       onPageChange(page) {
@@ -150,6 +162,9 @@
       },
       onRefresh() {
         console.log('onRefresh');
+      },
+      createApp(type, rows) {
+        console.log('createApp', type, rows);
       },
     },
   };

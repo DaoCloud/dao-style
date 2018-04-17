@@ -1,8 +1,8 @@
 <template>
   <div class="dao-table-view-pagination">
-        <span class="counts">共 {{total}} 个 {{tableName}}</span>
+        <span class="counts">共 {{total}} 项</span>
         <span class="counts" v-show="checkedRowsLength > 0">
-          ，已选中 {{checkedRowsLength}} 个 {{tableName}}
+          ，已选中 {{checkedRowsLength}} 项
         </span>
         <div class="pagination" v-show="isShowPagination">
           <svg :class="{disabled: prevPageDisabled}" @click="prevPage">
@@ -25,7 +25,7 @@
 
   export default {
     name: 'DaoTableViewPagination',
-    props: ['pagination', 'total', 'checkedRowsLength', 'tableName'],
+    props: ['pagination', 'total', 'checkedRowsLength'],
     methods: {
       goToPage(page) {
         this.$emit('pageChange', page);

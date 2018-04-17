@@ -22,7 +22,7 @@
             <svg>
               <use xlink:href="#icon_move"></use>
             </svg>
-            <input type="checkbox" v-model="c.visible">
+            <input type="checkbox" v-model="c.visible" :disabled="c.visible && isLastOne">
             <span>{{c.name}}</span>
           </div>
         </div>
@@ -119,6 +119,11 @@
         };
         this.$emit('confirm', result);
         this.onClose();
+      },
+    },
+    computed: {
+      isLastOne() {
+        return (this.settings.columnsOrder.filter(prop => prop.visible)).length === 1;
       },
     },
   };

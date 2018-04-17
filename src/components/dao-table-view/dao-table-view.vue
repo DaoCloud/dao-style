@@ -8,6 +8,7 @@
       <div class="right">
         <!-- 排序下拉菜单 -->
         <dao-dropdown
+          v-if="config.hideSortHelper !== true"
           trigger="click"
           placement="bottom-end">
           <button class="dao-btn ghost has-icon">
@@ -64,19 +65,21 @@
      <!-- 列表容器 -->
     <div class="dao-table-view-main">
       <!-- 列表的顶栏: 当支持搜索时候才会有 -->
-      <div class="dao-table-view-topbar" v-if="config.search || $slots.search">
+      <div class="dao-table-view-topbar" v-if="showTopBar">
         <slot name="search">
-          <dao-input-with-label class="dao-table-view-filter"
-            v-model="search.keyword"
-            size="sm"
-            :placeholder="`搜索${config.tableName || ''}`"
-            :options="search.options">
-          </dao-input-with-label>
+          <dao-table-view-filter
+            class="dao-table-view-filter"
+            :rows="rows"
+            :columnsOrder="settings.columnsOrder"
+            :props="config.props"
+            :config="search"
+            @change="onKeywordChange">
+          </dao-table-view-filter>
         </slot>
         <dao-table-view-pagination
+          v-if="!isLoading || chunk.length"
           :pagination="pagination"
           :checkedRowsLength="checkedRows.length"
-          :tableName="config.tableName"
           :total="total"
           @pageChange="onPageChange">
         </dao-table-view-pagination>
@@ -135,7 +138,7 @@
               <template v-for="prop in settings.columnsOrder">
                 <td 
                   :key="prop"
-                  v-if="config.props[prop].type === 'text'"
+                  v-if="config.props[prop].type === 'text' || !config.props[prop].type"
                   :style="`width: ${settings.columnsWidth[prop]}`">
                   {{textRender(row[prop] ,config.props[prop].value)}}
                 </td>
@@ -177,16 +180,16 @@
           </tbody>
         </table>
       </div>
-      <!-- 当列表为空时 -->
-      <div class="dao-table-view-empty" v-if="chunk.length === 0">
-        列表为空
+      <!-- 当列表为空或者正在加载时 -->
+      <div class="dao-table-view-empty" v-if="chunk.length === 0 || isLoading">
+        {{ isLoading ? config.loadingText || '加载中...' : config.emptyText || '列表为空'}}
       </div>
       <!-- 列表的底部：当没有搜索时候，将分页落到 table 下面 -->
-      <div class="dao-table-view-bottombar" v-if="!config.search && !$slots.search">
+      <div class="dao-table-view-bottombar"
+        v-if="!config.search && !$slots.search && !isLoading && chunk.length">
         <dao-table-view-pagination 
           :pagination="pagination"
           :checkedRowsLength="checkedCount"
-          :tableName="config.tableName"
           :total="total"
           @pageChange="onPageChange">
         </dao-table-view-pagination>
@@ -217,6 +220,7 @@
   import DaoTableViewCheckAll from './dao-table-view-check-all.vue';
   import DaoTableViewSettingsDialog from './dialogs/dao-table-view-settings-dialog.vue';
   import DaoTableViewTh from './dao-table-view-th.vue';
+  import DaoTableViewFilter from './dao-table-view-filter.vue';
   import GoToTd from './td/goto-td.vue';
   import StatusTd from './td/status-td.vue';
   import TimeTd from './td/time-td.vue';
@@ -230,11 +234,13 @@
     _orderBy,
     _every,
     _chunk,
+    _filter,
+    _includes,
   } from '../../utils/assist';
 
   export default {
     name: 'DaoTableViewView',
-    props: ['rows', 'config'],
+    props: ['rows', 'config', 'loading'],
     data() {
       return {
         // 是否可以选择-> 是否显示 checkbox
@@ -264,11 +270,9 @@
 
         // 搜索配置
         search: {
-          keyword: '',
-          shutDown: false, // 是否回退为普通搜索 默认 false
-          autofocus: false, // 是否自动聚焦 默认 false,
-          block: false,  // 是否不限制宽度 默认 false
-          options: [],
+          shutDown: false,
+          autofocus: false,
+          query: {},
         },
 
         // 右键菜单
@@ -294,13 +298,44 @@
         // 有这个 total 这个字段，说明是前端分页
         return this.pagination && this.pagination.total === undefined;
       },
+      filterRows() {
+        // 只有在前端分页的时候才需要做 filter
+        if (this.fullControll) {
+          // 先做 filter
+          const rows = _filter(this.rows, (row) => {
+            let valid = true;
+            _forEach(this.search.query, (value, prop) => {
+              // 检查是否有命中 keywords
+              if (prop === '$keywords' && this.search.query.$keywords.length) {
+                // 看是否有命中关键词
+                let catched = false;
+                _forEach(this.search.query.$keywords, (keyword) => {
+                  _forEach(this.settings.columnsOrder, (column) => {
+                    if (_includes(row[column].toString(), keyword.toString())) {
+                      catched = true;
+                    }
+                  });
+                });
+                valid = catched;
+                // 是否有命中 key-value
+              } else if (row[prop] !== value && prop !== '$keywords') {
+                valid = false;
+              }
+            });
+            return valid;
+          });
+          return rows;
+        }
+        return this.rows;
+      },
       // 当前页面渲染的一块数据
       chunk() {
+        if (this.isLoading || !this.rows.length) return [];
         // 如果是前端分页，那么就分 chunk
         if (this.fullControll) {
           // 先排序，再分块
-          const rows = _orderBy(this.rows, row => row[this.sort.prop], this.sort.order);
-          return _chunk(rows, this.pagination.per_page)[this.pagination.page - 1];
+          const rows = _orderBy(this.filterRows, row => row[this.sort.prop], this.sort.order);
+          return _chunk(rows, this.pagination.per_page)[this.pagination.page - 1] || [];
         }
         // 如果是后端分页，那么就直接把传入的数据直接灌进来
         return this.rows;
@@ -311,12 +346,12 @@
       },
       // 总共多少条数据
       total() {
-        if (this.fullControll) return this.rows.length;
+        if (this.fullControll) return _.get(this.filterRows, 'length', 0);
         return this.pagination.total;
       },
       // 当前选中的行
       checkedRows() {
-        return this.rows.filter(row => row.$checked);
+        return _filter(this.rows, (row => row.$checked));
       },
       // 当前选中了多少个
       checkedCount() {
@@ -333,9 +368,17 @@
       operations() {
         return _get(this.config, 'operations', []);
       },
+      isLoading() {
+        return !this.rows || this.loading;
+      },
+      showTopBar() {
+        // 前端分页但是数据是空的
+        if (this.fullControll && this.rows && !this.rows.length) return false;
+        // 有 search 或者有 search slot
+        return !!this.config.search || !!this.$slots.search;
+      },
     },
     created() {
-      console.log('created');
       this.$onInit();
     },
     methods: {
@@ -349,6 +392,11 @@
       syncConfig() {
         this.selectable = this.config.selectable !== false;
         this.pagination = Object.assign(this.pagination, this.config.pagination);
+        this.search = Object.assign(this.search, this.config.search);
+        this.syncConfigSort();
+      },
+      // 初始化同步一下排序规则
+      syncConfigSort() {
         this.sort = Object.assign(this.sort, this.config.sort);
         // 允许 sort 不传指，默认是第一个非 unsortable 属性生序
         if (!this.sort.prop) {
@@ -356,7 +404,6 @@
           assert.expect(prop).component('DaoTableView').error('sort.prop can not be undefined');
           this.sort.prop = prop;
         }
-        this.search = Object.assign(this.search, this.config.search);
       },
       // 同步来自缓存的设置
       syncStorageSettings() {
@@ -482,11 +529,16 @@
       // 打开设置对话框
       openSettingsDialog() {
         this.dialogs.settings = true;
-        console.log('openSettingsDialog');
       },
       // 关闭设置对话框
       onSettingsDialogConfirm(settings) {
         this.syncSettings(settings.columnsOrder, settings.timeFormat);
+      },
+      // 搜索
+      onKeywordChange(query) {
+        this.search.query = query;
+        this.unCheckAll();
+        this.$emit('search', query);
       },
     },
     watch: {
@@ -503,6 +555,7 @@
       DaoTableViewCheckAll,
       DaoTableViewSettingsDialog,
       DaoTableViewTh,
+      DaoTableViewFilter,
       GoToTd,
       StatusTd,
       TimeTd,
@@ -632,7 +685,7 @@ $inner-border: $white-dark;
 .dao-table-view-bottombar{
   .dao-table-view-pagination{
     float: left;
-    margin-left: 4px;
+    margin-left: 10px;
   }
   border-top: 1px solid $outer-border;
   border-bottom: none;
