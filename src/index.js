@@ -38,6 +38,7 @@ import daoTab from './components/dao-tab';
 import daoTooltip from './components/dao-tooltip';
 
 // 请按照名称的字典顺序添加以下 directives
+import daoClickoutside from './directives/clickoutside';
 import { daoDraggable, daoDroppable } from './directives/draggable/';
 import daoSelectAll from './directives/dao-select-all';
 import daoTooltipDirective from './directives/dao-tooltip';
@@ -95,6 +96,7 @@ const daoStyleDirectives = {
   'dao-tooltip': daoTooltipDirective,
   'dao-draggable': daoDraggable,
   'dao-droppable': daoDroppable,
+  'dao-clickoutside': daoClickoutside,
 };
 
 function install(Vue) {
