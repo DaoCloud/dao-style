@@ -1,0 +1,59 @@
+.nav-button {
+    cursor: pointer;
+    display: block;
+    text-decoration: none;
+    height: 28px;
+    line-height: 28px;
+    color: #ccd1d9;
+    padding: 0 8px;
+    margin: 6px 0;
+    position: relative;
+    &:hover {
+        border-radius: 3px;
+        background: #3d444f;
+        color: #ffffff;
+        opacity: .9;
+        .caret-down {
+            fill: #ffffff;
+        }
+    }
+    .nav-button-text {
+        display: inline-block;
+        height: 28px;
+        line-height: 28px;
+        white-space: nowrap;
+    }
+    .nav-button-icon {
+        box-sizing: border-box;
+        padding: 0;
+        list-style: none;
+        display: inline-block;
+        text-align: center;
+        color: #fff;
+        white-space: nowrap;
+        position: relative;
+        overflow: hidden;
+        vertical-align: middle;
+        width: 16px;
+        height: 16px;
+        line-height: 16px;
+        border-radius: 8px;
+    }
+    .caret-down {
+        display: inline-block;
+        width: 16px;
+        height: 16px;
+        position: absolute;
+        top: 6px;
+        right: 4px;
+        fill: #ccd1d9;
+    }
+}
+.nav-button-with-text {
+    .nav-button-icon {
+        margin: 0 8px 0 0;
+    }
+}
+.nav-button-with-caret {
+    padding: 0 24px 0 8px;
+}

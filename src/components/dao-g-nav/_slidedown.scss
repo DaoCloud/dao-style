@@ -1,0 +1,9 @@
+.slidedown-enter-active, .slidedown-leave-active {
+    transition: all .5s cubic-bezier(0, 1, 0.5, 1);
+    max-height: 5000px;
+    overflow-y: hidden;
+}
+.slidedown-enter, .slidedown-leave-to {
+    max-height: 0;
+    opacity: 0;
+}
