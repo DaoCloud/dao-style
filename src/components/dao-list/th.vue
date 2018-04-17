@@ -1,5 +1,5 @@
 <template>
-  <th ref="th" :class="{'resize-cursor': resizeCursor}"
+  <th ref="th" class="dao-list-th" :class="{'resize-cursor': resizeCursor}"
     :style="`width: ${thWidth}px`"
     @click="onClick"
     @mousemove="toggleCursor"
@@ -54,7 +54,7 @@ export default {
       // 事件有可能触发在 th 里的 svg 上，所以要先排除这种情况
       if (event.target.nodeName === 'svg' || event.target.nodeName === 'use') return false;
       const th = event.target;
-      if (th.clientWidth - event.offsetX < this.resizeAreaWidth) {
+      if (Math.abs(th.clientWidth - event.offsetX) < this.resizeAreaWidth) {
         return true;
       }
       return false;
@@ -91,6 +91,9 @@ export default {
 };
 </script>
 <style lang="scss">
+  .dao-list-th{
+    user-select: none;
+  }
   .resize-cursor {
     cursor: col-resize !important;
   }

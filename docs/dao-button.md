@@ -7,7 +7,18 @@ Button 是一个 32 像素高的（包括 border）表单元素（Form Element�
 ### 普通版
 
 ```HTML
+<button class="dao-btn">确定</button>
+
+### 颜色版
+
+```HTML
 <button class="dao-btn blue">确定</button>
+```
+
+### 背景透明版
+
+```HTML
+<button class="dao-btn ghost">确定</button>
 ```
 
 ### Disabled
@@ -16,14 +27,23 @@ Button 是一个 32 像素高的（包括 border）表单元素（Form Element�
 <button class="dao-btn blue" :disabled="true">确定</button>
 ```
 
-### 小号版：
+### 小号版
 
 ```HTML
 <button class="dao-btn btn-sm blue">确定</button>
 ```
 
+### mini 版
+mini 版暂时只支持两种颜色：grey, blue 
+
+```HTML
+<button class="dao-btn mini blue">确定</button>
+```
+
 ### 图标版：
 Button 上的内容可以是文字和图标。文字和图标在按钮上垂直居中。图标可以在文字的左侧或右侧。特殊情况下，图标一侧的边距可能会有视觉调整（Optical Adjustment）。
+请注意文字两侧均有图标时，右侧图标推荐使用 "icon_caret-down"。
+纯图标无文字版只支持一至两个图标，两个图标右侧图标推荐使用 "icon_caret-down"。
 
 ```HTML
 <button class="dao-btn blue has-icon">
@@ -32,12 +52,27 @@ Button 上的内容可以是文字和图标。文字和图标在按钮上垂直�
   </svg>
   <span class="text">确定</span>
 </button>
-<div class="dao-btn ghost has-icon compact">
+
+<div class="dao-btn ghost has-icon">
   <span class="text">下一步</span>
   <svg class="icon">
     <use xlink:href="#icon_caret-right"></use>
   </svg>
 </div>
+
+<button class="dao-btn blue has-icons">
+  <svg class="icon"><use xlink:href="#icon_sort-desc"></use></svg>
+  <span class="text">确定</span>
+  <svg class="icon"><use xlink:href="#icon_caret-down"></use></svg>
+</button>
+
+<button class="dao-btn blue icon-btn">
+    <svg class="icon"><use xlink:href="#icon_play"></use></svg>
+  </button>
+  <button class="dao-btn blue opt-btn">
+    <svg class="icon"><use xlink:href="#icon_setting"></use></svg>
+    <svg class="icon"><use xlink:href="#icon_caret-down"></use></svg>
+  </button>
 ```
 
 ### 按钮组：
@@ -57,6 +92,18 @@ Button 上的内容可以是文字和图标。文字和图标在按钮上垂直�
   <button class="dao-btn blue">确定</button>
   <button class="dao-btn blue">确定</button>
 </span>
+
+<span class="dao-btn-group">
+  <button class="dao-btn icon-btn">
+    <svg class="icon"><use xlink:href="#icon_trash"></use></svg>
+  </button>
+  <button class="dao-btn icon-btn">
+    <svg class="icon"><use xlink:href="#icon_trash"></use></svg>
+  </button>
+  <button class="dao-btn icon-btn" :disabled="true">
+    <svg class="icon"><use xlink:href="#icon_trash"></use></svg>
+  </button>
+</span>
 ```
 
 ## 参数
@@ -64,9 +111,12 @@ dao-button 支持的 class：
 
 | 类名      | 说明       |
 | ------- | ----------- |
-| ghost  | 空心按钮 |
+| 不加任何类名  | 白色的实心按钮 |
 | blue  | 蓝色的实心按钮 |
-| green  | 绿色的实心按钮 |
-| yellow  | 黄色的实心按钮 |
-| orange  | 橙色的实心按钮 |
 | red  | 红色的实心按钮 |
+| ghost  | 空心按钮 |
+| mini  | 无边框按钮 |
+| has-icon  | 单个图标按钮(含文字) |
+| has-icons  | 多个图标按钮(含文字) |
+| icon-btn  | 单个图标按钮(不含文字) |
+| opt-btn  | 多个图标按钮(不含文字) |
