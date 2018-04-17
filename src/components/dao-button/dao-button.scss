@@ -44,6 +44,32 @@
   }
 }
 
+// .dao-btn default style
+.dao-btn {
+  color: $black-dark;
+  border-color: $grey-light;
+  background-color: $white;
+  background-image: linear-gradient(to bottom, rgba($grey-dark, 0),
+      rgba($grey-dark, 0.1));
+  &:hover {
+    background-color: $white;
+    background-image: linear-gradient(rgba($grey-lighter, 0.1), rgba($grey-lighter, 0.1));
+  }
+  &:active,
+  &.active {
+    box-shadow: inset 0 0 4px 0 rgba(0, 0, 0, 0.08), inset 0 1px 3px 0 rgba(0, 0, 0, 0.06);
+    background-image: linear-gradient(to bottom, rgba($grey-lighter, 0.1),
+      rgba($grey-lighter, 0.1));
+  }
+  &.disabled,
+  &[disabled],
+  fieldset[disabled] & {
+    color: $grey-light;
+    pointer-events: none; // Future-proof disabling of clicks on `<a>` elements
+    cursor: $cursor-disabled;
+  }
+}
+
 a.dao-btn {
   &.disabled,
   fieldset[disabled] & {
@@ -60,14 +86,19 @@ a.dao-btn {
   @include text-shadow($btn-disabled-text-shadow);
   &:hover {
     background-color: rgba($grey-light, 0.1);
-    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.9);
   }
   &:active,
   &.active {
     background-color: rgba($grey-light, 0.15);
-    box-shadow: inset 0 1px 3px 0 rgba(0, 0, 0, 0.07),
-    inset 0 0 4px 0 rgba(0, 0, 0, 0.08),
-    0 1px 0 rgba(255, 255, 255, 0.9);
+    box-shadow: inset 0 0 4px 0 rgba(0, 0, 0, 0.08), inset 0 1px 3px 0 rgba(0, 0, 0, 0.06);
+  }
+  &.disabled,
+  &[disabled],
+  fieldset[disabled] & {
+    color: $grey-light;
+    cursor: $cursor-disabled;
+    pointer-events: none;
+    opacity: 1;
   }
 }
 
@@ -75,6 +106,12 @@ a.dao-btn {
   $generate-colors: generate-color($value);
   .dao-btn.#{$key} {
     @include button-variant(#FFFFFF, $value, map_get($generate-colors, 'border'));
+    &.disabled,
+    &[disabled],
+    fieldset[disabled] & {
+      color: $white;
+      opacity: 0.7;
+    }
   }
   // TODO 在生产环境的时候删除这段代码
   .color-card {
@@ -103,26 +140,44 @@ a.dao-btn {
   }
 }
 
-// .dao-btn.disabled style
-.dao-btn {
+// .dao-btn.mini style
+.dao-btn.mini{
+  background:none;
+  border: none;
+  @include box-shadow($btn-disabled-box-shadow);
+  @include text-shadow($btn-disabled-text-shadow);
+  &:hover, &:active, &.active {
+    background-image: none;
+    @include box-shadow($btn-disabled-box-shadow);
+  }
+  &.grey {
+    color: $black-dark;
+    &:hover, &:active, &.active {
+      background-color: rgba($grey-dark, 0.25);
+    }
+  }
+  &.blue {
+    color: #217ef2;
+    &:hover, &:active, &.active {
+      background-color: rgba($blue, 0.15);
+    }
+  }
   &.disabled,
   &[disabled],
   fieldset[disabled] & {
     color: $grey-light;
-    border-color: $grey-light !important;
-    background: none !important;
-
     cursor: $cursor-disabled;
+    opacity: 1;
     pointer-events: none;
-
-    @include box-shadow($btn-disabled-box-shadow!important);
-    @include text-shadow($btn-disabled-text-shadow);
   }
 }
 
+
+
+
 // .dao-btn has svg icon
 .dao-btn {
-  $btn-has-icon-compact-padding-x: 10px;
+  $btn-has-icon-compact-padding-x: 9px;
   svg {
     width: $btn-svg-size;
     height: $btn-svg-size;
@@ -130,11 +185,12 @@ a.dao-btn {
     fill: currentColor;
   }
   &.dao-icon {
-    padding: $btn-icon-padding-y $btn-icon-padding-x;
+    padding-left: $btn-icon-padding-x;
+    padding-right: $btn-icon-padding-x;
   }
   &.has-icon {
-    padding-top: $btn-has-icon-padding-y;
-    padding-bottom: $btn-has-icon-padding-y;
+    padding-left: $btn-has-icon-compact-padding-x;
+    padding-right: $btn-has-icon-compact-padding-x;
     .text {
       display: inline-block;
       margin:0 0 0 0;
@@ -143,15 +199,16 @@ a.dao-btn {
       display: inline-block;
     }
     svg.icon + .text {
-      margin:0 0 0 5px;
+      margin:0 0 0 6px;
     }
     .text + svg.icon {
-      margin-left: 5px;
+      margin-left: 6px;
     }
   }
 
   &.has-icon.compact {
-    padding: $btn-has-icon-padding-y $btn-has-icon-compact-padding-x;
+    padding-left: $btn-has-icon-compact-padding-x;
+    padding-right: $btn-has-icon-compact-padding-x;
     .text {
       margin: 0 8px 0 5px;
     }
@@ -161,6 +218,41 @@ a.dao-btn {
     .text + svg.icon {
       margin-left: 0px;
     }
+  }
+  &.has-icons {
+    padding-left: 7px;
+    padding-right: 7px;
+    .text {
+      display: inline-block;
+      margin:0 0 0 0;
+    }
+    svg.icon {
+      display: inline-block;
+    }
+    svg.icon + .text {
+      margin:0 0 0 6px;
+    }
+    .text + svg.icon {
+      margin-left: 6px;
+    }
+  }
+}
+
+// .dao-btn.icon-btn style
+.dao-btn.icon-btn {
+  padding-left: 7px;
+  padding-right: 7px;
+  width: 32px;
+}
+
+// .dao-btn.opt-btn style
+.dao-btn.opt-btn {
+  width: 46px;
+  padding-left: 7px;
+  padding-right: 3px;
+  letter-spacing: -3px; // 去除inline-block间隙
+  svg.icon + svg {
+    margin-left: 2px;
   }
 }
 
