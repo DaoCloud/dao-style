@@ -4,9 +4,8 @@
       <h2>default size</h2>
       <br>
       <button class="dao-btn blue" @click="handleClick">blue</button>
-      <button class="dao-btn green">green</button>
       <button class="dao-btn red">red</button>
-      <button class="dao-btn default">default</button>
+      <button class="dao-btn">default</button>
       <button class="dao-btn ghost">ghost</button>
       <button class="dao-btn mini grey">mini-grey</button>
       <button class="dao-btn mini blue">mini-blue</button>
@@ -16,20 +15,19 @@
       <h2>default size - disabled</h2>
       <br>
       <button class="dao-btn blue" :disabled="true">disabled</button>
-      <button class="dao-btn green" :disabled="true">disabled</button>
       <button class="dao-btn red" :disabled="true">disabled</button>
-      <button class="dao-btn default" :disabled="true">disabled</button>
-      <button class="dao-btn ghost" :disabled="true">disabled</button>
       <button class="dao-btn" :disabled="true">disabled</button>
+      <button class="dao-btn ghost" :disabled="true">disabled</button>
+      <button class="dao-btn mini grey" :disabled="true">disabled</button>
+      <button class="dao-btn mini blue" :disabled="true">disabled</button>
     </div>
 
     <div class="demo-container">
       <h2>small size</h2>
       <br>
       <button class="dao-btn btn-sm blue">blue</button>
-      <button class="dao-btn btn-sm green">green</button>
       <button class="dao-btn btn-sm red">red</button>
-      <button class="dao-btn btn-sm default">default</button>
+      <button class="dao-btn btn-sm">default</button>
       <button class="dao-btn btn-sm ghost">ghost</button>
       <button class="dao-btn btn-sm mini grey">mini-grey</button>
       <button class="dao-btn btn-sm mini blue">mini-blue</button>
@@ -39,11 +37,11 @@
       <h2>small size - disabled</h2>
       <br>
       <button class="dao-btn btn-sm blue" :disabled="true">disabled</button>
-      <button class="dao-btn btn-sm green" :disabled="true">disabled</button>
       <button class="dao-btn btn-sm red" :disabled="true">disabled</button>
-      <button class="dao-btn btn-sm default" :disabled="true">disabled</button>
-      <button class="dao-btn btn-sm ghost" :disabled="true">disabled</button>
       <button class="dao-btn btn-sm" :disabled="true">disabled</button>
+      <button class="dao-btn btn-sm ghost" :disabled="true">disabled</button>
+      <button class="dao-btn btn-sm mini grey" :disabled="true">disabled</button>
+      <button class="dao-btn btn-sm mini grey" :disabled="true">disabled</button>
     </div>
 
     <div class="demo-container">
@@ -67,10 +65,10 @@
     <div class="demo-container">
       <h2>icon btn</h2>
       <br>
-      <button class="dao-btn blue icon-btn">
+      <button class="dao-btn icon-btn">
         <svg class="icon"><use xlink:href="#icon_play"></use></svg>
       </button>
-      <button class="dao-btn blue opt-btn">
+      <button class="dao-btn opt-btn">
         <svg class="icon"><use xlink:href="#icon_setting"></use></svg>
         <svg class="icon"><use xlink:href="#icon_caret-down"></use></svg>
       </button>
@@ -99,13 +97,13 @@
       </span>
       
       <span class="dao-btn-group">
-        <button class="dao-btn ghost icon-btn">
+        <button class="dao-btn icon-btn">
           <svg class="icon"><use xlink:href="#icon_trash"></use></svg>
         </button>
-        <button class="dao-btn ghost icon-btn">
+        <button class="dao-btn icon-btn">
           <svg class="icon"><use xlink:href="#icon_trash"></use></svg>
         </button>
-        <button class="dao-btn ghost icon-btn" :disabled="true">
+        <button class="dao-btn icon-btn" :disabled="true">
           <svg class="icon"><use xlink:href="#icon_trash"></use></svg>
         </button>
       </span>

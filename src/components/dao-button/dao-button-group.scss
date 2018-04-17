@@ -26,10 +26,6 @@
 
     @include hover {
       z-index: 2;
-      box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.08), inset 0 2px 0 0 rgba(255, 255, 255, 0.08);
-      &.ghost {
-        box-shadow: none;
-      }
     }
 
     // 修复宽度不够导致 dao-btn-group 内部的 dao-btn 换行问题
