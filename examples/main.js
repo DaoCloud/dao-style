@@ -40,6 +40,7 @@ import tab from './routers/tab.vue';
 import table from './routers/table.vue';
 import tooltip from './routers/tooltip.vue';
 import tooltipDirective from './routers/tooltip-directive.vue';
+import tableView from './routers/table-view.vue';
 
 Vue.use(VueRouter);
 Vue.use(daoStyle);
@@ -145,6 +146,9 @@ const router = new VueRouter({
   }, {
     path: '/tooltip-directive',
     component: tooltipDirective,
+  }, {
+    path: '/table-view',
+    component: tableView,
   }, {
     path: '*',
     redirect: '/button',

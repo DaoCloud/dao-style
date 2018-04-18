@@ -76,6 +76,10 @@ $input-close-icon-active-color: $grey-dark;
     }
   }
 }
+.overflow-scroll{
+  max-height: 400px;
+  overflow-y: auto;
+}
 
 .dao-input-with-label-dropdown-item-base{
   max-width: 140px;
