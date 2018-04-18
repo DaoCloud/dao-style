@@ -36,7 +36,7 @@ export default {
       _forEach(this.rows, (row) => {
         _forEach(this.columnsOrder, (prop) => {
           const val = {
-            name: this.textRender(row[prop], this.props[prop].value),
+            name: row[prop],
             val: row[prop],
           };
           if (!filters[prop]) {

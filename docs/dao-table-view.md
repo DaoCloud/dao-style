@@ -304,10 +304,10 @@ export default {
 
 |  渲染规则   |      方法名           |    说明     |
 | ----- | --------------------- | --------- |
-| goto | url  |  方法第一个参数是当前 row,可以不传方法，默认是 row[prop]
-| status | color  |  方法第一个参数是当前 row, 可以不传方法，默认是 row[prop]
-| text | value  |  方法第一个参数是当前 row,可以不传方法，默认是 row[prop]
-| time | timeStamp  |  方法第一个参数是当前 row,可以不传方法，默认是 row[prop],返回值必须是时间戳
+| goto | url  |  参数分别是 row, row[prop], index,可以不传方法，默认是 row[prop]
+| status | color  |  参数分别是 row, row[prop], index,, 可以不传方法，默认是 row[prop]
+| text | value  |  参数分别是 row, row[prop], index,,可以不传方法，默认是 row[prop]
+| time | timeStamp  |  参数分别是 row, row[prop], index,,可以不传方法，默认是 row[prop],返回值必须是时间戳
 | custom | render  |  第一参数是 render 函数，第二个参数是当前 row
 
 

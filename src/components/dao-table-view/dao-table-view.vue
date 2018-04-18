@@ -140,27 +140,27 @@
                   :key="prop"
                   v-if="config.props[prop].type === 'text' || !config.props[prop].type"
                   :style="`width: ${settings.columnsWidth[prop]}`">
-                  {{textRender(row[prop] ,config.props[prop].value)}}
+                  {{textRender(row, index, prop,config.props[prop].value)}}
                 </td>
                 <go-to-td
                   :key="prop"
                   v-if="config.props[prop].type === 'goto'"
                   :style="`width: ${settings.columnsWidth[prop]}`"
-                  :url="textRender(row[prop] ,config.props[prop].url)"
+                  :url="textRender(row, index, prop,config.props[prop].url)"
                   :text="row[prop]">
                 </go-to-td>
                 <status-td
                   :key="prop"
                   v-if="config.props[prop].type === 'status'"
                   :style="`width: ${settings.columnsWidth[prop]}`"
-                  :color="textRender(row[prop] ,config.props[prop].color)"
+                  :color="textRender(row, index, prop,config.props[prop].color)"
                   :text="row[prop]">
                 </status-td>
                 <time-td
                   :key="prop"
                   v-if="config.props[prop].type === 'time'"
                   :timeFormat="settings.timeFormat"
-                  :timeStamp="textRender(row[prop] ,config.props[prop].timeStamp)">
+                  :timeStamp="textRender(row, index, prop,config.props[prop].timeStamp)">
                 </time-td>
                 <custom-td 
                   :key="prop"
@@ -472,11 +472,11 @@
         this.writeSettingsToStorage();
       },
       // text 渲染处理
-      textRender(val, rule) {
+      textRender(row, index, prop, rule) {
         if (typeof rule === 'function') {
-          return rule(val);
+          return rule(row[prop], row, index);
         }
-        return val;
+        return row[prop];
       },
       // 某一行被点击
       onRowClick(row) {
