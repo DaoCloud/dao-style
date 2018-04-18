@@ -160,7 +160,7 @@
                   :key="prop"
                   v-if="config.props[prop].type === 'time'"
                   :timeFormat="settings.timeFormat"
-                  :timeStamp="row[prop]">
+                  :timeStamp="textRender(row[prop] ,config.props[prop].timeStamp)">
                 </time-td>
                 <custom-td 
                   :key="prop"
@@ -455,7 +455,7 @@
       // 切换页码
       onPageChange(page) {
         this.pagination.page = page;
-        this.$emit('page-change', page);
+        this.$emit('page-change', this.pagination);
       },
       // 拖动调整宽度
       onColumnResize(prop, size) {
