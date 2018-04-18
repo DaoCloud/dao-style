@@ -50,20 +50,27 @@ export default {
         config: {
           // id 用于标示一个 list，便于 localstorage 对当前配置的存储
           id: '1q2w3e',
+  
+          // 是否隐藏右上角排序下拉框.默认不隐藏
           // hideSortHelper: true,
+
+          // 加载中的文本，默认“加载中”
           // loadingText: '加载中.....',
+
+          // 没有数据的文本，默认“没有数据”
           // emptyText: '没有数据呀呀呀呀呀呀',
-          // 每一行是否可选
+
+          // 每一行是否可选，不可选的话会隐藏调 checkbox
           // selectable: true,
-          // 是否支持搜索功能 -> 如果不支持搜索功能，则将分页自动挪到 view 下面
+  
+          // 这个 search 如果不传，则隐藏搜索，并且将分页自动挪到 view 下面
           // 以下这个配置是 input-with-label 的打平版，具体请参考 input-with-label 的配置
-          // input-with-label 的冒泡事件，会加上前缀 'search', 比如 @search-input
+          // 暂时没有把input-with-label 的事件全部冒泡上来，如果觉得这个搜索很傻逼，那么可以自己传入 search 的 slot 去代替
           search: {
             shutDown: false, // 是否回退为普通搜索 默认 false
             autofocus: true, // 是否自动聚焦 默认 false,
             placeholder: '搜索哈哈哈哈哈',
-            // 如果是后端分页，那么这个默认是 []
-            // 如果是前端分页，那么这个默认是 rows 的所有 key
+            // 如果是前端分页，那么这个 options 默认是 rows 的所有在显示的 prop 和对应的去重 value
             // options: [],
           },
           // 分页配置
@@ -152,7 +159,6 @@ export default {
               svg: '#icon_setting',
             },
             {
-              // 除了 event 其他都是通过传入方案，第一个形参是当前 row
               name: '重启',
               event: 'event-b',
               svg: '#icon_setting',
