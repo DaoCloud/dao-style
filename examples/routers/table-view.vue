@@ -6,7 +6,8 @@
       :loading="loading"
       @search="onSearch"
       @event-a="onEventA"
-      @pageChange="onPageChange"
+      @page-change="onPageChange"
+      @checked-rows-change="onCheckedRowsChange"
       @refresh="onRefresh">
       <!-- 这里会透传两个值，checkType 表示选择类型，all 是全部选择(注意：当是后端分页时候，这个数据是不准的) -->
       <!-- <checkedRow> 表示当前选择的行 -->
@@ -61,7 +62,7 @@ export default {
           // emptyText: '没有数据呀呀呀呀呀呀',
 
           // 每一行是否可选，不可选的话会隐藏调 checkbox
-          // selectable: true,
+          selectable: true,
   
           // 这个 search 如果不传，则隐藏搜索，并且将分页自动挪到 view 下面
           // 以下这个配置是 input-with-label 的打平版，具体请参考 input-with-label 的配置
@@ -225,7 +226,7 @@ export default {
       },
       // 如果是外部分页，可能会需要这个方法
       onPageChange(page) {
-        console.log('DaoTable -> onPageChange', page);
+        console.log('onPageChange', page);
         // 在这里重新传入 rows 和 config.pagination 对象 以重新构造 list
       },
       clickHandler(event) {
@@ -239,6 +240,9 @@ export default {
       },
       onEventA(row) {
         console.log('onEventA', row);
+      },
+      onCheckedRowsChange(rows) {
+        console.log('onCheckedRowsChange', rows);
       },
     },
   };

@@ -100,7 +100,7 @@
                   :per-page="chunk.length"
                   :checked="checkedCount"
                   @check="onCheck"
-                  @uncheck="unCheckAll">
+                  @uncheck="onCheckAll">
                 </dao-table-view-check-all>
               </th>
               <!-- th -->
@@ -441,6 +441,7 @@
         this.unCheckAll();
         // 选中当前行
         this.$set(row, '$checked', true);
+        this.checkedRowsChange();
         const position = {
           top: `${event.clientY}px`,
           left: `${event.clientX}px`,
@@ -454,7 +455,7 @@
       // 切换页码
       onPageChange(page) {
         this.pagination.page = page;
-        this.$emit('pageChange', page);
+        this.$emit('page-change', page);
       },
       // 拖动调整宽度
       onColumnResize(prop, size) {
@@ -479,16 +480,22 @@
       },
       // 某一行被点击
       onRowClick(row) {
+        this.unCheckAll();
         if (!this.selectable) return;
         // 类型更改为在当前这一页选择，总之不是全选
         this.checkType = 'page';
         this.$set(row, '$checked', !row.$checked);
+        this.checkedRowsChange();
       },
       // 全选切换辅助函数
       changeChecked(rows, checked) {
         _forEach(rows, (row) => {
           this.$set(row, '$checked', checked);
         });
+      },
+      onCheckAll() {
+        this.unCheckAll();
+        this.checkedRowsChange();
       },
       // 全不选所有行，这个方法速度比 checkAll 快
       unCheckAll() {
@@ -497,6 +504,7 @@
       // 切换全选
       onToggleCheck() {
         this.changeChecked(this.chunk, !this.chunkAllChecked);
+        this.checkedRowsChange();
       },
       // 两种全选方式
       onCheck(type) {
@@ -518,6 +526,11 @@
             break;
           }
         }
+        this.checkedRowsChange();
+      },
+      // 选中行变化
+      checkedRowsChange() {
+        this.$emit('checked-rows-change', _filter(this.rows, row => row.$checked));
       },
       // 派发事件
       distributeEvent(eventName, row) {
