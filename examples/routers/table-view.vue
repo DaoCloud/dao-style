@@ -125,7 +125,8 @@ export default {
             memory: {
               name: '内存',
               type: 'text',
-              value(val) {
+              value(val, row, index) {
+                console.log(val, row, index);
                 return `哈哈哈哈-${val}`;
               },
             },
