@@ -146,7 +146,7 @@ export default {
       return _isBoolean(this.config.defaultCheck) ? this.config.defaultCheck : true;
     },
     toolbarOperations() {
-      return this.settings.operations || this.config.operations;
+      return this.settings.toolbarOperations || this.config.operations;
     },
     timeFormat() {
       return this.settings.timeFormat || this.config.timeFormat;
@@ -433,7 +433,9 @@ export default {
     closeCustomToolbarDialog() {
       this.isCustomToolbarDialogVisible = false;
     },
-    onCustomToolbarDialogConfirm() {
+    onCustomToolbarDialogConfirm(newToolbarOperations) {
+      this.settings.toolbarOperations = newToolbarOperations;
+      this.saveLocalStorageSettings();
     },
     getLocalStorageSettings() {
       return JSON.parse(localStorage.getItem(`${this.config.tableId}Settings`));
@@ -443,6 +445,7 @@ export default {
         columnsWidth: this.columnsWidth,
         columnsOrder: this.settings.columnsOrder,
         timeFormat: this.settings.timeFormat,
+        toolbarOperations: this.settings.toolbarOperations,
       };
       const json = JSON.stringify(settings);
       localStorage.setItem(`${this.tableId}Settings`, json);

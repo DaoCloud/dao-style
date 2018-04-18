@@ -13,7 +13,7 @@
           </svg>
           <span class="text">{{mainOperation.name}}</span>
         </button>
-        <div class="toolbar-operations" v-dao-droppable>
+        <div class="toolbar-operations" v-dao-droppable.remove="{onChange: onDrop}">
           <div class="dao-btn-group draggable"
             v-dao-draggable
             v-for="operationGroup in toolbarOperations"
@@ -66,7 +66,7 @@
 </template>
 
 <script>
-  // import _ from 'lodash';
+  import _ from 'lodash';
   import Dialog from './dialog';
 
   export default {
@@ -75,6 +75,7 @@
     props: ['operations', 'toolbarOperations', 'mainOperation'],
     data() {
       return {
+        newOperationGroups: _.clone(this.toolbarOperations),
         config: {
           size: 'resize',
           title: '自定义工具栏',
@@ -84,8 +85,14 @@
     },
     methods: {
       onConfirm() {
-        this.$emit('confirm', this.settings);
+        this.$emit('confirm', this.newOperationGroups);
         this.onClose();
+      },
+      onDrop(operationGroupsName) {
+        this.newOperationGroups = _.map(operationGroupsName, (name) => {
+          const group = _.find(this.operations, { groupName: name });
+          return group;
+        });
       },
     },
   };
@@ -106,6 +113,10 @@
   }
   .toolbar-operations {
     display: inline-block;
+    // 如果不加这个 padding 的话，dropable 的 remove 功能无法起作用，具体问 mimo
+    padding: 5px;
+    // 补偿上面的 padding
+    margin-top: -5px;
     .operation-name {
       display: none !important;
     }
