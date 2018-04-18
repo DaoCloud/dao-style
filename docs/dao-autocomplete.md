@@ -8,6 +8,30 @@ dao-autocomplete 是一个自动补全的组件。代码请参照目录：[src/c
 
 基本版的 autocomplete 支持传入一个数组作为选项列表。数组里可以是字符串，也可以是 text/value 形式的对象，也可以两者混用。
 
+<vuep template="#example"></vuep>
+
+<script v-pre type="text/x-template" id="example">
+<template>
+  <dao-autocomplete
+    v-model="model"
+    :options="options"
+    placeholder="请输入内容">
+  </dao-autocomplete>
+</template>
+
+<script>
+  module.exports = {
+    data() {
+      return { 
+        model: '',
+        options: ['apple', 'banana', 'cherry'],
+      }
+    }
+  }
+</script>
+
+</script>
+
 #### HTML
 
 ```HTML

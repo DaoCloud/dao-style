@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>dao-style-vue - dao style with Vue.js</title>
+  <meta name="description" content="dao style with Vue.js">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <link rel="stylesheet" href="//unpkg.com/docsify/lib/themes/vue.css">
+  <style>
+    article,
+    aside,
+    blockquote,
+    body,
+    button,
+    dd,
+    details,
+    div,
+    dl,
+    dt,
+    fieldset,
+    figcaption,
+    figure,
+    footer,
+    form,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    header,
+    hgroup,
+    hr,
+    input,
+    legend,
+    li,
+    menu,
+    nav,
+    ol,
+    p,
+    section,
+    td,
+    textarea,
+    th,
+    .vuep-scoped-3 ul {
+      margin: 0;
+      padding: 0;
+    }
+  </style>
+  <link rel="stylesheet" href="//unpkg.com/vuep/dist/vuep.css">
+</head>
+
+<body>
+  <div id="app"></div>
+</body>
+<script>
+  window.$docsify = {
+    name: 'dao-style-vue',
+    repo: 'https://github.com/DaoCloud/dao-style-vue',
+    coverpage: true,
+    loadSidebar: true,
+    autoHeader: true,
+    subMaxLevel: 3,
+    auto2top: true,
+    formatUpdated: '{MM}/{DD} {HH}:{mm}',
+    plugins: [
+      function (hook, vm) {
+        hook.beforeEach((html) => {
+          const url = `https://github.com/DaoCloud/dao-style-vue/tree/develop/docs/${vm.route.file}`;
+          const editHtml = `[:memo: Edit Document](${url})\n`;
+          return `${editHtml}${html}\n----\nLast modified {docsify-updated}${editHtml}`;
+        });
+      },
+    ],
+  };
+
+</script>
+<script src="//unpkg.com/babel-standalone/babel.min.js"></script>
+<script src="//unpkg.com/vue/dist/vue.min.js"></script>
+<script src="/lib/dao-style.min.js"></script>
+<script src="//unpkg.com/vuep/dist/vuep.min.js"></script>
+<script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
+<script src="//unpkg.com/docsify/lib/plugins/search.min.js"></script>
+<script src="//unpkg.com/docsify/lib/plugins/zoom-image.min.js"></script>
+
+</html>
