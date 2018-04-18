@@ -7,7 +7,7 @@
     <div v-if="visible" class="dao-dialog-backdrop">
       <div class="dao-dialog-wrapper" @mousedown="onWrapperMousedown">
         <div class="dao-dialog-container" :class="formatedContainerClass" ref="container">
-          <dao-dialog-header v-if="header" :config="header" @close="onClose">
+          <dao-dialog-header v-if="computedHeader" :config="computedHeader" @close="onClose">
             <slot name="header"/>
           </dao-dialog-header>
           <div ref="body"  class="dao-dialog-body">
@@ -15,10 +15,10 @@
               <slot></slot>
             </div>
           </div>
-          <dao-dialog-footer v-if="footer" :config="footer" @confirm="onConfirm" @cancel="onCancel">
+          <dao-dialog-footer v-if="computedFooter" :config="computedFooter" @confirm="onConfirm" @cancel="onCancel">
             <slot name="footer"/>
           </dao-dialog-footer>
-          <div class="resizer" v-if="allowResize" @mousedown.stop="onMouseDown">
+          <div class="resizer" v-if="computedAllowResize" @mousedown.stop="onMouseDown">
           </div>
         </div>
       </div>
@@ -30,6 +30,7 @@
 import daoDialogHeader from './dao-dialog-header/dao-dialog-header.vue';
 import daoDialogFooter from './dao-dialog-footer/dao-dialog-footer.vue';
 import getWindowSize from '../../utils/window-size';
+import { _includes } from '../../utils/assist';
 
 const dialogBoundary = {
   height: {
@@ -110,6 +111,13 @@ export default {
       type: Boolean,
       default: true,
     },
+    // 兼容旧版 dialog
+    config: {
+      type: Object,
+      default() {
+        return {};
+      },
+    },
   },
   data() {
     return {
@@ -124,6 +132,32 @@ export default {
         dragging: this.dragging,
       };
     },
+    // 兼容旧版 dialog
+    computedHeader() {
+      if (this.config.showHeader === false || this.header === false) return false;
+      return {
+        title: this.config.title || this.header.title,
+        showClose: this.config.showHeaderClose || this.header.showClose,
+      };
+    },
+    // 兼容旧版 dialog
+    computedFooter() {
+      if (this.config.showFooter === false || this.showFooter === false) return false;
+      return this.footer;
+    },
+    computedAllowResize() {
+      return this.config.size === 'resize' || this.allowResize;
+    },
+    computedCloseOnPressEscape() {
+      return this.config.closeOnPressEscape || this.closeOnPressEscape;
+    },
+    computedCloseOnClickOutside() {
+      return this.config.closeOnClickOutside || this.closeOnClickOutside;
+    },
+    computedSize() {
+      if (_includes(Object.keys(dialogSizeMap), this.config.size)) return this.config.size;
+      return this.size;
+    },
   },
   methods: {
     onBeforeEnter() {
@@ -136,6 +170,7 @@ export default {
 
     onAfterEnter() {
       this.$emit('opened');
+      this.$emit('dao-dialog-open');
     },
 
     onClose() {
@@ -144,23 +179,25 @@ export default {
 
     onConfirm() {
       this.$emit('confirm');
+      this.$emit('dao-dialog-confirm');
       this.onClose();
     },
 
     onCancel() {
       this.$emit('cancel');
+      this.$emit('dao-dialog-cancel');
       this.onClose();
     },
 
-    // 不要用 clik 事件，难以处理拖拽导致的关闭
+    // 不要用 click 事件，难以处理拖拽导致的关闭
     onWrapperMousedown() {
-      if (this.closeOnClickOutside) {
+      if (this.computedCloseOnClickOutside) {
         this.onClose();
       }
     },
 
     onKeyDown({ keyCode }) {
-      if (keyCode === 27 && this.closeOnPressEscape) {
+      if (keyCode === 27 && this.computedCloseOnPressEscape) {
         this.onClose();
       }
     },
@@ -259,10 +296,11 @@ export default {
       this.lastWindowSize = null;
       this.unLockWindowScroll();
       this.$emit('closed');
+      this.$emit('dao-dialog-close');
     },
 
     initSize() {
-      this.setConatienrSize(dialogSizeMap[this.size] || this.size);
+      this.setConatienrSize(dialogSizeMap[this.computedSize] || this.computedSize);
       // 需要在动画完成之后再手动触发一次自动调整
       setTimeout(() => {
         this.onResize();

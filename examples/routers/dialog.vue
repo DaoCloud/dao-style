@@ -179,6 +179,30 @@
     </dao-setting-section>
   </dao-setting-layout>
 
+  <!-- 定制化 -->
+  <dao-setting-layout>
+    <div slot="layout-title"> 对旧版 dialog 的兼容</div>
+    <dao-setting-section >
+      <!-- <div slot="section-title">
+        对旧版 dialog 的兼容
+      </div> -->
+      <div slot="content">
+        <button class="dao-btn blue" @click="oldDialog.visible = true">打开对话框</button>
+        <dao-dialog
+          :visible.sync="oldDialog.visible"
+          :config="oldDialog.config"
+          @dao-dialog-close="onClosed"
+          @dao-dialog-open="onOpened"
+          @dao-dialog-confirm="onConfirm"
+          @dao-dialog-cancel="onCancel">
+          <div class="body">
+              <h2>完美兼容旧版 dialog</h2>
+          </div>
+        </dao-dialog>
+      </div>
+    </dao-setting-section>
+  </dao-setting-layout>
+
   <!-- 更多示例-->
   <dao-setting-layout>
     <div slot="layout-title"> 更多示例 </div>
@@ -289,6 +313,18 @@
         ],
         bodyOnly: {
           visible: false,
+        },
+        oldDialog: {
+          visible: false,
+          config: {
+            title: '旧版 dialog',
+            size: 'md',
+            // closeOnClickOutside: true,
+            // closeOnPressEscape: true,
+            // showHeader: false,
+            showHeaderClose: true,
+            // showFooter: true,
+          },
         },
         custom: {
           visible: false,
