@@ -5,6 +5,7 @@
       :config="config"
       :loading="loading"
       @search="onSearch"
+      @event-a="onEventA"
       @pageChange="onPageChange"
       @refresh="onRefresh">
       <!-- 这里会透传两个值，checkType 表示选择类型，all 是全部选择(注意：当是后端分页时候，这个数据是不准的) -->
@@ -13,7 +14,7 @@
       <div slot="tool" slot-scope="{ checkType, checkedRows}" style="display: flex;justify-content: space-between;">
         <button class="dao-btn blue" @click="createApp(checkType, checkedRows)">创建应用</button>
         <div>
-          <dao-input placeholder="这是通过 slot 传入的 input"></dao-input>
+          <dao-input :placeholder="`from slot: 当前选中了 ${checkedRows.length} 行数据`"></dao-input>
         </div>
       </div>
       <!-- <div slot="search"> -->
@@ -143,6 +144,70 @@ export default {
               type: 'time',
             },
           },
+          operations: [
+            {
+              // 除了 event 其他都是通过传入方案，第一个形参是当前 row
+              name: '暂停',
+              event: 'event-a',
+              svg: '#icon_setting',
+            },
+            {
+              // 除了 event 其他都是通过传入方案，第一个形参是当前 row
+              name: '重启',
+              event: 'event-b',
+              svg: '#icon_setting',
+            },
+            {
+              name: '状态',
+              svg: '#icon_setting',
+              children: [
+                {
+                  name(row) {
+                    return `暂停${row.service}`;
+                  },
+                  svg: '#icon_setting',
+                  disabledSvg: 'crown',
+                  event: 'event-b',
+                  disabled(row) {
+                    if (row.name === '10dce-plugin-applb') return true;
+                    return false;
+                  },
+                  disabledTooltip(row) {
+                    return `${row.service}不可删除`;
+                  },
+                }, {
+                  name: '删除',
+                  svg: '#icon_setting',
+                  event: 'event-c',
+                  disabled: true,
+                  disabledSvg: 'crown',
+                  disabledTooltip: '许可证到期',
+                },
+              ],
+            },
+            {
+              name: '容器配置',
+              event: 'event-b',
+              svg: '#icon_setting',
+              children: [
+                {
+                  name: '重启',
+                  svg: '#icon_setting',
+                  event: 'event-e',
+                  disabled: false,
+                  disabledSvg: 'crown',
+                  disabledTooltip: '许可证到期',
+                }, {
+                  name: '停止',
+                  svg: '#icon_setting',
+                  event: 'event-f',
+                  disabled: true,
+                  disabledSvg: 'crown',
+                  disabledTooltip: '许可证到期',
+                },
+              ],
+            },
+          ],
         },
         rows: undefined,
       };
@@ -165,6 +230,9 @@ export default {
       },
       createApp(type, rows) {
         console.log('createApp', type, rows);
+      },
+      onEventA(row) {
+        console.log('onEventA', row);
       },
     },
   };

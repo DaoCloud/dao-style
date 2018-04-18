@@ -1,46 +1,79 @@
 <template>
-  <div @contextmenu.prevent="noop" v-dao-clickoutside="handleClickoutside" v-show="visible">
-    <dao-dropdown-menu>
-      <template
-        v-for="group in operations"
-        v-if="isGroupShouldShow(group)">
+  <div @contextmenu.prevent="noop" v-dao-clickoutside="handleClickoutside" v-show="visible && filteredOperations.length">
+    <dao-dropdown-menu slot="list">
+      <template v-for="operation in filteredOperations">
+        <!-- 没有二级菜单 -->
         <dao-dropdown-item
-          v-for="o in group.operations"
-          :key="o.name"
-          :is-disabled="o.disabled"
-          @click="operate(o.event)">
-          <span>{{o.name}}</span>
-          <svg v-if="o.disabled" v-dao-tooltip="o.disabledTooltip">
-            <use v-bind="{'xlink:href': `#icon_${o.disabledSvg}`}"></use>
+          v-if="!operation.children" 
+          :key="handleFun(operation.name)"
+          :is-disabled="handleFun(operation.disabled)"
+          @click="operate(operation.event)">
+          <svg class="icon"><use :xlink:href="handleFun(operation.svg)"></use></svg>
+          <span>{{handleFun(operation.name)}}</span>
+          <svg v-if="handleFun(operation.disabled)" v-dao-tooltip="handleFun(operation.disabledTooltip)">
+            <use v-bind="{'xlink:href': `#icon_${handleFun(operation.disabledSvg)}`}"></use>
           </svg>
         </dao-dropdown-item>
+        <!-- 有二级菜单 -->
+        <dao-dropdown
+          v-if="operation.children && operation.children.length"
+          :key="handleFun(operation.name)"
+          placement="left-start" :append-to-body="false">
+          <dao-dropdown-item>
+            <svg class="icon"><use xlink:href="#icon_change-state"></use></svg>
+            <span>{{handleFun(operation.name)}}</span>
+            <svg class="icon icon-arrow-right" >
+              <use xlink:href="#icon_down-arrow"></use>
+            </svg>
+          </dao-dropdown-item>
+          <dao-dropdown-menu slot="list">
+            <dao-dropdown-item
+              v-for="child in operation.children"
+              :key="handleFun(child.name)"
+              :is-disabled="handleFun(child.disabled)"
+              @click="operate(child.event)">
+               <svg class="icon"><use :xlink:href="handleFun(child.svg)"></use></svg>
+              <span>{{handleFun(child.name)}}</span>
+              <svg v-if="handleFun(child.disabled)" v-dao-tooltip="handleFun(child.disabledTooltip)">
+                <use v-bind="{'xlink:href': `#icon_${handleFun(child.disabledSvg)}`}"></use>
+              </svg>
+            </dao-dropdown-item>
+          </dao-dropdown-menu>
+        </dao-dropdown>
       </template>
     </dao-dropdown-menu>
   </div>
 </template>
 
 <script>
+
+import {
+  _filter,
+  _get,
+  } from '../../utils/assist';
+
 export default {
   name: 'DaoTableViewContextMenu',
-  props: ['checkedRows', 'operations', 'visible'],
+  props: ['row', 'operations', 'visible'],
   computed: {
-    isMultiChecked() {
-      return this.checkedRows.length > 1;
+    filteredOperations() {
+      // 先砍掉二级菜单
+      return _filter(this.operations, operation => _get(operation, 'children', 0) === 0 && operation.event);
     },
   },
   methods: {
-    operate(event) {
-      this.$parent.$emit(event, this.checkedRows);
-    },
-    isGroupShouldShow(group) {
-      if (this.isMultiChecked && (group.single === true)) {
-        return false;
-      }
-      return true;
-    },
     noop() {},
     handleClickoutside() {
       this.$emit('update:visible', false);
+    },
+    operate(event) {
+      this.$emit('triggerEvent', event, this.row);
+    },
+    handleFun(key) {
+      if (typeof key === 'function') {
+        return key(this.row);
+      }
+      return key;
     },
   },
 };

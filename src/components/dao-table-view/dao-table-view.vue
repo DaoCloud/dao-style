@@ -200,8 +200,9 @@
       class="dao-table-view-context-menu"
       :style="contextMenu.position"
       :visible.sync="contextMenu.visible"
-      :checkedRows="[]"
-      :operations="[]">
+      :operations="operations"
+      :row="contextMenu.row"
+      @triggerEvent="distributeEvent">
     </dao-table-view-context-menu>
     <!-- 显示设置弹窗 -->
     <dao-table-view-settings-dialog
@@ -281,6 +282,7 @@
             top: '',
             left: '',
           },
+          row: {},
         },
         // 对话框显示控制
         dialogs: {
@@ -372,7 +374,7 @@
       },
       showTopBar() {
         // 前端分页但是数据是空的
-        if (this.fullControll && this.rows && !this.rows.length) return false;
+        if (this.fullControll && !_get(this.rows, 'length', false)) return false;
         // 有 search 或者有 search slot
         return !!this.config.search || !!this.$slots.search;
       },
@@ -385,6 +387,8 @@
       $onInit() {
         this.syncStorageSettings();
         this.syncConfig();
+        // 数据刷新时候把全选重置
+        this.unCheckAll();
         // 后面的事情，就交给 vue 的 computed 了
       },
       // 同步配置
@@ -443,6 +447,7 @@
         };
         Object.assign(this.contextMenu, {
           position,
+          row,
           visible: true,
         });
       },
@@ -514,12 +519,8 @@
         }
       },
       // 派发事件
-      distributeEvent(eventName, rows) {
-        // 把全选类型冒出去，如果是后端分页的话可以自行处理具体逻辑
-        this.$emit(eventName, {
-          checkType: this.checkType,
-          rows,
-        });
+      distributeEvent(eventName, row) {
+        this.$emit(eventName, row);
       },
       // 刷新
       refresh() {
@@ -542,10 +543,13 @@
     },
     watch: {
       config: {
-        handler(newVal) {
-          this.syncConfig(newVal);
+        handler() {
+          this.$onInit();
         },
         deep: true,
+      },
+      rows() {
+        this.$onInit();
       },
     },
     components: {
