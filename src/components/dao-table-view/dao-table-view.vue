@@ -13,9 +13,9 @@
           placement="bottom-end">
           <button class="dao-btn ghost has-icon">
             <svg class="icon">
-              <use v-bind="{'xlink:href': `#icon_sort-${sort.order}`}"></use>
+              <use v-bind="{'xlink:href': `#icon_sort-${settings.sort.order}`}"></use>
             </svg>
-            <span class="text">{{config.props[sort.prop].name}}</span>
+            <span class="text">{{config.props[settings.sort.prop].name}}</span>
             <svg class="icon">
               <use xlink:href="#icon_caret-down"></use>
             </svg>
@@ -25,20 +25,20 @@
               v-if="!config.props[prop].unsortable"
               :key="prop"
               @click="onSortByChange(prop)">
-              <svg class="icon" :class="{invisible: sort.prop !== prop}">
+              <svg class="icon" :class="{invisible: settings.sort.prop !== prop}">
                 <use xlink:href="#icon_checkmark-menu-item"></use>
               </svg>
               <span>{{config.props[prop].name}}</span>
             </dao-dropdown-item>
             <dao-dropdown-item :is-divided="true"></dao-dropdown-item>
-            <dao-dropdown-item @click="sort.order='asc'">
-              <svg class="icon" :class="{invisible: sort.order !== 'asc'}">
+            <dao-dropdown-item @click="settings.sort.order='asc'">
+              <svg class="icon" :class="{invisible: settings.sort.order !== 'asc'}">
                 <use xlink:href="#icon_checkmark-menu-item"></use>
               </svg>
               <span>升序</span>
             </dao-dropdown-item>
-            <dao-dropdown-item @click="sort.order='desc'">
-              <svg class="icon" :class="{invisible: sort.order !== 'desc'}">
+            <dao-dropdown-item @click="settings.sort.order='desc'">
+              <svg class="icon" :class="{invisible: settings.sort.order !== 'desc'}">
                 <use xlink:href="#icon_checkmark-menu-item"></use>
               </svg>
               <span>降序</span>
@@ -113,10 +113,10 @@
                 @click="onSortByChange(prop)">
                 <span>{{config.props[prop].name || config.props[prop]}}</span>
                 <template v-if="!config.props[prop].unsortable">
-                  <svg class="sort-arrow" v-if="sort.prop === prop" v-show="sort.order === 'desc'">
+                  <svg class="sort-arrow" v-if="settings.sort.prop === prop" v-show="settings.sort.order === 'desc'">
                     <use xlink:href="#icon_down-arrow"></use>
                   </svg>
-                  <svg class="sort-arrow" v-if="sort.prop === prop" v-show="sort.order === 'asc'">
+                  <svg class="sort-arrow" v-if="settings.sort.prop === prop" v-show="settings.sort.order === 'asc'">
                     <use xlink:href="#icon_up-arrow"></use>
                   </svg>
                 </template>
@@ -239,7 +239,7 @@
   } from '../../utils/assist';
 
   export default {
-    name: 'DaoTableViewView',
+    name: 'DaoTableView',
     props: ['rows', 'config', 'loading'],
     data() {
       return {
@@ -252,12 +252,6 @@
           per_page: 10,
         },
 
-        // 排序规则
-        sort: {
-          prop: '',
-          order: 'asc',
-        },
-
         // 配置
         settings: {
           // 表头的顺序
@@ -266,6 +260,11 @@
           columnsWidth: {},
           // 时间格式
           timeFormat: '',
+          // 排序规则
+          sort: {
+            prop: null,
+            order: 'asc',
+          },
         },
 
         // 搜索配置
@@ -335,7 +334,8 @@
         // 如果是前端分页，那么就分 chunk
         if (this.fullControll) {
           // 先排序，再分块
-          const rows = _orderBy(this.filterRows, row => row[this.sort.prop], this.sort.order);
+          const rows = _orderBy(this.filterRows, row =>
+            row[this.settings.sort.prop], this.settings.sort.order);
           return _chunk(rows, this.pagination.per_page)[this.pagination.page - 1] || [];
         }
         // 如果是后端分页，那么就直接把传入的数据直接灌进来
@@ -385,7 +385,7 @@
     methods: {
       // 同步缓存设置
       $onInit() {
-        this.syncStorageSettings();
+        this.readSettingsFromStorage();
         this.syncConfig();
         // 数据刷新时候把全选重置
         this.unCheckAll();
@@ -396,33 +396,20 @@
         this.selectable = this.config.selectable !== false;
         this.pagination = Object.assign(this.pagination, this.config.pagination);
         this.search = Object.assign(this.search, this.config.search);
-        this.syncConfigSort();
-      },
-      // 初始化同步一下排序规则
-      syncConfigSort() {
-        this.sort = Object.assign(this.sort, this.config.sort);
-        // 允许 sort 不传指，默认是第一个非 unsortable 属性生序
-        if (!this.sort.prop) {
-          const prop = _find(this.settings.columnsOrder, c => !this.config.props[c].unsortable);
-          assert.expect(prop).component('DaoTableView').error('sort.prop can not be undefined');
-          this.sort.prop = prop;
-        }
       },
       // 同步来自缓存的设置
-      syncStorageSettings() {
+      readSettingsFromStorage() {
         const props = Object.keys(this.config.props);
         const storageSettings = localStorage.getItem(this.storageKey);
         const settings = storageSettings ? JSON.parse(storageSettings) : null;
         if (settings) {
-          this.settings.columnsWidth = settings.columnsWidth;
-          this.settings.columnsOrder = settings.columnsOrder;
-          this.settings.timeFormat = settings.timeFormat;
+          this.settings = settings;
         } else {
-          this.syncSettings(props, 'absolute');
+          this.buildSettings(props, 'absolute');
         }
       },
       // 同步设置，辅助函数
-      syncSettings(columnsOrder, timeFormat) {
+      buildSettings(columnsOrder, timeFormat) {
         const columnsWidth = {};
         _forEach(columnsOrder, (prop) => {
           columnsWidth[prop] = `${((1 / columnsOrder.length) * 100).toFixed(2)}%`;
@@ -430,8 +417,21 @@
         this.settings.columnsWidth = columnsWidth;
         this.settings.columnsOrder = columnsOrder;
         this.settings.timeFormat = timeFormat;
-        localStorage.setItem(this.storageKey, JSON.stringify(this.settings));
+        if (!this.settings.sort || !this.settings.order) {
+          this.settings.sort = Object.assign(this.settings.sort, this.config.sort);
+          // 允许 sort 不传指，默认是第一个非 unsortable 属性生序
+          if (!this.settings.sort.prop) {
+            const prop = _find(this.settings.columnsOrder, c => !this.config.props[c].unsortable);
+            assert.expect(prop).component('DaoTableView').error('sort.prop can not be undefined');
+            this.settings.sort.prop = prop;
+          }
+        }
+        this.writeSettingsToStorage();
         this.dialogs.settings = false;
+      },
+      // 将数据缓存到 localstorage
+      writeSettingsToStorage() {
+        localStorage.setItem(this.storageKey, JSON.stringify(this.settings));
       },
       // 右键菜单: TODO 在 iframe 里会出现定位差
       onContextMenu(row, event) {
@@ -459,15 +459,16 @@
       // 拖动调整宽度
       onColumnResize(prop, size) {
         this.settings.columnsWidth[prop] = `${size}px`;
-        localStorage.setItem(this.storageKey, JSON.stringify(this.settings));
+        this.writeSettingsToStorage();
       },
       // 更改排序规则
       onSortByChange(prop) {
         if (this.config.props[prop].unsortable) return;
-        if (this.sort.prop === prop) {
-          this.sort.order = this.sort.order === 'asc' ? 'desc' : 'asc';
+        if (this.settings.sort.prop === prop) {
+          this.settings.sort.order = this.settings.sort.order === 'asc' ? 'desc' : 'asc';
         }
-        this.sort.prop = prop;
+        this.settings.sort.prop = prop;
+        this.writeSettingsToStorage();
       },
       // text 渲染处理
       textRender(val, rule) {
@@ -532,7 +533,7 @@
       },
       // 关闭设置对话框
       onSettingsDialogConfirm(settings) {
-        this.syncSettings(settings.columnsOrder, settings.timeFormat);
+        this.buildSettings(settings.columnsOrder, settings.timeFormat);
       },
       // 搜索
       onKeywordChange(query) {
