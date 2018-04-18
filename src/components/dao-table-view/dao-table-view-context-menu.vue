@@ -68,6 +68,7 @@ export default {
     },
     operate(event) {
       this.$emit('triggerEvent', event, this.row);
+      this.handleClickoutside();
     },
     handleFun(key) {
       if (typeof key === 'function') {
