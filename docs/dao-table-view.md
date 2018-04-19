@@ -264,6 +264,7 @@ export default {
 | ------------- | ------ | ---------------------------------------- | ----------- | ---- |
 | id       | String | 用于标识这个列表的唯一 ID。  | -           | 是    |
 | hideSortHelper  | Boolean  | 是否隐藏右上角排序下拉框。| false           | 是    |
+| hideSettingHelper  | Boolean  | 是否隐藏显示设置| false           | 是    |
 | loadingText       | String | 加载中的提示文本。 | '加载中...' | 否    |
 | emptyText       | String | 没有数据时的提示文本。 | '列表为空' | 否    |
 | selectable  | Boolean  | 每一行时候可以被选中。| true           | 否    |
