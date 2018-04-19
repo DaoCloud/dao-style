@@ -49,6 +49,7 @@
         <dao-dropdown
           trigger="click"
           :append-to-body="true"
+          v-if="config.hideSettingHelper !== true"
           placement="bottom-end">
           <button class="dao-btn ghost dao-icon">
             <svg class="icon"><use xlink:href="#icon_setting"></use></svg>
@@ -435,13 +436,13 @@
       },
       // 右键菜单: TODO 在 iframe 里会出现定位差
       onContextMenu(row, event) {
-        // 如果没有定义好的操作，就不要打开右键菜单
-        if (!this.operations.length) return;
         // 去掉全选
         this.unCheckAll();
         // 选中当前行
         this.$set(row, '$checked', true);
         this.checkedRowsChange();
+        // 如果没有定义好的操作，就不要打开右键菜单
+        if (!this.operations.length) return;
         const position = {
           top: `${event.clientY}px`,
           left: `${event.clientX}px`,
@@ -481,7 +482,7 @@
       // 某一行被点击
       onRowClick(row) {
         this.unCheckAll();
-        if (!this.selectable) return;
+        // if (!this.selectable) return;
         // 类型更改为在当前这一页选择，总之不是全选
         this.checkType = 'page';
         this.$set(row, '$checked', !row.$checked);

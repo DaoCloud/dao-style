@@ -53,7 +53,10 @@ export default {
           id: '1q2w3e',
   
           // 是否隐藏右上角排序下拉框.默认不隐藏
-          // hideSortHelper: true,
+          hideSortHelper: true,
+
+          // 是否隐藏显示设置
+          hideSettingHelper: true,
 
           // 加载中的文本，默认“加载中”
           // loadingText: '加载中.....',
@@ -62,7 +65,7 @@ export default {
           // emptyText: '没有数据呀呀呀呀呀呀',
 
           // 每一行是否可选，不可选的话会隐藏调 checkbox
-          selectable: true,
+          // selectable: true,
   
           // 这个 search 如果不传，则隐藏搜索，并且将分页自动挪到 view 下面
           // 以下这个配置是 input-with-label 的打平版，具体请参考 input-with-label 的配置
