@@ -147,8 +147,10 @@
                   :key="prop"
                   v-if="config.props[prop].type === 'goto'"
                   :style="`width: ${settings.columnsWidth[prop]}`"
-                  :url="textRender(row, index, prop,config.props[prop].url)"
-                  :text="row[prop]">
+                  :row="row"
+                  :prop="prop"
+                  :index="index"
+                  :callback="config.props[prop].onClick">
                 </go-to-td>
                 <status-td
                   :key="prop"
