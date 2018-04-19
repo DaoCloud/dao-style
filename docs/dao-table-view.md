@@ -305,7 +305,7 @@ export default {
 
 |  渲染规则   |      方法名           |    说明     |
 | ----- | --------------------- | --------- |
-| goto | url  |  参数分别是 row, row[prop], index,可以不传方法，默认是 row[prop]
+| goto | onClick  |  链接被点击的回调函数，参数分别是 row, row[prop], index,可以不传方法，默认是 row[prop]
 | status | color  |  参数分别是 row, row[prop], index,, 可以不传方法，默认是 row[prop]
 | text | value  |  参数分别是 row, row[prop], index,,可以不传方法，默认是 row[prop]
 | time | timeStamp  |  参数分别是 row, row[prop], index,,可以不传方法，默认是 row[prop],返回值必须是时间戳

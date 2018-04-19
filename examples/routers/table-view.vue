@@ -99,8 +99,8 @@ export default {
             service: {
               name: '服务',
               type: 'goto',
-              url(val) {
-                return `${val}dce-plugin-applb`;
+              onClick(val, row, index) {
+                console.log('click', val, row, index);
               },
             },
             status: {
@@ -129,8 +129,7 @@ export default {
               name: '内存',
               type: 'text',
               value(val, row, index) {
-                console.log(val, row, index);
-                return `哈哈哈哈-${val}`;
+                return `哈哈哈哈-${val}-${index}`;
               },
             },
             cpu: {
