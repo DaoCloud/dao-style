@@ -4,24 +4,22 @@
     @after-enter="onAfterEnter"
     @before-leave="onBeforeLeave"
     @after-leave="onAfterLeave">
-    <div v-if="visible" class="dao-dialog-backdrop">
-      <div class="dao-dialog-wrapper" @mousedown="onWrapperMousedown">
-        <div class="dao-dialog-container" :class="formatedContainerClass" ref="container">
-          <dao-dialog-header v-if="computedHeader" :config="computedHeader" @close="onClose">
-            <slot name="header"/>
-          </dao-dialog-header>
-          <div ref="body"  class="dao-dialog-body">
-            <div class="body-wrap">
-              <slot></slot>
-            </div>
-          </div>
-          <dao-dialog-footer v-if="computedFooter" :config="computedFooter" @confirm="onConfirm" @cancel="onCancel">
-            <slot name="footer"/>
-          </dao-dialog-footer>
-          <div class="resizer" v-if="computedAllowResize" @mousedown.stop="onMouseDown">
-          </div>
+    <div v-if="visible" class="dao-dialog-backdrop" @mousedown="onWrapperMousedown" :class="containerClass">
+      <div class="dao-dialog-padding-block"></div>
+      <div class="dao-dialog-container" ref="container">
+        <dao-dialog-header v-if="computedHeader" :config="computedHeader" @close="onClose">
+          <slot name="header"/>
+        </dao-dialog-header>
+        <div ref="body"  class="dao-dialog-body">
+          <slot></slot>
+        </div>
+        <dao-dialog-footer v-if="computedFooter" :config="computedFooter" @confirm="onConfirm" @cancel="onCancel">
+          <slot name="footer"/>
+        </dao-dialog-footer>
+        <div class="resizer" v-if="computedAllowResize" @mousedown.stop="onMouseDown">
         </div>
       </div>
+      <div class="dao-dialog-padding-block"></div>
     </div>
   </transition>
 </template>
@@ -29,42 +27,22 @@
 
 import daoDialogHeader from './dao-dialog-header/dao-dialog-header.vue';
 import daoDialogFooter from './dao-dialog-footer/dao-dialog-footer.vue';
-import getWindowSize from '../../utils/window-size';
 import { _includes } from '../../utils/assist';
-
-const dialogBoundary = {
-  height: {
-    max: 600,
-    min: 120,
-  },
-  width: {
-    max: 900,
-    min: 200,
-  },
-  padding: {
-    top: 20,
-    left: 20,
-    right: 20,
-    bottom: 20,
-  },
-};
 
 const dialogSizeMap = {
   sm: {
     width: '450px',
-    height: '400px',
+    // height: '400px',
   },
   md: {
     width: '600px',
-    height: '500px',
+    // height: '500px',
   },
   lg: {
     width: '800px',
-    height: '600px',
+    // height: '600px',
   },
 };
-
-const dialogHeaderHeight = 40;
 
 const daoDialogNumAttr = 'dao-dialog-num';
 
@@ -119,19 +97,7 @@ export default {
       },
     },
   },
-  data() {
-    return {
-      lastWindowSize: null,
-      dragging: false,
-    };
-  },
   computed: {
-    formatedContainerClass() {
-      return {
-        [this.containerClass]: true,
-        dragging: this.dragging,
-      };
-    },
     // 兼容旧版 dialog
     computedHeader() {
       if (this.config.showHeader === false || this.header === false) return false;
@@ -164,7 +130,6 @@ export default {
       this.initSize();
       this.lockWindowScroll();
       document.addEventListener('keydown', this.onKeyDown);
-      window.addEventListener('resize', this.onResize);
       this.$emit('before-open');
     },
 
@@ -203,85 +168,22 @@ export default {
     },
 
     onMousemove(event) {
-      //  在低版本浏览器下不要使用 x | width | height，
-      const windowSize = getWindowSize();
+      //  在低版本浏览器下不要使用 x | width | height
       const containerSize = this.$refs.container.getBoundingClientRect();
       const targetWidth = event.clientX - containerSize.left;
       const targetHeight = event.clientY - containerSize.top;
-      if ((targetWidth + dialogBoundary.padding.left + dialogBoundary.padding.right)
-        <= windowSize.width &&
-        (targetWidth <= dialogBoundary.width.max) &&
-        (targetWidth >= dialogBoundary.width.min)) {
-        this.setConatienrSize({
-          width: `${targetWidth}px`,
-        });
-      }
-      if ((targetHeight + dialogBoundary.padding.top + dialogBoundary.padding.bottom
-        <= windowSize.height) &&
-        (targetHeight <= dialogBoundary.height.max) &&
-        (targetHeight >= dialogBoundary.height.min)) {
-        this.setConatienrSize({
-          height: `${targetHeight}px`,
-        });
-      }
-    },
-
-    onResize() {
-      const windowSize = getWindowSize();
-      const containerSize = this.$refs.container.getBoundingClientRect();
-      // 缩小
-      // 宽度越界
-      const widthPadding = dialogBoundary.padding.left + dialogBoundary.padding.right;
-      if ((windowSize.width <= (containerSize.width + widthPadding)) &&
-        (containerSize.width >= dialogBoundary.width.min)) {
-        this.setConatienrSize({
-          width: `${windowSize.width - widthPadding}px`,
-        });
-      }
-      // 高度越界
-      const heightPadding = dialogBoundary.padding.top + dialogBoundary.padding.bottom;
-      if ((windowSize.height <= (containerSize.height + heightPadding)) &&
-        (containerSize.height >= dialogBoundary.height.min)) {
-        this.setConatienrSize({
-          height: `${windowSize.height - heightPadding}px`,
-        });
-      }
-      // 扩大
-      if (this.lastWindowSize) {
-        // 变宽了
-        const bodySize = this.$refs.body.querySelector('.body-wrap').getBoundingClientRect();
-        if (this.lastWindowSize.width < windowSize.width &&
-          containerSize.width <= dialogBoundary.width.max) {
-          // 内容越界
-          if (bodySize.width > containerSize.width) {
-            this.setConatienrSize({
-              width: `${windowSize.width - heightPadding}px`,
-            });
-          }
-        }
-        // 变高了
-        if (this.lastWindowSize.height < windowSize.height) {
-          const footerSize = this.$refs.container.querySelector('.dao-dialog-footer').getBoundingClientRect();
-          // 内容越界
-          if ((bodySize.height + dialogHeaderHeight + footerSize.height)
-            > containerSize.height && containerSize.height <= dialogBoundary.height.max) {
-            this.setConatienrSize({
-              height: `${windowSize.height - heightPadding}px`,
-            });
-          }
-        }
-      }
-      this.lastWindowSize = windowSize;
+      this.setConatienrSize({
+        width: `${targetWidth}px`,
+        height: `${targetHeight}px`,
+      });
     },
 
     onMouseup() {
-      this.dragging = false;
       window.removeEventListener('mousemove', this.onMousemove);
       window.removeEventListener('mouseup', this.onMouseup);
     },
 
     onMouseDown() {
-      this.dragging = true;
       window.addEventListener('mousemove', this.onMousemove);
       window.addEventListener('mouseup', this.onMouseup);
     },
@@ -292,21 +194,17 @@ export default {
 
     onAfterLeave() {
       document.removeEventListener('keydown', this.onKeyDown);
-      window.removeEventListener('resize', this.onResize);
-      this.lastWindowSize = null;
       this.unLockWindowScroll();
       this.$emit('closed');
       this.$emit('dao-dialog-close');
     },
 
+    // 初始化
     initSize() {
       this.setConatienrSize(dialogSizeMap[this.computedSize] || this.computedSize);
-      // 需要在动画完成之后再手动触发一次自动调整
-      setTimeout(() => {
-        this.onResize();
-      }, 300);
     },
 
+    // 锁定 body 的滚动
     lockWindowScroll() {
       if (this.lockScroll) {
         const currentDialogNum = parseInt(document.body.getAttribute(daoDialogNumAttr) || 0, 10);
@@ -315,6 +213,7 @@ export default {
       }
     },
 
+    // 取消对 body 的滚动锁定, 不能直接取消锁定，需要在最后一个对话框关闭之后才锁定
     unLockWindowScroll() {
       if (this.lockScroll) {
         const specDialogNum = document.body.getAttribute(daoDialogNumAttr) - 1;

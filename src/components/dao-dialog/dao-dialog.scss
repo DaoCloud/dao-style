@@ -4,114 +4,101 @@ $dialog-overlay: rgba(31, 33, 38, .3);
 $dialog-header-bg-color: #f5f7fa;
 $dialog-header-bg-img: linear-gradient(0deg, rgb(242,244,247) 0%, rgb(245,247,250) 100%);
 
-.dao-dialog-backdrop {
-  position: fixed;
-  top: 0;
-  left: 0;
-  display: table;
-  width: 100%;
-  height: 100%;
-  background-color: $dialog-overlay;
-  z-index: 9998;
-  transition: opacity .3s ease;
-  overflow: auto;
-}
-
-.dao-dialog-wrapper {
-  display: table-cell;
-  vertical-align: middle;
-}
-
-.dao-dialog-container {
-  display: flex;
-  flex-direction: column;
-  width: 600px;
-  margin: 0 auto;
-  border-radius: 4px;
-  background-color: $white;
-  box-shadow: 0 3px 30px 0 rgba(0, 0, 0, .2);
-  overflow: hidden;
-  position: relative;
-  transition: height .3s;
-  &.dragging{
-    transition: height 0s;
+.dao-dialog {
+  &-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: $dialog-overlay;
+    z-index: 9998;
+    transition: opacity .3s ease;
+    overflow: auto;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-between;
   }
-  .resizer {
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    $resizeSvg: "data:image/svg+xml;utf8,%3Csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20fill=%27%23ccd1d9%27%20viewBox=%270%200%2032%2032%27%3E%3Cg%3E%3Cpolygon%20points=%2721.414%2028%2028%2021.414%2028%2018.586%2018.586%2028%2021.414%2028%27/%3E%3Cpolygon%20points=%275.414%2028%2028%205.414%2028%202.586%202.586%2028%205.414%2028%27/%3E%3Cpolygon%20points=%2713.414%2028%2028%2013.414%2028%2010.586%2010.586%2028%2013.414%2028%27/%3E%3C/g%3E%3C/svg%3E";
-    height: 16px;
-    width: 16px;
-    cursor: nwse-resize;
-    background: url($resizeSvg);
+  &-padding-block{
+    width: 100%;
+    height: 20px;
   }
-  .dao-dialog {
-    &-header{
-      display: flex;
-      flex: 0 0 auto;
-      justify-content: space-between;
-      padding: 10px 20px;
-      background-color: $dialog-header-bg-color;
-      background-image: $dialog-header-bg-img;
-      border-radius: 4px 4px 0 0;
-      box-shadow: inset 0 -1px 0  #e4e7ed;
-      color: $font-color;
-      font-size: 16px;
-      font-weight: 400;
-      line-height: 20px;
-      .center{
-        flex: 1;
-        text-align: center;
-        padding: 0 30px;
-      }
-      .dao-close {
+  &-container {
+    max-height: 100vh;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    width: 600px;
+    border-radius: 4px;
+    background-color: $white;
+    box-shadow: 0 3px 30px 0 rgba(0, 0, 0, .2);
+    overflow: hidden;
+    position: relative;
+    .resizer {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      $resizeSvg: "data:image/svg+xml;utf8,%3Csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20fill=%27%23ccd1d9%27%20viewBox=%270%200%2032%2032%27%3E%3Cg%3E%3Cpolygon%20points=%2721.414%2028%2028%2021.414%2028%2018.586%2018.586%2028%2021.414%2028%27/%3E%3Cpolygon%20points=%275.414%2028%2028%205.414%2028%202.586%202.586%2028%205.414%2028%27/%3E%3Cpolygon%20points=%2713.414%2028%2028%2013.414%2028%2010.586%2010.586%2028%2013.414%2028%27/%3E%3C/g%3E%3C/svg%3E";
+      height: 16px;
+      width: 16px;
+      cursor: nwse-resize;
+      background: url($resizeSvg);
+    }
+    .dao-dialog {
+      &-header{
         display: flex;
-        align-items: center;
-        cursor: pointer;
-        svg {
-          width: 16px;
-          height: 16px;
-          fill: #aab2bd;
-          &:hover {
-            fill: #656d78;
+        flex: 0 0 auto;
+        justify-content: space-between;
+        padding: 10px 20px;
+        background-color: $dialog-header-bg-color;
+        background-image: $dialog-header-bg-img;
+        border-radius: 4px 4px 0 0;
+        box-shadow: inset 0 -1px 0  #e4e7ed;
+        color: $font-color;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 20px;
+        .center{
+          flex: 1;
+          text-align: center;
+          padding: 0 30px;
+        }
+        .dao-close {
+          display: flex;
+          align-items: center;
+          cursor: pointer;
+          svg {
+            width: 16px;
+            height: 16px;
+            fill: #aab2bd;
+            &:hover {
+              fill: #656d78;
+            }
           }
         }
       }
+      &-body{
+        flex: 1 1 auto;
+        background-color: white;
+        color: $font-color;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 21px;
+        overflow-y: auto;
+      }
+      &-footer {
+        flex: 0 0 auto;
+        padding: 10px 20px;
+        text-align: right;
+        border-top: 1px solid $white-dark;
+        background-color: $dialog-header-bg-color;
+        background-image: $dialog-header-bg-img;
+        border-radius: 0 0 4px 4px;
+        box-shadow: inset 0 -1px 0  #e4e7ed;
+        user-select: none;
+      }
     }
-    &-body{
-      flex: 1 1 auto;
-      background-color: white;
-      color: $font-color;
-      font-size: 14px;
-      font-weight: 400;
-      line-height: 21px;
-      overflow-y: auto;
-    }
-    &-footer {
-      flex: 0 0 auto;
-      padding: 10px 20px;
-      text-align: right;
-      border-top: 1px solid $white-dark;
-      background-color: $dialog-header-bg-color;
-      background-image: $dialog-header-bg-img;
-      border-radius: 0 0 4px 4px;
-      box-shadow: inset 0 -1px 0  #e4e7ed;
-      user-select: none;
-    }
-  }
-}
-
-/*
- * The following styles are auto-applied to elements with
- * transition="dao-dialog" when their visibility is toggled
- * by Vue.js.
- *
- * You can easily play with the dao-dialog transition by editing
- * these styles.
- */
-.dao-dialog-enter-active {
-  .dao-dialog-wrapper {
     animation: showDialog .3s;
   }
 }
@@ -127,19 +114,9 @@ $dialog-header-bg-img: linear-gradient(0deg, rgb(242,244,247) 0%, rgb(245,247,25
   }
 }
 
-// 滑动进入
-// .dao-dialog-enter {
-//   opacity: 0.5;
-// }
-//
 .dao-dialog-leave-active {
   opacity: 0;
 }
-//
-// .dao-dialog-enter .dao-dialog-container {
-//   transform: translate(0, -25%);
-//   transition: transform .3s ease-out;
-// }
 
 .dao-dialog-leave-active .dao-dialog-container {
   transform: translate(0, 0);

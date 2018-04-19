@@ -58,6 +58,7 @@
 $error-color: generate-color($red, -3);
 
 .property-dailog{
+  transition: opacity 0s;
   .dao-tab .dao-tab__header{
     background-color: $white-light;
     padding: 0;

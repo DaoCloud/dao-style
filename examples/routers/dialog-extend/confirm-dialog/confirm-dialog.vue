@@ -100,7 +100,6 @@
         this.rows.forEach((row) => {
           row.checked = false;
         });
-        this.$emit('before-open');
       },
       onConfirm() {
         if (!this.valid) return;
