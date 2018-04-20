@@ -238,6 +238,7 @@
     _every,
     _chunk,
     _filter,
+    _isEqual,
     _includes,
   } from '../../utils/assist';
 
@@ -268,6 +269,8 @@
             prop: null,
             order: 'asc',
           },
+          // 拿到全部 props, 用于做缓存的更新
+          props: [],
         },
 
         // 搜索配置
@@ -405,7 +408,7 @@
         const props = Object.keys(this.config.props);
         const storageSettings = localStorage.getItem(this.storageKey);
         const settings = storageSettings ? JSON.parse(storageSettings) : null;
-        if (settings) {
+        if (settings && _isEqual(settings.props.sort(), Object.keys(this.config.props).sort())) {
           this.settings = settings;
         } else {
           this.buildSettings(props, 'absolute');
@@ -420,6 +423,7 @@
         this.settings.columnsWidth = columnsWidth;
         this.settings.columnsOrder = columnsOrder;
         this.settings.timeFormat = timeFormat;
+        this.settings.props = Object.keys(this.config.props);
         if (!this.settings.sort || !this.settings.order) {
           this.settings.sort = Object.assign(this.settings.sort, this.config.sort);
           // 允许 sort 不传指，默认是第一个非 unsortable 属性生序
