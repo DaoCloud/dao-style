@@ -133,6 +133,7 @@
               @contextmenu.prevent="onContextMenu(row, $event)">
               <td class="checkbox" v-if="selectable">
                 <input type="checkbox"
+                @click.stop="onRowCheck(row)"
                 class="round"
                 :checked="row.$checked">
               </td>
@@ -493,6 +494,10 @@
         this.checkType = 'page';
         this.$set(row, '$checked', !row.$checked);
         this.checkedRowsChange();
+      },
+      // checked
+      onRowCheck(row) {
+        this.$set(row, '$checked', !row.$checked);
       },
       // 全选切换辅助函数
       changeChecked(rows, checked) {
