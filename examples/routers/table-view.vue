@@ -39,6 +39,7 @@ export default {
           memory: i * 2,
           containers: 10,
           mode: '弹性',
+          go: '链接',
           status: i % 3 === 0 ? '运行中' : '已停止',
           service: `${i + 1}dce-plugin-applb`,
         }));
@@ -57,6 +58,9 @@ export default {
 
           // 是否隐藏显示设置
           hideSettingHelper: true,
+
+          // 是否隐藏右键按钮
+          hideContextMenu: true,
 
           // 加载中的文本，默认“加载中”
           // loadingText: '加载中.....',
@@ -101,6 +105,14 @@ export default {
               type: 'goto',
               onClick(val, row, index) {
                 console.log('click', val, row, index);
+              },
+            },
+            go: {
+              name: 'link',
+              type: 'link',
+              onClick(val, row, index) {
+                console.log('click', val, row, index);
+                window.open('https://baidu.com');
               },
             },
             status: {

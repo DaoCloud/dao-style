@@ -87,7 +87,7 @@
       </div>
       <!-- 列表主体 -->
       <div class="dao-table-view-scrolldiv" v-if="chunk.length > 0">
-        <table class="dao-table-view">
+        <table class="dao-table-view" :class="{unselectable: !config.selectable}">
           <!-- 表头 -->
           <thead>
             <tr>
@@ -153,6 +153,14 @@
                   :index="index"
                   :callback="config.props[prop].onClick">
                 </go-to-td>
+                <link-td
+                  :key="prop"
+                  v-if="config.props[prop].type === 'link'"
+                  :row="row"
+                  :prop="prop"
+                  :index="index"
+                  :callback="config.props[prop].onClick">
+                </link-td>
                 <status-td
                   :key="prop"
                   v-if="config.props[prop].type === 'status'"
@@ -226,6 +234,7 @@
   import DaoTableViewTh from './dao-table-view-th.vue';
   import DaoTableViewFilter from './dao-table-view-filter.vue';
   import GoToTd from './td/goto-td.vue';
+  import LinkTd from './td/link-td.vue';
   import StatusTd from './td/status-td.vue';
   import TimeTd from './td/time-td.vue';
   import CustomTd from './td/custom-td';
@@ -449,7 +458,7 @@
         this.$set(row, '$checked', true);
         this.checkedRowsChange();
         // 如果没有定义好的操作，就不要打开右键菜单
-        if (!this.operations.length) return;
+        if (this.config.hideContextMenu || !this.operations.length) return;
         const position = {
           top: `${event.clientY}px`,
           left: `${event.clientX}px`,
@@ -498,6 +507,7 @@
       // checked
       onRowCheck(row) {
         this.$set(row, '$checked', !row.$checked);
+        this.checkedRowsChange();
       },
       // 全选切换辅助函数
       changeChecked(rows, checked) {
@@ -586,6 +596,7 @@
       DaoTableViewTh,
       DaoTableViewFilter,
       GoToTd,
+      LinkTd,
       StatusTd,
       TimeTd,
       CustomTd,
@@ -609,6 +620,7 @@ $th-bg: $white-light;
 
 $pagination-active-color: #217ef2;
 $selected-bg: #096dec;
+$non-selected-bg: #FBFCFD;
 
 $outer-border: $grey-light;
 $inner-border: $white-dark;
@@ -741,7 +753,7 @@ table.dao-table-view {
     border-bottom: 1px solid $inner-border;
     background: $white-light;
   }
-  
+
   tr {
     height: 30px;
     color: $black-dark;
@@ -773,7 +785,7 @@ table.dao-table-view {
       }
     }
   }
-  
+
   th, td {
     padding: 0 10px;
   
@@ -798,6 +810,43 @@ table.dao-table-view {
     }
     &.unsortable {
       cursor: default;
+    }
+  }
+
+  &.unselectable tr {
+    background: transparent;
+    .dropdown-trigger {
+      fill: $grey-dark;
+    }
+    &:not(:last-child) {
+      border-bottom: 1px solid $inner-border;
+      height: $tr-height - 1;
+
+      td {
+        line-height: $tr-height - 1;
+      }
+    }
+
+    &.checked {
+      color: $black-dark;
+      svg {
+        fill: $grey-light;
+      }
+      .dropdown-trigger {
+        fill: $grey-dark;
+      }
+      &:hover {
+        .dropdown-trigger {
+          fill: $grey-dark !important;
+        }
+      }
+    }
+    &:hover {
+      background-color: $non-selected-bg;
+
+      .dropdown-trigger {
+        fill: $grey-dark;
+      }
     }
   }
   
