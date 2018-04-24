@@ -75,11 +75,11 @@ export default {
     },
     closeOnClickOutside: {
       type: Boolean,
-      default: false,
+      default: true,
     },
     closeOnPressEscape: {
       type: Boolean,
-      default: false,
+      default: true,
     },
     allowResize: {
       type: Boolean,
