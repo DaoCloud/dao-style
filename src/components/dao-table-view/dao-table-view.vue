@@ -153,6 +153,11 @@
                   :index="index"
                   :callback="config.props[prop].onClick">
                 </go-to-td>
+                <link-td
+                  :key="prop"
+                  v-if="config.props[prop].type === 'link'"
+                  :link="row[prop]">
+                </link-td>
                 <status-td
                   :key="prop"
                   v-if="config.props[prop].type === 'status'"
@@ -226,6 +231,7 @@
   import DaoTableViewTh from './dao-table-view-th.vue';
   import DaoTableViewFilter from './dao-table-view-filter.vue';
   import GoToTd from './td/goto-td.vue';
+  import LinkTd from './td/link-td.vue';
   import StatusTd from './td/status-td.vue';
   import TimeTd from './td/time-td.vue';
   import CustomTd from './td/custom-td';
@@ -586,6 +592,7 @@
       DaoTableViewTh,
       DaoTableViewFilter,
       GoToTd,
+      LinkTd,
       StatusTd,
       TimeTd,
       CustomTd,
@@ -818,7 +825,6 @@ table.dao-table-view {
 
     &.checked {
       color: $black-dark;
-      background-color: $non-selected-bg;
       svg {
         fill: $grey-light;
       }
