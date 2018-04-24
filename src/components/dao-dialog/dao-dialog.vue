@@ -118,7 +118,8 @@ export default {
       return this.config.closeOnPressEscape || this.closeOnPressEscape;
     },
     computedCloseOnClickOutside() {
-      return this.config.closeOnClickOutside || this.closeOnClickOutside;
+      if (typeof this.config.closeOnClickOutside === 'boolean') return this.config.closeOnClickOutside;
+      return this.closeOnClickOutside;
     },
     computedSize() {
       if (_includes(Object.keys(dialogSizeMap), this.config.size)) return this.config.size;
