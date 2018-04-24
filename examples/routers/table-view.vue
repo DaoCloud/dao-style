@@ -39,10 +39,7 @@ export default {
           memory: i * 2,
           containers: 10,
           mode: '弹性',
-          go: {
-            text: '链接',
-            href: 'https://baidu.com',
-          },
+          go: '链接',
           status: i % 3 === 0 ? '运行中' : '已停止',
           service: `${i + 1}dce-plugin-applb`,
         }));
@@ -110,6 +107,10 @@ export default {
             go: {
               name: 'link',
               type: 'link',
+              onClick(val, row, index) {
+                console.log('click', val, row, index);
+                window.open('https://baidu.com');
+              },
             },
             status: {
               name: '状态',

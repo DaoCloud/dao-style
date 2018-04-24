@@ -156,7 +156,10 @@
                 <link-td
                   :key="prop"
                   v-if="config.props[prop].type === 'link'"
-                  :link="row[prop]">
+                  :row="row"
+                  :prop="prop"
+                  :index="index"
+                  :callback="config.props[prop].onClick">
                 </link-td>
                 <status-td
                   :key="prop"
