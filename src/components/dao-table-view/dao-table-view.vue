@@ -458,7 +458,7 @@
         this.$set(row, '$checked', true);
         this.checkedRowsChange();
         // 如果没有定义好的操作，就不要打开右键菜单
-        if (!this.operations.length) return;
+        if (this.config.hideContextMenu || !this.operations.length) return;
         const position = {
           top: `${event.clientY}px`,
           left: `${event.clientX}px`,
@@ -507,6 +507,7 @@
       // checked
       onRowCheck(row) {
         this.$set(row, '$checked', !row.$checked);
+        this.checkedRowsChange();
       },
       // 全选切换辅助函数
       changeChecked(rows, checked) {

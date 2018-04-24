@@ -59,6 +59,9 @@ export default {
           // 是否隐藏显示设置
           hideSettingHelper: true,
 
+          // 是否隐藏右键按钮
+          hideContextMenu: true,
+
           // 加载中的文本，默认“加载中”
           // loadingText: '加载中.....',
 
