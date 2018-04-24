@@ -4,7 +4,7 @@
     @after-enter="onAfterEnter"
     @before-leave="onBeforeLeave"
     @after-leave="onAfterLeave">
-    <div v-if="visible" class="dao-dialog-backdrop" @mousedown="onWrapperMousedown" :class="containerClass">
+    <div v-if="visible" class="dao-dialog-backdrop" @mousedown.self="onWrapperMousedown" :class="containerClass">
       <div class="dao-dialog-padding-block"></div>
       <div class="dao-dialog-container" ref="container">
         <dao-dialog-header v-if="computedHeader" :config="computedHeader" @close="onClose">
