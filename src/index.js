@@ -114,4 +114,6 @@ if (typeof window !== 'undefined' && window.Vue) {
   install(window.Vue);
 }
 
-module.exports = Object.assign({ install });
+export default {
+  install,
+};

@@ -1,13 +1,14 @@
-'use strict'
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-exports.cssLoaders = function (options) {
+
+exports.styleLoaders = function (options) {
   options = options || {}
 
   const cssLoader = {
     loader: 'css-loader',
     options: {
-      sourceMap: options.sourceMap
+      sourceMap: options.sourceMap,
+      minimize: options.minimize
     }
   }
 
@@ -18,35 +19,26 @@ exports.cssLoaders = function (options) {
     }
   }
 
-  function generateLoaders (loader, loaderOptions) {
-    const loaders = options.usePostCSS ? [cssLoader, postcssLoader] : [cssLoader]
-
-    if (loader) {
-      loaders.push({
-        loader: loader + '-loader',
-        options: Object.assign({}, loaderOptions, {
-          sourceMap: options.sourceMap
-        })
-      })
+  const sassLoader = {
+    loader: 'sass-loader',
+    options: {
+      sourceMap: options.sourceMap
     }
-    const styleLoader = options.forVue ? 'vue-style-loader': 'style-loader';
+  }
+
+  function generateLoaders (loader, loaderOptions) {
+    const loaders = options.usePostCSS ? [cssLoader, postcssLoader, sassLoader]
+      : [cssLoader, sassLoader]
+
     if (options.extract) {
       return ExtractTextPlugin.extract({
-        use: loaders,
-        fallback: styleLoader 
+        fallback: options.fallback,
+        use: loaders
       })
     } else {
-      return [styleLoader].concat(loaders);
+      return [options.fallback].concat(loaders);
     }
   }
 
-  return {
-    css: generateLoaders(),
-    postcss: generateLoaders(),
-    less: generateLoaders('less'),
-    sass: generateLoaders('sass', { indentedSyntax: true }),
-    scss: generateLoaders('sass')
-  }
+  return generateLoaders('sass');
 }
-
-
