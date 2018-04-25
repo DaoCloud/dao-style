@@ -27,6 +27,7 @@
 </template>
 <script>
   import _ from 'lodash';
+  import DaoTableView from './dao-table-view/index';
 
 export default {
     name: 'TableView',
@@ -259,6 +260,9 @@ export default {
       onCheckedRowsChange(rows) {
         console.log('onCheckedRowsChange', rows);
       },
+    },
+    components: {
+      DaoTableView,
     },
   };
 </script>

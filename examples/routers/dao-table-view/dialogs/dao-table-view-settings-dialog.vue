@@ -130,7 +130,7 @@
 </script>
 
 <style lang="scss">
-@import '../../dao-color.scss';
+@import '../../../../src/components/dao-color.scss';
 
 //  TODO：带有导航栏的弹框的样式还不在 dao-style 里，所以自己写一个
 .dao-list-settings-dialog {

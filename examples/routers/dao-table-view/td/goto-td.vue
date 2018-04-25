@@ -20,7 +20,7 @@ export default {
 };
 </script>
 <style lang="scss">
-  @import '../../dao-color.scss';
+  @import '../../../../src/components/dao-color.scss';
   .goto-td {
     .goto-span {
       display: inline-block;

@@ -21,7 +21,7 @@
 <script>
   import {
     _map,
-  } from '../../utils/assist';
+  } from '../../../src/utils/assist';
 
   export default {
     name: 'DaoTableViewPagination',

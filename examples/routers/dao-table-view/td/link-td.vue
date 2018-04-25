@@ -17,7 +17,7 @@ export default {
 };
 </script>
 <style lang="scss">
-  @import '../../dao-color.scss';
+  @import '../../../../src/components/dao-color.scss';
   .link-td .link {
     display: inline-block;
     max-width: calc(100% - 20px);
