@@ -34,7 +34,6 @@ import daoSpin from './components/dao-spin';
 import daoSteps from './components/dao-steps';
 import daoSwitch from './components/dao-switch';
 import daoTab from './components/dao-tab';
-import daoTableView from './components/dao-table-view';
 
 import daoTooltip from './components/dao-tooltip';
 
@@ -87,7 +86,6 @@ const daoStyleComponents = {
   daoSwitch,
   daoTab,
   daoTabItem: daoTab.Item,
-  daoTableView,
   daoTooltip,
 };
 

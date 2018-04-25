@@ -13,7 +13,7 @@
 import {
   _toNumber,
   _includes,
-} from '../../utils/assist';
+} from '../../../src/utils/assist';
 
 export default {
   props: ['width'],

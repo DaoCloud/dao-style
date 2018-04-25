@@ -4,7 +4,7 @@
   </td>
 </template>
 <script>
-import { _forEach } from '../../../utils/assist';
+import { _forEach } from '../../../../src/utils/assist';
 
 export default {
   name: 'TimeTd',

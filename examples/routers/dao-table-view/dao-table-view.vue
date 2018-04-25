@@ -239,7 +239,7 @@
   import TimeTd from './td/time-td.vue';
   import CustomTd from './td/custom-td';
   import OperationTd from './td/operation-td.vue';
-  import assert from '../../utils/assert';
+  import assert from '../../../src/utils/assert';
   import {
     _find,
     _get,
@@ -250,7 +250,7 @@
     _filter,
     _isEqual,
     _includes,
-  } from '../../utils/assist';
+  } from '../../../src/utils/assist';
 
   export default {
     name: 'DaoTableView',
@@ -606,7 +606,7 @@
 </script>
 <style lang="scss">
 
-@import '../dao-color.scss';
+@import '../../../src/components/dao-color.scss';
 
 $tr-height: 30px;
 // 这是算上上方1px边框的高度

@@ -50,7 +50,7 @@
 import {
   _filter,
   _get,
-  } from '../../utils/assist';
+  } from '../../../src/utils/assist';
 
 export default {
   name: 'DaoTableViewContextMenu',

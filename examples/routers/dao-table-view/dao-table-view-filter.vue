@@ -17,7 +17,7 @@ import {
   _forEach,
   _uniqBy,
   _includes,
-} from '../../utils/assist';
+} from '../../../src/utils/assist';
 
 export default {
   name: 'DaoTableViewFilter',
