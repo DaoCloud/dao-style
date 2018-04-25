@@ -1,16 +1,17 @@
-'use strict'
 const utils = require('./utils')
-const isProduction = process.env.NODE_ENV === 'production'
+const isProduction = process.env.NODE_ENV === 'production';
 
 module.exports = {
-  loaders: utils.cssLoaders({
-    // 暂时没有把CSS单独打包，设置成 false
-    sourceMap: !isProduction,
-    extract: false,
-    usePostCSS: true,
-    forVue: true,
-  }),
-  cssSourceMap: isProduction,
+  loaders: {
+    scss: utils.styleLoaders({
+      sourceMap: !isProduction,
+      extract: isProduction,
+      usePostCSS: true,
+      minimize: false,
+      fallback: 'vue-style-loader',
+    })
+  },
+  cssSourceMap: !isProduction,
   cacheBusting: isProduction,
   transformToRequire: {
     video: ['src', 'poster'],

@@ -34,6 +34,7 @@ import daoSpin from './components/dao-spin';
 import daoSteps from './components/dao-steps';
 import daoSwitch from './components/dao-switch';
 import daoTab from './components/dao-tab';
+
 import daoTooltip from './components/dao-tooltip';
 
 // 请按照名称的字典顺序添加以下 directives
@@ -49,7 +50,6 @@ const daoStyleComponents = {
   daoClipboard,
   daoCopyBlock: daoClipboard.CopyBlock,
   daoDialog,
-  daoDialogStep: daoDialog.Step,
   daoDraggable: daoDraggableComponent,
   daoDropdown,
   daoDropdownItem: daoDropdown.Item,
@@ -112,4 +112,6 @@ if (typeof window !== 'undefined' && window.Vue) {
   install(window.Vue);
 }
 
-module.exports = Object.assign({ install });
+export default {
+  install,
+};

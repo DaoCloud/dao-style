@@ -14,6 +14,7 @@ import card from './routers/card.vue';
 import checkbox from './routers/checkbox.vue';
 import clipboard from './routers/clipboard.vue';
 import dialog from './routers/dialog.vue';
+import dialogExtend from './routers/dialog-extend/dialog-extend.vue';
 import dragAndDrop from './routers/drag-and-drop.vue';
 import dropdown from './routers/dropdown.vue';
 import editableTable from './routers/editable-table.vue';
@@ -40,6 +41,7 @@ import tab from './routers/tab.vue';
 import table from './routers/table.vue';
 import tooltip from './routers/tooltip.vue';
 import tooltipDirective from './routers/tooltip-directive.vue';
+import tableView from './routers/table-view.vue';
 
 Vue.use(VueRouter);
 Vue.use(daoStyle);
@@ -67,6 +69,9 @@ const router = new VueRouter({
   }, {
     path: '/dialog',
     component: dialog,
+  }, {
+    path: '/dialog-extend',
+    component: dialogExtend,
   }, {
     path: '/drag-drop',
     component: dragAndDrop,
@@ -145,6 +150,9 @@ const router = new VueRouter({
   }, {
     path: '/tooltip-directive',
     component: tooltipDirective,
+  }, {
+    path: '/table-view',
+    component: tableView,
   }, {
     path: '*',
     redirect: '/button',

@@ -19,3 +19,4 @@ export { default as _flatten } from 'lodash/flatten';
 export { default as _toNumber } from 'lodash/toNumber';
 export { default as _findIndex } from 'lodash/findIndex';
 export { default as _merge } from 'lodash/merge';
+export { default as _uniqBy } from 'lodash/uniqBy';

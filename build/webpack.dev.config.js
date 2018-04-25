@@ -1,42 +1,58 @@
-/**
- * 本地预览
- */
+const path = require('path');
+const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const merge = require('webpack-merge');
+const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin');
 
-var path = require('path');
-var webpack = require('webpack');
-// var ExtractTextPlugin = require('extract-text-webpack-plugin');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
-var merge = require('webpack-merge')
-var webpackBaseConfig = require('./webpack.base.config.js');
-var FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
-
+const webpackBaseConfig = require('./webpack.base.config.js');
+const utils = require('./utils');
 
 module.exports = merge(webpackBaseConfig, {
-    // 入口
+    devtool: '#inline-source-map',
     entry: {
-        main: './examples/main',
-        vendors: ['vue', 'vue-router']
+      main: './examples/main',
+      vendors: ['vue', 'vue-router']
     },
-    // 输出
+    module: {
+      rules: [{
+        test: /\.scss$/,
+        use: utils.styleLoaders({
+          sourceMap: true,
+          extract: false,
+          usePostCSS: true,
+          minimize: false,
+          fallback: 'style-loader',
+        }),
+      }],
+    },
     output: {
-        path: path.join(__dirname, '../examples/dist'),
-        publicPath: '',
-        filename: '[name].js',
-        chunkFilename: '[name].chunk.js'
+      path: path.join(__dirname, '../examples/dist'),
+      publicPath: '',
+      filename: '[name].js',
+      chunkFilename: '[name].chunk.js'
     },
     resolve: {
-        alias: {
-            daoStyle: '../../src/index',
-            vue: 'vue/dist/vue.js'
-        }
+      alias: {
+        daoStyle: '../../src/index',
+        vue: 'vue/dist/vue.js'
+      }
     },
     plugins: [
-        new webpack.optimize.CommonsChunkPlugin({ name: 'vendors', filename: 'vendor.bundle.js' }),
-        new HtmlWebpackPlugin({
-            inject: true,
-            filename: path.join(__dirname, '../examples/dist/index.html'),
-            template: path.join(__dirname, '../examples/index.html')
-        }),
-        new FriendlyErrorsPlugin()
-    ]
+      new webpack.optimize.CommonsChunkPlugin({ name: 'vendors', filename: 'vendor.bundle.js' }),
+      new HtmlWebpackPlugin({
+          inject: true,
+          filename: path.join(__dirname, '../examples/dist/index.html'),
+          template: path.join(__dirname, '../examples/index.html')
+      }),
+      new FriendlyErrorsPlugin()
+    ],
+    devServer: {
+      open: true,
+      port: 8081,
+      host: '0.0.0.0',
+      quiet: true,
+      contentBase: false,
+      compress: true,
+      compress: true,
+    },
 });

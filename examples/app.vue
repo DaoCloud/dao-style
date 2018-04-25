@@ -65,9 +65,9 @@ li + li {
         <li>
           <router-link to="/input">Input</router-link>
         </li>
-        <li>
+        <!-- <li>
           <router-link to="/list">List</router-link>
-        </li>
+        </li> -->
         <li>
           <router-link to="/list-group">List Group</router-link>
         </li>
@@ -124,6 +124,9 @@ li + li {
         </li>
         <li>
           <router-link to="/input-with-label">InputWithLabel</router-link>
+        </li>
+        <li>
+          <router-link to="/table-view">TableView</router-link>
         </li>
       </ul>
     </nav>

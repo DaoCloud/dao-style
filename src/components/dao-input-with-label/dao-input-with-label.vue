@@ -29,7 +29,7 @@
       placement="right-start" 
       ref="popper"
       v-show="visible">
-      <dao-dropdown-menu> 
+      <dao-dropdown-menu class="overflow-scroll"> 
         <div v-for="(tab, index) in filterCurrentOptions" :key="index">
           <dao-dropdown-item :is-title="true" v-if="tab.tabName">{{tab.tabName}}</dao-dropdown-item>
           <dao-dropdown v-if="key.operates.length" 
@@ -45,14 +45,14 @@
             </dao-dropdown-item>
             <dao-dropdown-menu 
               slot="list"
-              class="dao-input-with-label-popper-dropdown-menu">
+              class="dao-input-with-label-popper-dropdown-menu overflow-scroll">
               <template v-if="key && key.operates.length && showAllOperations">
                 <dao-dropdown  
                   v-for="(operate, index) in key.operates" 
                   :key="index" 
                   placement="right-start">
                   <dao-dropdown-item>{{operate.val | translate}}</dao-dropdown-item>
-                  <dao-dropdown-menu slot="list">
+                  <dao-dropdown-menu slot="list" class="overflow-scroll">
                     <template v-if="operate.vals.length">
                        <dao-dropdown-item 
                         class="dao-input-with-label-dropdown-item-base"
