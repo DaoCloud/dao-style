@@ -18,6 +18,7 @@
   ],
   "scripts": {
     "start": "webpack-dev-server --hot --inline --progress --config build/webpack.dev.config.js",
+    "dev": "webpack --config build/webpack.dev.config.js",
     "dist": "cross-env NODE_ENV=production webpack --config build/webpack.prod.config.js",
     "lint": "eslint --fix --ext .js,.vue src",
     "unit": "karma start test/unit/karma.conf.js --single-run",
