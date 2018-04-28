@@ -141,6 +141,10 @@
       this.$on('on-chosen', (val) => {
         this.closeMenu();
         this.selectedValue = val;
+        // 清空 filter
+        if (this.filter && !this.asyncSearch) {
+          this.filter = '';
+        }
       });
       // 绑定处理异步的事件
       this.$on('deal-async', (callback) => {
@@ -189,6 +193,8 @@
       // 处理点击事件
       handleClick() {
         if (this.isDisabled) return;
+        // 值不存在时 清空filter
+        if (!this.selectedValue) this.filter = '';
         if (this.async && !this.asyncComplete && !this.visible) {
           this.decorateAsync();
         } else {
