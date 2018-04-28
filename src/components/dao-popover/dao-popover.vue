@@ -10,7 +10,7 @@
           <path class="pt-popover-arrow-fill" d="M8.787 7.036c1.22-1.125 2.21-3.376 2.21-5.03V0v30-2.005c0-1.654-.983-3.9-2.21-5.03l-7.183-6.616c-.81-.746-.802-1.96 0-2.7l7.183-6.614z"></path>
         </svg>
       </div>
-      <div :class="[prefixCls + '-inner']">
+      <div :class="[prefixCls + '-inner']" v-if="realVisible">
         <slot name="content">{{content}}</slot>
       </div>
     </div>
