@@ -56,14 +56,12 @@ svg.icon {
   width: 16px;
   height: 16px;
 
-  // 为了配合解决 dao-btn 在最新版 firefox 下面 svg 偏下的问题
-  vertical-align: top;
+  vertical-align: middle;
 
   fill: currentColor;
   & + .text {
     display: inline-block;
 
-    // 为了解决 dao-btn 在最新版 firefox 下面 svg 偏下的问题
-    vertical-align: top;
+    vertical-align: middle;
   }
 }
