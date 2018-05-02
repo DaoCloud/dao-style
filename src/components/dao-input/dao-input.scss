@@ -109,8 +109,6 @@
     &.message-bottom {
       flex-direction: column;
       align-items: flex-start;
-      // 统一 vertical-align，解决没有垂直对齐的问题
-      vertical-align: top;
       .dao-input-message {
         margin: 6px 0 0;
       }
@@ -397,8 +395,7 @@
     word-break: break-all;
     margin-left: 10px;
     > span {
-      // 统一 vertical-align，解决没有垂直对齐的问题
-      vertical-align: top;
+      vertical-align: middle;
     }
     @at-root .no-message-icon & > .icon {
       display: none;

@@ -68,6 +68,14 @@
     pointer-events: none; // Future-proof disabling of clicks on `<a>` elements
     cursor: $cursor-disabled;
   }
+  svg.icon {
+    // 为了配合解决 dao-btn 在最新版 firefox 下面 svg 偏下的问题
+    vertical-align: top;
+    & + .text {
+      // 为了解决 dao-btn 在最新版 firefox 下面 svg 偏下的问题
+      vertical-align: top;
+    }
+  }
 }
 
 a.dao-btn {

@@ -1,6 +1,6 @@
 <template>
   <dao-dialog
-    id="dao-alert"
+    class="dao-alert"
     @closed="onClosed"
     :size="size"
     :header="header"
@@ -134,8 +134,8 @@
   };
 </script>
 
-<style scoped lang="scss">
-  #dao-alert{
+<style lang="scss">
+  .dao-alert{
     .dialog-body {
       padding: 20px;
     }
