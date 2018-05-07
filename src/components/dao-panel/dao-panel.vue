@@ -15,6 +15,11 @@ export default {
       default: '',
     },
 
+    visible: {
+      type: Boolean,
+      default: false,
+    },
+
     size: {
       type: String,
       default: 'm',
