@@ -10,6 +10,11 @@ export default {
     DaoPanelNav,
   },
   props: {
+    defaultTab: {
+      type: String,
+      default: '',
+    },
+
     size: {
       type: String,
       default: 'm',
@@ -28,7 +33,7 @@ export default {
   data() {
     return {
       tabList: [],
-      activeName: '',
+      activeName: this.defaultTab,
       sizes: {
         l: 300,
         m: 200,
@@ -90,8 +95,6 @@ export default {
       document.body.style.cursor = '';
     },
   },
-  mounted() {
-  },
   computed: {
     height() {
       return this.specSize === 0 ? this.sizes[this.userSize] : this.specSize;
@@ -109,8 +112,10 @@ export default {
   },
   watch: {
     tabList(value) {
+      if (this.activeName) return;
       this.activeName = value[0].heading;
     },
+
     activeName(newV, oldV) {
       if (newV === oldV) return;
       this.$emit('changeTab', newV);

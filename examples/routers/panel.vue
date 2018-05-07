@@ -33,6 +33,11 @@ export default {
           desc: 'demo3',
           size: 'l',
         },
+        {
+          desc: 'demo4 显示指定 Tab',
+          size: 's',
+          active: 'heading2',
+        },
       ],
     };
   },
