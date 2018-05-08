@@ -10,8 +10,8 @@ $select-default-color: #9ba3af;
     height: 20px;
     line-height: 20px;
   }
-  .dao-select-noOption {
-    padding: 10px 20px 5px 20px;
-    color: $select-default-color;
-  }
+}
+.dao-select-noOption {
+  padding: 5px 20px 5px 20px;
+  color: $select-default-color;
 }

@@ -2,7 +2,7 @@
   <div>
     <h1>simple select</h1>
     <br><hr><br>
-    <dao-select v-model="simple" placeholder="一个简单下拉框" no-data-text="无选项">
+    <dao-select v-model="simple" placeholder="一个简单下拉框"  no-data-text="无选项">
       <dao-option v-for="item in items" :key="item.value" :value="item.value" :label="item.text"></dao-option>
     </dao-select>
     <br>
