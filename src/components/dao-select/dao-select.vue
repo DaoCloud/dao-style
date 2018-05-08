@@ -27,7 +27,9 @@
         <input class="dao-control search" type="text" :placeholder="searchPlaceholder" v-model="filter" required>
       </div>
       <div class="option-list">
-        <slot></slot>
+        <slot>
+          <div class="dao-select-noOption">{{ noDataText }}</div>
+        </slot>
       </div>
     </div>
   </div>
