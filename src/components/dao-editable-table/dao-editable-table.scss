@@ -37,7 +37,8 @@
   }
 }
 .det-add {
-  display: inline-block;
+  // 防止高度出现大于 16px 的情况
+  display: inline-flex;
   color: $blue;
   cursor: pointer;
 }
@@ -49,6 +50,9 @@
 }
 .det-add-span {
   vertical-align: middle;
+  line-height: 16px;
+  // 按照设计稿 link 的样式进行修改
+  margin-left: 6px;
 }
 svg.det-remove-btn {
   fill: $grey-light;
