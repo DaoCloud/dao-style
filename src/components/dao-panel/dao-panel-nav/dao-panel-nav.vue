@@ -10,17 +10,17 @@
     <li class="dao-panel-nav-icon first" @click="changeSize('l')" :class="{ active: activeSize === 'l' }">
       <span class="icon">
         <svg><use xlink:href="#icon_panel-size-large"></use></svg>
-      </span> 
+      </span>
     </li>
     <li class="dao-panel-nav-icon" @click="changeSize('m')" :class="{ active: activeSize === 'm' }">
       <span class="icon">
         <svg><use xlink:href="#icon_panel-size-medium"></use></svg>
-      </span> 
+      </span>
     </li>
     <li class="dao-panel-nav-icon" @click="changeSize('s')" :class="{ active: activeSize === 's' }">
       <span class="icon">
         <svg><use xlink:href="#icon_panel-size-small"></use></svg>
-      </span> 
+      </span>
     </li>
   </ul>
 </template>
