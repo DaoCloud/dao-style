@@ -42,6 +42,7 @@ import table from './routers/table.vue';
 import tooltip from './routers/tooltip.vue';
 import tooltipDirective from './routers/tooltip-directive.vue';
 import tableView from './routers/table-view.vue';
+import daoColorDemo from './routers/color-demo.vue';
 
 Vue.use(VueRouter);
 Vue.use(daoStyle);
@@ -153,6 +154,9 @@ const router = new VueRouter({
   }, {
     path: '/table-view',
     component: tableView,
+  }, {
+    path: '/color',
+    component: daoColorDemo,
   }, {
     path: '*',
     redirect: '/button',

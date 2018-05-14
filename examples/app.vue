@@ -45,6 +45,9 @@ li + li {
           <router-link to="/clipboard">Clipboard</router-link>
         </li>
         <li>
+          <router-link to='/color'>ColorDemo</router-link>
+        </li>
+        <li>
           <router-link to="/dialog">Dialog</router-link>
         </li>
         <li>
