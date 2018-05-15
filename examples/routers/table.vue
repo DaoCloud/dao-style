@@ -119,7 +119,48 @@
             <td>x</td>
             <td>x</td>
             <td>x</td>
+            <td>
+              <dao-select
+                :name="td.name" 
+                v-if="td.type === 'select'" 
+                v-model="td.value" 
+                size="sm">
+                <dao-option v-for="option in td.options" :value="option.value || option" :label="option.label || option" :key="option.value || option"></dao-option>
+              </dao-select>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <h1>行布局（flex）表格</h1>
+    <div class="dao-table-container">
+      <table class="dao-table flexrow">
+        <thead>
+          <tr>
+            <th></th>
+            <th>车牌</th>
+            <th>车载终端编号</th>
+            <th>VIN</th>
+            <th>SMI</th>
+            <th>所属车型</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td></td>
             <td>x</td>
+            <td>x</td>
+            <td>x</td>
+            <td>x</td>
+            <td>
+              <dao-select
+                :name="td.name" 
+                v-if="td.type === 'select'" 
+                v-model="td.value" 
+                size="sm">
+                <dao-option v-for="option in td.options" :value="option.value || option" :label="option.label || option" :key="option.value || option"></dao-option>
+              </dao-select>
+            </td>
           </tr>
         </tbody>
       </table>
@@ -277,8 +318,15 @@ export default {
         ],
       },
     ];
+    const td = {
+      name: 'type',
+      type: 'select',
+      options: ['轿车', '跑车', '越野车', '面包车', '轿卡车', '卡车', '客车'],
+      value: '跑车',
+    };
     return {
       rows,
+      td,
     };
   },
 };

@@ -99,9 +99,6 @@
     &.right {
       text-align: right;
     }
-    input[type=checkbox] {
-      margin-right: $svg-margin-right;
-    }
     + th {
       border-left: solid 1px $border-outer-color;
     }
@@ -145,7 +142,9 @@
     }
     input[type=checkbox] {
       vertical-align: middle;
-      margin-right: 5px;
+    }
+    .dao-select {
+      transform: translateY(-1px);
     }
   }
 }
@@ -155,6 +154,7 @@
   // 这里莫名其妙有margin-left:-15px，我也不知道哪里来的，先覆盖掉
   margin-left: 0;
   margin-right: 0;
+  border-radius: 0;
   thead {
     display: flex;
     tr {
@@ -163,11 +163,15 @@
   }
   th {
     padding: 0 $row-th-padding-horizontal;
+    height: 40px;
+    // flexrow 和 row 一样，表头需要有竖线分割
+    border-left: 1px solid $white-dark;
     &.right {
       text-align: right;
     }
-    input[type=checkbox] {
-      margin-right: $svg-margin-right;
+    // 表格第一列会多出来一行
+    &:nth-child(1) {
+      border-left: 0;
     }
   }
   tbody {
@@ -208,7 +212,9 @@
     }
     input[type=checkbox] {
       vertical-align: middle;
-      margin-right: 5px;
+    }
+    .dao-select {
+      transform: translateY(-1px);
     }
   }
 }
@@ -221,6 +227,9 @@
       display: flex;
       flex: 1;
       height: $row-th-height;
+      input[type=checkbox] {
+        vertical-align: middle;
+      }
     }
   }
   tbody {
