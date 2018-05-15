@@ -36,6 +36,12 @@
     </div>
   </dao-info-card>
   <br>
+  <dao-info-card size="max" :tableValue="tablevalue2">
+    <div slot="title">
+      TEXT
+    </div>
+  </dao-info-card>
+  <br>
   <dao-info-card size="sm" :tableValue="tablevalue3" :keyValue="keyvalue3" :config="config[1]">
     <div slot="title">
       TEXT
