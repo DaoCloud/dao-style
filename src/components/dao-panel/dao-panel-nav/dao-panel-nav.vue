@@ -7,20 +7,25 @@
       :key="index">
       {{ name }}
     </li>
-    <li class="dao-panel-nav-icon first" @click="changeSize('l')" :class="{ active: activeSize === 'l' }">
+    <li class="dao-panel-nav-icon first" @click="close">
+      <span class="icon">
+        <svg><use xlink:href="#icon_close"></use></svg>
+      </span>
+    </li>
+    <li class="dao-panel-nav-icon" @click="changeSize('l')" :class="{ active: activeSize === 'l' }">
       <span class="icon">
         <svg><use xlink:href="#icon_panel-size-large"></use></svg>
-      </span> 
+      </span>
     </li>
     <li class="dao-panel-nav-icon" @click="changeSize('m')" :class="{ active: activeSize === 'm' }">
       <span class="icon">
         <svg><use xlink:href="#icon_panel-size-medium"></use></svg>
-      </span> 
+      </span>
     </li>
     <li class="dao-panel-nav-icon" @click="changeSize('s')" :class="{ active: activeSize === 's' }">
       <span class="icon">
         <svg><use xlink:href="#icon_panel-size-small"></use></svg>
-      </span> 
+      </span>
     </li>
   </ul>
 </template>
@@ -51,6 +56,9 @@ export default {
     },
     changeSize(size) {
       this.$parent.changeSize(size);
+    },
+    close() {
+      this.$parent.$emit('update:visible', false);
     },
   },
 };
