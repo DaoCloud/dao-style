@@ -21,7 +21,7 @@
     <button class="dao-btn blue" style="position: relative;" @click="show = !show">Toggle Dragger 4</button>
     <br><br>
     <h1>components</h1>
-    <dao-draggable v-model="drags" :no-repeat="true" :remove-when-drag-out="true" draggingClass="green" @change="handleChange">
+    <dao-draggable v-model="drags" :no-repeat="true" :remove-when-drag-out="true" draggingClass="drag-green" @change="handleChange">
       <template v-for="item in drags" :slot="item.key">{{ item.context }}</template>
     </dao-draggable>
     <dao-draggable v-model="drags2" :no-repeat="true" :no-sort="true" :clone="true" draggingStyle="color: red;" @change="handleChange2"></dao-draggable>
@@ -62,7 +62,7 @@ export default {
         key: '8',
       }, {
         context: 'component 9',
-        draggingClass: 'green',
+        draggingClass: 'drag-green',
         key: '9',
       }, {
         context: 'component 10',
@@ -109,7 +109,8 @@ export default {
   // border: 1px solid #eee;
   margin: 5px;
 }
-.green{
+// 类名重命名，防止覆盖别的样式
+.drag-green{
   color: green;
 }
 </style>

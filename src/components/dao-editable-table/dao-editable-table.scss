@@ -37,7 +37,8 @@
   }
 }
 .det-add {
-  display: inline-block;
+  // 防止高度出现大于 16px 的情况
+  display: inline-flex;
   color: $blue;
   cursor: pointer;
 }
@@ -49,6 +50,9 @@
 }
 .det-add-span {
   vertical-align: middle;
+  line-height: 16px;
+  // 按照设计稿 link 的样式进行修改
+  margin-left: 6px;
 }
 svg.det-remove-btn {
   fill: $grey-light;
@@ -66,7 +70,6 @@ svg.det-remove-btn {
 .det-select {
   width: 100% !important;
   display: inline-block;
-  vertical-align: middle;
   // 其实 select 已经垂直居中了，但是由于 td 没有上边框，只有下边框，所以看起来上面会大1px
   transform: translateY(-1px);
   .dao-select-main {

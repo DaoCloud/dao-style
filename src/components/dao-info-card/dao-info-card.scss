@@ -7,6 +7,7 @@
 
   $sm-width: 300px;
   $lg-width: 610px;
+  $max-width: 100%;
   $sm-key-value-width: 270px;
   $sm-key-value-key-width: 115px;
   $lg-key-value-width: 580px;
@@ -33,6 +34,22 @@
   }
   &.size-lg {
     width: $lg-width;
+    .dao-infocard-main {
+      ul {
+        .dao-key-value {
+          width: $lg-key-value-width;
+          .key {
+            width: $lg-key-value-key-width;
+          }
+          .value {
+            width: $lg-key-value-width - $lg-key-value-key-width;
+          }
+        }
+      }
+    }
+  }
+  &.size-max {
+    width: $max-width;
     .dao-infocard-main {
       ul {
         .dao-key-value {
