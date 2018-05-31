@@ -9,17 +9,17 @@
       :on-error="copyError"
       :content="content"
       v-if="withBtn">
-      <tooltip content="复制成功" v-if="success">
+      <tooltip :content="$daot('successfullyCopied')" v-if="success">
         <svg>
           <use xlink:href="#icon_clipboard-success"></use>
         </svg>
       </tooltip>
-       <tooltip content="复制失败" v-if="fail">
+       <tooltip :content="$daot('copyFailed')" v-if="fail">
         <svg>
           <use xlink:href="#icon_clipboard"></use>
         </svg>
       </tooltip>
-      <tooltip content="点击复制" v-if="!success && !fail">
+      <tooltip :content="$daot('clickToCopy')" v-if="!success && !fail">
         <svg>
           <use xlink:href="#icon_clipboard"></use>
         </svg>
@@ -77,4 +77,6 @@
     },
   };
 </script>
-<style lang="scss" src="./dao-copy-block.scss"></style>
+
+<style lang="scss" src="./dao-copy-block.scss">
+</style>

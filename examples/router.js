@@ -156,7 +156,7 @@ const routes = [{
   path: '/switch',
   component: switchExample,
 }, {
-  name: 'tab',
+  name: 'Tab',
   path: '/tab',
   component: tab,
 }, {
