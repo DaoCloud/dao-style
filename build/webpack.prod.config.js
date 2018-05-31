@@ -52,7 +52,10 @@ module.exports = merge(webpackBaseConfig, {
       new CopyWebpackPlugin([{
         from: path.resolve(__dirname, '../src/components/dao-color.scss'), 
         to: path.resolve(__dirname, '../dist/styles/dao-color.scss'),
-      }]),
+      },{
+          from: path.resolve(__dirname, '../src/i18n/langs'),
+          to: path.resolve(__dirname, '../dist/langs'),
+        }]),
       new webpack.optimize.UglifyJsPlugin({
         compress: {
           warnings: false

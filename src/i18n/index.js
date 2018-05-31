@@ -13,8 +13,6 @@ let fallbackLocale = defaultLocale;
 let locale = defaultLocale;
 
 function daot(key) {
-  console.log('key', key);
-  console.log('locale', locale);
   const localeMessages = messages[locale] || {};
   const fallbackLocaleMessages = messages[fallbackLocale] || {};
   const localeVal = localeMessages[key];
@@ -32,10 +30,9 @@ function daot(key) {
 }
 
 function i18n(opts = {}) {
-  console.warn('i18n 参数配置++++++++++');
   messages = _merge(messages, opts.messages);
   fallbackLocale = opts.fallbackLocale || defaultLocale;
-  locale = opts.locale;
+  locale = opts.locale || defaultLocale;
   Vue.prototype.$daot = daot;
 }
 
