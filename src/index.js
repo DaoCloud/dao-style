@@ -98,7 +98,7 @@ const daoStyleDirectives = {
   'dao-clickoutside': daoClickoutside,
 };
 
-function install(Vue) {
+function install(Vue, opts = {}) {
   Object.keys(daoStyleComponents).forEach((key) => {
     Vue.component(key, daoStyleComponents[key]);
   });
@@ -106,6 +106,7 @@ function install(Vue) {
     Vue.directive(key, daoStyleDirectives[key]);
   });
   Vue.prototype.$daoAlert = daoMessageBox.alert;
+  console.log(opts);
 }
 
 // auto install
