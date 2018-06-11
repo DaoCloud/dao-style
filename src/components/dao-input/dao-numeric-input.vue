@@ -38,7 +38,7 @@
   }
 
   export default {
-    name: 'DaoNumbericInput',
+    name: 'DaoNumericInput',
     props: {
       min: Number,
       max: Number,
@@ -60,6 +60,10 @@
         type: Boolean,
         default: false,
       },
+      block: {
+        type: Boolean,
+        default: false,
+      },
     },
     data() {
       return {
@@ -78,8 +82,9 @@
       },
       wrapClass() {
         return {
-          'dao-numberic-input': true,
+          'dao-numeric-input': true,
           'with-unit': this.unit,
+          block: this.block,
         };
       },
       inputClass() {
@@ -186,5 +191,5 @@
   };
 </script>
 
-<style lang="scss" src="./dao-numberic-input.scss">
+<style lang="scss" src="./dao-numeric-input.scss">
 </style>

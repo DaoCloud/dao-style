@@ -291,32 +291,30 @@
     </dao-file-input>
     
     <br><br><br>
-    <h1>Numberic Input</h1>
-    <hr><br>{{demoNumbericInput1}}<br>
-    <dao-numberic-input
-      v-model="demoNumbericInput1"
+    <h1>Numeric Input</h1>
+    <hr><br>{{demoNumericInput1}}<br>
+    <dao-numeric-input
+      v-model="demoNumericInput1"
       :min='-5'
       :max='80'
-      style="width: 287px;"
       placeholder="min: -5 max: 80 float">
-    </dao-numberic-input>
-    <br>{{demoNumbericInput2}}<br>
-     <dao-numberic-input
-      v-model="demoNumbericInput2"
-      style="width: 287px;"
+    </dao-numeric-input>
+    <br>{{demoNumericInput2}}<br>
+     <dao-numeric-input
+      v-model="demoNumericInput2"
       type='int'
       :min='-5'
       :max='10'
       unit="KG"
+      block
       placeholder="min: -5 max: 10 int">
-    </dao-numberic-input>
-    <br>{{demoNumbericInput3}}<br>
-    <dao-numberic-input
+    </dao-numeric-input>
+    <br>{{demoNumericInput3}}<br>
+    <dao-numeric-input
       :disabled="true"
-      v-model="demoNumbericInput3"
-      style="width: 287px;"
+      v-model="demoNumericInput3"
       placeholder="disabled">
-    </dao-numberic-input>
+    </dao-numeric-input>
     <br><br><br><br><br>
   </div>
 </template>
@@ -356,9 +354,9 @@
         statusSuccess: 'success',
         statusInfo: 'info',
         demoFileInput: null,
-        demoNumbericInput1: 1,
-        demoNumbericInput2: 2,
-        demoNumbericInput3: 3,
+        demoNumericInput1: 1,
+        demoNumericInput2: 2,
+        demoNumericInput3: 3,
       };
     },
     methods: {

@@ -1,11 +1,19 @@
 @import "../dao-color.scss";
+@import "./variables.scss";
 
 $unit-width: 32px;
 $triangle-width: 14px;
 $input-padding: 10px;
 
-.dao-numberic-input {
+.dao-numeric-input {
   position: relative;
+  width: $input-width;
+  &.block {
+    width: 100%;
+    input {
+      width: 100%;
+    }
+  }
   input{
     padding-right: $input-padding;
   }
