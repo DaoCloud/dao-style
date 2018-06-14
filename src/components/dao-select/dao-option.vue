@@ -1,7 +1,7 @@
 <template>
   <div :class="['dao-option-item', {'disabled': disabled, 'active': active}]" @click="handleClick" v-show="matchedFilter">
     <svg class="icon checkmark">
-      <use xlink:href="#icon_checkmark"></use>
+      <use xlink:href="#icon_checkmark-menu-item"></use>
     </svg>
     <span>
       <slot>{{ label }}</slot>
