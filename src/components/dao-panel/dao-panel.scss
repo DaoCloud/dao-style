@@ -9,7 +9,6 @@ $header-tab-border-color: #ccd1d9;
 .dao-panel {
     width: 100%;
     border: 1px solid $header-tab-border-color;
-    overflow: hidden;
     max-height: 100%;
     position: relative;
 }
@@ -80,4 +79,5 @@ $header-tab-border-color: #ccd1d9;
     top: 0;
     margin-top: -3px;
     cursor: row-resize;
+    user-select: none;
 }
