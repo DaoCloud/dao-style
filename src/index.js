@@ -16,7 +16,7 @@ import daoClipboard from './components/dao-clipboard';
 import daoDialog from './components/dao-dialog';
 import daoDraggableComponent from './components/dao-draggable';
 import daoDropdown from './components/dao-dropdown';
-import { daoEditableInput, daoFileInput, daoNumbericInput, daoInput } from './components/dao-input';
+import { daoEditableInput, daoFileInput, daoNumericInput, daoInput } from './components/dao-input';
 import daoEditableList from './components/dao-editable-list';
 import daoEditableTable from './components/dao-editable-table';
 import daoInfoCard from './components/dao-info-card';
@@ -65,7 +65,7 @@ const daoStyleComponents = {
   daoInputWithLabel,
   daoList,
   daoNumericBadge,
-  daoNumbericInput,
+  daoNumericInput,
   daoOption: daoSelect.Option,
   daoOptionGroup: daoSelect.Group,
   daoPopover,
