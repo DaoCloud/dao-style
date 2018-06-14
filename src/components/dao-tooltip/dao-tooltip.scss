@@ -12,6 +12,8 @@ $tooltip-bg:               #000 !default;
   font-size: 13px;
   line-height: 22px;
   position: absolute;
+  // when position error, fixed tooltip twinkle
+  pointer-events: none;
 
   // Wrapper for the tooltip content
   .dao-tooltip-inner {
