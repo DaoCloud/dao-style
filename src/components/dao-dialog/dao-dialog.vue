@@ -54,7 +54,7 @@ export default {
       default: false,
     },
     header: {
-      type: [Object, Boolean],
+      type: [Object, Boolean, String],
       default() {
         return {};
       },
@@ -101,6 +101,12 @@ export default {
     // 兼容旧版 dialog
     computedHeader() {
       if (this.config.showHeader === false || this.header === false) return false;
+      if (typeof this.header === 'string') {
+        return {
+          title: this.header,
+          showClose: this.config.showHeaderClose,
+        };
+      }
       return {
         title: this.config.title || this.header.title,
         showClose: this.config.showHeaderClose || this.header.showClose,

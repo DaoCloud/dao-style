@@ -15,7 +15,7 @@
         <div class="config-section">footer: <b>{{config.footer}}</b></div>
       </div>
       <div slot="content">
-        <button class="dao-btn blue" @click="config.visible = true">{{config.header.title}}</button>
+        <button class="dao-btn blue" @click="config.visible = true">{{config.header.title || config.header}}</button>
         <dao-dialog
           :visible.sync="config.visible"
           @before-close="onBeforeClose"
@@ -222,9 +222,7 @@
         configs: [
           {
             visible: false,
-            header: {
-              title: '最简单的默认版本',
-            },
+            header: '最简单的默认版本',
           },
           {
             visible: false,
