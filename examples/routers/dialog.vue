@@ -262,16 +262,16 @@
           {
             visible: false,
             header: {
-              title: '可以通过点击外部关闭 Dialog',
+              title: '不可以通过点击外部关闭 Dialog',
             },
-            closeOnClickOutside: true,
+            closeOnClickOutside: false,
           },
           {
             visible: false,
             header: {
-              title: '可以通过 ESC 关闭 Dialog',
+              title: '不可以通过 ESC 关闭 Dialog',
             },
-            closeOnPressEscape: true,
+            closeOnPressEscape: false,
           },
           {
             visible: false,
