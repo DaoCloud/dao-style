@@ -145,9 +145,9 @@
         定制 header, 定制 footer
       </div>
       <div slot="content">
-        <button class="dao-btn blue" @click="custom.visible = true">打开对话框</button>
+        <button class="dao-btn blue" @click="customHeaderAndBody.visible = true">打开对话框</button>
         <dao-dialog
-          :visible.sync="custom.visible"
+          :visible.sync="customHeaderAndBody.visible"
           @before-close="onBeforeClose"
           @closed="onClosed"
           @before-open="onBeforeOpen"
@@ -174,6 +174,28 @@
               <h2>TEST15</h2>
           </div>
           <div slot="footer">custom footer</div>
+        </dao-dialog>
+      </div>
+    </dao-setting-section>
+     <dao-setting-section >
+      <div slot="section-title">
+        定制 header 的 title
+      </div>
+      <div slot="content">
+        <button class="dao-btn blue" @click="customTitle.visible = true">打开对话框</button>
+        <dao-dialog
+          :visible.sync="customTitle.visible"
+          @before-close="onBeforeClose"
+          @closed="onClosed"
+          @before-open="onBeforeOpen"
+          @opened="onOpened"
+          @confirm="onConfirm"
+          @cancel="onCancel"
+          :closeOnClickOutside="true">
+          <div slot="title"><i>自定义 title</i></div>
+          <div class="body">
+            <h1>只是自定义了 title</h1>
+          </div>
         </dao-dialog>
       </div>
     </dao-setting-section>
@@ -324,7 +346,10 @@
             // showFooter: true,
           },
         },
-        custom: {
+        customHeaderAndBody: {
+          visible: false,
+        },
+        customTitle: {
           visible: false,
         },
         fatherDialog: {
