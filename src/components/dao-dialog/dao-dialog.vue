@@ -75,7 +75,7 @@ export default {
     },
     closeOnClickOutside: {
       type: Boolean,
-      default: true,
+      default: false,
     },
     closeOnPressEscape: {
       type: Boolean,

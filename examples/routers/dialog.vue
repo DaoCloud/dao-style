@@ -262,9 +262,9 @@
           {
             visible: false,
             header: {
-              title: '不可以通过点击外部关闭 Dialog',
+              title: '可以通过点击外部关闭 Dialog',
             },
-            closeOnClickOutside: false,
+            closeOnClickOutside: true,
           },
           {
             visible: false,
