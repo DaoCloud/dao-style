@@ -1,8 +1,8 @@
 <template>
   <div class="dao-dialog-footer">
     <slot>
-      <button class="dao-btn ghost" @click="onCancel">{{configure.cancelText}}</button>
-      <button class="dao-btn blue" @click="onConfirm"
+      <button class="dao-btn ghost" @click="onCancel">{{configure.cancelText}}</button><!--
+   --><button class="dao-btn blue" @click="onConfirm"
         :disabled="configure.confirmDisabled">{{configure.confirmText}}</button>
     </slot>
   </div>
