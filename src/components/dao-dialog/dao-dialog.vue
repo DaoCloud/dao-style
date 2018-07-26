@@ -4,9 +4,9 @@
     @after-enter="onAfterEnter"
     @before-leave="onBeforeLeave"
     @after-leave="onAfterLeave">
-    <div v-if="visible" class="dao-dialog-backdrop" @mousedown.self="onWrapperMousedown" :class="containerClass">
-      <div class="dao-dialog-padding-block"></div>
-      <div class="dao-dialog-container" ref="container">
+    <div v-if="visible" class="dao-dialog-backdrop" @mousedown.self="onWrapperMousedown" :class="{ middle: middle }">
+      <div class="dao-dialog-padding-block" :style="computedPaddingTopStyle"></div>
+      <div class="dao-dialog-container" ref="container" :class="containerClass">
         <dao-dialog-header v-if="computedHeader" :config="computedHeader" @close="onClose">
           <slot name="header"/>
         </dao-dialog-header>
@@ -19,7 +19,7 @@
         <div class="resizer" v-if="computedAllowResize" @mousedown.stop="onMouseDown">
         </div>
       </div>
-      <div class="dao-dialog-padding-block"></div>
+      <div class="dao-dialog-padding-block" :style="computedPaddingBottomStyle"></div>
     </div>
   </transition>
 </template>
@@ -45,6 +45,9 @@ const dialogSizeMap = {
 };
 
 const daoDialogNumAttr = 'dao-dialog-num';
+const daoDialogDefaultPaddingTop = '100px';
+const daoDialogDefaultPaddingBottom = '20px';
+const daoDialogMinimumPadding = '20px';
 
 export default {
   name: 'DaoDialog',
@@ -89,6 +92,16 @@ export default {
       type: Boolean,
       default: true,
     },
+    top: {
+      type: String,
+    },
+    bottom: {
+      type: String,
+    },
+    middle: {
+      type: Boolean,
+      default: false,
+    },
     // 兼容旧版 dialog
     config: {
       type: Object,
@@ -130,6 +143,18 @@ export default {
     computedSize() {
       if (_includes(Object.keys(dialogSizeMap), this.config.size)) return this.config.size;
       return this.size;
+    },
+    computedPaddingTopStyle() {
+      return {
+        height: this.middle ? daoDialogMinimumPadding :
+          this.top || daoDialogDefaultPaddingTop,
+      };
+    },
+    computedPaddingBottomStyle() {
+      return {
+        height: this.middle ? daoDialogMinimumPadding :
+        this.bottom || daoDialogDefaultPaddingBottom,
+      };
     },
   },
   methods: {
