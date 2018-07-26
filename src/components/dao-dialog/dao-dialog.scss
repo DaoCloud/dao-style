@@ -18,11 +18,13 @@ $dialog-border-color: #CCD1D9;
     display: flex;
     align-items: center;
     flex-direction: column;
-    justify-content: space-between;
+    &.middle {
+      justify-content: space-between;
+    }
   }
   &-padding-block {
     width: 100%;
-    height: 20px;
+    height: 100px;
   }
   &-container {
     max-height: 100vh;

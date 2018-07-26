@@ -13,6 +13,9 @@
         <div class="config-section">锁定 body 滚动: <b>{{config.lockScroll}}</b></div>
         <div class="config-section">header: <b>{{config.header}}</b></div>
         <div class="config-section">footer: <b>{{config.footer}}</b></div>
+        <div class="config-section">垂直居中: <b>{{config.middle}}</b></div>
+        <div class="config-section">top: <b>{{config.top}}</b></div>
+        <div class="config-section">bottom: <b>{{config.bottom}}</b></div>
       </div>
       <div slot="content">
         <button class="dao-btn blue" @click="config.visible = true">{{config.header.title || config.header}}</button>
@@ -24,8 +27,11 @@
           @opened="onOpened"
           @confirm="onConfirm"
           @cancel="onCancel"
+          :middle="config.middle"
           :header="config.header"
           :footer="config.footer"
+          :top="config.top"
+          :bottom="config.bottom"
           :allowResize="config.allowResize"
           :containerClass="config.containerClass"
           :closeOnClickOutside="config.closeOnClickOutside"
@@ -279,6 +285,21 @@
               title: '不锁定 body 滚动',
             },
             lockScroll: false,
+          },
+          {
+            visible: false,
+            header: {
+              title: '垂直居中',
+            },
+            middle: true,
+          },
+          {
+            visible: false,
+            header: {
+              title: '修改 top 和 bottom',
+            },
+            top: '30px',
+            bottom: '50px',
           },
           {
             visible: false,
