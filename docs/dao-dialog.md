@@ -20,7 +20,7 @@ closeOnPressEscape | Boolean | 设置按键 ESC 时是否隐藏 dialog | true | 
 allowResize | Boolean | 是否可以拖拽调整大小 | false | 否
 lockScroll | Boolean | 对话框出现时是否将 body 锁定不滚动 | true | 否
 top | String | dao-dialog 的 margin-top | 100px | 否
-bottom | String | dao-dialog 的 margin-bottom | 100px | 否
+bottom | String | dao-dialog 的 margin-bottom | 20px | 否
 middle | Boolean | dao-dialog 垂直是否居中 | false | 否
 
 
