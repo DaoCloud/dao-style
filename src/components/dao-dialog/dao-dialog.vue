@@ -45,7 +45,9 @@ const dialogSizeMap = {
 };
 
 const daoDialogNumAttr = 'dao-dialog-num';
-const daoDialogDefaultPadding = '100px';
+const daoDialogDefaultPaddingTop = '100px';
+const daoDialogDefaultPaddingBottom = '20px';
+const daoDialogMinimumPadding = '20px';
 
 export default {
   name: 'DaoDialog',
@@ -144,12 +146,14 @@ export default {
     },
     computedPaddingTopStyle() {
       return {
-        height: this.top || daoDialogDefaultPadding,
+        height: this.middle ? daoDialogMinimumPadding :
+          this.top || daoDialogDefaultPaddingTop,
       };
     },
     computedPaddingBottomStyle() {
       return {
-        height: this.bottom || daoDialogDefaultPadding,
+        height: this.middle ? daoDialogMinimumPadding :
+        this.bottom || daoDialogDefaultPaddingBottom,
       };
     },
   },

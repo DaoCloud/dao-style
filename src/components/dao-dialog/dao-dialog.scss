@@ -3,7 +3,6 @@ $dialog-overlay: rgba(31, 33, 38, 0.2);
 $dialog-header-bg-color: #F5F7FA;
 $dialog-header-bg-img: linear-gradient(0deg, rgb(242, 244, 247) 0%, rgb(245, 247, 250) 100%);
 $dialog-border-color: #CCD1D9;
-
 .dao-dialog {
   &-backdrop {
     position: fixed;
@@ -24,7 +23,7 @@ $dialog-border-color: #CCD1D9;
   }
   &-padding-block {
     width: 100%;
-    height: 100px;
+    flex-shrink: 0;
   }
   &-container {
     max-height: 100vh;
