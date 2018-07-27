@@ -185,6 +185,12 @@ $select-disabled-color: $grey-light;
       padding: 0;
     }
   }
+  // 解决在同时有 search 和 tab 时会有两个 scroll bar 的问题
+  &.withSearch.withTab {
+    .option-list {
+      max-height: none;
+    }
+  }
   &-options.withTab.withSearch {
     .search-container {
       margin-bottom: -1px;
