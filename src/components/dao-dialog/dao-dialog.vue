@@ -9,6 +9,9 @@
       <div class="dao-dialog-container" ref="container" :class="containerClass">
         <dao-dialog-header v-if="computedHeader" :config="computedHeader" @close="onClose">
           <slot name="header"/>
+          <div slot="title" v-if="$slots.title">
+            <slot name="title"></slot>
+          </div>
         </dao-dialog-header>
         <div ref="body"  class="dao-dialog-body">
           <slot></slot>

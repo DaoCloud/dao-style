@@ -55,5 +55,6 @@ cancel | Dialog 点击 取消 时的触发 | -
 名称 | 说明
 -|-
  -- | dialog body 内容
-header | dialog header 的内容
+header | dialog header 的内容(同时配置的 title slot 将不会生效)
 footer | dialog footer 的内容
+title | dialog title 的内容
