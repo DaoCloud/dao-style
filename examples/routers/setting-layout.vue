@@ -1,7 +1,7 @@
 <template>
   <div>
     <button class="dao-btn blue" @click="show = !show">切换 Layout</button>
-    <dao-setting-layout v-if="show">
+    <dao-setting-layout v-if="show" class="test-class">
       <template slot="layout-title">大标题</template>
       <template slot="layout-title-helper">大标题一定要有，表单必有头</template>
       <dao-setting-section>
@@ -66,7 +66,7 @@
 </template>
 <script>
 export default {
-  data () {
+  data() {
     return {
       show: true,
     };
@@ -74,5 +74,7 @@ export default {
 };
 </script>
 <style lang="scss">
-  
+  .test-class {
+    color: red;
+  }
 </style>

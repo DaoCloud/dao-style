@@ -30,6 +30,9 @@ info-card 将以表格形式展示
     <div slot="title">
       TEXT
     </div>
+    <div slot="empty">
+      表格为空
+    </div>  // 支持当tableValue中的body为空时，展示空状态
 </dao-info-card>
 ```
 

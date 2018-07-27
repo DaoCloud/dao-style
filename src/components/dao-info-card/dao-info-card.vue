@@ -15,7 +15,7 @@
     <template v-if="isShow">
       <div class="dao-infocard-main" >
         <slot name="content"></slot>
-        <ul v-for="values in keyValue" v-if="keyValue.length>0">
+        <ul v-for="(values, index) in keyValue" :key="index">
           <li class="dao-key-value" v-for="(value,key,index) in values" :key="index">
             <div class="key">{{key}}:</div>
             <div class="value">
@@ -29,14 +29,15 @@
           <table class="dao-table flexrow">
             <thead>
               <tr>
-                <th v-for=" attr in tableValue.header" >{{attr}}</th>
+                <th v-for="(attr, key, index) in tableValue.header" :key="index">{{attr}}</th>
               </tr>
             </thead>
-            <tbody>
-              <tr v-for="item in tableValue.body">
-                <td v-for="value in item">{{value}}</td>
+            <tbody v-if="showTableBody">
+              <tr v-for="(item, index) in tableValue.body" :key="index">
+                <td v-for="(value, key, index) in item" :key="index">{{value}}</td>
               </tr>
-            </tbody>  
+            </tbody>
+            <slot name="empty" v-else />
           </table>
         </div>
       </div>
@@ -44,6 +45,7 @@
   </div>
 </template>
 <script>
+  import { _get } from '../../utils/assist.js';
   export default {
     name: 'DaoInfoCard',
     data() {
@@ -92,6 +94,9 @@
           return '#icon_down-arrow';
         }
         return '#icon_triangle-right';
+      },
+      showTableBody() {
+        return _get(this.tableValue.body, 'length', 0) > 0;
       },
     },
     methods: {

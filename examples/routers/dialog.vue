@@ -13,9 +13,12 @@
         <div class="config-section">锁定 body 滚动: <b>{{config.lockScroll}}</b></div>
         <div class="config-section">header: <b>{{config.header}}</b></div>
         <div class="config-section">footer: <b>{{config.footer}}</b></div>
+        <div class="config-section">垂直居中: <b>{{config.middle}}</b></div>
+        <div class="config-section">top: <b>{{config.top}}</b></div>
+        <div class="config-section">bottom: <b>{{config.bottom}}</b></div>
       </div>
       <div slot="content">
-        <button class="dao-btn blue" @click="config.visible = true">{{config.header.title}}</button>
+        <button class="dao-btn blue" @click="config.visible = true">{{config.header.title || config.header}}</button>
         <dao-dialog
           :visible.sync="config.visible"
           @before-close="onBeforeClose"
@@ -24,8 +27,11 @@
           @opened="onOpened"
           @confirm="onConfirm"
           @cancel="onCancel"
+          :middle="config.middle"
           :header="config.header"
           :footer="config.footer"
+          :top="config.top"
+          :bottom="config.bottom"
           :allowResize="config.allowResize"
           :containerClass="config.containerClass"
           :closeOnClickOutside="config.closeOnClickOutside"
@@ -145,9 +151,9 @@
         定制 header, 定制 footer
       </div>
       <div slot="content">
-        <button class="dao-btn blue" @click="custom.visible = true">打开对话框</button>
+        <button class="dao-btn blue" @click="customHeaderAndBody.visible = true">打开对话框</button>
         <dao-dialog
-          :visible.sync="custom.visible"
+          :visible.sync="customHeaderAndBody.visible"
           @before-close="onBeforeClose"
           @closed="onClosed"
           @before-open="onBeforeOpen"
@@ -174,6 +180,28 @@
               <h2>TEST15</h2>
           </div>
           <div slot="footer">custom footer</div>
+        </dao-dialog>
+      </div>
+    </dao-setting-section>
+     <dao-setting-section >
+      <div slot="section-title">
+        定制 header 的 title
+      </div>
+      <div slot="content">
+        <button class="dao-btn blue" @click="customTitle.visible = true">打开对话框</button>
+        <dao-dialog
+          :visible.sync="customTitle.visible"
+          @before-close="onBeforeClose"
+          @closed="onClosed"
+          @before-open="onBeforeOpen"
+          @opened="onOpened"
+          @confirm="onConfirm"
+          @cancel="onCancel"
+          :closeOnClickOutside="true">
+          <div slot="title"><i>自定义 title</i></div>
+          <div class="body">
+            <h1>只是自定义了 title</h1>
+          </div>
         </dao-dialog>
       </div>
     </dao-setting-section>
@@ -222,9 +250,7 @@
         configs: [
           {
             visible: false,
-            header: {
-              title: '最简单的默认版本',
-            },
+            header: '最简单的默认版本',
           },
           {
             visible: false,
@@ -271,9 +297,9 @@
           {
             visible: false,
             header: {
-              title: '可以通过 ESC 关闭 Dialog',
+              title: '不可以通过 ESC 关闭 Dialog',
             },
-            closeOnPressEscape: true,
+            closeOnPressEscape: false,
           },
           {
             visible: false,
@@ -281,6 +307,21 @@
               title: '不锁定 body 滚动',
             },
             lockScroll: false,
+          },
+          {
+            visible: false,
+            header: {
+              title: '垂直居中',
+            },
+            middle: true,
+          },
+          {
+            visible: false,
+            header: {
+              title: '修改 top 和 bottom',
+            },
+            top: '30px',
+            bottom: '50px',
           },
           {
             visible: false,
@@ -326,7 +367,10 @@
             // showFooter: true,
           },
         },
-        custom: {
+        customHeaderAndBody: {
+          visible: false,
+        },
+        customTitle: {
           visible: false,
         },
         fatherDialog: {

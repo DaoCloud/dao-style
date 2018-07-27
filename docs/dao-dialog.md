@@ -11,7 +11,7 @@ dialog 是一个弹出框组件。代码请参照目录: [src/components/dao-dia
 参数名 | 类型 | 说明 | 默认值 | 是否必填
 -|-|-|-|-
 visible | Boolean | 控制 dao-dialog 是否显示的参数, 与父组件双向绑定 ( 需要加 sync 修饰符 ) | false | 是
-header | Object/Boolean | header 配置对象, 具体内容见 [header 对象](#header) (当传入 header slot 时，该配置将不会生效), 当任何时候都不需要 header 时可以传入 false| [header](#header) | 否
+header | Object/Boolean/String | header 配置对象, 具体内容见 [header 对象](#header) (当传入 header slot 时，该配置将不会生效), 当任何时候都不需要 header 时可以传入 false| [header](#header) | 否
 footer | Object | footer 配置对象, 具体内容见 [footer 对象](#footer) (当传入 footer slot 时，该配置将不会生效)， 当任何时候都不需要 footer 时可以传入 false| [footer](#footer) |  否
 size | String/Object | 设置 dialog 的大小。 可选 `sm`, `md`, `lg`, 或者传入 { width: *, height: * } 具体指定 | 'md'  | 否
 containerClass | String | dialog 的容器类名 | - | 否
@@ -19,6 +19,10 @@ closeOnClickOutside | Boolean | 设置点击 dialog 外面( 遮罩层 ) 是否�
 closeOnPressEscape | Boolean | 设置按键 ESC 时是否隐藏 dialog | true | 否
 allowResize | Boolean | 是否可以拖拽调整大小 | false | 否
 lockScroll | Boolean | 对话框出现时是否将 body 锁定不滚动 | true | 否
+top | String | dao-dialog 的 margin-top | 100px | 否
+bottom | String | dao-dialog 的 margin-bottom | 20px | 否
+middle | Boolean | dao-dialog 垂直是否居中 | false | 否
+
 
 #### header 对象 <span id="header"></span>
 
@@ -51,5 +55,6 @@ cancel | Dialog 点击 取消 时的触发 | -
 名称 | 说明
 -|-
  -- | dialog body 内容
-header | dialog header 的内容
+header | dialog header 的内容(同时配置的 title slot 将不会生效)
 footer | dialog footer 的内容
+title | dialog title 的内容

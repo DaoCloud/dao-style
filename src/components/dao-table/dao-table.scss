@@ -144,7 +144,13 @@
       vertical-align: middle;
     }
     .dao-select {
-      transform: translateY(-1px);
+      display: inline-block;
+      // 这个 vertical-align: middle, 必须要设置来兼容火狐。
+      vertical-align: middle;
+      transform: translateY(-2px);
+      .dao-select-main {
+        display: block !important;
+      }
     }
   }
 }
@@ -214,7 +220,13 @@
       vertical-align: middle;
     }
     .dao-select {
-      transform: translateY(-1px);
+      display: inline-block;
+      // 这个 vertical-align: middle, 必须要设置来兼容火狐。
+      vertical-align: middle;
+      transform: translateY(-2px);
+      .dao-select-main {
+        display: block !important;
+      }
     }
   }
 }
@@ -223,7 +235,6 @@
   thead {
     display: flex;
     tr {
-
       display: flex;
       flex: 1;
       height: $row-th-height;
