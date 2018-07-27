@@ -78,6 +78,15 @@
       </dao-dropdown>
     </div>
   </dao-info-card>
+  <br>
+  <dao-info-card size="lg" :tableValue="tablevalue5">
+    <div slot="title">
+      TEXT
+    </div>
+    <div slot="empty" class="empty-table-body">
+      表格为空
+    </div>
+  </dao-info-card>
 </div>
 </template>
 <script>
@@ -190,15 +199,31 @@ export default {
           tnumber: 2000,
         }],
       },
+      tablevalue5: {
+        header: [
+          '容器端口',
+          '负载均衡端口',
+          '协议',
+        ],
+        body: [],
+      }
     };
   },
 };
 </script>
  
-<style>
+<style lang="scss">
+@import '../../src/components/dao-color.scss';
 .icon-more {
   width: 18px;
   height: 18px;
-  fill: #9ba3af; 
+  fill: $grey-dark; 
+}
+.empty-table-body {
+  padding: 40px;
+  text-align: center;
+  color: $grey-dark;
+  background-color: $white-lighter;
+  border: 1px dashed $white-dark;
 }
 </style>
