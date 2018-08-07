@@ -10,20 +10,24 @@
 <script>
 import { _merge, _clone } from '../../../utils/assist';
 
-const defaultConfig = {
-  confirmText: '确认',
-  cancelText: '取消',
-  confirmDisabled: false,
-};
-
 export default {
   name: 'DaoDialogFooter',
   props: {
     config: Object,
   },
+  data() {
+    const that = this;
+    return {
+      defaultConfig: {
+        confirmText: that.$daot('confirm'),
+        cancelText: that.$daot('cancel'),
+        confirmDisabled: false,
+      },
+    };
+  },
   computed: {
     configure() {
-      return _merge(_clone(defaultConfig), this.config);
+      return _merge(_clone(this.defaultConfig), this.config);
     },
   },
   methods: {

@@ -1,5 +1,8 @@
 import './components/dao-svg/svg';
 
+// i18n
+import * as I18N from './i18n';
+
 // 纯样式组件
 import './components/common.scss';
 import './components/dao-button/dao-button.scss';
@@ -98,20 +101,28 @@ const daoStyleDirectives = {
   'dao-clickoutside': daoClickoutside,
 };
 
-function install(Vue) {
+function install(Vue, opts = {}) {
+  // i18n
+  I18N.i18n(opts.i18n);
+
+  // register components
   Object.keys(daoStyleComponents).forEach((key) => {
     Vue.component(key, daoStyleComponents[key]);
   });
+
+  // register directives
   Object.keys(daoStyleDirectives).forEach((key) => {
     Vue.directive(key, daoStyleDirectives[key]);
   });
+
+  // register $daoAlert
   Vue.prototype.$daoAlert = daoMessageBox.alert;
 }
 
 // auto install
-if (typeof window !== 'undefined' && window.Vue) {
-  install(window.Vue);
-}
+// if (typeof window !== 'undefined' && window.Vue) {
+//   install(window.Vue);
+// }
 
 export default {
   install,

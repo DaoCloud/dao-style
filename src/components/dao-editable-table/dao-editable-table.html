@@ -3,7 +3,7 @@
     <thead>
       <tr>
         <th v-for="th in header">{{ th.text }}</th>
-        <th class="det-edit-col">编辑</th>
+        <th class="det-edit-col">{{$daot('edit')}}</th>
       </tr>
     </thead>
     <tbody>
@@ -50,6 +50,6 @@
   </table>
   <div class="det-add" @click="addRow">
     <svg class="det-add-btn"><use xlink:href="#icon_plus-circled"></use></svg>
-    <span class="det-add-span">添加</span>
+    <span class="det-add-span">{{$daot('add')}}</span>
   </div>
 </div>

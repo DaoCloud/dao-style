@@ -15,22 +15,22 @@
       <template v-if="!$slots.prepend && !$slots.append" slot="button">
         <div class="edit-op">
           <div class="edit-op-toggle" v-show="!isEdit" @click="edit">
-            <svg><use xlink:href="#icon_pencil"></use></svg><span class="text">更改</span>
+            <svg><use xlink:href="#icon_pencil"></use></svg><span class="text">{{$daot('change')}}</span>
           </div>
           <div class="edit-op-btn" v-show="isEdit">
             <button class="dao-btn blue" @click="save">{{ saveBtnContent }}</button>
-            <button class="dao-btn ghost" @click="cancel">取消</button>
+            <button class="dao-btn ghost" @click="cancel">{{$daot('cancel')}}</button>
           </div>
         </div>
       </template>
     </dao-input>
     <div v-if="$slots.prepend || $slots.append" class="edit-op">
       <div class="edit-op-toggle" v-show="!isEdit" @click="edit">
-        <svg><use xlink:href="#icon_pencil"></use></svg><span class="text">更改</span>
+        <svg><use xlink:href="#icon_pencil"></use></svg><span class="text">{{$daot('change')}}</span>
       </div>
       <div class="edit-op-btn" v-show="isEdit">
         <button class="dao-btn blue" @click="save">{{ saveBtnContent }}</button>
-        <button class="dao-btn ghost" @click="cancel">取消</button>
+        <button class="dao-btn ghost" @click="cancel">{{$daot('cancel')}}</button>
       </div>
     </div>
   </div>
