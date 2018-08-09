@@ -17,6 +17,7 @@ export { default as _chunk } from 'lodash/chunk';
 export { default as _get } from 'lodash/get';
 export { default as _flatten } from 'lodash/flatten';
 export { default as _toNumber } from 'lodash/toNumber';
+export { default as _toString } from 'lodash/toString';
 export { default as _findIndex } from 'lodash/findIndex';
 export { default as _merge } from 'lodash/merge';
 export { default as _uniqBy } from 'lodash/uniqBy';
