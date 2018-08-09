@@ -124,7 +124,7 @@
       preCheck(num) {
         this.num = num;
         // not required
-        if (num === '' && !this.required) {
+        if ((!num && num !== 0) && !this.required) {
           this.updateModel();
           return;
         }
