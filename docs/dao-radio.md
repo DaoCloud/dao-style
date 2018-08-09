@@ -201,6 +201,7 @@ Radio 是一个单选框组件。代码请参照目录：[src/components/dao-rad
 |-----|------|-----|-------|---------|
 | headline | string | 指定 radio-plus 中的标题 | - | 否 |
 | select-title | string | radio-plus 中 select 的默认显示 | - | 否 |
+| no-data-text | string | radio-plus 中 select 的 no-data-text 的默认显示 | 暂无结果 | 否 |
 | options | object | radio-plus 中 select 的选项数据 | - | 否 |
 | async | function | radio-plus 中获取 select 中数据的函数，当你传入了此参数时，该 function 会在 radio 被 check 或点击 radio 中的 select 时触发。另外值得注意的是，这个 async 方法必须返回一个 Promise，当这个 Promise 成功 resolve 之后就不在调用这个 function | - | 否 |
 

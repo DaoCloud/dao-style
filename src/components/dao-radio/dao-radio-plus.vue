@@ -9,7 +9,7 @@
       </div>
       <div class="radio-select">
         <dao-select ref="select" :async="async" :disabled="disabled" v-model="select" :placeholder="selectTitle" :loading="loading" @change="handleSelectChange">
-          <dao-option-group no-data-text="暂无结果">
+          <dao-option-group :no-data-text="noDataText">
             <dao-option v-for="option in options" :key="option.value" :value="option.value" :label="option.label"></dao-option>
           </dao-option-group>
         </dao-select>
@@ -51,6 +51,10 @@
         default: false,
       },
       radioValue: {},
+      noDataText: {
+        type: String,
+        default: '暂无结果',
+      },
     },
     mounted() {
       // 挂载时，如果被选中，则执行

@@ -155,8 +155,8 @@ Editable Input 是一个可以编辑的 Disabled Input。当我们不希望用�
 |        required         |    Boolean     |                    必填                    |  false  |  否   |
 |        no-border        |    Boolean     |               input 是否没有边框               |  false  |  否   |
 | show-tooltip-only-hover |    Boolean     |    只有在鼠标 hover 到 icon 上时才会出现 tooltip     |  true   |  否   |
-|       helperText        |     String     |               input 中辅助提示                | 按回车键搜索  |  否   |
-|     showHelperText      |    Boolean     |               input 是否辅助提示               |  false  |  否   |
+|       helper-text        |     String     |               input 中辅助提示                | 按回车键搜索  |  否   |
+|     show-helper-text      |    Boolean     |               input 是否辅助提示               |  false  |  否   |
 |       placeholder       |     String     |                 输入框占位文本                  |    -    |  否   |
 |        readonly         |    Boolean     |                原生属性，是否只读                 |  false  |  否   |
 |        autofocus        |    Boolean     |               原生属性，自动获得焦点                |  false  |  否   |
@@ -192,7 +192,10 @@ Editable Input 是一个可以编辑的 Disabled Input。当我们不希望用�
 
 |       参数名        |    类型    |               说明               |  默认值  | 是否必填 |
 | :--------------: | :------: | :----------------------------: | :---: | :--: |
-| save-btn-content |  String  |           保存按钮中显示的内容           |  保存   |  否   |
+| save-btn-text |  String  |           保存按钮中显示的文字           |  保存   |  否   |
+| edit-btn-text |  String  |           更改按钮中显示的内容           |  更改   |  否   |
+| cancel-btn-text |  String  |           取消按钮中显示的内容           |  取消   |  否   |
 |    edit-state    | Boolean  |             初始编辑状态             | false |  否   |
 |     on-check     | Function | 检查输入的函数，符合要求返回 true，否则返回 false |   -   |  否   |
 |    on-success    | Function |         如果检查符合输入，进行的处理         |   -   |  否   |
+
