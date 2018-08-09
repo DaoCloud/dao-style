@@ -9,17 +9,17 @@
       :on-error="copyError"
       :content="content"
       v-if="withBtn">
-      <tooltip content="复制成功" v-if="success">
+      <tooltip :content="copiedText" v-if="success">
         <svg>
           <use xlink:href="#icon_clipboard-success"></use>
         </svg>
       </tooltip>
-       <tooltip content="复制失败" v-if="fail">
+       <tooltip :content="copyFailedText" v-if="fail">
         <svg>
           <use xlink:href="#icon_clipboard"></use>
         </svg>
       </tooltip>
-      <tooltip content="点击复制" v-if="!success && !fail">
+      <tooltip :content="copyText" v-if="!success && !fail">
         <svg>
           <use xlink:href="#icon_clipboard"></use>
         </svg>
@@ -40,6 +40,18 @@
       withBtn: {
         type: Boolean,
         default: true,
+      },
+      copyText: {
+        type: String,
+        default: '点击复制',
+      },
+      copiedText: {
+        type: String,
+        default: '复制成功',
+      },
+      copyFailedText: {
+        type: String,
+        default: '复制失败',
       },
     },
     // 原本简单的用 computed 无法及时的获取到已修改的内容
