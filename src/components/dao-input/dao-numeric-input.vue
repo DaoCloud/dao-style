@@ -19,10 +19,11 @@
 <script>
 
   import DaoTriangle from './dao-triangle/dao-triangle.vue';
+  import { _toString } from '../../utils/assist';
 
   function isInt(num) {
     if (num === undefined) return false;
-    return /^(0|[1-9][0-9]*)$/.test(num >= 0 ? num : num.toString().slice(1));
+    return /^(0|[1-9][0-9]*)$/.test(num >= 0 ? num : _toString(num).slice(1));
   }
 
   function isFloat(num) {
@@ -30,7 +31,7 @@
   }
 
   function isEndWithDot(num) {
-    const arr = num.toString().split('.');
+    const arr = _toString(num).split('.');
     if (arr.length === 2 && isInt(arr[0]) && arr[1] === '') {
       return true;
     }
@@ -117,13 +118,13 @@
       onBlur() {
         this.dirty = true;
         if (this.type === 'float' && isEndWithDot(this.num)) {
-          this.preCheck(this.num.toString().split('.').shift());
+          this.preCheck(_toString(this.num).split('.').shift());
         }
       },
       preCheck(num) {
         this.num = num;
         // not required
-        if (num === '' && !this.required) {
+        if ((!num && num !== 0) && !this.required) {
           this.updateModel();
           return;
         }

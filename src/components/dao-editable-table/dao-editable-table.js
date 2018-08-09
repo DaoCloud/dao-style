@@ -15,7 +15,18 @@ export default {
   components: {
     daoDrop,
   },
-  props: ['config', 'value'],
+  props: {
+    config: {},
+    value: {},
+    operationText: {
+      type: String,
+      default: '编辑',
+    },
+    addText: {
+      type: String,
+      default: '添加',
+    },
+  },
   data() {
     return {
       activatedRow: null,

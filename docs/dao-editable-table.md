@@ -91,6 +91,8 @@ export default {
 | ------- | ------ | ---------------------------------- | ---- | ---- |
 | config  | Object | 配置对象。具体内容见 [config 对象](#config-对象) | -    | 是    |
 | v-model | Object | 数据绑定的对象                            | -    | 是    |
+| operation-text | String | 操作的头部文字                            | 编辑    | 否    |
+| add-text | String | 添加文字                            | 添加   | 否    |
 
 ### 组件的事件
 | 事件名称 | 说明 | 回调参数 |
