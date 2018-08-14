@@ -57,10 +57,10 @@
 
     <dao-dropdown
       trigger="custom"
-      :append-to-body="false"
-      :visible="true"
+      :append-to-body="true"
+      :show="show"
       :placement="placement">
-      <button class="dao-btn blue">
+      <button class="dao-btn blue" @click="show = !show">
         下拉菜单
       </button>
       <dao-dropdown-menu slot="list">
@@ -100,6 +100,7 @@
     data() {
       return {
         placement: 'bottom-start',
+        show: true,
       };
     },
     methods: {
