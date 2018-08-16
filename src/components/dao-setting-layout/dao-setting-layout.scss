@@ -11,7 +11,8 @@ $background-color-title: $white-light;
 $background-color-footer: $white-lighter;
 $padding-layout-title: 25px 20px 0;
 $padding-layout-footer: 20px;
-$padding-section: 30px 20px;
+$padding-section-left: 20px;
+$padding-section: 25px $padding-section-left;
 $font-size-1: 18px;
 $font-size-2: 16px;
 $font-size-3: 14px;
@@ -78,7 +79,7 @@ $border-radius-size: 4px;
         width: 100%;
         margin: 10px 0 0;
         border: none;
-        background: linear-gradient(to right, $background-color-title 0, $border-color 30px, $border-color calc(100% - 30px), $background-color-title 100%);
+        background: linear-gradient(to right, transparent $padding-section-left, $border-color 0);
         height: 1px;
         // 不要使用 transform 去移动，在chrome30 下会失效
         left: 0px;
@@ -87,7 +88,10 @@ $border-radius-size: 4px;
 
     // select all .dao-setting-section except the first one
     & ~ .dao-setting-section {
-      border-top: $border;
+      border-top: 1px solid transparent;
+      background: linear-gradient(white, white) padding-box,
+                  linear-gradient(to right, white $padding-section-left, transparent 0) border-box,
+                  linear-gradient($border-color $padding-section-left, transparent 0) border-box;
     }
   }
 
@@ -102,7 +106,7 @@ $border-radius-size: 4px;
       color: $font-color-light;
     }
     + div.dao-setting-item {
-      margin-top: 40px;
+      margin-top: 36px;
     }
   }
   &-item {

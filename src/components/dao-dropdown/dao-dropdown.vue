@@ -1,10 +1,21 @@
 <template>
-  <div :class="[prefixCls, {'dao-dropdown-is-open': visible}]" v-clickoutside:dao-select-dropdown="handleClose" @mouseenter="handleMouseenter" @mouseleave="handleMouseleave">
-    <div :class="[prefixCls + '-rel']" ref="reference" @click="handleClick">
+  <div
+    :class="[prefixCls, {'dao-dropdown-is-open': visible}]"
+    v-clickoutside:dao-select-dropdown="handleClose"
+    @mouseenter="handleMouseenter"
+    @mouseleave="handleMouseleave">
+    <div
+      :class="[prefixCls + '-rel']"
+      ref="reference"
+      @click="handleClick">
       <slot></slot>
     </div>
-    <div :class="[prefixCls + '-popper', 'dao-select-dropdown']" v-show="visible" ref="popper">
-      <div :class="[prefixCls + '-inner']">
+    <div
+      :class="[prefixCls + '-popper', 'dao-select-dropdown']"
+      v-show="visible"
+      ref="popper">
+      <div
+        :class="[prefixCls + '-inner']">
         <slot name="list"></slot>
       </div>
     </div>
@@ -29,10 +40,15 @@
         },
         default: 'hover',
       },
+      show: {
+        type: Boolean,
+        default: false,
+      },
     },
     data() {
       return {
         prefixCls,
+        unwatch: null,
       };
     },
     methods: {
@@ -105,6 +121,15 @@
           li.addEventListener('click', this.handleClose);
         });
       }
+      if (this.trigger === 'custom') {
+        this.unwatch = this.$watch('show', () => {
+          setTimeout(() => {
+            this.visible = !!this.show;
+          }, 0);
+        }, {
+          immediate: true,
+        });
+      }
     },
     beforeDestroy() {
       if (this.appendToBody) {
@@ -113,6 +138,9 @@
         ).forEach((li) => {
           li.removeEventListener('click', this.handleClose);
         });
+      }
+      if (this.unwatch) {
+        this.unwatch();
       }
     },
   };
