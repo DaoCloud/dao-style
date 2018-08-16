@@ -5,6 +5,7 @@ import {
   _forEach,
   _some,
   _isString,
+  _isObject,
 } from '../../utils/assist';
 
 export default {
@@ -164,7 +165,7 @@ export default {
       this.updateModel();
     },
     getOptionProp(option, prop) {
-      if (_isString(option)) {
+      if (!_isObject(option)) {
         return option;
       }
       return option[prop];

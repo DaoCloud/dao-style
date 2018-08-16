@@ -5,6 +5,7 @@ export { default as _find } from 'lodash/find';
 export { default as _isBoolean } from 'lodash/isBoolean';
 export { default as _isFunction } from 'lodash/isFunction';
 export { default as _isEqual } from 'lodash/isEqual';
+export { default as _isObject } from 'lodash/isObject';
 export { default as _cloneDeep } from 'lodash/cloneDeep';
 export { default as _some } from 'lodash/some';
 export { default as _forEach } from 'lodash/forEach';
