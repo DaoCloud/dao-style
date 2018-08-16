@@ -67,7 +67,7 @@ export default {
         switch (td.type) {
           case 'input':
           case 'select':
-            value = td.default || '';
+            value = td.default;
             break;
           case 'checkbox':
             value = td.default || false;
@@ -164,7 +164,7 @@ export default {
       this.updateModel();
     },
     getOptionProp(option, prop) {
-      if (typeof option === 'string') {
+      if (_isString(option)) {
         return option;
       }
       return option[prop];
