@@ -163,6 +163,12 @@ export default {
       this.validate();
       this.updateModel();
     },
+    getOptionProp(option, prop) {
+      if (typeof option === 'string') {
+        return option;
+      }
+      return option[prop];
+    },
   },
   created() {
     this.modelToRow(this.value);
