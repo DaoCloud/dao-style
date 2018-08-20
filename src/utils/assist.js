@@ -21,3 +21,5 @@ export { default as _toString } from 'lodash/toString';
 export { default as _findIndex } from 'lodash/findIndex';
 export { default as _merge } from 'lodash/merge';
 export { default as _uniqBy } from 'lodash/uniqBy';
+export { default as _uniq } from 'lodash/uniq';
+
