@@ -1,13 +1,27 @@
 <template>
   <div>
-    <dao-editable-table 
-      :config="config" 
-      v-model="model" 
-      @valid="validChange">
+    <h1>实时验证</h1>
+    <dao-editable-table :config="config" v-model="model" @valid="validChange1"></dao-editable-table>
+    <button class="dao-btn blue" @click="changeHeader">添加一列</button>
+    <h1>非实时验证</h1>
+    <ul class="red" v-for="th in validationMessage" :key="th">
+        <li>{{th}}</li>
+      </ul>
+    <dao-editable-table
+      :instantCheck="false"
+      ref="EditableTable"
+      :config="config"
+      v-model="model"
+      @valid="validChange2"
+      @validation="validation">
+      <template>
+        <dao-tooltip v-for="th in config.header" :key="th" :slot="th" content="haha" placement="top">
+          <svg class="icon"><use xlink:href="#icon_info-line"></use></svg>
+        </dao-tooltip>
+      </template>
     </dao-editable-table>
-    <button 
-      class="dao-btn blue" 
-      @click="changeHeader">添加一列</button>
+    <button class="dao-btn blue" @click="changeHeader">添加一列</button>
+    <button class="dao-btn blue" @click="onValidate">触发验证</button>
   </div>
 </template>
 <script>
@@ -100,11 +114,15 @@ export default {
         type: '字符串',
         placeholder: '此列不应显示，显示说明有 bug',
       }],
+      validationMessage: [],
     };
   },
   methods: {
-    validChange(val) {
-      console.log('验证结果改变', val);
+    validChange1(val) {
+      console.log('验证结果改变1', val);
+    },
+    validChange2(val) {
+      console.log('验证结果改变2', val);
     },
     changeHeader() {
       this.config.header.push('最大值');
@@ -113,6 +131,12 @@ export default {
         name: 'age',
         default: 50,
       });
+    },
+    onValidate() {
+      this.$refs.EditableTable.validate();
+    },
+    validation(value) {
+      this.validationMessage = value;
     },
   },
   watch: {
