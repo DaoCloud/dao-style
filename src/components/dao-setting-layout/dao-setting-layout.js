@@ -29,12 +29,18 @@ export default {
         footerSlot,
       ]) : '';
 
+    let staticClass = 'dao-setting-layout';
+
+    if (context.data.staticClass) {
+      staticClass += ` ${context.data.staticClass}`;
+    }
+
     return h('div', {
       ...context.data,
       // 此处不用 `class: 'dao-setting-layout'` 的原因为：
       // dao-setting-layout 这个类会覆盖外部传入的动态绑定 class
       // 导致在组件外部传入 :class="['testClass']" 类似用法会失效
-      staticClass: `dao-setting-layout ${context.data.staticClass}`,
+      staticClass,
     }, [
       LayoutTitle, defaultSlot, Footer,
     ]);
