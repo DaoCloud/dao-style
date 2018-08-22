@@ -1,7 +1,10 @@
 {
   "name": "dao-style-vue",
-  "title": "daoStyle",
-  "description": "dao style with Vue.js",
+  "title": "DaoStyle",
+  "author": "DaoCloud",
+  "license": "MIT",
+  "description": "A high quality UI Toolkit built on Vue.js 2.0",
+  "homepage": "https://daocloud.github.io/dao-style-demo",
   "keywords": [
     "dao-style-vue",
     "vue",
@@ -29,8 +32,6 @@
     "type": "git",
     "url": "https://github.com/DaoCloud/dao-style-vue"
   },
-  "author": "Aresn",
-  "license": "MIT",
   "bugs": {
     "url": "https://github.com/DaoCloud/dao-style-vue/issues"
   },
@@ -40,7 +41,7 @@
     "spin.js": "^3.1.0"
   },
   "peerDependencies": {
-    "vue": "^2.3.2"
+    "vue": "^2.5.2"
   },
   "devDependencies": {
     "babel": "^6.23.0",
@@ -87,20 +88,20 @@
     "style-loader": "^0.13.1",
     "svg-sprite-loader": "^3.0.5",
     "url-loader": "^0.5.7",
-    "vue": "^2.2.1",
-    "vue-hot-reload-api": "^1.3.3",
-    "vue-html-loader": "^1.2.3",
-    "vue-loader": "^11.0.0",
-    "vue-router": "^2.2.1",
-    "vue-style-loader": "^1.0.0",
-    "vue-template-compiler": "^2.2.1",
+    "vue": "^2.5.16",
+    "vue-hot-reload-api": "^2.3.0",
+    "vue-html-loader": "^1.2.4",
+    "vue-loader": "^14.2.1",
+    "vue-router": "^3.0.1",
+    "vue-style-loader": "^4.0.2",
+    "vue-template-compiler": "^2.5.16",
     "webpack": "^3.10.0",
     "webpack-dev-server": "^2.11.1",
     "webpack-merge": "^4.1.1"
   },
   "engines": {
-    "node": ">= 4.0.0",
-    "npm": ">= 3.0.0"
+    "node": ">= 6.0.0",
+    "npm": ">= 6.0.0"
   },
   "browserslist": [
     "Firefox >= 28",
