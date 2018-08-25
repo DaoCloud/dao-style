@@ -5,7 +5,7 @@
 
 ## 上线／生成 CHANGELOG 流程
 
-DaoStyle Vue 的变更日志（CHANGELOG）必须在规定的流程节点生成。
+DaoStyle 的变更日志（CHANGELOG）必须在规定的流程节点生成。
 
 1. 决定发布后从 develop checkout 出 release/[version tag] 分支
 2. 在该 release 分支上进行最后的上线测试和 bug 修复

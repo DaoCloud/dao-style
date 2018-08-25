@@ -1,6 +1,6 @@
-# dao-style-vue
-[![dao-style-vue](https://img.shields.io/npm/v/dao-style-vue.svg?style=flat-square)](https://www.npmjs.org/package/dao-style-vue)
-[![NPM downloads](https://img.shields.io/npm/dt/dao-style-vue.svg?style=flat-square)](https://npmjs.org/package/dao-style-vue)
+# dao-style
+[![dao-style](https://img.shields.io/npm/v/dao-style.svg?style=flat-square)](https://www.npmjs.org/package/dao-style)
+[![NPM downloads](https://img.shields.io/npm/dt/dao-style.svg?style=flat-square)](https://npmjs.org/package/dao-style)
 
 ### A high quality UI Toolkit built on Vue.js.
 
@@ -15,35 +15,35 @@
 - Extensive documentation and demos.
 - It is quite beautiful.
 
-## Who's using dao-style-vue
+## Who's using dao-style
 
 - [DaoCloud](https://www.daocloud.io/)
 - [DaoVoice](http://daovoice.io/)
 
-> If your company or products use dao-style-vue, welcome to click [here](https://github.com/DaoCloud/dao-style-vue/issues/543) to leave a message.
+> If your company or products use dao-style, welcome to click [here](https://github.com/DaoCloud/dao-style/issues/543) to leave a message.
 
 ## Install
 
 > Please install Webpack first!
 
-### Install dao-style-vue
+### Install dao-style
 
 Using npm:
 ```
-npm install dao-style-vue --save
+npm install dao-style --save
 ```
 
 Using a script tag for global use:
 
 ```html
-<script type="text/javascript" src="dao-style-vue.min.js"></script>
-<link rel="stylesheet" href="dist/styles/dao-style-vue.css">
+<script type="text/javascript" src="dao-style.min.js"></script>
+<link rel="stylesheet" href="dist/styles/dao-style.css">
 ```
 
 ## Usage
 ``` javascript
-import daoStyle from 'dao-style-vue';
-import 'dao-style-vue/styles/dao-style.css';
+import daoStyle from 'dao-style';
+import 'dao-style/styles/dao-style.css';
 
 Vue.use(daoStyle);
 ```
@@ -75,20 +75,20 @@ Vue.use(daoStyle);
 
 If you want to contribute or have questions or bugs to report:
 
-**Questions:** [Issues](https://github.com/DaoCloud/dao-style-vue/issues)  
+**Questions:** [Issues](https://github.com/DaoCloud/dao-style/issues)  
 
-**Bugs:** [Report bugs](https://github.com/DaoCloud/dao-style-vue/issues/new)
+**Bugs:** [Report bugs](https://github.com/DaoCloud/dao-style/issues/new)
 
-**Contribute:** [How to contribute](https://github.com/DaoCloud/dao-style-vue/tree/develop/project)
+**Contribute:** [How to contribute](https://github.com/DaoCloud/dao-style/docs/pr-spec.md)
 
 ## All Contributors
 
 Thanks to all contributors.
-<a href="graphs/contributors"><img src="https://opencollective.com/dao-style-vue/contributors.svg?width=890&button=false" /></a>
+<a href="graphs/contributors"><img src="https://opencollective.com/dao-style/contributors.svg?width=890&button=false" /></a>
 
 ## Ecosystem Links
 
-- [Demo](http://192.168.1.26:32929)
+- [Demo]()
 
 ## License
 [MIT](http://opensource.org/licenses/MIT)

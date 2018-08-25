@@ -1,6 +1,6 @@
 # svg (图标)
 
-dao-svg 是 dao-style-vue 的 svg 库，是通过 webpack 的 [svg-sprite-loader](https://github.com/kisenka/svg-sprite-loader) 打包引入。
+dao-svg 是 dao-style 的 svg 库，是通过 webpack 的 [svg-sprite-loader](https://github.com/kisenka/svg-sprite-loader) 打包引入。
 全部 svg 请参照目录：[src/components/dao-svg](../src/components/dao-svg)。
 
 ## 使用方法

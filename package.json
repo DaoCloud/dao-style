@@ -1,12 +1,12 @@
 {
-  "name": "dao-style-vue",
+  "name": "dao-style",
   "title": "DaoStyle",
   "author": "DaoCloud",
   "license": "MIT",
   "description": "A high quality UI Toolkit built on Vue.js 2.0",
   "homepage": "https://daocloud.github.io/dao-style-demo",
   "keywords": [
-    "dao-style-vue",
+    "dao-style",
     "vue",
     "vue.js",
     "component",
@@ -30,10 +30,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/DaoCloud/dao-style-vue"
+    "url": "https://github.com/DaoCloud/dao-style"
   },
   "bugs": {
-    "url": "https://github.com/DaoCloud/dao-style-vue/issues"
+    "url": "https://github.com/DaoCloud/dao-style/issues"
   },
   "dependencies": {
     "lodash": "^4.17.4",
