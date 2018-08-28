@@ -19,6 +19,7 @@ const config = Merge(webpackBaseConfig, {
       use: utils.styleLoaders({
         sourceMap: !utils.isProduction,
         minimize: utils.isProduction,
+        extract: true,
       }),
     }],
   },

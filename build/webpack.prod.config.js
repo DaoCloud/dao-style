@@ -18,6 +18,7 @@ module.exports = Merge(webpackBaseConfig, {
         use: utils.styleLoaders({
           sourceMap: false,
           minimize: true,
+          extract: true,
         }),
       },
     ],

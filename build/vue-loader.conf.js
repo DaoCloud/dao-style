@@ -4,6 +4,7 @@ module.exports = {
   loaders: {
     scss: utils.styleLoaders({
       sourceMap: !utils.isProduction,
+      extract: false,
       minimize: utils.isProduction,
       fallback: 'vue-style-loader',
     }),
