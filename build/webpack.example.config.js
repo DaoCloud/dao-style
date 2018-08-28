@@ -8,10 +8,10 @@ const webpackBaseConfig = require('./webpack.base.config.js');
 const utils = require('./utils');
 
 const config = Merge(webpackBaseConfig, {
+  mode: !utils.isProduction ? 'development' : 'production',
   devtool: !utils.isProduction ? '#source-map' : false,
   entry: {
     main: utils.resolve('examples/main'),
-    vendors: ['vue', 'vue-router'],
   },
   module: {
     rules: [{
@@ -26,7 +26,6 @@ const config = Merge(webpackBaseConfig, {
     path: utils.resolve('examples/dist'),
     publicPath: '',
     filename: utils.isProduction ? 'js/[name].[chunkhash].js' : 'js/[name].js',
-    chunkFilename: utils.isProduction ? 'js/[id].[chunkhash].js' : 'js/[id].js',
   },
   resolve: {
     alias: {
@@ -43,27 +42,17 @@ const config = Merge(webpackBaseConfig, {
       'process.env.NODE_ENV': utils.isProduction ?
         JSON.stringify('production') : JSON.stringify('development'),
     }),
-    new Webpack.optimize.CommonsChunkPlugin({
-      name: 'vendors',
-      filename: 'js/vendor.bundle.js',
-    }),
     new HtmlWebpackPlugin({
       inject: true,
       filename: utils.resolve('examples/dist/index.html'),
       template: utils.resolve('examples/index.html'),
     }),
     new FriendlyErrorsPlugin(),
-    new ExtractTextPlugin(utils.isProduction ? 'css/[name].[contenthash].css' : 'css/[name].css'),
+    new ExtractTextPlugin(utils.isProduction ? 'css/[name].[md5:contenthash:hex:20].css' : 'css/[name].css'),
   ],
 });
 
-if (utils.isProduction) {
-  config.plugins.push(new Webpack.optimize.UglifyJsPlugin({
-    compress: {
-      warnings: false,
-    },
-  }));
-} else {
+if (!utils.isProduction) {
   config.devServer = {
     open: true,
     port: 8081,

@@ -170,6 +170,3 @@ const router = new VueRouter({
     render: h => h(App),
   });
 }());
-
-
-console.log('chahhaah', process.env.NODE_ENV);

@@ -7,6 +7,7 @@ const webpackBaseConfig = require('./webpack.base.config.js');
 const utils = require('./utils');
 
 module.exports = Merge(webpackBaseConfig, {
+  mode: 'production',
   entry: {
     main: utils.resolve('src/index.js'),
   },
@@ -49,11 +50,6 @@ module.exports = Merge(webpackBaseConfig, {
       from: utils.resolve('src/components/dao-color.scss'),
       to: utils.resolve('dist/styles/dao-color.scss'),
     }]),
-    new Webpack.optimize.UglifyJsPlugin({
-      compress: {
-        warnings: false,
-      },
-    }),
     new ExtractTextPlugin('styles/dao-style.css'),
   ],
 });
