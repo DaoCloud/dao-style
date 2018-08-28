@@ -53,7 +53,7 @@
 
 <style lang='scss'>
 
-@import '../../../../src/components/dao-color.scss';
+@import 'daoColor';
 
 $error-color: generate-color($red, -3);
 

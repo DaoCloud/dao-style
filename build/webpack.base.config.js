@@ -31,7 +31,7 @@ module.exports = {
     alias: {
       vue: 'vue/dist/vue.esm.js',
       '@': utils.resolve('src'),
-      daoColor$: utils.resolve('src/components/dao-color.scss'),
+      daoColor: utils.resolve('src/components/dao-color.scss'),
     },
   },
 };

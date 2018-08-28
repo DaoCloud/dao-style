@@ -117,7 +117,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import '../../src/components/dao-color.scss';
+@import 'daoColor';
 
 @function getColor($value) {
   @return 'rgb('+red($value)+', '+green($value)+', '+blue($value)+')';

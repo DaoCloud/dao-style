@@ -206,14 +206,14 @@ export default {
           '协议',
         ],
         body: [],
-      }
+      },
     };
   },
 };
 </script>
  
 <style lang="scss">
-@import '../../src/components/dao-color.scss';
+@import 'daoColor';
 .icon-more {
   width: 18px;
   height: 18px;

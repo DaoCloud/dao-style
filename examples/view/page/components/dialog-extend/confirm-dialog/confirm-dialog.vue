@@ -118,7 +118,7 @@
 
 <style lang='scss' scoped>
 
-@import '../../../../src/components/dao-color.scss';
+@import 'daoColor';
 
 $disabled-color: generate-color($red, -1);
 $rows-bg-color: #fbfcfd;
