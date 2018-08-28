@@ -12,6 +12,7 @@ const webpackConfig = Merge(webpackBaseConfig, {
       test: /\.scss$/,
       use: utils.styleLoaders({
         sourceMap: false,
+        extract: false,
         minimize: false,
       }),
     }],

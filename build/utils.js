@@ -80,8 +80,12 @@ exports.styleLoaders = (options) => {
 
   const loaders = [cssLoader, postcssLoader, sassLoader];
 
+  const fallback = options.fallback || 'style-loader';
+  if (options.extract === false) {
+    return [fallback].concat(loaders);
+  }
   return ExtractTextPlugin.extract({
-    fallback: options.fallback || 'style-loader',
+    fallback,
     use: loaders,
   });
 };
