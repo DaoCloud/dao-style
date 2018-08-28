@@ -1,22 +1,19 @@
-const utils = require('./utils')
-const isProduction = process.env.NODE_ENV === 'production';
+const utils = require('./utils');
 
 module.exports = {
   loaders: {
     scss: utils.styleLoaders({
-      sourceMap: !isProduction,
-      extract: isProduction,
-      usePostCSS: true,
-      minimize: false,
+      sourceMap: !utils.isProduction,
+      minimize: utils.isProduction,
       fallback: 'vue-style-loader',
-    })
+    }),
   },
-  cssSourceMap: !isProduction,
-  cacheBusting: isProduction,
+  cssSourceMap: !utils.isProduction,
+  cacheBusting: utils.isProduction,
   transformToRequire: {
     video: ['src', 'poster'],
     source: 'src',
     img: 'src',
-    image: 'xlink:href'
-  }
-}
+    image: 'xlink:href',
+  },
+};
