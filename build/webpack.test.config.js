@@ -6,6 +6,7 @@ const utils = require('./utils');
 
 const webpackConfig = Merge(webpackBaseConfig, {
   // use inline sourcemap for karma-sourcemap-loader
+  mode: 'development',
   devtool: '#inline-source-map',
   module: {
     rules: [{
