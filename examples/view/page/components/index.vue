@@ -7,12 +7,12 @@
       <div class="menu">
         <ul>
           <!-- get started  -->
-          <li class="type-name">Get Started</li>
+          <li class="type-name">{{$t('getStarted')}}</li>
           <!-- installation -->
-          <router-link tag="li" to="installation">Installation</router-link>
+          <router-link tag="li" to="installation">{{$t('installation')}}</router-link>
           <!-- status -->
-          <router-link tag="li" to="status">Component Status</router-link>
-          <li class="type-name">Components</li>
+          <router-link tag="li" to="status">{{$t('componentStatus')}}</router-link>
+          <li class="type-name">{{$t('components')}}</li>
           <router-link
             v-for="c in componentsRoutes"
             :to="c.path"
@@ -62,7 +62,7 @@ export default {
     display: flex;
     height: calc(100vh - 50px);
     .menu{
-      width: 240px;
+      width: 250px;
       overflow: auto;
       padding: 10px 20px;
       height: 100%;

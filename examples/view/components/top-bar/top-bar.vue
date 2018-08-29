@@ -8,13 +8,14 @@
         <span>DaoStyle</span>
       </span>
       <router-link class="dao-btn mini grey" tag="button" to="/components/installation">
-        GET STARTED
+        {{$t('getStarted')}}
       </router-link>
       <router-link class="dao-btn mini grey" :class="{ active: activeComs }" tag="button" to="/components/status">
-        COMPONENTS
+        {{$t('components')}}
       </router-link>
     </div>
     <div class="right">
+      <button class="dao-btn mini grey" @click="changeLange(otherLang)">{{langMap[otherLang]}}</button>
       <github-btn color="grey" :mini="true"></github-btn>
     </div>
   </div>
@@ -22,20 +23,39 @@
 
 <script>
 
+import { setLang, getLang } from '../../../utils';
+
 export default {
   name: 'TopBar',
-  methods: {
-    goToMain() {
-      this.$router.push({
-        name: 'Index',
-      });
-    },
+  data() {
+    return {
+      currentLang: getLang(),
+      langMap: {
+        en: 'English',
+        zh: '中文',
+      },
+    };
   },
   computed: {
     activeComs() {
       const isComsSubRoute = _.get(this.$route.matched, '[0]', {}).name === 'Components';
       const isComponent = !_.get(_.get(this.$route.matched, '[1]', {}), 'meta.notComponent', false);
       return isComsSubRoute && isComponent;
+    },
+    otherLang() {
+      return this.currentLang === 'zh' ? 'en' : 'zh';
+    },
+  },
+  methods: {
+    goToMain() {
+      this.$router.push({
+        name: 'Index',
+      });
+    },
+    changeLange(lang) {
+      this.currentLang = lang;
+      this.$i18n.locale = lang;
+      setLang(lang);
     },
   },
 };

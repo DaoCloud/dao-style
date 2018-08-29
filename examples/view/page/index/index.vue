@@ -8,11 +8,13 @@
         <span class="text"><h2>Dao Style</h2></span>
       </div>
       <div class="desc">
-        <h2>A high quality UI Toolkit built on Vue.js.</h2>
-        <h4>Build and Maintained Open‑Source by <a href="https://www.daocloud.io/" target="_blank">DaoCloud</a></h4>
+        <h2>{{$t('index.desc')}}</h2>
+        <i18n path="index.cr" tag="h4">
+          <a href="https://www.daocloud.io/" target="_blank" place="company">DaoCloud</a>
+        </i18n>
       </div>
       <div class="btns">
-        <button class="dao-btn green" @click="goToGetStarted">GET STARTED</button>
+        <button class="dao-btn green" @click="goToGetStarted">{{$t('getStarted')}}</button>
         <!-- 抽成 compoennt -->
         <github-btn color="dark" :mini="false"></github-btn>
       </div>
