@@ -33,4 +33,5 @@ export default {
   tooltip: 'Tooltip',
   'tooltip-directive': 'Tooltip Directive',
   color: 'Color',
+  installation: 'Installation',
 };

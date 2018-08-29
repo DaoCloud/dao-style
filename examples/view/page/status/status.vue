@@ -39,7 +39,7 @@ export default {
     coms() {
       return this.$router.options.routes
         .find(c => c.name === 'Components').children
-        .filter(c => !c.meta.isComponentsStatus);
+        .filter(c => !c.meta.notComponent);
     },
   },
 };

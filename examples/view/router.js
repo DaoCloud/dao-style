@@ -1,7 +1,9 @@
 import VueRouter from 'vue-router';
 
+import index from './page/index/index.vue';
 import components from './page/components/index.vue';
 import status from './page/status/status.vue';
+import installation from './page/installation/installation.vue';
 import autocomplete from './page/components/autocomplete.vue';
 import button from './page/components/button.vue';
 import card from './page/components/card.vue';
@@ -38,6 +40,10 @@ import tooltipDirective from './page/components/tooltip-directive.vue';
 import daoColorDemo from './page/components/color-demo.vue';
 
 const routes = [{
+  path: '/',
+  name: 'Index',
+  component: index,
+}, {
   path: '/components',
   name: 'Components',
   component: components,
@@ -46,9 +52,15 @@ const routes = [{
     {
       path: 'status',
       component: status,
-      name: 'ComponentsStatus',
       meta: {
-        isComponentsStatus: true,
+        notComponent: true,
+      },
+    },
+    {
+      path: 'installation',
+      component: installation,
+      meta: {
+        notComponent: true,
       },
     },
     {
@@ -71,7 +83,7 @@ const routes = [{
       path: 'card',
       component: card,
       meta: {
-        available: true,
+        available: false,
         docs: true,
         test: false,
       },
@@ -103,7 +115,7 @@ const routes = [{
       path: 'dialog-extend',
       component: dialogExtend,
       meta: {
-        available: true,
+        available: false,
         docs: true,
         test: false,
       },
@@ -111,7 +123,7 @@ const routes = [{
       path: 'drag-drop',
       component: dragAndDrop,
       meta: {
-        available: true,
+        available: false,
         docs: true,
         test: false,
       },
@@ -151,7 +163,7 @@ const routes = [{
       path: 'input-with-label',
       component: inputWithLabel,
       meta: {
-        available: true,
+        available: false,
         docs: true,
         test: false,
       },
@@ -159,7 +171,7 @@ const routes = [{
       path: 'list',
       component: list,
       meta: {
-        available: true,
+        available: false,
         docs: true,
         test: false,
       },
@@ -191,7 +203,7 @@ const routes = [{
       path: 'panel',
       component: panel,
       meta: {
-        available: true,
+        available: false,
         docs: true,
         test: false,
       },

@@ -1,13 +1,8 @@
 
 <template>
-  <div class="app">
-    <div class="top">
-      <top-bar></top-bar>
-    </div> 
-    <div class="main">
-      <router-view></router-view>
-    </div>
-  </div>
+  <transition name="fade">
+    <router-view></router-view>
+  </transition>
 </template>
 
 <script>
@@ -19,16 +14,14 @@ export default {
 </script>
 
 <style lang="scss">
-.app{
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  .top{
-    z-index: 1;
-  }
-  .main{
-    flex: 1;
-    overflow: auto;
-  }
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity .5s
 }
+.fade-enter,
+.fade-leave {
+    opacity: 0
+}
+
 </style>
