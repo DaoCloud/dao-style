@@ -1,9 +1,9 @@
-import TopBar from './top-bar/top-bar.vue';
-import ComName from './com-name/com-name.vue';
-import StatusIcon from './status-icon/status-icon.vue';
-import GithubBtn from './github-btn/github-btn.vue';
-import CodeBoard from './code-board/code-board.vue';
-import DemoCode from './demo-code/demo-code.vue';
+import TopBar from './top-bar/index.vue';
+import ComName from './com-name/index.vue';
+import StatusIcon from './status-icon/index.vue';
+import GithubBtn from './github-btn/index.vue';
+import CodeBoard from './code-board/index.vue';
+import DemoCode from './demo-code/index.vue';
 
 const coms = {
   TopBar,

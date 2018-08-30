@@ -248,7 +248,7 @@ const components = [
     },
   },
 ].map((com) => {
-  com.component = () => import(`./page/components/${com.path}.vue`);
+  com.component = () => import(`./page/components/${com.path}/index.vue`);
   return com;
 });
 
