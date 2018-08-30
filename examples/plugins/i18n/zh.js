@@ -41,4 +41,10 @@ export default {
     desc: '基于 Vue.js 构建的高质量 UI 工具包',
     cr: '由 {company} 打造和维护',
   },
+  status: {
+    component: '组件',
+    available: '可用',
+    docs: '文档',
+    test: '测试',
+  },
 };

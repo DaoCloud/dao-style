@@ -41,4 +41,10 @@ export default {
     desc: 'A high quality UI Toolkit built on Vue.js.',
     cr: 'Build and Maintained Open‑Source by {company}',
   },
+  status: {
+    component: 'Component',
+    available: 'Available',
+    docs: 'Docs',
+    test: 'Test',
+  },
 };

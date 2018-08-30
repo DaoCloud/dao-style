@@ -1,13 +1,13 @@
 <template>
   <div class="status">
-    <com-name name="Component Status"></com-name>
+    <com-name :name="$t('componentStatus')"></com-name>
     <table class="dao-table row">
       <thead>
         <tr>
-          <th>Component</th>
-          <th>Available</th>
-          <th>Docs</th>
-          <th>Test</th>
+          <th>{{$t('status.component')}}</th>
+          <th>{{$t('status.available')}}</th>
+          <th>{{$t('status.docs')}}</th>
+          <th>{{$t('status.test')}}</th>
         </tr>
       </thead>
       <tbody>
