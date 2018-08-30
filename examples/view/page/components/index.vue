@@ -112,6 +112,7 @@ export default {
          padding: 20px 120px;
         }
         margin: 0 auto;
+        color: #5e6d82;
       }
     }
   }

@@ -8,7 +8,7 @@
 <script>
 
 export default {
-  name: 'CodeBoard',
+  name: 'CodeReader',
   props: {
     type: {
       type: String,

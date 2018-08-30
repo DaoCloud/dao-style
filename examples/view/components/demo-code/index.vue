@@ -41,7 +41,7 @@ export default {
     padding: 8px;
     cursor: pointer;
     user-select: none;
-    color: #000;
+    // color: #000;
     font-size: 12px;
   }
    &.showCode{
@@ -50,8 +50,6 @@ export default {
       color: #FFF;
       font-weight: 600;
     }
-  }
-  .code{
   }
   .demo{
     padding: 6px;
