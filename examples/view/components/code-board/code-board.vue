@@ -25,7 +25,7 @@ export default {
       options: {
         tabSize: 2,
         mode: 'text/x-vue',
-        theme: 'base16-light',
+        theme: 'monokai',
       },
     };
   },
@@ -49,6 +49,19 @@ export default {
 
 <style lang="scss">
 .code-board{
-
+  .CodeMirror{
+    // background-color: rgb(30, 33, 39) !important;
+  }
+  .CodeMirror-line {
+    font-family: SF Mono,Monaco,Inconsolata,Fira Mono,Droid Sans Mono,Source Code Pro,monospace !important;
+    // font-weight: 600 !important;
+    // color: rgb(173, 172, 173);
+    // .cm-tag, .cm-keyword{
+    //   color: rgb(215, 85, 98);
+    // }
+    // .cm-attribute{
+      
+    // }
+  }
 }
 </style>

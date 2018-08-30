@@ -11,7 +11,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="c in coms" :key="c.path">
+        <tr v-for="c in $router.options.components" :key="c.path" @click="goToCom(c.path)">
           <td>{{$t(c.path)}}</td>
           <td>
               <status-icon :status="c.meta.available ? 'success' : 'failed'">
@@ -35,11 +35,9 @@
 
 export default {
   name: 'Status',
-  computed: {
-    coms() {
-      return this.$router.options.routes
-        .find(c => c.name === 'Components').children
-        .filter(c => !c.meta.notComponent);
+  methods: {
+    goToCom(path) {
+      this.$router.push(path);
     },
   },
 };
@@ -47,5 +45,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+.status{
+  tbody tr{
+    cursor: pointer;
+  }
+}
 </style>

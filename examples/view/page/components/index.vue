@@ -14,7 +14,7 @@
           <router-link tag="li" to="status">{{$t('componentStatus')}}</router-link>
           <li class="type-name">{{$t('components')}}</li>
           <router-link
-            v-for="c in componentsRoutes"
+            v-for="c in $router.options.components"
             :to="c.path"
             tag="li"
             :key="c.path">{{$t(c.path)}}
@@ -34,13 +34,6 @@
 
 export default {
   name: 'Components',
-  computed: {
-    componentsRoutes() {
-      return this.$router.options.routes
-        .find(c => c.name === 'Components').children
-        .filter(c => !c.meta.notComponent);
-    },
-  },
 };
 
 </script>
@@ -62,12 +55,13 @@ export default {
     display: flex;
     height: calc(100vh - 50px);
     .menu{
-      width: 250px;
+      flex-shrink: 0;
+      width: 222px;
       overflow: auto;
       padding: 10px 20px;
       height: 100%;
       overflow: auto;
-      background-color: $white-dark-lighter;
+      background-color: $white-lighter;
       ul{
         list-style: none;
         li{
@@ -102,9 +96,21 @@ export default {
       height: 100%;
       overflow: auto;
       width: 100%;
-      padding: 40px;
+      padding: 20px 10px;
       .view-wrap{
-        width: 60vw;
+        // pad 以上
+        @media (max-width: 768px) {
+          padding: 10px;
+        }
+        @media (min-width: 768px) {
+         padding: 20px 40px;
+        }
+        @media (min-width: 900px) {
+         padding: 20px 80px;
+        }
+        @media (min-width: 1100px) {
+         padding: 20px 120px;
+        }
         margin: 0 auto;
       }
     }
