@@ -1,22 +1,22 @@
 <template>
   <div class="status">
-    <com-name :name="$t('componentStatus')"></com-name>
+    <dcos-title
+      :name="$t('componentStatus')"
+      size="lg">
+    </dcos-title>
     <table class="dao-table row">
       <thead>
         <tr>
           <th>{{$t('status.component')}}</th>
-          <th>{{$t('status.available')}}</th>
           <th>{{$t('status.docs')}}</th>
           <th>{{$t('status.test')}}</th>
+          <th>{{$t('status.available')}}</th>
+          <th>{{$t('status.remarks')}}</th>
         </tr>
       </thead>
       <tbody>
         <tr v-for="c in $router.options.components" :key="c.path" @click="goToCom(c.path)">
           <td>{{$t(c.path)}}</td>
-          <td>
-              <status-icon :status="c.meta.available ? 'success' : 'failed'">
-              </status-icon>
-            </td>
           <td>
             <status-icon :status="c.meta.docs ? 'success' : 'failed'">
             </status-icon>
@@ -24,6 +24,15 @@
           <td>
             <status-icon :status="c.meta.test ? 'success' : 'failed'">
             </status-icon>
+          </td>
+          <td>
+            <status-icon :status="c.meta.available ? 'success' : 'failed'">
+            </status-icon>
+          </td>
+          <td>
+            <span v-if="c.meta.remarks">
+              {{$t(`status.${c.meta.remarks}`)}}
+            </span>
           </td>
         </tr>
       </tbody>

@@ -46,5 +46,11 @@ export default {
     available: '可用',
     docs: '文档',
     test: '测试',
+    remarks: '备注',
+    will_be_deprecated: '即将被废弃',
+  },
+  demoCode: {
+    hide_code: '隐藏代码',
+    show_code: '查看代码',
   },
 };

@@ -26,6 +26,7 @@ const components = [
       available: false,
       docs: true,
       test: false,
+      remarks: 'will_be_deprecated',
     },
   }, {
     path: 'checkbox',
@@ -63,6 +64,7 @@ const components = [
       available: false,
       docs: true,
       test: false,
+      remarks: 'will_be_deprecated',
     },
   }, {
     path: 'dropdown',
@@ -98,6 +100,7 @@ const components = [
       available: false,
       docs: true,
       test: false,
+      remarks: 'will_be_deprecated',
     },
   }, {
     path: 'list',
@@ -105,6 +108,7 @@ const components = [
       available: false,
       docs: true,
       test: false,
+      remarks: 'will_be_deprecated',
     },
   }, {
     path: 'list-group',
@@ -133,6 +137,7 @@ const components = [
       available: false,
       docs: true,
       test: false,
+      remarks: 'will_be_deprecated',
     },
   }, {
     path: 'popover',
@@ -265,16 +270,10 @@ const routes = [{
     {
       path: 'status',
       component: status,
-      meta: {
-        notComponent: true,
-      },
     },
     {
       path: 'installation',
       component: installation,
-      meta: {
-        notComponent: true,
-      },
     },
     ...components,
   ],

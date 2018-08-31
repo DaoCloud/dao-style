@@ -1,16 +1,13 @@
 <template>
-  <div class="markdown-reader">
+  <div class="md-reader">
     <vue-markdown :prerender="onPrerender"></vue-markdown>
   </div>
 </template>
 
 <script>
 
-// import hljs from 'highlight.js';
-// import 'highlight.js/styles/monokai-sublime.css';
-
 export default {
-  name: 'MarkdownReader',
+  name: 'MdReader',
   props: {
     type: {
       type: String,
@@ -39,19 +36,16 @@ export default {
     _.forEach(this.$el.querySelectorAll('table'), (table) => {
       table.setAttribute('class', 'dao-table row');
     });
-    _.forEach(this.$el.querySelectorAll('code'), (code) => {
-      code.setAttribute('class', 'mark');
-    });
   },
 };
 
 </script>
 
 <style lang="scss">
-.markdown-reader{
-  .mark{
-    color: #5e6d82;
-    background-color: #e6effb;
+@import 'daoColor';
+
+.md-reader{
+  code, mark {
     margin: 0 4px;
     display: inline-block;
     padding: 0px 5px;
@@ -60,8 +54,19 @@ export default {
     height: 18px;
     line-height: 18px;
   }
+  code{
+    color: #3890ff;;
+    background-color: #e6effb;
+  }
+  mark{
+    background: $yellow;
+    color: #5e6d82;
+  }
   ol{
-    padding: 4px 0 4px 16px;
+    padding: 2px 0 2px 16px;
+  }
+  hr{
+    margin: 2px 0;
   }
 }
 </style>

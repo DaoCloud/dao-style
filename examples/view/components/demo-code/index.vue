@@ -1,21 +1,23 @@
 <template>
-  <div class="demo-code" :class="{ showCode: showCode}">
+  <div class="demo-code" :class="{ 'show-code': showCode, 'hide-code': !showCode}">
     <div class="header" @click="showCode =! showCode">
-      {{ showCode ? 'HIDE CODE' : 'SHOW CODE'}}
+      {{ showCode ? $t('demoCode.hide_code') : $t('demoCode.show_code')}}
     </div>
     <div class="code" v-if="showCode">
       <slot name="code"></slot>
     </div>
-    <div class="demo">
+    <div class="demo" v-if="$slots.demo">
       <div class="wrap">
         <slot name="demo"></slot>
       </div>
+    </div>
+    <div class="desc" v-if="$slots.desc">
+      <slot name="desc"></slot>
     </div>
   </div>
 </template>
 
 <script>
-
 export default {
   name: 'DemoCode',
   data() {
@@ -24,12 +26,15 @@ export default {
     };
   },
 };
-
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import 'daoColor';
+
+$padding : 20px;
+
 .demo-code{
+  margin-bottom: 50px;
   border: 1px solid #ebebeb;
   border-radius: 5px;
   transition: .2s;
@@ -38,26 +43,35 @@ export default {
   transition: all .1s ease-in-out;
   background-color: $white-lighter;
   .header{
-    padding: 8px;
+    padding: 10px $padding;
     cursor: pointer;
     user-select: none;
-    // color: #000;
     font-size: 12px;
   }
-   &.showCode{
+   &.show-code{
     background-color: #1f4160;
     .header{
       color: #FFF;
       font-weight: 600;
     }
   }
+  .desc{
+    background-color: $white;
+    padding: $padding;
+    border-top: 1px solid #ebebeb;
+  }
   .demo{
-    padding: 6px;
+    padding: $padding;
     .wrap{
-      padding: 16px;
+      padding: $padding;
       background-color: $white;
       border-radius: 3px;
       box-shadow: 0 0 0 1px rgba(67,90,111,.146);
+    }
+  }
+  &.hide-code{
+    .demo{
+      padding-top: 0px;
     }
   }
 }

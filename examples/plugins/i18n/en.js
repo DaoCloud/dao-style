@@ -46,5 +46,11 @@ export default {
     available: 'Available',
     docs: 'Docs',
     test: 'Test',
+    remarks: 'Remarks',
+    will_be_deprecated: 'Will Be Deprecated',
+  },
+  demoCode: {
+    hide_code: 'HIDE CODE',
+    show_code: 'SHOW CODE',
   },
 };
