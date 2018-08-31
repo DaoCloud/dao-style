@@ -3,7 +3,7 @@
 # For SourceTree app finding Node easily
 export PATH=/usr/local/bin:$PATH
 
-STAGED_FILES=$(git diff --cached --name-only | grep -E '(.js)$')
+STAGED_FILES=$(git diff --cached --name-only | grep -E '(.js|.vue)$')
 ESLINT="$(git rev-parse --show-toplevel)/node_modules/.bin/eslint"
 
 if [[ "$STAGED_FILES" = "" ]]; then

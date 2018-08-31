@@ -17,6 +17,22 @@ module.exports = {
       test: /\.js$/,
       loader: 'babel-loader',
       exclude: /node_modules/,
+      options: {
+        cacheDirectory: true,
+        presets: [
+          ['env', {
+            targets: {
+              browsers: [
+                'Firefox > 27',
+                'Chrome > 29',
+                'not ie < 11',
+              ],
+            },
+            modules: false,
+            useBuiltIns: 'usage',
+          }],
+        ],
+      },
     }, {
       test: /\.svg$/,
       loader: 'svg-sprite-loader',
