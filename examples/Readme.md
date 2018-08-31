@@ -3,7 +3,7 @@
 ## 1. 准备工作
 
 ```bash
-# 确保使每个 commit 都通过 eslint 的检查
+# 确保每个 commit 都通过 eslint 的检查
 cp pre-commit ./.git/hooks/
 
 # 确保 pre-commit 有执行权限
@@ -36,7 +36,7 @@ examples
     └── view                 视图层 
         ├── components       通用组件
         ├── page             页面级组件
-        │   └── components   组件文档 
+        │   └── components   组件文档 
         └── router           路由配置
 ```
 
