@@ -34,9 +34,9 @@ export default {
   'tooltip-directive': 'Tooltip Directive',
   color: 'Color',
   installation: 'Installation',
-  getStarted: 'GET STARTED',
+  get_started: 'GET STARTED',
   components: 'COMPONENTS',
-  componentStatus: 'Component Status',
+  component_status: 'Component Status',
   index: {
     desc: 'A high quality UI Toolkit built on Vue.js.',
     cr: 'Build and Maintained Open‑Source by {company}',

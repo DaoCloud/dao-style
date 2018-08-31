@@ -7,11 +7,11 @@
       <div class="menu">
         <ul>
           <!-- get started  -->
-          <li class="type-name">{{$t('getStarted')}}</li>
+          <li class="type-name">{{$t('get_started')}}</li>
           <!-- installation -->
           <router-link tag="li" to="installation">{{$t('installation')}}</router-link>
           <!-- status -->
-          <router-link tag="li" to="status">{{$t('componentStatus')}}</router-link>
+          <router-link tag="li" to="status">{{$t('component_status')}}</router-link>
           <li class="type-name">{{$t('components')}}</li>
           <router-link
             v-for="c in $router.options.components"
@@ -40,8 +40,6 @@ export default {
 
 <style lang="scss">
 @import 'daoColor';
-
-// TODO media query
 .components-page{
   height: 100vh;
   display: flex;
@@ -98,7 +96,6 @@ export default {
       width: 100%;
       padding: 20px 10px;
       .view-wrap{
-        // pad 以上
         @media (max-width: 768px) {
           padding: 10px;
         }

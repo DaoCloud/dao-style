@@ -10,7 +10,6 @@
 </template>
 
 <script>
-
 export default {
   name: 'DocsTitle',
   props: {
@@ -29,7 +28,6 @@ export default {
     },
   },
 };
-
 </script>
 
 <style lang="scss" scoped>

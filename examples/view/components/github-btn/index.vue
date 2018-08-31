@@ -9,8 +9,7 @@
 </template>
 
 <script>
-
-import packageDesc from '../../../../package.json';
+import PackageDesc from '../../../../package.json';
 
 export default {
   name: 'GithubBtn',
@@ -34,13 +33,8 @@ export default {
   },
   methods: {
     goToGithub() {
-      window.open(packageDesc.repository.url);
+      window.open(PackageDesc.repository.url);
     },
   },
 };
-
 </script>
-
-<style lang="scss">
-
-</style>

@@ -8,10 +8,10 @@
         <span>DaoStyle</span>
       </span>
       <router-link class="dao-btn mini grey" tag="button" to="/components/installation">
-        {{$t('getStarted')}}
+        {{$t('get_started')}}
       </router-link>
       <router-link class="dao-btn mini grey" :class="{ active: activeComs }" tag="button" to="/components/status">
-        {{$t('components')}}
+        {{$t('component_status')}}
       </router-link>
     </div>
     <div class="right">
@@ -66,7 +66,6 @@ export default {
 @import 'daoColor';
 
 .top-bar{
-  // text-align: center;
   box-shadow: 0 0 1px rgba(67,90,111,.415), 0 2px 4px -2px rgba(67,90,111,.301);
   height: 50px;
   line-height: 50px;

@@ -1,12 +1,13 @@
 <template>
-  <div class="code-board">
-    <codemirror v-model="code" :options="options">
+  <div class="code-reader">
+    <codemirror
+      v-model="code"
+      :options="options">
     </codemirror>
   </div>
 </template>
 
 <script>
-
 export default {
   name: 'CodeReader',
   props: {
@@ -42,24 +43,12 @@ export default {
     },
   },
 };
-
 </script>
 
 <style lang="scss">
-.code-board{
-  .CodeMirror{
-    // background-color: rgb(30, 33, 39) !important;
-  }
+.code-reader{
   .CodeMirror-line {
     font-family: SF Mono,Monaco,Inconsolata,Fira Mono,Droid Sans Mono,Source Code Pro,monospace !important;
-    // font-weight: 600 !important;
-    // color: rgb(173, 172, 173);
-    // .cm-tag, .cm-keyword{
-    //   color: rgb(215, 85, 98);
-    // }
-    // .cm-attribute{
-      
-    // }
   }
 }
 </style>

@@ -21,12 +21,12 @@
 </template>
 
 <script>
-import demo from './demo.vue';
+import Demo from './demo.vue';
 
 export default {
   name: 'Installation',
   components: {
-    demo,
+    Demo,
   },
 };
 

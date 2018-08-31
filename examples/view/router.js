@@ -1,9 +1,9 @@
 import VueRouter from 'vue-router';
 
-import index from './page/index/index.vue';
-import componentsPage from './page/components/index.vue';
-import status from './page/status/status.vue';
-import installation from './page/installation/installation.vue';
+import IndexPage from './page/index/index.vue';
+import ComponentsPage from './page/components/index.vue';
+import StatusPage from './page/status/status.vue';
+import InstallationPage from './page/installation/installation.vue';
 
 const components = [
   {
@@ -260,20 +260,26 @@ const components = [
 const routes = [{
   path: '/',
   name: 'Index',
-  component: index,
+  component: IndexPage,
 }, {
   path: '/components',
   name: 'Components',
-  component: componentsPage,
+  component: ComponentsPage,
   redirect: '/components/status',
   children: [
     {
       path: 'status',
-      component: status,
+      component: StatusPage,
+      meta: {
+        notComponent: true,
+      },
     },
     {
       path: 'installation',
-      component: installation,
+      component: InstallationPage,
+      meta: {
+        notComponent: true,
+      },
     },
     ...components,
   ],

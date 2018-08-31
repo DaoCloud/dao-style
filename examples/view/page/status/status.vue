@@ -1,9 +1,6 @@
 <template>
   <div class="status">
-    <dcos-title
-      :name="$t('componentStatus')"
-      size="lg">
-    </dcos-title>
+    <dcos-title :name="$t('component_status')" size="lg"></dcos-title>
     <table class="dao-table row">
       <thead>
         <tr>
@@ -41,7 +38,6 @@
 </template>
 
 <script>
-
 export default {
   name: 'Status',
   methods: {
@@ -50,7 +46,6 @@ export default {
     },
   },
 };
-
 </script>
 
 <style lang="scss" scoped>

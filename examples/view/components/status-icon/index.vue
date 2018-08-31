@@ -7,7 +7,6 @@
 </template>
 
 <script>
-
 export default {
   name: 'StatusIcon',
   props: {
@@ -32,7 +31,6 @@ export default {
     },
   },
 };
-
 </script>
 
 <style lang="scss" scoped>

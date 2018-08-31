@@ -14,8 +14,7 @@
         </i18n>
       </div>
       <div class="btns">
-        <button class="dao-btn green" @click="goToGetStarted">{{$t('getStarted')}}</button>
-        <!-- 抽成 compoennt -->
+        <button class="dao-btn green" @click="goToGetStarted">{{$t('get_started')}}</button>
         <github-btn color="dark" :mini="false"></github-btn>
       </div>
     </div>
