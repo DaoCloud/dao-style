@@ -36,7 +36,7 @@ export default {
   installation: '安装',
   get_started: '快速开始',
   components: '组件列表',
-  component_status: '组件状态',
+  change_logs: '更新日志',
   index: {
     desc: '基于 Vue.js 构建的高质量 UI 工具包',
     cr: '由 {company} 打造和维护',

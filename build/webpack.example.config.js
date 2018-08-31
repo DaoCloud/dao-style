@@ -3,6 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const Merge = require('webpack-merge');
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 
 const webpackBaseConfig = require('./webpack.base.config.js');
 const utils = require('./utils');
@@ -62,6 +63,7 @@ if (!utils.isProduction) {
     contentBase: false,
     compress: true,
   };
+  config.plugins.push(new FriendlyErrorsWebpackPlugin());
 }
 
 module.exports = config;

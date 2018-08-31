@@ -4,6 +4,7 @@ import IndexPage from './page/index/index.vue';
 import ComponentsPage from './page/components/index.vue';
 import StatusPage from './page/status/status.vue';
 import InstallationPage from './page/installation/installation.vue';
+import ChangeLogsPage from './page/change-logs/change-logs.vue';
 
 const components = [
   {
@@ -277,6 +278,13 @@ const routes = [{
     {
       path: 'installation',
       component: InstallationPage,
+      meta: {
+        notComponent: true,
+      },
+    },
+    {
+      path: 'change-logs',
+      component: ChangeLogsPage,
       meta: {
         notComponent: true,
       },

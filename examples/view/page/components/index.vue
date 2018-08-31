@@ -6,13 +6,14 @@
     <div class="bottom">
       <div class="menu">
         <ul>
+          <!-- change logs -->
+          <router-link tag="li" to="change-logs"  class="type-name ">{{$t('change_logs')}}</router-link>
           <!-- get started  -->
-          <li class="type-name">{{$t('get_started')}}</li>
+          <router-link tag="li" to="installation" class="type-name donot-active">{{$t('get_started')}}</router-link>
           <!-- installation -->
           <router-link tag="li" to="installation">{{$t('installation')}}</router-link>
-          <!-- status -->
-          <router-link tag="li" to="status">{{$t('component_status')}}</router-link>
-          <li class="type-name">{{$t('components')}}</li>
+          <!-- component list -->
+          <router-link tag="li" to="status"  class="type-name">{{$t('components')}}</router-link>
           <router-link
             v-for="c in $router.options.components"
             :to="c.path"
@@ -72,18 +73,16 @@ export default {
           // margin-left: -8px;
           font-size: 14px;
           user-select: none;
+          cursor: pointer;
           &.type-name{
             color: $black-dark;
             font-weight: 600;
-          }
-          &:not(.type-name) {
-            cursor: pointer;
           }
           &:hover:not(.type-name){
             color: $blue;
             background-color: rgba(67,90,111,.041);
           }
-          &.router-link-active{
+          &.router-link-active:not(.donot-active){
             background-color: rgba(1,108,209,.079);
             color: $blue;
           }

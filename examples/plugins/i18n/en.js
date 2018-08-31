@@ -36,7 +36,7 @@ export default {
   installation: 'Installation',
   get_started: 'GET STARTED',
   components: 'COMPONENTS',
-  component_status: 'Component Status',
+  change_logs: 'Change Logs',
   index: {
     desc: 'A high quality UI Toolkit built on Vue.js.',
     cr: 'Build and Maintained Open‑Source by {company}',

@@ -1,6 +1,6 @@
 <template>
   <div class="md-reader">
-    <vue-markdown :prerender="onPrerender"></vue-markdown>
+    <vue-markdown :prerender="onPrerender" :postrender="postrenderSpin"></vue-markdown>
   </div>
 </template>
 
@@ -9,10 +9,8 @@
 export default {
   name: 'MdReader',
   props: {
-    type: {
-      type: String,
-      default: 'text',
-    },
+    source: String,
+    postrender: Function,
   },
   data() {
     return {
@@ -21,8 +19,8 @@ export default {
   },
   methods: {
     onPrerender() {
-      window.a = this.removeSpace(_.get(this.$slots, 'default[0].text', ''));
-      return this.removeSpace(_.get(this.$slots, 'default[0].text', ''));
+      const txt = this.source || _.get(this.$slots, 'default[0].text', '');
+      return this.removeSpace(txt);
     },
     removeSpace(str) {
       // 递归去掉开头的换行和空格，避免渲染失败
@@ -31,11 +29,14 @@ export default {
       }
       return str;
     },
-  },
-  mounted() {
-    _.forEach(this.$el.querySelectorAll('table'), (table) => {
-      table.setAttribute('class', 'dao-table row');
-    });
+    postrenderSpin(str) {
+      let result = str;
+      if (this.postrender) {
+        result = this.postrender(str);
+      }
+      result = result.replace(/class="table"/g, 'class="dao-table row"');
+      return result;
+    },
   },
 };
 

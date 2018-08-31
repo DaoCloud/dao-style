@@ -11,7 +11,7 @@
         {{$t('get_started')}}
       </router-link>
       <router-link class="dao-btn mini grey" :class="{ active: activeComs }" tag="button" to="/components/status">
-        {{$t('component_status')}}
+        {{$t('components')}}
       </router-link>
     </div>
     <div class="right">
