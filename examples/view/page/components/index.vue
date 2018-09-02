@@ -99,13 +99,13 @@ export default {
           padding: 10px;
         }
         @media (min-width: 768px) {
-         padding: 0px 20px;
-        }
-        @media (min-width: 900px) {
          padding: 0px 30px;
         }
+        @media (min-width: 900px) {
+         padding: 0px 50px;
+        }
         @media (min-width: 1100px) {
-         padding: 0px 40px;
+         padding: 0px 80px;
         }
         margin: 0 auto;
         color: #5e6d82;

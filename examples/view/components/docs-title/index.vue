@@ -1,7 +1,7 @@
 <template>
   <div class="docs-title">
     <h2 :class="size">{{name}}</h2>
-    <div>
+    <div class="desc">
       <slot name="desc">
         <div v-if="desc">{{desc}}</div>
       </slot>
@@ -44,6 +44,9 @@ export default {
     &.lg{
       font-size: 32px;
     }
+  }
+  .desc{
+    color: $grey-dark;
   }
 }
 </style>

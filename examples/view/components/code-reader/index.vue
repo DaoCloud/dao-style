@@ -34,8 +34,8 @@ export default {
     file: {
       handler() {
         // 动态加载 vue 代码
-        // TODO 按需打包文件，不要全量打包加载
-        import(`!!raw-loader!../../${this.file}`)
+        // TODO 按需打包文件，不要全量打包
+        import(`!!raw-loader!../../page/${this.file}`)
           .then((res) => {
             this.code = res.default;
           });

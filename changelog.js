@@ -1,10 +1,6 @@
 #!/usr/bin/env node
 
 /* eslint-disable */
-// Derived from https://github.com/angular.js/angular.js projects
-//
-// TODO(vojta): pre-commit hook for validating messages
-// TODO(vojta): report errors, currently Q silence everything which really sucks
 
 'use strict';
 

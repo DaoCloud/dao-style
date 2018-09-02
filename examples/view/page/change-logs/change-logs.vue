@@ -1,5 +1,7 @@
 <template>
   <div class="change-logs">
+    <dcos-title :name="$t('change_logs')" size="lg"></dcos-title>
+    <br>
     <change-log
       v-for="log in sortedLogs"
       :key="log.name"
@@ -49,6 +51,7 @@ export default {
   },
   created() {
     // TODO 修改 version.js 在 examples 目录下打一个版本列表，用于这里做更新记录的懒加载
+    // 分页: 解决 md-reader 解析速度略慢
     const keys = require.context('!!raw-loader!../../../../changelogs', true, /\.md$/).keys();
     _.map(keys, (key) => {
       const formatKey = key.replace('./', '');

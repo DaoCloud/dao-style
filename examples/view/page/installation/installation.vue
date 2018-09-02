@@ -1,8 +1,6 @@
 <template>
   <div class="installation">
-    <!-- <dao-setting-layout>
-    <div slot="layout-title">某组件</div>
-    <template slot="layout-title-helper">[该组件可以在某种场景下使用]</template> -->
+    <dcos-title :name="$t('installation')" size="lg"></dcos-title>
     <docs-section v-for="n in ['一', '二', '三']" :key="n">
       <template slot="title">
         第{{n}}种使用方式
@@ -13,7 +11,7 @@
       <template slot="content">
         <demo-code>
           <demo slot="demo"></demo>
-          <code-reader slot="code" file="page/installation/demo.vue"></code-reader>
+          <code-reader slot="code" file="installation/demo.vue"></code-reader>
           <md-reader slot="desc">
           这里可以用来写这种使用方式的注意事项
           1. 简单 markdown 语法渲染

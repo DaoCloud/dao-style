@@ -1,9 +1,9 @@
 <template>
-  <dao-setting-section class="docs-section">
-    <div slot="section-title" v-if="$slots['title']"><slot name="title"></slot></div>
-    <div slot="section-title-helper" v-if="$slots['helper']"><slot name="helper"></slot></div>
-    <div slot="content" v-if="$slots.content"><slot name="content"></slot></div>
-  </dao-setting-section>
+  <div class="docs-section">
+    <div class="title" slot="section-title" v-if="$slots['title']"><slot name="title"></slot></div>
+    <div class="helper" slot="section-title-helper"><slot name="helper"></slot></div>
+    <div class="content" slot="content" v-if="$slots.content"><slot name="content"></slot></div>
+  </div>
 </template>
 
 <script>
@@ -13,9 +13,21 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import 'daoColor';
 .docs-section{
-  margin-bottom: 20px;
-  padding-right: 0px;
-  border-top: none;
+  position: relative;
+  padding-top: 20px;
+  .title{
+    font-size: 16px;
+    font-weight: 500;
+  }
+  .helper{
+    padding: 6px 0;
+    color: $grey-dark;
+    border-bottom: 1px solid $white-dark;
+  }
+  .content{
+    padding: 20px 0;
+  }
 }
 </style>
