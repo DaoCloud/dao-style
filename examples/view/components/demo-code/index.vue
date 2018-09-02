@@ -30,17 +30,17 @@ export default {
 
 <style lang="scss" scoped>
 @import 'daoColor';
-$padding : 20px;
+$padding : 10px;
 
 .demo-code{
-  margin-bottom: 50px;
   border: 1px solid #ebebeb;
   border-radius: 5px;
   transition: .2s;
   border-radius: 4px;
   overflow: hidden;
   transition: all .1s ease-in-out;
-  background-color: $white-lighter;
+  background-color: $white-light;
+  box-shadow: 0 1px 4px rgba(204, 209, 217, 0.3);
   .header{
     padding: 10px $padding;
     cursor: pointer;

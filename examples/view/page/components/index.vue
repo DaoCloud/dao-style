@@ -93,19 +93,19 @@ export default {
       height: 100%;
       overflow: auto;
       width: 100%;
-      padding: 20px 10px;
+      padding: 40px 10px;
       .view-wrap{
         @media (max-width: 768px) {
           padding: 10px;
         }
         @media (min-width: 768px) {
-         padding: 20px 40px;
+         padding: 0px 20px;
         }
         @media (min-width: 900px) {
-         padding: 20px 80px;
+         padding: 0px 30px;
         }
         @media (min-width: 1100px) {
-         padding: 20px 120px;
+         padding: 0px 40px;
         }
         margin: 0 auto;
         color: #5e6d82;

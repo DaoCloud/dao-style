@@ -33,7 +33,6 @@ export default {
 <style lang="scss" scoped>
 @import 'daoColor';
 .docs-title{
-  padding-bottom: 10px;
   h2{
     color:$black-dark;
     &.sm{

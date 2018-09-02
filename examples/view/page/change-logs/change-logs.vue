@@ -48,6 +48,7 @@ export default {
     },
   },
   created() {
+    // TODO 修改 version.js 在 examples 目录下打一个版本列表，用于这里做更新记录的懒加载
     const keys = require.context('!!raw-loader!../../../../changelogs', true, /\.md$/).keys();
     _.map(keys, (key) => {
       const formatKey = key.replace('./', '');
