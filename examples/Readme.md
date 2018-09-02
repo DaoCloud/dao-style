@@ -48,9 +48,13 @@ examples
 
 ### 4.3 命名规范
 
-1. 目录名、文件名、css class 名、常量名使用 kebab-case，普通变量名使用 camelCase。
+1. 目录名、文件名、css class 名、常量名使用 kebab-case
 
-2. i18n 翻译字段使用 i18n_key
+2. 普通变量名使用 camelCase。
+
+3. i18n 翻译字段使用 i18n_key
+
+4. 常量名使用 KebaCase
 
 ## 5. 提交 Commit、发起 PR
 1. 参考 [pr-spec](../docs/pr-spec.md)

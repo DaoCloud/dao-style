@@ -8,7 +8,7 @@
           <demo1 slot="demo"></demo1>
           <code-reader slot="code" file="components/spin/demos/demo-1.vue"></code-reader>
           <md-reader slot="desc">
-            即使你什么参数都不传, dao-spin 仍然可以很好的工作
+            即使你什么参数都不传, dao-spin 仍然可以很好地工作
           </md-reader>
         </demo-code>
       </template>
