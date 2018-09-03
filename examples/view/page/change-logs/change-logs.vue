@@ -2,11 +2,17 @@
   <div class="change-logs">
     <dcos-title :name="$t('change_logs')" size="lg"></dcos-title>
     <br>
-    <change-log
-      v-for="log in sortedLogs"
-      :key="log.name"
-      :log="log">
-    </change-log>
+    <div v-for="(chunk, index) in chunks" :key="index" v-if="index <= page">
+      <change-log
+        class="log-block"
+        v-for="log in chunk"
+        :key="log.name"
+        :log="log">
+      </change-log>
+    </div>
+    <div class="show-more-btn" v-if="page < pages">
+      <a @click="showMore" class="dao-btn">{{$t('show_more')}}</a>
+    </div>
   </div>
 </template>
 
@@ -42,16 +48,20 @@ export default {
     return {
       source: '',
       logs: [],
+      page: 0,
     };
   },
   computed: {
-    sortedLogs() {
-      return sortVersions(this.logs);
+    chunks() {
+      return _.chunk(sortVersions(this.logs), 3);
+    },
+    pages() {
+      return this.chunks.length - 1;
     },
   },
   created() {
+    this.page =_.toNumber(_.get(this.$route, 'query.page')) || 0;
     // TODO 修改 version.js 在 examples 目录下打一个版本列表，用于这里做更新记录的懒加载
-    // 分页: 解决 md-reader 解析速度略慢
     const keys = require.context('!!raw-loader!../../../../changelogs', true, /\.md$/).keys();
     _.map(keys, (key) => {
       const formatKey = key.replace('./', '');
@@ -64,6 +74,17 @@ export default {
         });
     });
   },
+  methods: {
+    showMore() {
+      this.page += 1;
+      this.$router.push({
+        name: 'ChangeLogs',
+        query: {
+          page: this.page,
+        },
+      });
+    },
+  },
   components: {
     ChangeLog,
   },
@@ -72,5 +93,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+.change-logs{
+  .log-block:not(:last-child){
+    margin-bottom: 50px;
+  }
+  .show-more-btn{
+    text-align: center;
+    cursor: pointer;
+  }
+}
 </style>
