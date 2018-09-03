@@ -272,6 +272,7 @@ const routes = [{
     {
       path: 'status',
       component: StatusPage,
+      name: 'Status',
       meta: {
         notComponent: true,
       },
@@ -279,6 +280,7 @@ const routes = [{
     {
       path: 'installation',
       component: InstallationPage,
+      name: 'Installation',
       meta: {
         notComponent: true,
       },
@@ -286,6 +288,7 @@ const routes = [{
     {
       path: 'change-logs',
       component: ChangeLogsPage,
+      name: 'ChangeLogs',
       meta: {
         notComponent: true,
       },
