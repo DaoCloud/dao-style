@@ -1,13 +1,37 @@
 import VueRouter from 'vue-router';
 
-import IndexPage from './page/index/index.vue';
-import ComponentsPage from './page/components/index.vue';
-import StatusPage from './page/status/status.vue';
-import InstallationPage from './page/installation/installation.vue';
-import ChangeLogsPage from './page/change-logs/change-logs.vue';
+import IndexPage from './page/index';
+import ComponentsPage from './page/components';
+import ChangeLogs from './page/change-logs';
+import Status from './page/status';
+import Installation from './page/installation';
 
 // TODO 增加 type 对组件进行分类
 const components = [
+  {
+    path: 'status',
+    name: 'Status',
+    component: Status,
+    meta: {
+      notComponent: true,
+    },
+  },
+  {
+    path: 'installation',
+    name: 'Installation',
+    component: Installation,
+    meta: {
+      notComponent: true,
+    },
+  },
+  {
+    path: 'change-logs',
+    name: 'ChangeLogs',
+    component: ChangeLogs,
+    meta: {
+      notComponent: true,
+    },
+  },
   {
     path: 'autocomplete',
     meta: {
@@ -255,7 +279,9 @@ const components = [
     },
   },
 ].map((com) => {
-  com.component = () => import(`./page/components/${com.path}/index.vue`);
+  if (!com.component) {
+    com.component = () => import(`./page/${com.meta.notComponent ? '' : 'components/'}${com.path}/index.vue`);
+  }
   return com;
 });
 
@@ -268,33 +294,7 @@ const routes = [{
   name: 'Components',
   component: ComponentsPage,
   redirect: '/components/status',
-  children: [
-    {
-      path: 'status',
-      component: StatusPage,
-      name: 'Status',
-      meta: {
-        notComponent: true,
-      },
-    },
-    {
-      path: 'installation',
-      component: InstallationPage,
-      name: 'Installation',
-      meta: {
-        notComponent: true,
-      },
-    },
-    {
-      path: 'change-logs',
-      component: ChangeLogsPage,
-      name: 'ChangeLogs',
-      meta: {
-        notComponent: true,
-      },
-    },
-    ...components,
-  ],
+  children: components,
 }, {
   path: '*',
   redirect: '/components/status',

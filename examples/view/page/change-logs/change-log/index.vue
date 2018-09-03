@@ -37,8 +37,5 @@ export default {
   ul{
     margin-left: 18px;
   }
- // ul li ul li {
-   // margin-left: 18px;
- // }
 }
 </style>

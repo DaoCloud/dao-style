@@ -1,9 +1,6 @@
 <template>
   <div class="code-reader">
-    <codemirror
-      v-model="code"
-      :options="options">
-    </codemirror>
+    <code-block type="vue" :code="code"></code-block>
   </div>
 </template>
 
@@ -23,11 +20,6 @@ export default {
   data() {
     return {
       code: '',
-      options: {
-        tabSize: 2,
-        mode: 'text/x-vue',
-        theme: 'monokai',
-      },
     };
   },
   watch: {
@@ -35,7 +27,7 @@ export default {
       handler() {
         // 动态加载 vue 代码
         // TODO 按需打包文件，不要全量打包
-        import(`!!raw-loader!../../page/${this.file}`)
+        import(`!!raw-loader!../../demos/${this.file}`)
           .then((res) => {
             this.code = res.default;
           });
@@ -45,11 +37,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss">
-.code-reader{
-  .CodeMirror-line {
-    font-family: SF Mono,Monaco,Inconsolata,Fira Mono,Droid Sans Mono,Source Code Pro,monospace !important;
-  }
-}
-</style>

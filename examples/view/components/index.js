@@ -1,12 +1,13 @@
-import TopBar from './top-bar/index.vue';
-import DcosTitle from './docs-title/index.vue';
-import StatusIcon from './status-icon/index.vue';
-import GithubBtn from './github-btn/index.vue';
-import CodeReader from './code-reader/index.vue';
-import DemoCode from './demo-code/index.vue';
-import MdReader from './md-reader/index.vue';
-import DocsSection from './docs-section/index.vue';
-import DocsTable from './docs-table/index.vue';
+import TopBar from './top-bar/index';
+import DcosTitle from './docs-title/index';
+import StatusIcon from './status-icon/index';
+import GithubBtn from './github-btn/index';
+import CodeReader from './code-reader/index';
+import DemoCode from './demo-code/index';
+import MdReader from './md-reader/index';
+import DocsSection from './docs-section/index';
+import DocsTable from './docs-table/index';
+import CodeBlock from './code-block/index';
 
 const coms = {
   TopBar,
@@ -18,6 +19,7 @@ const coms = {
   MdReader,
   DocsSection,
   DocsTable,
+  CodeBlock,
 };
 
 export default function install(Vue) {

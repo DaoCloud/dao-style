@@ -13,7 +13,11 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="c in $router.options.components" :key="c.path" @click="goToCom(c.path)">
+        <tr
+            v-for="c in $router.options.components"
+            v-if="!c.meta.notComponent"
+            :key="c.path"
+            @click="goToCom(c.path)">
           <td>{{$t(c.path)}}</td>
           <td>
             <status-icon :status="c.meta.docs ? 'success' : 'failed'">

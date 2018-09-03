@@ -18,7 +18,7 @@
 
 <script>
 
-import ChangeLog from './change-log/index.vue';
+import ChangeLog from './change-log';
 
 /* eslint-disable */
 function sortVersions(versions) {
@@ -99,7 +99,6 @@ export default {
   }
   .show-more-btn{
     text-align: center;
-    cursor: pointer;
   }
 }
 </style>

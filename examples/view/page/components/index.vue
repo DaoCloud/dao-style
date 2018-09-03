@@ -18,6 +18,7 @@
             v-for="c in $router.options.components"
             :to="c.path"
             tag="li"
+            v-if="!c.meta.notComponent"
             :key="c.path">{{$t(c.path)}}
           </router-link>
         </ul>
