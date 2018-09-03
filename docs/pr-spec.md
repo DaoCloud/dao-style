@@ -42,7 +42,7 @@ other/**   | other(area):*** | 其他
   ```
   1. Pull Request 内容和 Issue 链接
 
-      修复了 da-btn 在 chrome 54 以下浏览器中的样式错误
+      修复了 da-btn 在 chrome 54 以下浏览器中的样式错误
 
   2. Pull Request 针对问题的重现方式
 

@@ -13,7 +13,7 @@
         </demo-code>
       </template>
     </docs-section>
-     <docs-section>
+    <docs-section>
       <template slot="title">更改颜色</template>
       <template slot="content">
         <demo-code>
