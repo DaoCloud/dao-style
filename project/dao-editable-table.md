@@ -93,17 +93,19 @@ export default {
 | v-model | Object | 数据绑定的对象                            | -    | 是    |
 | operation-text | String | 操作的头部文字                            | 编辑    | 否    |
 | add-text | String | 添加文字                            | 添加   | 否    |
+| instantCheck | Boolean | 是否实时检查                            | true   | 否    |
 
 ### 组件的事件
 | 事件名称 | 说明 | 回调参数 |
 |:-------:|:---:|:-------:|
 | valid | 在每次修改可编辑表格的内容之后，v-model 更新之前触发。 | (valid: Boolean) |
+| validation | 在不实时检查时，验证数据时触发 | 验证错误的信息 |
 
 ### config 对象
 
 | 参数名    | 类型     | 说明                                       | 默认值  | 是否必填 |
 | ------ | ------ | ---------------------------------------- | ---- | ---- |
-| header | Array  | 代表表头上的文字。其中的元素可以是简单的字符串，也可以是一个对象。对象有两个属性：`text` 和 `tooltip`。`text` 表示显示的文字，`tooltip` 则是表头的 tooltip 文字。 | -    | 是    |
+| header | Array,Boolean  | 代表表头上的文字。其中的元素可以是简单的字符串，也可以是一个对象。对象有两个属性：`text` 和 `tooltip`。`text` 表示显示的文字，`tooltip` 则是表头的 tooltip 文字。 | -    | 是    |
 | body   | Object | 具体内容见 [body 对象](#body-对象)                | -    | 是    |
 
 ### body 对象
@@ -117,3 +119,9 @@ export default {
 | options  | Array          | 只有当这个字段的 type 是 `'select'` 的时候才需要。options 有两种格式，可以是 `['apple']`，也可以是 `[{label: 'apple', value: '苹果'}]`。 | -              | 否    |
 | label    | String         | 只有当这个字段的 type 是 `'checkbox'` 的时候才需要，它是 checkbox 的 label。 | -              | 否    |
 | validate | Function       | 验证函数。这个函数应该是个纯函数。它接受两个参数，第一个是当前行的数据，第二个是所有行的数据（包括新添加的行，不包括新删除的行），如果返回 `true`，表示验证通过。如果返回其他字符串，表示验证不通过，且错误信息是字符串内容。 | -              | 否    |
+
+### dao-editable-lable 的具名 slot
+名称 | 说明
+-|-
+ th.text | header的内容
+

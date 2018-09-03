@@ -27,10 +27,6 @@ export default {
       type: String,
       default: '添加',
     },
-    noThead: {
-      type: Boolean,
-      default: false,
-    },
     instantCheck: {
       type: Boolean,
       default: true,
@@ -43,6 +39,9 @@ export default {
     };
   },
   computed: {
+    noThead() {
+      return this.config && this.config.header === false;
+    },
     model() {
       return _map(this.rows, this.rowToModel);
     },
