@@ -18,7 +18,14 @@ module.exports = {
       'webpack': {
         'config': 'build/webpack.base.config.js'
       }
+    },
+    'import/alias': {
+      '@demos': 'examples/view/demos',
+      '@': 'src',
     }
+  },
+  'globals': {
+    '_': true,
   },
   // add your custom rules here
   'rules': {
@@ -28,9 +35,7 @@ module.exports = {
       'vue': 'never'
     }],
     // allow optionalDependencies
-    'import/no-extraneous-dependencies': ['error', {
-      'optionalDependencies': ['test/unit/index.js']
-    }],
+    'import/no-extraneous-dependencies': 'off',
     // allow debugger during development
     'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0,
     // rule: http://eslint.org/docs/rules/no-param-reassign.html
