@@ -7,14 +7,6 @@ $select-border-color: $grey-light;
 $select-bg-img: linear-gradient(to top, rgba(61, 68, 79, .05) 0%, rgba(61, 68, 79, 0) 100%);
 $select-bg-color: $white-light;
 $select-disabled-color: $grey-light;
-@keyframes loading {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
 
 .dao-select {
   display: inline-block;
