@@ -23,7 +23,7 @@
           </router-link>
         </ul>
       </div>
-      <div class="view">
+      <div class="docs-view">
         <div class="view-wrap">
           <router-view></router-view>
         </div>
@@ -90,7 +90,7 @@ export default {
         }
       }
     }
-    .view{
+    .docs-view{
       height: 100%;
       overflow: auto;
       width: 100%;

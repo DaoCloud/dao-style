@@ -305,6 +305,13 @@ const router = new VueRouter({
   components,
 });
 
+router.afterEach(() => {
+  const view = document.querySelector('.docs-view');
+  if (view) {
+    view.scrollTop = 0;
+  }
+});
+
 function install(Vue) {
   Vue.use(VueRouter);
 }

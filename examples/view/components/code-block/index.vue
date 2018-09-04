@@ -24,7 +24,7 @@ export default {
     options() {
       const o = {
         tabSize: 2,
-        readOnly: true,
+        // readOnly: true,
         mode: 'text/x-vue',
         theme: 'monokai',
       };
@@ -49,7 +49,7 @@ export default {
 .code-block{
   .CodeMirror{
     height: auto;
-    padding: 4px 15px;
+    padding: 4px 12px;
   }
   .CodeMirror-line {
     font-family: SF Mono,Monaco,Inconsolata,Fira Mono,Droid Sans Mono,Source Code Pro,monospace !important;

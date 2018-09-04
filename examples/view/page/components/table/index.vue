@@ -47,9 +47,9 @@
           <tr v-for="row in rows" :class="{selected: row.checked}">
             <!-- 应用 -->
             <td class="name td-name">
-              <svg class="item-logo">
-                <use xlink:href="'#image-icon_' + row.logo"></use>
-              </svg>
+              <!-- <svg class="item-logo">
+                <use xlink:href="'#icon_' + row.logo"></use>
+              </svg> -->
               <div class="item-logo-text">
                 <div class="item-major">
                   <a href="#">{{row.name}}</a>
@@ -82,9 +82,9 @@
             <!-- 服务 -->
             <td class="service">
               <div class="item-major">
-                <svg v-for="serv in row.services">
-                  <use xlink:href="'#image-icon_' + serv"></use>
-                </svg>
+                <!-- <svg v-for="serv in row.services">
+                  <use xlink:href="'#icon_' + serv"></use>
+                </svg> -->
               </div>
               <div class="item-minor">{{row.services.length}} 个服务</div>
             </td>
