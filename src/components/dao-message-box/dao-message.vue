@@ -19,7 +19,11 @@
         </div>
         <div>
           <button class="dao-btn ghost" @click="onCancel">{{ cancelText }}</button>
-          <button :class="confirmClass" @click="onConfirm">{{ confirmText }}</button>
+          <button v-if="!loading" :class="confirmClass" @click="onConfirm">{{ confirmText }}</button>
+          <button v-else class="dao-btn ghost" disabled="true">
+            <svg class="icon loading"><use xlink:href="#icon_status-progress-circle"></use></svg>
+            {{ loadingText }}
+          </button>
         </div>
       </div>
       
@@ -39,6 +43,7 @@
           width: '600px',
         },
         checkboxChecked: false,
+        loading: false,
       };
     },
     props: {
@@ -70,6 +75,10 @@
         type: String,
         default: '取消',
       },
+      loadingText: {
+        type: String,
+        default: '加载中...',
+      },
       checkboxText: String,
       cancel: {
         type: Function,
@@ -79,6 +88,25 @@
     created() {
       this.$on('visible', (newVal) => {
         this.visible = newVal;
+      });
+      this.$on('loading', (timer) => {
+        this.loading = true;
+        let timerPromise = null;
+        const timerType = Object.prototype.toString
+          .call(timer).slice(8, -1);
+        if (timerType === 'Promise') {
+          timerPromise = timer;
+        }
+        if (timerType === 'Function') {
+          timerPromise = timer();
+        }
+        if (!timerPromise.then) {
+          this.visible = false;
+        } else {
+          timerPromise.then(() => {
+            this.visible = false;
+          });
+        }
       });
     },
     computed: {
@@ -112,8 +140,13 @@
       onConfirm() {
         this.$emit('confirm', {
           checked: this.checkboxChecked,
+        }, (timer) => {
+          if (timer) {
+            this.$emit('loading', timer);
+          } else {
+            this.visible = false;
+          }
         });
-        this.visible = false;
       },
       onCancel() {
         this.$emit('cancel');
@@ -142,6 +175,9 @@
     .alert-dialog-footer{
       display: flex;
       justify-content: space-between;
+      .loading {
+        animation: loading 1.5s linear infinite;
+      }
       .checkbox-wrap{
         display: flex;
         align-items: center;
