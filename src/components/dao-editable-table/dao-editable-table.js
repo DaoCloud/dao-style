@@ -6,6 +6,7 @@ import {
   _some,
   _isString,
   _uniq,
+  _isObject,
 } from '../../utils/assist';
 
 export default {
@@ -75,7 +76,7 @@ export default {
         switch (td.type) {
           case 'input':
           case 'select':
-            value = td.default || '';
+            value = td.default;
             break;
           case 'checkbox':
             value = td.default || false;
@@ -182,6 +183,12 @@ export default {
         this.validate();
       }
       this.updateModel();
+    },
+    getOptionProp(option, prop) {
+      if (!_isObject(option)) {
+        return option;
+      }
+      return option[prop];
     },
   },
   created() {

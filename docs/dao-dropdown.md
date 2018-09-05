@@ -33,6 +33,7 @@ dropdown 是一个下拉菜单组件。代码请参照目录：[src/components/d
 参数 | 说明 | 类型 | 可选值 | 默认值 | 是否必填
 -|-|-|-|-|-
 trigger | 触发方式 | String | click, hover, custom | hover | 否
+show | 是否打开 dropdown(仅在 trigger 为 custom 时生效) | Boolean | true, false | false | 否
 append-to-body | 是否将下拉菜单挂 DOM 元素载到 body | Boolean | true, false | true |否
 placement | 设置下拉菜单的相对位置 | String | (top\|bottom\|left\|right\|auto)(-start\|-end) | bottom |否
 

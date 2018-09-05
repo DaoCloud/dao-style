@@ -1,58 +1,96 @@
 # dao-style-vue
+[![dao-style-vue](https://img.shields.io/npm/v/dao-style-vue.svg?style=flat-square)](https://www.npmjs.org/package/dao-style-vue)
+[![NPM downloads](https://img.shields.io/npm/dt/dao-style-vue.svg?style=flat-square)](https://npmjs.org/package/dao-style-vue)
 
-dao-style-vue 是一个基于 Vue 2.0 框架的 web UI 组件库。
+### A high quality UI Toolkit built on Vue.js.
 
-## 引导链接
+## Docs
 
-- [主页]()
-- [文档](docs)
-- [常见问题FAQ](FAQ.md)
-- 项目参与
-  - [问题反馈](https://github.com/DaoCloud/dao-style-vue/issues/new)
-  - [贡献指南](project)
-  - [测试](test/README.md)
-- 安装部署
-  - [快速安装](#快速安装)
-  - [示例代码](#示例代码)
-- 关于项目
-  - [ROADMAP](ROADMAP.md)
-  - [变更日志CHANGELOG](CHANGELOG.md)
-  - [项目参与者](MAINTAINER.md)
-  - [模块主要负责人](README.md#模块主要负责人)
-  - [License](README.md#LICENSE)
+**[latest](docs)**
 
-## 快速安装
+## Features
 
-## 示例代码
+- Dozens of useful and beautiful components.
+- Friendly API. It's made for people with any skill level.
+- Extensive documentation and demos.
+- It is quite beautiful.
 
-## 浏览器支持
+## Who's using dao-style-vue
 
-|浏览器类型|浏览器版本支持|
+- [DaoCloud](https://www.daocloud.io/)
+- [DaoVoice](http://daovoice.io/)
+
+> If your company or products use dao-style-vue, welcome to click [here](https://github.com/DaoCloud/dao-style-vue/issues/543) to leave a message.
+
+## Install
+
+> Please install Webpack first!
+
+### Install dao-style-vue
+
+Using npm:
+```
+npm install dao-style-vue --save
+```
+
+Using a script tag for global use:
+
+```html
+<script type="text/javascript" src="dao-style-vue.min.js"></script>
+<link rel="stylesheet" href="dist/styles/dao-style-vue.css">
+```
+
+## Usage
+``` javascript
+import daoStyle from 'dao-style-vue';
+import 'dao-style-vue/styles/dao-style.css';
+
+Vue.use(daoStyle);
+```
+```vue
+<template>
+  <dao-input v-model="value"></dao-input>
+</template>
+<script>
+  export default {
+    data () {
+      return {
+        value: 'hello dao-style'
+      };
+    },
+  }
+</script>
+```
+
+## Compatibility
+
+|Browser|Version|
 |--------|---------|
 | Chrome| 30 |
 | Safari| 10 |
 | Firefox| 28 |
 | IE     | 11 |
 
-## 贡献指南
+## Community
 
-如果您仅仅是使用 dao-style-vue，请跳过此部分。
+If you want to contribute or have questions or bugs to report:
 
-## 常见问题FAQ（frequently asked questions）
+**Questions:** [Issues](https://github.com/DaoCloud/dao-style-vue/issues)  
 
-## 模块主要负责人
+**Bugs:** [Report bugs](https://github.com/DaoCloud/dao-style-vue/issues/new)
 
-|负责人|组件集合|
-|--------|---------|
-| 欧阳宁|`clipboard`、`radio`、`select`|
-| 谈博文|`autocomplete `、`editable-table`、`progress `、`table`|
-| 张晓旭|`dialog`、`slider`、`tab`|
-| 刘世奇|`list-group`、`popover`、`tooltip`|
-| 朱静思|`numeric-badge`、`select－all`、`setting-layout`、`steps`|
-| 胡心悦|`button`、`card`、`input`|
-| 乔安然|`dropdown`、`switch`|
-| 丛杨  | `checkbox`|
+**Contribute:** [How to contribute](https://github.com/DaoCloud/dao-style-vue/tree/develop/project)
 
-## LICENSE
+## All Contributors
 
-待定
+Thanks to all contributors.
+<a href="graphs/contributors"><img src="https://opencollective.com/dao-style-vue/contributors.svg?width=890&button=false" /></a>
+
+## Ecosystem Links
+
+- [Demo](http://192.168.1.26:32929)
+
+## License
+[MIT](http://opensource.org/licenses/MIT)
+
+Copyright (c) 2016-present, DaoCloud
