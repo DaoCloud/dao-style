@@ -5,6 +5,7 @@ import {
   _forEach,
   _some,
   _isString,
+  _uniq,
   _isObject,
 } from '../../utils/assist';
 
@@ -27,6 +28,10 @@ export default {
       type: String,
       default: '添加',
     },
+    instantCheck: {
+      type: Boolean,
+      default: true,
+    },
   },
   data() {
     return {
@@ -35,6 +40,9 @@ export default {
     };
   },
   computed: {
+    noThead() {
+      return this.config && this.config.header === false;
+    },
     model() {
       return _map(this.rows, this.rowToModel);
     },
@@ -115,14 +123,18 @@ export default {
     // 添加一行
     addRow() {
       this.rows.push(this.generateRow());
-      this.validate();
+      if (this.instantCheck) {
+        this.validate();
+      }
       this.updateModel();
     },
     // 删除一行
     removeRow(row) {
       const index = this.rows.indexOf(row);
       this.rows.splice(index, 1);
-      this.validate();
+      if (this.instantCheck) {
+        this.validate();
+      }
       this.updateModel();
     },
     focusRow(rowIndex) {
@@ -137,13 +149,19 @@ export default {
     },
     // 验证数据
     validate() {
+      this.rowsValid = [];
       _forEach(this.rows, (row) => {
         _forEach(row, (td) => {
           if (td.type === 'input' && td.validate) {
             this.$set(td, 'valid', td.validate(this.rowToModel(row), this.model));
+            if (td.valid !== true) {
+              this.rowsValid.push(td.valid);
+            }
           }
         });
       });
+      this.$emit('validation', _uniq(this.rowsValid));
+      this.updateModel();
     },
     // 更新 model
     updateModel() {
@@ -161,7 +179,9 @@ export default {
       }
     },
     validteAndUpdate() {
-      this.validate();
+      if (this.instantCheck) {
+        this.validate();
+      }
       this.updateModel();
     },
     getOptionProp(option, prop) {
