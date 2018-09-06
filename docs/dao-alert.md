@@ -49,11 +49,10 @@ daoAlert | Function | 该方法作为入口函数, 第一个参数是 alert 的
 theme | Function | 传入参数为 dao-button 的类名，可以更改 comfirm button 的颜色 | 'blue' | 否
 confirmText | Function | 传入参数用于设置 comfirm button 的文本 | '确定' | 否
 cancelText | Function | 传入参数用于设置 cancel button 的文本 | '取消' | 否
+loadingText | Function | 传入参数用于设置 loading button 的文本 | '加载中...' | 否
 timeout | Function | 传入参数用于设置自动关闭 alert | 无 | 否
 delay | Function | 传入参数用于设置延迟打开 alert | 0 | 否
-show | Function | 该方法接受两个回调函数作为参数, 调用该方法显示 alert (只有调用了该方法，alert 实例才会被推入队列) | 无 | 是
+show | Function | 该方法接受两个回调函数作为参数, 调用该方法显示 alert (只有调用了该方法，alert 实例才会被推入队列), 第一个参数为 resolve 函数, 若函数有返回值，且返回值是一个 Promise 或返回 Promise 的函数, 则会在这个 Promise resolve 之前显示 loading 状态, 之后再关闭对话框 | 无 | 是
 checkbox | Function | 调用该方法并且传入一个参数作为复选框的文字 即显示复选框 | 无 | 否
 callback | Function | 该方法接受两个回调函数作为参数，可以多次调用注册多个回调函数 | 无 | 是
 remove | Function | 取消显示，从队列中删除某个 alert （在 show 函数之前调用无效） | 无 | 是
-
-```

@@ -1,26 +1,27 @@
 <div class="dao-editable-table">
   <table class="dao-table flexrow" v-if="rows.length > 0">
-    <thead>
-      <tr>
-        <th v-for="th in header">{{ th.text }}</th>
-        <th class="det-edit-col">{{ operationText }}</th>
+    <thead v-if="!noThead">
+      <tr>  
+          <th v-for="th in header">{{th.text}}
+              <slot :name="th.text"></slot>
+          </th>
+          <th class="det-edit-col">{{ operationText }}</th>
       </tr>
     </thead>
     <tbody>
       <tr class="det-tr" v-for="(row, index) in rows" :class="{activate: index === activatedRow}">
         <td v-for="td in row" class="det-td">
-          <dao-input class="det-input"
+            <dao-input class="det-input"
             type="text"
             v-if="td.type === 'input'"
             v-model="td.value"
             size="sm"
             :block="true"
             no-border
-            icon-inside
+            :icon-inside="instantCheck"
             :placeholder="td.placeholder"
-            :message="typeof(td.valid) === 'string' ? td.valid : ''"
+            :message="typeof(td.valid) === 'string' && instantCheck ? td.valid : ''"
             :status="typeof(td.valid) === 'string' ? 'error' : ''"
-            :show-tooltip-only-hover="true"
             @focus="focusRow(index)"
             @blur="onBlur">
           </dao-input>

@@ -49,6 +49,11 @@ class Alert {
     return this;
   }
 
+  loadingText(loadingText) {
+    this.props.loadingText = loadingText;
+    return this;
+  }
+
   timeout(timeout) {
     this.props.timeout = timeout;
     return this;
@@ -80,7 +85,6 @@ class Alert {
     if (alertQueue.length === 1) {
       this.execute();
     }
-    return this;
   }
 
   hide() {
@@ -134,8 +138,14 @@ class Alert {
       }
     }, this.props.delay);
 
-    this.alert.$on('confirm', (res) => {
-      this.props.callback.resolves.map(cb => cb(res));
+    this.alert.$on('confirm', (res, afterConfirm) => {
+      this.props.callback.resolves.forEach((cb, i) => {
+        const timer = cb(res);
+        // 只取最后一个函数的返回值作为确认后回调的参数
+        if (i === this.props.callback.resolves.length - 1) {
+          afterConfirm(timer);
+        }
+      });
     });
     this.alert.$on('cancel', () => {
       this.props.callback.rejects.map(cb => cb());

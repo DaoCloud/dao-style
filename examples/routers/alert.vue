@@ -19,6 +19,9 @@
       <button class="dao-btn blue" @click="alertQueue()">队列</button>
       <br>
       <br>
+      <button class="dao-btn blue" @click="loadingBeforeClose()">Loading 后关闭</button>
+      <br>
+      <br>
       <button class="dao-btn blue" @click="alertDelete()">取消某个 Alert</button>
       <br>
     </div>
@@ -75,6 +78,19 @@
           .checkbox('下次不再提醒')
           .show((res) => {
             console.log('confirm:', res);
+          });
+      },
+      loadingBeforeClose() {
+        this.$daoAlert('这个对话框点击确认后会 loading 之后再关闭', 'loading Alert')
+          .loadingText('loading...')
+          .show((res) => {
+            console.log('confirm:', res);
+            return new Promise((resolve) => {
+              setTimeout(() => {
+                console.log('inner loading timer');
+                resolve();
+              }, 3000);
+            });
           });
       },
       doSometing() {
