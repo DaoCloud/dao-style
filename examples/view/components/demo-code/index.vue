@@ -30,7 +30,7 @@ export default {
 
 <style lang="scss" scoped>
 @import 'daoColor';
-$padding : 12px;
+$padding : 20px;
 
 .demo-code{
   border: 1px solid #ebebeb;

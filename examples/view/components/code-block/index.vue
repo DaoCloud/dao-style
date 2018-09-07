@@ -1,7 +1,7 @@
 <template>
   <div class="code-block">
     <codemirror
-      v-model="code"
+      v-model="c"
       :options="options">
     </codemirror>
   </div>
@@ -19,6 +19,11 @@ export default {
       type: String,
       required: true,
     },
+  },
+  data() {
+    return {
+      c: '',
+    };
   },
   computed: {
     options() {
@@ -42,6 +47,14 @@ export default {
       return o;
     },
   },
+  watch: {
+    code: {
+      handler(value) {
+        this.c = value;
+      },
+      immediate: true,
+    },
+  },
 };
 </script>
 
@@ -49,7 +62,7 @@ export default {
 .code-block{
   .CodeMirror{
     height: auto;
-    padding: 4px 12px;
+    padding: 4px 20px;
   }
   .CodeMirror-line {
     font-family: SF Mono,Monaco,Inconsolata,Fira Mono,Droid Sans Mono,Source Code Pro,monospace !important;
