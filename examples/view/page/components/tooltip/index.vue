@@ -13,14 +13,28 @@
         </demo-code>
       </template>
     </docs-section>
+    <docs-section>
+      <template slot="title">添加延时</template>
+      <template slot="content">
+        <demo-code>
+          <demo2 slot="demo"></demo2>
+          <code-reader slot="code" file="tooltip/demo-2.vue"></code-reader>
+          <md-reader slot="desc">
+            通过 `delay` 参数传入延时，控制多长时间显示提示文字。
+          </md-reader>
+        </demo-code>
+      </template>
+    </docs-section>
   </div>
 </template>
 <script>
   import Demo1 from '@demos/tooltip/demo-1';
+  import Demo2 from '@demos/tooltip/demo-2';
 
   export default {
     components: {
       Demo1,
+      Demo2,
     },
     data() {
       return {};
