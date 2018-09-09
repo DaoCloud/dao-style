@@ -47,6 +47,8 @@ export default {
   }
   .desc{
     color: $grey-dark;
+    font-size: 14px;
+    font-weight: normal;
   }
 }
 </style>

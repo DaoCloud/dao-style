@@ -69,5 +69,8 @@ export default {
   hr{
     margin: 2px 0;
   }
+  a{
+    color: #3890ff;
+  }
 }
 </style>
