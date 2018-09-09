@@ -46,15 +46,17 @@ const components = [
       docs: false,
       test: false,
     },
-  }, {
-    path: 'card',
-    meta: {
-      available: false,
-      docs: false,
-      test: false,
-      remarks: 'will_be_deprecated',
-    },
-  }, {
+  },
+  // {
+  //   path: 'card',
+  //   meta: {
+  //     available: false,
+  //     docs: false,
+  //     test: false,
+  //     remarks: 'will_be_deprecated',
+  //   },
+  // },
+  {
     path: 'checkbox',
     meta: {
       available: true,
@@ -84,15 +86,16 @@ const components = [
   //     test: false,
   //   },
   // },
+  // {
+  //   path: 'drag-drop',
+  //   meta: {
+  //     available: false,
+  //     docs: false,
+  //     test: false,
+  //     remarks: 'will_be_deprecated',
+  //   },
+  // },
   {
-    path: 'drag-drop',
-    meta: {
-      available: false,
-      docs: false,
-      test: false,
-      remarks: 'will_be_deprecated',
-    },
-  }, {
     path: 'dropdown',
     meta: {
       available: true,
@@ -120,23 +123,26 @@ const components = [
       docs: false,
       test: false,
     },
-  }, {
-    path: 'input-with-label',
-    meta: {
-      available: false,
-      docs: false,
-      test: false,
-      remarks: 'will_be_deprecated',
-    },
-  }, {
-    path: 'list',
-    meta: {
-      available: false,
-      docs: false,
-      test: false,
-      remarks: 'will_be_deprecated',
-    },
-  }, {
+  },
+  // {
+  //   path: 'input-with-label',
+  //   meta: {
+  //     available: false,
+  //     docs: false,
+  //     test: false,
+  //     remarks: 'will_be_deprecated',
+  //   },
+  // },
+  // {
+  //   path: 'list',
+  //   meta: {
+  //     available: false,
+  //     docs: false,
+  //     test: false,
+  //     remarks: 'will_be_deprecated',
+  //   },
+  // },
+  {
     path: 'list-group',
     meta: {
       available: true,
@@ -157,15 +163,17 @@ const components = [
       docs: false,
       test: true,
     },
-  }, {
-    path: 'panel',
-    meta: {
-      available: false,
-      docs: false,
-      test: false,
-      remarks: 'will_be_deprecated',
-    },
-  }, {
+  },
+  // {
+  //   path: 'panel',
+  //   meta: {
+  //     available: false,
+  //     docs: false,
+  //     test: false,
+  //     remarks: 'will_be_deprecated',
+  //   },
+  // },
+  {
     path: 'popover',
     meta: {
       available: true,
@@ -253,7 +261,7 @@ const components = [
     path: 'table',
     meta: {
       available: true,
-      docs: false,
+      docs: true,
       test: false,
     },
   }, {
@@ -263,14 +271,16 @@ const components = [
       docs: false,
       test: false,
     },
-  }, {
-    path: 'tooltip-directive',
-    meta: {
-      available: true,
-      docs: false,
-      test: false,
-    },
-  }, {
+  },
+  // {
+  //   path: 'tooltip-directive',
+  //   meta: {
+  //     available: true,
+  //     docs: false,
+  //     test: false,
+  //   },
+  // },
+  {
     path: 'color',
     meta: {
       available: true,
@@ -305,12 +315,12 @@ const router = new VueRouter({
   components,
 });
 
-router.afterEach(() => {
-  const view = document.querySelector('.docs-view');
-  if (view) {
-    view.scrollTop = 0;
-  }
-});
+// router.afterEach(() => {
+  // const view = document.querySelector('.docs-view');
+  // if (view) {
+  //   view.scrollTop = 0;
+  // }
+// });
 
 function install(Vue) {
   Vue.use(VueRouter);

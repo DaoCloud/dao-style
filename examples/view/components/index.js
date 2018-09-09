@@ -1,13 +1,13 @@
-import TopBar from './top-bar/index';
-import DcosTitle from './docs-title/index';
-import StatusIcon from './status-icon/index';
-import GithubBtn from './github-btn/index';
-import CodeReader from './code-reader/index';
-import DemoCode from './demo-code/index';
-import MdReader from './md-reader/index';
-import DocsSection from './docs-section/index';
-import DocsTable from './docs-table/index';
-import CodeBlock from './code-block/index';
+import TopBar from './top-bar';
+import DcosTitle from './docs-title';
+import StatusIcon from './status-icon';
+import GithubBtn from './github-btn';
+import CodeReader from './code-reader';
+import DemoCode from './demo-code';
+import MdReader from './md-reader';
+import DocsSection from './docs-section';
+import DocsTable from './docs-table';
+import CodeBlock from './code-block';
 
 const coms = {
   TopBar,

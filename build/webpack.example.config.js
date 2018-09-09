@@ -12,7 +12,7 @@ const config = Merge(webpackBaseConfig, {
   mode: !utils.isProduction ? 'development' : 'production',
   devtool: !utils.isProduction ? '#source-map' : false,
   entry: {
-    main: utils.resolve('examples/main'),
+    main: utils.genPath('examples/main'),
   },
   module: {
     rules: [{
@@ -25,13 +25,13 @@ const config = Merge(webpackBaseConfig, {
     }],
   },
   output: {
-    path: utils.resolve('examples/dist'),
+    path: utils.genPath('examples/dist'),
     publicPath: '',
     filename: utils.isProduction ? 'js/[name].[chunkhash].js' : 'js/[name].js',
   },
   resolve: {
     alias: {
-      daoStyle: utils.resolve('src/index'),
+      daoStyle: utils.genPath('src/index'),
       vue: 'vue/dist/vue.js',
     },
   },
@@ -46,8 +46,9 @@ const config = Merge(webpackBaseConfig, {
     }),
     new HtmlWebpackPlugin({
       inject: true,
-      filename: utils.resolve('examples/dist/index.html'),
-      template: utils.resolve('examples/index.html'),
+      filename: utils.genPath('examples/dist/index.html'),
+      template: utils.genPath('examples/index.html'),
+      favicon: utils.genPath('examples/assets/favicon.png'),
     }),
     new FriendlyErrorsPlugin(),
     new ExtractTextPlugin(utils.isProduction ? 'css/[name].[md5:contenthash:hex:20].css' : 'css/[name].css'),
