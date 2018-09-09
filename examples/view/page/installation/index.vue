@@ -1,6 +1,6 @@
 <template>
   <div class="installation">
-    <dcos-title :name="$t('installation')" size="lg"></dcos-title>
+    <docs-title :name="$t('installation')" size="lg"></docs-title>
   </div>
 </template>
 

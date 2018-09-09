@@ -1,6 +1,6 @@
 <template>
   <div class="status">
-    <dcos-title :name="$t('components')" size="lg"></dcos-title>
+    <docs-title :name="$t('components')" size="lg"></docs-title>
     <br>
     <table class="dao-table row">
       <thead>

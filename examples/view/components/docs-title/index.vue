@@ -3,7 +3,7 @@
     <h2 :class="size">{{name}}</h2>
     <div class="desc">
       <slot name="desc">
-        <div v-if="desc">{{desc}}</div>
+        <div v-if="desc"><md-reader>{{desc}}</md-reader></div>
       </slot>
     </div>
   </div>

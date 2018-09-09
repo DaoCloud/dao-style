@@ -1,6 +1,6 @@
 <template>
   <div class="docs-spin">
-    <dcos-title :name="$t('spin')" desc="dao-spin 是用于表示加载中的组件"></dcos-title>
+    <docs-title :name="$t('spin')" desc="dao-spin 是用于表示加载中的组件"></docs-title>
     <docs-section>
       <template slot="title">默认用法</template>
       <template slot="content">
@@ -27,9 +27,9 @@
     </docs-section>
     <docs-section>
       <template slot="title">
-        <dcos-title name="<dao-spin/> 属性" size="sm"></dcos-title>
+        <docs-title name="<dao-spin/> 属性" size="sm"></docs-title>
       </template>
-      <template slot="content" type="attr">
+      <template slot="content">
         <docs-table :rows="spinAttrs" type="attr"></docs-table>
       </template>
     </docs-section>

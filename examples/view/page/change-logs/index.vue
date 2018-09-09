@@ -1,6 +1,6 @@
 <template>
   <div class="change-logs">
-    <dcos-title :name="$t('change_logs')" size="lg"></dcos-title>
+    <docs-title :name="$t('change_logs')" size="lg"></docs-title>
     <br>
     <div v-for="(chunk, index) in chunks" :key="index" v-if="index <= page">
       <change-log

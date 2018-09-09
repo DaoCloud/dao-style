@@ -1,5 +1,5 @@
 import TopBar from './top-bar';
-import DcosTitle from './docs-title';
+import DocsTitle from './docs-title';
 import StatusIcon from './status-icon';
 import GithubBtn from './github-btn';
 import CodeReader from './code-reader';
@@ -11,7 +11,7 @@ import CodeBlock from './code-block';
 
 const coms = {
   TopBar,
-  DcosTitle,
+  DocsTitle,
   StatusIcon,
   GithubBtn,
   CodeReader,

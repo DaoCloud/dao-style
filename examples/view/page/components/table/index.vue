@@ -1,6 +1,6 @@
 <template>
   <div class="docs-spin">
-    <dcos-title :name="$t('table')" desc="这是一个纯样式表格组件"></dcos-title>
+    <docs-title :name="$t('table')" desc="这是一个纯样式表格组件"></docs-title>
     <docs-section>
       <template slot="title">板布局（slat）表格</template>
       <template slot="content">
