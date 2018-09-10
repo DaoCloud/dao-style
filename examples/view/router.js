@@ -160,7 +160,7 @@ const components = [
     path: 'numeric-badge',
     meta: {
       available: true,
-      docs: false,
+      docs: true,
       test: true,
     },
   },
