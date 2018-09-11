@@ -47,6 +47,7 @@ export default {
   method_name: 'Method Name',
   event_name: 'Event Name',
   slot_name: 'Slot Name',
+  show_more: 'Show More',
   index: {
     desc: 'A high quality UI Toolkit built on Vue.js.',
     cr: 'Build and Maintained Open‑Source by {company}',

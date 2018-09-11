@@ -9,7 +9,7 @@ const utils = require('./utils');
 module.exports = Merge(webpackBaseConfig, {
   mode: 'production',
   entry: {
-    main: utils.resolve('src/index.js'),
+    main: utils.genPath('src/index.js'),
   },
   module: {
     rules: [
@@ -24,7 +24,7 @@ module.exports = Merge(webpackBaseConfig, {
     ],
   },
   output: {
-    path: utils.resolve('dist'),
+    path: utils.genPath('dist'),
     publicPath: '/dist/',
     filename: 'dao-style.min.js',
     library: 'dao-style',
@@ -48,8 +48,8 @@ module.exports = Merge(webpackBaseConfig, {
       'process.env.NODE_ENV': '"production"',
     }),
     new CopyWebpackPlugin([{
-      from: utils.resolve('src/components/dao-color.scss'),
-      to: utils.resolve('dist/styles/dao-color.scss'),
+      from: utils.genPath('src/components/dao-color.scss'),
+      to: utils.genPath('dist/styles/dao-color.scss'),
     }]),
     new ExtractTextPlugin('styles/dao-style.css'),
   ],

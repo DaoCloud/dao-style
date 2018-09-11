@@ -47,6 +47,7 @@ export default {
   method_name: '方法名',
   event_name: '事件名',
   slot_name: '插槽名',
+  show_more: '查看更多',
   index: {
     desc: '基于 Vue.js 构建的高质量 UI 工具包',
     cr: '由 {company} 打造和维护',

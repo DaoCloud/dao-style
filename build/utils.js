@@ -91,7 +91,7 @@ exports.styleLoaders = (options) => {
 };
 
 
-exports.resolve = dir => Path.join(__dirname, '..', dir);
+exports.genPath = dir => Path.join(__dirname, '..', dir);
 
 
 exports.isProduction = process.env.NODE_ENV === 'production';

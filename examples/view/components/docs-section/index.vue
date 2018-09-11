@@ -17,16 +17,16 @@ export default {
 .docs-section{
   position: relative;
   padding-top: 20px;
-  .title{
+  &>.title{
     font-size: 16px;
     font-weight: 500;
   }
-  .helper{
+  &>.helper{
     padding: 6px 0;
     color: $grey-dark;
     border-bottom: 1px solid $white-dark;
   }
-  .content{
+  &>.content{
     padding: 20px 0;
   }
 }

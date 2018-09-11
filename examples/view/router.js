@@ -1,13 +1,37 @@
 import VueRouter from 'vue-router';
 
-import IndexPage from './page/index/index.vue';
-import ComponentsPage from './page/components/index.vue';
-import StatusPage from './page/status/status.vue';
-import InstallationPage from './page/installation/installation.vue';
-import ChangeLogsPage from './page/change-logs/change-logs.vue';
+import IndexPage from './page/index';
+import ComponentsPage from './page/components';
+import ChangeLogs from './page/change-logs';
+import Status from './page/status';
+import Installation from './page/installation';
 
 // TODO 增加 type 对组件进行分类
 const components = [
+  {
+    path: 'status',
+    name: 'Status',
+    component: Status,
+    meta: {
+      notComponent: true,
+    },
+  },
+  {
+    path: 'installation',
+    name: 'Installation',
+    component: Installation,
+    meta: {
+      notComponent: true,
+    },
+  },
+  {
+    path: 'change-logs',
+    name: 'ChangeLogs',
+    component: ChangeLogs,
+    meta: {
+      notComponent: true,
+    },
+  },
   {
     path: 'autocomplete',
     meta: {
@@ -22,15 +46,17 @@ const components = [
       docs: false,
       test: false,
     },
-  }, {
-    path: 'card',
-    meta: {
-      available: false,
-      docs: false,
-      test: false,
-      remarks: 'will_be_deprecated',
-    },
-  }, {
+  },
+  // {
+  //   path: 'card',
+  //   meta: {
+  //     available: false,
+  //     docs: false,
+  //     test: false,
+  //     remarks: 'will_be_deprecated',
+  //   },
+  // },
+  {
     path: 'checkbox',
     meta: {
       available: true,
@@ -60,15 +86,16 @@ const components = [
   //     test: false,
   //   },
   // },
+  // {
+  //   path: 'drag-drop',
+  //   meta: {
+  //     available: false,
+  //     docs: false,
+  //     test: false,
+  //     remarks: 'will_be_deprecated',
+  //   },
+  // },
   {
-    path: 'drag-drop',
-    meta: {
-      available: false,
-      docs: false,
-      test: false,
-      remarks: 'will_be_deprecated',
-    },
-  }, {
     path: 'dropdown',
     meta: {
       available: true,
@@ -96,23 +123,26 @@ const components = [
       docs: false,
       test: false,
     },
-  }, {
-    path: 'input-with-label',
-    meta: {
-      available: false,
-      docs: false,
-      test: false,
-      remarks: 'will_be_deprecated',
-    },
-  }, {
-    path: 'list',
-    meta: {
-      available: false,
-      docs: false,
-      test: false,
-      remarks: 'will_be_deprecated',
-    },
-  }, {
+  },
+  // {
+  //   path: 'input-with-label',
+  //   meta: {
+  //     available: false,
+  //     docs: false,
+  //     test: false,
+  //     remarks: 'will_be_deprecated',
+  //   },
+  // },
+  // {
+  //   path: 'list',
+  //   meta: {
+  //     available: false,
+  //     docs: false,
+  //     test: false,
+  //     remarks: 'will_be_deprecated',
+  //   },
+  // },
+  {
     path: 'list-group',
     meta: {
       available: true,
@@ -133,15 +163,17 @@ const components = [
       docs: false,
       test: true,
     },
-  }, {
-    path: 'panel',
-    meta: {
-      available: false,
-      docs: false,
-      test: false,
-      remarks: 'will_be_deprecated',
-    },
-  }, {
+  },
+  // {
+  //   path: 'panel',
+  //   meta: {
+  //     available: false,
+  //     docs: false,
+  //     test: false,
+  //     remarks: 'will_be_deprecated',
+  //   },
+  // },
+  {
     path: 'popover',
     meta: {
       available: true,
@@ -229,7 +261,7 @@ const components = [
     path: 'table',
     meta: {
       available: true,
-      docs: false,
+      docs: true,
       test: false,
     },
   }, {
@@ -239,14 +271,16 @@ const components = [
       docs: false,
       test: false,
     },
-  }, {
-    path: 'tooltip-directive',
-    meta: {
-      available: true,
-      docs: false,
-      test: false,
-    },
-  }, {
+  },
+  // {
+  //   path: 'tooltip-directive',
+  //   meta: {
+  //     available: true,
+  //     docs: false,
+  //     test: false,
+  //   },
+  // },
+  {
     path: 'color',
     meta: {
       available: true,
@@ -255,7 +289,9 @@ const components = [
     },
   },
 ].map((com) => {
-  com.component = () => import(`./page/components/${com.path}/index.vue`);
+  if (!com.component) {
+    com.component = () => import(`./page/${com.meta.notComponent ? '' : 'components/'}${com.path}/index.vue`);
+  }
   return com;
 });
 
@@ -268,30 +304,7 @@ const routes = [{
   name: 'Components',
   component: ComponentsPage,
   redirect: '/components/status',
-  children: [
-    {
-      path: 'status',
-      component: StatusPage,
-      meta: {
-        notComponent: true,
-      },
-    },
-    {
-      path: 'installation',
-      component: InstallationPage,
-      meta: {
-        notComponent: true,
-      },
-    },
-    {
-      path: 'change-logs',
-      component: ChangeLogsPage,
-      meta: {
-        notComponent: true,
-      },
-    },
-    ...components,
-  ],
+  children: components,
 }, {
   path: '*',
   redirect: '/components/status',
@@ -301,6 +314,13 @@ const router = new VueRouter({
   routes,
   components,
 });
+
+// router.afterEach(() => {
+  // const view = document.querySelector('.docs-view');
+  // if (view) {
+  //   view.scrollTop = 0;
+  // }
+// });
 
 function install(Vue) {
   Vue.use(VueRouter);

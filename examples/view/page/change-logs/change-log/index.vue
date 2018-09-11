@@ -23,7 +23,7 @@ export default {
 
 <style lang="scss">
 .change-log{
-  margin-bottom: 50px;
+  margin-bottom: 20px;
   border: 1px solid #ebebeb;
   border-radius: 5px;
   border-radius: 4px;
@@ -37,8 +37,5 @@ export default {
   ul{
     margin-left: 18px;
   }
- // ul li ul li {
-   // margin-left: 18px;
- // }
 }
 </style>

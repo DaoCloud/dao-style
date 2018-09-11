@@ -18,11 +18,12 @@
             v-for="c in $router.options.components"
             :to="c.path"
             tag="li"
+            v-if="!c.meta.notComponent"
             :key="c.path">{{$t(c.path)}}
           </router-link>
         </ul>
       </div>
-      <div class="view">
+      <div class="docs-view">
         <div class="view-wrap">
           <router-view></router-view>
         </div>
@@ -89,7 +90,7 @@ export default {
         }
       }
     }
-    .view{
+    .docs-view{
       height: 100%;
       overflow: auto;
       width: 100%;
