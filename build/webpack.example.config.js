@@ -28,6 +28,8 @@ const config = Merge(webpackBaseConfig, {
     path: utils.genPath('examples/dist'),
     publicPath: '',
     filename: utils.isProduction ? 'js/[name].[chunkhash].js' : 'js/[name].js',
+    // avoid jsonpFunction conflicts
+    jsonpFunction: 'daoStyleJsonpFunction',
   },
   resolve: {
     alias: {
