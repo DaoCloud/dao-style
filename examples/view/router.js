@@ -247,7 +247,7 @@ const components = [
     path: 'switch',
     meta: {
       available: true,
-      docs: false,
+      docs: true,
       test: true,
     },
   }, {
