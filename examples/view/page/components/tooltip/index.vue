@@ -25,6 +25,22 @@
         </demo-code>
       </template>
     </docs-section>
+    <docs-section>
+      <template slot="title">
+        <docs-title name="<dao-tooltip/> 属性" size="sm"></docs-title>
+      </template>
+      <template slot="content">
+        <docs-table :rows="tooltipAttr" type="attr"></docs-table>
+      </template>
+    </docs-section>
+    <docs-section>
+      <template slot="title">
+        <docs-title name="<dao-tooltip/> Slot" size="sm"></docs-title>
+      </template>
+      <template slot="content">
+        <docs-table :rows="tooltipSlot" type="attr"></docs-table>
+      </template>
+    </docs-section>
   </div>
 </template>
 <script>
@@ -37,7 +53,54 @@
       Demo2,
     },
     data() {
-      return {};
+      return {
+        tooltipAttr: [
+          {
+            name: 'content',
+            type: 'String',
+            desc: '提示文字',
+            options: ['-'],
+            default: '-',
+          },
+          {
+            name: 'placement',
+            type: 'String',
+            desc: '提示框出现位置',
+            options: ['top', 'top-start', 'top-end', 'bottom', 'bottom-start', 'bottom-end', 'left', 'left-start', 'left-end', 'right', 'right-start', 'right-end'],
+            default: 'bottom',
+          },
+          {
+            name: 'delay',
+            type: 'Number',
+            desc: '延时多长时间显示提示文字',
+            options: ['-'],
+            default: '0',
+          },
+          {
+            name: 'appendToBody',
+            type: 'Boolean',
+            desc: '是否将 tooltip 元素添加到 body',
+            options: ['-'],
+            default: 'true',
+          },
+          {
+            name: 'popperCls',
+            type: 'Array',
+            desc: 'appendToBody 之后为 tooltip 元素添加的类，一般用于修改 tooltip 元素的样式',
+            options: ['-'],
+            default: '-',
+          },
+        ],
+        tooltipSlot: [
+          {
+            name: 'content',
+            type: 'HTML',
+            desc: 'tooltip 内嵌 HTML 文本，将覆盖 content 参数',
+            options: ['-'],
+            default: '-',
+          },
+        ],
+      };
     },
   };
 </script>
