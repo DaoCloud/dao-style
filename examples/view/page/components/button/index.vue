@@ -78,23 +78,6 @@
             </demo-code>
           </template>
       </docs-section>
-
-      <docs-section>
-        <template slot="title">
-          <docs-title name="<dao-btn/> 属性" size="sm"></docs-title>
-        </template>
-        <template slot="content">
-          <docs-table :rows="daoBtnAttrs" type="attr"></docs-table>
-        </template>
-      </docs-section>
-      <docs-section>
-        <template slot="title">
-          <docs-title name="<dao-btn/> Slot" size="sm"></docs-title>
-        </template>
-        <template slot="content">
-          <docs-table :rows="daoBtnSlot" type="slot"></docs-table>
-        </template>
-      </docs-section>
   </div>
 </template>
 
@@ -107,33 +90,6 @@
   import Demo6 from '@demos/button/demo-6';
 
   export default {
-    data() {
-      return {
-        daoBtnAttrs: [{
-          name: 'class',
-          type: 'string',
-          desc: '按钮样式',
-          options: ['blue', 'red', 'ghost', 'btn-sm', 'mini'],
-          default: '-',
-        }, {
-          name: 'class',
-          type: 'string',
-          desc: '是否带图标和包含文字',
-          options: ['has-icon', 'has-icons', 'icon-btn', 'opt-btn'],
-          default: '-',
-        }, {
-          name: 'disabled',
-          type: 'boolean',
-          desc: '是否是禁用状态',
-          options: ['true', 'false'],
-          default: 'false',
-        }],
-        daoBtnSlot: [{
-          name: '-',
-          desc: 'dao-btn 的内容',
-        }],
-      };
-    },
     methods: {
       handleClick() {
         alert(1);
