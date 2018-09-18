@@ -60,7 +60,7 @@ const components = [
     path: 'checkbox',
     meta: {
       available: true,
-      docs: false,
+      docs: true,
       test: false,
     },
   }, {
