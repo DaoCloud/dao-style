@@ -106,7 +106,7 @@ const components = [
     path: 'editable-table',
     meta: {
       available: true,
-      docs: false,
+      docs: true,
       test: false,
     },
   }, {
