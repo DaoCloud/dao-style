@@ -1,80 +1,76 @@
 <template>
-  <div>
-    <button class="dao-btn blue" @click="show = !show">切换 Layout</button>
-    <dao-setting-layout v-if="show" class="test-class">
-      <template slot="layout-title">大标题</template>
-      <template slot="layout-title-helper">大标题一定要有，表单必有头</template>
-      <dao-setting-section>
-        <template slot="section-title">块内容标题</template>
-        <template slot="section-title-helper">一般情况下不需要块内容标题，需要显示表格时才可能要用到</template>
-        <template slot="label">左侧小标题</template>
-        <template slot="content">
-          <div>右侧内容</div>
-          <div>需要换行显示的内容一定要用 &lt;div&gt; 包裹</div>
-        </template>
-        <template slot="content-helper">&lt;dao-setting-section&gt; 之间是有分割线的</template>
-      </dao-setting-section>
-      <dao-setting-section>
-        <dao-setting-item>
-          <template slot="label">dao-setting-item-label</template>
-          <template slot="content">
-            <div>注意这两个 dao-setting-item 中间没有分割线</div>
-          </template>
-          <template slot="content-helper">中间不要有分割线的情况很少见，当遇到该需求时可以使用该 &lt;dao-setting-item&gt; 组件</template>
-        </dao-setting-item>
-        <dao-setting-item>
-          <template slot="label">dao-setting-item-label</template>
-          <template slot="content">
-            <div>注意这两个 dao-setting-item 中间没有分割线</div>
-          </template>
-          <template slot="content-helper">中间不要有分割线的情况很少见，当遇到该需求时可以使用该 &lt;dao-setting-item&gt; 组件</template>
-        </dao-setting-item>
-      </dao-setting-section>
-      <template slot="footer">
-        <div class="dao-btn blue">保存</div>
+  <div class="docs-setting-layout">
+    <docs-title :name="$t('setting-layout')" desc="dao-setting-layout 是一套表单布局方面的组件"></docs-title>
+    <docs-section>
+      <template slot="title">默认用法</template>
+      <template slot="content">
+        <demo-code>
+          <demo1 slot="demo"></demo1>
+          <code-reader slot="code" file="setting-layout/demo-1.vue"></code-reader>
+          <md-reader slot="desc">
+            一般情况下 ``&lt;dao-setting-item&gt;`` 节点可省略不写
+          </md-reader>
+        </demo-code>
       </template>
-    </dao-setting-layout>
-    <dao-setting-layout v-else>
-      <dao-setting-section>
-        <template slot="section-title">块内容标题</template>
-        <template slot="section-title-helper">一般情况下不需要块内容标题，需要显示表格时才可能要用到</template>
-        <template slot="label">左侧小标题</template>
-        <template slot="content">
-          <div>右侧内容</div>
-          <div>需要换行显示的内容一定要用 &lt;div&gt; 包裹</div>
-        </template>
-        <template slot="content-helper">&lt;dao-setting-section&gt; 之间是有分割线的</template>
-      </dao-setting-section>
-      <dao-setting-section>
-        <dao-setting-item>
-          <template slot="label">dao-setting-item-label</template>
-          <template slot="content">
-            <div>注意这两个 dao-setting-item 中间没有分割线</div>
-          </template>
-          <template slot="content-helper">中间不要有分割线的情况很少见，当遇到该需求时可以使用该 &lt;dao-setting-item&gt; 组件</template>
-        </dao-setting-item>
-        <dao-setting-item>
-          <template slot="label">dao-setting-item-label</template>
-          <template slot="content">
-            <div>注意这两个 dao-setting-item 中间没有分割线</div>
-          </template>
-          <template slot="content-helper">中间不要有分割线的情况很少见，当遇到该需求时可以使用该 &lt;dao-setting-item&gt; 组件</template>
-        </dao-setting-item>
-      </dao-setting-section>
-    </dao-setting-layout>
+    </docs-section>
+    <docs-section>
+      <template slot="title">class 用法</template>
+      <template slot="content">
+        <demo-code>
+          <demo2 slot="demo"></demo2>
+          <code-reader slot="code" file="setting-layout/demo-2.vue"></code-reader>
+          <md-reader slot="desc">
+            一般情况下 ``class="dao-setting-item"`` 的节点可省略不写
+          </md-reader>
+        </demo-code>
+      </template>
+    </docs-section>
+    <docs-section>
+      <template slot="title">
+        <docs-title name="<dao-setting-layout/> Slot" size="sm"></docs-title>
+      </template>
+      <template slot="content">
+        <docs-table :rows="settingLayoutSlots" type="slot"></docs-table>
+      </template>
+    </docs-section>
   </div>
 </template>
+
 <script>
-export default {
-  data() {
-    return {
-      show: true,
-    };
-  },
-};
+  import Demo1 from '@demos/setting-layout/demo-1';
+  import Demo2 from '@demos/setting-layout/demo-2';
+
+  export default {
+    name: 'DocsSettingLayout',
+    data() {
+      return {
+        settingLayoutSlots: [{
+          name: 'layout-title',
+          desc: '大标题',
+        }, {
+          name: 'layout-title-helper',
+          desc: '大标题说明文字',
+        }, {
+          name: 'section-title',
+          desc: '块内容标题',
+        }, {
+          name: 'section-title-helper',
+          desc: '块内容标题说明文字',
+        }, {
+          name: 'label',
+          desc: '左侧小标题',
+        }, {
+          name: 'content',
+          desc: '右侧内容块',
+        }, {
+          name: 'content-helper',
+          desc: '右侧内容块说明文字',
+        }],
+      };
+    },
+    components: {
+      Demo1,
+      Demo2,
+    },
+  };
 </script>
-<style lang="scss">
-  .test-class {
-    color: red;
-  }
-</style>
