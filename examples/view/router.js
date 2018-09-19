@@ -254,7 +254,7 @@ const components = [
     path: 'tab',
     meta: {
       available: true,
-      docs: false,
+      docs: true,
       test: false,
     },
   }, {
