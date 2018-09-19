@@ -1,6 +1,6 @@
 <template>
   <div class="docs-checkbox">
-    <dcos-title :name="$t('checkbox')" desc="这是一个纯样式多选框组件"></dcos-title>
+    <docs-title :name="$t('checkbox')" desc="这是一个纯样式多选框组件"></docs-title>
     <docs-section>
       <template slot="title">普通版</template>
       <template slot="content">
