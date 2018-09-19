@@ -212,7 +212,7 @@ const components = [
     path: 'setting-layout',
     meta: {
       available: true,
-      docs: false,
+      docs: true,
       test: false,
     },
   }, {
