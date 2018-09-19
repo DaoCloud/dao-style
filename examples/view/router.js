@@ -43,7 +43,7 @@ const components = [
     path: 'button',
     meta: {
       available: true,
-      docs: false,
+      docs: true,
       test: false,
     },
   },
