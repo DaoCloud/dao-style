@@ -284,7 +284,7 @@ const components = [
     path: 'color',
     meta: {
       available: true,
-      docs: false,
+      docs: true,
       test: false,
     },
   },
