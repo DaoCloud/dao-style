@@ -184,7 +184,7 @@ const components = [
     path: 'progress',
     meta: {
       available: true,
-      docs: false,
+      docs: true,
       test: false,
     },
   }, {
