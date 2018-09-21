@@ -19,6 +19,10 @@ export default {
       type: String,
       required: true,
     },
+    readOnly: {
+      type: Boolean,
+      default: false,
+    },
   },
   data() {
     return {
@@ -29,7 +33,7 @@ export default {
     options() {
       const o = {
         tabSize: 2,
-        // readOnly: true,
+        readOnly: this.readOnly,
         mode: 'text/x-vue',
         theme: 'monokai',
       };
@@ -62,7 +66,7 @@ export default {
 .code-block{
   .CodeMirror{
     height: auto;
-    padding: 4px 20px;
+    padding: 10px 20px;
   }
   .CodeMirror-line {
     font-family: SF Mono,Monaco,Inconsolata,Fira Mono,Droid Sans Mono,Source Code Pro,monospace !important;
