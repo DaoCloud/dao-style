@@ -28,6 +28,7 @@ export default {
   }
   &>.content{
     padding: 20px 0;
+    overflow: auto;
   }
 }
 </style>

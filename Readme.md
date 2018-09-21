@@ -29,7 +29,7 @@ Using npm:
 npm install dao-style --save
 ```
 
-Using a script tag for global use:
+Using html tag:
 
 ```html
 <script type="text/javascript" src="dao-style.min.js"></script>

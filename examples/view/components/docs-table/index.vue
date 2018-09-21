@@ -14,26 +14,26 @@
     <tbody >
       <tr v-for="(row, index) in rows" :key="index">
         <td>
-          <span class="name">
+          <div class="name">
             {{row.name}}
-          </span>
+          </div>
         </td>
         <td v-if="showType">
-          <span class="type">
+          <div class="type">
             {{getTypes(row.type)}}
-          </span>
+          </div>
         </td>
         <td v-if="showOptions">
-          <span v-if="row.options">
-            {{row.options.join('、')}}
-          </span>
-          <span v-else>-</span>
+          <div v-dao-tooltip.ellipsis="row.options.join('、')" v-if="row.options" class="option"><!-- 
+         -->{{row.options.join('、')}}<!-- 
+      --></div>
+          <div v-else>-</div>
         </td>
         <td v-if="showDefault">
-          <span v-if="row.options">
+          <div v-if="row.options">
             {{row.default}}
-          </span>
-          <span v-else>-</span>
+          </div>
+          <div v-else>-</div>
         </td>
         <td v-if="showParameter">
           {{row.parameter}}
@@ -42,11 +42,13 @@
           {{row.return}}
         </td>
         <td>
-          <span v-if="row.desc">
-            <md-reader :source="row.desc">
-            </md-reader>
-          </span>
-          <span v-else>-</span>
+          <div class="desc">
+            <template v-if="row.desc">
+              <md-reader :source="row.desc">
+              </md-reader>
+            </template>
+            <template v-else>-</template>
+          </div>
         </td>
       </tr>
     </tbody>
@@ -136,6 +138,11 @@ export default {
   }
   .type{
     color: $blue;
+  }
+  .option{
+    width: 300px;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 }
 </style>

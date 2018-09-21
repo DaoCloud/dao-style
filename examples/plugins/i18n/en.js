@@ -47,10 +47,15 @@ export default {
   method_name: 'Method Name',
   event_name: 'Event Name',
   slot_name: 'Slot Name',
-  show_more: 'Show More',
+  show_more: 'Load More...',
   index: {
     desc: 'A high quality UI Toolkit built on Vue.js.',
     cr: 'Build and Maintained Open‑Source by {company}',
+  },
+  installationPage: {
+    use_npm: 'Using npm',
+    use_html: 'Using HTML tag',
+    usage: 'Usage',
   },
   status: {
     component: 'Component',

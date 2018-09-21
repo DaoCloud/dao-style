@@ -165,10 +165,17 @@ export default {
       margin-bottom: 25px;
     }
     .name {
-      font-size: 18px;
+      font-size: 22px;
       svg {
-        height: 26px;
-        width: 26px;
+        height: 32px;
+        width: 32px;
+      }
+      @media (max-width: 768px) {
+        font-size: 32px;
+        svg {
+          height: 45px;
+          width: 45px;
+        }
       }
     }
     .desc {

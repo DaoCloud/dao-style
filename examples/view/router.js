@@ -15,24 +15,28 @@ const components = [
     meta: {
       notComponent: true,
     },
-  },
-  {
+  }, {
     path: 'installation',
     name: 'Installation',
     component: Installation,
     meta: {
       notComponent: true,
     },
-  },
-  {
+  }, {
     path: 'change-logs',
     name: 'ChangeLogs',
     component: ChangeLogs,
     meta: {
       notComponent: true,
     },
-  },
-  {
+  }, {
+    path: 'alert',
+    meta: {
+      available: true,
+      docs: false,
+      test: false,
+    },
+  }, {
     path: 'autocomplete',
     meta: {
       available: true,
@@ -110,11 +114,11 @@ const components = [
       test: false,
     },
   }, {
-    path: 'input',
+    path: 'editable-list',
     meta: {
       available: true,
       docs: false,
-      test: true,
+      test: false,
     },
   }, {
     path: 'info-card',
@@ -122,6 +126,13 @@ const components = [
       available: true,
       docs: false,
       test: false,
+    },
+  }, {
+    path: 'input',
+    meta: {
+      available: true,
+      docs: false,
+      test: true,
     },
   },
   // {
@@ -144,13 +155,6 @@ const components = [
   // },
   {
     path: 'list-group',
-    meta: {
-      available: true,
-      docs: false,
-      test: false,
-    },
-  }, {
-    path: 'alert',
     meta: {
       available: true,
       docs: false,
@@ -230,20 +234,6 @@ const components = [
       test: false,
     },
   }, {
-    path: 'svg',
-    meta: {
-      available: true,
-      docs: false,
-      test: false,
-    },
-  }, {
-    path: 'editable-list',
-    meta: {
-      available: true,
-      docs: false,
-      test: false,
-    },
-  }, {
     path: 'switch',
     meta: {
       available: true,
@@ -281,6 +271,13 @@ const components = [
   //   },
   // },
   {
+    path: 'svg',
+    meta: {
+      available: true,
+      docs: false,
+      test: false,
+    },
+  }, {
     path: 'color',
     meta: {
       available: true,
@@ -315,12 +312,12 @@ const router = new VueRouter({
   components,
 });
 
-// router.afterEach(() => {
-  // const view = document.querySelector('.docs-view');
-  // if (view) {
-  //   view.scrollTop = 0;
-  // }
-// });
+router.afterEach(() => {
+  const view = document.querySelector('.docs-view');
+  if (view) {
+    view.scrollTop = 0;
+  }
+});
 
 function install(Vue) {
   Vue.use(VueRouter);

@@ -27,7 +27,7 @@ export default {
   steps: 'Steps 步骤条',
   svg: 'Svg 图标',
   'editable-list': 'Editable List 可编辑列表',
-  switch: 'Switch 开光',
+  switch: 'Switch 开关',
   tab: 'Tab 标签页',
   table: 'Table 表格',
   tooltip: 'Tooltip 提示',
@@ -47,10 +47,15 @@ export default {
   method_name: '方法名',
   event_name: '事件名',
   slot_name: '插槽名',
-  show_more: '查看更多',
+  show_more: '加载更多...',
   index: {
     desc: '基于 Vue.js 构建的高质量 UI 工具包',
     cr: '由 {company} 打造和维护',
+  },
+  installationPage: {
+    use_npm: '使用 npm 安装',
+    use_html: '使用 HTML 标签引入',
+    usage: '使用',
   },
   status: {
     component: '组件',

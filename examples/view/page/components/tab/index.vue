@@ -1,6 +1,6 @@
 <template>
   <div>
-    <docs-title :name="$t('tab')" desc="方便您通过选项卡方便的切换视图。"></docs-title>
+    <docs-title :name="$t('tab')" desc="方便您通过选项卡方便的切换视图"></docs-title>
     <docs-section>
       <template slot="title">基本用法</template>
       <template slot="content">

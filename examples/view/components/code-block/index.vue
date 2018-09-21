@@ -44,6 +44,9 @@ export default {
         case 'javascript':
           o.mode = 'text/javascript';
           break;
+        case 'scss':
+          o.mode = 'text/css';
+          break;
         default:
           o.mode = 'text/x-vue';
           break;
@@ -66,7 +69,7 @@ export default {
 .code-block{
   .CodeMirror{
     height: auto;
-    padding: 10px 20px;
+    padding: 6px 20px;
   }
   .CodeMirror-line {
     font-family: SF Mono,Monaco,Inconsolata,Fira Mono,Droid Sans Mono,Source Code Pro,monospace !important;

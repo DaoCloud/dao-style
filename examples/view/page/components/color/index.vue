@@ -41,7 +41,7 @@
           </div>
           <h1 class="color-category">Grey</h1>
           <div class="clearfix">
-            <div class="color-demo-block" v-for="color in greys">
+            <div class="color-demo-block" v-for="color in greys" :key="color">
               <span class="color-block" :class="color"></span>
               <div class="info-block">
                 <p class="color-info">
@@ -59,8 +59,8 @@
           <h1>Color Palette</h1>
           <div class="color-category-desc">点击颜色块可以直接复制代码</div>
           <table class="color-palette">
-            <tr class="color-block" :class="color" v-for="color in colors">
-              <td v-for="num in [-3, -2, -1, 0, 1, 2, 3]">
+            <tr class="color-block" :class="color" v-for="color in colors" :key="color">
+              <td v-for="num in [-3, -2, -1, 0, 1, 2, 3]" :key="num">
                 <div class="color-palette-clipboard"
                   is="dao-clipboard"
                   v-dao-select-all
@@ -74,24 +74,6 @@
               <td colspan="7"></td>
             </tr>
           </table>
-          <pre class="scss">
-          @function generate-color($base-color, $level) {
-            @if $level == -3 {
-              @return desaturate(lighten($base-color, 36), 15);
-            } @else if $level == -2 {
-              @return desaturate(lighten($base-color, 25), 25);
-            } @else if $level == -1 {
-              @return lighten($base-color, 4);
-            } @else if $level == 1 {
-              @return desaturate(darken($base-color, 7), 11);
-            } @else if $level == 2 {
-              @return desaturate(darken($base-color, 13), 7);
-            } @else if $level == 3 {
-              @return desaturate(darken($base-color, 19), 9);
-            } @else {
-              @return $base-color;
-            }
-          }</pre>
         </div>
       </template>
     </docs-section>
@@ -194,7 +176,7 @@ $greys: ( 'black-dark': $black-dark, 'black-darker': $black-darker, 'black-light
 .color-demo-block {
   margin-bottom: 30px;
   float: left;
-  width: 180px;
+  width: 150px;
   .color-block {
     display: block;
     width: 60px;
@@ -309,16 +291,6 @@ $greys: ( 'black-dark': $black-dark, 'black-darker': $black-darker, 'black-light
     }
   }
 }
-
-pre.scss {
-  font-size: 14px;
-  line-height: 2;
-  padding: 30px;
-  color: $black-dark;
-  border: 1px solid $grey-light;
-  background-color: $white-light;
-}
-
 </style>
 
 

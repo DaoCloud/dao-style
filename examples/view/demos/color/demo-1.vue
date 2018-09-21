@@ -10,7 +10,6 @@
 
 <style lang="scss" scoped>
 @import 'daoColor';
-
 .color-demo {
   width: 15px;
   height: 15px;
@@ -32,4 +31,3 @@
   background-color: generate-color($green, -3);
 }
 </style>
-

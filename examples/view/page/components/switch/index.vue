@@ -1,6 +1,6 @@
 <template>
   <div>
-    <docs-title :name="$t('Switch')" desc="dao-switch 是用于表示开关的组件"></docs-title>
+    <docs-title :name="$t('switch')" desc="dao-switch 是用于表示开关的组件"></docs-title>
     <docs-section>
       <template slot="title">基本用法</template>
       <template slot="content">
