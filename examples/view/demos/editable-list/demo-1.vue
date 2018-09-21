@@ -1,7 +1,12 @@
 <template>
   <div>
     <dao-editable-list @add="onAdd" @remove="onRemove">
-      <li slot="list" v-for="(d, i) in data" @click="onClick(i)" :class="{active: index === i}">
+      <li
+        slot="list"
+        v-for="(d, i) in data"
+        @click="onClick(i)"
+        :class="{active: index === i}"
+        :key="i">
         {{d.key}}
       </li>
       <div slot="content">

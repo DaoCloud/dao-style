@@ -35,7 +35,7 @@
     </docs-section>
     <docs-section>
       <template slot="title">
-        <docs-title name="<numeric-badge/> Slot" size="sm"></docs-title>
+        <docs-title name="<numeric-badge/> 插槽" size="sm"></docs-title>
       </template>
       <template slot="content">
         <docs-table :rows="numericBadgeSlot" type="slot"></docs-table>

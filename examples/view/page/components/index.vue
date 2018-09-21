@@ -24,7 +24,7 @@
         </ul>
       </div>
       <div class="docs-view">
-        <div class="view-wrap">
+        <div class="view-wrap" :class="{ 'not-component': $route.meta.notComponent }">
           <router-view></router-view>
         </div>
       </div>
@@ -36,6 +36,9 @@
 
 export default {
   name: 'Components',
+  created() {
+    console.log(this.$route);
+  },
 };
 
 </script>
@@ -94,20 +97,22 @@ export default {
       height: 100%;
       overflow: auto;
       width: 100%;
-      padding: 40px 10px;
+      padding: 20px 10px;
       .view-wrap{
         @media (max-width: 768px) {
           padding: 10px;
         }
         @media (min-width: 768px) {
-         padding: 0px 30px;
+         padding: 0px 40px;
         }
-        @media (min-width: 900px) {
-         padding: 0px 50px;
-        }
+        
         @media (min-width: 1100px) {
-         padding: 0px 80px;
+          &.not-component{
+            width: 800px;
+            margin: 0 auto;
+          }
         }
+         
         margin: 0 auto;
         color: #5e6d82;
       }

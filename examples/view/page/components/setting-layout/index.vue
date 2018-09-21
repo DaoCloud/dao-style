@@ -27,7 +27,7 @@
     </docs-section>
     <docs-section>
       <template slot="title">
-        <docs-title name="<dao-setting-layout/> Slot" size="sm"></docs-title>
+        <docs-title name="<dao-setting-layout/> 插槽" size="sm"></docs-title>
       </template>
       <template slot="content">
         <docs-table :rows="settingLayoutSlots" type="slot"></docs-table>

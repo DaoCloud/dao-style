@@ -8,17 +8,9 @@
           <demo1 slot="demo"></demo1>
           <code-reader slot="code" file="editable-list/demo-1.vue"></code-reader>
           <md-reader slot="desc">
-            ``dao-editable-list`` 是个几乎只有纯样式的组件。
+            `dao-editable-list` 是个几乎只有纯样式的组件。
           </md-reader>
         </demo-code>
-      </template>
-    </docs-section>
-    <docs-section>
-      <template slot="title">
-        <docs-title name="<dao-editable-list/> Slot" size="sm"></docs-title>
-      </template>
-      <template slot="content">
-        <docs-table :rows="editableListSlots" type="slot"></docs-table>
       </template>
     </docs-section>
     <docs-section>
@@ -27,6 +19,14 @@
       </template>
       <template slot="content">
         <docs-table :rows="editableListEvents" type="event"></docs-table>
+      </template>
+    </docs-section>
+     <docs-section>
+      <template slot="title">
+        <docs-title name="<dao-editable-list/> 插槽" size="sm"></docs-title>
+      </template>
+      <template slot="content">
+        <docs-table :rows="editableListSlots" type="slot"></docs-table>
       </template>
     </docs-section>
   </div>

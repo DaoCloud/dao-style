@@ -35,7 +35,7 @@
     </docs-section>
     <docs-section>
       <template slot="title">
-        <docs-title name="<dao-tooltip/> Slot" size="sm"></docs-title>
+        <docs-title name="<dao-tooltip/> 插槽" size="sm"></docs-title>
       </template>
       <template slot="content">
         <docs-table :rows="tooltipSlot" type="attr"></docs-table>
@@ -104,4 +104,3 @@
     },
   };
 </script>
-<style lang="scss" scoped></style>

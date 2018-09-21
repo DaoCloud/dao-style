@@ -19,7 +19,7 @@ export default {
   },
   methods: {
     onChange(data) {
-      alert(data);
+      this.$daoAlert('daostyle', `changed:${data}`).show();
     },
   },
 };
