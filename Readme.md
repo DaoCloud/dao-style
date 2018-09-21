@@ -24,10 +24,6 @@
 
 ## Install
 
-> Please install Webpack first!
-
-### Install dao-style
-
 Using npm:
 ```
 npm install dao-style --save
@@ -80,15 +76,6 @@ If you want to contribute or have questions or bugs to report:
 **Bugs:** [Report bugs](https://github.com/DaoCloud/dao-style/issues/new)
 
 **Contribute:** [How to contribute](https://github.com/DaoCloud/dao-style/docs/pr-spec.md)
-
-## All Contributors
-
-Thanks to all contributors.
-<a href="graphs/contributors"><img src="https://opencollective.com/dao-style/contributors.svg?width=890&button=false" /></a>
-
-## Ecosystem Links
-
-- [Demo]()
 
 ## License
 [MIT](http://opensource.org/licenses/MIT)
