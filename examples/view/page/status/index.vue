@@ -9,7 +9,6 @@
           <th>{{$t('status.docs')}}</th>
           <th>{{$t('status.test')}}</th>
           <th>{{$t('status.available')}}</th>
-          <!-- <th>{{$t('status.remarks')}}</th> -->
         </tr>
       </thead>
       <tbody>
@@ -31,11 +30,6 @@
             <status-icon :status="c.meta.available ? 'success' : 'failed'">
             </status-icon>
           </td>
-          <!-- <td>
-            <span v-if="c.meta.remarks">
-              {{$t(`status.${c.meta.remarks}`)}}
-            </span>
-          </td> -->
         </tr>
       </tbody>
     </table>

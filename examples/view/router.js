@@ -117,7 +117,7 @@ const components = [
     path: 'editable-list',
     meta: {
       available: true,
-      docs: false,
+      docs: true,
       test: false,
     },
   }, {
@@ -258,7 +258,7 @@ const components = [
     path: 'tooltip',
     meta: {
       available: true,
-      docs: false,
+      docs: true,
       test: false,
     },
   },
@@ -274,7 +274,7 @@ const components = [
     path: 'svg',
     meta: {
       available: true,
-      docs: false,
+      docs: true,
       test: false,
     },
   }, {
@@ -310,13 +310,6 @@ const routes = [{
 const router = new VueRouter({
   routes,
   components,
-});
-
-router.afterEach(() => {
-  const view = document.querySelector('.docs-view');
-  if (view) {
-    view.scrollTop = 0;
-  }
 });
 
 function install(Vue) {
