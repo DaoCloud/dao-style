@@ -1,6 +1,10 @@
 <template>
   <div class="code-reader">
-    <code-block type="vue" :code="code"></code-block>
+    <code-block
+      :type="type"
+      :readOnly="readOnly"
+      :code="code">
+    </code-block>
   </div>
 </template>
 
@@ -15,6 +19,10 @@ export default {
     file: {
       type: String,
       required: true,
+    },
+    readOnly: {
+      type: Boolean,
+      default: false,
     },
   },
   data() {
