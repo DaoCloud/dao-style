@@ -36,9 +36,6 @@
 
 export default {
   name: 'Components',
-  created() {
-    console.log(this.$route);
-  },
 };
 
 </script>
