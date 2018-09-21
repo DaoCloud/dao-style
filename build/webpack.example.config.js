@@ -25,7 +25,7 @@ const config = Merge(webpackBaseConfig, {
     }],
   },
   output: {
-    path: utils.genPath('examples/dist'),
+    path: utils.genPath('docs'),
     publicPath: '',
     filename: utils.isProduction ? 'js/[name].[chunkhash].js' : 'js/[name].js',
     // avoid jsonpFunction conflicts
@@ -48,7 +48,7 @@ const config = Merge(webpackBaseConfig, {
     }),
     new HtmlWebpackPlugin({
       inject: true,
-      filename: utils.genPath('examples/dist/index.html'),
+      filename: utils.genPath('docs/index.html'),
       template: utils.genPath('examples/index.html'),
       favicon: utils.genPath('examples/assets/favicon.png'),
     }),
