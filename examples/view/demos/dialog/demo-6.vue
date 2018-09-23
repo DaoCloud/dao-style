@@ -6,25 +6,17 @@
       :header="config.header"
       :closeOnClickOutside="config.closeOnClickOutside"
       :closeOnPressEscape="config.closeOnPressEscape">
-      <div class="body">
-        <h2>Dialog Content</h2>
-        <h2>Dialog Content</h2>
-        <h2>Dialog Content</h2>
-        <h2>Dialog Content</h2>
-        <h2>Dialog Content</h2>
-        <h2>Dialog Content</h2>
-        <h2>Dialog Content</h2>
-        <h2>Dialog Content</h2>
-        <h2>Dialog Content</h2>
-        <h2>Dialog Content</h2>
-      </div>
+      <dialog-demo-form></dialog-demo-form>
     </dao-dialog>
   </div>
 </template>
 
 <script>
+import DialogDemoForm from './dialog-demo-form';
+
 export default {
   name: 'Demo6',
+  components: { DialogDemoForm },
   data() {
     return {
       config: {
@@ -39,12 +31,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss" scoped>
-.demo6 {
-  .body{
-    padding: 20px;
-    line-height: 40px;
-  }
-}
-</style>

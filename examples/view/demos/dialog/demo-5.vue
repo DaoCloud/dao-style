@@ -5,25 +5,17 @@
       :visible.sync="config.visible"
       :header="config.header"
       :size="config.size">
-      <div class="body">
-        <h2>Dialog Content</h2>
-        <h2>Dialog Content</h2>
-        <h2>Dialog Content</h2>
-        <h2>Dialog Content</h2>
-        <h2>Dialog Content</h2>
-        <h2>Dialog Content</h2>
-        <h2>Dialog Content</h2>
-        <h2>Dialog Content</h2>
-        <h2>Dialog Content</h2>
-        <h2>Dialog Content</h2>
-      </div>
+      <dialog-demo-form></dialog-demo-form>
     </dao-dialog>
   </div>
 </template>
 
 <script>
+import DialogDemoForm from './dialog-demo-form';
+
 export default {
   name: 'Demo5',
+  components: { DialogDemoForm },
   data() {
     return {
       config: {
@@ -40,12 +32,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss" scoped>
-.demo5 {
-  .body{
-    padding: 20px;
-    line-height: 40px;
-  }
-}
-</style>

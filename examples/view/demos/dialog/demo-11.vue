@@ -43,9 +43,8 @@ export default {
 
 <style lang="scss" scoped>
 .demo11 {
-  .body{
+  .body {
     padding: 20px;
-    line-height: 40px;
   }
 }
 </style>

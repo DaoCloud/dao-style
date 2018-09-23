@@ -5,28 +5,20 @@
       :visible.sync="config.visible"
       :header="config.header"
       :lockScroll="config.lockScroll">
-      <div class="body">
-        <h2>Dialog Content</h2>
-        <h2>Dialog Content</h2>
-        <h2>Dialog Content</h2>
-        <h2>Dialog Content</h2>
-        <h2>Dialog Content</h2>
-        <h2>Dialog Content</h2>
-        <h2>Dialog Content</h2>
-        <h2>Dialog Content</h2>
-        <h2>Dialog Content</h2>
-        <h2>Dialog Content</h2>
-      </div>
+      <dialog-demo-form></dialog-demo-form>
     </dao-dialog>
   </div>
 </template>
 
 <script>
+import DialogDemoForm from './dialog-demo-form';
+
 export default {
   name: 'Demo7',
+  components: { DialogDemoForm },
   data() {
     return {
-      config:           {
+      config: {
         visible: false,
         header: {
           title: '不锁定 body 滚动',
@@ -37,12 +29,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss" scoped>
-.demo7 {
-  .body{
-    padding: 20px;
-    line-height: 40px;
-  }
-}
-</style>

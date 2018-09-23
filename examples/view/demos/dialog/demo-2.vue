@@ -4,31 +4,23 @@
     <dao-dialog
       :visible.sync="config.visible"
       :header="config.header">
-      <div class="body">
-        <h2>Dialog Content</h2>
-        <h2>Dialog Content</h2>
-        <h2>Dialog Content</h2>
-        <h2>Dialog Content</h2>
-        <h2>Dialog Content</h2>
-        <h2>Dialog Content</h2>
-        <h2>Dialog Content</h2>
-        <h2>Dialog Content</h2>
-        <h2>Dialog Content</h2>
-        <h2>Dialog Content</h2>
-      </div>
+      <dialog-demo-form></dialog-demo-form>
     </dao-dialog>
   </div>
 </template>
 
 <script>
+import DialogDemoForm from './dialog-demo-form';
+
 export default {
   name: 'Demo2',
+  components: { DialogDemoForm },
   data() {
     return {
       config: {
         visible: false,
         header: {
-          title: '显示关闭按钮',
+          title: '自定义 Header',
           showClose: true,
         },
       },
@@ -36,12 +28,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss" scoped>
-.demo2 {
-  .body{
-    padding: 20px;
-    line-height: 40px;
-  }
-}
-</style>

@@ -6,36 +6,14 @@
       :closeOnClickOutside="true"
       :header="false"
       :footer="false">
-      <div class="body">
-        <h2>Dialog Content</h2>
-        <h2>Dialog Content</h2>
-        <h2>Dialog Content</h2>
-        <h2>Dialog Content</h2>
-        <h2>Dialog Content</h2>
-        <h2>Dialog Content</h2>
-        <h2>Dialog Content</h2>
-        <h2>Dialog Content</h2>
-        <h2>Dialog Content</h2>
-        <h2>Dialog Content</h2>
-      </div>
+      <dialog-demo-form></dialog-demo-form>
     </dao-dialog>
     <button class="dao-btn blue" @click="customHeaderAndBody.visible = true">定制header, 定制footer</button>
     <dao-dialog
       :visible.sync="customHeaderAndBody.visible"
       :closeOnClickOutside="true">
       <div slot="header">custom header</div>
-      <div class="body">
-        <h2>Dialog Content</h2>
-        <h2>Dialog Content</h2>
-        <h2>Dialog Content</h2>
-        <h2>Dialog Content</h2>
-        <h2>Dialog Content</h2>
-        <h2>Dialog Content</h2>
-        <h2>Dialog Content</h2>
-        <h2>Dialog Content</h2>
-        <h2>Dialog Content</h2>
-        <h2>Dialog Content</h2>
-      </div>
+      <dialog-demo-form></dialog-demo-form>
       <div slot="footer">custom footer</div>
     </dao-dialog>
     <button class="dao-btn blue" @click="customTitle.visible = true">自定义title</button>
@@ -43,25 +21,17 @@
       :visible.sync="customTitle.visible"
       :closeOnClickOutside="true">
       <div slot="title"><i>自定义 title</i></div>
-      <div class="body">
-        <h2>Dialog Content</h2>
-        <h2>Dialog Content</h2>
-        <h2>Dialog Content</h2>
-        <h2>Dialog Content</h2>
-        <h2>Dialog Content</h2>
-        <h2>Dialog Content</h2>
-        <h2>Dialog Content</h2>
-        <h2>Dialog Content</h2>
-        <h2>Dialog Content</h2>
-        <h2>Dialog Content</h2>
-      </div>
+      <dialog-demo-form></dialog-demo-form>
     </dao-dialog>
   </div>
 </template>
 
 <script>
+import DialogDemoForm from './dialog-demo-form';
+
 export default {
   name: 'Demo12',
+  components: { DialogDemoForm },
   data() {
     return {
       bodyOnly: {
@@ -77,12 +47,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss" scoped>
-.demo12 {
-  .body{
-    padding: 20px;
-    line-height: 40px;
-  }
-}
-</style>

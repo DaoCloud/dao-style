@@ -5,31 +5,23 @@
       :visible.sync="config.visible"
       :header="config.header"
       :footer="config.footer">
-      <div class="body">
-        <h2>Dialog Content</h2>
-        <h2>Dialog Content</h2>
-        <h2>Dialog Content</h2>
-        <h2>Dialog Content</h2>
-        <h2>Dialog Content</h2>
-        <h2>Dialog Content</h2>
-        <h2>Dialog Content</h2>
-        <h2>Dialog Content</h2>
-        <h2>Dialog Content</h2>
-        <h2>Dialog Content</h2>
-      </div>
+      <dialog-demo-form></dialog-demo-form>
     </dao-dialog>
   </div>
 </template>
 
 <script>
+import DialogDemoForm from './dialog-demo-form';
+
 export default {
   name: 'Demo3',
+  components: { DialogDemoForm },
   data() {
     return {
       config: {
         visible: false,
         header: {
-          title: '自定义 footer 属性',
+          title: '自定义 Footer',
         },
         footer: {
           confirmText: '确认1',
@@ -41,12 +33,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss" scoped>
-.demo3 {
-  .body{
-    padding: 20px;
-    line-height: 40px;
-  }
-}
-</style>
