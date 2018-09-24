@@ -131,7 +131,7 @@ const components = [
     path: 'input',
     meta: {
       available: true,
-      docs: false,
+      docs: true,
       test: true,
     },
   },
