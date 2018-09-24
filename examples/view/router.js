@@ -33,7 +33,7 @@ const components = [
     path: 'alert',
     meta: {
       available: true,
-      docs: false,
+      docs: true,
       test: false,
     },
   }, {
