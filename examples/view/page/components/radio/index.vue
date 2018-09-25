@@ -1,159 +1,108 @@
 <template>
-  <div>
-    <h1>simple radio</h1>
-    <br><hr><br>    
-    <dao-radio-group>
-      <dao-radio label="111" v-model="simple">1111</dao-radio>
-      <dao-radio label="222" v-model="simple" :disabled="true">2222</dao-radio>
-      <dao-radio label="333" v-model="simple">3333</dao-radio>
-    </dao-radio-group>
-    <br>
-    <h1>block radio</h1>
-    <br><hr><br>
-    <dao-radio-group type="block">
-      <dao-radio label="111" v-model="block" headline="this is a headline" description="this is a description">
-        <svg><use xlink:href="#color-icon_apple"></use></svg>
-      </dao-radio>
-      <dao-radio label="222" v-model="block" headline="this is a headline" description="this is a description">
-        <svg><use xlink:href="#color-icon_apple"></use></svg>
-      </dao-radio>
-    </dao-radio-group>
-    <br>
-    <h1>grid radio</h1>
-    <br><hr><br>
-    <dao-radio-group type="grid" :grid-col="5">
-      <dao-radio label="111" v-model="grid" headline="this is a headline" description="this is a description">
-        <svg slot="icon"><use xlink:href="#color-icon_apple"></use></svg>
-      </dao-radio>
-      <dao-radio label="222" v-model="grid" headline="this is a headline" description="this is a description">
-        <svg slot="icon"><use xlink:href="#color-icon_apple"></use></svg>
-      </dao-radio>
-      <dao-radio label="333" v-model="grid" headline="this is a headline" description="this is a description">
-        <svg slot="icon"><use xlink:href="#color-icon_apple"></use></svg>
-      </dao-radio>
-      <dao-radio label="444" v-model="grid" headline="this is a headline" description="this is a description">
-        <svg slot="icon"><use xlink:href="#color-icon_apple"></use></svg>
-      </dao-radio>
-    </dao-radio-group>
-    <br>
-    <h1>card radio</h1>
-    <br><hr><br>
-    <dao-radio-group name="test" type="card">
-      <dao-radio 
-        label="111"
-        v-model="a"
-        headline="this is a test headline" 
-        description="this is a description"
-        :disabled="true">
-        <svg class="radio-icon" slot="icon"><use xlink:href="#color-icon_apple"></use></svg>
-      </dao-radio>
-      <dao-radio
-        label="222"
-        v-model="a"
-        headline="this is a test headline" 
-        description="this is a description">
-        <svg class="radio-icon" slot="icon"><use xlink:href="#color-icon_apple"></use></svg>
-      </dao-radio>
-      <dao-radio
-        label="333"
-        v-model="a"
-        headline="this is a test headline" 
-        description="this is a description">
-        <svg slot="icon"><use xlink:href="#color-icon_apple"></use></svg>
-      </dao-radio>
-      <dao-radio
-        label="444"
-        v-model="a"
-        headline="this is a test headline"
-        subheadline="this is a subheadline"
-        description="this is a description">
-        <svg slot="icon"><use xlink:href="#color-icon_apple"></use></svg>
-      </dao-radio>
-    </dao-radio-group>
+  <div class="docs-radio">
+    <docs-title :name="$t('radio')" desc="dao-radio 是一个单选框组件"></docs-title>
+    <docs-section>
+      <template slot="title">默认用法</template>
+      <template slot="content">
+        <demo-code>
+          <demo1 slot="demo"></demo1>
+          <code-reader slot="code" file="radio/demo-1.vue"></code-reader>
+          <md-reader slot="desc">
+              结合 `dao-radio-group` 元素和 子元素 `dao-radio` 可实现单选组，在 `dao-radio` 中绑定 `v-model`,在 `el-radio` 中设置好 `label` 即可,另外通过在 `label`中绑定 `disabled` 属性为 `true` 使单选框处于不可用状态。 
+          </md-reader>
+        </demo-code>
+      </template>
+    </docs-section>
 
-    <br>
-    <h1>plus radio</h1>
-    <br><hr><br>
+    <docs-section>
+      <template slot="title">block版</template>
+      <template slot="content">
+        <demo-code>
+          <demo2 slot="demo"></demo2>
+          <code-reader slot="code" file="radio/demo-2.vue"></code-reader>
+          <md-reader slot="desc">
+            在 `dao-radio-group` 中绑定 `type` 为 `block`, `dao-radio` 中设置好 `headline` 和 `description`即可。
+          </md-reader>
+        </demo-code>
+      </template>
+    </docs-section>
 
-    <dao-radio-group name="plus" type="plus" :grid-col="4">
-      <dao-radio headline="this is headline" v-model="plus" label="苹果1" select-title="请选择" :options="options" @select-change="handleSelectChange">
-        <svg slot="icon"><use xlink:href="#color-icon_apple"></use></svg>
-      </dao-radio>
-      <dao-radio headline="this is headline" v-model="plus" label="苹果2" select-title="请选择" :options="asyncOptions" :async="async" @select-change="handleSelectChange">
-        <svg slot="icon"><use xlink:href="#color-icon_apple"></use></svg>
-      </dao-radio>
-      <dao-radio headline="this is headline" v-model="plus" label="苹果3" select-title="请选择" @select-change="handleSelectChange">
-        <svg slot="icon"><use xlink:href="#color-icon_apple"></use></svg>
-      </dao-radio>
-      <dao-radio headline="this is headline" v-model="plus" label="苹果4" select-title="请选择" :disabled="true">
-        <svg slot="icon"><use xlink:href="#color-icon_apple"></use></svg>
-      </dao-radio>
-    </dao-radio-group>
+    <docs-section>
+      <template slot="title">grid版</template>
+      <template slot="content">
+        <demo-code>
+          <demo3 slot="demo"></demo3>
+          <code-reader slot="code" file="radio/demo-3.vue"></code-reader>
+          <md-reader slot="desc">
+            在 `dao-radio-group` 中绑定 `type` 为 `gird` 和绑定 `grid-col`属性, `dao-radio` 中设置好 `headline` 和 `description`即可。
+          </md-reader>
+        </demo-code>
+      </template>
+    </docs-section>
+
+    <docs-section>
+      <template slot="title">
+        <docs-title name="<radio/> 属性" size="sm"></docs-title>
+      </template>
+      <template slot="content">
+        <docs-table :rows="radioAttrs" type="attr"></docs-table>
+      </template>
+    </docs-section>
   </div>
 </template>
+
 <script>
+  import Demo1 from '@demos/radio/demo-1';
+  import Demo2 from '@demos/radio/demo-2';
+  import Demo3 from '@demos/radio/demo-3';
+
   export default {
-    watch: {
-      a(v) {
-        console.log('This value a is ', v);
-      },
+    name: 'DocsRadio',
+    components: {
+      Demo1,
+      Demo2,
+      Demo3,
     },
     data() {
       return {
-        a: 2222,
-        simple: undefined,
-        block: undefined,
-        grid: undefined,
-        plus: {
-          value: '苹果1',
-          select: 2,
-        },
-        options: [{
-          value: 1,
-          label: '1111',
+        radioAttrs: [{
+          name: 'grid-col',
+          type: 'number',
+          desc: '启用 grid 布局，并指定列数',
+          options: [''],
+          default: '-',
         }, {
-          value: 2,
-          label: '2222',
+          name: 'type',
+          type: 'string',
+          desc: 'radio 组的类型',
+          options: ['simple', 'block', 'grid'],
+          default: 'simple',
         }, {
-          value: 3,
-          label: '3333',
+          name: 'disabled',
+          type: 'boolean',
+          desc: '控制 radio 是否被禁用',
+          options: ['true', 'false'],
+          default: 'false',
+        }, {
+          name: 'label',
+          type: ['string', 'number', 'object', '...'],
+          desc: 'radio 被选中的值,必填',
+          options: ['-'],
+          default: '-',
+        }, {
+          name: 'headline',
+          type: 'string',
+          desc: '指定 radio-block版、radio-grid版中的标题,必填',
+          options: ['-'],
+          default: '-',
+        }, {
+          name: 'description',
+          type: 'string',
+          desc: '指定 radio-block版、radio-grid版中的描述,必填',
+          options: ['-'],
+          default: '-',
         }],
-        asyncOptions: [],
       };
-    },
-    methods: {
-      test(v) {
-        console.log('The test value is ', v);
-      },
-      async() {
-        const options = [{
-          value: 1,
-          label: '1111',
-        }, {
-          value: 2,
-          label: '2222',
-        }, {
-          value: 3,
-          label: '3333',
-        }];
-        const p = new Promise((res, rej) => {
-          if (true) {
-            setTimeout(() => {
-              res(options);
-            }, 2000);
-          } else {
-            setTimeout(() => {
-              rej(0);
-            }, 2000);
-          }
-        });
-        return p.then((res) => {
-          this.asyncOptions = res;
-        });
-      },
-      handleSelectChange(v) {
-        console.log('demo-change', v);
-      },
     },
   };
 </script>
