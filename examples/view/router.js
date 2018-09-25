@@ -78,7 +78,7 @@ const components = [
     path: 'dialog',
     meta: {
       available: true,
-      docs: false,
+      docs: true,
       test: false,
     },
   },
