@@ -230,7 +230,7 @@ const components = [
     path: 'steps',
     meta: {
       available: true,
-      docs: false,
+      docs: true,
       test: false,
     },
   }, {
