@@ -1,6 +1,6 @@
 <template>
   <div class="docs-dialog">
-    <dcos-title :name="$t('dialog')" desc="dao-dialog 是一个模态对话框组件"></dcos-title>
+    <docs-title :name="$t('dialog')" desc="dao-dialog 是一个模态对话框组件"></docs-title>
     <!--demos-->
     <docs-section>
       <template slot="title">默认版本</template>
@@ -151,7 +151,7 @@
     <!-- attributes -->
     <docs-section>
       <template slot="title">
-        <dcos-title name="<dao-dialog/> 属性" size="sm"></dcos-title>
+        <docs-title name="<dao-dialog/> 属性" size="sm"></docs-title>
       </template>
       <template slot="content" type="attr">
         <docs-table :rows="dialogAttrs" type="attr"></docs-table>
@@ -159,7 +159,7 @@
     </docs-section>
     <docs-section>
       <template slot="title">
-        <dcos-title name="header 对象" size="sm"></dcos-title>
+        <docs-title name="header 对象" size="sm"></docs-title>
       </template>
       <template slot="content" type="attr">
         <docs-table :rows="headerAttrs" type="attr"></docs-table>
@@ -167,7 +167,7 @@
     </docs-section>
     <docs-section>
       <template slot="title">
-        <dcos-title name="footer 对象" size="sm"></dcos-title>
+        <docs-title name="footer 对象" size="sm"></docs-title>
       </template>
       <template slot="content" type="attr">
         <docs-table :rows="footerAttrs" type="attr"></docs-table>
@@ -175,7 +175,7 @@
     </docs-section>
     <docs-section>
       <template slot="title">
-        <dcos-title name="dialog 触发的事件" size="sm"></dcos-title>
+        <docs-title name="dialog 触发的事件" size="sm"></docs-title>
       </template>
       <template slot="content" type="event">
         <docs-table :rows="dialogEvents" type="event"></docs-table>
@@ -183,7 +183,7 @@
     </docs-section>
     <docs-section>
       <template slot="title">
-        <dcos-title name="dialog 的具名 slot" size="sm"></dcos-title>
+        <docs-title name="dialog 的具名 slot" size="sm"></docs-title>
       </template>
       <template slot="content" type="slot">
         <docs-table :rows="dialogSlots" type="slot"></docs-table>
