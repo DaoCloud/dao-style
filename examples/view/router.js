@@ -195,7 +195,7 @@ const components = [
     path: 'radio',
     meta: {
       available: true,
-      docs: false,
+      docs: true,
       test: false,
     },
   }, {
