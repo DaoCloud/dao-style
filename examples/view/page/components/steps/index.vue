@@ -1,78 +1,118 @@
 <template>
-  <div>
-    <div class="dao-btn ghost" @click="lastStep">上一步</div>
-    <div class="dao-btn blue" @click="nextStep">下一步</div>
-    <dao-steps v-model="currentStep">
-      <dao-step slot="step" index="1" title="步骤一">
-        <dao-substep index="1-1">1-1</dao-substep>
-        <dao-substep index="1-2" :no-click="noClick">1-2(不可点击)</dao-substep>
-        <dao-substep index="1-3" :no-active="noActive">1-3(不可访问)</dao-substep>
-      </dao-step>
-      <dao-step slot="step" index="2" title="步骤二" :active="activeStepFun">
-        <dao-substep index="2-1" :active="activeSubstepFun">2-1</dao-substep>
-        <dao-substep index="2-2">2-2</dao-substep>
-        <dao-substep index="2-3">2-3</dao-substep>
-      </dao-step>
-      <dao-step slot="step" index="3" title="步骤三">
-        <dao-substep index="3-1">3-1</dao-substep>
-        <dao-substep index="3-2">3-2</dao-substep>
-        <dao-substep index="3-3">3-3</dao-substep>
-      </dao-step>
-      <dao-step slot="step" index="4" title="步骤四">
-        <dao-substep index="4-1">4-1</dao-substep>
-        <dao-substep index="4-2">4-2</dao-substep>
-        <dao-substep index="4-3">4-3</dao-substep>
-      </dao-step>
-      <dao-step-content slot="content" index="1-1">步骤 1-1 的内容</dao-step-content>
-      <dao-step-content slot="content" index="1-2">步骤 1-2 的内容</dao-step-content>
-      <dao-step-content slot="content" index="1-3">步骤 1-3 的内容</dao-step-content>
-      <dao-step-content slot="content" index="2-1">步骤 2-1 的内容</dao-step-content>
-      <dao-step-content slot="content" index="2-2">步骤 2-2 的内容</dao-step-content>
-      <dao-step-content slot="content" index="2-3">步骤 2-3 的内容</dao-step-content>
-      <dao-step-content slot="content" index="3-1">步骤 3-1 的内容</dao-step-content>
-      <dao-step-content slot="content" index="3-2">步骤 3-2 的内容</dao-step-content>
-      <dao-step-content slot="content" index="3-3">步骤 3-3 的内容</dao-step-content>
-      <dao-step-content slot="content" index="4-1">步骤 4-1 的内容</dao-step-content>
-      <dao-step-content slot="content" index="4-2">步骤 4-2 的内容</dao-step-content>
-      <dao-step-content slot="content" index="4-3">步骤 4-3 的内容</dao-step-content>
-    </dao-steps>
+  <div class="docs-spin">
+    <docs-title :name="$t('steps')" desc="dao-steps 是一个多步骤视图组件"></docs-title>
+    <docs-section>
+      <template slot="title">默认用法</template>
+      <template slot="content">
+        <demo-code>
+          <demo1 slot="demo"></demo1>
+          <code-reader slot="code" file="steps/demo-1.vue"></code-reader>
+          <md-reader slot="desc">
+          该多步骤视图组件由 `dao-steps` `dao-step` `dao-substep`  `dao-step-content` 四个组件组合而成。
+          其中 `dao-steps` 的 `v-model` 允许通过编程的方式调整当前激活的 step
+          </md-reader>
+        </demo-code>
+      </template>
+    </docs-section>
+    <docs-section>
+      <template slot="title">
+        <docs-title
+          size="sm"
+          name="<dao-step/> 属性"
+          desc="需要 `step` 作为插槽名">
+        </docs-title>
+      </template>
+      <template slot="content">
+        <docs-table :rows="stepAttrs" type="attr"></docs-table>
+      </template>
+    </docs-section>
+    <docs-section>
+      <template slot="title">
+        <docs-title
+          size="sm"
+          name="<dao-substep/> 属性">
+        </docs-title>
+      </template>
+      <template slot="content">
+        <docs-table :rows="substepAttrs" type="attr"></docs-table>
+      </template>
+    </docs-section>
+    <docs-section>
+      <template slot="title">
+        <docs-title
+          size="sm"
+          name="<dao-step-content/> 属性"
+          desc="需要 `content` 作为插槽名">
+        </docs-title>
+      </template>
+      <template slot="content">
+        <docs-table :rows="stepContentAttrs" type="attr"></docs-table>
+      </template>
+    </docs-section>
   </div>
 </template>
 <script>
+import Demo1 from '@demos/steps/demo-1';
+
 export default {
+  name: 'DocsSteps',
   data() {
     return {
-      noClick: true,
-      noActive: true,
-      currentStep: '1-1',
-      steps: ['1-1', '1-2', '1-3', '2-1', '2-2', '2-3', '3-1', '3-2', '3-3', '4-1', '4-2', '4-3'],
+      stepAttrs: [{
+        name: 'index',
+        type: 'String',
+        desc: 'step 的唯一标志',
+      }, {
+        name: 'title',
+        type: 'String',
+        desc: 'step 的 title',
+      }, {
+        name: 'no-click',
+        type: 'Boolean',
+        desc: '是否可点击',
+        options: [true, false],
+        default: true,
+      }, {
+        name: 'no-active',
+        type: 'Boolean',
+        desc: '是否可激活',
+        options: [true, false],
+        default: true,
+      }, {
+        name: 'active',
+        type: 'Function',
+        desc: '激活的回调',
+      }],
+      substepAttrs: [{
+        name: 'index',
+        type: 'String',
+        desc: 'substep 的唯一标志',
+      }, {
+        name: 'no-click',
+        type: 'Boolean',
+        desc: '是否可点击',
+        options: [true, false],
+        default: true,
+      }, {
+        name: 'no-active',
+        type: 'Boolean',
+        desc: '是否可激活',
+        options: [true, false],
+        default: true,
+      }, {
+        name: 'active',
+        type: 'Function',
+        desc: '激活的回调',
+      }],
+      stepContentAttrs: [{
+        name: 'index',
+        type: 'String',
+        desc: 'step-content 的唯一标志',
+      }],
     };
   },
-  methods: {
-    lastStep() {
-      const index = this.steps.indexOf(this.currentStep);
-      if (index === -1 || index === 0) return;
-      this.currentStep = this.steps[index - 1];
-    },
-    nextStep() {
-      const index = this.steps.indexOf(this.currentStep);
-      if (index === -1 || index === this.steps.length - 1) return;
-      this.currentStep = this.steps[index + 1];
-    },
-    activeStepFun() {
-      console.log('这是到步骤 二 的回调函数哦～');
-    },
-    activeSubstepFun() {
-      console.log('这是到步骤 2-1 的回调函数哦～');
-    },
-  },
-  watch: {
-    currentStep: {
-      handler(newV) {
-        console.log('当前步骤是：', newV);
-      },
-      deep: true,
-    },
+  components: {
+    Demo1,
   },
 };
 </script>

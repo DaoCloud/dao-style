@@ -1,14 +1,13 @@
 @import '../dao-color.scss';
-
 .dao-steps {
+  display: flex;
   &-sidebar {
-    float: left;
+    flex-shrink: 0;
     width: 200px;
     margin-right: 20px;
   }
   &-content {
-    float: left;
-    width: calc(100% - 220px);
+    width: 100%;
   }
   .dao-step {
     &:last-child .dao-substep:last-child:after {
@@ -121,7 +120,7 @@
       &:after {
         top: 64%;
       }
-      .dot{
+      .dot {
         visibility: visible;
         &:before {
           background-color: $blue;
