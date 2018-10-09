@@ -157,7 +157,7 @@ const components = [
     path: 'list-group',
     meta: {
       available: true,
-      docs: false,
+      docs: true,
       test: false,
     },
   }, {
