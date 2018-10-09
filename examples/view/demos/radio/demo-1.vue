@@ -1,9 +1,13 @@
 <template>
   <div>
-    <dao-radio-group type="simple">
-      <dao-radio label="111" v-model="simple">1111</dao-radio>
-      <dao-radio label="222" v-model="simple" :disabled="true">2222</dao-radio>
-      <dao-radio label="333" v-model="simple">3333</dao-radio>
+    当前选中的是: {{val}}
+    <br>
+    <br>
+    <dao-radio-group>
+      <dao-radio label="dce" v-model="val">DaoCloud Enterprise</dao-radio>
+      <dao-radio label="dcs" v-model="val" :disabled="true">DaoCloud Services</dao-radio>
+      <dao-radio label="dcv" v-model="val">DaoCloud Voice</dao-radio>
+      <dao-radio label="dci" v-model="val">DaoCloud Insight</dao-radio>
     </dao-radio-group>
   </div>
 </template>
@@ -13,7 +17,7 @@
   export default {
     data() {
       return {
-        simple: undefined,
+        val: 'dce',
       };
     },
   };

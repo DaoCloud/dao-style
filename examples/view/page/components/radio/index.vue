@@ -8,15 +8,14 @@
           <demo1 slot="demo"></demo1>
           <code-reader slot="code" file="radio/demo-1.vue"></code-reader>
           <md-reader slot="desc">
-              结合 `dao-radio-group` 元素和 子元素 `dao-radio` 可实现单选组，在 `dao-radio` 中绑定 `v-model`,在 `el-radio` 中设置好 `label` 即可,另外通过在 `label`中绑定 `disabled` 属性为 `true` 使单选框处于不可用状态。 
+            单选框组件由 `dao-radio-group` 和 `dao-radio` 两个组件配合组成。 
           </md-reader>
         </demo-code>
       </template>
     </docs-section>
-
     <docs-section>
       <template slot="title">
-        <docs-title name="<radio/> 属性" size="sm"></docs-title>
+        <docs-title name="<dao-radio/> 属性" size="sm"></docs-title>
       </template>
       <template slot="content">
         <docs-table :rows="radioAttrs" type="attr"></docs-table>
@@ -36,23 +35,15 @@
     data() {
       return {
         radioAttrs: [{
-          name: 'type',
-          type: 'string',
-          desc: 'radio 组的类型',
-          options: ['simple', 'block', 'grid'],
-          default: 'simple',
+          name: 'label',
+          type: ['any'],
+          desc: '`dao-radio` 被选中的值, 必填',
         }, {
           name: 'disabled',
           type: 'boolean',
-          desc: '控制 radio 是否被禁用',
+          desc: '控制 `dao-radio` 是否被禁用',
           options: ['true', 'false'],
           default: 'false',
-        }, {
-          name: 'label',
-          type: ['string', 'number', 'object', '...'],
-          desc: 'radio 被选中的值,必填',
-          options: ['-'],
-          default: '-',
         }],
       };
     },
