@@ -25,9 +25,10 @@ const config = Merge(webpackBaseConfig, {
     }],
   },
   output: {
-    path: utils.genPath('examples/dist'),
-    publicPath: '',
-    filename: utils.isProduction ? 'js/[name].[chunkhash].js' : 'js/[name].js',
+    path: utils.genPath('docs'),
+    publicPath: utils.isProduction ? 'https://daocloud.github.io/dao-style/' : '',
+    // filename: utils.isProduction ? 'js/[name].[chunkhash].js' : 'js/[name].js',
+    filename: 'js/[name].js',
     // avoid jsonpFunction conflicts
     jsonpFunction: 'daoStyleJsonpFunction',
   },
@@ -48,12 +49,14 @@ const config = Merge(webpackBaseConfig, {
     }),
     new HtmlWebpackPlugin({
       inject: true,
-      filename: utils.genPath('examples/dist/index.html'),
+      filename: utils.genPath('docs/index.html'),
       template: utils.genPath('examples/index.html'),
       favicon: utils.genPath('examples/assets/favicon.png'),
     }),
     new FriendlyErrorsPlugin(),
-    new ExtractTextPlugin(utils.isProduction ? 'css/[name].[md5:contenthash:hex:20].css' : 'css/[name].css'),
+    // new ExtractTextPlugin(utils.isProduction ?
+    // 'css/[name].[md5:contenthash:hex:20].css' : 'css/[name].css'),
+    new ExtractTextPlugin('css/[name].css'),
   ],
 });
 

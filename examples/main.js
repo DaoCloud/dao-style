@@ -4,6 +4,8 @@ import components from './view/components';
 import * as plugins from './plugins';
 import * as vueRouter from './view/router';
 
+Vue.config.productionTip = false;
+
 Vue.use(plugins);
 Vue.use(components);
 Vue.use(vueRouter);
