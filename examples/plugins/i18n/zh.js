@@ -49,7 +49,7 @@ export default {
   slot_name: '插槽名',
   show_more: '加载更多...',
   index: {
-    desc: '基于 Vue.js 构建的高质量 UI 工具包',
+    desc: '基于 Vue.js 构建的高质量组件库',
     cr: '由 {company} 打造和维护',
   },
   installationPage: {

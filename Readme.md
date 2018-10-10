@@ -2,25 +2,18 @@
 [![dao-style](https://img.shields.io/npm/v/dao-style.svg?style=flat-square)](https://www.npmjs.org/package/dao-style)
 [![NPM downloads](https://img.shields.io/npm/dt/dao-style.svg?style=flat-square)](https://npmjs.org/package/dao-style)
 
-### A high quality UI Toolkit built on Vue.js.
+### A high quality component library built on Vue.js.
 
 ## Docs
 
-**[latest](docs)**
-
-## Features
-
-- Dozens of useful and beautiful components.
-- Friendly API. It's made for people with any skill level.
-- Extensive documentation and demos.
-- It is quite beautiful.
+**[latest](https://daocloud.github.io/dao-style)**
 
 ## Who's using dao-style
 
 - [DaoCloud](https://www.daocloud.io/)
 - [DaoVoice](http://daovoice.io/)
 
-> If your company or products use dao-style, welcome to click [here](https://github.com/DaoCloud/dao-style/issues/543) to leave a message.
+> If you are also using dao-style, please click [here](https://github.com/DaoCloud/dao-style/issues/543) to tell us.
 
 ## Install
 
