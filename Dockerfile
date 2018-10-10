@@ -22,8 +22,8 @@ EXPOSE 80
 
 RUN npm install \
     && npm rebuild node-sass \
-    && npm run examples \
-    && cp -r ./examples/dist/* /usr/share/nginx/html/ \
+    && npm run docs \
+    && cp -r ./docs/* /usr/share/nginx/html/ \
     && rm -rf /app
 
 CMD nginx -g "daemon off;"

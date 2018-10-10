@@ -57,4 +57,4 @@ examples
 4. 常量名使用 KebaCase
 
 ## 5. 提交 Commit、发起 PR
-1. 参考 [pr-spec](../docs/pr-spec.md)
+1. 参考 [pr-spec](../project/pr-spec.md)

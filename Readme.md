@@ -75,7 +75,7 @@ If you want to contribute or have questions or bugs to report:
 
 **Bugs:** [Report bugs](https://github.com/DaoCloud/dao-style/issues/new)
 
-**Contribute:** [How to contribute](https://github.com/DaoCloud/dao-style/docs/pr-spec.md)
+**Contribute:** [How to contribute](https://github.com/DaoCloud/dao-style/project/pr-spec.md)
 
 ## License
 [MIT](http://opensource.org/licenses/MIT)

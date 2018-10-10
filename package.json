@@ -22,7 +22,7 @@
   "scripts": {
     "start": "npm run dev",
     "dev": "cross-env NODE_ENV=development && webpack-dev-server --hot --inline --progress --config build/webpack.example.config.js",
-    "examples": "rimraf examples/dist && cross-env NODE_ENV=production webpack --config build/webpack.example.config.js",
+    "docs": "rimraf docs && cross-env NODE_ENV=production webpack --config build/webpack.example.config.js",
     "dist": "rimraf dist && cross-env NODE_ENV=production webpack --config build/webpack.prod.config.js",
     "lint": "eslint --ext .js,.vue src",
     "unit": "karma start test/unit/karma.conf.js --single-run",
