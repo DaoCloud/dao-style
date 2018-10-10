@@ -54,7 +54,9 @@ const config = Merge(webpackBaseConfig, {
       favicon: utils.genPath('examples/assets/favicon.png'),
     }),
     new FriendlyErrorsPlugin(),
-    new ExtractTextPlugin(utils.isProduction ? 'css/[name].[md5:contenthash:hex:20].css' : 'css/[name].css'),
+    // new ExtractTextPlugin(utils.isProduction ?
+    // 'css/[name].[md5:contenthash:hex:20].css' : 'css/[name].css'),
+    new ExtractTextPlugin('css/[name].css'),
   ],
 });
 
