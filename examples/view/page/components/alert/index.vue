@@ -86,6 +86,18 @@
       </template>
     </docs-section>
     <docs-section>
+      <template slot="title">带有 loading 状态的 Alert</template>
+      <template slot="content">
+        <demo-code>
+          <demo8 slot="demo"></demo8>
+          <code-reader slot="code" file="alert/demo-8.vue"></code-reader>
+          <md-reader slot="desc">
+            你可以在 `show()`中注册一个 `promise` 函数, 当 `promise` resolve 的时候就是 loading 结束的时候.
+          </md-reader>
+        </demo-code>
+      </template>
+    </docs-section>
+    <docs-section>
       <template slot="title">
         <docs-title name="<dao-alert/> 属性" size="sm"></docs-title>
       </template>
@@ -104,6 +116,7 @@
   import Demo5 from '@demos/alert/demo-5';
   import Demo6 from '@demos/alert/demo-6';
   import Demo7 from '@demos/alert/demo-7';
+  import Demo8 from '@demos/alert/demo-8';
 
   export default {
     name: 'DocsAlert',
@@ -189,6 +202,7 @@
       Demo5,
       Demo6,
       Demo7,
+      Demo8,
     },
   };
 </script>
