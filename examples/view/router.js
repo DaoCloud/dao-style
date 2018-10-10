@@ -5,6 +5,33 @@ import ComponentsPage from './page/components';
 import ChangeLogs from './page/change-logs';
 import Status from './page/status';
 import Installation from './page/installation';
+import AlertPage from './page/components/alert';
+import AutocompletePage from './page/components/autocomplete';
+import ButtonPage from './page/components/button';
+import CheckboxPage from './page/components/checkbox';
+import ClipboardPage from './page/components/clipboard';
+import DialogPage from './page/components/dialog';
+import DropdownPage from './page/components/dropdown';
+import EditableTablePage from './page/components/editable-table';
+import EditableListPage from './page/components/editable-list';
+import InfoCardPage from './page/components/info-card';
+import InputPage from './page/components/input';
+import ListGroupPage from './page/components/list-group';
+import NumericBadgePage from './page/components/numeric-badge';
+import PopoverPage from './page/components/popover';
+import ProgressPage from './page/components/progress';
+import RadioPage from './page/components/radio';
+import SelectPage from './page/components/select';
+import SelectAllPage from './page/components/select-all';
+import SettingLayoutPage from './page/components/setting-layout';
+import SpinPage from './page/components/spin';
+import StepsPage from './page/components/steps';
+import SwitchPage from './page/components/switch';
+import TabPage from './page/components/tab';
+import TablePage from './page/components/table';
+import TooltipPage from './page/components/tooltip';
+import SvgPage from './page/components/svg';
+import ColorPage from './page/components/color';
 
 // TODO 增加 type 对组件进行分类
 const components = [
@@ -31,6 +58,7 @@ const components = [
     },
   }, {
     path: 'alert',
+    component: AlertPage,
     meta: {
       available: true,
       docs: true,
@@ -38,6 +66,7 @@ const components = [
     },
   }, {
     path: 'autocomplete',
+    component: AutocompletePage,
     meta: {
       available: true,
       docs: false,
@@ -45,6 +74,7 @@ const components = [
     },
   }, {
     path: 'button',
+    component: ButtonPage,
     meta: {
       available: true,
       docs: true,
@@ -62,6 +92,7 @@ const components = [
   // },
   {
     path: 'checkbox',
+    component: CheckboxPage,
     meta: {
       available: true,
       docs: true,
@@ -69,6 +100,7 @@ const components = [
     },
   }, {
     path: 'clipboard',
+    component: ClipboardPage,
     meta: {
       available: true,
       docs: false,
@@ -76,6 +108,7 @@ const components = [
     },
   }, {
     path: 'dialog',
+    component: DialogPage,
     meta: {
       available: true,
       docs: true,
@@ -101,6 +134,7 @@ const components = [
   // },
   {
     path: 'dropdown',
+    component: DropdownPage,
     meta: {
       available: true,
       docs: false,
@@ -108,6 +142,7 @@ const components = [
     },
   }, {
     path: 'editable-table',
+    component: EditableTablePage,
     meta: {
       available: true,
       docs: true,
@@ -115,6 +150,7 @@ const components = [
     },
   }, {
     path: 'editable-list',
+    component: EditableListPage,
     meta: {
       available: true,
       docs: true,
@@ -122,6 +158,7 @@ const components = [
     },
   }, {
     path: 'info-card',
+    component: InfoCardPage,
     meta: {
       available: true,
       docs: false,
@@ -129,6 +166,7 @@ const components = [
     },
   }, {
     path: 'input',
+    component: InputPage,
     meta: {
       available: true,
       docs: true,
@@ -155,6 +193,7 @@ const components = [
   // },
   {
     path: 'list-group',
+    component: ListGroupPage,
     meta: {
       available: true,
       docs: true,
@@ -162,6 +201,7 @@ const components = [
     },
   }, {
     path: 'numeric-badge',
+    component: NumericBadgePage,
     meta: {
       available: true,
       docs: true,
@@ -179,6 +219,7 @@ const components = [
   // },
   {
     path: 'popover',
+    component: PopoverPage,
     meta: {
       available: true,
       docs: false,
@@ -186,6 +227,7 @@ const components = [
     },
   }, {
     path: 'progress',
+    component: ProgressPage,
     meta: {
       available: true,
       docs: true,
@@ -193,6 +235,7 @@ const components = [
     },
   }, {
     path: 'radio',
+    component: RadioPage,
     meta: {
       available: true,
       docs: true,
@@ -200,6 +243,7 @@ const components = [
     },
   }, {
     path: 'select',
+    component: SelectPage,
     meta: {
       available: true,
       docs: false,
@@ -207,6 +251,7 @@ const components = [
     },
   }, {
     path: 'select-all',
+    component: SelectAllPage,
     meta: {
       available: true,
       docs: false,
@@ -214,6 +259,7 @@ const components = [
     },
   }, {
     path: 'setting-layout',
+    component: SettingLayoutPage,
     meta: {
       available: true,
       docs: true,
@@ -221,6 +267,7 @@ const components = [
     },
   }, {
     path: 'spin',
+    component: SpinPage,
     meta: {
       available: true,
       docs: true,
@@ -228,6 +275,7 @@ const components = [
     },
   }, {
     path: 'steps',
+    component: StepsPage,
     meta: {
       available: true,
       docs: true,
@@ -235,6 +283,7 @@ const components = [
     },
   }, {
     path: 'switch',
+    component: SwitchPage,
     meta: {
       available: true,
       docs: true,
@@ -242,6 +291,7 @@ const components = [
     },
   }, {
     path: 'tab',
+    component: TabPage,
     meta: {
       available: true,
       docs: true,
@@ -249,6 +299,7 @@ const components = [
     },
   }, {
     path: 'table',
+    component: TablePage,
     meta: {
       available: true,
       docs: true,
@@ -256,6 +307,7 @@ const components = [
     },
   }, {
     path: 'tooltip',
+    component: TooltipPage,
     meta: {
       available: true,
       docs: true,
@@ -272,6 +324,7 @@ const components = [
   // },
   {
     path: 'svg',
+    component: SvgPage,
     meta: {
       available: true,
       docs: true,
@@ -279,6 +332,7 @@ const components = [
     },
   }, {
     path: 'color',
+    component: ColorPage,
     meta: {
       available: true,
       docs: true,
