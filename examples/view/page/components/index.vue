@@ -56,7 +56,7 @@ export default {
     height: calc(100vh - 50px);
     .menu{
       flex-shrink: 0;
-      width: 222px;
+      width: 230px;
       overflow: auto;
       padding: 10px 20px;
       height: 100%;
