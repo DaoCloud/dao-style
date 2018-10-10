@@ -26,8 +26,9 @@ const config = Merge(webpackBaseConfig, {
   },
   output: {
     path: utils.genPath('docs'),
-    publicPath: '',
-    filename: utils.isProduction ? 'js/[name].[chunkhash].js' : 'js/[name].js',
+    publicPath: utils.isProduction ? 'https://daocloud.github.io/dao-style/' : '',
+    // filename: utils.isProduction ? 'js/[name].[chunkhash].js' : 'js/[name].js',
+    filename: 'js/[name].js',
     // avoid jsonpFunction conflicts
     jsonpFunction: 'daoStyleJsonpFunction',
   },
