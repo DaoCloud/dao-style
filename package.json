@@ -3,7 +3,7 @@
   "title": "DaoStyle",
   "author": "DaoCloud",
   "license": "MIT",
-  "description": "A high quality UI Toolkit built on Vue.js 2.0",
+  "description": "A high quality component library built on Vue.js",
   "homepage": "https://daocloud.github.io/dao-style-demo",
   "keywords": [
     "dao-style",

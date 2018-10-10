@@ -49,7 +49,7 @@ export default {
   slot_name: 'Slot Name',
   show_more: 'Load More...',
   index: {
-    desc: 'A high quality UI Toolkit built on Vue.js.',
+    desc: 'A high quality component library built on Vue.js',
     cr: 'Build and Maintained Open‑Source by {company}',
   },
   installationPage: {
