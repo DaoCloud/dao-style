@@ -50,6 +50,9 @@ module.exports = Merge(webpackBaseConfig, {
     new CopyWebpackPlugin([{
       from: utils.genPath('src/components/dao-color.scss'),
       to: utils.genPath('dist/styles/dao-color.scss'),
+    }, {
+      from: utils.genPath('package.json'),
+      to: utils.genPath('dist/package.json'),
     }]),
     new ExtractTextPlugin('styles/dao-style.css'),
   ],

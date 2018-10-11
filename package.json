@@ -1,5 +1,5 @@
 {
-  "name": "daostyle",
+  "name": "dao-style-vue",
   "title": "DaoStyle",
   "author": "DaoCloud",
   "version": "1.0.9",
@@ -15,7 +15,7 @@
     "ui",
     "framework"
   ],
-  "main": "dist/dao-style.min.js",
+  "main": "dao-style.min.js",
   "files": [
     "dist",
     "src"

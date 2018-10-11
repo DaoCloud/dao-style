@@ -1,1 +1,1 @@
-(window.daoStyleJsonpFunction=window.daoStyleJsonpFunction||[]).push([[74],{355:function(n,o){n.exports="npm install dao-style --save"}}]);
+(window.daoStyleJsonpFunction=window.daoStyleJsonpFunction||[]).push([[74],{356:function(n,o){n.exports="npm install dao-style-vue --save"}}]);

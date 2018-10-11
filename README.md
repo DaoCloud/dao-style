@@ -1,6 +1,6 @@
 # dao-style
-[![dao-style](https://img.shields.io/npm/v/dao-style.svg?style=flat-square)](https://www.npmjs.org/package/dao-style)
-[![NPM downloads](https://img.shields.io/npm/dt/dao-style.svg?style=flat-square)](https://npmjs.org/package/dao-style)
+[![dao-style](https://img.shields.io/npm/v/dao-style-vue.svg?style=flat-square)](https://www.npmjs.org/package/dao-style-vue)
+[![NPM downloads](https://img.shields.io/npm/dt/dao-style-vue.svg?style=flat-square)](https://npmjs.org/package/dao-style-vue)
 
 ### A high quality component library built on Vue.js.
 
@@ -21,7 +21,7 @@ English | [简体中文](README_ZH.md)
 
 Using npm:
 ```
-npm install dao-style --save
+npm install dao-style-vue --save
 ```
 
 Using html tag:
@@ -33,8 +33,8 @@ Using html tag:
 
 ## Usage
 ``` javascript
-import daoStyle from 'dao-style';
-import 'dao-style/styles/dao-style.css';
+import daoStyle from 'dao-style-vue';
+import 'dao-style-vue/styles/dao-style.css';
 
 Vue.use(daoStyle);
 ```
