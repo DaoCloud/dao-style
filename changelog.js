@@ -11,7 +11,7 @@ var q = require('qq');
 var pkg = require('./version.js');
 
 var GIT_LOG_CMD = 'git log --grep="%s" -E --format=%s %s..HEAD';
-var GIT_TAG_CMD = 'git describe --tags --abbrev=0';
+var GIT_TAG_CMD = 'git describe --tags `git rev-list --tags --max-count=1`';
 
 var HEADER_TPL = '<a name="%s"></a>\n# %s (%s)\n\n';
 var LINK_ISSUE = '[#%s](https://github.com/DaoCloud/dao-style-vue/issues/%s)';
