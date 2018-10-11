@@ -1,7 +1,8 @@
 {
-  "name": "dao-style",
+  "name": "daostyle",
   "title": "DaoStyle",
   "author": "DaoCloud",
+  "version": "1.0.9",
   "license": "MIT",
   "description": "A high quality component library built on Vue.js",
   "homepage": "https://daocloud.github.io/dao-style-demo",
