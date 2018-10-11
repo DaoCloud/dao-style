@@ -1,4 +1,4 @@
-import daoStyle from 'dao-style';
-import 'dao-style/styles/dao-style.css';
+import daoStyle from 'dao-style-vue';
+import 'dao-style-vue/styles/dao-style.css';
 
 Vue.use(daoStyle);

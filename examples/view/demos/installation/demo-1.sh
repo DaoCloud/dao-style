@@ -1,1 +1,1 @@
-npm install dao-style --save
+npm install dao-style-vue --save
