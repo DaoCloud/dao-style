@@ -5,15 +5,14 @@
   "version": "1.0.9",
   "license": "MIT",
   "description": "A high quality component library built on Vue.js",
-  "homepage": "https://daocloud.github.io/dao-style-demo",
+  "homepage": "https://daocloud.github.io/dao-style",
   "keywords": [
-    "dao-style",
-    "vue",
-    "vue.js",
-    "component",
-    "components",
     "ui",
-    "framework"
+    "uikit",
+    "vue",
+    "component library",
+    "cloud computing",
+    "daocloud"
   ],
   "main": "dao-style.min.js",
   "files": [
@@ -109,8 +108,8 @@
     "webpack-merge": "^4.1.1"
   },
   "engines": {
-    "node": ">= 8.5.0",
-    "npm": ">= 6.1.0"
+    "node": ">= 8.0.0",
+    "npm": ">= 5.0.0"
   },
   "browserslist": [
     "Firefox >= 28",
