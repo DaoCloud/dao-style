@@ -50,7 +50,7 @@ export default {
   show_more: 'Load More...',
   index: {
     desc: 'A high quality component library built on Vue.js',
-    cr: 'Build and Maintained Open‑Source by {company}',
+    cr: 'Build and Maintained by {company}',
   },
   installationPage: {
     use_npm: 'Using npm',

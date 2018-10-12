@@ -102,7 +102,7 @@
       </template>
     </docs-section>
     <docs-section>
-      <template slot="title">垂直居中</template>
+      <template slot="title">修改 top 和 bottom</template>
       <template slot="content">
         <demo-code>
           <demo9 slot="demo"></demo9>
