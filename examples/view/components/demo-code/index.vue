@@ -30,19 +30,16 @@ export default {
 
 <style lang="scss" scoped>
 @import 'daoColor';
-$padding : 20px;
+$padding : 12px;
 
 .demo-code{
   border: 1px solid #ebebeb;
-  border-radius: 5px;
-  transition: .2s;
   border-radius: 4px;
+  transition: all .08s ease-in-out;
   overflow: hidden;
-  transition: all .1s ease-in-out;
   background-color: $white-light;
-  box-shadow: 0 1px 4px rgba(204, 209, 217, 0.3);
   .header{
-    padding: 10px $padding;
+    padding: $padding;
     cursor: pointer;
     user-select: none;
     font-size: 12px;
@@ -51,7 +48,6 @@ $padding : 20px;
     background-color: #1f4160;
     .header{
       color: #FFF;
-      font-weight: 600;
     }
   }
   .desc{
@@ -64,7 +60,7 @@ $padding : 20px;
     .wrap{
       padding: $padding;
       background-color: $white;
-      border-radius: 3px;
+      border-radius: 4px;
       box-shadow: 0 0 0 1px rgba(67,90,111,.146);
     }
   }

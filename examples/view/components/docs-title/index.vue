@@ -1,9 +1,9 @@
 <template>
   <div class="docs-title">
     <h2 :class="size">{{name}}</h2>
-    <div class="desc">
+    <div class="desc" v-if="$slots.content || desc">
       <slot name="desc">
-        <div v-if="desc"><md-reader>{{desc}}</md-reader></div>
+        <div><md-reader>{{desc}}</md-reader></div>
       </slot>
     </div>
   </div>
@@ -39,16 +39,17 @@ export default {
       font-size: 18px;
     }
     &.md{
-      font-size: 24px;
+      font-size: 22px;
     }
     &.lg{
-      font-size: 32px;
+      font-size: 28px;
     }
   }
   .desc{
     color: $grey-dark;
     font-size: 14px;
     font-weight: normal;
+    padding-top: 4px;
   }
 }
 </style>

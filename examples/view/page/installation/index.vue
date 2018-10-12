@@ -4,23 +4,23 @@
     <docs-section>
       <template slot="title">1. {{$t('installationPage.use_npm')}}</template>
       <template slot="content">
-        <code-reader readOnly file="installation/demo-1.sh"></code-reader>
+        <code-reader readOnly theme="3024-day" file="installation/demo-1.sh"></code-reader>
         <br>
-        <code-reader readOnly type="javascript" file="installation/demo-4.js"></code-reader>
+        <code-reader readOnly theme="3024-day" type="javascript" file="installation/demo-4.js"></code-reader>
       </template>
     </docs-section>
      <docs-section>
       <template slot="title">2. {{$t('installationPage.use_html')}}</template>
       <template slot="content">
-        <code-reader readOnly file="installation/demo-2.html"></code-reader>
+        <code-reader readOnly theme="3024-day" file="installation/demo-2.html"></code-reader>
       </template>
     </docs-section>
      <docs-section>
       <template slot="title">
-        <docs-title :name="$t('installationPage.usage')" size="sm"></docs-title>
+        <docs-title :name="$t('installationPage.usage')" size="lg"></docs-title>
       </template>
       <template slot="content">
-        <code-reader readOnly file="installation/demo-3.vue"></code-reader>
+        <code-reader readOnly theme="3024-day" file="installation/demo-3.vue"></code-reader>
       </template>
     </docs-section>
   </div>
