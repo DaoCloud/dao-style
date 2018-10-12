@@ -66,7 +66,7 @@
       <template slot="content">
         <demo-code>
           <demo6 slot="demo"></demo6>
-          <code-reader slot="code" file="nalert/demo-6.vue"></code-reader>
+          <code-reader slot="code" file="alert/demo-6.vue"></code-reader>
           <md-reader slot="desc">
             多次调用`$daoAlert`,使用`show()`方法，将实例推入队列。
           </md-reader>
