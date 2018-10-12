@@ -140,7 +140,7 @@ export default {
     color: $blue;
   }
   .option{
-    width: 300px;
+    width: 100px;
     overflow: hidden;
     text-overflow: ellipsis;
   }

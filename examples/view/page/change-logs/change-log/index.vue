@@ -29,7 +29,7 @@ export default {
   border-radius: 4px;
   padding: 20px;
   h2{
-    margin: 30px 0px 20px 0px;
+    margin: 20px 0px;
   }
   li{
     margin: 10px 0;

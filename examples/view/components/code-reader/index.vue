@@ -3,7 +3,8 @@
     <code-block
       :type="type"
       :readOnly="readOnly"
-      :code="code">
+      :code="code"
+      :theme="theme">
     </code-block>
   </div>
 </template>
@@ -23,6 +24,10 @@ export default {
     readOnly: {
       type: Boolean,
       default: false,
+    },
+    theme: {
+      type: String,
+      default: 'monokai',
     },
   },
   data() {
