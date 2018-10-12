@@ -1,7 +1,7 @@
 const LangKey = 'DaoStyleLang';
 
 function getLang() {
-  return localStorage.getItem(LangKey) || 'zh';
+  return localStorage.getItem(LangKey) || 'en';
 }
 
 function setLang(lang) {
