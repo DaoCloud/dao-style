@@ -23,6 +23,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    theme: {
+      type: String,
+      default: 'monokai',
+    },
   },
   data() {
     return {
@@ -35,7 +39,7 @@ export default {
         tabSize: 2,
         readOnly: this.readOnly,
         mode: 'text/x-vue',
-        theme: 'monokai',
+        theme: this.theme,
       };
       switch (this.type) {
         case 'vue':
@@ -69,10 +73,21 @@ export default {
 .code-block{
   .CodeMirror{
     height: auto;
-    padding: 6px 20px;
+    padding: 4px 8px;
   }
   .CodeMirror-line {
     font-family: SF Mono,Monaco,Inconsolata,Fira Mono,Droid Sans Mono,Source Code Pro,monospace !important;
+  }
+  .cm-s-monokai{
+    background-color: #153656;
+  }
+  .cm-s-3024-day{
+    .cm-def{
+      color: #01a252;
+    }
+    span.cm-string{
+      color: rgb(102, 153, 0);
+    }
   }
 }
 </style>

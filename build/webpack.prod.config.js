@@ -53,6 +53,9 @@ module.exports = Merge(webpackBaseConfig, {
     }, {
       from: utils.genPath('package.json'),
       to: utils.genPath('dist/package.json'),
+    }, {
+      from: utils.genPath('README.md'),
+      to: utils.genPath('dist/README.md'),
     }]),
     new ExtractTextPlugin('styles/dao-style.css'),
   ],
