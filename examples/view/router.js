@@ -222,7 +222,7 @@ const components = [
     component: PopoverPage,
     meta: {
       available: true,
-      docs: false,
+      docs: true,
       test: false,
     },
   }, {
