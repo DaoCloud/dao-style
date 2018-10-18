@@ -37,6 +37,7 @@
 <style lang="scss">
   @import './dao-select.scss';
   @import './dropdown.scss';
+  @import '../dao-input/dao-input';
 </style>
 <script>
   import { _find, _findIndex, _isEqual } from '../../utils/assist';
