@@ -246,7 +246,7 @@ const components = [
     component: SelectPage,
     meta: {
       available: true,
-      docs: false,
+      docs: true,
       test: true,
     },
   }, {
