@@ -85,7 +85,7 @@
           type: 'String',
           desc: 'Popover 相对于 trigger 元素的展示位置',
           options: ['top', 'top-start', 'top-end', 'bottom', 'bottom-start', 'bottom-end', 'left', 'left-start', 'left-end', 'right', 'right-start', 'right-end'],
-          default: 'bottom',
+          default: 'top',
         }, {
           name: 'always',
           type: 'Boolean',
