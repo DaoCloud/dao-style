@@ -5,6 +5,7 @@ $dialog-header-bg-img: linear-gradient(0deg, rgb(242, 244, 247) 0%, rgb(245, 247
 $dialog-border-color: #CCD1D9;
 .dao-dialog {
   &-backdrop {
+    transform: translate3d(0, 0, 0);
     position: fixed;
     top: 0;
     left: 0;
