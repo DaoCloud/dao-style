@@ -1,9 +1,11 @@
 FROM node:8.12-alpine as builder
 
 WORKDIR /app
+COPY package.json /app/package.json
+RUN npm install --only=prod
+
 COPY . /app
-RUN npm install --only=prod \
-    && npm run docs
+RUN npm run docs
 
 FROM nginx:alpine
 
