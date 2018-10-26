@@ -3,6 +3,7 @@
     v-model="select"
     placeholder="一个带搜索下拉框"
     :with-search="true"
+    :search-method="search"
     search-placeholder="搜索条件在这里">
     <dao-option-group>
       <dao-option
@@ -30,6 +31,11 @@
           value: '梨',
         }]
       };
+    },
+    methods: { 
+      search(keyword, value) {
+        return value.indexOf(keyword) > -1;
+      },
     },
   };
 </script>

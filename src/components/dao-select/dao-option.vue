@@ -47,7 +47,7 @@
             }
             break;
           case 'function':
-            this.matchedFilter = filterMethod(filter);
+            this.matchedFilter = filterMethod(filter, this.value);
             break;
           default:
             // 默认根据 label 来搜索

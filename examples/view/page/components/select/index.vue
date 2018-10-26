@@ -246,7 +246,7 @@
         }, {
           name: 'search-method',
           type: 'String / Function',
-          desc: '搜索方法：若传入的是一个 string，则这个 string 需要是 option 中 value 的一个 key；若传入的是一个 function，则 function 接受的参数为 option 的 value 值，需返回 true 或 false',
+          desc: '搜索方法：若传入的是一个 string，则这个 string 需要是 option 中 value 的一个 key；若传入的是一个 function，则 function 接受的参数为 搜索框输入的关键字以及 option 的 value 值，需返回 true 或 false',
           options: ['-'],
           default: '-',
         }, {
