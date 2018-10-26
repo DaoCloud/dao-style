@@ -36,25 +36,12 @@
       // 绑定搜索事件
       this.$on('search', (filter, filterMethod) => {
         let content;
-        switch (typeof filterMethod) {
-          case 'string':
-            content = this.value[filterMethod];
-            if (!content) {
-              this.matchedFilter = false;
-            }
-            if (content && content.indexOf(filter) > -1) {
-              this.matchedFilter = true;
-            }
-            break;
-          case 'function':
-            this.matchedFilter = filterMethod(filter, this.value);
-            break;
-          default:
-            // 默认根据 label 来搜索
-            if (!filterMethod) {
-              this.matchedFilter = (this.label ? this.label.indexOf(filter) > -1 : true);
-            }
+        if (!filterMethod) {
+          this.matchedFilter = (this.label ? this.label.indexOf(filter) > -1 : true);
+        } else {
+          this.matchedFilter = filterMethod(filter);
         }
+        // 默认根据 label 来搜索
         // 这里往上层传搜索结果，不是一个很好的操作，执行太频繁了
         this.dispatch('Option-group', 'search-result');
       });
