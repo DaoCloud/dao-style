@@ -64,7 +64,7 @@
         default: false,
       },
       searchPlaceholder: String,
-      searchMethod: [String, Function],
+      searchMethod: Function,
       withTab: {
         type: Boolean,
         default: false,
