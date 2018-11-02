@@ -1,5 +1,5 @@
 <template>
-  <div class="docs-spin">
+  <div>
     <docs-title :name="$t('list-group')" desc="List Group 是一个用于侧边栏导航的样式，它是纯样式组件。"></docs-title>
     <docs-section>
       <template slot="title">默认用法</template>
