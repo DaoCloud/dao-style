@@ -42,7 +42,7 @@ import daoClickoutside from './directives/clickoutside';
 import { daoDraggable, daoDroppable } from './directives/draggable/';
 import daoSelectAll from './directives/dao-select-all';
 import daoTooltipDirective from './directives/dao-tooltip';
-import { VERSION } from '../version';
+import { version } from '../package.json';
 
 const daoStyleComponents = {
   // 请按照名称的字典顺序添加以下内容
@@ -115,5 +115,5 @@ if (typeof window !== 'undefined' && window.Vue) {
 
 export default {
   install,
-  version: VERSION,
+  version,
 };
