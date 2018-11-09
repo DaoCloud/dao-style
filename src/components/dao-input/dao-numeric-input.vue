@@ -1,7 +1,7 @@
 <template>
   <div :class="wrapClass">
-    <input :class="inputClass" type="text" 
-      :placeholder="placeholder" 
+    <input :class="inputClass" type="text"
+      :placeholder="placeholder"
       :disabled="disabled"
       @input="onInput"
       @keydown="onKeyDown"
@@ -159,6 +159,7 @@
               return;
             }
             this.updateModel();
+            return;
           }
         }
         this.reset();
