@@ -413,6 +413,7 @@ export default {
 </script>
 
 <style lang="scss">
+  @import '../dao-input/dao-input.scss';
   @import './dao-input-with-label.scss';
 </style>
 
