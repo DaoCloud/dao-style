@@ -3,6 +3,8 @@ import './components/dao-svg/svg';
 // 纯样式组件
 import './components/common.scss';
 import './components/dao-button/dao-button.scss';
+// input 有提供纯样式用法
+import './components/dao-input/dao-input.scss';
 import './components/dao-button/dao-button-group.scss';
 import './components/dao-card/dao-card.scss';
 import './components/dao-checkbox/dao-checkbox.scss';
