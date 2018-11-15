@@ -81,7 +81,7 @@
   },
   "peerDependencies": {},
   "devDependencies": {
-    "babel-eslint": "^7.2.3",
+    "babel-eslint": "^9.0.0",
     "babel-runtime": "^6.26.0",
     "eslint": "^3.19.0",
     "eslint-config-airbnb-base": "^11.1.3",
