@@ -246,7 +246,7 @@
         }, {
           name: 'search-method',
           type: 'Function',
-          desc: '搜索方法，接受的参数为 option 的 value 值，需返回 true 或 false',
+          desc: '搜索方法，接受的参数为搜索的关键字以及 option 的 value 值，需返回 true 或 false',
           options: ['-'],
           default: '-',
         }, {
@@ -334,7 +334,7 @@
         optionSlots: [{
           name: 'default',
           desc: '可以自定义 option 的显示模板，不传入的话默认显示 option 的 label',
-        }]
+        }],
       };
     },
   };
