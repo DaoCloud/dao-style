@@ -1,6 +1,7 @@
 /* eslint-disable */
 import Popper from 'popper.js';
 import getStyle from '../utils/get-style';
+import '../components/dao-tooltip/dao-tooltip.scss';
 
 const prefixCls = 'dao-tooltip';
 
