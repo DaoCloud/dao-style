@@ -35,15 +35,14 @@
       });
       // 绑定搜索事件
       this.$on('search', (filter, filterMethod) => {
-        let content;
         if (!filterMethod) {
           this.matchedFilter = (this.label ? this.label.indexOf(filter) > -1 : true);
         } else {
-          this.matchedFilter = filterMethod(filter);
+          this.matchedFilter = filterMethod(filter, this.value);
         }
         // 默认根据 label 来搜索
         // 这里往上层传搜索结果，不是一个很好的操作，执行太频繁了
-        this.dispatch('Option-group', 'search-result');
+        this.dispatch('Option-group', 'search-result', this.matchedFilter);
       });
     },
     mounted() {
@@ -68,7 +67,7 @@
       nodesString() {
         // 获取 slot 中的 dom 节点
         const nodes = this.$slots.default;
-        let nodesString =  this.prefix || '';
+        let nodesString = this.prefix || '';
         if (nodes) {
           nodes.forEach((n) => {
             if (n.elm.nodeType === 3) {
