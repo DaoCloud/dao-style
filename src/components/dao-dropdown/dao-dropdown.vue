@@ -146,4 +146,7 @@
   };
 </script>
 
-<style lang="scss" src="./dao-dropdown.scss"></style>
+<style lang="scss">
+  @import './dao-dropdown.scss';
+  @import '../dao-select/dropdown.scss';
+</style>
