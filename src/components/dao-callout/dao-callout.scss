@@ -43,6 +43,10 @@ $white: #ffffff;
     $color: $yellow;
   } @else if $type == 'info' {
     $color: $blue;
+  } @else if $type == 'success' {
+    $color: lighten($green, 10);
+  } @else if $type == 'not-available' {
+    $color: $grey-dark;
   }
   color: generate-color($color, 3);
   background-color: generate-color($color, -3);
@@ -78,6 +82,12 @@ $white: #ffffff;
   }
   &.info {
     @include type-color('info');
+  }
+  &.success {
+    @include type-color('success');
+  }
+  &.not-available {
+    @include type-color('not-available');
   }
   .bold-line {
     width: 3px;
