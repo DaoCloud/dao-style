@@ -17,6 +17,8 @@
   .title {
     color: $grey-light;
     display: inline-block;
+    top: 1px;
+    position: relative;
   }
   .dao-step-title,
   .dao-substep {
@@ -30,18 +32,18 @@
       width: 2px;
       background-color: rgba(204, 209, 216, 0.5);
       position: absolute;
-      top: 64%;
-      bottom: -44%;
+      top: 63%;
+      bottom: -47%;
       left: 7px;
     }
   }
   .dao-step-title {
     &:after {
-      top: 74%;
+      top: 73%;
     }
   }
   .dao-substep:last-child:after {
-    bottom: -30%;
+    bottom: -32%;
   }
   &:not(.noClick) {
     .dao-step:not(.noClick):not(.noActive) .dao-substep:not(.noClick):not(.noActive) {
@@ -118,7 +120,7 @@
         color: $blue;
       }
       &:after {
-        top: 64%;
+        top: 63%;
       }
       .dot {
         visibility: visible;
