@@ -213,14 +213,14 @@
       handleKeyDown(event) {
         this.$emit('keydown', event);
       },
-      updateModel(value) {
-        this.$emit('input', value);
+      updateModel(value, event) {
+        this.$emit('input', value, event);
         this.setCurrentValue(value);
-        this.$emit('change', value);
+        this.$emit('change', value, event);
       },
       handleInput(event) {
         const value = event.target.value;
-        this.updateModel(value);
+        this.updateModel(value, event);
       },
       setCurrentValue(value) {
         if (value === this.currentValue) return;
