@@ -87,7 +87,7 @@
     },
     created() {
       this.$on('visible', (newVal) => {
-        this.visible = newVal;
+        this.isShow = newVal;
       });
       this.$on('loading', (timer) => {
         this.loading = true;
@@ -101,10 +101,10 @@
           timerPromise = timer();
         }
         if (!timerPromise.then) {
-          this.visible = false;
+          this.isShow = false;
         } else {
           timerPromise.then(() => {
-            this.visible = false;
+            this.isShow = false;
           });
         }
       });
@@ -144,19 +144,19 @@
           if (timer) {
             this.$emit('loading', timer);
           } else {
-            this.visible = false;
+            this.isShow = false;
           }
         });
       },
       onCancel() {
         this.$emit('cancel');
-        this.visible = false;
+        this.isShow = false;
       },
       onClosed() {
         this.$emit('close');
       },
     },
-    component: {
+    components: {
       DaoDialog,
     },
     watch: {
