@@ -27,9 +27,9 @@ module.exports = Merge(webpackBaseConfig, {
     path: utils.genPath('dist'),
     publicPath: '/dist/',
     filename: 'dao-style.min.js',
-    library: 'dao-style',
-    libraryTarget: 'umd',
-    umdNamedDefine: true,
+    library: 'DAOSTYLE',
+    libraryExport: 'default',
+    libraryTarget: 'commonjs2',
   },
   externals: {
     vue: {
