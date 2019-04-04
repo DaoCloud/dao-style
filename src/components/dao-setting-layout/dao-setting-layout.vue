@@ -1,5 +1,4 @@
-import './dao-setting-layout.scss';
-
+<script>
 export default {
   name: 'DaoSettingLayout',
   functional: true,
@@ -46,3 +45,8 @@ export default {
     ]);
   },
 };
+
+</script>
+<style lang="scss">
+  @import './dao-setting-layout.scss';
+</style>
