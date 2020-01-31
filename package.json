@@ -57,7 +57,7 @@
     "karma-webpack": "^2.0.2",
     "mocha": "^3.2.0",
     "phantomjs-prebuilt": "2.1.14",
-    "semver": "^5.5.1",
+    "semver": "^7.1.2",
     "sinon": "^1.17.7",
     "sinon-chai": "^2.8.0",
     "webpack-dev-server": "^3.1.6",
