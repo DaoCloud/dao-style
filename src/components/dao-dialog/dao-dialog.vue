@@ -1,5 +1,6 @@
 <template>
-  <transition name="dao-dialog"
+  <transition appear
+    name="dao-dialog"
     @before-enter="onBeforeEnter"
     @after-enter="onAfterEnter"
     @before-leave="onBeforeLeave"
